@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { memo } from 'react';
 import TodolistForm from './TodolistForm';
@@ -25,11 +25,13 @@ const SidebarContent = memo(function ({ todolists, onAddTodolist }: SidebarConte
 			<MemoizedSidebarToggle />
 			<MemoizedTodolistForm onAdd={onAddTodolist} />
 
-			<div className="container mx-auto p-4 flex flex-col gap-10">
+			<ul className="container mx-auto p-4 flex flex-col gap-10">
 				{todolists.map(todolist => (
-					<MemoizedTodoListItem key={todolist.id} todolist={todolist} />
+					<li>
+						<MemoizedTodoListItem key={todolist.id} todolist={todolist} />
+					</li>
 				))}
-			</div>
+			</ul>
 		</div>
 	);
 });
