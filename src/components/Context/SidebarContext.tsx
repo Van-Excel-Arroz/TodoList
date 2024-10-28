@@ -22,7 +22,7 @@ interface SidebarProviderProps {
 	children: React.ReactNode;
 }
 
-export default function SidebarProvider({ children }: SidebarProviderProps) {
+export function SidebarProvider({ children }: SidebarProviderProps) {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
 	function toggleSidebar() {

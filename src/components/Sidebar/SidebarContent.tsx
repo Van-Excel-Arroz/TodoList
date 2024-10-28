@@ -1,3 +1,5 @@
+'use client'
+
 import { memo } from 'react';
 import TodolistForm from './TodolistForm';
 import TodoListItem from './TodoListItem';
