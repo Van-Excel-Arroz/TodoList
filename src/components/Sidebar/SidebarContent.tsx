@@ -21,7 +21,7 @@ interface SidebarContentProps {
 
 const SidebarContent = memo(function ({ todolists, onAddTodolist }: SidebarContentProps) {
 	return (
-		<div className="sticky top-0 left-0 h-screen w-80 overflow-y-scroll px-6 py-10">
+		<div className="sticky top-0 left-0 w-80 h-screen overflow-y-scroll px-6 py-10">
 			<MemoizedSidebarToggle />
 			<MemoizedTodolistForm onAdd={onAddTodolist} />
 
