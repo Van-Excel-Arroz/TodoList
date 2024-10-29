@@ -41,7 +41,7 @@ function TodoList({ todolistId, title, initialTodos }: TodolistContentProps) {
 
 	return (
 		<>
-			<div className="flex flex-col container p-10 mx-auto ">
+			<div className="flex flex-col px-6 p-9 ">
 				<div className="flex gap-4">
 					{!isSidebarOpen && <MemoizedSidebarToggle />}
 					<p className="text-lg font-bold">

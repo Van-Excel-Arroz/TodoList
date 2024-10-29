@@ -10,8 +10,8 @@ export default function layout({ main, left }: layoutProps) {
 		<>
 			<SidebarProvider>
 				<div className="flex relative">
-					<div className="w-1/4">{left}</div>
-					<div className="flex-1">{main}</div>
+					<div>{left}</div>
+					<div className="w-full">{main}</div>
 				</div>
 			</SidebarProvider>
 		</>
