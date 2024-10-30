@@ -8,12 +8,6 @@ export async function createTodolist(title: string) {
 	if (title.trim().length <= 100) {
 		const todolistId = await storeTodolist(title, 1);
 
-		revalidatePath(`/tasks/home`);
-
-		if (todolistId) {
-			revalidatePath(`/tasks/${todolistId}`);
-		}
-
 		return todolistId;
 	} else {
 		console.error('Title is missing or is not a string.');
