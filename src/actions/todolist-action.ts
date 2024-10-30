@@ -2,7 +2,6 @@
 
 import { storeTodo } from '@/lib/todo';
 import { storeTodolist } from '@/lib/todolist';
-import { revalidatePath } from 'next/cache';
 
 export async function createTodolist(title: string) {
 	if (title.trim().length <= 100) {
@@ -17,6 +16,5 @@ export async function createTodolist(title: string) {
 
 export async function createTodo(text: string, category: string, dueDatetime: string | null, todolistId: number) {
 	const result = await storeTodo(text, category, dueDatetime, todolistId);
-	revalidatePath(`/tasks/${todolistId}`);
 	return result;
 }
