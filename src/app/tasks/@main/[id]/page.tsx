@@ -3,6 +3,7 @@ import { getTodos } from '@/lib/todo';
 import { getTodolist } from '@/lib/todolist';
 
 import { notFound, redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default async function TodolistPage({ params }: { params: any }) {
 	const todolistId = Number(params.id);
@@ -17,5 +18,9 @@ export default async function TodolistPage({ params }: { params: any }) {
 		redirect('/tasks/home');
 	}
 
-	return <TodoList todolistId={todolistId} title={todolist.title} initialTodos={todos} />;
+	return (
+		<Suspense fallback={<h1>Loading.....</h1>}>
+			<TodoList todolistId={todolistId} title={todolist.title} initialTodos={todos} />
+		</Suspense>
+	);
 }
