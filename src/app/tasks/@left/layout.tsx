@@ -1,10 +1,9 @@
 import Sidebar from '@/components/Sidebar/Sidebar';
 
-export default function LeftLayout({ children }: { children: React.ReactNode }) {
+export default function LeftLayout() {
 	return (
 		<>
 			<Sidebar />
-			{children}
 		</>
 	);
 }
