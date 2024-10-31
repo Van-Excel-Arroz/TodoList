@@ -1,6 +1,7 @@
 'use client';
 
 import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
+import { memo } from 'react';
 
 interface Todo {
 	id: number;
@@ -15,7 +16,7 @@ interface TodoItemProps {
 	todo: Todo;
 }
 
-export default function TodoItem({ todo }: TodoItemProps) {
+function TodoItem({ todo }: TodoItemProps) {
 	return (
 		<div key={todo.id} className="grid grid-cols-6 my-3 border border-l-slate-800 px-4 py-2 ">
 			<div className="col-span-4">
@@ -48,3 +49,5 @@ export default function TodoItem({ todo }: TodoItemProps) {
 		</div>
 	);
 }
+
+export default memo(TodoItem);

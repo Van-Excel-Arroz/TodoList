@@ -3,6 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { createTodo } from '@/actions/todolist-action';
 import { extractCategory, removeCategories } from '@/utils/category';
+import { memo } from 'react';
 
 interface Todo {
 	id: number;
@@ -18,7 +19,7 @@ interface TodoFormProps {
 	onAdd: (todo: Todo) => void;
 }
 
-export default function TodoForm({ todolistId, onAdd }: TodoFormProps) {
+function TodoForm({ todolistId, onAdd }: TodoFormProps) {
 	const {
 		register,
 		handleSubmit,
@@ -87,3 +88,5 @@ export default function TodoForm({ todolistId, onAdd }: TodoFormProps) {
 		</div>
 	);
 }
+
+export default memo(TodoForm);

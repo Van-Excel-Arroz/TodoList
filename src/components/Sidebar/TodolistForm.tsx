@@ -13,7 +13,7 @@ interface TodolistFormProps {
 	onAdd: (todolist: Todolist) => void;
 }
 
-const TodolistForm = memo(function ({ onAdd }: TodolistFormProps) {
+function TodolistForm({ onAdd }: TodolistFormProps) {
 	const {
 		register,
 		handleSubmit,
@@ -52,6 +52,6 @@ const TodolistForm = memo(function ({ onAdd }: TodolistFormProps) {
 			</form>
 		</>
 	);
-});
+}
 
-export default TodolistForm;
+export default memo(TodolistForm);

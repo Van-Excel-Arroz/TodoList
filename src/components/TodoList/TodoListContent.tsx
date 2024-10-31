@@ -22,8 +22,6 @@ interface TodolistContentProps {
 	initialTodos: Todo[];
 }
 
-const MemoizedTodoForm = memo(TodoForm);
-const MemoizedTodoItem = memo(TodoItem);
 const MemoizedSidebarToggle = memo(SidebarToggle, (prevProps, nextProps) => {
 	return true;
 });
@@ -48,7 +46,7 @@ function TodoListContent({ todolistId, title, initialTodos }: TodolistContentPro
 						{title} #{todolistId}
 					</p>
 				</div>
-				<MemoizedTodoForm todolistId={todolistId} onAdd={handleAddTodo} />
+				<TodoForm todolistId={todolistId} onAdd={handleAddTodo} />
 
 				<div className="grid grid-cols-6 my-3 px-4 font-semibold">
 					<p className="col-span-4">Todos</p>
@@ -57,7 +55,7 @@ function TodoListContent({ todolistId, title, initialTodos }: TodolistContentPro
 				</div>
 				<div>
 					{todos.map(todo => (
-						<MemoizedTodoItem key={todo.id} todo={todo} />
+						<TodoItem key={todo.id} todo={todo} />
 					))}
 				</div>
 			</div>
@@ -65,4 +63,4 @@ function TodoListContent({ todolistId, title, initialTodos }: TodolistContentPro
 	);
 }
 
-export default React.memo(TodoListContent);
+export default memo(TodoListContent);
