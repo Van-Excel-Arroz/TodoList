@@ -10,9 +10,5 @@ interface TodolistItemProps {
 }
 
 export default function TodoListItem({ todolist }: TodolistItemProps) {
-	return (
-		<Link href={`/tasks/${todolist.id}`} shallow>
-			{todolist.title}
-		</Link>
-	);
+	return <Link href={`/tasks/${todolist.id}`}>{todolist.title}</Link>;
 }
