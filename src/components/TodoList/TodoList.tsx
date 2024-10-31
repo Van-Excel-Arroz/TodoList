@@ -5,6 +5,7 @@ import SidebarToggle from '../Sidebar/SidebarToggle';
 import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
 import React from 'react';
+import useSidebarStore from '../Context/SidebarContext';
 
 interface Todo {
 	id: number;
@@ -30,6 +31,7 @@ const MemoizedSidebarToggle = memo(SidebarToggle, (prevProps, nextProps) => {
 function TodoList({ todolistId, title, initialTodos }: TodolistContentProps) {
 	const [todos, setTodos] = useState(initialTodos);
 	const [isPending, startTransition] = useTransition();
+	const { isSidebarOpen } = useSidebarStore();
 
 	const handleAddTodo = useCallback((todo: Todo) => {
 		startTransition(() => {
@@ -41,7 +43,7 @@ function TodoList({ todolistId, title, initialTodos }: TodolistContentProps) {
 		<>
 			<div className="flex flex-col px-6 p-9 ">
 				<div className="flex gap-4">
-					<MemoizedSidebarToggle />
+					{!isSidebarOpen && <MemoizedSidebarToggle />}
 					<p className="text-lg font-bold">
 						{title} #{todolistId}
 					</p>

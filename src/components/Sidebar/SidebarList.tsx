@@ -24,13 +24,11 @@ const SidebarList = memo(function ({ initialTodolist }: SidebarListProps) {
 		});
 	}, []);
 
-	if (!isSidebarOpen) {
-		return null;
-	}
-
 	return (
 		<>
-			<SidebarContent todolists={todolists} onAddTodolist={handleAddTodolist} />
+			<div className={`overflow-hidden ${isSidebarOpen ? 'w-[350px]' : 'w-0'}`}>
+				<SidebarContent todolists={todolists} onAddTodolist={handleAddTodolist} />
+			</div>
 		</>
 	);
 });

@@ -27,7 +27,7 @@ const SidebarContent = memo(function ({ todolists, onAddTodolist }: SidebarConte
 
 			<ul className="container mx-auto p-4 flex flex-col gap-10">
 				{todolists.map(todolist => (
-					<li>
+					<li key={todolist.id}>
 						<MemoizedTodoListItem key={todolist.id} todolist={todolist} />
 					</li>
 				))}
