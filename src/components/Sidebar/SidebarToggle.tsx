@@ -1,10 +1,10 @@
 'use client';
 
-import { useSidebar } from '@/components/Context/SidebarContext';
+import useSidebarStore from '@/components/Context/SidebarContext';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
 export default function SidebarToggle() {
-	const { toggleSidebar } = useSidebar();
+	const { toggleSidebar } = useSidebarStore();
 	return (
 		<button onClick={toggleSidebar}>
 			<RxHamburgerMenu size={20} />

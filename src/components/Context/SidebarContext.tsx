@@ -1,39 +1,13 @@
-'use client';
+import { create } from 'zustand';
 
-import { createContext, useContext, useState } from 'react';
-
-interface SidebarContextProps {
+interface SidebarState {
 	isSidebarOpen: boolean;
 	toggleSidebar: () => void;
-	closeSidebar: () => void;
 }
 
-const SidebarContext = createContext<SidebarContextProps | undefined>(undefined);
+const useSidebarStore = create<SidebarState>()((set: any) => ({
+	isSidebarOpen: false,
+	toggleSidebar: () => set((state: any) => ({ isSidebarOpen: !state.isSidebarOpen })),
+}));
 
-export function useSidebar() {
-	const context = useContext(SidebarContext);
-	if (!context) {
-		throw new Error('useSidebar must be used within a SidebarProvider');
-	}
-	return context;
-}
-
-interface SidebarProviderProps {
-	children: React.ReactNode;
-}
-
-export function SidebarProvider({ children }: SidebarProviderProps) {
-	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
-	function toggleSidebar() {
-		setIsSidebarOpen(prev => !prev);
-	}
-
-	function closeSidebar() {
-		setIsSidebarOpen(false);
-	}
-
-	return (
-		<SidebarContext.Provider value={{ isSidebarOpen, toggleSidebar, closeSidebar }}>{children}</SidebarContext.Provider>
-	);
-}
+export default useSidebarStore;

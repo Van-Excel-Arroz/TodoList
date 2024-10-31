@@ -1,6 +1,5 @@
 'use client';
 
-import { useSidebar } from '@/components/Context/SidebarContext';
 import { useState, useTransition, useCallback, memo } from 'react';
 import SidebarToggle from '../Sidebar/SidebarToggle';
 import TodoForm from './TodoForm';
@@ -31,7 +30,6 @@ const MemoizedSidebarToggle = memo(SidebarToggle, (prevProps, nextProps) => {
 function TodoList({ todolistId, title, initialTodos }: TodolistContentProps) {
 	const [todos, setTodos] = useState(initialTodos);
 	const [isPending, startTransition] = useTransition();
-	const { isSidebarOpen } = useSidebar();
 
 	const handleAddTodo = useCallback((todo: Todo) => {
 		startTransition(() => {
@@ -43,7 +41,7 @@ function TodoList({ todolistId, title, initialTodos }: TodolistContentProps) {
 		<>
 			<div className="flex flex-col px-6 p-9 ">
 				<div className="flex gap-4">
-					{!isSidebarOpen && <MemoizedSidebarToggle />}
+					<MemoizedSidebarToggle />
 					<p className="text-lg font-bold">
 						{title} #{todolistId}
 					</p>

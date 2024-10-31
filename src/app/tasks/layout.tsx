@@ -1,4 +1,4 @@
-import { SidebarProvider } from '@/components/Context/SidebarContext';
+import useSidebarStore from '@/components/Context/SidebarContext';
 
 interface layoutProps {
 	main: React.ReactNode;
@@ -6,15 +6,15 @@ interface layoutProps {
 }
 
 export default function layout({ main, left }: layoutProps) {
+	const { isSidebarOpen } = useSidebarStore();
+
 	return (
 		<>
-			<SidebarProvider>
-				<div className="flex relative">
-					<div>{left}</div>
-					<div className="w-full">{main}</div>
-					<div className="w-1/4">Hello World</div>
-				</div>
-			</SidebarProvider>
+			<div className="flex relative">
+				<div className={isSidebarOpen ? 'block' : 'none'}>{left}</div>
+				<div className="w-full">{main}</div>
+				<div className="w-1/4">Hello World</div>
+			</div>
 		</>
 	);
 }

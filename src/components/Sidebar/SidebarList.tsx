@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useTransition, memo, useCallback } from 'react';
-import { useSidebar } from '@/components/Context/SidebarContext';
+import useSidebarStore from '@/components/Context/SidebarContext';
 import SidebarContent from './SidebarContent';
 
 interface Todolist {
@@ -16,7 +16,7 @@ interface SidebarListProps {
 const SidebarList = memo(function ({ initialTodolist }: SidebarListProps) {
 	const [todolists, setTodolists] = useState(initialTodolist);
 	const [isPending, startTransition] = useTransition();
-	const { isSidebarOpen } = useSidebar();
+	const { isSidebarOpen } = useSidebarStore();
 
 	const handleAddTodolist = useCallback((newTodolist: Todolist) => {
 		startTransition(() => {
