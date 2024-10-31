@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { memo } from 'react';
+import { useMemo } from 'react';
 
 interface Todolist {
 	id: number;
@@ -10,12 +10,11 @@ interface TodolistItemProps {
 	todolist: Todolist;
 }
 
-const TodoListItem = memo(
-	function ({ todolist }: TodolistItemProps) {
-		return <Link href={`/tasks/${todolist.id}`}>{todolist.title}</Link>;
-	},
-	(prevProps, nextProps) => {
-		return prevProps.todolist.id === nextProps.todolist.id && prevProps.todolist.title === nextProps.todolist.title;
-	}
-);
-export default TodoListItem;
+export default function TodoListItem({ todolist }: TodolistItemProps) {
+	const linkElement = useMemo(
+		() => <Link href={`/tasks/${todolist.id}`}>{todolist.title}</Link>,
+		[todolist.id, todolist.title]
+	);
+
+	return linkElement;
+}
