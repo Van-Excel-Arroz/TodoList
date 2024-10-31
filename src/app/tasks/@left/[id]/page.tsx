@@ -1,3 +1,3 @@
-export default function LeftPage() {
-	return null;
+export default function LeftPage({ params }: { params: any }) {
+	return <div></div>;
 }

@@ -5,6 +5,7 @@ import TodolistForm from './TodolistForm';
 import TodoListItem from './TodoListItem';
 import SidebarToggle from './SidebarToggle';
 import Link from 'next/link';
+import useTodoListIdStore from '../Context/TodoListIdState';
 
 const MemoizedTodolistForm = memo(TodolistForm);
 const MemoizedTodoListItem = memo(TodoListItem);
@@ -21,6 +22,8 @@ interface SidebarContentProps {
 }
 
 const SidebarContent = memo(function ({ todolists, onAddTodolist }: SidebarContentProps) {
+	const currentSelectedTodoListId = useTodoListIdStore(state => state.currentSelectedTodoListId);
+
 	return (
 		<div className="sticky top-0 left-0 w-80 h-screen overflow-y-scroll px-6 py-10">
 			<div className="flex gap-4">
@@ -31,9 +34,14 @@ const SidebarContent = memo(function ({ todolists, onAddTodolist }: SidebarConte
 			</div>
 			<MemoizedTodolistForm onAdd={onAddTodolist} />
 
-			<ul className="container mx-auto p-4 flex flex-col gap-10">
+			<ul className="container mx-auto flex flex-col gap-2">
 				{todolists.map(todolist => (
-					<li key={todolist.id}>
+					<li
+						key={todolist.id}
+						className={`hover:bg-slate-100 rounded-md ${
+							currentSelectedTodoListId === todolist.id ? 'border border-black bg-slate-100' : ''
+						}`}
+					>
 						<MemoizedTodoListItem key={todolist.id} todolist={todolist} />
 					</li>
 				))}
