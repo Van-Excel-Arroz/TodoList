@@ -22,10 +22,6 @@ interface TodolistContentProps {
 	initialTodos: Todo[];
 }
 
-const MemoizedSidebarToggle = memo(SidebarToggle, (prevProps, nextProps) => {
-	return true;
-});
-
 function TodoListContent({ todolistId, title, initialTodos }: TodolistContentProps) {
 	const [todos, setTodos] = useState(initialTodos);
 	const [isPending, startTransition] = useTransition();
@@ -41,7 +37,7 @@ function TodoListContent({ todolistId, title, initialTodos }: TodolistContentPro
 		<>
 			<div className="flex flex-col px-6 p-9 ">
 				<div className="flex gap-4">
-					{!isSidebarOpen && <MemoizedSidebarToggle />}
+					{!isSidebarOpen && <SidebarToggle />}
 					<p className="text-lg font-bold">
 						{title} #{todolistId}
 					</p>
