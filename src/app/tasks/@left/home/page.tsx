@@ -1,5 +1,12 @@
-import Sidebar from '@/components/Sidebar/Sidebar';
+import SidebarList from '@/components/Sidebar/SidebarList';
+import { getTodolists } from '@/lib/todolist';
 
-export default function HomePage() {
-	return <Sidebar />;
+interface TodoList {
+	id: number;
+	title: string;
+}
+
+export default async function LeftHomePage() {
+	const todolists: TodoList[] = (await getTodolists(1)) ?? [];
+	return <SidebarList initialTodolist={todolists} />;
 }

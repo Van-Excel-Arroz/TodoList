@@ -1,15 +1,9 @@
-'use client';
-
-import useSidebarStore from '@/components/Context/SidebarContext';
-
 interface layoutProps {
 	main: React.ReactNode;
 	left: React.ReactNode;
 }
 
 export default function layout({ main, left }: layoutProps) {
-	const { isSidebarOpen } = useSidebarStore();
-
 	return (
 		<>
 			<div className="flex relative">
