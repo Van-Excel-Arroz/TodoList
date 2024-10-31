@@ -42,9 +42,9 @@ const TodolistForm = memo(function ({ onAdd }: TodolistFormProps) {
 						})}
 						type="text"
 						placeholder="New list"
-						className="border rounded p-2 w-full shadow-2xl focus:outline-none"
+						className="border rounded p-2 w-full shadow-md focus:outline-none"
 					/>
-					<button type="submit" className="border rounded shadow-xl py-2 px-4 text-lg">
+					<button type="submit" className="border rounded shadow-md py-2 px-4 text-lg">
 						+
 					</button>
 				</div>
