@@ -18,14 +18,16 @@ interface SidebarContentProps {
 
 function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
 	return (
-		<div className="sticky top-0 left-0 w-80 h-screen overflow-y-scroll px-6 py-10">
-			<div className="flex gap-4">
-				<SidebarToggle />
-				<Link href="/" className="text-lg font-bold">
-					Home
-				</Link>
+		<div className="sticky top-0 left-0 w-80 h-screen overflow-y-scroll  py-9">
+			<div className="flex flex-col gap-4 px-6">
+				<div className="flex gap-4">
+					<SidebarToggle />
+					<Link href="/" className="text-lg font-bold">
+						Home
+					</Link>
+				</div>
+				<TodolistForm onAdd={onAddTodolist} />
 			</div>
-			<TodolistForm onAdd={onAddTodolist} />
 
 			<ul className="container mx-auto flex flex-col gap-2">
 				{todolists.map(todolist => (

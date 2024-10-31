@@ -16,7 +16,7 @@ function TodoListItem({ todolist }: TodolistItemProps) {
 	const isSelectedPath = pathname === `/tasks/${todolist.id}`;
 
 	return (
-		<div className={`hover:bg-slate-100 rounded-md ${isSelectedPath ? 'border border-black bg-slate-100' : ''}`}>
+		<div className={isSelectedPath ? 'border-l-4 border-slate-500 bg-slate-200' : 'pl-1 hover:bg-slate-100 '}>
 			<Link href={`/tasks/${todolist.id}`} className="font-thin text-md w-full block py-3 px-5">
 				{todolist.title}
 			</Link>

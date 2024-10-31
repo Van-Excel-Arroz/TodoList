@@ -1,7 +1,6 @@
 import TodoListContent from '@/components/TodoList/TodoListContent';
 import { getTodos } from '@/lib/todo';
 import { getTodolist } from '@/lib/todolist';
-
 import { notFound, redirect } from 'next/navigation';
 import { Suspense } from 'react';
 
