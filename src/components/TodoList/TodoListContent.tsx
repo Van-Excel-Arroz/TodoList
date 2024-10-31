@@ -1,12 +1,11 @@
 'use client';
 
-import { useState, useTransition, useCallback, memo, useEffect } from 'react';
+import { useState, useTransition, useCallback, memo } from 'react';
 import SidebarToggle from '../Sidebar/SidebarToggle';
 import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
 import React from 'react';
 import useSidebarStore from '../Context/SidebarContext';
-import useTodoListIdStore from '../Context/TodoListIdState';
 
 interface Todo {
 	id: number;
@@ -33,11 +32,6 @@ function TodoListContent({ todolistId, title, initialTodos }: TodolistContentPro
 	const [todos, setTodos] = useState(initialTodos);
 	const [isPending, startTransition] = useTransition();
 	const { isSidebarOpen } = useSidebarStore();
-
-	const { setTodoListId } = useTodoListIdStore();
-	useEffect(() => {
-		setTodoListId(todolistId);
-	}, [todolistId]);
 
 	const handleAddTodo = useCallback((todo: Todo) => {
 		startTransition(() => {
