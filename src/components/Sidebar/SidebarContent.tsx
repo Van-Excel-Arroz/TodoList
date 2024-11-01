@@ -19,7 +19,7 @@ interface SidebarContentProps {
 
 function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
 	return (
-		<div className="border-r-2 h-screen bg-white py-9">
+		<div className="border-r-2 h-screen sticky top-0 left-0 bg-white py-9">
 			<div className="flex flex-col gap-4 px-6">
 				<div className="flex gap-4 items-center">
 					<SidebarToggle />
