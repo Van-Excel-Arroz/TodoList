@@ -5,6 +5,7 @@ import TodoListItem from './TodoListItem';
 import SidebarToggle from './SidebarToggle';
 import Link from 'next/link';
 import { memo } from 'react';
+import { AiOutlineHome } from 'react-icons/ai';
 
 interface Todolist {
 	id: number;
@@ -18,12 +19,12 @@ interface SidebarContentProps {
 
 function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
 	return (
-		<div className="sticky top-0 left-0 w-80 h-screen border-r-2 bg-white py-9">
+		<div className="border-r-2 h-screen bg-white py-9">
 			<div className="flex flex-col gap-4 px-6">
-				<div className="flex gap-4">
+				<div className="flex gap-4 items-center">
 					<SidebarToggle />
 					<Link href="/" className="text-lg font-bold">
-						Home
+						<AiOutlineHome size={27} />
 					</Link>
 				</div>
 				<TodolistForm onAdd={onAddTodolist} />
