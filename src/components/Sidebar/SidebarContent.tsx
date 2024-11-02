@@ -40,5 +40,5 @@ function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
 		</div>
 	);
 }
-
+//sidebar
 export default memo(SidebarContent);
