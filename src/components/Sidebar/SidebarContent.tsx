@@ -6,6 +6,7 @@ import SidebarToggle from './SidebarToggle';
 import Link from 'next/link';
 import { memo } from 'react';
 import { AiOutlineHome } from 'react-icons/ai';
+import { usePathname } from 'next/navigation';
 
 interface Todolist {
 	id: number;
@@ -18,11 +19,14 @@ interface SidebarContentProps {
 }
 
 function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
+	const pathname = usePathname();
+	const isHome = pathname === '/tasks/home';
+
 	return (
-		<div className="border-r-2 h-screen bg-white py-9">
+		<div className="border-r-2 h-screen sticky top-0 left-0 bg-white py-9">
 			<div className="flex flex-col gap-4 px-6">
 				<div className="flex gap-4 items-center">
-					<SidebarToggle />
+					{!isHome && <SidebarToggle />}
 					<Link href="/" className="text-lg font-bold">
 						<AiOutlineHome size={27} />
 					</Link>
