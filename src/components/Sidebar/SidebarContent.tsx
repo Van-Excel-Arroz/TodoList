@@ -23,7 +23,7 @@ function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
 	const isHome = pathname === '/tasks/home';
 
 	return (
-		<div className="border-r-2 h-screen sticky top-0 left-0 bg-white py-9">
+		<div className="border-r-2 rounded-r-3xl h-screen sticky top-0 bg-white left-0 py-9">
 			<div className="flex flex-col gap-4 px-6">
 				<div className="flex gap-4 items-center">
 					{!isHome && <SidebarToggle />}

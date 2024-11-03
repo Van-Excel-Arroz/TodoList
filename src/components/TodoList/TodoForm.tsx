@@ -74,7 +74,7 @@ function TodoForm({ todolistId, onAdd }: TodoFormProps) {
 					})}
 					type="text"
 					placeholder="task... #category"
-					className="border rounded shadow-md p-2 w-full focus:outline-none"
+					className="border rounded drop-shadow-md p-2 w-full focus:outline-none"
 				/>
 				{errors.todo?.message && typeof errors.todo.message === 'string' && (
 					<p className="text-red-500">{errors.todo?.message}</p>
