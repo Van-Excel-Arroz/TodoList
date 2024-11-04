@@ -23,7 +23,9 @@ export async function createTodo(text: string, category: string, dueDatetime: st
 
 export async function deleteTodolistAction(todolistId: number, user_id: number) {
 	const result = await deleteTodolist(todolistId, user_id);
-	if (!result) {
+	if (result) {
+		revalidatePath(`/tasks/home`);
+	} else {
 		console.error('Failed to delete the todolist');
 	}
 }
