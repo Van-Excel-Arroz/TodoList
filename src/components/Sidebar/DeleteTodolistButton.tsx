@@ -3,7 +3,7 @@
 import { MdDeleteOutline } from 'react-icons/md';
 import { deleteTodolistAction } from '@/actions/todolist-action';
 import { memo } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface DeleteTodolistButtonProps {
 	todolistId: number;
@@ -11,11 +11,14 @@ interface DeleteTodolistButtonProps {
 
 function DeleteTodolistButton({ todolistId }: DeleteTodolistButtonProps) {
 	const router = useRouter();
+	const pathname = usePathname();
 
 	const onSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 		await deleteTodolistAction(todolistId, 1);
-		router.push('/tasks/home');
+		if (pathname === `/tasks/${todolistId}`) {
+			router.push('/tasks/home');
+		}
 	};
 
 	return (
