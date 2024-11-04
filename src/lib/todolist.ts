@@ -33,3 +33,13 @@ export async function getTodolist(todolistId: number, user_id: number) {
 		return;
 	}
 }
+
+export async function deleteTodolist(todolistId: number, user_id: number) {
+	try {
+		await query('DELETE FROM todo_lists WHERE id = $1 AND user_id = $2', [todolistId, user_id]);
+		return true;
+	} catch (error) {
+		console.log('Error deleting todoolist from the database');
+		return false;
+	}
+}

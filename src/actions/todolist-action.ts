@@ -1,28 +1,32 @@
 'use server';
 
 import { storeTodo } from '@/lib/todo';
-import { storeTodolist } from '@/lib/todolist';
+import { deleteTodolist, storeTodolist } from '@/lib/todolist';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export async function createTodolist(title: string) {
-	if (title.trim().length <= 100) {
-		const todolistId = await storeTodolist(title, 1);
+	const todolistId = await storeTodolist(title, 1);
+	revalidatePath(`/tasks/home`);
 
-		revalidatePath(`/tasks/home`);
-
-		if (todolistId) {
-			revalidatePath(`/tasks/${todolistId}`);
-		}
-
-		return todolistId;
-	} else {
-		console.error('Title is missing or is not a string.');
-		return null;
+	if (todolistId) {
+		revalidatePath(`/tasks/${todolistId}`);
 	}
+
+	return todolistId;
 }
 
 export async function createTodo(text: string, category: string, dueDatetime: string | null, todolistId: number) {
 	const result = await storeTodo(text, category, dueDatetime, todolistId);
 	revalidatePath(`/tasks/${todolistId}`);
 	return result;
+}
+
+export async function deleteTodolistAction(todolistId: number, user_id: number) {
+	const result = await deleteTodolist(todolistId, user_id);
+	if (result) {
+		redirect('/tasks/home');
+	} else {
+		console.error('Failed to delete the todolist');
+	}
 }

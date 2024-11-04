@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { memo, useState } from 'react';
-import { MdDeleteOutline } from 'react-icons/md';
 import { RiPencilFill } from 'react-icons/ri';
+import DeleteTodolistButton from './DeleteTodolistButton';
 
 interface Todolist {
 	id: number;
@@ -39,7 +39,7 @@ function TodoListItem({ todolist }: TodolistItemProps) {
 			</Link>
 			<div className="flex items-center gap-3">
 				{isHovered && <RiPencilFill size={16} className="cursor-pointer" />}
-				{isHovered && <MdDeleteOutline size={16} className="cursor-pointer" />}
+				{isHovered && <DeleteTodolistButton todolistId={todolist.id} />}
 			</div>
 		</div>
 	);
