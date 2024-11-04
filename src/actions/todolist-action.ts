@@ -6,8 +6,6 @@ import { revalidatePath } from 'next/cache';
 
 export async function createTodolist(title: string) {
 	const todolistId = await storeTodolist(title, 1);
-	revalidatePath(`/tasks/home`);
-
 	if (todolistId) {
 		revalidatePath(`/tasks/${todolistId}`);
 	}
@@ -17,7 +15,9 @@ export async function createTodolist(title: string) {
 
 export async function createTodo(text: string, category: string, dueDatetime: string | null, todolistId: number) {
 	const result = await storeTodo(text, category, dueDatetime, todolistId);
-	revalidatePath(`/tasks/${todolistId}`);
+	if (result) {
+		revalidatePath(`/tasks/${todolistId}`);
+	}
 	return result;
 }
 
