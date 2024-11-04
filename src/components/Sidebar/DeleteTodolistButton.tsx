@@ -1,11 +1,12 @@
 import { MdDeleteOutline } from 'react-icons/md';
 import { deleteTodolistAction } from '@/actions/todolist-action';
+import { memo } from 'react';
 
 interface DeleteTodolistButtonProps {
 	todolistId: number;
 }
 
-export default function DeleteTodolistButton({ todolistId }: DeleteTodolistButtonProps) {
+function DeleteTodolistButton({ todolistId }: DeleteTodolistButtonProps) {
 	const onSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 		await deleteTodolistAction(todolistId, 1);
@@ -19,3 +20,5 @@ export default function DeleteTodolistButton({ todolistId }: DeleteTodolistButto
 		</form>
 	);
 }
+
+export default memo(DeleteTodolistButton);
