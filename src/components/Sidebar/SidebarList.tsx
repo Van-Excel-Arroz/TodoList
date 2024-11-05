@@ -26,7 +26,9 @@ const SidebarList = memo(function ({ initialTodolist }: SidebarListProps) {
 
 	return (
 		<>
-			<div className={`"font-body border-r-2 rounded-r-3xl bg-white py-9" ${isSidebarOpen ? 'w-full' : 'hidden'}`}>
+			<div
+				className={`font-body border-r-2 rounded-r-3xl bg-white py-9 h-screen ${isSidebarOpen ? 'w-full' : 'hidden'}`}
+			>
 				<SidebarContent todolists={todolists} onAddTodolist={handleAddTodolist} />
 			</div>
 		</>
