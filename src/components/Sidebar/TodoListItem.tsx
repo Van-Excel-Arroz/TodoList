@@ -2,8 +2,10 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import { RiPencilFill } from 'react-icons/ri';
+import { MdOutlineCancel } from 'react-icons/md';
+
 import DeleteTodolistButton from './DeleteTodolistButton';
 import { useForm } from 'react-hook-form';
 
@@ -73,12 +75,18 @@ function TodoListItem({ todolist }: TodolistItemProps) {
 				)}
 			</div>
 
-			<div className="flex items-center gap-3 opacity-0 group-hover:opacity-100">
-				<button onClick={() => handleEditClick(true)}>
-					<RiPencilFill size={16} className="cursor-pointer" />
+			{isEditing ? (
+				<button onClick={() => handleEditClick(false)}>
+					<MdOutlineCancel size={16} />
 				</button>
-				<DeleteTodolistButton todolistId={todolist.id} />
-			</div>
+			) : (
+				<div className="flex items-center gap-3 opacity-0 group-hover:opacity-100">
+					<button onClick={() => handleEditClick(true)}>
+						<RiPencilFill size={16} />
+					</button>
+					<DeleteTodolistButton todolistId={todolist.id} />
+				</div>
+			)}
 		</div>
 	);
 }
