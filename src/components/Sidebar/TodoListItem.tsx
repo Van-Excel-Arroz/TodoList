@@ -52,7 +52,7 @@ function TodoListItem({ todolist }: TodolistItemProps) {
 	return (
 		<div
 			className={`flex items-center pr-5 group ${
-				isSelectedPath ? 'border-l-4 border-slate-500 bg-slate-200' : 'pl-1 hover:bg-slate-100 '
+				isSelectedPath ? 'border-l-4 border-slate-300 bg-slate-200' : 'pl-1 hover:bg-slate-100 '
 			}`}
 		>
 			<div className="text-md w-full block">

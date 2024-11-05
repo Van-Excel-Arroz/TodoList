@@ -34,7 +34,7 @@ function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
 				<TodolistForm onAdd={onAddTodolist} />
 			</div>
 
-			<div className="h-[calc(100%-90px)] overflow-y-scroll overflow-x-hidden">
+			<div className="h-[calc(100%-90px)] overflow-y-auto overflow-x-hidden">
 				<ul className="container mx-auto flex flex-col gap-2">
 					{todolists.map(todolist => (
 						<li key={todolist.id}>
