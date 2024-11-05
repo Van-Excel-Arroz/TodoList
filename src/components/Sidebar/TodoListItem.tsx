@@ -38,7 +38,9 @@ function TodoListItem({ todolist }: TodolistItemProps) {
 	};
 
 	const onSubmit = async (data: FormInputs) => {
-		await updateTodolistAction(todolist.id, data.title);
+		if (todolist.title !== data.title) {
+			await updateTodolistAction(todolist.id, data.title);
+		}
 		handleEditClick(false);
 		reset();
 	};
