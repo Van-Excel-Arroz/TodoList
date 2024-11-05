@@ -8,6 +8,7 @@ import { MdOutlineCancel } from 'react-icons/md';
 
 import DeleteTodolistButton from './DeleteTodolistButton';
 import { useForm } from 'react-hook-form';
+import { updateTodolistAction } from '@/actions/todolist-action';
 
 interface Todolist {
 	id: number;
@@ -36,8 +37,8 @@ function TodoListItem({ todolist }: TodolistItemProps) {
 		setIsEditing(val);
 	};
 
-	const onSubmit = (data: FormInputs) => {
-		console.log('Title value:', data.title);
+	const onSubmit = async (data: FormInputs) => {
+		await updateTodolistAction(todolist.id, data.title);
 		handleEditClick(false);
 		reset();
 	};
