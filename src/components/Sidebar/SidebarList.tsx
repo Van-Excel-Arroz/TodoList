@@ -26,7 +26,7 @@ const SidebarList = memo(function ({ initialTodolist }: SidebarListProps) {
 
 	return (
 		<>
-			<div className={`font-body sticky top-0 left-0 overflow-hidden ${isSidebarOpen ? 'w-[350px]' : 'w-0'}`}>
+			<div className={`${isSidebarOpen ? 'w-[350px]' : 'w-0'}`}>
 				<SidebarContent todolists={todolists} onAddTodolist={handleAddTodolist} />
 			</div>
 		</>
