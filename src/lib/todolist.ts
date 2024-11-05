@@ -46,7 +46,16 @@ export async function deleteTodolist(todolistId: number, user_id: number) {
 
 export async function updateTodolist(todolistId: number, title: string) {
 	try {
-		await query('UPDATE todo_lists SET title = $1 WHERE id = $2', [title, todolistId]);
+		await query(
+			`
+			WITH orderedTodolist AS (
+				SELECT id, title, ROW_NUMBER() OVER (ORDER BY id) AS rn
+				FROM todo_lists
+			)
+			UPDATE todo_lists SET title = $1 WHERE id = $2
+			`,
+			[title, todolistId]
+		);
 		return true;
 	} catch (error) {
 		console.error('Error updating todolist from the database');
