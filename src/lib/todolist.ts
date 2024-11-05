@@ -48,10 +48,6 @@ export async function updateTodolist(todolistId: number, title: string) {
 	try {
 		await query(
 			`
-			WITH orderedTodolist AS (
-				SELECT id, title, ROW_NUMBER() OVER (ORDER BY id) AS rn
-				FROM todo_lists
-			)
 			UPDATE todo_lists SET title = $1 WHERE id = $2
 			`,
 			[title, todolistId]
