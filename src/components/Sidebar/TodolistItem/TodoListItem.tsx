@@ -8,6 +8,7 @@ import { MdOutlineCancel } from 'react-icons/md';
 import DeleteTodolistButton from './DeleteTodolistButton';
 import EditTodolistForm from './EditTodolistForm';
 import CancelEditButton from './CancelEditButton';
+import EditButton from './EditButton';
 
 interface Todolist {
 	id: number;
@@ -50,9 +51,7 @@ function TodoListItem({ todolist }: TodolistItemProps) {
 				<CancelEditButton handleEditClick={handleEditClick} />
 			) : (
 				<div className="flex items-center gap-3 opacity-0 group-hover:opacity-100">
-					<button onClick={() => handleEditClick(true)}>
-						<RiPencilFill size={16} />
-					</button>
+					<EditButton handleEditClick={handleEditClick} />
 					<DeleteTodolistButton todolistId={todolist.id} />
 				</div>
 			)}
