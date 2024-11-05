@@ -3,8 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { memo, useState } from 'react';
-import { RiPencilFill } from 'react-icons/ri';
-import { MdOutlineCancel } from 'react-icons/md';
 import DeleteTodolistButton from './DeleteTodolistButton';
 import EditTodolistForm from './EditTodolistForm';
 import CancelEditButton from './CancelEditButton';
