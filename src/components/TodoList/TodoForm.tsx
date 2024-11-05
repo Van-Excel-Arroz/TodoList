@@ -81,8 +81,8 @@ function TodoForm({ todolistId, onAdd }: TodoFormProps) {
 				)}
 
 				<div className="flex gap-10">
-					<input {...register('date')} type="date" />
-					<input {...register('time')} type="time" step="1" />
+					<input {...register('date')} type="date" className="bg-transparent" />
+					<input {...register('time')} type="time" step="1" className="bg-transparent" />
 				</div>
 			</form>
 		</div>

@@ -35,7 +35,7 @@ function TodoListContent({ todolistId, title, initialTodos }: TodolistContentPro
 
 	return (
 		<>
-			<div className="flex flex-col px-6 p-9">
+			<div className="font-body flex flex-col px-6 p-9">
 				<div className="flex gap-4">
 					{!isSidebarOpen && <SidebarToggle />}
 					<p className="text-lg font-bold">
