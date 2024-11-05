@@ -22,7 +22,7 @@ function DeleteTodolistButton({ todolistId }: DeleteTodolistButtonProps) {
 	};
 
 	return (
-		<form onSubmit={onSubmit}>
+		<form onSubmit={onSubmit} className="flex items-center">
 			<button type="submit">
 				<MdDeleteOutline size={16} className="cursor-pointer" />
 			</button>
