@@ -39,7 +39,17 @@ export async function deleteTodolist(todolistId: number, user_id: number) {
 		await query('DELETE FROM todo_lists WHERE id = $1 AND user_id = $2', [todolistId, user_id]);
 		return true;
 	} catch (error) {
-		console.log('Error deleting todoolist from the database');
+		console.log('Error deleting todolist from the database');
+		return false;
+	}
+}
+
+export async function updateTodolist(todolistId: number, title: string) {
+	try {
+		await query('UPDATE todo_lists SET title = $1 WHERE id = $2', [title, todolistId]);
+		return true;
+	} catch (error) {
+		console.error('Error updating todolist from the database');
 		return false;
 	}
 }
