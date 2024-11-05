@@ -1,8 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { memo } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { RiPencilFill } from 'react-icons/ri';
 import DeleteTodolistButton from './DeleteTodolistButton';
+import { useForm } from 'react-hook-form';
 
 interface Todolist {
 	id: number;
@@ -16,6 +19,36 @@ interface TodolistItemProps {
 function TodoListItem({ todolist }: TodolistItemProps) {
 	const pathname = usePathname();
 	const isSelectedPath = pathname === `/tasks/${todolist.id}`;
+	const [isEditing, setIsEditing] = useState(false);
+	const { register, handleSubmit, reset, watch } = useForm({
+		defaultValues: {
+			title: todolist.title,
+		},
+	});
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	console.log('Form values:', watch());
+
+	const handleEditClick = (val: boolean) => {
+		setIsEditing(val);
+	};
+
+	const onSubmit = (data: any) => {
+		console.log(data.title);
+		console.log('On Submit function');
+		handleEditClick(false);
+		reset();
+	};
+
+	useEffect(() => {
+		if (isEditing && inputRef.current) {
+			inputRef.current.focus();
+		}
+	}, [isEditing]);
+
+	const handleInputBlur = () => {
+		setIsEditing(false);
+	};
 
 	return (
 		<div
@@ -27,10 +60,27 @@ function TodoListItem({ todolist }: TodolistItemProps) {
 				href={`/tasks/${todolist.id}`}
 				className={`text-md w-full block py-3 px-5 ${isSelectedPath ? 'font-normal' : 'font-light'}`}
 			>
-				{todolist.title}
+				{isEditing ? (
+					<form onSubmit={handleSubmit(onSubmit)}>
+						<input
+							{...register('title', { maxLength: { value: 50, message: 'Exceeded maximum length of 50' } })}
+							type="text"
+							placeholder={todolist.title}
+							className="bg-transparent focus:outline-none border-b border-slate-950"
+							ref={inputRef}
+							onBlur={handleInputBlur}
+							defaultValue={todolist.title}
+						/>
+					</form>
+				) : (
+					todolist.title
+				)}
 			</Link>
 			<div className="flex items-center gap-3 opacity-0 group-hover:opacity-100">
-				<RiPencilFill size={16} className="cursor-pointer" />
+				<button onClick={() => handleEditClick(true)}>
+					<RiPencilFill size={16} className="cursor-pointer" />
+				</button>
+
 				<DeleteTodolistButton todolistId={todolist.id} />
 			</div>
 		</div>
