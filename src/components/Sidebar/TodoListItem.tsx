@@ -35,8 +35,6 @@ function TodoListItem({ todolist }: TodolistItemProps) {
 	};
 
 	const onSubmit = (data: FormInputs) => {
-		console.log(data.title);
-		console.log('Form submitted with data:', data);
 		console.log('Title value:', data.title);
 		handleEditClick(false);
 		reset();
