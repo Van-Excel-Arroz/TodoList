@@ -14,6 +14,9 @@ const config: Config = {
 				primary: '#000',
 			},
 		},
+		fontFamily: {
+			body: ['Work Sans', 'sans-serif'],
+		},
 	},
 	plugins: [],
 };
