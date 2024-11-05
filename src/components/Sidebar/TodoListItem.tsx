@@ -5,10 +5,8 @@ import { usePathname } from 'next/navigation';
 import { memo, useState } from 'react';
 import { RiPencilFill } from 'react-icons/ri';
 import { MdOutlineCancel } from 'react-icons/md';
-
 import DeleteTodolistButton from './DeleteTodolistButton';
-import { useForm } from 'react-hook-form';
-import { updateTodolistAction } from '@/actions/todolist-action';
+import EditTodolistForm from './EditTodolistForm';
 
 interface Todolist {
 	id: number;
@@ -19,34 +17,13 @@ interface TodolistItemProps {
 	todolist: Todolist;
 }
 
-interface FormInputs {
-	title: string;
-}
-
 function TodoListItem({ todolist }: TodolistItemProps) {
 	const pathname = usePathname();
 	const isSelectedPath = pathname === `/tasks/${todolist.id}`;
 	const [isEditing, setIsEditing] = useState(false);
-	const { register, handleSubmit, reset } = useForm<FormInputs>({
-		defaultValues: {
-			title: todolist.title,
-		},
-	});
 
 	const handleEditClick = (val: boolean) => {
 		setIsEditing(val);
-	};
-
-	const onSubmit = async (data: FormInputs) => {
-		if (todolist.title !== data.title) {
-			await updateTodolistAction(todolist.id, data.title);
-		}
-		handleEditClick(false);
-		reset();
-	};
-
-	const handleInputBlur = () => {
-		setIsEditing(false);
 	};
 
 	return (
@@ -57,17 +34,7 @@ function TodoListItem({ todolist }: TodolistItemProps) {
 		>
 			<div className="text-md w-full block">
 				{isEditing ? (
-					<form onSubmit={handleSubmit(onSubmit)}>
-						<input
-							{...register('title')}
-							type="text"
-							placeholder={todolist.title}
-							className="bg-transparent focus:outline-none border-b border-slate-950 my-3 mx-5"
-							autoFocus
-							onBlur={handleInputBlur}
-							defaultValue={todolist.title}
-						/>
-					</form>
+					<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} />
 				) : (
 					<Link
 						href={`/tasks/${todolist.id}`}
