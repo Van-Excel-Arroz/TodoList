@@ -20,7 +20,7 @@ export async function getTodolists(user_id: number) {
 	try {
 		const result = await query(
 			`
-			SELECT id, title FROM todo_lists WHERE user_id = $1
+			SELECT id, title FROM todo_lists WHERE user_id = $1 ORDER BY id
 			`,
 			[user_id]
 		);
