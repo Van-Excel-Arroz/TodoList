@@ -2,10 +2,12 @@ import { query } from './db';
 
 export async function storeTodolist(title: string, user_id: number) {
 	try {
-		const result = await query('INSERT INTO todo_lists (title, user_id) VALUES ($1, $2) RETURNING id', [
-			title,
-			user_id,
-		]);
+		const result = await query(
+			`
+			INSERT INTO todo_lists (title, user_id) VALUES ($1, $2) RETURNING id
+			`,
+			[title, user_id]
+		);
 		const todolistId = result.rows[0]?.id;
 		return todolistId ?? null;
 	} catch (error) {
@@ -16,7 +18,12 @@ export async function storeTodolist(title: string, user_id: number) {
 
 export async function getTodolists(user_id: number) {
 	try {
-		const result = await query('SELECT id, title FROM todo_lists WHERE user_id = $1', [user_id]);
+		const result = await query(
+			`
+			SELECT id, title FROM todo_lists WHERE user_id = $1
+			`,
+			[user_id]
+		);
 		return result.rows;
 	} catch (error) {
 		console.error('Error fetching todolists from the database');
@@ -26,7 +33,12 @@ export async function getTodolists(user_id: number) {
 
 export async function getTodolist(todolistId: number, user_id: number) {
 	try {
-		const result = await query('SELECT * FROM todo_lists WHERE id = $1 AND user_id = $2', [todolistId, user_id]);
+		const result = await query(
+			`
+			SELECT * FROM todo_lists WHERE id = $1 AND user_id = $2
+			`,
+			[todolistId, user_id]
+		);
 		return result.rows[0];
 	} catch (error) {
 		console.error('Error fetching todolist from the database');
@@ -36,7 +48,12 @@ export async function getTodolist(todolistId: number, user_id: number) {
 
 export async function deleteTodolist(todolistId: number, user_id: number) {
 	try {
-		await query('DELETE FROM todo_lists WHERE id = $1 AND user_id = $2', [todolistId, user_id]);
+		await query(
+			`
+			DELETE FROM todo_lists WHERE id = $1 AND user_id = $2
+			`,
+			[todolistId, user_id]
+		);
 		return true;
 	} catch (error) {
 		console.log('Error deleting todolist from the database');
