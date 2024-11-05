@@ -1,7 +1,7 @@
 'use client';
 
 import TodolistForm from './TodolistForm';
-import TodoListItem from './TodoListItem';
+import TodoListItem from './TodolistItem/TodoListItem';
 import SidebarToggle from './SidebarToggle';
 import Link from 'next/link';
 import { memo } from 'react';
