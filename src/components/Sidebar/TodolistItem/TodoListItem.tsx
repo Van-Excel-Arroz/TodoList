@@ -7,6 +7,7 @@ import { RiPencilFill } from 'react-icons/ri';
 import { MdOutlineCancel } from 'react-icons/md';
 import DeleteTodolistButton from './DeleteTodolistButton';
 import EditTodolistForm from './EditTodolistForm';
+import CancelEditButton from './CancelEditButton';
 
 interface Todolist {
 	id: number;
@@ -46,9 +47,7 @@ function TodoListItem({ todolist }: TodolistItemProps) {
 			</div>
 
 			{isEditing ? (
-				<button onClick={() => handleEditClick(false)}>
-					<MdOutlineCancel size={16} />
-				</button>
+				<CancelEditButton handleEditClick={handleEditClick} />
 			) : (
 				<div className="flex items-center gap-3 opacity-0 group-hover:opacity-100">
 					<button onClick={() => handleEditClick(true)}>
