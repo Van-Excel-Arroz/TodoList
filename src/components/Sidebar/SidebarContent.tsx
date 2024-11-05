@@ -23,7 +23,7 @@ function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
 	const isHome = pathname === '/tasks/home';
 
 	return (
-		<div className="h-screen">
+		<div className="h-screen w-full">
 			<div className="flex flex-col gap-4 px-6">
 				<div className="flex gap-4 items-center">
 					{!isHome && <SidebarToggle />}
