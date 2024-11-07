@@ -74,6 +74,7 @@ function TodoForm({ todolistId, onAdd }: TodoFormProps) {
 					})}
 					type="text"
 					placeholder="task... #category"
+					autoComplete="off"
 					className="border rounded drop-shadow-md p-2 w-full focus:outline-none"
 				/>
 				{errors.todo?.message && typeof errors.todo.message === 'string' && (
