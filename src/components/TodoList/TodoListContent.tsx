@@ -3,19 +3,7 @@ import TodoForm from './TodoForm';
 import React from 'react';
 import TodolistHeader from './TodolistHeader';
 import TodosRender from './TodosRender';
-
-interface Todo {
-	id: number;
-	task_text: string;
-	category: string | null;
-	due_datetime: string | null;
-	creation_date: string;
-	todo_list_id: number;
-}
-interface TodoList {
-	id: number;
-	title: string;
-}
+import { Todo, TodoList } from '@/types';
 
 interface TodolistContentProps {
 	todolist: TodoList;
