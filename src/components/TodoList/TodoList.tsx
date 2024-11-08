@@ -1,7 +1,7 @@
 import TodoListContent from '@/components/TodoList/TodoListContent';
 import { getTodos } from '@/lib/todo';
 import { getTodolist } from '@/lib/todolist';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 export default async function Todolist({ params }: { params: any }) {
@@ -13,13 +13,9 @@ export default async function Todolist({ params }: { params: any }) {
 		return notFound();
 	}
 
-	if (!todolist || !todolist.id) {
-		redirect('/tasks/home');
-	}
-
 	return (
 		<Suspense fallback={<h1>Loading.....</h1>}>
-			<TodoListContent todolistId={todolistId} title={todolist.title} initialTodos={todos} />
+			<TodoListContent todolistId={todolistId} title={todolist.title} todos={todos} />
 		</Suspense>
 	);
 }

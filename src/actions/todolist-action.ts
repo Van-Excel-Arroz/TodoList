@@ -18,7 +18,6 @@ export async function createTodo(text: string, category: string, dueDatetime: st
 	if (result) {
 		revalidatePath(`/tasks/${todolistId}`);
 	}
-	return result;
 }
 
 export async function deleteTodolistAction(todolistId: number, user_id: number) {

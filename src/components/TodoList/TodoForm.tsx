@@ -16,10 +16,9 @@ interface Todo {
 
 interface TodoFormProps {
 	todolistId: number;
-	onAdd: (todo: Todo) => void;
 }
 
-function TodoForm({ todolistId, onAdd }: TodoFormProps) {
+function TodoForm({ todolistId }: TodoFormProps) {
 	const {
 		register,
 		handleSubmit,
@@ -49,17 +48,7 @@ function TodoForm({ todolistId, onAdd }: TodoFormProps) {
 			return;
 		}
 
-		const result = await createTodo(todoTask, categories, timestamp, todolistId);
-		const todo = {
-			id: result.id,
-			task_text: todoTask,
-			category: categories,
-			due_datetime: timestamp,
-			creation_date: result.creationDate,
-			todo_list_id: todolistId,
-		};
-
-		onAdd(todo);
+		await createTodo(todoTask, categories, timestamp, todolistId);
 
 		reset();
 	}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, memo } from 'react';
+import { memo } from 'react';
 import SidebarToggle from '../Sidebar/SidebarToggle';
 import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
@@ -19,16 +19,11 @@ interface Todo {
 interface TodolistContentProps {
 	todolistId: number;
 	title: string;
-	initialTodos: Todo[];
+	todos: Todo[];
 }
 
-function TodoListContent({ todolistId, title, initialTodos }: TodolistContentProps) {
-	const [todos, setTodos] = useState(initialTodos);
+function TodoListContent({ todolistId, title, todos }: TodolistContentProps) {
 	const { isSidebarOpen } = useSidebarStore();
-
-	const handleAddTodo = useCallback((todo: Todo) => {
-		setTodos(prevTodos => [...prevTodos, todo]);
-	}, []);
 
 	return (
 		<>
@@ -39,7 +34,7 @@ function TodoListContent({ todolistId, title, initialTodos }: TodolistContentPro
 						{title} #{todolistId}
 					</p>
 				</div>
-				<TodoForm todolistId={todolistId} onAdd={handleAddTodo} />
+				<TodoForm todolistId={todolistId} />
 
 				<div className="grid grid-cols-6 my-3 px-4 font-semibold">
 					<p className="col-span-4">Todos</p>
