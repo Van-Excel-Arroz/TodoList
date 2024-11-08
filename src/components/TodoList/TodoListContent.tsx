@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import TodoForm from './TodoForm';
-import TodoItem from './TodoItem';
 import React from 'react';
 import TodolistHeader from './TodolistHeader';
+import TodosRender from './TodosRender';
 
 interface Todo {
 	id: number;
@@ -28,17 +28,7 @@ function TodoListContent({ todolist, todos }: TodolistContentProps) {
 			<div className="font-body flex flex-col px-6 p-9">
 				<TodolistHeader todolist={todolist} />
 				<TodoForm todolistId={todolist.id} />
-
-				<div className="grid grid-cols-6 my-3 px-4 font-semibold">
-					<p className="col-span-4">Todos</p>
-					<p className="text-center">Due Date</p>
-					<p className="text-center">Created In</p>
-				</div>
-				<div>
-					{todos.map(todo => (
-						<TodoItem key={todo.id} todo={todo} />
-					))}
-				</div>
+				<TodosRender todos={todos} />
 			</div>
 		</>
 	);
