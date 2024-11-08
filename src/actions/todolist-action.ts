@@ -15,9 +15,6 @@ export async function createTodolist(title: string) {
 
 export async function createTodo(text: string, category: string, dueDatetime: string | null, todolistId: number) {
 	const result = await storeTodo(text, category, dueDatetime, todolistId);
-	if (result) {
-		revalidatePath(`/tasks/${todolistId}`);
-	}
 	return result;
 }
 
