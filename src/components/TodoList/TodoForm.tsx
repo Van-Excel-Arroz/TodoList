@@ -5,15 +5,6 @@ import { createTodo } from '@/actions/todolist-action';
 import { extractCategory, removeCategories } from '@/utils/category';
 import { memo } from 'react';
 
-interface Todo {
-	id: number;
-	task_text: string;
-	category: string | null;
-	due_datetime: string | null;
-	creation_date: string;
-	todo_list_id: number;
-}
-
 interface TodoFormProps {
 	todolistId: number;
 }
