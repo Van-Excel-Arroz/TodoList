@@ -13,7 +13,7 @@ interface SidebarListProps {
 	initialTodolist: Todolist[];
 }
 
-const SidebarList = memo(function ({ initialTodolist }: SidebarListProps) {
+function SidebarList({ initialTodolist }: SidebarListProps) {
 	const [todolists, setTodolists] = useState(initialTodolist);
 	const [isPending, startTransition] = useTransition();
 	const { isSidebarOpen } = useSidebarStore();
@@ -35,6 +35,6 @@ const SidebarList = memo(function ({ initialTodolist }: SidebarListProps) {
 			</div>
 		</>
 	);
-});
+}
 
-export default SidebarList;
+export default memo(SidebarList);
