@@ -15,7 +15,7 @@ export default async function Todolist({ params }: { params: any }) {
 
 	return (
 		<Suspense fallback={<h1>Loading.....</h1>}>
-			<TodoListContent todolistId={todolistId} title={todolist.title} todos={todos} />
+			<TodoListContent todolist={todolist} todos={todos} />
 		</Suspense>
 	);
 }

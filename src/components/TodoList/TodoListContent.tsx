@@ -1,11 +1,8 @@
-'use client';
-
 import { memo } from 'react';
-import SidebarToggle from '../Sidebar/SidebarToggle';
 import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
 import React from 'react';
-import useSidebarStore from '../Context/SidebarContext';
+import TodolistHeader from './TodolistHeader';
 
 interface Todo {
 	id: number;
@@ -15,26 +12,22 @@ interface Todo {
 	creation_date: string;
 	todo_list_id: number;
 }
+interface TodoList {
+	id: number;
+	title: string;
+}
 
 interface TodolistContentProps {
-	todolistId: number;
-	title: string;
+	todolist: TodoList;
 	todos: Todo[];
 }
 
-function TodoListContent({ todolistId, title, todos }: TodolistContentProps) {
-	const { isSidebarOpen } = useSidebarStore();
-
+function TodoListContent({ todolist, todos }: TodolistContentProps) {
 	return (
 		<>
 			<div className="font-body flex flex-col px-6 p-9">
-				<div className="flex gap-4">
-					{!isSidebarOpen && <SidebarToggle />}
-					<p className="text-lg font-bold">
-						{title} #{todolistId}
-					</p>
-				</div>
-				<TodoForm todolistId={todolistId} />
+				<TodolistHeader todolist={todolist} />
+				<TodoForm todolistId={todolist.id} />
 
 				<div className="grid grid-cols-6 my-3 px-4 font-semibold">
 					<p className="col-span-4">Todos</p>

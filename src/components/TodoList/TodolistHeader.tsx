@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import useSidebarStore from '../Context/SidebarContext';
 import SidebarToggle from '../Sidebar/SidebarToggle';
 
@@ -10,7 +11,7 @@ interface TodolistHeaderProps {
 	};
 }
 
-export default function TodolistHeader({ todolist }: TodolistHeaderProps) {
+function TodolistHeader({ todolist }: TodolistHeaderProps) {
 	const { isSidebarOpen } = useSidebarStore();
 
 	return (
@@ -22,3 +23,5 @@ export default function TodolistHeader({ todolist }: TodolistHeaderProps) {
 		</div>
 	);
 }
+
+export default memo(TodolistHeader);
