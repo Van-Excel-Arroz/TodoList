@@ -15,7 +15,7 @@ const config: Config = {
 			},
 		},
 		fontFamily: {
-			body: ['Work Sans', 'sans-serif'],
+			body: ['font-mono'],
 		},
 	},
 	plugins: [],
