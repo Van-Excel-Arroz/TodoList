@@ -2,12 +2,10 @@
 
 import TodolistForm from './TodolistForm';
 import TodoListItem from './TodolistItem/TodoListItem';
-import SidebarToggle from './SidebarToggle';
-import Link from 'next/link';
 import { memo } from 'react';
-import { AiOutlineHome } from 'react-icons/ai';
-import { usePathname } from 'next/navigation';
+
 import { TodoList } from '@/types';
+import SidebarHeader from './SidebarHeader';
 
 interface SidebarContentProps {
 	todolists: TodoList[];
@@ -15,18 +13,10 @@ interface SidebarContentProps {
 }
 
 function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
-	const pathname = usePathname();
-	const isHome = pathname === '/tasks/home';
-
 	return (
 		<>
 			<div className="flex flex-col gap-4 px-6">
-				<div className="flex gap-4 items-center">
-					{!isHome && <SidebarToggle />}
-					<Link href="/" className="text-lg font-bold">
-						<AiOutlineHome size={27} />
-					</Link>
-				</div>
+				<SidebarHeader />
 				<TodolistForm onAdd={onAddTodolist} />
 			</div>
 
