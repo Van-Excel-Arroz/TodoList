@@ -1,9 +1,9 @@
 import TodolistForm from './TodolistForm';
-import TodoListItem from './TodolistItem/TodoListItem';
 import { memo } from 'react';
 
 import { TodoList } from '@/types';
 import SidebarHeader from './SidebarHeader';
+import TodolistsRender from './TodolistsRender';
 
 interface SidebarContentProps {
 	todolists: TodoList[];
@@ -17,6 +17,7 @@ function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
 				<SidebarHeader />
 				<TodolistForm onAdd={onAddTodolist} />
 			</div>
+			<TodolistsRender todolists={todolists} />
 		</>
 	);
 }
