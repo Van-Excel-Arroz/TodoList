@@ -1,11 +1,12 @@
 import { Todo } from '@/types';
 import TodoItem from './TodoItem';
+import { memo } from 'react';
 
 interface TodosRenderProps {
 	todos: Todo[];
 }
 
-export default function TodosRender({ todos }: TodosRenderProps) {
+function TodosRender({ todos }: TodosRenderProps) {
 	return (
 		<>
 			<div className="grid grid-cols-6 my-3 px-4 font-semibold">
@@ -21,3 +22,5 @@ export default function TodosRender({ todos }: TodosRenderProps) {
 		</>
 	);
 }
+
+export default memo(TodosRender);
