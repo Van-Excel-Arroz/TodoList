@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import SidebarToggle from './SidebarToggle';
+import SidebarToggle from '../SidebarToggle';
 import Link from 'next/link';
 import { AiOutlineHome } from 'react-icons/ai';
 import { memo } from 'react';
