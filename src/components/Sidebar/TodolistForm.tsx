@@ -3,14 +3,10 @@
 import { memo } from 'react';
 import { createTodolist } from '../../actions/todolist-action';
 import { useForm } from 'react-hook-form';
-
-interface Todolist {
-	id: number;
-	title: string;
-}
+import { TodoList } from '@/types';
 
 interface TodolistFormProps {
-	onAdd: (todolist: Todolist) => void;
+	onAdd: (todolist: TodoList) => void;
 }
 
 function TodolistForm({ onAdd }: TodolistFormProps) {

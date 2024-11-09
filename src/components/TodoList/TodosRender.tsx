@@ -1,13 +1,5 @@
+import { Todo } from '@/types';
 import TodoItem from './TodoItem';
-
-interface Todo {
-	id: number;
-	task_text: string;
-	category: string | null;
-	due_datetime: string | null;
-	creation_date: string;
-	todo_list_id: number;
-}
 
 interface TodosRenderProps {
 	todos: Todo[];

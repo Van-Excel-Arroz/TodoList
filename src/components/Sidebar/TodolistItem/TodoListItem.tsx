@@ -7,14 +7,10 @@ import DeleteTodolistButton from './DeleteTodolistButton';
 import EditTodolistForm from './EditTodolistForm';
 import CancelEditButton from './CancelEditButton';
 import EditButton from './EditButton';
-
-interface Todolist {
-	id: number;
-	title: string;
-}
+import { TodoList } from '@/types';
 
 interface TodolistItemProps {
-	todolist: Todolist;
+	todolist: TodoList;
 }
 
 function TodoListItem({ todolist }: TodolistItemProps) {

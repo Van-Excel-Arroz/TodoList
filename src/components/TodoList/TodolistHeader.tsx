@@ -3,12 +3,10 @@
 import { memo } from 'react';
 import useSidebarStore from '../Context/SidebarContext';
 import SidebarToggle from '../Sidebar/SidebarToggle';
+import { TodoList } from '@/types';
 
 interface TodolistHeaderProps {
-	todolist: {
-		title: string;
-		id: number;
-	};
+	todolist: TodoList;
 }
 
 function TodolistHeader({ todolist }: TodolistHeaderProps) {

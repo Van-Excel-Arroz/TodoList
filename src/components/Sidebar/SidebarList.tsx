@@ -3,14 +3,10 @@
 import { useState, useTransition, memo, useCallback } from 'react';
 import useSidebarStore from '@/components/Context/SidebarContext';
 import SidebarContent from './SidebarContent';
-
-interface Todolist {
-	id: number;
-	title: string;
-}
+import { TodoList } from '@/types';
 
 interface SidebarListProps {
-	initialTodolist: Todolist[];
+	initialTodolist: TodoList[];
 }
 
 function SidebarList({ initialTodolist }: SidebarListProps) {
@@ -18,7 +14,7 @@ function SidebarList({ initialTodolist }: SidebarListProps) {
 	const [isPending, startTransition] = useTransition();
 	const { isSidebarOpen } = useSidebarStore();
 
-	const handleAddTodolist = useCallback((newTodolist: Todolist) => {
+	const handleAddTodolist = useCallback((newTodolist: TodoList) => {
 		startTransition(() => {
 			setTodolists(prev => [...prev, newTodolist]);
 		});

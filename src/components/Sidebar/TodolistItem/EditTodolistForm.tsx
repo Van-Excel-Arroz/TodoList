@@ -1,6 +1,7 @@
 'use client';
 
 import { updateTodolistAction } from '@/actions/todolist-action';
+import { TodoList } from '@/types';
 import { memo } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -8,13 +9,8 @@ interface FormInputs {
 	title: string;
 }
 
-interface Todolist {
-	id: number;
-	title: string;
-}
-
 interface EditTodolistFormProps {
-	todolist: Todolist;
+	todolist: TodoList;
 	handleEditClick: (val: boolean) => void;
 }
 

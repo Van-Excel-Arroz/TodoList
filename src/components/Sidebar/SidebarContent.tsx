@@ -7,15 +7,11 @@ import Link from 'next/link';
 import { memo } from 'react';
 import { AiOutlineHome } from 'react-icons/ai';
 import { usePathname } from 'next/navigation';
-
-interface Todolist {
-	id: number;
-	title: string;
-}
+import { TodoList } from '@/types';
 
 interface SidebarContentProps {
-	todolists: Todolist[];
-	onAddTodolist: (todolist: Todolist) => void;
+	todolists: TodoList[];
+	onAddTodolist: (todolist: TodoList) => void;
 }
 
 function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
