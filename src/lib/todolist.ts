@@ -60,7 +60,7 @@ export async function deleteTodolist(todolistId: number, user_id: number) {
 		return false;
 	}
 }
-
+// update
 export async function updateTodolist(todolistId: number, title: string) {
 	try {
 		await query(
