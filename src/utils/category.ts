@@ -14,7 +14,7 @@ export function extractCategory(title: string): string[] {
 }
 
 export function extractTitle(title: string): string {
-	const regex = /([^#]+)/g;
-	const matches = title.match(regex)!;
-	return matches ? matches.join(' ').trim() : '';
+	const parts = title.split(' ');
+	const filtered = parts.filter(part => !part.startsWith('#'));
+	return filtered.join(' ').trim();
 }
