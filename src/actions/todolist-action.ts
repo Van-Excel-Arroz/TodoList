@@ -20,7 +20,7 @@ export async function createTodoAction(
 ) {
 	const todoId = await storeTodo(text, dueDatetime, todolistId);
 	const categoryColorsId = await storeCategoriesColors(categories);
-	await storeCategories(todolistId, categoryColorsId);
+	await storeCategories(todoId, categoryColorsId);
 	if (todoId) {
 		revalidatePath(`/tasks/${todolistId}`);
 	}
