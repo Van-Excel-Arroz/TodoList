@@ -16,13 +16,13 @@ export function extractCategory(title: string): string[] {
 	return categories;
 }
 
-export function removeCategories(title: string): string {
-	let removedCategories = '';
+export function extractTitle(title: string): string {
+	let extractTitle = '';
 
 	for (let i = 0; i < title.length; i++) {
 		if (title[i] === '#') break;
-		removedCategories += title[i];
+		extractTitle += title[i];
 	}
 
-	return removedCategories.trim();
+	return extractTitle.trim();
 }
