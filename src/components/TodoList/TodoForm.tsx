@@ -1,7 +1,7 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import { createTodo } from '@/actions/todolist-action';
+import { createTodoAction } from '@/actions/todolist-action';
 import { extractCategory, extractTitle } from '@/utils/category';
 import { memo } from 'react';
 
@@ -39,7 +39,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			return;
 		}
 
-		await createTodo(todoTask, timestamp, todolistId);
+		await createTodoAction(todoTask, timestamp, todolistId);
 
 		reset();
 	}
