@@ -24,8 +24,8 @@ export async function storeTodo(text: string, dueDatetime: string | null, todoli
 	return result?.rows[0].id;
 }
 
-export async function storeCategories(categories: Category[]) {
-	const categoryIds: number[] = [];
+export async function storeCategoriesColors(categories: Category[]) {
+	const categoryColorsId: number[] = [];
 
 	for (let category of categories) {
 		let result = await query('SELECT id FROM category_colors WHERE category_title = $1', [category]);
@@ -39,9 +39,15 @@ export async function storeCategories(categories: Category[]) {
 			);
 			category_color_id = insertResult.rows[0].id;
 		}
-		categoryIds.push(category_color_id);
+		categoryColorsId.push(category_color_id);
 	}
-	return categoryIds;
+	return categoryColorsId;
+}
+
+export async function storeCategories(todoId: number, categoryColorsId: number[]) {
+	for (let i = 0; i < categoryColorsId.length; i++) {
+		await query('INSERT INTO categories (todo_id, category_color_id) VALUES ($1, $2)', [todoId, categoryColorsId[i]]);
+	}
 }
 
 export async function getTodos(todolistId: number) {
