@@ -4,17 +4,11 @@ import { storeCategoriesColors, storeTodo } from '@/lib/todo';
 import { deleteTodolist, storeTodolist, updateTodolist } from '@/lib/todolist';
 import { revalidatePath } from 'next/cache';
 
-interface Category {
-	title: string;
-	hex_color: string;
-}
-
 export async function createTodolist(title: string) {
 	const todolistId = await storeTodolist(title, 1);
 	if (todolistId) {
 		revalidatePath(`/tasks/${todolistId}`);
 	}
-
 	return todolistId;
 }
 
@@ -22,7 +16,7 @@ export async function createTodoAction(
 	text: string,
 	dueDatetime: string | null,
 	todolistId: number,
-	categories: Category[]
+	categories: string[]
 ) {
 	const todoId = await storeTodo(text, dueDatetime, todolistId);
 	const categoryColorsId = await storeCategoriesColors(categories);

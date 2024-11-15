@@ -9,11 +9,6 @@ interface Todo {
 	todo_list_id: number;
 }
 
-interface Category {
-	title: string;
-	hex_color: string;
-}
-
 const predefinedColors = [
 	'#9e0142',
 	'#d53e4f',
@@ -37,7 +32,7 @@ export async function storeTodo(text: string, dueDatetime: string | null, todoli
 	return result?.rows[0].id;
 }
 
-export async function storeCategoriesColors(categories: Category[]) {
+export async function storeCategoriesColors(categories: string[]) {
 	const categoryColorsId: number[] = [];
 	const colorMap: Map<string, string> = new Map();
 
@@ -52,11 +47,11 @@ export async function storeCategoriesColors(categories: Category[]) {
 			color = predefinedColors[colorMap.size % predefinedColors.length];
 			const insertResult = await query(
 				'INSERT INTO category_colors (category_title, hex_color) VALUES ($1, $2) RETURNING id',
-				[category.title, color]
+				[category, color]
 			);
 			category_color_id = insertResult.rows[0].id;
 
-			colorMap.set(category.title, color);
+			colorMap.set(category, color);
 		}
 		categoryColorsId.push(category_color_id);
 	}
