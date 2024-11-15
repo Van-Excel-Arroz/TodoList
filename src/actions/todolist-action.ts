@@ -1,6 +1,6 @@
 'use server';
 
-import { storeCategoriesColors, storeTodo } from '@/lib/todo';
+import { storeCategories, storeCategoriesColors, storeTodo } from '@/lib/todo';
 import { deleteTodolist, storeTodolist, updateTodolist } from '@/lib/todolist';
 import { revalidatePath } from 'next/cache';
 
@@ -20,6 +20,7 @@ export async function createTodoAction(
 ) {
 	const todoId = await storeTodo(text, dueDatetime, todolistId);
 	const categoryColorsId = await storeCategoriesColors(categories);
+	await storeCategories(todolistId, categoryColorsId);
 	if (todoId) {
 		revalidatePath(`/tasks/${todolistId}`);
 	}
