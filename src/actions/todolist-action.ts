@@ -13,8 +13,8 @@ export async function createTodolist(title: string) {
 	return todolistId;
 }
 
-export async function createTodo(text: string, category: string, dueDatetime: string | null, todolistId: number) {
-	const result = await storeTodo(text, category, dueDatetime, todolistId);
+export async function createTodo(text: string, dueDatetime: string | null, todolistId: number) {
+	const result = await storeTodo(text, dueDatetime, todolistId);
 	if (result) {
 		revalidatePath(`/tasks/${todolistId}`);
 	}
