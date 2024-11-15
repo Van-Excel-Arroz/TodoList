@@ -1,16 +1,10 @@
 export function extractCategory(title: string): string[] {
+	const regex = /#(\S+)/g;
 	let categories: string[] = [];
-	let category: string = '';
+	let match: RegExpExecArray | null;
 
-	for (let i = 0; i < title.length; i++) {
-		if (title[i] === '#') {
-			category = ' ';
-			while (i + 1 < title.length && title[i + 1] !== ' ') {
-				i++;
-				category += title[i];
-			}
-			categories.push(category);
-		}
+	while ((match = regex.exec(title)) !== null) {
+		categories.push(match[1]);
 	}
 
 	return categories;
