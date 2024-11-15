@@ -1,5 +1,5 @@
-export function extractCategory(title: string): string {
-	let categories: string = '';
+export function extractCategory(title: string): string[] {
+	let categories: string[] = [];
 	let category: string = '';
 
 	for (let i = 0; i < title.length; i++) {
@@ -9,11 +9,11 @@ export function extractCategory(title: string): string {
 				i++;
 				category += title[i];
 			}
-			categories += category;
+			categories.push(category);
 		}
 	}
 
-	return categories.trim();
+	return categories;
 }
 
 export function removeCategories(title: string): string {
