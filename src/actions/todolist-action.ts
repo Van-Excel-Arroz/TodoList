@@ -13,7 +13,12 @@ export async function createTodolist(title: string) {
 	return todolistId;
 }
 
-export async function createTodoAction(text: string, dueDatetime: string | null, todolistId: number) {
+export async function createTodoAction(
+	text: string,
+	dueDatetime: string | null,
+	todolistId: number,
+	categories: string[]
+) {
 	const todoId = await storeTodo(text, dueDatetime, todolistId);
 	if (todoId) {
 		revalidatePath(`/tasks/${todolistId}`);

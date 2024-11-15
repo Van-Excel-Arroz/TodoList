@@ -39,7 +39,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			return;
 		}
 
-		await createTodoAction(todoTask, timestamp, todolistId);
+		await createTodoAction(todoTask, timestamp, todolistId, categories);
 
 		reset();
 	}
