@@ -1,4 +1,4 @@
-function extractCategory(title: string): string[] {
+export function extractCategory(title: string): string[] {
 	const regex = /#(\S+?)(?=[ #]|$)/g; // Match # followed by non-whitespace until next space or #, or end of string
 	let categories: string[] = [];
 	let match: RegExpExecArray | null;
@@ -13,13 +13,8 @@ function extractCategory(title: string): string[] {
 	return removedDuplicates; // ['work', 'urgent', 'school']
 }
 
-function extractTitle(title: string): string {
+export function extractTitle(title: string): string {
 	const parts = title.split(' ');
 	const filtered = parts.filter(part => !part.startsWith('#'));
 	return filtered.join(' ').trim();
 }
-
-const str = 'Do Homework #homework #homework';
-console.log(str);
-console.log(extractCategory(str));
-console.log(extractTitle(str));

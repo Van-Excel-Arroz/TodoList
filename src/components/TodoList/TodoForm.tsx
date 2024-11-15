@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form';
 import { createTodo } from '@/actions/todolist-action';
-import { extractCategory, removeCategories } from '@/utils/category';
+import { extractCategory, extractTitle } from '@/utils/category';
 import { memo } from 'react';
 
 interface TodoFormProps {
@@ -29,7 +29,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			data.date = now.toISOString().split('T')[0];
 		}
 
-		const todoTask = removeCategories(data.todo);
+		const todoTask = extractTitle(data.todo);
 		const categories = extractCategory(data.todo);
 		let timestamp: string | null = data.date + ' ' + data.time;
 
