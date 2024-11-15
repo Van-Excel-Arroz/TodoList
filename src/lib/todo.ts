@@ -12,15 +12,11 @@ interface Todo {
 export async function storeTodo(text: string, dueDatetime: string | null, todolistId: number) {
 	const dueDatetimeValue = typeof dueDatetime === 'string' ? dueDatetime.trim() : null;
 
-	const result = await query(
-		'INSERT INTO todos (task_text, due_datetime, todo_list_id) VALUES ($1, $2, $3) RETURNING id, creation_date',
+	const todoId = await query(
+		'INSERT INTO todos (task_text, due_datetime, todo_list_id) VALUES ($1, $2, $3) RETURNING id',
 		[text, dueDatetimeValue, todolistId]
 	);
-	const todo = {
-		id: result.rows[0].id,
-		creationDate: result.rows[0].creation_date,
-	};
-	return todo ?? null;
+	return todoId;
 }
 
 export async function getTodos(todolistId: number) {
