@@ -17,9 +17,7 @@ function TodoItem({ todo }: TodoItemProps) {
 				<div className="flex">
 					{todo.categories &&
 						todo.categories.map(category => (
-							<span
-								className={`text-xs text-blue-800 border shadow-md rounded mt-2 py-1 px-2 text-[${category.hex_color}]`}
-							>
+							<span className={`text-xs border shadow-md rounded mt-2 py-1 px-2 text-[${category.hex_color}]`}>
 								{category.category_title}
 							</span>
 						))}
