@@ -1,3 +1,4 @@
+import Todolist from '@/components/TodoList/TodoList';
 import { query } from './db';
 
 interface Todo {
@@ -64,15 +65,31 @@ export async function storeCategories(todoId: number, categoryColorsId: number[]
 	}
 }
 
-export async function getCategories(todoId: number) {
+export async function getTodoWithCategories(todoId: number) {
 	await query(
 		`
 		SELECT c.id AS category_id, cc.category_title, cc.hex_color
 		FROM categories c
 		JOIN category_colors cc ON  c.category_color_id = cc.id
 		WHERE c.todo_id = $1
-		`, [todoId]
-	)
+		`,
+		[todoId]
+	);
+}
+
+export async function getTodosWithCategories(todolistId: number) {
+	const todos = await getTodos(todolistId);
+
+	const todosWithCategories = await Promise.all(
+		todos.map(async todo => {
+			const categories = await getTodoWithCategories(todo.id);
+			return {
+				...todo,
+				categories,
+			};
+		})
+	);
+	return todosWithCategories;
 }
 
 export async function getTodos(todolistId: number) {
