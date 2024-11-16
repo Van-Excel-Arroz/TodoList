@@ -25,7 +25,16 @@ export async function storeTodo(text: string, dueDatetime: string | null, todoli
 }
 
 async function getCategoryColor(category: string) {
-	const result = await query('SELECT ');
+	const result = await query('SELECT * FROM category_colors WHERE category_title = $1', [category]);
+	return result.rows[0] || null;
+}
+
+async function createCategoryColor(category: string, color: string) {
+	const result = await query('INSER INTO category_colors (category_title, hex_color) VALUES ($1, $2)', [
+		category,
+		color,
+	]);
+	return result.rows[0].id;
 }
 
 export async function storeCategoriesColors(categories: string[]) {
