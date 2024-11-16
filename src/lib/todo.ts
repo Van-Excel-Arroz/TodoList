@@ -66,7 +66,7 @@ export async function getTodoWithCategories(todoId: number) {
 		`,
 		[todoId]
 	);
-	return result.rows[0] || null;
+	return result.rows;
 }
 
 export async function getTodosWithCategories(todolistId: number) {
