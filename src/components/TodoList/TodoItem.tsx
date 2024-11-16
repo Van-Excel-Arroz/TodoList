@@ -18,7 +18,7 @@ function TodoItem({ todo }: TodoItemProps) {
 					{todo.categories &&
 						todo.categories.map(category => (
 							<span
-								key={category.category_id}
+								key={category.id}
 								className={`text-xs border shadow-md rounded mr-2 mt-2 py-1 px-2`}
 								style={{ color: category.hex_color }}
 							>
