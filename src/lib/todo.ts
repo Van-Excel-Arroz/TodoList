@@ -24,6 +24,10 @@ export async function storeTodo(text: string, dueDatetime: string | null, todoli
 	return result?.rows[0].id;
 }
 
+async function getCategoryColor(category: string) {
+	const result = await query('SELECT ');
+}
+
 export async function storeCategoriesColors(categories: string[]) {
 	const categoryColorsId: number[] = [];
 	const colorMap: Map<string, string> = new Map();
@@ -59,7 +63,7 @@ export async function storeCategories(todoId: number, categoryColorsId: number[]
 export async function getTodoWithCategories(todoId: number) {
 	const result = await query(
 		`
-		SELECT c.id AS category_id, cc.category_title, cc.hex_color
+		SELECT c.id, cc.category_title, cc.hex_color
 		FROM categories c
 		JOIN category_colors cc ON  c.category_color_id = cc.id
 		WHERE c.todo_id = $1
