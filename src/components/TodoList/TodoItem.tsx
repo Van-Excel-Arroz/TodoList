@@ -1,16 +1,8 @@
 'use client';
 
+import { Todo } from '@/types';
 import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
 import { memo } from 'react';
-
-interface Todo {
-	id: number;
-	task_text: string;
-	category: string | null;
-	due_datetime: string | null;
-	creation_date: string;
-	todo_list_id: number;
-}
 
 interface TodoItemProps {
 	todo: Todo;
