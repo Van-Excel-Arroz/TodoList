@@ -18,7 +18,7 @@ async function getCategoryColor(category: string) {
 }
 
 async function createCategoryColor(category: string, color: string) {
-	const result = await query('INSER INTO category_colors (category_title, hex_color) VALUES ($1, $2)', [
+	const result = await query('INSERT INTO category_colors (category_title, hex_color) VALUES ($1, $2) RETURNING id', [
 		category,
 		color,
 	]);
