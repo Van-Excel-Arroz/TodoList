@@ -57,7 +57,7 @@ export async function storeCategories(todoId: number, categoryColorsId: number[]
 }
 
 export async function getTodoWithCategories(todoId: number) {
-	await query(
+	const result = await query(
 		`
 		SELECT c.id AS category_id, cc.category_title, cc.hex_color
 		FROM categories c
@@ -66,6 +66,7 @@ export async function getTodoWithCategories(todoId: number) {
 		`,
 		[todoId]
 	);
+	return result;
 }
 
 export async function getTodosWithCategories(todolistId: number) {

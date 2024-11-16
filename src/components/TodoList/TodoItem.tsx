@@ -9,6 +9,7 @@ interface TodoItemProps {
 }
 
 function TodoItem({ todo }: TodoItemProps) {
+	console.log(todo.categories);
 	return (
 		<div key={todo.id} className="grid grid-cols-6 my-3 border border-l-slate-800 px-4 py-2 bg-white ">
 			<div className="col-span-4">
