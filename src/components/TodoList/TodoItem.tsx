@@ -9,7 +9,6 @@ interface TodoItemProps {
 }
 
 function TodoItem({ todo }: TodoItemProps) {
-	console.log(todo.categories);
 	return (
 		<div key={todo.id} className="grid grid-cols-6 my-3 border border-l-slate-800 px-4 py-2 bg-white ">
 			<div className="col-span-4">
@@ -17,7 +16,7 @@ function TodoItem({ todo }: TodoItemProps) {
 				<div className="flex">
 					{todo.categories &&
 						todo.categories.map(category => (
-							<span className={`text-xs border shadow-md rounded mt-2 py-1 px-2 text-[${category.hex_color}]`}>
+							<span className={`text-xs border shadow-md rounded mt-2 py-1 px-2 text-[#${category.hex_color}]`}>
 								{category.category_title}
 							</span>
 						))}
