@@ -27,8 +27,6 @@ async function createCategoryColor(category: string, color: string) {
 
 export async function storeCategoriesColors(categories: string[]) {
 	const categoryColorsMap = new Map<string, number>();
-	const colorAssignments = new Map<string, string>();
-	let colorIndex = 0;
 
 	const categoryIds = await Promise.all(
 		categories.map(async category => {
@@ -44,13 +42,25 @@ export async function storeCategoriesColors(categories: string[]) {
 				return existingCategory.id;
 			}
 
-			// Assign new color and create category
-			const color = PREDEFINED_COLORS[colorIndex % PREDEFINED_COLORS.length];
-			colorIndex++;
+			// Get the least used color
+			const result = await query(
+				`
+        SELECT pc.hex_color
+        FROM (
+          SELECT unnest($1::text[]) AS hex_color
+        ) pc
+        LEFT JOIN category_colors cc ON cc.hex_color = pc.hex_color
+        GROUP BY pc.hex_color
+        ORDER BY COUNT(cc.id) ASC
+        LIMIT 1
+      `,
+				[PREDEFINED_COLORS]
+			);
+
+			const color = result.rows[0].hex_color;
 
 			const newCategoryId = await createCategoryColor(category, color);
 			categoryColorsMap.set(category, newCategoryId);
-			colorAssignments.set(category, color);
 
 			return newCategoryId;
 		})
