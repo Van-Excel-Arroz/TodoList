@@ -14,9 +14,14 @@ function TodoItem({ todo }: TodoItemProps) {
 			<div className="col-span-4">
 				<p className="col-span-4 truncate">{todo.task_text}</p>
 				<div className="flex">
-					{todo.category && (
-						<span className="text-xs text-blue-800 border shadow-md rounded mt-2 py-1 px-2">{todo.category}</span>
-					)}
+					{todo.categories &&
+						todo.categories.map(category => (
+							<span
+								className={`text-xs text-blue-800 border shadow-md rounded mt-2 py-1 px-2 text-[${category.hex_color}]`}
+							>
+								{category.category_title}
+							</span>
+						))}
 				</div>
 			</div>
 
