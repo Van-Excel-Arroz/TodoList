@@ -1,14 +1,4 @@
-import Todolist from '@/components/TodoList/TodoList';
 import { query } from './db';
-
-interface Todo {
-	id: number;
-	task_text: string;
-	category: string | null;
-	due_datetime: string | null;
-	creation_date: string;
-	todo_list_id: number;
-}
 
 const predefinedColors = [
 	'#9e0142',
@@ -94,6 +84,6 @@ export async function getTodosWithCategories(todolistId: number) {
 
 export async function getTodos(todolistId: number) {
 	const result = await query('SELECT * FROM todos WHERE todo_list_id = $1', [todolistId]);
-	const todos: Todo[] = result.rows;
+	const todos = result.rows;
 	return todos;
 }
