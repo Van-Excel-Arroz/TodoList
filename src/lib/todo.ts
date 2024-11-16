@@ -1,3 +1,4 @@
+import { Todo } from '@/types';
 import { query } from './db';
 
 const predefinedColors = [
@@ -70,7 +71,7 @@ export async function getTodoWithCategories(todoId: number) {
 export async function getTodosWithCategories(todolistId: number) {
 	const todos = await getTodos(todolistId);
 
-	const todosWithCategories = await Promise.all(
+	const todosWithCategories: Todo[] = await Promise.all(
 		todos.map(async todo => {
 			const categories = await getTodoWithCategories(todo.id);
 			return {
