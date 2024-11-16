@@ -64,6 +64,17 @@ export async function storeCategories(todoId: number, categoryColorsId: number[]
 	}
 }
 
+export async function getCategories(todoId: number) {
+	await query(
+		`
+		SELECT c.id AS category_id, cc.category_title, cc.hex_color
+		FROM categories c
+		JOIN category_colors cc ON  c.category_color_id = cc.id
+		WHERE c.todo_id = $1
+		`, [todoId]
+	)
+}
+
 export async function getTodos(todolistId: number) {
 	const result = await query('SELECT * FROM todos WHERE todo_list_id = $1', [todolistId]);
 	const todos: Todo[] = result.rows;
