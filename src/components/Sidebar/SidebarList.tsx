@@ -10,16 +10,7 @@ interface SidebarListProps {
 }
 
 function SidebarList({ initialTodolist }: SidebarListProps) {
-	const [todolists, setTodolists] = useState(initialTodolist);
-	const [isPending, startTransition] = useTransition();
 	const { isSidebarOpen } = useSidebarStore();
-
-	const handleAddTodolist = useCallback((newTodolist: TodoList) => {
-		startTransition(() => {
-			setTodolists(prev => [...prev, newTodolist]);
-		});
-	}, []);
-
 	return (
 		<>
 			<div
@@ -27,7 +18,7 @@ function SidebarList({ initialTodolist }: SidebarListProps) {
 					isSidebarOpen ? 'w-72' : 'hidden'
 				}`}
 			>
-				<SidebarContent todolists={todolists} onAddTodolist={handleAddTodolist} />
+				<SidebarContent todolists={initialTodolist} />
 			</div>
 		</>
 	);
