@@ -1,27 +1,17 @@
-'use client';
-
-import { memo } from 'react';
-import useSidebarStore from '@/components/Context/SidebarContext';
 import SidebarContent from './SidebarContent';
 import { TodoList } from '@/types';
+import SidebarWrapper from './SidebarWrapper';
 
 interface SidebarListProps {
 	todolists: TodoList[];
 }
 
-function SidebarList({ todolists }: SidebarListProps) {
-	const { isSidebarOpen } = useSidebarStore();
+export default function SidebarList({ todolists }: SidebarListProps) {
 	return (
 		<>
-			<div
-				className={`font-body border-r-2 rounded-r-3xl drop-shadow-xl bg-white py-9 h-screen ${
-					isSidebarOpen ? 'w-72' : 'hidden'
-				}`}
-			>
+			<SidebarWrapper>
 				<SidebarContent todolists={todolists} />
-			</div>
+			</SidebarWrapper>
 		</>
 	);
 }
-
-export default memo(SidebarList);
