@@ -14,7 +14,7 @@ function TodolistForm() {
 
 	async function onSubmit(data: any) {
 		try {
-			const todolistId = await createTodolist(data.title);
+			await createTodolist(data.title);
 			reset();
 		} catch (error) {
 			console.error('Failed to create todolist');
