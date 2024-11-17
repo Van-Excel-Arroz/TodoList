@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import TodoForm from './TodoForm';
 import React from 'react';
 import TodolistHeader from './TodolistHeader';
@@ -11,7 +10,7 @@ interface TodolistContentProps {
 	todos: Todo[];
 }
 
-function TodoListContent({ todolist, todolistId, todos }: TodolistContentProps) {
+export default function TodoListContent({ todolist, todolistId, todos }: TodolistContentProps) {
 	return (
 		<>
 			<div className="font-body flex flex-col px-6 p-9">
@@ -22,5 +21,3 @@ function TodoListContent({ todolist, todolistId, todos }: TodolistContentProps) 
 		</>
 	);
 }
-
-export default memo(TodoListContent);
