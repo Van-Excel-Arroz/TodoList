@@ -7,7 +7,7 @@ interface CancelEditButtonProps {
 
 function CancelEditButton({ handleEditClick }: CancelEditButtonProps) {
 	return (
-		<button onClick={() => handleEditClick(false)}>
+		<button onClick={() => handleEditClick(false)} aria-label="Cancel Editing">
 			<MdOutlineCancel size={16} />
 		</button>
 	);

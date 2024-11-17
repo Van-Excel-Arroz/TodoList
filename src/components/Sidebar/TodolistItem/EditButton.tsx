@@ -7,7 +7,7 @@ interface EditButtonProps {
 
 function EditButton({ handleEditClick }: EditButtonProps) {
 	return (
-		<button onClick={() => handleEditClick(true)}>
+		<button onClick={() => handleEditClick(true)} aria-label="Edit Todolist">
 			<RiPencilFill size={16} />
 		</button>
 	);
