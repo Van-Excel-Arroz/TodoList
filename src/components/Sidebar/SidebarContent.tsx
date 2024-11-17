@@ -1,5 +1,4 @@
 import TodolistForm from './TodolistForm';
-import { memo } from 'react';
 import { TodoList } from '@/types';
 import SidebarHeader from './SidebarHeader';
 import TodolistsRender from './TodolistsRender';
@@ -9,7 +8,7 @@ interface SidebarContentProps {
 	onAddTodolist: (todolist: TodoList) => void;
 }
 
-function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
+export default function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
 	return (
 		<>
 			<div className="flex flex-col gap-4 px-6">
@@ -20,5 +19,3 @@ function SidebarContent({ todolists, onAddTodolist }: SidebarContentProps) {
 		</>
 	);
 }
-//sidebar
-export default memo(SidebarContent);
