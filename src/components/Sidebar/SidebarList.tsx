@@ -6,10 +6,10 @@ import SidebarContent from './SidebarContent';
 import { TodoList } from '@/types';
 
 interface SidebarListProps {
-	initialTodolist: TodoList[];
+	todolists: TodoList[];
 }
 
-function SidebarList({ initialTodolist }: SidebarListProps) {
+function SidebarList({ todolists }: SidebarListProps) {
 	const { isSidebarOpen } = useSidebarStore();
 	return (
 		<>
@@ -18,7 +18,7 @@ function SidebarList({ initialTodolist }: SidebarListProps) {
 					isSidebarOpen ? 'w-72' : 'hidden'
 				}`}
 			>
-				<SidebarContent todolists={initialTodolist} />
+				<SidebarContent todolists={todolists} />
 			</div>
 		</>
 	);
