@@ -1,12 +1,23 @@
 export const PREDEFINED_COLORS = [
-	'#9e0142',
-	'#d53e4f',
-	'#f46d43',
-	'#fdae61',
-	'#fee08b',
-	'#e6f598',
-	'#abdda4',
-	'#66c2a5',
-	'#3288bd',
-	'#5e4fa2',
+	'#8B0000', // Dark Red
+	'#008B8B', // Dark Cyan
+	'#FFD700', // Gold
+	'#4B0082', // Indigo
+	'#32CD32', // Lime Green
+	'#FF4500', // OrangeRed
+	'#4682B4', // Steel Blue
+	'#B22222', // FireBrick
+	'#6B8E23', // Olive Drab
+	'#8A2BE2', // BlueViolet
+	'#D2691E', // Chocolate
+	'#2F4F4F', // Dark Slate Gray
+	'#FF69B4', // Hot Pink
+	'#556B2F', // Dark Olive Green
+	'#1E90FF', // Dodger Blue
+	'#C71585', // Medium Violet Red
+	'#8B4513', // SaddleBrown
+	'#708090', // Slate Gray
+	'#2E8B57', // SeaGreen
+	'#483D8B', // Dark Slate Blue
+	'#A52A2A', // Brown
 ] as const;
