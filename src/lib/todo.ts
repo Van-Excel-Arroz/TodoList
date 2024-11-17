@@ -12,6 +12,40 @@ export async function storeTodo(text: string, dueDatetime: string | null, todoli
 	return result?.rows[0].id;
 }
 
+async function getNextColor() {
+	// First, try to find an unused color
+	const result = await query(
+		`
+    SELECT color.hex_color
+    FROM (
+      SELECT unnest($1::text[]) as hex_color
+    ) AS color
+    WHERE NOT EXISTS (
+      SELECT 1 FROM category_colors cc 
+      WHERE cc.hex_color = color.hex_color
+    )
+    LIMIT 1
+  `,
+		[PREDEFINED_COLORS]
+	);
+
+	// If we found an unused color, use it
+	if (result.rows.length > 0) {
+		return result.rows[0].hex_color;
+	}
+
+	// If all colors are used, find the least recently used color
+	const leastUsedResult = await query(`
+    SELECT cc.hex_color, COUNT(*) as usage_count
+    FROM category_colors cc
+    GROUP BY cc.hex_color
+    ORDER BY usage_count ASC, cc.hex_color
+    LIMIT 1
+  `);
+
+	return leastUsedResult.rows[0].hex_color;
+}
+
 async function getCategoryColor(category: string) {
 	const result = await query('SELECT * FROM category_colors WHERE category_title = $1', [category]);
 	return result.rows[0] || null;
@@ -42,22 +76,8 @@ export async function storeCategoriesColors(categories: string[]) {
 				return existingCategory.id;
 			}
 
-			// Get the least used color
-			const result = await query(
-				`
-        SELECT pc.hex_color
-        FROM (
-          SELECT unnest($1::text[]) AS hex_color
-        ) pc
-        LEFT JOIN category_colors cc ON cc.hex_color = pc.hex_color
-        GROUP BY pc.hex_color
-        ORDER BY COUNT(cc.id) ASC
-        LIMIT 1
-      `,
-				[PREDEFINED_COLORS]
-			);
-
-			const color = result.rows[0].hex_color;
+			// Get next available color
+			const color = await getNextColor();
 
 			const newCategoryId = await createCategoryColor(category, color);
 			categoryColorsMap.set(category, newCategoryId);
