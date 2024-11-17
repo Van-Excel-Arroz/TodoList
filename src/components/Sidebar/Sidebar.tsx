@@ -7,7 +7,7 @@ export default async function Sidebar() {
 	const todolists: TodoList[] = (await getTodolists(1)) ?? [];
 	return (
 		<Suspense fallback={<p>Loading...</p>}>
-			<SidebarList initialTodolist={todolists} />
+			<SidebarList todolists={todolists} />
 		</Suspense>
 	);
 }
