@@ -3,13 +3,8 @@
 import { memo } from 'react';
 import { createTodolist } from '../../actions/todolist-action';
 import { useForm } from 'react-hook-form';
-import { TodoList } from '@/types';
 
-interface TodolistFormProps {
-	onAdd: (todolist: TodoList) => void;
-}
-
-function TodolistForm({ onAdd }: TodolistFormProps) {
+function TodolistForm() {
 	const {
 		register,
 		handleSubmit,
@@ -20,7 +15,6 @@ function TodolistForm({ onAdd }: TodolistFormProps) {
 	async function onSubmit(data: any) {
 		try {
 			const todolistId = await createTodolist(data.title);
-			onAdd({ id: todolistId, title: data.title });
 			reset();
 		} catch (error) {
 			console.error('Failed to create todolist');
