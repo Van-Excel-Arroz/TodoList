@@ -1,9 +1,10 @@
 'use client';
 
 import useSidebarStore from '@/components/Context/SidebarContext';
+import { memo } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
-export default function SidebarToggle() {
+function SidebarToggle() {
 	const { toggleSidebar } = useSidebarStore();
 	return (
 		<button onClick={toggleSidebar}>
@@ -11,3 +12,4 @@ export default function SidebarToggle() {
 		</button>
 	);
 }
+export default memo(SidebarToggle);
