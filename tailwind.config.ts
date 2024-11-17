@@ -15,7 +15,7 @@ const config: Config = {
 			},
 		},
 		fontFamily: {
-			body: ['font-mono'],
+			body: ['system-ui'],
 		},
 	},
 	plugins: [],
