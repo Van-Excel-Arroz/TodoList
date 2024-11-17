@@ -7,15 +7,16 @@ import { Todo, TodoList } from '@/types';
 
 interface TodolistContentProps {
 	todolist: TodoList;
+	todolistId: number;
 	todos: Todo[];
 }
 
-function TodoListContent({ todolist, todos }: TodolistContentProps) {
+function TodoListContent({ todolist, todolistId, todos }: TodolistContentProps) {
 	return (
 		<>
 			<div className="font-body flex flex-col px-6 p-9">
 				<TodolistHeader todolist={todolist} />
-				<TodoForm todolistId={todolist.id} />
+				<TodoForm todolistId={todolistId} />
 				<TodosRender todos={todos} />
 			</div>
 		</>
