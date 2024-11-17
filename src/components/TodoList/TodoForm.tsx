@@ -65,11 +65,11 @@ function TodoForm({ todolistId }: TodoFormProps) {
 					<label htmlFor="date" className="sr-only">
 						Due Date
 					</label>
-					<input {...register('date')} type="date" className="bg-transparent" />
+					<input {...register('date')} type="date" className="bg-transparent" id="date" />
 					<label htmlFor="time" className="sr-only">
 						Due Time
 					</label>
-					<input {...register('time')} type="time" step="1" className="bg-transparent" />
+					<input {...register('time')} type="time" step="1" className="bg-transparent" id="time" />
 				</div>
 			</form>
 		</div>
