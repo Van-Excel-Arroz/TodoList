@@ -60,28 +60,17 @@ async function createCategoryColor(category: string, color: string) {
 }
 
 export async function storeCategoriesColors(categories: string[]) {
-	const categoryColorsMap = new Map<string, number>();
-
 	const categoryIds = await Promise.all(
 		categories.map(async category => {
-			// Check if we've already processed this category in current batch
-			if (categoryColorsMap.has(category)) {
-				return categoryColorsMap.get(category)!;
-			}
-
 			// Check if category already exists in database
 			const existingCategory = await getCategoryColor(category);
 			if (existingCategory) {
-				categoryColorsMap.set(category, existingCategory.id);
 				return existingCategory.id;
 			}
 
 			// Get next available color
 			const color = await getNextColor();
-
 			const newCategoryId = await createCategoryColor(category, color);
-			categoryColorsMap.set(category, newCategoryId);
-
 			return newCategoryId;
 		})
 	);
