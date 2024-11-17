@@ -7,7 +7,7 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 function SidebarToggle() {
 	const { toggleSidebar } = useSidebarStore();
 	return (
-		<button onClick={toggleSidebar}>
+		<button onClick={toggleSidebar} aria-label="Sidebar Menu">
 			<RxHamburgerMenu size={20} />
 		</button>
 	);
