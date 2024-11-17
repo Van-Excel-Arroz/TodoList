@@ -62,7 +62,13 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				)}
 
 				<div className="flex gap-10">
+					<label htmlFor="date" className="sr-only">
+						Due Date
+					</label>
 					<input {...register('date')} type="date" className="bg-transparent" />
+					<label htmlFor="time" className="sr-only">
+						Due Time
+					</label>
 					<input {...register('time')} type="time" step="1" className="bg-transparent" />
 				</div>
 			</form>

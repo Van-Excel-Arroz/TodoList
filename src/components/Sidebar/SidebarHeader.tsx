@@ -12,7 +12,7 @@ function SidebarHeader() {
 	return (
 		<div className="flex gap-4 items-center">
 			{!isHome && <SidebarToggle />}
-			<Link href="/" className="text-lg font-bold">
+			<Link href="/" className="text-lg font-bold" aria-label="home">
 				<AiOutlineHome size={27} />
 			</Link>
 		</div>
