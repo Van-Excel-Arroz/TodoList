@@ -75,21 +75,26 @@ async function createCategoryColor(category: string, color: string) {
 }
 
 export async function storeCategoriesColors(categories: string[]) {
-	const categoryIds = [];
+	try {
+		const categoryIds = [];
 
-	for (const category of categories) {
-		const existingCategory = await getCategoryColor(category);
-		if (existingCategory) {
-			categoryIds.push(existingCategory.id);
-			continue;
+		for (const category of categories) {
+			const existingCategory = await getCategoryColor(category);
+			if (existingCategory) {
+				categoryIds.push(existingCategory.id);
+				continue;
+			}
+
+			const color = await getNextColor();
+			const newCategoryId = await createCategoryColor(category, color);
+			categoryIds.push(newCategoryId);
 		}
 
-		const color = await getNextColor();
-		const newCategoryId = await createCategoryColor(category, color);
-		categoryIds.push(newCategoryId);
+		return categoryIds;
+	} catch (error) {
+		console.error('Error storing categories and colors');
+		return;
 	}
-
-	return categoryIds;
 }
 
 export async function storeCategories(todoId: number, categoryColorsId: number[]) {
