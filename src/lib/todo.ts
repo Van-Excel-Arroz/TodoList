@@ -57,8 +57,13 @@ async function getNextColor() {
 }
 
 async function getCategoryColor(category: string) {
-	const result = await query('SELECT * FROM category_colors WHERE category_title = $1', [category]);
-	return result.rows[0] || null;
+	try {
+		const result = await query('SELECT * FROM category_colors WHERE category_title = $1', [category]);
+		return result.rows[0] || null;
+	} catch (error) {
+		console.error('Error fetching category and color from the database');
+		return;
+	}
 }
 
 async function createCategoryColor(category: string, color: string) {
