@@ -3,13 +3,18 @@ import { query } from './db';
 import { PREDEFINED_COLORS } from '@/utils/constants';
 
 export async function storeTodo(text: string, dueDatetime: string | null, todolistId: number) {
-	const dueDatetimeValue = typeof dueDatetime === 'string' ? dueDatetime.trim() : null;
+	try {
+		const dueDatetimeValue = typeof dueDatetime === 'string' ? dueDatetime.trim() : null;
 
-	const result = await query(
-		'INSERT INTO todos (task_text, due_datetime, todo_list_id) VALUES ($1, $2, $3) RETURNING id',
-		[text, dueDatetimeValue, todolistId]
-	);
-	return result?.rows[0].id;
+		const result = await query(
+			'INSERT INTO todos (task_text, due_datetime, todo_list_id) VALUES ($1, $2, $3) RETURNING id',
+			[text, dueDatetimeValue, todolistId]
+		);
+		return result?.rows[0].id;
+	} catch (error) {
+		console.error('Error inserting todo in the database');
+		return;
+	}
 }
 
 async function getNextColor() {
