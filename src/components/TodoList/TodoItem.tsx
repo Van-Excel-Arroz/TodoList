@@ -11,14 +11,14 @@ interface TodoItemProps {
 function TodoItem({ todo }: TodoItemProps) {
 	return (
 		<div key={todo.id} className="grid grid-cols-6 my-3 border border-l-slate-800 px-4 py-2 bg-white ">
-			<div className="col-span-4">
+			<div className="col-span-4 flex items-center">
 				<p className="col-span-4 truncate">{todo.task_text}</p>
 				<div className="flex">
 					{todo.categories &&
 						todo.categories.map(category => (
 							<span
 								key={category.id}
-								className={`text-xs border shadow-md rounded mr-2 mt-2 py-1 px-2`}
+								className={`text-xs border shadow-md rounded ml-2 py-1 px-2`}
 								style={{ color: category.hex_color }}
 							>
 								{category.category_title}
