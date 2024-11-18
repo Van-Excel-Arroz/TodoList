@@ -12,7 +12,7 @@ function TodoItem({ todo }: TodoItemProps) {
 	return (
 		<div key={todo.id} className="grid grid-cols-6 my-3 border border-l-slate-800 px-4 py-2 bg-white ">
 			<div className="col-span-4 flex items-center">
-				<p className="col-span-4 truncate">{todo.task_text}</p>
+				<p>{todo.task_text}</p>
 				<div className="flex">
 					{todo.categories &&
 						todo.categories.map(category => (
