@@ -13,7 +13,7 @@ function TodolistHeader({ todolist }: TodolistHeaderProps) {
 	const { isSidebarOpen } = useSidebarStore();
 
 	return (
-		<div className="flex gap-4">
+		<div className="flex gap-4 items-center">
 			{!isSidebarOpen && <SidebarToggle />}
 			<p className="text-lg font-bold">
 				{todolist.title} #{todolist.id}
