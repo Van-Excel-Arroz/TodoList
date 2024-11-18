@@ -126,18 +126,23 @@ export async function getTodoWithCategories(todoId: number) {
 }
 
 export async function getTodosWithCategories(todolistId: number) {
-	const todos = await getTodos(todolistId);
+	try {
+		const todos = await getTodos(todolistId);
 
-	const todosWithCategories: Todo[] = await Promise.all(
-		todos.map(async todo => {
-			const categories = await getTodoWithCategories(todo.id);
-			return {
-				...todo,
-				categories,
-			};
-		})
-	);
-	return todosWithCategories;
+		const todosWithCategories: Todo[] = await Promise.all(
+			todos.map(async todo => {
+				const categories = await getTodoWithCategories(todo.id);
+				return {
+					...todo,
+					categories,
+				};
+			})
+		);
+		return todosWithCategories;
+	} catch (error) {
+		console.error('Error fetching todo with categories');
+		return;
+	}
 }
 
 export async function getTodos(todolistId: number) {
