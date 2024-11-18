@@ -93,7 +93,7 @@ export async function storeCategoriesColors(categories: string[]) {
 		return categoryIds;
 	} catch (error) {
 		console.error('Error storing categories and colors');
-		return;
+		return [];
 	}
 }
 
@@ -104,7 +104,6 @@ export async function storeCategories(todoId: number, categoryColorsId: number[]
 		}
 	} catch (error) {
 		console.error('Error inserting categories in the database');
-		return;
 	}
 }
 
