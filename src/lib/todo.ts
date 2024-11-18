@@ -109,16 +109,21 @@ export async function storeCategories(todoId: number, categoryColorsId: number[]
 }
 
 export async function getTodoWithCategories(todoId: number) {
-	const result = await query(
-		`
-		SELECT c.id, cc.category_title, cc.hex_color
-		FROM categories c
-		JOIN category_colors cc ON  c.category_color_id = cc.id
-		WHERE c.todo_id = $1
-		`,
-		[todoId]
-	);
-	return result.rows;
+	try {
+		const result = await query(
+			`
+			SELECT c.id, cc.category_title, cc.hex_color
+			FROM categories c
+			JOIN category_colors cc ON  c.category_color_id = cc.id
+			WHERE c.todo_id = $1
+			`,
+			[todoId]
+		);
+		return result.rows;
+	} catch (error) {
+		console.error('Error fetching todo with categories');
+		return;
+	}
 }
 
 export async function getTodosWithCategories(todolistId: number) {
