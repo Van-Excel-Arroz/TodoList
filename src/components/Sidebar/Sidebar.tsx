@@ -1,13 +1,17 @@
-import SidebarList from '@/components/Sidebar/SidebarList';
-import { getTodolists } from '@/lib/todolist';
+import SidebarContent from './SidebarContent';
 import { TodoList } from '@/types';
-import { Suspense } from 'react';
+import SidebarWrapper from './SidebarWrapper';
 
-export default async function Sidebar() {
-	const todolists: TodoList[] = (await getTodolists(1)) ?? [];
+interface SidebarListProps {
+	todolists: TodoList[];
+}
+
+export default function Sidebar({ todolists }: SidebarListProps) {
 	return (
-		<Suspense fallback={<p>Loading...</p>}>
-			<SidebarList todolists={todolists} />
-		</Suspense>
+		<>
+			<SidebarWrapper>
+				<SidebarContent todolists={todolists} />
+			</SidebarWrapper>
+		</>
 	);
 }
