@@ -61,17 +61,21 @@ async function getCategoryColor(category: string) {
 		const result = await query('SELECT * FROM category_colors WHERE category_title = $1', [category]);
 		return result.rows[0] || null;
 	} catch (error) {
-		console.error('Error fetching category and color from the database');
+		console.error('Error fetching category and color in the database');
 		return;
 	}
 }
 
 async function createCategoryColor(category: string, color: string) {
-	const result = await query('INSERT INTO category_colors (category_title, hex_color) VALUES ($1, $2) RETURNING id', [
-		category,
-		color,
-	]);
-	return result.rows[0].id;
+	try {
+		const result = await query('INSERT INTO category_colors (category_title, hex_color) VALUES ($1, $2) RETURNING id', [
+			category,
+			color,
+		]);
+		return result.rows[0].id;
+	} catch (error) {
+		console.error('Error inserting category and colors in the database');
+	}
 }
 
 export async function storeCategoriesColors(categories: string[]) {
@@ -92,7 +96,7 @@ export async function storeCategoriesColors(categories: string[]) {
 
 		return categoryIds;
 	} catch (error) {
-		console.error('Error storing categories and colors');
+		console.error('Error storing categories and colors in the database');
 		return [];
 	}
 }
@@ -120,7 +124,7 @@ export async function getTodoWithCategories(todoId: number) {
 		);
 		return result.rows;
 	} catch (error) {
-		console.error('Error fetching todo with categories');
+		console.error('Error fetching todo with categories in the database');
 		return;
 	}
 }
@@ -140,13 +144,18 @@ export async function getTodosWithCategories(todolistId: number) {
 		);
 		return todosWithCategories;
 	} catch (error) {
-		console.error('Error fetching todo with categories');
+		console.error('Error fetching todo with categories in the database');
 		return;
 	}
 }
 
 export async function getTodos(todolistId: number) {
-	const result = await query('SELECT * FROM todos WHERE todo_list_id = $1', [todolistId]);
-	const todos = result.rows;
-	return todos;
+	try {
+		const result = await query('SELECT * FROM todos WHERE todo_list_id = $1', [todolistId]);
+		const todos = result.rows;
+		return todos;
+	} catch (error) {
+		console.error('Error fetching todos in the database');
+		return [];
+	}
 }
