@@ -18,37 +18,42 @@ export async function storeTodo(text: string, dueDatetime: string | null, todoli
 }
 
 async function getNextColor() {
-	// First, try to find an unused color
-	const result = await query(
-		`
-    SELECT color.hex_color
-    FROM (
-      SELECT unnest($1::text[]) as hex_color
-    ) AS color
-    WHERE NOT EXISTS (
-      SELECT 1 FROM category_colors cc 
-      WHERE cc.hex_color = color.hex_color
-    )
-    LIMIT 1
-  `,
-		[PREDEFINED_COLORS]
-	);
+	try {
+		// First, try to find an unused color
+		const result = await query(
+			`
+			SELECT color.hex_color
+			FROM (
+				SELECT unnest($1::text[]) as hex_color
+			) AS color
+			WHERE NOT EXISTS (
+				SELECT 1 FROM category_colors cc 
+				WHERE cc.hex_color = color.hex_color
+			)
+			LIMIT 1
+		`,
+			[PREDEFINED_COLORS]
+		);
 
-	// If we found an unused color, use it
-	if (result.rows.length > 0) {
-		return result.rows[0].hex_color;
+		// If we found an unused color, use it
+		if (result.rows.length > 0) {
+			return result.rows[0].hex_color;
+		}
+
+		// If all colors are used, find the least recently used color
+		const leastUsedResult = await query(`
+			SELECT cc.hex_color, COUNT(*) as usage_count
+			FROM category_colors cc
+			GROUP BY cc.hex_color
+			ORDER BY usage_count ASC, cc.hex_color
+			LIMIT 1
+		`);
+
+		return leastUsedResult.rows[0].hex_color;
+	} catch (error) {
+		console.error('Error checking and getting the next color in the database');
+		return;
 	}
-
-	// If all colors are used, find the least recently used color
-	const leastUsedResult = await query(`
-    SELECT cc.hex_color, COUNT(*) as usage_count
-    FROM category_colors cc
-    GROUP BY cc.hex_color
-    ORDER BY usage_count ASC, cc.hex_color
-    LIMIT 1
-  `);
-
-	return leastUsedResult.rows[0].hex_color;
 }
 
 async function getCategoryColor(category: string) {
