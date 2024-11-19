@@ -1,9 +1,9 @@
 'use client';
 
-import { MdDeleteOutline } from 'react-icons/md';
 import { deleteTodolistAction } from '@/actions/todolist-action';
 import { memo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import { Trash2 } from 'lucide-react';
 
 interface DeleteTodolistButtonProps {
 	todolistId: number;
@@ -24,7 +24,7 @@ function DeleteTodolistButton({ todolistId }: DeleteTodolistButtonProps) {
 	return (
 		<form onSubmit={onSubmit} className="flex items-center">
 			<button type="submit" aria-label="Delete Todolist">
-				<MdDeleteOutline size={16} className="cursor-pointer" />
+				<Trash2 />
 			</button>
 		</form>
 	);
