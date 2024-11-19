@@ -24,7 +24,7 @@ function TodoItem({ todo }: TodoItemProps) {
 					{isChecked ? <CircleCheck size={20} /> : <Circle size={20} />}
 				</label>
 
-				<p className="ml-6">{todo.task_text}</p>
+				<p className={`ml-6 ${isChecked && 'line-through'}`}>{todo.task_text}</p>
 				<div className="flex">
 					{todo.categories &&
 						todo.categories.map(category => (
