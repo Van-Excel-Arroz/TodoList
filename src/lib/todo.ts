@@ -145,7 +145,7 @@ export async function getTodosWithCategories(todolistId: number) {
 		return todosWithCategories;
 	} catch (error) {
 		console.error('Error fetching todo with categories in the database');
-		return;
+		return [];
 	}
 }
 
