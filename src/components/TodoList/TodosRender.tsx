@@ -1,5 +1,6 @@
 import { Todo } from '@/types';
 import TodoItem from './TodoItem';
+import { motion } from 'framer-motion';
 
 interface TodosRenderProps {
 	todos: Todo[];
@@ -13,11 +14,9 @@ export default function TodosRender({ todos }: TodosRenderProps) {
 				<p className="text-center">Due Date</p>
 				<p className="text-center">Created In</p>
 			</div>
-			<div>
-				{todos.map(todo => (
-					<TodoItem key={todo.id} todo={todo} />
-				))}
-			</div>
+			{todos.map(todo => (
+				<TodoItem key={todo.id} todo={todo} />
+			))}
 		</>
 	);
 }
