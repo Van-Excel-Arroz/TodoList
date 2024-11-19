@@ -13,12 +13,8 @@ function TodolistForm() {
 	} = useForm();
 
 	async function onSubmit(data: any) {
-		try {
-			await createTodolist(data.title);
-			reset();
-		} catch (error) {
-			console.error('Failed to create todolist');
-		}
+		await createTodolist(data.title);
+		reset();
 	}
 
 	return (
