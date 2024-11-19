@@ -27,7 +27,7 @@ function TodosRender({ todos }: TodosRenderProps) {
 					<motion.div
 						key={todo.id}
 						variants={itemVariants}
-						transition={{ duration: 0.2, delay: index * 0.1, ease: 'easeOut' }} // Duration for each item
+						transition={{ duration: 0.1, delay: index * 0.1, ease: 'easeOut' }} // Duration for each item
 					>
 						<TodoItem todo={todo} />
 					</motion.div>
