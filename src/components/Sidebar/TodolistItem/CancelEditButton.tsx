@@ -1,5 +1,5 @@
+import { CircleX } from 'lucide-react';
 import { memo } from 'react';
-import { MdOutlineCancel } from 'react-icons/md';
 
 interface CancelEditButtonProps {
 	handleEditClick: (val: boolean) => void;
@@ -8,7 +8,7 @@ interface CancelEditButtonProps {
 function CancelEditButton({ handleEditClick }: CancelEditButtonProps) {
 	return (
 		<button onClick={() => handleEditClick(false)} aria-label="Cancel Editing">
-			<MdOutlineCancel size={16} />
+			<CircleX />
 		</button>
 	);
 }
