@@ -1,5 +1,5 @@
+import { Pencil } from 'lucide-react';
 import { memo } from 'react';
-import { RiPencilFill } from 'react-icons/ri';
 
 interface EditButtonProps {
 	handleEditClick: (val: boolean) => void;
@@ -8,7 +8,7 @@ interface EditButtonProps {
 function EditButton({ handleEditClick }: EditButtonProps) {
 	return (
 		<button onClick={() => handleEditClick(true)} aria-label="Edit Todolist">
-			<RiPencilFill size={16} />
+			<Pencil size={15} />
 		</button>
 	);
 }

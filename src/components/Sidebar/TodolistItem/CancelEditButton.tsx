@@ -8,7 +8,7 @@ interface CancelEditButtonProps {
 function CancelEditButton({ handleEditClick }: CancelEditButtonProps) {
 	return (
 		<button onClick={() => handleEditClick(false)} aria-label="Cancel Editing">
-			<CircleX />
+			<CircleX size={15} />
 		</button>
 	);
 }

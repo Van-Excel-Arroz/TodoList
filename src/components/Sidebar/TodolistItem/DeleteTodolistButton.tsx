@@ -24,7 +24,7 @@ function DeleteTodolistButton({ todolistId }: DeleteTodolistButtonProps) {
 	return (
 		<form onSubmit={onSubmit} className="flex items-center">
 			<button type="submit" aria-label="Delete Todolist">
-				<Trash2 />
+				<Trash2 size={15} />
 			</button>
 		</form>
 	);
