@@ -3,6 +3,7 @@
 import { Todo } from '@/types';
 import TodoItem from './TodoItem';
 import { motion } from 'framer-motion';
+import { memo } from 'react';
 
 interface TodosRenderProps {
 	todos: Todo[];
@@ -13,7 +14,7 @@ const itemVariants = {
 	visible: { opacity: 1, y: 0 }, // End at normal position
 };
 
-export default function TodosRender({ todos }: TodosRenderProps) {
+function TodosRender({ todos }: TodosRenderProps) {
 	return (
 		<>
 			<div className="grid grid-cols-6 my-3 px-4 font-semibold">
@@ -35,3 +36,4 @@ export default function TodosRender({ todos }: TodosRenderProps) {
 		</>
 	);
 }
+export default memo(TodosRender);
