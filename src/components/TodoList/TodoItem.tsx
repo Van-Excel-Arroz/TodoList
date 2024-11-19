@@ -27,7 +27,6 @@ function TodoItem({ todo }: TodoItemProps) {
 						))}
 				</div>
 			</div>
-
 			<p
 				className={
 					todo.due_datetime && isPast(new Date(todo.due_datetime))
