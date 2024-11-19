@@ -2,17 +2,28 @@
 
 import { Todo } from '@/types';
 import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
-import { memo } from 'react';
+import { Circle, CircleCheck } from 'lucide-react';
+import { memo, useState } from 'react';
 
 interface TodoItemProps {
 	todo: Todo;
 }
 
 function TodoItem({ todo }: TodoItemProps) {
+	const [isChecked, setIsChecked] = useState(false);
+
+	const onChange = () => {
+		setIsChecked(prevState => !prevState);
+	};
+
 	return (
 		<div key={todo.id} className="grid grid-cols-6 my-3 border border-l-slate-800 px-4 py-2 bg-white ">
 			<div className="col-span-4 flex items-center">
-				<input type="checkbox" className="cursor-pointer peer-checked:bg-black" />
+				<input type="checkbox" className="hidden peer" checked={isChecked} onChange={() => onChange()} />
+				<label className="flex items-center cursor-pointer" onClick={onChange}>
+					{isChecked ? <CircleCheck size={20} /> : <Circle size={20} />}
+				</label>
+
 				<p className="ml-6">{todo.task_text}</p>
 				<div className="flex">
 					{todo.categories &&
