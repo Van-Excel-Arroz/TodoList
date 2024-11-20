@@ -2,7 +2,7 @@
 
 import { Todo } from '@/types';
 import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
-import { Circle, CircleCheck } from 'lucide-react';
+import { Check, Circle, CircleCheck } from 'lucide-react';
 import { memo, useState } from 'react';
 
 interface TodoItemProps {
@@ -21,7 +21,13 @@ function TodoItem({ todo }: TodoItemProps) {
 			<div className="col-span-4 flex items-center py-2">
 				<input type="checkbox" className="hidden peer" checked={isChecked} onChange={() => onChange()} />
 				<label className="flex items-center cursor-pointer" onClick={onChange}>
-					{isChecked ? <CircleCheck size={25} strokeWidth={1} /> : <Circle size={25} strokeWidth={1} />}
+					{isChecked ? (
+						<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-sm">
+							<Check color="white" size={15} strokeWidth={4} />
+						</div>
+					) : (
+						<div className="border border-black w-5 h-5 rounded-sm"></div>
+					)}
 				</label>
 
 				<p className={`ml-6 ${isChecked && 'line-through'}`}>{todo.task_text}</p>
