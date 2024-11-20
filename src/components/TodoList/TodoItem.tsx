@@ -21,7 +21,7 @@ function TodoItem({ todo }: TodoItemProps) {
 			<div className="col-span-4 flex items-center">
 				<input type="checkbox" className="hidden peer" checked={isChecked} onChange={() => onChange()} />
 				<label className="flex items-center cursor-pointer" onClick={onChange}>
-					{isChecked ? <CircleCheck size={20} /> : <Circle size={20} />}
+					{isChecked ? <CircleCheck size={25} /> : <Circle size={25} />}
 				</label>
 
 				<p className={`ml-6 ${isChecked && 'line-through'}`}>{todo.task_text}</p>
