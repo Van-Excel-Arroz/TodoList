@@ -17,7 +17,7 @@ function TodoItem({ todo }: TodoItemProps) {
 	}, []);
 
 	return (
-		<div key={todo.id} className="grid grid-cols-6 pl-2 cursor-pointer hover:border rounded-lg">
+		<div key={todo.id} className="grid grid-cols-6 pl-2 cursor-pointer hover:border rounded-lg active:bg-slate-100">
 			<div className="col-span-4 flex items-center py-2 ">
 				<input type="checkbox" className="hidden peer" checked={isChecked} onChange={() => onChange()} />
 				<label className="flex items-center cursor-pointer" onClick={onChange}>
