@@ -3,6 +3,7 @@
 import { Todo } from '@/types';
 import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
 import { Check } from 'lucide-react';
+import { flushAllTraces } from 'next/dist/trace';
 import { memo, useCallback, useState } from 'react';
 
 interface TodoItemProps {
@@ -63,7 +64,7 @@ function TodoItem({ todo }: TodoItemProps) {
 					: '-'}
 			</p>
 			<p className="text-center text-sm flex self-center justify-center text-slate-800">
-				{formatDistanceToNow(todo.creation_date, { addSuffix: true })}
+				{formatDistanceToNow(todo.creation_date, { addSuffix: true }).replace('about ', '')}
 			</p>
 		</div>
 	);
