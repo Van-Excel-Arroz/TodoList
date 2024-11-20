@@ -48,7 +48,7 @@ function TodoItem({ todo }: TodoItemProps) {
 				className={
 					todo.due_datetime && isPast(new Date(todo.due_datetime))
 						? 'text-center text-sm flex self-center justify-center text-red-500'
-						: 'text-center text-sm flex self-center justify-center'
+						: 'text-center text-sm flex self-center justify-center text-slate-800'
 				}
 			>
 				{todo.due_datetime
@@ -59,7 +59,7 @@ function TodoItem({ todo }: TodoItemProps) {
 						: format(new Date(todo.due_datetime), `EEE, MMMM d \'at\' h:mm a`)
 					: '-'}
 			</p>
-			<p className="text-center text-sm flex self-center justify-center">
+			<p className="text-center text-sm flex self-center justify-center text-slate-800">
 				{formatDistanceToNow(new Date(todo.creation_date).toISOString(), { addSuffix: true })}
 			</p>
 		</div>
