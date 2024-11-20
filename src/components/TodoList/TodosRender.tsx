@@ -17,7 +17,7 @@ const itemVariants = {
 function TodosRender({ todos }: TodosRenderProps) {
 	return (
 		<>
-			<div className="bg-white px-8 py-4 border">
+			<div className="bg-white px-8 py-4 border rounded-2xl">
 				<div className="grid grid-cols-6 font-semibold">
 					<p className="col-span-4">Todos</p>
 					<p className="text-center">Due Date</p>
