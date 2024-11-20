@@ -34,7 +34,7 @@ function TodoItem({ todo }: TodoItemProps) {
 				</label>
 			</div>
 
-			<div className="col-span-3 flex items-center py-2 ">
+			<div className="col-span-4 flex items-center py-2 ">
 				<p className={`ml-6 ${isChecked && 'line-through'}`}>{todo.task_text}</p>
 				<div className="flex">
 					{todo.categories &&
