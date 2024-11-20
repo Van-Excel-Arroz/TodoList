@@ -3,7 +3,7 @@
 import { Todo } from '@/types';
 import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
 import { Check } from 'lucide-react';
-import { memo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 
 interface TodoItemProps {
 	todo: Todo;
@@ -12,22 +12,18 @@ interface TodoItemProps {
 function TodoItem({ todo }: TodoItemProps) {
 	const [isChecked, setIsChecked] = useState(false);
 
-	const onChange = () => {
+	const onChange = useCallback(() => {
 		setIsChecked(prevState => !prevState);
-	};
+	}, []);
 
 	return (
 		<div key={todo.id} className="grid grid-cols-6 pl-2 cursor-pointer hover:border rounded-lg">
 			<div className="col-span-4 flex items-center py-2 ">
 				<input type="checkbox" className="hidden peer" checked={isChecked} onChange={() => onChange()} />
 				<label className="flex items-center cursor-pointer" onClick={onChange}>
-					{isChecked ? (
-						<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md">
-							<Check color="white" size={15} strokeWidth={4} />
-						</div>
-					) : (
-						<div className="border border-black w-5 h-5 rounded-md"></div>
-					)}
+					<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md">
+						<Check color="white" size={15} strokeWidth={4} className={`${isChecked ? 'block' : 'hidden'}`} />
+					</div>
 				</label>
 
 				<p className={`ml-6 ${isChecked && 'line-through'}`}>{todo.task_text}</p>
