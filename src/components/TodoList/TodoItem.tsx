@@ -21,7 +21,11 @@ function TodoItem({ todo }: TodoItemProps) {
 			<div className="col-span-4 flex items-center py-2 ">
 				<input type="checkbox" className="hidden peer" checked={isChecked} onChange={() => onChange()} />
 				<label className="flex items-center cursor-pointer" onClick={onChange}>
-					<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md">
+					<div
+						className={`p-1 w-5 h-5 flex justify-center items-center border border-black rounded-md ${
+							isChecked ? 'bg-black' : 'bg-white'
+						}`}
+					>
 						<Check color="white" size={15} strokeWidth={4} className={`${isChecked ? 'block' : 'hidden'}`} />
 					</div>
 				</label>
