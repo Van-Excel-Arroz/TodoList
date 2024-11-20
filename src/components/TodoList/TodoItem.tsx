@@ -2,7 +2,7 @@
 
 import { Todo } from '@/types';
 import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
-import { Check, Circle, CircleCheck } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { memo, useState } from 'react';
 
 interface TodoItemProps {
