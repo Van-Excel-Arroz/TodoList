@@ -17,22 +17,24 @@ const itemVariants = {
 function TodosRender({ todos }: TodosRenderProps) {
 	return (
 		<>
-			<div className="grid grid-cols-6 my-3 px-4 font-semibold">
-				<p className="col-span-4">Todos</p>
-				<p className="text-center">Due Date</p>
-				<p className="text-center">Created In</p>
+			<div className="bg-white px-8 py-4 border">
+				<div className="grid grid-cols-6 font-semibold">
+					<p className="col-span-4">Todos</p>
+					<p className="text-center">Due Date</p>
+					<p className="text-center">Created In</p>
+				</div>
+				<motion.div initial="hidden" animate="visible">
+					{todos.map((todo, index) => (
+						<motion.div
+							key={todo.id}
+							variants={itemVariants}
+							transition={{ duration: 0.1, delay: index * 0.05, ease: 'easeOut' }} // Duration for each item
+						>
+							<TodoItem todo={todo} />
+						</motion.div>
+					))}
+				</motion.div>
 			</div>
-			<motion.div initial="hidden" animate="visible">
-				{todos.map((todo, index) => (
-					<motion.div
-						key={todo.id}
-						variants={itemVariants}
-						transition={{ duration: 0.1, delay: index * 0.05, ease: 'easeOut' }} // Duration for each item
-					>
-						<TodoItem todo={todo} />
-					</motion.div>
-				))}
-			</motion.div>
 		</>
 	);
 }
