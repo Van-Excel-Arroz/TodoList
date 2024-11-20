@@ -3,7 +3,6 @@
 import { Todo } from '@/types';
 import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
 import { Check } from 'lucide-react';
-import { flushAllTraces } from 'next/dist/trace';
 import { memo, useCallback, useState } from 'react';
 
 interface TodoItemProps {
@@ -22,7 +21,7 @@ function TodoItem({ todo }: TodoItemProps) {
 			key={todo.id}
 			className="grid grid-cols-6 pl-2 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg active:bg-slate-100"
 		>
-			<div className="col-span-4 flex items-center py-2 ">
+			<div className="col-end-1 flex items-center">
 				<input type="checkbox" className="hidden peer" checked={isChecked} onChange={() => onChange()} />
 				<label className="flex items-center cursor-pointer" onClick={onChange}>
 					{isChecked ? (
@@ -33,7 +32,9 @@ function TodoItem({ todo }: TodoItemProps) {
 						<div className="border border-black w-5 h-5 rounded-md hover:border-slate-600 active:border-slate-400"></div>
 					)}
 				</label>
+			</div>
 
+			<div className="col-span-3 flex items-center py-2 ">
 				<p className={`ml-6 ${isChecked && 'line-through'}`}>{todo.task_text}</p>
 				<div className="flex">
 					{todo.categories &&
