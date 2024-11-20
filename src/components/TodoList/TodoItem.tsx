@@ -22,11 +22,11 @@ function TodoItem({ todo }: TodoItemProps) {
 				<input type="checkbox" className="hidden peer" checked={isChecked} onChange={() => onChange()} />
 				<label className="flex items-center cursor-pointer" onClick={onChange}>
 					{isChecked ? (
-						<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-sm">
+						<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md">
 							<Check color="white" size={15} strokeWidth={4} />
 						</div>
 					) : (
-						<div className="border border-black w-5 h-5 rounded-sm"></div>
+						<div className="border border-black w-5 h-5 rounded-md"></div>
 					)}
 				</label>
 
