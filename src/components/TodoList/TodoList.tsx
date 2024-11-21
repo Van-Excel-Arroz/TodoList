@@ -8,7 +8,7 @@ export default async function Todolist({ params }: { params: any }) {
 	const todolistId = Number(params.id);
 	const todolist = await getTodolist(todolistId, 1);
 	const todos = await getTodos(todolistId);
-	const categories = await getCategories(todolistId);
+	const categories = await getCategories();
 
 	if (todolistId !== todolist.id) {
 		return notFound();

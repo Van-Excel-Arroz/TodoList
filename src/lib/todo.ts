@@ -114,7 +114,7 @@ export async function storeCategories(todoId: number, categoryColorsId: number[]
 	}
 }
 
-export async function getCategories(todoId: number): Promise<Category[]> {
+export async function getCategory(todoId: number) {
 	try {
 		const result = await query(
 			`
@@ -124,6 +124,20 @@ export async function getCategories(todoId: number): Promise<Category[]> {
 			WHERE c.todo_id = $1
 			`,
 			[todoId]
+		);
+		return result.rows;
+	} catch (error) {
+		console.error('Error fetching todo with categories in the database');
+		return;
+	}
+}
+
+export async function getCategories() {
+	try {
+		const result = await query(
+			`
+			SELECT * FROM category_colors
+			`
 		);
 		return result.rows;
 	} catch (error) {
