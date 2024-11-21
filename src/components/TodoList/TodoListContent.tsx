@@ -1,5 +1,7 @@
+'use client';
+
 import TodoForm from './TodoForm';
-import React from 'react';
+import React, { memo } from 'react';
 import TodolistHeader from './TodolistHeader';
 import TodosRender from './TodosRender';
 import { Todo, TodoList } from '@/types';
@@ -10,7 +12,7 @@ interface TodolistContentProps {
 	todos: Todo[];
 }
 
-export default function TodoListContent({ todolist, todolistId, todos }: TodolistContentProps) {
+function TodoListContent({ todolist, todolistId, todos }: TodolistContentProps) {
 	return (
 		<>
 			<div className="font-body flex flex-col px-6 p-9">
@@ -21,3 +23,5 @@ export default function TodoListContent({ todolist, todolistId, todos }: Todolis
 		</>
 	);
 }
+
+export default memo(TodoListContent);
