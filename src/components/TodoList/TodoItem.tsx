@@ -30,7 +30,7 @@ function TodoItem({ todo }: TodoItemProps) {
 			<div className="col-end-1 flex items-center">
 				<input type="checkbox" className="hidden peer" checked={isChecked} onChange={handleCheckboxChange} />
 				<label className="flex items-center cursor-pointer" onClick={handleChange}>
-					{todo.is_completed ? (
+					{isChecked ? (
 						<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md">
 							<Check color="white" size={15} />
 						</div>
@@ -41,7 +41,7 @@ function TodoItem({ todo }: TodoItemProps) {
 			</div>
 
 			<div className="col-span-4 flex items-center py-2 ">
-				<p className={`ml-6 ${todo.is_completed && 'line-through'}`}>{todo.task_text}</p>
+				<p className={`ml-6 ${isChecked && 'line-through'}`}>{todo.task_text}</p>
 				<div className="flex">
 					{todo.categories?.map(category => (
 						<span
