@@ -32,8 +32,8 @@ function TodoForm({ todolistId, onAddTodo }: TodoFormProps) {
 			data.date = dateNow;
 		}
 
-		const todoTask = extractTitle(data.todo);
-		const categories = extractCategory(data.todo);
+		const todoTask: string = extractTitle(data.todo);
+		const categoryTitles: string[] = extractCategory(data.todo);
 		let timestamp: string | null = data.date + ' ' + data.time;
 
 		if (timestamp.trim() === '') timestamp = null;
@@ -42,14 +42,14 @@ function TodoForm({ todolistId, onAddTodo }: TodoFormProps) {
 			return;
 		}
 
-		const todoId = await createTodoAction(todoTask, timestamp, todolistId, categories);
+		const todoId = await createTodoAction(todoTask, timestamp, todolistId, categoryTitles);
 		const todoObj = {
 			id: todoId!,
 			task_text: todoTask,
 			due_datetime: timestamp,
 			creation_date: dateNow,
 			is_completed: false,
-			categories_id: categoriesId,
+			categories: categoriesId,
 			todo_list_id: todolistId,
 		};
 		onAddTodo(todoObj);

@@ -4,19 +4,25 @@ import TodoForm from './TodoForm';
 import React, { memo, useState } from 'react';
 import TodolistHeader from './TodolistHeader';
 import TodosRender from './TodosRender';
-import { Todo, TodoList } from '@/types';
+import { Category, Todo, TodoList } from '@/types';
 
 interface TodolistContentProps {
 	todolist: TodoList;
 	todolistId: number;
 	inititialTodos: Todo[];
+	initialCategories: Category[];
 }
 
-function TodoListContent({ todolist, todolistId, inititialTodos }: TodolistContentProps) {
+function TodoListContent({ todolist, todolistId, inititialTodos, initialCategories }: TodolistContentProps) {
 	const [todos, setTodos] = useState(inititialTodos);
+	const [categories, setCategories] = useState(initialCategories);
 
 	const addTodo = (newTodo: Todo) => {
 		setTodos([...todos, newTodo]);
+	};
+
+	const addCategories = (newCategories: Category) => {
+		setCategories([...categories, newCategories]);
 	};
 
 	return (
