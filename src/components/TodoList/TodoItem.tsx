@@ -14,8 +14,9 @@ function TodoItem({ todo }: TodoItemProps) {
 	const [isChecked, setIsChecked] = useState(todo.is_completed);
 
 	const handleCheckboxChange = async () => {
-		setIsChecked(prev => !prev);
-		await updateTodoCompletionAction(todo.id, isChecked, todo.todo_list_id);
+		const newIsChecked = !isChecked;
+		setIsChecked(newIsChecked);
+		await updateTodoCompletionAction(todo.id, newIsChecked, todo.todo_list_id);
 	};
 
 	return (
