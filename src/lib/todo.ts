@@ -159,3 +159,18 @@ export async function getTodos(todolistId: number) {
 		return [];
 	}
 }
+
+export async function updateTodoCompletion(todoId: number, isCompleted: boolean) {
+	try {
+		await query(
+			`
+				UPDATE todo SET is_completed = $1 WHERE id = $2
+			`,
+			[todoId, isCompleted]
+		);
+		return true;
+	} catch (error) {
+		console.error('Error updating isCompleted in todo from the database');
+		return false;
+	}
+}
