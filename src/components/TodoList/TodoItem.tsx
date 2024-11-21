@@ -13,9 +13,13 @@ interface TodoItemProps {
 function TodoItem({ todo }: TodoItemProps) {
 	const [isChecked, setIsChecked] = useState(todo.is_completed);
 
+	const handleChange = () => {
+		setIsChecked(prev => !prev);
+	};
+
 	const handleCheckboxChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		const checked = event.target.checked;
-		setIsChecked(checked);
+
 		await updateTodoCompletionAction(todo.id, checked, todo.todo_list_id);
 	};
 
@@ -26,7 +30,7 @@ function TodoItem({ todo }: TodoItemProps) {
 		>
 			<div className="col-end-1 flex items-center">
 				<input type="checkbox" className="hidden peer" checked={isChecked} onChange={handleCheckboxChange} />
-				<label className="flex items-center cursor-pointer">
+				<label className="flex items-center cursor-pointer" onClick={handleChange}>
 					{isChecked ? (
 						<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md">
 							<Check color="white" size={15} />
