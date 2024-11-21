@@ -42,8 +42,8 @@ function TodoForm({ todolistId, onAddTodo }: TodoFormProps) {
 			return;
 		}
 
-		const { todoId, categoriesId } = await createTodoAction(todoTask, timestamp, todolistId, categories);
-		const todoObj: Todo = {
+		const todoId = await createTodoAction(todoTask, timestamp, todolistId, categories);
+		const todoObj = {
 			id: todoId!,
 			task_text: todoTask,
 			due_datetime: timestamp,
