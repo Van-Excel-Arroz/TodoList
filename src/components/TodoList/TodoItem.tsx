@@ -11,6 +11,7 @@ interface TodoItemProps {
 }
 
 function TodoItem({ todo }: TodoItemProps) {
+	console.log(todo);
 	const [isChecked, setIsChecked] = useState(todo.is_completed);
 
 	const handleCheckboxChange = async () => {

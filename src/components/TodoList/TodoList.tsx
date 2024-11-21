@@ -1,5 +1,5 @@
 import TodoListContent from '@/components/TodoList/TodoListContent';
-import { getTodos } from '@/lib/todo';
+import { getTodos, getTodosWithCategories } from '@/lib/todo';
 import { getTodolist } from '@/lib/todolist';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
@@ -7,7 +7,7 @@ import { Suspense } from 'react';
 export default async function Todolist({ params }: { params: any }) {
 	const todolistId = Number(params.id);
 	const todolist = await getTodolist(todolistId, 1);
-	const todos = await getTodos(todolistId);
+	const todos = await getTodosWithCategories(todolistId);
 
 	if (todolistId !== todolist.id) {
 		return notFound();
