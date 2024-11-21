@@ -4,13 +4,19 @@ import { updateTodoCompletionAction } from '@/actions/todolist-action';
 import { Todo } from '@/types';
 import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
 import { Check } from 'lucide-react';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 
 interface TodoItemProps {
 	todo: Todo;
 }
 
 function TodoItem({ todo }: TodoItemProps) {
+	const [isChecked, setIsChecked] = useState(todo.is_completed);
+
+	const handleChange = () => {
+		setIsChecked(prev => !prev);
+	};
+
 	const handleCheckboxChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		const checked = event.target.checked;
 		await updateTodoCompletionAction(todo.id, checked, todo.todo_list_id);
@@ -22,8 +28,8 @@ function TodoItem({ todo }: TodoItemProps) {
 			className="grid grid-cols-6 pl-2 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg active:bg-slate-100"
 		>
 			<div className="col-end-1 flex items-center">
-				<input type="checkbox" className="hidden peer" checked={todo.is_completed} onChange={handleCheckboxChange} />
-				<label className="flex items-center cursor-pointer">
+				<input type="checkbox" className="hidden peer" checked={isChecked} onChange={handleCheckboxChange} />
+				<label className="flex items-center cursor-pointer" onClick={handleChange}>
 					{todo.is_completed ? (
 						<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md">
 							<Check color="white" size={15} />
