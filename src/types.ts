@@ -5,6 +5,7 @@ export interface Todo {
 	due_datetime: string | null;
 	creation_date: string;
 	todo_list_id: number;
+	is_completed: boolean;
 }
 
 export interface TodoList {
