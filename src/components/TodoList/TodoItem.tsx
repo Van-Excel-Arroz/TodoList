@@ -12,16 +12,13 @@ interface TodoItemProps {
 }
 
 function TodoItem({ todo }: TodoItemProps) {
-	const [isChecked, setIsChecked] = useState(false);
 	const { register, handleSubmit } = useForm();
+	const [isChecked, setIsChecked] = useState(false);
 
-	const onChange = () => {
-		setIsChecked(prevState => !prevState);
-	};
-
-	const onSubmit = async (data: any) => {
-		await updateTodoCompletionAction(todo.id, data.isCompleted, todo.todo_list_id);
-	};
+	const handleCheckboxChange = handleSubmit(async () => {
+		setIsChecked(prev => !prev);
+		await updateTodoCompletionAction(todo.id, !isChecked, todo.todo_list_id);
+	});
 
 	return (
 		<div
@@ -29,10 +26,10 @@ function TodoItem({ todo }: TodoItemProps) {
 			className="grid grid-cols-6 pl-2 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg active:bg-slate-100"
 		>
 			<div className="col-end-1 flex items-center">
-				<form onSubmit={handleSubmit(onSubmit)}>
+				<form onSubmit={handleCheckboxChange}>
 					<input type="checkbox" checked={isChecked} {...register('isCompleted')} />
 				</form>
-				<label className="flex items-center cursor-pointer" onClick={onChange}>
+				<label className="flex items-center cursor-pointer">
 					{isChecked ? (
 						<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md">
 							<Check color="white" size={15} />
@@ -46,16 +43,15 @@ function TodoItem({ todo }: TodoItemProps) {
 			<div className="col-span-4 flex items-center py-2 ">
 				<p className={`ml-6 ${isChecked && 'line-through'}`}>{todo.task_text}</p>
 				<div className="flex">
-					{todo.categories &&
-						todo.categories.map(category => (
-							<span
-								key={category.id}
-								className={`text-xs border shadow-md ml-2 rounded py-1 px-2`}
-								style={{ color: category.hex_color }}
-							>
-								{category.category_title}
-							</span>
-						))}
+					{todo.categories?.map(category => (
+						<span
+							key={category.id}
+							className={`text-xs border shadow-md ml-2 rounded py-1 px-2`}
+							style={{ color: category.hex_color }}
+						>
+							{category.category_title}
+						</span>
+					))}
 				</div>
 			</div>
 			<p
