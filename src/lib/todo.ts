@@ -1,4 +1,4 @@
-import { Category, Todo } from '@/types';
+import { Todo } from '@/types';
 import { query } from './db';
 import { PREDEFINED_COLORS } from '@/utils/constants';
 
@@ -114,7 +114,7 @@ export async function storeCategories(todoId: number, categoryColorsId: number[]
 	}
 }
 
-export async function getCategory(todoId: number): Promise<Category[]> {
+export async function getTodoWithCategories(todoId: number) {
 	try {
 		const result = await query(
 			`
@@ -128,18 +128,24 @@ export async function getCategory(todoId: number): Promise<Category[]> {
 		return result.rows;
 	} catch (error) {
 		console.error('Error fetching todo with categories in the database');
-		return [];
+		return;
 	}
 }
 
-export async function getCategories(): Promise<Category[]> {
+export async function getTodosWithCategories(todolistId: number) {
 	try {
-		const result = await query(
-			`
-			SELECT * FROM category_colors
-			`
+		const todos = await getTodos(todolistId);
+
+		const todosWithCategories: Todo[] = await Promise.all(
+			todos.map(async todo => {
+				const categories = await getTodoWithCategories(todo.id);
+				return {
+					...todo,
+					categories,
+				};
+			})
 		);
-		return result.rows;
+		return todosWithCategories;
 	} catch (error) {
 		console.error('Error fetching todo with categories in the database');
 		return [];

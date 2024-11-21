@@ -23,7 +23,6 @@ export async function createTodoAction(
 	await storeCategories(todoId, categoryColorsId);
 	if (todoId) {
 		revalidatePath(`/tasks/${todolistId}`);
-		return todoId;
 	} else {
 		console.error('Failed to create the todo');
 		return;
