@@ -15,6 +15,10 @@ interface TodolistContentProps {
 function TodoListContent({ todolist, todolistId, inititialTodos }: TodolistContentProps) {
 	const [todos, setTodos] = useState(inititialTodos);
 
+	const addTodo = (newTodo: Todo) => {
+		setTodos([...todos, newTodo]);
+	};
+
 	return (
 		<>
 			<div className="font-body flex flex-col px-6 p-9">
