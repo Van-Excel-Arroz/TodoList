@@ -164,13 +164,13 @@ export async function updateTodoCompletion(todoId: number, isCompleted: boolean)
 	try {
 		await query(
 			`
-				UPDATE todo SET is_completed = $1 WHERE id = $2
+				UPDATE todos SET is_completed = $1 WHERE id = $2
 			`,
 			[isCompleted, todoId]
 		);
 		return true;
 	} catch (error) {
-		console.error('Error updating isCompleted in todo from the database');
+		console.error('Error updating isCompleted in todo from the database', error);
 		return false;
 	}
 }
