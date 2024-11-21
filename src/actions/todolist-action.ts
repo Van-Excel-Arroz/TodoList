@@ -47,6 +47,7 @@ export async function updateTodolistAction(todolistId: number, title: string) {
 }
 
 export async function updateTodoCompletionAction(todoId: number, isCompleted: boolean, todolistId: number) {
+	console.log(todoId, isCompleted, todolistId);
 	const result = await updateTodoCompletion(todoId, isCompleted);
 	if (result) {
 		revalidatePath(`tasks/${todolistId}`);
