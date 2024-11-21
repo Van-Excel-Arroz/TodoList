@@ -166,7 +166,7 @@ export async function updateTodoCompletion(todoId: number, isCompleted: boolean)
 			`
 				UPDATE todo SET is_completed = $1 WHERE id = $2
 			`,
-			[todoId, isCompleted]
+			[isCompleted, todoId]
 		);
 		return true;
 	} catch (error) {
