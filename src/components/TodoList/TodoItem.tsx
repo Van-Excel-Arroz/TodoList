@@ -3,7 +3,7 @@
 import { Todo } from '@/types';
 import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
 import { Check } from 'lucide-react';
-import { memo, useCallback, useState } from 'react';
+import { memo, useState } from 'react';
 
 interface TodoItemProps {
 	todo: Todo;
@@ -12,9 +12,9 @@ interface TodoItemProps {
 function TodoItem({ todo }: TodoItemProps) {
 	const [isChecked, setIsChecked] = useState(false);
 
-	const onChange = useCallback(() => {
+	const onChange = () => {
 		setIsChecked(prevState => !prevState);
-	}, []);
+	};
 
 	return (
 		<div
