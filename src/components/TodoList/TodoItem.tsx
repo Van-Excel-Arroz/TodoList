@@ -5,20 +5,18 @@ import { Todo } from '@/types';
 import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
 import { Check } from 'lucide-react';
 import { memo, useState } from 'react';
-import { useForm } from 'react-hook-form';
 
 interface TodoItemProps {
 	todo: Todo;
 }
 
 function TodoItem({ todo }: TodoItemProps) {
-	const { register, handleSubmit } = useForm();
 	const [isChecked, setIsChecked] = useState(false);
 
-	const handleCheckboxChange = handleSubmit(async () => {
+	const handleCheckboxChange = async () => {
 		setIsChecked(prev => !prev);
 		await updateTodoCompletionAction(todo.id, !isChecked, todo.todo_list_id);
-	});
+	};
 
 	return (
 		<div
@@ -26,10 +24,7 @@ function TodoItem({ todo }: TodoItemProps) {
 			className="grid grid-cols-6 pl-2 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg active:bg-slate-100"
 		>
 			<div className="col-end-1 flex items-center">
-				<form onSubmit={handleCheckboxChange}>
-					<input type="checkbox" checked={isChecked} {...register('isCompleted')} />
-				</form>
-				<label className="flex items-center cursor-pointer">
+				<label className="flex items-center cursor-pointer" onChange={handleCheckboxChange}>
 					{isChecked ? (
 						<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md">
 							<Check color="white" size={15} />
