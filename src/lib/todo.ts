@@ -7,7 +7,7 @@ export async function storeTodo(text: string, dueDatetime: string | null, todoli
 		const dueDatetimeValue = typeof dueDatetime === 'string' ? dueDatetime.trim() : null;
 
 		const result = await query(
-			'INSERT INTO todos (task_text, due_datetime, todo_list_id) VALUES ($1, $2, $3) RETURNING id',
+			'INSERT INTO todos (task_text, due_datetime, todo_list_id, is_completed) VALUES ($1, $2, $3, FALSE) RETURNING id',
 			[text, dueDatetimeValue, todolistId]
 		);
 		return result?.rows[0].id;
