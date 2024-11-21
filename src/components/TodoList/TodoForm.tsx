@@ -4,12 +4,14 @@ import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todolist-action';
 import { extractCategory, extractTitle } from '@/utils/category';
 import { memo } from 'react';
+import { Todo } from '@/types';
 
 interface TodoFormProps {
 	todolistId: number;
+	onAddTodo: (newTodo: Todo) => void;
 }
 
-function TodoForm({ todolistId }: TodoFormProps) {
+function TodoForm({ todolistId, onAddTodo }: TodoFormProps) {
 	const {
 		register,
 		handleSubmit,
@@ -24,9 +26,10 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			data.time = '23:59:59';
 		}
 
+		const now = new Date();
+		const dateNow = now.toISOString().split('T')[0];
 		if (!data.date && data.time) {
-			const now = new Date();
-			data.date = now.toISOString().split('T')[0];
+			data.date = dateNow;
 		}
 
 		const todoTask = extractTitle(data.todo);
@@ -39,7 +42,17 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			return;
 		}
 
-		await createTodoAction(todoTask, timestamp, todolistId, categories);
+		const { todoId, categoriesId } = await createTodoAction(todoTask, timestamp, todolistId, categories);
+		const todoObj: Todo = {
+			id: todoId!,
+			task_text: todoTask,
+			due_datetime: timestamp,
+			creation_date: dateNow,
+			is_completed: false,
+			categories_id: categoriesId,
+			todo_list_id: todolistId,
+		};
+		onAddTodo(todoObj);
 
 		reset();
 	}

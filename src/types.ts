@@ -1,10 +1,10 @@
 export interface Todo {
 	id: number;
 	task_text: string;
-	categories: Category[];
 	due_datetime: string | null;
 	creation_date: string;
 	todo_list_id: number;
+	categories_id: number;
 	is_completed: boolean;
 }
 

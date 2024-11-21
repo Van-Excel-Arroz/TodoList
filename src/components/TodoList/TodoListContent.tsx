@@ -23,7 +23,7 @@ function TodoListContent({ todolist, todolistId, inititialTodos }: TodolistConte
 		<>
 			<div className="font-body flex flex-col px-6 p-9">
 				<TodolistHeader todolist={todolist} />
-				<TodoForm todolistId={todolistId} />
+				<TodoForm todolistId={todolistId} onAddTodo={addTodo} />
 				<TodosRender todos={todos} />
 			</div>
 		</>

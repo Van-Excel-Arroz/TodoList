@@ -20,10 +20,10 @@ export async function createTodoAction(
 ) {
 	const todoId: number = await storeTodo(text, dueDatetime, todolistId);
 	const categoryColorsId = await storeCategoriesColors(categories);
-	await storeCategories(todoId, categoryColorsId);
+	const categoriesId = await storeCategories(todoId, categoryColorsId);
 	if (todoId) {
 		revalidatePath(`/tasks/${todolistId}`);
-		return todoId;
+		return { todoId, categoriesId };
 	} else {
 		console.error('Failed to create the todo');
 		return;
