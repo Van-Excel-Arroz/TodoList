@@ -42,7 +42,8 @@ function TodoForm({ todolistId, onAddTodo }: TodoFormProps) {
 			return;
 		}
 
-		await createTodoAction(todoTask, timestamp, todolistId, categoryTitles);
+		const todo = await createTodoAction(todoTask, timestamp, todolistId, categoryTitles);
+		onAddTodo(todo!);
 
 		reset();
 	}
