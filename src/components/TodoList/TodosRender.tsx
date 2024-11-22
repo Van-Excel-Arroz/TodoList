@@ -23,17 +23,17 @@ function TodosRender({ todos }: TodosRenderProps) {
 					<p className="text-center">Due Date</p>
 					<p className="text-center">Created In</p>
 				</div>
-				<motion.div initial="hidden" animate="visible">
+				<motion.ul initial="hidden" animate="visible">
 					{todos.map((todo, index) => (
-						<motion.div
+						<motion.li
 							key={todo.id}
 							variants={itemVariants}
 							transition={{ duration: 0.1, delay: index * 0.05, ease: 'easeOut' }} // Duration for each item
 						>
 							<TodoItem todo={todo} />
-						</motion.div>
+						</motion.li>
 					))}
-				</motion.div>
+				</motion.ul>
 			</div>
 		</>
 	);
