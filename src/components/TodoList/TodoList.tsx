@@ -1,5 +1,5 @@
 import TodoListContent from '@/components/TodoList/TodoListContent';
-import { getTodos, getTodosWithCategories } from '@/lib/todo';
+import { getTodosWithCategories } from '@/lib/todo';
 import { getTodolist } from '@/lib/todolist';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
