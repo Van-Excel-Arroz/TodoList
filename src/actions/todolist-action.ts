@@ -37,13 +37,14 @@ export async function createTodoAction(
 		creation_date: new Date().toISOString(),
 		is_completed: false,
 		categories: await getTodoWithCategories(todoId),
+		todo_list_id: todolistId,
 	};
 
 	if (todoId) {
-		revalidatePath(`/tasks/${todolistId}`);
+		return todo;
 	} else {
 		console.error('Failed to create the todo');
-		return;
+		return null;
 	}
 }
 
