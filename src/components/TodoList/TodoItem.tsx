@@ -8,9 +8,10 @@ import { memo, useState } from 'react';
 
 interface TodoItemProps {
 	todo: Todo;
+	onUpdateCompletion: (todoId: number, isCompleted: boolean) => void;
 }
 
-function TodoItem({ todo }: TodoItemProps) {
+function TodoItem({ todo, onUpdateCompletion }: TodoItemProps) {
 	console.log(todo);
 	const [isChecked, setIsChecked] = useState(todo.is_completed);
 
@@ -18,6 +19,7 @@ function TodoItem({ todo }: TodoItemProps) {
 		const newIsChecked = !isChecked;
 		setIsChecked(newIsChecked);
 		await updateTodoCompletionAction(todo.id, newIsChecked, todo.todo_list_id);
+		onUpdateCompletion(todo.id, newIsChecked);
 	};
 
 	return (

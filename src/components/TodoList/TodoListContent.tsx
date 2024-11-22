@@ -28,7 +28,7 @@ function TodoListContent({ todolist, todolistId, initialTodos }: TodolistContent
 			<div className="font-body flex flex-col px-6 p-9">
 				<TodolistHeader todolist={todolist} />
 				<TodoForm todolistId={todolistId} onAddTodo={addTodo} />
-				<TodosRender todos={todos} />
+				<TodosRender todos={todos} onUpdateCompletion={updateCompletion} />
 			</div>
 		</>
 	);

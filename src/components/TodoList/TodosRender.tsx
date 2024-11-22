@@ -7,6 +7,7 @@ import { memo } from 'react';
 
 interface TodosRenderProps {
 	todos: Todo[];
+	onUpdateCompletion: (todoId: number, isCompleted: boolean) => void;
 }
 
 const itemVariants = {
@@ -14,7 +15,7 @@ const itemVariants = {
 	visible: { opacity: 1, y: 0 }, // End at normal position
 };
 
-function TodosRender({ todos }: TodosRenderProps) {
+function TodosRender({ todos, onUpdateCompletion }: TodosRenderProps) {
 	return (
 		<>
 			<div className="bg-white px-8 py-4 border rounded-2xl">
@@ -30,7 +31,7 @@ function TodosRender({ todos }: TodosRenderProps) {
 							variants={itemVariants}
 							transition={{ duration: 0.1, delay: index * 0.05, ease: 'easeOut' }} // Duration for each item
 						>
-							<TodoItem todo={todo} />
+							<TodoItem todo={todo} onUpdateCompletion={onUpdateCompletion} />
 						</motion.li>
 					))}
 				</motion.ul>
