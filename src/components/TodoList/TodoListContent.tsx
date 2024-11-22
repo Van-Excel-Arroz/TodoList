@@ -16,7 +16,11 @@ function TodoListContent({ todolist, todolistId, initialTodos }: TodolistContent
 	const [todos, setTodos] = useState<Todo[]>(initialTodos);
 
 	const addTodo = (newTodo: Todo) => {
-		setTodos(prevTodo => [...prevTodo, newTodo]);
+		setTodos(prevTodos => [...prevTodos, newTodo]);
+	};
+
+	const updateCompletion = (todoId: number, isCompleted: boolean) => {
+		setTodos(prevTodos => prevTodos.map(todo => (todo.id === todoId ? { ...todo, is_completed: isCompleted } : todo)));
 	};
 
 	return (
