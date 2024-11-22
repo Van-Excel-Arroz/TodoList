@@ -1,7 +1,14 @@
 'use server';
 
-import { storeCategories, storeCategoriesColors, storeTodo, updateTodoCompletion } from '@/lib/todo';
+import {
+	getTodoWithCategories,
+	storeCategories,
+	storeCategoriesColors,
+	storeTodo,
+	updateTodoCompletion,
+} from '@/lib/todo';
 import { deleteTodolist, storeTodolist, updateTodolist } from '@/lib/todolist';
+import { Todo } from '@/types';
 import { revalidatePath } from 'next/cache';
 
 export async function createTodolist(title: string) {
@@ -13,15 +20,25 @@ export async function createTodolist(title: string) {
 }
 
 export async function createTodoAction(
-	text: string,
+	taskText: string,
 	dueDatetime: string | null,
 	todolistId: number,
 	categories: string[]
 ) {
-	const todoId: number = await storeTodo(text, dueDatetime, todolistId);
+	const todoId: number = await storeTodo(taskText, dueDatetime, todolistId);
 	const categoryColorsId = await storeCategoriesColors(categories);
 	console.log(categoryColorsId);
 	await storeCategories(todoId, categoryColorsId);
+
+	const todo: Todo = {
+		id: todoId,
+		task_text: taskText,
+		due_datetime: dueDatetime,
+		creation_date: new Date().toISOString(),
+		is_completed: false,
+		categories: await getTodoWithCategories(todoId),
+	};
+
 	if (todoId) {
 		revalidatePath(`/tasks/${todolistId}`);
 	} else {
