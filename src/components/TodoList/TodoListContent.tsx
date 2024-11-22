@@ -13,13 +13,17 @@ interface TodolistContentProps {
 }
 
 function TodoListContent({ todolist, todolistId, initialTodos }: TodolistContentProps) {
-	const [todos, setTodos] = useState(initialTodos);
+	const [todos, setTodos] = useState<Todo[]>(initialTodos);
+
+	const addTodo = (newTodo: Todo) => {
+		setTodos(prevTodo => [...prevTodo, newTodo]);
+	};
 
 	return (
 		<>
 			<div className="font-body flex flex-col px-6 p-9">
 				<TodolistHeader todolist={todolist} />
-				<TodoForm todolistId={todolistId} />
+				<TodoForm todolistId={todolistId} onAddTodo={addTodo} />
 				<TodosRender todos={todos} />
 			</div>
 		</>

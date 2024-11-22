@@ -4,12 +4,14 @@ import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todolist-action';
 import { extractCategory, extractTitle } from '@/utils/category';
 import { memo } from 'react';
+import { Todo } from '@/types';
 
 interface TodoFormProps {
 	todolistId: number;
+	onAddTodo: (newTodo: Todo) => void;
 }
 
-function TodoForm({ todolistId }: TodoFormProps) {
+function TodoForm({ todolistId, onAddTodo }: TodoFormProps) {
 	const {
 		register,
 		handleSubmit,
