@@ -47,7 +47,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	return (
 		<div className="py-2">
-			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-2 items-start">
+			<form onSubmit={handleSubmit(onSubmit)} className="mt-4 flex flex-col gap-2 items-start">
 				<input
 					{...register('todo', {
 						required: true,

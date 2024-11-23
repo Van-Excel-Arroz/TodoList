@@ -1,51 +1,26 @@
 import { Todo } from '@/types';
-import TodoItem from './TodoItem';
+import TodosSection from './TodosSection';
 
 interface TodosRenderProps {
 	todos: Todo[];
 }
 
 export default function TodosRender({ todos }: TodosRenderProps) {
-	const notCompletedTodos = todos.filter(todo => todo.is_completed === false);
-	const completedTodos = todos.filter(todo => todo.is_completed === true);
+	const incompletedTodos: Todo[] = [];
+	const completedTodos: Todo[] = [];
+
+	for (const todo of todos) {
+		if (todo.is_completed) {
+			completedTodos.push(todo);
+		} else {
+			incompletedTodos.push(todo);
+		}
+	}
 
 	return (
 		<>
-			{todos.length > 0 ? (
-				<div className="bg-white px-8 py-4 border rounded-2xl">
-					<div className="grid grid-cols-6 font-semibold mb-4">
-						<p className="col-span-4 ml-12">Todos</p>
-						<p className="text-center">Due Date</p>
-						<p className="text-center">Created In</p>
-					</div>
-					<ul>
-						{notCompletedTodos.map(todo => (
-							<li key={todo.id}>
-								<TodoItem todo={todo} />
-							</li>
-						))}
-					</ul>
-				</div>
-			) : (
-				<p className="text-center">No Todos Available.</p>
-			)}
-
-			{completedTodos.length > 0 && (
-				<div className="bg-white px-8 py-4 border rounded-2xl mt-10">
-					<div className="grid grid-cols-6 font-semibold mb-4">
-						<p className="col-span-4 ml-12">Completed Todos</p>
-						<p className="text-center">Due Date</p>
-						<p className="text-center">Created In</p>
-					</div>
-					<ul>
-						{completedTodos.map(todo => (
-							<li key={todo.id}>
-								<TodoItem todo={todo} />
-							</li>
-						))}
-					</ul>
-				</div>
-			)}
+			<TodosSection title="Todos" todos={incompletedTodos} />
+			<TodosSection title="Completed Todos" todos={completedTodos} />
 		</>
 	);
 }
