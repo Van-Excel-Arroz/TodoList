@@ -8,7 +8,6 @@ interface TodosRenderProps {
 export default function TodosRender({ todos }: TodosRenderProps) {
 	const incompletedTodos: Todo[] = [];
 	const completedTodos: Todo[] = [];
-	const isTodosEmpty = todos.length > 0;
 
 	for (const todo of todos) {
 		if (todo.is_completed) {
@@ -20,7 +19,7 @@ export default function TodosRender({ todos }: TodosRenderProps) {
 
 	return (
 		<>
-			{isTodosEmpty ? (
+			{todos.length > 0 ? (
 				<div>
 					<TodosSection title="Todos" todos={incompletedTodos} />
 					<TodosSection title="Completed Todos" todos={completedTodos} />

@@ -7,6 +7,8 @@ interface TodosSectionProps {
 }
 
 export default function TodosSection({ title, todos }: TodosSectionProps) {
+	const isTodosEmpty = todos.length > 0;
+
 	return (
 		<div className="bg-white px-8 py-4 border rounded-2xl mt-5">
 			<div className="grid grid-cols-6 font-semibold mb-4">
