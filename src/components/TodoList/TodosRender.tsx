@@ -1,5 +1,6 @@
 import { Todo } from '@/types';
 import TodoItem from './TodoItem';
+import { clipPath } from 'framer-motion/client';
 
 interface TodosRenderProps {
 	todos: Todo[];
@@ -30,7 +31,7 @@ export default function TodosRender({ todos }: TodosRenderProps) {
 				<p className="text-center">No Todos Available.</p>
 			)}
 
-			{todos.length > 0 && (
+			{completedTodos.length > 0 && (
 				<div className="bg-white px-8 py-4 border rounded-2xl mt-10">
 					<div className="grid grid-cols-6 font-semibold mb-4">
 						<p className="col-span-4 ml-12">Completed Todos</p>
