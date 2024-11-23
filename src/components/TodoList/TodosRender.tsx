@@ -11,35 +11,41 @@ export default function TodosRender({ todos }: TodosRenderProps) {
 
 	return (
 		<>
-			<div className="bg-white px-8 py-4 border rounded-2xl">
-				<div className="grid grid-cols-6 font-semibold mb-4">
-					<p className="col-span-4 ml-12">Todos</p>
-					<p className="text-center">Due Date</p>
-					<p className="text-center">Created In</p>
+			{todos.length > 0 ? (
+				<div className="bg-white px-8 py-4 border rounded-2xl">
+					<div className="grid grid-cols-6 font-semibold mb-4">
+						<p className="col-span-4 ml-12">Todos</p>
+						<p className="text-center">Due Date</p>
+						<p className="text-center">Created In</p>
+					</div>
+					<ul>
+						{notCompletedTodos.map(todo => (
+							<li key={todo.id}>
+								<TodoItem todo={todo} />
+							</li>
+						))}
+					</ul>
 				</div>
-				<ul>
-					{notCompletedTodos.map(todo => (
-						<li>
-							<TodoItem todo={todo} />
-						</li>
-					))}
-				</ul>
-			</div>
+			) : (
+				<p className="text-center">No Todos Available.</p>
+			)}
 
-			<div className="bg-white px-8 py-4 border rounded-2xl mt-10">
-				<div className="grid grid-cols-6 font-semibold mb-4">
-					<p className="col-span-4 ml-12">Completed Todos</p>
-					<p className="text-center">Due Date</p>
-					<p className="text-center">Created In</p>
+			{todos.length > 0 && (
+				<div className="bg-white px-8 py-4 border rounded-2xl mt-10">
+					<div className="grid grid-cols-6 font-semibold mb-4">
+						<p className="col-span-4 ml-12">Completed Todos</p>
+						<p className="text-center">Due Date</p>
+						<p className="text-center">Created In</p>
+					</div>
+					<ul>
+						{completedTodos.map(todo => (
+							<li key={todo.id}>
+								<TodoItem todo={todo} />
+							</li>
+						))}
+					</ul>
 				</div>
-				<ul>
-					{completedTodos.map(todo => (
-						<li>
-							<TodoItem todo={todo} />
-						</li>
-					))}
-				</ul>
-			</div>
+			)}
 		</>
 	);
 }
