@@ -4,14 +4,12 @@ import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todolist-action';
 import { extractCategory, extractTitle } from '@/utils/category';
 import { memo } from 'react';
-import { Todo } from '@/types';
 
 interface TodoFormProps {
 	todolistId: number;
-	onAddTodo: (newTodo: Todo) => void;
 }
 
-function TodoForm({ todolistId, onAddTodo }: TodoFormProps) {
+function TodoForm({ todolistId }: TodoFormProps) {
 	const {
 		register,
 		handleSubmit,
@@ -42,8 +40,7 @@ function TodoForm({ todolistId, onAddTodo }: TodoFormProps) {
 			return;
 		}
 
-		const todo = await createTodoAction(todoTask, timestamp, todolistId, categoryTitles);
-		onAddTodo(todo!);
+		await createTodoAction(todoTask, timestamp, todolistId, categoryTitles);
 
 		reset();
 	}
