@@ -1,20 +1,11 @@
-'use client';
-
 import { Todo } from '@/types';
 import TodoItem from './TodoItem';
-import { motion } from 'framer-motion';
-import { memo } from 'react';
 
 interface TodosRenderProps {
 	todos: Todo[];
 }
 
-const itemVariants = {
-	hidden: { opacity: 0, y: -20 }, // Start from above
-	visible: { opacity: 1, y: 0 }, // End at normal position
-};
-
-function TodosRender({ todos }: TodosRenderProps) {
+export default function TodosRender({ todos }: TodosRenderProps) {
 	return (
 		<>
 			<div className="bg-white px-8 py-4 border rounded-2xl">
@@ -23,19 +14,14 @@ function TodosRender({ todos }: TodosRenderProps) {
 					<p className="text-center">Due Date</p>
 					<p className="text-center">Created In</p>
 				</div>
-				<motion.ul initial="hidden" animate="visible">
-					{todos.map((todo, index) => (
-						<motion.li
-							key={todo.id}
-							variants={itemVariants}
-							transition={{ duration: 0.1, delay: index * 0.05, ease: 'easeOut' }} // Duration for each item
-						>
+				<ul>
+					{todos.map(todo => (
+						<li>
 							<TodoItem todo={todo} />
-						</motion.li>
+						</li>
 					))}
-				</motion.ul>
+				</ul>
 			</div>
 		</>
 	);
 }
-export default memo(TodosRender);
