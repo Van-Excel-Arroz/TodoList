@@ -1,10 +1,11 @@
 'use client';
 
 import TodoForm from './TodoForm';
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import TodolistHeader from './TodolistHeader';
 import TodosRender from './TodosRender';
 import { Todo, TodoList } from '@/types';
+import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 
 interface TodolistContentProps {
@@ -15,17 +16,26 @@ interface TodolistContentProps {
 
 function TodoListContent({ todolist, todolistId, initialTodos }: TodolistContentProps) {
 	const [todos, setTodos] = useState<Todo[]>(initialTodos);
+	const pathname = usePathname();
 	const router = useRouter();
 
 	const addTodo = (newTodo: Todo) => {
 		setTodos(prevTodos => [...prevTodos, newTodo]);
-		router.refresh();
 	};
 
 	const updateCompletion = (todoId: number, isCompleted: boolean) => {
 		setTodos(prevTodos => prevTodos.map(todo => (todo.id === todoId ? { ...todo, is_completed: isCompleted } : todo)));
-		router.refresh();
+		sessionStorage.setItem('needsRevalidation', pathname);
 	};
+
+	useEffect(() => {
+		const revalidatePathNeeded = sessionStorage.getItem('needsRevalidation');
+
+		if (revalidatePathNeeded === pathname) {
+			router.refresh();
+			sessionStorage.removeItem('needsRevalidation');
+		}
+	}, [pathname]);
 
 	return (
 		<>

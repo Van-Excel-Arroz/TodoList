@@ -68,8 +68,7 @@ export async function updateTodolistAction(todolistId: number, title: string) {
 
 export async function updateTodoCompletionAction(todoId: number, isCompleted: boolean, todolistId: number) {
 	const result = await updateTodoCompletion(todoId, isCompleted);
-	if (result) {
-	} else {
+	if (!result) {
 		console.error('Failed to update is_completed in todo');
 	}
 }
