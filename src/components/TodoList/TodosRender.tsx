@@ -1,6 +1,5 @@
 import { Todo } from '@/types';
 import TodoItem from './TodoItem';
-import { clipPath } from 'framer-motion/client';
 
 interface TodosRenderProps {
 	todos: Todo[];
