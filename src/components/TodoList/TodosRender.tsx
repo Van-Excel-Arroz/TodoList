@@ -18,24 +18,26 @@ const itemVariants = {
 function TodosRender({ todos, onUpdateCompletion }: TodosRenderProps) {
 	return (
 		<>
-			<div className="bg-white px-8 py-4 border rounded-2xl">
-				<div className="grid grid-cols-6 font-semibold mb-4">
-					<p className="col-span-4 ml-12">Todos</p>
-					<p className="text-center">Due Date</p>
-					<p className="text-center">Created In</p>
+			{todos.length > 0 && (
+				<div className="bg-white px-8 py-4 border rounded-2xl">
+					<div className="grid grid-cols-6 font-semibold mb-4">
+						<p className="col-span-4 ml-12">Todos</p>
+						<p className="text-center">Due Date</p>
+						<p className="text-center">Created In</p>
+					</div>
+					<motion.ul initial="hidden" animate="visible">
+						{todos.map((todo, index) => (
+							<motion.li
+								key={todo.id}
+								variants={itemVariants}
+								transition={{ duration: 0.1, delay: index * 0.05, ease: 'easeOut' }} // Duration for each item
+							>
+								<TodoItem todo={todo} onUpdateCompletion={onUpdateCompletion} />
+							</motion.li>
+						))}
+					</motion.ul>
 				</div>
-				<motion.ul initial="hidden" animate="visible">
-					{todos.map((todo, index) => (
-						<motion.li
-							key={todo.id}
-							variants={itemVariants}
-							transition={{ duration: 0.1, delay: index * 0.05, ease: 'easeOut' }} // Duration for each item
-						>
-							<TodoItem todo={todo} onUpdateCompletion={onUpdateCompletion} />
-						</motion.li>
-					))}
-				</motion.ul>
-			</div>
+			)}
 		</>
 	);
 }
