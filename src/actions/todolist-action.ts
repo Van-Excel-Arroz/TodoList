@@ -72,3 +72,7 @@ export async function updateTodoCompletionAction(todoId: number, isCompleted: bo
 		console.error('Failed to update is_completed in todo');
 	}
 }
+
+export async function triggerRevalidation(path: string) {
+	revalidatePath(path);
+}
