@@ -6,6 +6,7 @@ import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-f
 import { Check } from 'lucide-react';
 import { memo, useState } from 'react';
 import TodoDueDatetime from './TodoDueDatetime';
+import RenderCategories from './RenderCategories';
 
 interface TodoItemProps {
 	todo: Todo;
@@ -39,17 +40,7 @@ function TodoItem({ todo }: TodoItemProps) {
 
 			<div className="col-span-4 flex items-center py-2 ">
 				<p className={`ml-6 ${isChecked && 'line-through'}`}>{todo.task_text}</p>
-				<div className="flex">
-					{todo.categories?.map(category => (
-						<span
-							key={category.id}
-							className={`text-xs border shadow-md ml-2 rounded py-1 px-2`}
-							style={{ color: category.hex_color }}
-						>
-							{category.category_title}
-						</span>
-					))}
-				</div>
+				<RenderCategories categories={todo.categories} />
 			</div>
 			<TodoDueDatetime dueDatetime={todo.due_datetime} />
 			<p className="text-center text-sm flex self-center justify-center text-slate-800">
