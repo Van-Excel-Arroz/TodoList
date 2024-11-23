@@ -2,7 +2,7 @@
 
 import { updateTodoCompletionAction } from '@/actions/todolist-action';
 import { Todo } from '@/types';
-import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import { Check } from 'lucide-react';
 import { memo, useState } from 'react';
 import TodoDueDatetime from './TodoDueDatetime';
