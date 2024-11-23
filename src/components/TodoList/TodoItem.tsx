@@ -3,16 +3,12 @@
 import { updateTodoCompletionAction } from '@/actions/todolist-action';
 import { Todo } from '@/types';
 import { formatDistanceToNow } from 'date-fns';
-import { Check } from 'lucide-react';
 import { memo, useState } from 'react';
 import TodoDueDatetime from './TodoDueDatetime';
 import RenderCategories from './RenderCategories';
+import CheckBox from './CheckBox';
 
-interface TodoItemProps {
-	todo: Todo;
-}
-
-function TodoItem({ todo }: TodoItemProps) {
+function TodoItem({ todo }: { todo: Todo }) {
 	const [isChecked, setIsChecked] = useState(todo.is_completed);
 
 	const handleCheckboxChange = async () => {
@@ -26,18 +22,7 @@ function TodoItem({ todo }: TodoItemProps) {
 			key={todo.id}
 			className="grid grid-cols-6 pl-2 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg active:bg-slate-100"
 		>
-			<div className="col-end-1 flex items-center">
-				<label className="flex items-center cursor-pointer" onClick={handleCheckboxChange}>
-					{isChecked ? (
-						<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md">
-							<Check color="white" size={15} />
-						</div>
-					) : (
-						<div className="border border-black w-5 h-5 rounded-md hover:border-slate-600 active:border-slate-400"></div>
-					)}
-				</label>
-			</div>
-
+			<CheckBox isChecked={isChecked} handleOnClick={handleCheckboxChange} />
 			<div className="col-span-4 flex items-center py-2 ">
 				<p className={`ml-6 ${isChecked && 'line-through'}`}>{todo.task_text}</p>
 				<RenderCategories categories={todo.categories} />
