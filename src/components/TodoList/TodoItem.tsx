@@ -5,6 +5,7 @@ import { Todo } from '@/types';
 import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
 import { Check } from 'lucide-react';
 import { memo, useState } from 'react';
+import TodoDueDatetime from './TodoDueDatetime';
 
 interface TodoItemProps {
 	todo: Todo;
@@ -50,21 +51,7 @@ function TodoItem({ todo }: TodoItemProps) {
 					))}
 				</div>
 			</div>
-			<p
-				className={
-					todo.due_datetime && isPast(todo.due_datetime)
-						? 'text-center text-sm flex self-center justify-center text-red-500'
-						: 'text-center text-sm flex self-center justify-center text-slate-800'
-				}
-			>
-				{todo.due_datetime
-					? isToday(todo.due_datetime)
-						? 'Today' + format(todo.due_datetime, ` \'at\' h:mm a`)
-						: isTomorrow(todo.due_datetime)
-						? 'Tomorrow' + format(todo.due_datetime, ` \'at\' h:mm a`)
-						: format(todo.due_datetime, `EEE, MMMM d \'at\' h:mm a`)
-					: '-'}
-			</p>
+			<TodoDueDatetime dueDatetime={todo.due_datetime} />
 			<p className="text-center text-sm flex self-center justify-center text-slate-800">
 				{formatDistanceToNow(todo.creation_date, { addSuffix: true }).replace('about ', '')}
 			</p>
