@@ -18,7 +18,7 @@ const itemVariants = {
 function TodosRender({ todos, onUpdateCompletion }: TodosRenderProps) {
 	return (
 		<>
-			{todos.length > 0 && (
+			{todos.length > 0 ? (
 				<div className="bg-white px-8 py-4 border rounded-2xl">
 					<div className="grid grid-cols-6 font-semibold mb-4">
 						<p className="col-span-4 ml-12">Todos</p>
@@ -37,6 +37,8 @@ function TodosRender({ todos, onUpdateCompletion }: TodosRenderProps) {
 						))}
 					</motion.ul>
 				</div>
+			) : (
+				<p className="text-center">No Todos Available.</p>
 			)}
 		</>
 	);
