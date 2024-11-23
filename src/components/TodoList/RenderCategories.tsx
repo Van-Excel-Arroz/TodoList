@@ -1,6 +1,7 @@
 import { Category } from '@/types';
+import { memo } from 'react';
 
-export default function RenderCategories({ categories }: { categories: Category[] }) {
+function RenderCategories({ categories }: { categories: Category[] }) {
 	return (
 		<div className="flex">
 			{categories?.map(category => (
@@ -15,3 +16,5 @@ export default function RenderCategories({ categories }: { categories: Category[
 		</div>
 	);
 }
+
+export default memo(RenderCategories);
