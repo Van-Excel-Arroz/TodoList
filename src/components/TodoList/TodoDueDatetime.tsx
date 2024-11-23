@@ -2,11 +2,7 @@
 import { format, isPast, isToday, isTomorrow } from 'date-fns';
 import { memo } from 'react';
 
-interface TodoDueDatetimeProps {
-	dueDatetime: string | null;
-}
-
-function TodoDueDatetime({ dueDatetime }: TodoDueDatetimeProps) {
+function TodoDueDatetime({ dueDatetime }: { dueDatetime: string | null }) {
 	return (
 		<p
 			className={
