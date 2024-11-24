@@ -1,11 +1,14 @@
+'use client';
+
 import { Todo } from '@/types';
 import TodosSection from './TodosSection';
+import { memo } from 'react';
 
 interface TodosRenderProps {
 	todos: Todo[];
 }
 
-export default function TodosRender({ todos }: TodosRenderProps) {
+function TodosRender({ todos }: TodosRenderProps) {
 	const incompletedTodos: Todo[] = [];
 	const completedTodos: Todo[] = [];
 
@@ -30,3 +33,5 @@ export default function TodosRender({ todos }: TodosRenderProps) {
 		</>
 	);
 }
+
+export default memo(TodosRender);
