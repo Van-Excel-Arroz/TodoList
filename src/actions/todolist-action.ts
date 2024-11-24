@@ -1,14 +1,7 @@
 'use server';
 
-import {
-	getTodoWithCategories,
-	storeCategories,
-	storeCategoriesColors,
-	storeTodo,
-	updateTodoCompletion,
-} from '@/lib/todo';
+import { storeCategories, storeCategoriesColors, storeTodo, updateTodoCompletion } from '@/lib/todo';
 import { deleteTodolist, storeTodolist, updateTodolist } from '@/lib/todolist';
-import { Todo } from '@/types';
 import { revalidatePath } from 'next/cache';
 
 export async function createTodolist(title: string) {
