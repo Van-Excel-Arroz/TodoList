@@ -30,19 +30,8 @@ export async function createTodoAction(
 	console.log(categoryColorsId);
 	await storeCategories(todoId, categoryColorsId);
 
-	const todo: Todo = {
-		id: todoId,
-		task_text: taskText,
-		due_datetime: dueDatetime,
-		creation_date: new Date().toISOString(),
-		is_completed: false,
-		categories: await getTodoWithCategories(todoId),
-		todo_list_id: todolistId,
-	};
-
 	if (todoId) {
 		revalidatePath(`/tasks/${todolistId}`);
-		return todo;
 	} else {
 		console.error('Failed to create the todo');
 		return null;
