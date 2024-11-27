@@ -9,12 +9,8 @@ import RenderCategories from './RenderCategories';
 import CheckBox from './CheckBox';
 
 function TodoItem({ todo }: { todo: Todo }) {
-	const [isChecked, setIsChecked] = useState(todo.is_completed);
-
 	const handleCheckboxChange = async () => {
-		const newIsChecked = !isChecked;
-		setIsChecked(newIsChecked);
-		await updateTodoCompletionAction(todo.id, newIsChecked, todo.todo_list_id);
+		await updateTodoCompletionAction(todo.id, !todo.is_completed, todo.todo_list_id);
 	};
 
 	return (
@@ -22,9 +18,9 @@ function TodoItem({ todo }: { todo: Todo }) {
 			key={todo.id}
 			className="grid grid-cols-6 pl-2 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg"
 		>
-			<CheckBox isChecked={isChecked} handleOnClick={handleCheckboxChange} />
+			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 			<div className="col-span-4 flex items-center py-2 ">
-				<p className={`ml-6 ${isChecked && 'line-through'}`}>{todo.task_text}</p>
+				<p className={`ml-6 ${todo.is_completed && 'line-through'}`}>{todo.task_text}</p>
 				<RenderCategories categories={todo.categories} />
 			</div>
 			<TodoDueDatetime dueDatetime={todo.due_datetime} />
