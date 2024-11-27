@@ -7,7 +7,7 @@ function RenderCategories({ categories }: { categories: Category[] }) {
 			{categories?.map(category => (
 				<span
 					key={category.id}
-					className={`text-xs border shadow-md ml-2 rounded py-1 px-2`}
+					className={`text-xs border shadow-md ml-2 rounded py-1 px-2 hover:bg-slate-100 hover:shadow-none`}
 					style={{ color: category.hex_color }}
 				>
 					{category.category_title}
