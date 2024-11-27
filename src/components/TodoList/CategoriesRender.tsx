@@ -29,6 +29,7 @@ export default function CategoriesRender({ selectedCategories, todoListId }: Cat
 									size={12}
 									className="hover:text-white hover:bg-gray-700 rounded-full cursor-pointer"
 									onClick={() => handleCategoryClick(selectedCategory.id)}
+									aria-label={`Remove ${selectedCategory.category_title} category`}
 								/>
 							</div>
 						))}
