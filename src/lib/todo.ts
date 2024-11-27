@@ -66,7 +66,7 @@ async function getCategoryColor(category: string): Promise<Category | null> {
 	}
 }
 
-async function createCategoryColor(category: string, color: string): Promise<number | null> {
+async function createCategoryColor(category: string, color: string) {
 	try {
 		const result = await query('INSERT INTO category_colors (category_title, hex_color) VALUES ($1, $2) RETURNING id', [
 			category,
@@ -75,7 +75,7 @@ async function createCategoryColor(category: string, color: string): Promise<num
 		return result.rows[0].id;
 	} catch (error) {
 		console.error('Error inserting category and colors in the database');
-		return null;
+		return;
 	}
 }
 
