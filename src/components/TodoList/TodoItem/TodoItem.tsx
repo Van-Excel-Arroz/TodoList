@@ -3,7 +3,7 @@
 import { updateTodoCompletionAction } from '@/actions/todolist-action';
 import { Todo } from '@/types';
 import { formatDistanceToNow } from 'date-fns';
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import TodoDueDatetime from './TodoDueDatetime';
 import RenderCategories from './RenderCategories';
 import CheckBox from './CheckBox';
