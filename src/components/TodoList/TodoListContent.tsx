@@ -17,7 +17,7 @@ export default function TodoListContent({ todolist, todolistId, todos, selectedC
 			<div className="font-body flex flex-col px-6 p-9">
 				<TodolistHeader todolist={todolist} />
 				<TodoForm todolistId={todolistId} />
-				<CategoriesRender selectedCategories={selectedCategories} />
+				<CategoriesRender selectedCategories={selectedCategories} todoListId={todolistId} />
 				<TodosRender todos={todos} />
 			</div>
 		</>
