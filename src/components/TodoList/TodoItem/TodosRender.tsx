@@ -27,7 +27,7 @@ export default function TodosRender({ todos }: TodosRenderProps) {
 					<TodosSection title="Completed Todos" todos={completedTodos} />
 				</div>
 			) : (
-				<div className="flex flex-col items-center justify-center min-h-[200px] text-gray-600">
+				<div className="flex flex-col items-center justify-center text-gray-600">
 					<p className="text-lg">No todos found</p>
 					<p className="text-sm">Create a new todo to get started</p>
 				</div>
