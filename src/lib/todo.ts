@@ -132,7 +132,7 @@ export async function getTodoWithCategories(todoId: number): Promise<Category[]>
 	}
 }
 
-export async function getTodosWithCategories(todolistId: number) {
+export async function getTodosWithCategories(todolistId: number): Promise<Todo[]> {
 	try {
 		const todos = await getTodos(todolistId);
 
