@@ -118,7 +118,7 @@ export async function getTodoWithCategories(todoId: number): Promise<Category[]>
 	try {
 		const result = await query(
 			`
-			SELECT c.id, cc.category_title, cc.hex_color
+			SELECT c.id, cc.category_title, cc.hex_color, c.is_selected
 			FROM categories c
 			JOIN category_colors cc ON  c.category_color_id = cc.id
 			WHERE c.todo_id = $1
