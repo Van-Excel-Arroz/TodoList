@@ -5,10 +5,9 @@ import TodosSection from './TodosSection';
 
 interface TodosRenderProps {
 	todos: Todo[];
-	selectedCategories: Category[];
 }
 
-export default function TodosRender({ todos, selectedCategories }: TodosRenderProps) {
+export default function TodosRender({ todos }: TodosRenderProps) {
 	const incompletedTodos: Todo[] = [];
 	const completedTodos: Todo[] = [];
 
@@ -22,13 +21,6 @@ export default function TodosRender({ todos, selectedCategories }: TodosRenderPr
 
 	return (
 		<>
-			{selectedCategories.length > 0 ? (
-				<div>
-					{selectedCategories.map(selectedCategory => (
-						<p key={selectedCategory.id}>{selectedCategory.category_title}</p>
-					))}
-				</div>
-			) : null}
 			{todos.length > 0 ? (
 				<div>
 					<TodosSection title="Todos" todos={incompletedTodos} />
