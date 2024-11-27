@@ -179,3 +179,11 @@ export async function updateTodoCompletion(todoId: number, isCompleted: boolean)
 		return false;
 	}
 }
+
+export async function updateIsSelectedCategoryColors(categoryColorsId: number, isSelected: boolean) {
+	try {
+		await query('UPDATE categories SET is_selected = $1 WHERE id = $2', [isSelected, categoryColorsId]);
+	} catch (error) {
+		console.error('Error updating isSelected in category from the database', error);
+	}
+}
