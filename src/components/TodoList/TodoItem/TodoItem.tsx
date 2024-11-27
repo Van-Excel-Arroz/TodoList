@@ -1,6 +1,6 @@
 'use client';
 
-import { updateTodoCompletionAction } from '@/actions/todolist-action';
+import { updateIsSelectedCategoryColorsAction, updateTodoCompletionAction } from '@/actions/todolist-action';
 import { Todo } from '@/types';
 import { formatDistanceToNow } from 'date-fns';
 import { memo } from 'react';
@@ -13,6 +13,10 @@ function TodoItem({ todo }: { todo: Todo }) {
 		await updateTodoCompletionAction(todo.id, !todo.is_completed, todo.todo_list_id);
 	};
 
+	const handleCategoryClick = async (categoryId: number) => {
+		await updateIsSelectedCategoryColorsAction(categoryId, !todo.is_completed, todo.todo_list_id);
+	};
+
 	return (
 		<div
 			key={todo.id}
@@ -21,7 +25,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 			<div className="col-span-4 flex items-center py-2 ">
 				<p className={`ml-6 ${todo.is_completed && 'line-through'}`}>{todo.task_text}</p>
-				<RenderCategories categories={todo.categories} />
+				<RenderCategories categories={todo.categories} handleCategoryClick={handleCategoryClick} />
 			</div>
 			<TodoDueDatetime dueDatetime={todo.due_datetime} />
 			<p className="text-center text-sm flex self-center justify-center text-slate-800">

@@ -1,7 +1,12 @@
 import { Category } from '@/types';
 import { memo } from 'react';
 
-function RenderCategories({ categories }: { categories: Category[] }) {
+interface RenderCategoriesProps {
+	categories: Category[];
+	handleCategoryClick: (categoryId: number) => void;
+}
+
+function RenderCategories({ categories, handleCategoryClick }: RenderCategoriesProps) {
 	return (
 		<div className="flex">
 			{categories?.map(category => (
@@ -9,6 +14,7 @@ function RenderCategories({ categories }: { categories: Category[] }) {
 					key={category.id}
 					className={`text-xs border shadow-md ml-2 rounded py-1 px-2 hover:bg-slate-100 hover:shadow-none active:bg-slate-200`}
 					style={{ color: category.hex_color }}
+					onClick={() => handleCategoryClick(category.id)}
 				>
 					{category.category_title}
 				</span>
