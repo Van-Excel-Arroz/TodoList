@@ -17,7 +17,7 @@ export async function storeTodo(text: string, dueDatetime: string | null, todoli
 	}
 }
 
-async function getNextColor() {
+async function getNextColor(): Promise<string | null> {
 	try {
 		// First, try to find an unused color
 		const result = await query(
@@ -52,21 +52,21 @@ async function getNextColor() {
 		return leastUsedResult.rows[0].hex_color;
 	} catch (error) {
 		console.error('Error checking and getting the next color in the database');
-		return;
+		return null;
 	}
 }
 
-async function getCategoryColor(category: string) {
+async function getCategoryColor(category: string): Promise<Category | null> {
 	try {
 		const result = await query('SELECT * FROM category_colors WHERE category_title = $1', [category]);
 		return result.rows[0] || null;
 	} catch (error) {
 		console.error('Error fetching category and color in the database');
-		return;
+		return null;
 	}
 }
 
-async function createCategoryColor(category: string, color: string) {
+async function createCategoryColor(category: string, color: string): Promise<number | null> {
 	try {
 		const result = await query('INSERT INTO category_colors (category_title, hex_color) VALUES ($1, $2) RETURNING id', [
 			category,
@@ -75,6 +75,7 @@ async function createCategoryColor(category: string, color: string) {
 		return result.rows[0].id;
 	} catch (error) {
 		console.error('Error inserting category and colors in the database');
+		return null;
 	}
 }
 
@@ -90,6 +91,7 @@ export async function storeCategoriesColors(categories: string[]) {
 			}
 
 			const color = await getNextColor();
+			if (!color) continue;
 			const newCategoryId = await createCategoryColor(category, color);
 			categoryIds.push(newCategoryId);
 		}
@@ -152,7 +154,7 @@ export async function getTodosWithCategories(todolistId: number): Promise<Todo[]
 	}
 }
 
-export async function getTodos(todolistId: number) {
+export async function getTodos(todolistId: number): Promise<Todo[]> {
 	try {
 		const result = await query('SELECT * FROM todos WHERE todo_list_id = $1', [todolistId]);
 		const todos = result.rows;
@@ -163,7 +165,7 @@ export async function getTodos(todolistId: number) {
 	}
 }
 
-export async function updateTodoCompletion(todoId: number, isCompleted: boolean) {
+export async function updateTodoCompletion(todoId: number, isCompleted: boolean): Promise<boolean> {
 	try {
 		await query(
 			`
