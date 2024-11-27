@@ -188,3 +188,13 @@ export async function updateIsSelectedCategoryColors(categoryColorsId: number, i
 		return false;
 	}
 }
+
+export async function getSelectedCategories(todolistId: number): Promise<Category[]> {
+	try {
+		const result = await query('SELECT * FROM category_colors WHERE is_selected = TRUE');
+		return result.rows;
+	} catch (error) {
+		console.error('Error fetching selected categories in the database', error);
+		return [];
+	}
+}
