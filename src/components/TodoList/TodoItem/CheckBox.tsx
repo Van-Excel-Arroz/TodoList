@@ -9,7 +9,7 @@ interface CheckBoxProps {
 function CheckBox({ isChecked, handleOnClick }: CheckBoxProps) {
 	return (
 		<div className="col-end-1 flex items-center">
-			<button className="flex items-center" onClick={handleOnClick}>
+			<button className="flex items-center" onClick={handleOnClick} aria-label={isChecked ? 'checked' : 'unchecked'}>
 				{isChecked ? (
 					<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md hover:bg-slate-800 active:bg-slate-700">
 						<Check color="white" size={15} />
