@@ -1,7 +1,7 @@
 'use client';
 
 import { Todo } from '@/types';
-import TodosSection from '../TodosSection';
+import TodosSection from './TodosSection';
 
 interface TodosRenderProps {
 	todos: Todo[];

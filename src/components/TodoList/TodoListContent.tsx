@@ -1,7 +1,7 @@
 import TodoForm from './TodoForm';
 
 import TodolistHeader from './TodolistHeader';
-import TodosRender from './TodoItem/TodosRender';
+import TodosRender from './TodosRender';
 import { Todo, TodoList } from '@/types';
 
 interface TodolistContentProps {
