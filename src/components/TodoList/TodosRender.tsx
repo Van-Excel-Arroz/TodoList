@@ -2,7 +2,6 @@
 
 import { Category, Todo } from '@/types';
 import TodosSection from './TodosSection';
-import { Span } from 'next/dist/trace';
 
 interface TodosRenderProps {
 	todos: Todo[];
