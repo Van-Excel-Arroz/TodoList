@@ -70,10 +70,10 @@ async function getCategoryColor(category: string): Promise<Category | null> {
 
 async function createCategoryColor(category: string, color: string) {
 	try {
-		const result = await query('INSERT INTO category_colors (category_title, hex_color) VALUES ($1, $2) RETURNING id', [
-			category,
-			color,
-		]);
+		const result = await query(
+			'INSERT INTO category_colors (category_title, hex_color, is_selected) VALUES ($1, $2, FALSE) RETURNING id',
+			[category, color]
+		);
 		return result.rows[0].id;
 	} catch (error) {
 		console.error('Error inserting category and colors in the database');
@@ -108,10 +108,7 @@ export async function storeCategoriesColors(categories: string[]) {
 export async function storeCategories(todoId: number, categoryColorsId: number[]) {
 	try {
 		for (let i = 0; i < categoryColorsId.length; i++) {
-			await query('INSERT INTO categories (todo_id, category_color_id, is_selected) VALUES ($1, $2, FALSE)', [
-				todoId,
-				categoryColorsId[i],
-			]);
+			await query('INSERT INTO categories (todo_id, category_color_id) VALUES ($1, $2)', [todoId, categoryColorsId[i]]);
 		}
 	} catch (error) {
 		console.error('Error inserting categories in the database');
@@ -122,7 +119,7 @@ export async function getTodoWithCategories(todoId: number): Promise<Category[]>
 	try {
 		const result = await query(
 			`
-			SELECT c.id, cc.category_title, cc.hex_color, c.is_selected
+			SELECT c.id, cc.category_title, cc.hex_color, cc.is_selected
 			FROM categories c
 			JOIN category_colors cc ON  c.category_color_id = cc.id
 			WHERE c.todo_id = $1
@@ -131,7 +128,7 @@ export async function getTodoWithCategories(todoId: number): Promise<Category[]>
 		);
 		return result.rows;
 	} catch (error) {
-		console.error('Error fetching todo with categories in the database');
+		console.error('Error fetching todo with categories in the database', error);
 		return [];
 	}
 }
@@ -151,7 +148,7 @@ export async function getTodosWithCategories(todolistId: number): Promise<Todo[]
 		);
 		return todosWithCategories;
 	} catch (error) {
-		console.error('Error fetching todo with categories in the database');
+		console.error('Error fetching todo with categories in the database', error);
 		return [];
 	}
 }
