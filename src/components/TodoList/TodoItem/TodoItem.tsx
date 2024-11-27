@@ -14,7 +14,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	};
 
 	const handleCategoryClick = async (categoryId: number) => {
-		await updateIsSelectedCategoryColorsAction(categoryId, !todo.is_completed, todo.todo_list_id);
+		await updateIsSelectedCategoryColorsAction(categoryId, true, todo.todo_list_id);
 	};
 
 	return (
