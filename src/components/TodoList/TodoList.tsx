@@ -7,7 +7,7 @@ export default async function Todolist({ params }: { params: any }) {
 	const todolistId = Number(params.id);
 	const todolist = await getTodolist(todolistId, 1);
 	const todos = await getTodosWithCategories(todolistId);
-	const selectedCategories = await getSelectedCategories(todolistId);
+	const selectedCategories = await getSelectedCategories();
 
 	return (
 		<Suspense fallback={<h1>Loading.....</h1>}>

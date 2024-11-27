@@ -2,6 +2,7 @@
 
 import { Category, Todo } from '@/types';
 import TodosSection from './TodosSection';
+import { Span } from 'next/dist/trace';
 
 interface TodosRenderProps {
 	todos: Todo[];
@@ -22,6 +23,13 @@ export default function TodosRender({ todos, selectedCategories }: TodosRenderPr
 
 	return (
 		<>
+			{selectedCategories.length > 0 ? (
+				<div>
+					{selectedCategories.map(selectedCategory => (
+						<p key={selectedCategory.id}>{selectedCategory.category_title}</p>
+					))}
+				</div>
+			) : null}
 			{todos.length > 0 ? (
 				<div>
 					<TodosSection title="Todos" todos={incompletedTodos} />

@@ -189,7 +189,7 @@ export async function updateIsSelectedCategoryColors(categoryColorsId: number, i
 	}
 }
 
-export async function getSelectedCategories(todolistId: number): Promise<Category[]> {
+export async function getSelectedCategories(): Promise<Category[]> {
 	try {
 		const result = await query('SELECT * FROM category_colors WHERE is_selected = TRUE');
 		return result.rows;
