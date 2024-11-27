@@ -12,6 +12,7 @@ export interface Category {
 	id: number;
 	category_title: string;
 	hex_color: string;
+	is_selected: boolean;
 }
 
 export interface TodoList {

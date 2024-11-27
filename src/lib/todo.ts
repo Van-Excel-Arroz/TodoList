@@ -104,7 +104,10 @@ export async function storeCategoriesColors(categories: string[]) {
 export async function storeCategories(todoId: number, categoryColorsId: number[]) {
 	try {
 		for (let i = 0; i < categoryColorsId.length; i++) {
-			await query('INSERT INTO categories (todo_id, category_color_id) VALUES ($1, $2)', [todoId, categoryColorsId[i]]);
+			await query('INSERT INTO categories (todo_id, category_color_id, is_selected) VALUES ($1, $2, FALSE)', [
+				todoId,
+				categoryColorsId[i],
+			]);
 		}
 	} catch (error) {
 		console.error('Error inserting categories in the database');
