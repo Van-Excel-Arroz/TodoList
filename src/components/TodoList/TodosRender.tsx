@@ -1,13 +1,14 @@
 'use client';
 
-import { Todo } from '@/types';
+import { Category, Todo } from '@/types';
 import TodosSection from './TodosSection';
 
 interface TodosRenderProps {
 	todos: Todo[];
+	selectedCategories: Category[];
 }
 
-export default function TodosRender({ todos }: TodosRenderProps) {
+export default function TodosRender({ todos, selectedCategories }: TodosRenderProps) {
 	const incompletedTodos: Todo[] = [];
 	const completedTodos: Todo[] = [];
 
