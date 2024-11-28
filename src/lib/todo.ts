@@ -198,3 +198,38 @@ export async function getSelectedCategories(): Promise<Category[]> {
 		return [];
 	}
 }
+
+export async function sortTodosBySelectedCategory(selectedCategories: Category[]): Promise<Todo[]> {
+	const extractedCategories = selectedCategories.map(category => category.category_title);
+
+	try {
+		const result = await query(
+			`
+			SELECT 
+			t.id AS id,
+			t.task_text,
+			t.due_datetime,
+			t.creation_date,
+			t.todo_list_id,
+			t.is_completed
+			FROM 
+					todos t
+			LEFT JOIN 
+					categories c ON t.id = c.todo_id
+			LEFT JOIN 
+					category_colors cc ON c.category_color_id = cc.id
+			GROUP BY 
+					t.id
+			ORDER BY 
+					MIN(CASE WHEN cc.category_title = ANY($1) THEN 0 ELSE 1 END), -- Prioritize 
+					COUNT(c.category_color_id) DESC, -- Number of associated categories
+					t.creation_date ASC; -- Break ties with creation date
+			`,
+			[extractedCategories]
+		);
+		return result.rows;
+	} catch (error) {
+		console.error('Error sorting todos by selected category in the database', error);
+		return [];
+	}
+}
