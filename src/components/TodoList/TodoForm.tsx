@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todolist-action';
 import { extractCategory, extractTitle } from '@/utils/category';
 import { memo } from 'react';
+import { Calendar, Timer } from 'lucide-react';
 
 interface TodoFormProps {
 	todolistId: number;
@@ -46,7 +47,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="mt-7 flex flex-col gap-2 items-start">
+		<form onSubmit={handleSubmit(onSubmit)} className="mt-7 flex flex-col  items-start">
 			<input
 				{...register('todo', {
 					required: true,
@@ -55,13 +56,14 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				type="text"
 				placeholder="task... #category"
 				autoComplete="off"
-				className="border rounded-lg rounded-b-none drop-shadow-md p-2 w-full focus:outline-none focus:border-slate-400 hover:border-slate-400"
+				className="border rounded-lg rounded-b-none p-2 w-full drop-shadow-md focus:outline-none focus:border-slate-400 hover:border-slate-400"
 			/>
-			{errors.todo?.message && typeof errors.todo.message === 'string' && (
-				<p className="text-red-500">{errors.todo?.message}</p>
-			)}
+			<div className="flex gap-2 px-2 bg-white rounded-lg rounded-t-none w-full border border-t-0 text-gray-400 py-2 drop-shadow-md ">
+				<Calendar size={16} />
+				<Timer size={16} />
+			</div>
 
-			<div className="flex gap-10">
+			{/* <div className="flex gap-10">
 				<label htmlFor="date" className="sr-only">
 					Due Date
 				</label>
@@ -70,7 +72,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 					Due Time
 				</label>
 				<input {...register('time')} type="time" step="1" className="bg-transparent" id="time" />
-			</div>
+			</div> */}
 		</form>
 	);
 }
