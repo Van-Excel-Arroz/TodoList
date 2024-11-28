@@ -23,12 +23,12 @@ function TodoItem({ todo }: { todo: Todo }) {
 			className="grid grid-cols-12 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg px-2"
 		>
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
-			<div className="col-span-8 flex items-center py-2">
+			<div className="col-span-9 flex items-center py-2">
 				<p className={`ml-6 ${todo.is_completed && 'line-through'}`}>{todo.task_text}</p>
 				<RenderCategories categories={todo.categories} handleCategoryClick={handleCategoryClick} />
 			</div>
 			<TodoDueDatetime dueDatetime={todo.due_datetime} />
-			<p className="col-span-2 text-center ml-3 text-sm flex self-center justify-center text-slate-800 ">
+			<p className="col-start-12 text-center ml-3 text-sm flex self-center justify-center text-slate-800 ">
 				{formatDistanceToNow(todo.creation_date, { addSuffix: true }).replace('about ', '')}
 			</p>
 		</div>
