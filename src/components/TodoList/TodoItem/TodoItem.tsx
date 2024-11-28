@@ -22,12 +22,15 @@ function TodoItem({ todo }: { todo: Todo }) {
 			className="grid grid-cols-12 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg px-2"
 		>
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
-			<div className="col-span-9 flex items-center py-2">
-				<div className="flex flex-col ml-6">
+			<div className="col-span-9 flex items-center py-2 ml-6">
+				{todo.due_datetime ? (
+					<div className="flex flex-col">
+						<p className={` ${todo.is_completed && 'line-through'} text-sm`}>{todo.task_text}</p>
+						<TodoDueDatetime dueDatetime={todo.due_datetime} />
+					</div>
+				) : (
 					<p className={` ${todo.is_completed && 'line-through'} text-sm`}>{todo.task_text}</p>
-					<TodoDueDatetime dueDatetime={todo.due_datetime} />
-				</div>
-				{/* {todo.due_datetime} */}
+				)}
 				<RenderCategories categories={todo.categories} handleCategoryClick={handleCategoryClick} />
 			</div>
 		</div>
