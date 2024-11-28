@@ -29,7 +29,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 						<TodoDueDatetime dueDatetime={todo.due_datetime} />
 					</div>
 				) : (
-					<p className={` ${todo.is_completed && 'line-through'} text-sm`}>{todo.task_text}</p>
+					<p className={`py-2 ${todo.is_completed && 'line-through'} text-sm`}>{todo.task_text}</p>
 				)}
 				<RenderCategories categories={todo.categories} handleCategoryClick={handleCategoryClick} />
 			</div>
