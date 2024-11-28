@@ -47,18 +47,18 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="mt-7 flex flex-col  items-start">
+		<form onSubmit={handleSubmit(onSubmit)} className="mt-7 flex flex-col items-start">
 			<input
 				{...register('todo', {
 					required: true,
 					maxLength: { value: 100, message: 'Exceeded maximum length of 100' },
 				})}
 				type="text"
-				placeholder="task... #category"
+				placeholder="Add a task... #Category"
 				autoComplete="off"
-				className="border rounded-lg rounded-b-none p-2 w-full drop-shadow-md focus:outline-none focus:border-slate-400 hover:border-slate-400"
+				className="border rounded-lg rounded-b-none py-2 px-4 w-full drop-shadow-md focus:outline-none focus:border-slate-400 hover:border-slate-400"
 			/>
-			<div className="flex gap-2 px-2 bg-white rounded-lg rounded-t-none w-full border border-t-0 text-gray-400 py-2 drop-shadow-md ">
+			<div className="flex gap-2 px-4 bg-white rounded-lg rounded-t-none w-full border border-t-0 text-gray-400 py-2 drop-shadow-md ">
 				<Calendar size={16} />
 				<Timer size={16} />
 			</div>

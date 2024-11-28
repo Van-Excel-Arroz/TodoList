@@ -8,7 +8,7 @@ interface TodosSectionProps {
 
 export default function TodosSection({ title, todos }: TodosSectionProps) {
 	return (
-		<div className="bg-white px-4 py-4 border rounded-2xl">
+		<div className="bg-white px-4 py-4 border rounded-2xl my-6">
 			<div className="grid grid-cols-12 font-semibold mb-2">
 				<p className="col-span-9 ml-12">{title}</p>
 			</div>
