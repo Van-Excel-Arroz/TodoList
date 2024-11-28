@@ -25,7 +25,7 @@ export async function createTodoAction(
 	categories: string[]
 ) {
 	const todoId: number = await storeTodo(taskText, dueDatetime, todolistId);
-	const categoryColorsId = await storeCategoriesColors(categories);
+	const categoryColorsId = await storeCategoriesColors(categories, todolistId);
 	await storeCategories(todoId, categoryColorsId);
 
 	if (todoId) {

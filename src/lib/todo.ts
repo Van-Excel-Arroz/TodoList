@@ -68,11 +68,11 @@ async function getCategoryColor(category: string): Promise<Category | null> {
 	}
 }
 
-async function createCategoryColor(category: string, color: string) {
+async function createCategoryColor(category: string, color: string, todolistId: number) {
 	try {
 		const result = await query(
-			'INSERT INTO category_colors (category_title, hex_color, is_selected) VALUES ($1, $2, FALSE) RETURNING id',
-			[category, color]
+			'INSERT INTO category_colors (category_title, hex_color, is_selected, todo_list_id) VALUES ($1, $2, FALSE, $3) RETURNING id',
+			[category, color, todolistId]
 		);
 		return result.rows[0].id;
 	} catch (error) {
@@ -81,7 +81,7 @@ async function createCategoryColor(category: string, color: string) {
 	}
 }
 
-export async function storeCategoriesColors(categories: string[]) {
+export async function storeCategoriesColors(categories: string[], todolistId: number) {
 	try {
 		const categoryIds = [];
 
@@ -94,7 +94,7 @@ export async function storeCategoriesColors(categories: string[]) {
 
 			const color = await getNextColor();
 			if (!color) continue;
-			const newCategoryId = await createCategoryColor(category, color);
+			const newCategoryId = await createCategoryColor(category, color, todolistId);
 			categoryIds.push(newCategoryId);
 		}
 
@@ -189,9 +189,11 @@ export async function updateIsSelectedCategoryColors(categoryTitle: string, isSe
 	}
 }
 
-export async function getSelectedCategories(): Promise<Category[]> {
+export async function getSelectedCategories(todolistId: number): Promise<Category[]> {
 	try {
-		const result = await query('SELECT * FROM category_colors WHERE is_selected = TRUE');
+		const result = await query('SELECT * FROM category_colors WHERE is_selected = TRUE AND todo_list_id = $1', [
+			todolistId,
+		]);
 		return result.rows;
 	} catch (error) {
 		console.error('Error fetching selected categories in the database', error);

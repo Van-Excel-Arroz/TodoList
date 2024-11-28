@@ -7,7 +7,7 @@ import { Suspense } from 'react';
 export default async function Todolist({ params }: { params: any }) {
 	const todolistId = Number(params.id);
 	const todolist = await getTodolist(todolistId, 1);
-	const selectedCategories = await getSelectedCategories();
+	const selectedCategories = await getSelectedCategories(todolist);
 	let todos: Todo[];
 
 	if (selectedCategories.length > 0) {
