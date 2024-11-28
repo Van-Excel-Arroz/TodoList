@@ -63,7 +63,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				<Timer size={16} />
 			</div>
 
-			{/* <div className="flex gap-10">
+			<div className="flex gap-10">
 				<label htmlFor="date" className="sr-only">
 					Due Date
 				</label>
@@ -72,7 +72,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 					Due Time
 				</label>
 				<input {...register('time')} type="time" step="1" className="bg-transparent" id="time" />
-			</div> */}
+			</div>
 		</form>
 	);
 }
