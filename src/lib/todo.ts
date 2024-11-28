@@ -58,9 +58,12 @@ async function getNextColor(): Promise<string | null> {
 	}
 }
 
-async function getCategoryColor(category: string): Promise<Category | null> {
+async function getCategoryColor(category: string, todolistId: number): Promise<Category | null> {
 	try {
-		const result = await query('SELECT * FROM category_colors WHERE category_title = $1', [category]);
+		const result = await query('SELECT * FROM category_colors WHERE category_title = $1 AND todo_list_id = $2', [
+			category,
+			todolistId,
+		]);
 		return result.rows[0] || null;
 	} catch (error) {
 		console.error('Error fetching category and color in the database');
@@ -86,7 +89,7 @@ export async function storeCategoriesColors(categories: string[], todolistId: nu
 		const categoryIds = [];
 
 		for (const category of categories) {
-			const existingCategory = await getCategoryColor(category);
+			const existingCategory = await getCategoryColor(category, todolistId);
 			if (existingCategory) {
 				categoryIds.push(existingCategory.id);
 				continue;
