@@ -46,34 +46,32 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	}
 
 	return (
-		<div className="py-2">
-			<form onSubmit={handleSubmit(onSubmit)} className="mt-5 flex flex-col gap-2 items-start">
-				<input
-					{...register('todo', {
-						required: true,
-						maxLength: { value: 100, message: 'Exceeded maximum length of 100' },
-					})}
-					type="text"
-					placeholder="task... #category"
-					autoComplete="off"
-					className="border rounded-lg rounded-b-none drop-shadow-md p-2 w-full focus:outline-none focus:border-slate-400 hover:border-slate-400"
-				/>
-				{errors.todo?.message && typeof errors.todo.message === 'string' && (
-					<p className="text-red-500">{errors.todo?.message}</p>
-				)}
+		<form onSubmit={handleSubmit(onSubmit)} className="mt-7 flex flex-col gap-2 items-start">
+			<input
+				{...register('todo', {
+					required: true,
+					maxLength: { value: 100, message: 'Exceeded maximum length of 100' },
+				})}
+				type="text"
+				placeholder="task... #category"
+				autoComplete="off"
+				className="border rounded-lg rounded-b-none drop-shadow-md p-2 w-full focus:outline-none focus:border-slate-400 hover:border-slate-400"
+			/>
+			{errors.todo?.message && typeof errors.todo.message === 'string' && (
+				<p className="text-red-500">{errors.todo?.message}</p>
+			)}
 
-				<div className="flex gap-10">
-					<label htmlFor="date" className="sr-only">
-						Due Date
-					</label>
-					<input {...register('date')} type="date" className="bg-transparent" id="date" />
-					<label htmlFor="time" className="sr-only">
-						Due Time
-					</label>
-					<input {...register('time')} type="time" step="1" className="bg-transparent" id="time" />
-				</div>
-			</form>
-		</div>
+			<div className="flex gap-10">
+				<label htmlFor="date" className="sr-only">
+					Due Date
+				</label>
+				<input {...register('date')} type="date" className="bg-transparent" id="date" />
+				<label htmlFor="time" className="sr-only">
+					Due Time
+				</label>
+				<input {...register('time')} type="time" step="1" className="bg-transparent" id="time" />
+			</div>
+		</form>
 	);
 }
 
