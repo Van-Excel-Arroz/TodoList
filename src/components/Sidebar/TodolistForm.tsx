@@ -28,9 +28,9 @@ function TodolistForm() {
 						})}
 						type="text"
 						placeholder="New list"
-						className="border rounded p-2 w-full drop-shadow-md focus:outline-none"
+						className="border rounded-t-lg rounded-b-lg rounded-r-none py-1 px-2 w-full drop-shadow-md focus:outline-none"
 					/>
-					<button type="submit" className="border rounded shadow-md py-2 px-4 text-lg">
+					<button type="submit" className="border rounded-b-lg rounded-t-lg rounded-l-none shadow-md py-1 px-2 text-lg">
 						+
 					</button>
 				</div>
