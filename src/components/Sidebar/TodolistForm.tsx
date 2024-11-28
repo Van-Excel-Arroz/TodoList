@@ -29,7 +29,7 @@ function TodolistForm() {
 						})}
 						type="text"
 						placeholder="New list"
-						className="border rounded-t-lg rounded-b-lg rounded-r-none py-2 px-2 w-full drop-shadow-md focus:outline-none focus:border-gray-400"
+						className="border rounded-t-lg rounded-b-lg rounded-r-none py-2 px-2 w-full drop-shadow-md focus:outline-none focus:border-gray-400 hover:border-gray-400"
 					/>
 					<button
 						type="submit"
