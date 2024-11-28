@@ -47,7 +47,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	return (
 		<div className="py-2">
-			<form onSubmit={handleSubmit(onSubmit)} className="mt-4 flex flex-col gap-2 items-start">
+			<form onSubmit={handleSubmit(onSubmit)} className="mt-5 flex flex-col gap-2 items-start">
 				<input
 					{...register('todo', {
 						required: true,
@@ -56,7 +56,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 					type="text"
 					placeholder="task... #category"
 					autoComplete="off"
-					className="border rounded drop-shadow-md p-2 w-full focus:outline-none"
+					className="border rounded-lg rounded-b-none drop-shadow-md p-2 w-full focus:outline-none focus:border-slate-400 hover:border-slate-400"
 				/>
 				{errors.todo?.message && typeof errors.todo.message === 'string' && (
 					<p className="text-red-500">{errors.todo?.message}</p>

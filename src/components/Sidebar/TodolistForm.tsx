@@ -29,11 +29,11 @@ function TodolistForm() {
 						})}
 						type="text"
 						placeholder="New list"
-						className="border rounded-t-lg rounded-b-lg rounded-r-none py-2 px-2 w-full drop-shadow-md focus:outline-none focus:border-gray-400 hover:border-gray-400"
+						className="border rounded-lg rounded-r-none py-2 px-2 w-full drop-shadow-md focus:outline-none focus:border-gray-400 hover:border-gray-400"
 					/>
 					<button
 						type="submit"
-						className="border rounded-b-lg rounded-t-lg rounded-l-none shadow-md py-1 px-2 text-lg hover:bg-gray-100 active:bg-gray-200"
+						className="border rounded-lg rounded-l-none shadow-md py-1 px-2 text-lg hover:bg-gray-100 active:bg-gray-200"
 						aria-label="Add new list"
 					>
 						<Plus size={20} className="text-gray-400" />
