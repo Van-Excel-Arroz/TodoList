@@ -199,7 +199,7 @@ export async function getSelectedCategories(): Promise<Category[]> {
 	}
 }
 
-export async function sortTodosBySelectedCategory(selectedCategories: Category[]): Promise<Todo[]> {
+export async function sortTodosBySelectedCategory(selectedCategories: Category[], todolistId: number): Promise<Todo[]> {
 	const extractedCategories = selectedCategories.map(category => category.category_title);
 
 	try {
@@ -218,6 +218,7 @@ export async function sortTodosBySelectedCategory(selectedCategories: Category[]
 					categories c ON t.id = c.todo_id
 			LEFT JOIN
 					category_colors cc ON c.category_color_id = cc.id
+			WHERE t.todo_list_id = $2
 			GROUP BY
 					t.id
 			ORDER BY
@@ -225,7 +226,7 @@ export async function sortTodosBySelectedCategory(selectedCategories: Category[]
 					COUNT(c.category_color_id) DESC, -- Number of associated categories
 					t.creation_date ASC; -- Break ties with creation date
 			`,
-			[extractedCategories]
+			[extractedCategories, todolistId]
 		);
 
 		const todosWithCategories: Todo[] = await Promise.all(

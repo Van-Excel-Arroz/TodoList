@@ -11,7 +11,7 @@ export default async function Todolist({ params }: { params: any }) {
 	let todos: Todo[];
 
 	if (selectedCategories.length > 0) {
-		todos = await sortTodosBySelectedCategory(selectedCategories);
+		todos = await sortTodosBySelectedCategory(selectedCategories, todolistId);
 	} else {
 		todos = await getTodosWithCategories(todolistId);
 	}
