@@ -227,7 +227,17 @@ export async function sortTodosBySelectedCategory(selectedCategories: Category[]
 			`,
 			[extractedCategories]
 		);
-		return result.rows;
+
+		const todosWithCategories: Todo[] = await Promise.all(
+			result.rows.map(async todo => {
+				const categories = await getTodoWithCategories(todo.id);
+				return {
+					...todo,
+					categories,
+				};
+			})
+		);
+		return todosWithCategories;
 	} catch (error) {
 		console.error('Error sorting todos by selected category in the database', error);
 		return [];
