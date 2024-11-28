@@ -1,23 +1,23 @@
 export const PREDEFINED_COLORS = [
-	'#8B0000', // Dark Red
-	'#008B8B', // Dark Cyan
-	'#FFD700', // Gold
-	'#4B0082', // Indigo
-	'#32CD32', // Lime Green
-	'#FF4500', // OrangeRed
-	'#4682B4', // Steel Blue
-	'#B22222', // FireBrick
-	'#6B8E23', // Olive Drab
-	'#8A2BE2', // BlueViolet
-	'#D2691E', // Chocolate
-	'#2F4F4F', // Dark Slate Gray
-	'#FF69B4', // Hot Pink
-	'#556B2F', // Dark Olive Green
-	'#1E90FF', // Dodger Blue
-	'#C71585', // Medium Violet Red
-	'#8B4513', // SaddleBrown
-	'#708090', // Slate Gray
-	'#2E8B57', // SeaGreen
-	'#483D8B', // Dark Slate Blue
-	'#A52A2A', // Brown
+	'#8B0000', // Dark Red (unchanged)
+	'#008B8B', // Dark Cyan (unchanged)
+	'#B8860B', // Dark Goldenrod (replaced Gold)
+	'#4B0082', // Indigo (unchanged)
+	'#228B22', // Forest Green (replaced Lime Green)
+	'#B22222', // Dark OrangeRed (replaced OrangeRed)
+	'#4682B4', // Steel Blue (unchanged)
+	'#B22222', // FireBrick (unchanged)
+	'#556B2F', // Darker Olive (replaced Olive Drab)
+	'#4B0082', // Darker Purple (replaced BlueViolet)
+	'#8B4513', // Saddle Brown (replaced Chocolate)
+	'#2F4F4F', // Dark Slate Gray (unchanged)
+	'#C71585', // Medium Violet Red (replaced Hot Pink)
+	'#556B2F', // Dark Olive Green (unchanged)
+	'#00008B', // Dark Blue (replaced Dodger Blue)
+	'#C71585', // Medium Violet Red (unchanged)
+	'#8B4513', // Saddle Brown (unchanged)
+	'#2F4F4F', // Darker Slate Gray (replaced Slate Gray)
+	'#2E8B57', // SeaGreen (unchanged)
+	'#483D8B', // Dark Slate Blue (unchanged)
+	'#A52A2A', // Brown (unchanged)
 ] as const;
