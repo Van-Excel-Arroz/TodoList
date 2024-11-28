@@ -5,11 +5,9 @@ import { memo } from 'react';
 function TodoDueDatetime({ dueDatetime }: { dueDatetime: string | null }) {
 	return (
 		<p
-			className={
-				dueDatetime && isPast(dueDatetime)
-					? 'text-center text-sm flex self-center justify-center text-red-500 col-span-2'
-					: 'text-center text-sm flex self-center justify-center text-slate-800 col-span-2'
-			}
+			className={` text-center text-sm flex self-center justify-center ${
+				dueDatetime && isPast(dueDatetime) ? 'text-red-500' : 'text-slate-800'
+			}`}
 		>
 			{dueDatetime
 				? isToday(dueDatetime)

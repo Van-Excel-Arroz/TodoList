@@ -2,7 +2,6 @@
 
 import { updateIsSelectedCategoryColorsAction, updateTodoCompletionAction } from '@/actions/todolist-action';
 import { Todo } from '@/types';
-import { formatDistanceToNow } from 'date-fns';
 import { memo } from 'react';
 import TodoDueDatetime from './TodoDueDatetime';
 import RenderCategories from './RenderCategories';
@@ -20,11 +19,15 @@ function TodoItem({ todo }: { todo: Todo }) {
 	return (
 		<div
 			key={todo.id}
-			className="grid grid-cols-2 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg px-2"
+			className="grid grid-cols-12 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg px-2"
 		>
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
-			<div className="col-span-1 flex items-center py-2">
-				<p className={`ml-6 ${todo.is_completed && 'line-through'}`}>{todo.task_text}</p>
+			<div className="col-span-9 flex items-center py-2">
+				<div className="flex flex-col">
+					<p className={` ${todo.is_completed && 'line-through'} text-sm`}>{todo.task_text}</p>
+					<TodoDueDatetime dueDatetime={todo.due_datetime} />
+				</div>
+				{/* {todo.due_datetime} */}
 				<RenderCategories categories={todo.categories} handleCategoryClick={handleCategoryClick} />
 			</div>
 		</div>
