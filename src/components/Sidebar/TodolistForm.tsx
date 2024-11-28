@@ -34,6 +34,7 @@ function TodolistForm() {
 					<button
 						type="submit"
 						className="border rounded-b-lg rounded-t-lg rounded-l-none shadow-md py-1 px-2 text-lg hover:bg-gray-100 active:bg-gray-200"
+						aria-label="Add new list"
 					>
 						<Plus size={20} className="text-gray-400" />
 					</button>
