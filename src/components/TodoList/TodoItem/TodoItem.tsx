@@ -23,7 +23,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 		>
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 			<div className="col-span-9 flex items-center py-2">
-				<div className="flex flex-col">
+				<div className="flex flex-col ml-6">
 					<p className={` ${todo.is_completed && 'line-through'} text-sm`}>{todo.task_text}</p>
 					<TodoDueDatetime dueDatetime={todo.due_datetime} />
 				</div>
