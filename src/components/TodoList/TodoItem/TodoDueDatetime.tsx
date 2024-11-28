@@ -7,7 +7,7 @@ function TodoDueDatetime({ dueDatetime }: { dueDatetime: string | null }) {
 		<p
 			className={
 				dueDatetime && isPast(dueDatetime)
-					? 'text-center text-sm flex self-center justify-center text-red-500'
+					? 'text-center text-sm flex self-center justify-center text-red-500 '
 					: 'text-center text-sm flex self-center justify-center text-slate-800'
 			}
 		>
