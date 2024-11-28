@@ -64,11 +64,11 @@ export async function updateTodoCompletionAction(todoId: number, isCompleted: bo
 }
 
 export async function updateIsSelectedCategoryColorsAction(
-	categoryColorsId: number,
+	categoryTitle: string,
 	isSelected: boolean,
 	todolistId: number
 ) {
-	const result = await updateIsSelectedCategoryColors(categoryColorsId, isSelected);
+	const result = await updateIsSelectedCategoryColors(categoryTitle, isSelected);
 	if (result) {
 		revalidatePath(`/tasks/${todolistId}`);
 	} else {

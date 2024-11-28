@@ -13,8 +13,8 @@ function TodoItem({ todo }: { todo: Todo }) {
 		await updateTodoCompletionAction(todo.id, !todo.is_completed, todo.todo_list_id);
 	};
 
-	const handleCategoryClick = async (categoryId: number) => {
-		await updateIsSelectedCategoryColorsAction(categoryId, true, todo.todo_list_id);
+	const handleCategoryClick = async (categoryTitle: string) => {
+		await updateIsSelectedCategoryColorsAction(categoryTitle, true, todo.todo_list_id);
 	};
 
 	return (

@@ -10,8 +10,8 @@ interface CategoriesRenderProps {
 }
 
 export default function CategoriesRender({ selectedCategories, todoListId }: CategoriesRenderProps) {
-	const handleCategoryClick = async (categoryId: number) => {
-		await updateIsSelectedCategoryColorsAction(categoryId, false, todoListId);
+	const handleCategoryClick = async (categoryTitle: string) => {
+		await updateIsSelectedCategoryColorsAction(categoryTitle, false, todoListId);
 	};
 
 	return (
@@ -28,7 +28,7 @@ export default function CategoriesRender({ selectedCategories, todoListId }: Cat
 								<X
 									size={12}
 									className="hover:text-white hover:bg-gray-700 rounded-full cursor-pointer"
-									onClick={() => handleCategoryClick(selectedCategory.id)}
+									onClick={() => handleCategoryClick(selectedCategory.category_title)}
 									aria-label={`Remove ${selectedCategory.category_title} category`}
 								/>
 							</div>

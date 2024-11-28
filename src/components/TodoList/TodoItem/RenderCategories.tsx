@@ -3,7 +3,7 @@ import { memo } from 'react';
 
 interface RenderCategoriesProps {
 	categories: Category[];
-	handleCategoryClick: (categoryId: number) => void;
+	handleCategoryClick: (categoryTitle: string) => void;
 }
 
 function RenderCategories({ categories, handleCategoryClick }: RenderCategoriesProps) {
@@ -14,7 +14,7 @@ function RenderCategories({ categories, handleCategoryClick }: RenderCategoriesP
 					key={category.id}
 					className={`text-xs border shadow-md ml-2 rounded py-1 px-2 hover:bg-slate-100 hover:shadow-none active:bg-slate-200`}
 					style={{ color: category.hex_color }}
-					onClick={() => handleCategoryClick(category.id)}
+					onClick={() => handleCategoryClick(category.category_title)}
 				>
 					{category.category_title}
 				</span>
