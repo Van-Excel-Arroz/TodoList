@@ -29,9 +29,12 @@ function TodolistForm() {
 						})}
 						type="text"
 						placeholder="New list"
-						className="border rounded-t-lg rounded-b-lg rounded-r-none py-2 px-2 w-full drop-shadow-md focus:outline-none"
+						className="border rounded-t-lg rounded-b-lg rounded-r-none py-2 px-2 w-full drop-shadow-md focus:outline-none focus:border-gray-400"
 					/>
-					<button type="submit" className="border rounded-b-lg rounded-t-lg rounded-l-none shadow-md py-1 px-2 text-lg">
+					<button
+						type="submit"
+						className="border rounded-b-lg rounded-t-lg rounded-l-none shadow-md py-1 px-2 text-lg hover:bg-gray-100 active:bg-gray-200"
+					>
 						<Plus size={20} className="text-gray-400" />
 					</button>
 				</div>
