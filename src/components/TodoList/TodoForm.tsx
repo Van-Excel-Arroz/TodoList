@@ -5,12 +5,26 @@ import { createTodoAction } from '@/actions/todolist-action';
 import { extractCategory, extractTitle } from '@/utils/category';
 import { memo } from 'react';
 
+interface TodoFormData {
+	todo: string;
+	date?: string;
+	time?: string;
+}
+
 interface TodoFormProps {
 	todolistId: number;
 }
 
 function TodoForm({ todolistId }: TodoFormProps) {
 	const { register, handleSubmit, reset } = useForm();
+
+	const createTimestamp = (date: string | undefined, time: string | undefined): string | null => {
+		const now = new Date().toISOString().split('T')[0];
+		if (!date && !time) return null;
+		if (!date && time) date = now;
+		if (!time && date) time = '23:59:59';
+		return `${date} ${time}`.trim() || null;
+	};
 
 	async function onSubmit(data: any) {
 		if (!data.todo.trim()) return;
