@@ -1,10 +1,10 @@
 'use client';
 
-import { updateIsSelectedCategoryColorsAction, updateTodoCompletionAction } from '@/actions/todolist-action';
-import { Category, Todo } from '@/types';
 import { memo } from 'react';
 import { Calendar, Check } from 'lucide-react';
 import { isToday, isTomorrow, format, isPast } from 'date-fns';
+import { Category, Todo } from '@/types';
+import { updateIsSelectedCategoryColorsAction, updateTodoCompletionAction } from '@/actions/todolist-action';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const handleCheckboxChange = async () => {

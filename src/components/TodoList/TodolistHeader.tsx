@@ -1,8 +1,8 @@
 'use client';
 
 import { memo } from 'react';
-import useSidebarStore from '../Context/SidebarContext';
 import { TodoList } from '@/types';
+import useSidebarStore from '../Context/SidebarContext';
 import SidebarToggle from '../SidebarToggle';
 
 interface TodoListHeaderProps {

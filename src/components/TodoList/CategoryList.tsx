@@ -1,8 +1,8 @@
 'use client';
 
-import { updateIsSelectedCategoryColorsAction } from '@/actions/todolist-action';
-import { Category } from '@/types';
 import { X } from 'lucide-react';
+import { Category } from '@/types';
+import { updateIsSelectedCategoryColorsAction } from '@/actions/todolist-action';
 
 interface CategoryListProps {
 	selectedCategories: Category[];
