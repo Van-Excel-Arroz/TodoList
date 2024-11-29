@@ -1,7 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import useSidebarStore from '@/components/Context/SidebarContext';
+import useSidebarStore from '@/Context/SidebarContext';
 
 function SidebarWrapper({ children }: { children: React.ReactNode }) {
 	const { isSidebarOpen } = useSidebarStore();

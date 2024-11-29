@@ -2,7 +2,7 @@
 
 import { memo } from 'react';
 import { TodoList } from '@/types';
-import useSidebarStore from '../Context/SidebarContext';
+import useSidebarStore from '../../Context/SidebarContext';
 import SidebarToggle from '../SidebarToggle';
 
 interface TodoListHeaderProps {
