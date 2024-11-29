@@ -1,4 +1,4 @@
-import CategoriesRender from './CategoriesRender';
+import CategoryList from './CategoryList';
 import TodoForm from './TodoForm';
 import TodoListHeader from './TodolistHeader';
 
@@ -18,7 +18,7 @@ export default function TodoListContainer({ todolist, todolistId, todos, selecte
 			<div className="font-body flex flex-col px-6 p-9">
 				<TodoListHeader todolist={todolist} />
 				<TodoForm todolistId={todolistId} />
-				<CategoriesRender selectedCategories={selectedCategories} todoListId={todolistId} />
+				<CategoryList selectedCategories={selectedCategories} todoListId={todolistId} />
 				<TodosRender todos={todos} />
 			</div>
 		</>
