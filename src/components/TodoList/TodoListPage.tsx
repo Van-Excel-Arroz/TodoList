@@ -2,10 +2,10 @@ import { getSelectedCategories, getTodosWithCategories, sortTodosBySelectedCateg
 import { getTodolist } from '@/lib/todolist';
 import { Todo } from '@/types';
 import { Suspense } from 'react';
-import TodoListHeader from './TodolistHeader';
 import TodoForm from './TodoForm';
 import CategoryList from './CategoryList';
 import TodoListView from './TodoListView';
+import TodoListHeader from './TodoListHeader';
 
 export default async function TodoListPage({ params }: { params: any }) {
 	const todolistId = Number(params.id);

@@ -5,11 +5,11 @@ import useSidebarStore from '../Context/SidebarContext';
 import { TodoList } from '@/types';
 import SidebarToggle from '../SidebarToggle';
 
-interface TodolistHeaderProps {
+interface TodoListHeaderProps {
 	todolist: TodoList;
 }
 
-function TodoListHeader({ todolist }: TodolistHeaderProps) {
+function TodoListHeader({ todolist }: TodoListHeaderProps) {
 	const { isSidebarOpen } = useSidebarStore();
 
 	return (
