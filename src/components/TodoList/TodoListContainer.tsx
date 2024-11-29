@@ -2,8 +2,8 @@ import CategoryList from './CategoryList';
 import TodoForm from './TodoForm';
 import TodoListHeader from './TodolistHeader';
 
-import TodosRender from './TodosRender';
 import { Category, Todo, TodoList } from '@/types';
+import TodoListView from './TodoListView';
 
 interface TodolistContentProps {
 	todolist: TodoList;
@@ -19,7 +19,7 @@ export default function TodoListContainer({ todolist, todolistId, todos, selecte
 				<TodoListHeader todolist={todolist} />
 				<TodoForm todolistId={todolistId} />
 				<CategoryList selectedCategories={selectedCategories} todoListId={todolistId} />
-				<TodosRender todos={todos} />
+				<TodoListView todos={todos} />
 			</div>
 		</>
 	);

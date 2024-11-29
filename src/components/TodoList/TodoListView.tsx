@@ -3,11 +3,11 @@
 import { Todo } from '@/types';
 import TodosSection from './TodosSection';
 
-interface TodosRenderProps {
+interface TodoListViewProps {
 	todos: Todo[];
 }
 
-export default function TodosRender({ todos }: TodosRenderProps) {
+export default function TodoListView({ todos }: TodoListViewProps) {
 	const incompletedTodos: Todo[] = [];
 	const completedTodos: Todo[] = [];
 
