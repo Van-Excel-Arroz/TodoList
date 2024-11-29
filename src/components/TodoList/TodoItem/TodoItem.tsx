@@ -26,7 +26,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 				{todo.due_datetime ? (
 					<TodoWithDueDatetime isCompleted={todo.is_completed} task={todo.task_text} dueDatetime={todo.due_datetime} />
 				) : (
-					<p className={`py-2 ${todo.is_completed && 'line-through'} text-sm`}>{todo.task_text}</p>
+					<TodoWithoutDueDatetime isCompleted={todo.is_completed} task={todo.task_text} />
 				)}
 				<RenderCategories categories={todo.categories} handleCategoryClick={handleCategoryClick} />
 			</div>
@@ -61,6 +61,10 @@ const TodoWithDueDatetime = ({
 		<p className={` ${isCompleted && 'line-through'} text-sm`}>{task}</p>
 		<TodoDueDatetime dueDatetime={dueDatetime} />
 	</div>
+);
+
+const TodoWithoutDueDatetime = ({ isCompleted, task }: { isCompleted: boolean; task: string }) => (
+	<p className={`py-2 ${isCompleted && 'line-through'} text-sm`}>{task}</p>
 );
 
 export default memo(TodoItem);
