@@ -11,7 +11,7 @@ interface TodolistContentProps {
 	selectedCategories: Category[];
 }
 
-export default function TodoListContent({ todolist, todolistId, todos, selectedCategories }: TodolistContentProps) {
+export default function TodoListContainer({ todolist, todolistId, todos, selectedCategories }: TodolistContentProps) {
 	return (
 		<>
 			<div className="font-body flex flex-col px-6 p-9">
