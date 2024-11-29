@@ -1,9 +1,8 @@
 'use client';
 
-import { memo } from 'react';
 import useSidebarStore from '@/Context/SidebarContext';
 
-function SidebarWrapper({ children }: { children: React.ReactNode }) {
+export default function SidebarWrapper({ children }: { children: React.ReactNode }) {
 	const { isSidebarOpen } = useSidebarStore();
 	return (
 		<>
@@ -17,5 +16,3 @@ function SidebarWrapper({ children }: { children: React.ReactNode }) {
 		</>
 	);
 }
-
-export default memo(SidebarWrapper);

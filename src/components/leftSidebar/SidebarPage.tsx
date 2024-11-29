@@ -1,9 +1,9 @@
 import { TodoList } from '@/types';
+import { getTodolists } from '@/lib/todolist';
 import SidebarWrapper from './SidebarWrapper';
 import SidebarHeader from './SidebarHeader';
 import TodolistForm from './TodolistForm';
 import TodolistsRender from './TodolistsRender';
-import { getTodolists } from '@/lib/todolist';
 
 export default async function SidebarPage() {
 	const todolists: TodoList[] = (await getTodolists(1)) ?? [];

@@ -1,12 +1,11 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { memo } from 'react';
-import SidebarToggle from '../SidebarToggle';
+import { usePathname } from 'next/navigation';
 import { House } from 'lucide-react';
+import SidebarToggle from '../SidebarToggle';
 
-function SidebarHeader() {
+export default function SidebarHeader() {
 	const pathname = usePathname();
 	const isHome = pathname === '/tasks/home';
 	return (
@@ -18,5 +17,3 @@ function SidebarHeader() {
 		</div>
 	);
 }
-
-export default memo(SidebarHeader);

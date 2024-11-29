@@ -1,11 +1,10 @@
 'use client';
 
-import { memo } from 'react';
 import { createTodolist } from '../../actions/todolist-action';
 import { useForm } from 'react-hook-form';
 import { Plus } from 'lucide-react';
 
-function TodolistForm() {
+export default function TodolistForm() {
 	const {
 		register,
 		handleSubmit,
@@ -44,5 +43,3 @@ function TodolistForm() {
 		</>
 	);
 }
-
-export default memo(TodolistForm);
