@@ -36,6 +36,8 @@ function TodoItem({ todo }: { todo: Todo }) {
 export default memo(TodoItem);
 
 // ------------------------------------------------------------------------------------------------ //
+// COMPONENTS
+// ------------------------------------------------------------------------------------------------ //
 
 const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; handleOnClick: () => void }) => (
 	<div className="col-end-1 flex items-center">
