@@ -1,9 +1,8 @@
 'use client';
 
 import { updateIsSelectedCategoryColorsAction, updateTodoCompletionAction } from '@/actions/todolist-action';
-import { Todo } from '@/types';
+import { Category, Todo } from '@/types';
 import { memo } from 'react';
-import RenderCategories from './RenderCategories';
 import { Calendar, Check } from 'lucide-react';
 import { isToday, isTomorrow, format, isPast } from 'date-fns';
 
@@ -78,6 +77,27 @@ const TodoWithDueDatetime = ({
 
 const TodoWithoutDueDatetime = ({ isCompleted, task }: { isCompleted: boolean; task: string }) => (
 	<p className={`py-2 ${isCompleted && 'line-through'} text-sm`}>{task}</p>
+);
+
+const RenderCategories = ({
+	categories,
+	handleCategoryClick,
+}: {
+	categories: Category[];
+	handleCategoryClick: (categoryTitle: string) => void;
+}) => (
+	<div className="flex">
+		{categories?.map(category => (
+			<span
+				key={category.id}
+				className={`text-xs border shadow-md ml-2 rounded py-1 px-2 hover:bg-slate-100 hover:shadow-none active:bg-slate-200`}
+				style={{ color: category.hex_color }}
+				onClick={() => handleCategoryClick(category.category_title)}
+			>
+				{category.category_title}
+			</span>
+		))}
+	</div>
 );
 
 export default memo(TodoItem);
