@@ -10,12 +10,7 @@ interface TodoFormProps {
 }
 
 function TodoForm({ todolistId }: TodoFormProps) {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		reset,
-	} = useForm();
+	const { register, handleSubmit, reset } = useForm();
 
 	async function onSubmit(data: any) {
 		if (!data.todo.trim()) return;
