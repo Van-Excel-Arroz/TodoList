@@ -6,7 +6,7 @@ import { extractCategory, extractTitle } from '@/utils/category';
 import { memo } from 'react';
 
 interface TodoFormData {
-	todo: string;
+	todo?: string;
 	date?: string;
 	time?: string;
 }
@@ -26,33 +26,19 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		return `${date} ${time}`.trim() || null;
 	};
 
-	async function onSubmit(data: any) {
-		if (!data.todo.trim()) return;
-
-		if (!data.time && data.date) {
-			data.time = '23:59:59';
-		}
-
-		const now = new Date();
-		const dateNow = now.toISOString().split('T')[0];
-		if (!data.date && data.time) {
-			data.date = dateNow;
-		}
+	const onSubmit = async (data: TodoFormData) => {
+		if (!data.todo?.trim()) return;
 
 		const todoTask: string = extractTitle(data.todo);
+		if (todoTask.trim() === '') return;
+
 		const categoryTitles: string[] = extractCategory(data.todo);
-		let timestamp: string | null = data.date + ' ' + data.time;
-
-		if (timestamp.trim() === '') timestamp = null;
-
-		if (todoTask.trim() === '') {
-			return;
-		}
+		const timestamp: string | null = createTimestamp(data.date, data.time);
 
 		await createTodoAction(todoTask, timestamp, todolistId, categoryTitles);
 
 		reset();
-	}
+	};
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="mt-7 flex flex-col items-start">
