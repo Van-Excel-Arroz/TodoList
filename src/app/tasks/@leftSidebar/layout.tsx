@@ -1,4 +1,4 @@
-import Sidebar from '@/components/Sidebar/Sidebar';
+import Sidebar from '@/components/leftSidebar/Sidebar';
 import { getTodolists } from '@/lib/todolist';
 import { TodoList } from '@/types';
 
