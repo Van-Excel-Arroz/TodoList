@@ -5,7 +5,7 @@ import { Todo } from '@/types';
 import { memo } from 'react';
 import TodoDueDatetime from './TodoDueDatetime';
 import RenderCategories from './RenderCategories';
-import CheckBox from './CheckBox';
+import { Check } from 'lucide-react';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const handleCheckboxChange = async () => {
@@ -36,5 +36,19 @@ function TodoItem({ todo }: { todo: Todo }) {
 		</div>
 	);
 }
+
+const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; handleOnClick: () => void }) => (
+	<div className="col-end-1 flex items-center">
+		<button className="flex items-center" onClick={handleOnClick} aria-label={isChecked ? 'checked' : 'unchecked'}>
+			{isChecked ? (
+				<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md hover:bg-slate-800 active:bg-slate-700">
+					<Check color="white" size={15} />
+				</div>
+			) : (
+				<div className="border border-black w-5 h-5 rounded-md hover:border-slate-600 active:border-slate-400"></div>
+			)}
+		</button>
+	</div>
+);
 
 export default memo(TodoItem);
