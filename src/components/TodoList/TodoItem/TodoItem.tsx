@@ -3,9 +3,9 @@
 import { updateIsSelectedCategoryColorsAction, updateTodoCompletionAction } from '@/actions/todolist-action';
 import { Todo } from '@/types';
 import { memo } from 'react';
-import TodoDueDatetime from './TodoDueDatetime';
 import RenderCategories from './RenderCategories';
-import { Check } from 'lucide-react';
+import { Calendar, Check } from 'lucide-react';
+import { isToday, isTomorrow, format, isPast } from 'date-fns';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const handleCheckboxChange = async () => {
@@ -59,7 +59,20 @@ const TodoWithDueDatetime = ({
 }) => (
 	<div className="flex flex-col">
 		<p className={` ${isCompleted && 'line-through'} text-sm`}>{task}</p>
-		<TodoDueDatetime dueDatetime={dueDatetime} />
+		<div className="flex items-center gap-2">
+			<p className="text-xs text-slate-800">
+				<Calendar size={12} />
+			</p>
+			<p className={`text-xs ${dueDatetime && isPast(dueDatetime) ? 'text-red-500' : 'text-slate-800'}`}>
+				{dueDatetime
+					? isToday(dueDatetime)
+						? 'Today' + format(dueDatetime, ` \'at\' h:mm a`)
+						: isTomorrow(dueDatetime)
+						? 'Tomorrow' + format(dueDatetime, ` \'at\' h:mm a`)
+						: format(dueDatetime, `EEE, MMMM d \'at\' h:mm a`)
+					: '-'}
+			</p>
+		</div>{' '}
 	</div>
 );
 
