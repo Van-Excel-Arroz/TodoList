@@ -35,6 +35,8 @@ function TodoItem({ todo }: { todo: Todo }) {
 
 export default memo(TodoItem);
 
+// ------------------------------------------------------------------------------------------------ //
+
 const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; handleOnClick: () => void }) => (
 	<div className="col-end-1 flex items-center">
 		<button className="flex items-center" onClick={handleOnClick} aria-label={isChecked ? 'checked' : 'unchecked'}>
