@@ -1,12 +1,12 @@
 import { Todo } from '@/types';
 import TodoItem from './TodoItem';
 
-interface TodosSectionProps {
+interface TodoSectionProps {
 	title: string;
 	todos: Todo[];
 }
 
-export default function TodosSection({ title, todos }: TodosSectionProps) {
+export default function TodoSection({ title, todos }: TodoSectionProps) {
 	return (
 		<div className="bg-white px-4 py-4 border rounded-2xl my-6">
 			<div className="grid grid-cols-12 font-semibold mb-2">

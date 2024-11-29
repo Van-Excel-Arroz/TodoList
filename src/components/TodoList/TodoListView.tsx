@@ -1,7 +1,7 @@
 'use client';
 
 import { Todo } from '@/types';
-import TodosSection from './TodosSection';
+import TodoSection from './TodoSection';
 
 interface TodoListViewProps {
 	todos: Todo[];
@@ -23,8 +23,8 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 		<>
 			{todos.length > 0 ? (
 				<div>
-					<TodosSection title="Todos" todos={incompletedTodos} />
-					<TodosSection title="Completed Todos" todos={completedTodos} />
+					<TodoSection title="Todos" todos={incompletedTodos} />
+					<TodoSection title="Completed Todos" todos={completedTodos} />
 				</div>
 			) : (
 				<div className="flex flex-col items-center justify-center text-gray-600 mt-10">
