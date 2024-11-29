@@ -24,10 +24,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 			<div className="col-span-9 flex items-center py-2 pl-4">
 				{todo.due_datetime ? (
-					<div className="flex flex-col">
-						<p className={` ${todo.is_completed && 'line-through'} text-sm`}>{todo.task_text}</p>
-						<TodoDueDatetime dueDatetime={todo.due_datetime} />
-					</div>
+					<TodoWithDueDatetime isCompleted={todo.is_completed} task={todo.task_text} dueDatetime={todo.due_datetime} />
 				) : (
 					<p className={`py-2 ${todo.is_completed && 'line-through'} text-sm`}>{todo.task_text}</p>
 				)}
@@ -48,6 +45,21 @@ const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; handleOnCl
 				<div className="border border-black w-5 h-5 rounded-md hover:border-slate-600 active:border-slate-400"></div>
 			)}
 		</button>
+	</div>
+);
+
+const TodoWithDueDatetime = ({
+	isCompleted,
+	task,
+	dueDatetime,
+}: {
+	isCompleted: boolean;
+	task: string;
+	dueDatetime: string;
+}) => (
+	<div className="flex flex-col">
+		<p className={` ${isCompleted && 'line-through'} text-sm`}>{task}</p>
+		<TodoDueDatetime dueDatetime={dueDatetime} />
 	</div>
 );
 
