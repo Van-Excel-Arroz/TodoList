@@ -1,12 +1,9 @@
-import Sidebar from '@/components/leftSidebar/Sidebar';
-import { getTodolists } from '@/lib/todolist';
-import { TodoList } from '@/types';
+import SidebarPage from '@/components/leftSidebar/SidebarPage';
 
-export default async function LeftLayout() {
-	const todolists: TodoList[] = (await getTodolists(1)) ?? [];
+export default function LeftLayout() {
 	return (
 		<>
-			<Sidebar todolists={todolists} />
+			<SidebarPage />
 		</>
 	);
 }

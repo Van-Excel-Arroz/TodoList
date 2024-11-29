@@ -9,11 +9,11 @@ import CancelEditButton from './CancelEditButton';
 import EditButton from './EditButton';
 import { TodoList } from '@/types';
 
-interface TodolistItemProps {
+interface TodoListItemProps {
 	todolist: TodoList;
 }
 
-function TodoListItem({ todolist }: TodolistItemProps) {
+function TodoListItem({ todolist }: TodoListItemProps) {
 	const pathname = usePathname();
 	const isSelectedPath = pathname === `/tasks/${todolist.id}`;
 	const [isEditing, setIsEditing] = useState(false);
