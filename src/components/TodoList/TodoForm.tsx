@@ -58,9 +58,9 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				autoComplete="off"
 				className="border rounded-lg rounded-b-none py-2 px-4 w-full drop-shadow-md focus:outline-none focus:border-slate-400 hover:border-slate-400"
 			/>
-			<div className="flex gap-2 px-4 bg-white rounded-lg rounded-t-none w-full border border-t-0 text-gray-400 py-2 drop-shadow-md ">
-				<Calendar size={16} />
-				<Timer size={16} />
+			<div className="flex gap-2 px-4 py-2 bg-white rounded-lg rounded-t-none w-full border border-t-0 text-gray-400 drop-shadow-md ">
+				<Calendar size={25} className="cursor-pointer hover:bg-slate-200 rounded-sm p-1" />
+				<Timer size={25} className="cursor-pointer hover:bg-slate-200 rounded-sm p-1" />
 			</div>
 
 			<div className="flex gap-10">
