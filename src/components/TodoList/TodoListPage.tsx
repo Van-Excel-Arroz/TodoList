@@ -4,7 +4,7 @@ import { getTodolist } from '@/lib/todolist';
 import { Todo } from '@/types';
 import { Suspense } from 'react';
 
-export default async function Todolist({ params }: { params: any }) {
+export default async function TodoListPage({ params }: { params: any }) {
 	const todolistId = Number(params.id);
 	const todolist = await getTodolist(todolistId, 1);
 	const selectedCategories = await getSelectedCategories(todolistId);

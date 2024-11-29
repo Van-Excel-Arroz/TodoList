@@ -1,5 +1,5 @@
-import Todolist from '@/components/TodoList/TodoList';
+import TodoListPage from '@/components/TodoList/TodoListPage';
 
 export default function TodolistPage({ params }: { params: any }) {
-	return <Todolist params={params} />;
+	return <TodoListPage params={params} />;
 }
