@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todolist-action';
 import { extractCategory, extractTitle } from '@/utils/category';
 import { memo } from 'react';
-import { register } from 'module';
 
 interface TodoFormData {
 	todo?: string;
