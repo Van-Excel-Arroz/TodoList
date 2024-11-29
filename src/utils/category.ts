@@ -1,6 +1,6 @@
 export function extractCategory(title: string): string[] {
 	const regex = /#(\S+?)(?=[ #]|$)/g; // Match # followed by non-whitespace until next space or #, or end of string
-	let categories: string[] = [];
+	const categories: string[] = [];
 	let match: RegExpExecArray | null;
 
 	while ((match = regex.exec(title)) !== null) {

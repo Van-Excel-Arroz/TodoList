@@ -6,7 +6,8 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"analyze": "set ANALYZE=true && next build"
 	},
 	"dependencies": {
 		"date-fns": "^4.1.0",
@@ -19,6 +20,7 @@
 		"zustand": "^5.0.1"
 	},
 	"devDependencies": {
+		"@next/bundle-analyzer": "^15.0.3",
 		"@types/node": "^20",
 		"@types/pg": "^8.11.10",
 		"@types/react": "^18",
