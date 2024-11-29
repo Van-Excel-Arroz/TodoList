@@ -9,7 +9,7 @@ interface TodolistHeaderProps {
 	todolist: TodoList;
 }
 
-function TodolistHeader({ todolist }: TodolistHeaderProps) {
+function TodoListHeader({ todolist }: TodolistHeaderProps) {
 	const { isSidebarOpen } = useSidebarStore();
 
 	return (
@@ -22,4 +22,4 @@ function TodolistHeader({ todolist }: TodolistHeaderProps) {
 	);
 }
 
-export default memo(TodolistHeader);
+export default memo(TodoListHeader);
