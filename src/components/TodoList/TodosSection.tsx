@@ -1,5 +1,5 @@
 import { Todo } from '@/types';
-import TodoItem from './TodoItem/TodoItem';
+import TodoItem from './TodoItem';
 
 interface TodosSectionProps {
 	title: string;
