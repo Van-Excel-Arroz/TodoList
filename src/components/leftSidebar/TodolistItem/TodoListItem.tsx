@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { memo, useState } from 'react';
-import DeleteTodolistButton from './DeleteTodolistButton';
 import EditTodolistForm from './EditTodolistForm';
 import { TodoList } from '@/types';
-import { CircleX, Pencil } from 'lucide-react';
+import { CircleX, Pencil, Trash2 } from 'lucide-react';
+import { deleteTodolistAction } from '@/actions/todolist-action';
 
 interface TodoListItemProps {
 	todolist: TodoList;
@@ -45,7 +45,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 			) : (
 				<div className="flex items-center gap-3 opacity-0 group-hover:opacity-100">
 					<EditButton handleEditClick={handleEditClick} />
-					<DeleteTodolistButton todolistId={todolist.id} />
+					<DeleteButton todolistId={todolist.id} />
 				</div>
 			)}
 		</div>
@@ -65,6 +65,27 @@ const EditButton = memo(({ handleEditClick }: { handleEditClick: (val: boolean) 
 		<button onClick={() => handleEditClick(true)} aria-label="Edit Todolist">
 			<Pencil size={15} />
 		</button>
+	);
+});
+
+const DeleteButton = memo(({ todolistId }: { todolistId: number }) => {
+	const router = useRouter();
+	const pathname = usePathname();
+
+	const onSubmit = async (event: React.FormEvent) => {
+		event.preventDefault();
+		await deleteTodolistAction(todolistId, 1);
+		if (pathname === `/tasks/${todolistId}`) {
+			router.push('/tasks/home');
+		}
+	};
+
+	return (
+		<form onSubmit={onSubmit} className="flex items-center">
+			<button type="submit" aria-label="Delete Todolist">
+				<Trash2 size={15} />
+			</button>
+		</form>
 	);
 });
 
