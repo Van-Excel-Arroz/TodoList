@@ -1,12 +1,12 @@
 'use client';
 
+import { memo, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { memo, useState } from 'react';
-import EditTodolistForm from './EditTodolistForm';
+import { deleteTodolistAction } from '@/actions/todolist-action';
 import { TodoList } from '@/types';
 import { CircleX, Pencil, Trash2 } from 'lucide-react';
-import { deleteTodolistAction } from '@/actions/todolist-action';
+import EditTodolistForm from './EditTodolistForm';
 
 interface TodoListItemProps {
 	todolist: TodoList;
