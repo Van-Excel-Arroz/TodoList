@@ -210,28 +210,37 @@ export async function sortTodosBySelectedCategory(selectedCategories: Category[]
 	try {
 		const result = await query(
 			`
-			SELECT
-			t.id AS id,
-			t.task_text,
-			t.due_datetime,
-			t.creation_date,
-			t.todo_list_id,
-			t.is_completed
-			FROM
-					todos t
-			LEFT JOIN
-					categories c ON t.id = c.todo_id
-			LEFT JOIN
-					category_colors cc ON c.category_color_id = cc.id
-			WHERE t.todo_list_id = $2
-			GROUP BY
-					t.id
-			ORDER BY
-					MIN(CASE WHEN cc.category_title = ANY($1) THEN 0 ELSE 1 END), -- Prioritize
-					COUNT(c.category_color_id) DESC, -- Number of associated categories
-					t.creation_date ASC; -- Break ties with creation date
-			`,
-			[extractedCategories, todolistId]
+      SELECT
+        t.id AS id,
+        t.task_text,
+        t.due_datetime,
+        t.creation_date,
+        t.todo_list_id,
+        t.is_completed
+      FROM
+        todos t
+      LEFT JOIN
+        categories c ON t.id = c.todo_id
+      LEFT JOIN
+        category_colors cc ON c.category_color_id = cc.id
+      WHERE t.todo_list_id = $2
+      GROUP BY
+        t.id
+      ORDER BY
+        -- First prioritize exact matches (same number of categories as selected)
+        CASE 
+          WHEN COUNT(CASE WHEN cc.category_title = ANY($1) THEN 1 END) = $3 
+          AND COUNT(c.category_color_id) = $3 
+          THEN 0
+          -- Then todos with at least one matching category
+          WHEN COUNT(CASE WHEN cc.category_title = ANY($1) THEN 1 END) > 0 
+          THEN 1
+          ELSE 2
+        END,
+        -- Secondary sort by creation date
+        t.creation_date ASC
+      `,
+			[extractedCategories, todolistId, extractedCategories.length]
 		);
 
 		const todosWithCategories: Todo[] = await Promise.all(
