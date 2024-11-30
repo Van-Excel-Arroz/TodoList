@@ -32,7 +32,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 			) : (
 				<Link
 					href={`/tasks/${todolist.id}`}
-					className={`flex-1 text-ellipsis py-3 pl-5 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
+					className={`flex-1 text-ellipsis py-3 pl-5 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-50px)] ${
 						isSelectedPath ? 'font-normal' : 'font-light'
 					}`}
 				>
@@ -43,7 +43,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 			{isEditing ? (
 				<CancelEditButton handleEditClick={handleEditClick} />
 			) : (
-				<div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 absolute right-5">
+				<div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 absolute right-5">
 					<EditButton handleEditClick={handleEditClick} />
 					<DeleteButton todolistId={todolist.id} />
 				</div>
