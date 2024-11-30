@@ -24,7 +24,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 	return (
 		<div
 			className={`flex items-center pr-5 group relative w-full ${
-				isSelectedPath ? 'border-l-4 border-slate-500 bg-slate-200' : 'pl-1 hover:bg-slate-100 active:bg-slate-200'
+				isSelectedPath ? 'border-l-4 border-slate-500 bg-slate-200' : 'pl-1 hover:bg-slate-100'
 			}`}
 		>
 			{isEditing ? (
@@ -32,7 +32,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 			) : (
 				<Link
 					href={`/tasks/${todolist.id}`}
-					className={`flex-1 text-ellipsis py-3 pl-5 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-50px)] ${
+					className={`flex-1 text-ellipsis py-3 pl-5 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
 						isSelectedPath ? 'font-normal' : 'font-light'
 					}`}
 				>
@@ -54,7 +54,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 
 const CancelEditButton = memo(({ handleEditClick }: { handleEditClick: (val: boolean) => void }) => {
 	return (
-		<button onClick={() => handleEditClick(false)} aria-label="Cancel Editing" className="p-1">
+		<button onClick={() => handleEditClick(false)} aria-label="Cancel Editing" className="ml-7">
 			<CircleX size={15} />
 		</button>
 	);
@@ -82,7 +82,7 @@ const DeleteButton = memo(({ todolistId }: { todolistId: number }) => {
 
 	return (
 		<form onSubmit={onSubmit} className="flex items-center">
-			<button type="submit" aria-label="Delete Todolist">
+			<button type="submit" aria-label="Delete Todolist" className="p-1">
 				<Trash2 size={15} />
 			</button>
 		</form>

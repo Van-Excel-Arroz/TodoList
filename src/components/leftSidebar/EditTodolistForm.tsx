@@ -39,7 +39,7 @@ function EditTodolistForm({ todolist, handleEditClick }: EditTodolistFormProps) 
 				{...register('title')}
 				type="text"
 				placeholder={todolist.title}
-				className="bg-transparent focus:outline-none border-b border-slate-950 my-3 mx-5"
+				className="bg-transparent focus:outline-none border-b border-slate-950 my-3 mx-5 w-full"
 				autoFocus
 				onBlur={handleInputBlur}
 				defaultValue={todolist.title}
