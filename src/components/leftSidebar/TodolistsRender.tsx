@@ -1,5 +1,5 @@
 import { TodoList } from '@/types';
-import TodoListItem from './TodolistItem/TodoListItem';
+import TodoListItem from './TodoListItem';
 
 export default function TodolistsRender({ todolists }: { todolists: TodoList[] }) {
 	return (
