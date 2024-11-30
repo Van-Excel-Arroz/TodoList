@@ -227,20 +227,14 @@ export async function sortTodosBySelectedCategory(selectedCategories: Category[]
       GROUP BY
         t.id
       ORDER BY
-        -- First prioritize exact matches (same number of categories as selected)
-        CASE 
-          WHEN COUNT(CASE WHEN cc.category_title = ANY($1) THEN 1 END) = $3 
-          AND COUNT(c.category_color_id) = $3 
-          THEN 0
-          -- Then todos with at least one matching category
-          WHEN COUNT(CASE WHEN cc.category_title = ANY($1) THEN 1 END) > 0 
-          THEN 1
-          ELSE 2
-        END,
-        -- Secondary sort by creation date
+        -- First order by number of matching categories (descending)
+        COUNT(CASE WHEN cc.category_title = ANY($1) THEN 1 END) DESC,
+        -- Then by total number of categories (ascending) for ties
+        COUNT(c.category_color_id) ASC,
+        -- Finally by creation date
         t.creation_date ASC
       `,
-			[extractedCategories, todolistId, extractedCategories.length]
+			[extractedCategories, todolistId]
 		);
 
 		const todosWithCategories: Todo[] = await Promise.all(
