@@ -23,27 +23,27 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 
 	return (
 		<div
-			className={`flex items-center pr-5 group ${
-				isSelectedPath ? 'border-l-4 border-slate-500 bg-slate-200' : 'pl-1 hover:bg-slate-100 '
+			className={`flex items-center pr-5 group relative w-full ${
+				isSelectedPath ? 'border-l-4 border-slate-500 bg-slate-200' : 'pl-1 hover:bg-slate-100 active:bg-slate-200'
 			}`}
 		>
-			<div className="text-md w-full block">
-				{isEditing ? (
-					<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} />
-				) : (
-					<Link
-						href={`/tasks/${todolist.id}`}
-						className={`w-full block py-3 px-5 ${isSelectedPath ? 'font-normal' : 'font-light'}`}
-					>
-						{todolist.title}
-					</Link>
-				)}
-			</div>
+			{isEditing ? (
+				<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} />
+			) : (
+				<Link
+					href={`/tasks/${todolist.id}`}
+					className={`flex-1 text-ellipsis py-3 pl-5 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
+						isSelectedPath ? 'font-normal' : 'font-light'
+					}`}
+				>
+					{todolist.title}
+				</Link>
+			)}
 
 			{isEditing ? (
 				<CancelEditButton handleEditClick={handleEditClick} />
 			) : (
-				<div className="flex items-center gap-3 opacity-0 group-hover:opacity-100">
+				<div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 absolute right-5">
 					<EditButton handleEditClick={handleEditClick} />
 					<DeleteButton todolistId={todolist.id} />
 				</div>
@@ -54,7 +54,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 
 const CancelEditButton = memo(({ handleEditClick }: { handleEditClick: (val: boolean) => void }) => {
 	return (
-		<button onClick={() => handleEditClick(false)} aria-label="Cancel Editing">
+		<button onClick={() => handleEditClick(false)} aria-label="Cancel Editing" className="p-1">
 			<CircleX size={15} />
 		</button>
 	);
@@ -62,7 +62,7 @@ const CancelEditButton = memo(({ handleEditClick }: { handleEditClick: (val: boo
 
 const EditButton = memo(({ handleEditClick }: { handleEditClick: (val: boolean) => void }) => {
 	return (
-		<button onClick={() => handleEditClick(true)} aria-label="Edit Todolist">
+		<button onClick={() => handleEditClick(true)} aria-label="Edit Todolist" className="p-1">
 			<Pencil size={15} />
 		</button>
 	);
