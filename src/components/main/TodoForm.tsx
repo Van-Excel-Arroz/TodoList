@@ -66,7 +66,7 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 		<input
 			{...register('date')}
 			type="date"
-			className="bg-transparent focus:outline-slate-400"
+			className="bg-transparent focus:outline-slate-400 cursor-pointer"
 			id="date"
 			aria-label="Due Date"
 		/>
@@ -75,7 +75,7 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 			{...register('time')}
 			type="time"
 			step="1"
-			className="bg-transparent focus:outline-slate-400"
+			className="bg-transparent focus:outline-slate-400 cursor-pointer"
 			id="time"
 			aria-label="Due Time"
 		/>
