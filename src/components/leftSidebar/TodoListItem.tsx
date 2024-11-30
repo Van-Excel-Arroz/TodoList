@@ -41,34 +41,46 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 			)}
 
 			{isEditing ? (
-				<CancelEditButton handleEditClick={handleEditClick} />
+				<CancelEditButton handleEditClick={handleEditClick} isActive={isSelectedPath} />
 			) : (
 				<div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 absolute right-5">
-					<EditButton handleEditClick={handleEditClick} />
-					<DeleteButton todolistId={todolist.id} />
+					<EditButton handleEditClick={handleEditClick} isActive={isSelectedPath} />
+					<DeleteButton todolistId={todolist.id} isActive={isSelectedPath} />
 				</div>
 			)}
 		</div>
 	);
 }
 
-const CancelEditButton = memo(({ handleEditClick }: { handleEditClick: (val: boolean) => void }) => {
-	return (
-		<button onClick={() => handleEditClick(false)} aria-label="Cancel Editing" className="ml-7">
-			<CircleX size={15} />
-		</button>
-	);
-});
+const CancelEditButton = memo(
+	({ handleEditClick, isActive }: { handleEditClick: (val: boolean) => void; isActive: boolean }) => {
+		return (
+			<button
+				onClick={() => handleEditClick(false)}
+				aria-label="Cancel Editing"
+				className={`p-1 ml-7  rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
+			>
+				<CircleX size={15} />
+			</button>
+		);
+	}
+);
 
-const EditButton = memo(({ handleEditClick }: { handleEditClick: (val: boolean) => void }) => {
-	return (
-		<button onClick={() => handleEditClick(true)} aria-label="Edit Todolist" className="p-1">
-			<Pencil size={15} />
-		</button>
-	);
-});
+const EditButton = memo(
+	({ handleEditClick, isActive }: { handleEditClick: (val: boolean) => void; isActive: boolean }) => {
+		return (
+			<button
+				onClick={() => handleEditClick(true)}
+				aria-label="Edit Todolist"
+				className={`p-1  rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
+			>
+				<Pencil size={15} />
+			</button>
+		);
+	}
+);
 
-const DeleteButton = memo(({ todolistId }: { todolistId: number }) => {
+const DeleteButton = memo(({ todolistId, isActive }: { todolistId: number; isActive: boolean }) => {
 	const router = useRouter();
 	const pathname = usePathname();
 
@@ -82,7 +94,11 @@ const DeleteButton = memo(({ todolistId }: { todolistId: number }) => {
 
 	return (
 		<form onSubmit={onSubmit} className="flex items-center">
-			<button type="submit" aria-label="Delete Todolist" className="p-1">
+			<button
+				type="submit"
+				aria-label="Delete Todolist"
+				className={`p-1  rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
+			>
 				<Trash2 size={15} />
 			</button>
 		</form>
