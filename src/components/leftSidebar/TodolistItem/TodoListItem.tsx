@@ -5,9 +5,9 @@ import { usePathname } from 'next/navigation';
 import { memo, useState } from 'react';
 import DeleteTodolistButton from './DeleteTodolistButton';
 import EditTodolistForm from './EditTodolistForm';
-import CancelEditButton from './CancelEditButton';
 import EditButton from './EditButton';
 import { TodoList } from '@/types';
+import { CircleX } from 'lucide-react';
 
 interface TodoListItemProps {
 	todolist: TodoList;
@@ -52,5 +52,13 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 		</div>
 	);
 }
+
+const CancelEditButton = memo(({ handleEditClick }: { handleEditClick: (val: boolean) => void }) => {
+	return (
+		<button onClick={() => handleEditClick(false)} aria-label="Cancel Editing">
+			<CircleX size={15} />
+		</button>
+	);
+});
 
 export default memo(TodoListItem);
