@@ -1,6 +1,6 @@
 'use client';
 
-import useSidebarStore from '@/Context/SidebarContext';
+import useSidebarStore from '@/Context/LeftSidebarContext';
 
 export default function SidebarWrapper({ children }: { children: React.ReactNode }) {
 	const { isSidebarOpen } = useSidebarStore();
