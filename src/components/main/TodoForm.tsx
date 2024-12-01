@@ -30,8 +30,6 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		if (!data.todo?.trim()) return;
 
 		const todoTask: string = extractTitle(data.todo);
-		if (todoTask.trim() === '') return;
-
 		const categoryTitles: string[] = extractCategory(data.todo);
 		const timestamp: string | null = createTimestamp(data.date, data.time);
 
