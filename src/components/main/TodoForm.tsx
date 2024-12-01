@@ -48,8 +48,6 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	);
 }
 
-const AddButton = () => <button>Add</button>;
-
 const TodoInput = ({ register }: { register: any }) => (
 	<input
 		{...register('todo', {
@@ -85,6 +83,16 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 		</div>
 		<AddButton />
 	</div>
+);
+
+const AddButton = () => (
+	<button
+		type="submit"
+		className="border rounded-lg shadow-md py-1 px-2 text-sm hover:bg-gray-100 active:bg-gray-200"
+		aria-label="Add new todo"
+	>
+		Add
+	</button>
 );
 
 export default memo(TodoForm);
