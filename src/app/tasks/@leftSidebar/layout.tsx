@@ -1,6 +1,6 @@
 import SidebarPage from '@/components/leftSidebar/SidebarPage';
 
-export default function LeftLayout() {
+export default function LeftSidebarLayout() {
 	return (
 		<>
 			<SidebarPage />
