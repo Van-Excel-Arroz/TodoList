@@ -1,3 +1,3 @@
-export default function RightSidebarHome() {
+export default function RightHome() {
 	return null;
 }

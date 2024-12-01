@@ -1,3 +1,3 @@
-export default function RightSidebarPage() {
+export default function RightPage() {
 	return null;
 }

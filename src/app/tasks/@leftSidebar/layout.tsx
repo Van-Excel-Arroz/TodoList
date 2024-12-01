@@ -1,9 +1,9 @@
-import SidebarPage from '@/components/leftSidebar/SidebarPage';
+import LeftSidebarPage from '@/components/leftSidebar/LeftSidebarPage';
 
 export default function LeftSidebarLayout() {
 	return (
 		<>
-			<SidebarPage />
+			<LeftSidebarPage />
 		</>
 	);
 }

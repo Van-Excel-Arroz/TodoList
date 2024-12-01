@@ -5,7 +5,7 @@ import SidebarHeader from './SidebarHeader';
 import TodolistForm from './TodolistForm';
 import TodolistsRender from './TodolistsRender';
 
-export default async function SidebarPage() {
+export default async function LeftSidebarPage() {
 	const todolists: TodoList[] = (await getTodolists(1)) ?? [];
 	return (
 		<>

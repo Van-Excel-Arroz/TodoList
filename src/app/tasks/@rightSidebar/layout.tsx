@@ -1,3 +1,5 @@
+import RightSidebarPage from '@/components/rightSidebar/RightSidebarPage';
+
 export default function RightSidebarLayout() {
-	return <h1>HELLO WORLD</h1>;
+	return <RightSidebarPage />;
 }
