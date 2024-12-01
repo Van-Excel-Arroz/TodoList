@@ -22,25 +22,33 @@ export default function TodolistForm() {
 		<>
 			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-2">
 				<div className="flex flex-row justify-center ">
-					<input
-						{...register('title', {
-							required: true,
-							maxLength: { value: 100, message: 'Exceeded maximum length of 100' },
-						})}
-						type="text"
-						placeholder="New list"
-						className="border rounded-lg rounded-r-none py-2 px-2 w-full drop-shadow-md focus:outline-none focus:border-gray-400 hover:border-gray-400"
-					/>
-					<button
-						type="submit"
-						className="border rounded-lg rounded-l-none shadow-md py-1 px-2 text-lg hover:bg-gray-100 active:bg-gray-200"
-						aria-label="Add new list"
-					>
-						<Plus size={20} className="text-gray-400" />
-					</button>
+					<TitleInput register={register} />
+					<AddButton />
 				</div>
 				{errors.title?.message && typeof errors.title.message === 'string' && <p>{errors.title.message}</p>}
 			</form>
 		</>
 	);
 }
+
+const AddButton = () => (
+	<button
+		type="submit"
+		className="border rounded-lg rounded-l-none shadow-md py-1 px-2 text-lg hover:bg-gray-100 active:bg-gray-200"
+		aria-label="Add new list"
+	>
+		<Plus size={20} className="text-gray-400" />
+	</button>
+);
+
+const TitleInput = ({ register }: { register: any }) => (
+	<input
+		{...register('title', {
+			required: true,
+			maxLength: { value: 100, message: 'Exceeded maximum length of 100' },
+		})}
+		type="text"
+		placeholder="New list"
+		className="border rounded-lg rounded-r-none py-2 px-2 w-full drop-shadow-md focus:outline-none focus:border-gray-400 hover:border-gray-400"
+	/>
+);

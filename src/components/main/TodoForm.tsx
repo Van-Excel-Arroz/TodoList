@@ -48,6 +48,8 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	);
 }
 
+const AddButton = () => <button>Add</button>;
+
 const TodoInput = ({ register }: { register: any }) => (
 	<input
 		{...register('todo', {
@@ -62,23 +64,26 @@ const TodoInput = ({ register }: { register: any }) => (
 );
 
 const TodoDateTimeInputs = ({ register }: { register: any }) => (
-	<div className="flex gap-10 px-4 py-2 bg-white rounded-lg rounded-t-none w-full border border-t-0 drop-shadow-md text-sm">
-		<input
-			{...register('date')}
-			type="date"
-			className="bg-transparent focus:outline-slate-400 cursor-pointer"
-			id="date"
-			aria-label="Due Date"
-		/>
+	<div className="flex justify-between px-4 py-2 bg-white rounded-lg rounded-t-none w-full border border-t-0 drop-shadow-md text-sm">
+		<div className="flex gap-10">
+			<input
+				{...register('date')}
+				type="date"
+				className="bg-transparent focus:outline-slate-400 cursor-pointer"
+				id="date"
+				aria-label="Due Date"
+			/>
 
-		<input
-			{...register('time')}
-			type="time"
-			step="1"
-			className="bg-transparent focus:outline-slate-400 cursor-pointer"
-			id="time"
-			aria-label="Due Time"
-		/>
+			<input
+				{...register('time')}
+				type="time"
+				step="1"
+				className="bg-transparent focus:outline-slate-400 cursor-pointer"
+				id="time"
+				aria-label="Due Time"
+			/>
+		</div>
+		<AddButton />
 	</div>
 );
 
