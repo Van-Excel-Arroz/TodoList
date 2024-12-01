@@ -33,6 +33,6 @@ export default async function TodoListPage({ params }: { params: any }) {
 
 const LoadingAnimation = () => (
 	<div className="flex justify-center items-center h-screnn">
-		<h1>Loading.....</h1>
+		<h1 className="text-2xl font-bold">Loading.....</h1>
 	</div>
 );
