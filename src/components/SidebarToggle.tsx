@@ -1,11 +1,11 @@
 'use client';
 
-import useSidebarStore from '@/Context/SidebarContext';
+import useLeftSidebarStore from '@/Context/SidebarContext';
 import { Menu } from 'lucide-react';
 import { memo } from 'react';
 
 function SidebarToggle() {
-	const { toggleSidebar } = useSidebarStore();
+	const { toggleSidebar } = useLeftSidebarStore();
 	return (
 		<button onClick={toggleSidebar} aria-label="Sidebar Menu">
 			<Menu />
