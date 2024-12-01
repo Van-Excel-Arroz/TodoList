@@ -20,7 +20,7 @@ export default async function TodoListPage({ params }: { params: any }) {
 	}
 
 	return (
-		<Suspense fallback={<h1>Loading.....</h1>}>
+		<Suspense fallback={<LoadingAnimation />}>
 			<div className="font-body flex flex-col px-6 p-9">
 				<TodoListHeader todolist={todolist} />
 				<TodoForm todolistId={todolistId} />
@@ -30,3 +30,9 @@ export default async function TodoListPage({ params }: { params: any }) {
 		</Suspense>
 	);
 }
+
+const LoadingAnimation = () => (
+	<div className="flex justify-center items-center h-screnn">
+		<h1>Loading.....</h1>
+	</div>
+);
