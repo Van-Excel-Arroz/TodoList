@@ -1,3 +1,9 @@
+import RightSidebarWrapper from './RightSidebarWrapper';
+
 export default function RightSidebarPage() {
-	return <h1>Hello World</h1>;
+	return (
+		<RightSidebarWrapper>
+			<h1>Hello World</h1>
+		</RightSidebarWrapper>
+	);
 }
