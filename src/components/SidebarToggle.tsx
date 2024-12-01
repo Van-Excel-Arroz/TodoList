@@ -2,9 +2,8 @@
 
 import useLeftSidebarStore from '@/context/LeftSidebarContext';
 import { Menu } from 'lucide-react';
-import { memo } from 'react';
 
-function SidebarToggle() {
+export default function LeftSidebarToggle() {
 	const { toggleLeftSidebar } = useLeftSidebarStore();
 	return (
 		<button onClick={toggleLeftSidebar} aria-label="Sidebar Menu">
@@ -12,4 +11,3 @@ function SidebarToggle() {
 		</button>
 	);
 }
-export default memo(SidebarToggle);
