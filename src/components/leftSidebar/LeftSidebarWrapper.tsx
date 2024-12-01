@@ -7,7 +7,7 @@ export default function LeftSidebarWrapper({ children }: { children: React.React
 	return (
 		<>
 			<div
-				className={`font-body border-r-2 rounded-r-3xl drop-shadow-xl bg-white pb-9 pt-6 h-screen transition-all duration-200 ease-in-out text-nowrap overflow-hidden ${
+				className={`border-r-2 rounded-r-3xl drop-shadow-xl bg-white pb-9 pt-6 h-[calc(100vh-3.5rem)] transition-all duration-200 ease-in-out text-nowrap overflow-hidden ${
 					isLeftSidebarOpen ? 'w-72' : 'w-0'
 				}`}
 			>

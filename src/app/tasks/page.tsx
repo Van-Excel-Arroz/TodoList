@@ -1,7 +1,7 @@
 export default async function Home() {
 	return (
 		<>
-			<div>Main Page</div>
+			<body className="bg-slate-400"></body>
 		</>
 	);
 }
