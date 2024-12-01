@@ -13,6 +13,7 @@ export default function TodolistForm() {
 	} = useForm();
 
 	async function onSubmit(data: any) {
+		if (!data.title?.trim()) return;
 		await createTodolist(data.title);
 		reset();
 	}
