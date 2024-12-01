@@ -2,7 +2,7 @@
 
 import useLeftSidebarStore from '@/context/LeftSidebarContext';
 
-export default function SidebarWrapper({ children }: { children: React.ReactNode }) {
+export default function LeftSidebarWrapper({ children }: { children: React.ReactNode }) {
 	const { isLeftSidebarOpen } = useLeftSidebarStore();
 	return (
 		<>
