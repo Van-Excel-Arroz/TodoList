@@ -10,11 +10,11 @@ interface TodoListHeaderProps {
 }
 
 function TodoListHeader({ todolist }: TodoListHeaderProps) {
-	const { isSidebarOpen } = useLeftSidebarStore();
+	const { isLeftSidebarOpen } = useLeftSidebarStore();
 
 	return (
 		<div className="flex gap-4 items-center">
-			{!isSidebarOpen && <SidebarToggle />}
+			{!isLeftSidebarOpen && <SidebarToggle />}
 			<p className="text-lg font-bold">
 				{todolist.title} #{todolist.id}
 			</p>

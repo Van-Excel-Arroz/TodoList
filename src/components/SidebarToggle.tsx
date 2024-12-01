@@ -5,9 +5,9 @@ import { Menu } from 'lucide-react';
 import { memo } from 'react';
 
 function SidebarToggle() {
-	const { toggleSidebar } = useLeftSidebarStore();
+	const { toggleLeftSidebar } = useLeftSidebarStore();
 	return (
-		<button onClick={toggleSidebar} aria-label="Sidebar Menu">
+		<button onClick={toggleLeftSidebar} aria-label="Sidebar Menu">
 			<Menu />
 		</button>
 	);
