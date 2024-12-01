@@ -6,7 +6,7 @@ import { House } from 'lucide-react';
 import { format } from 'date-fns';
 import SidebarToggle from '../SidebarToggle';
 
-export default function SidebarHeader() {
+export default function LeftSidebarHeader() {
 	const pathname = usePathname();
 	const isHome = pathname === '/tasks/home';
 	return (

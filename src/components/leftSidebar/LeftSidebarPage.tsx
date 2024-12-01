@@ -1,9 +1,9 @@
 import { TodoList } from '@/types';
 import { getTodolists } from '@/lib/todolist';
 import SidebarWrapper from './SidebarWrapper';
-import SidebarHeader from './SidebarHeader';
 import TodolistForm from './TodolistForm';
 import TodolistsRender from './TodolistsRender';
+import LeftSidebarHeader from './LeftSidebarHeader';
 
 export default async function LeftSidebarPage() {
 	const todolists: TodoList[] = (await getTodolists(1)) ?? [];
@@ -11,7 +11,7 @@ export default async function LeftSidebarPage() {
 		<>
 			<SidebarWrapper>
 				<div className="flex flex-col gap-4 px-6">
-					<SidebarHeader />
+					<LeftSidebarHeader />
 					<TodolistForm />
 				</div>
 				<TodolistsRender todolists={todolists} />
