@@ -1,6 +1,6 @@
 'use client';
 
-import useLeftSidebarStore from '@/Context/LeftSidebarContext';
+import useLeftSidebarStore from '@/context/LeftSidebarContext';
 
 export default function SidebarWrapper({ children }: { children: React.ReactNode }) {
 	const { isLeftSidebarOpen } = useLeftSidebarStore();

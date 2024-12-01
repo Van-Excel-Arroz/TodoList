@@ -1,6 +1,6 @@
 'use client';
 
-import useLeftSidebarStore from '@/Context/LeftSidebarContext';
+import useLeftSidebarStore from '@/context/LeftSidebarContext';
 import { Menu } from 'lucide-react';
 import { memo } from 'react';
 
