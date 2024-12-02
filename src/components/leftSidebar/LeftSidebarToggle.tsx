@@ -6,7 +6,7 @@ import { ArrowBigLeftDashIcon, Menu } from 'lucide-react';
 export default function LeftSidebarToggle() {
 	const { toggleLeftSidebar, isLeftSidebarOpen } = useLeftSidebarStore();
 	return (
-		<button onClick={toggleLeftSidebar} aria-label="Sidebar Menu">
+		<button onClick={toggleLeftSidebar} aria-label="Todolist Menu">
 			{isLeftSidebarOpen ? <ArrowBigLeftDashIcon /> : <Menu />}
 		</button>
 	);

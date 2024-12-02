@@ -8,8 +8,8 @@ interface RightSidebarState {
 
 const useRightSidebarStore = create<RightSidebarState>()((set: any) => ({
 	isRightSidebarOpen: true,
-	openRightSidebar: () => set((state: RightSidebarState) => ({ isRightSidebarOpen: true })),
-	closeRightSidebar: () => set((state: RightSidebarState) => ({ isRightSidebarOpen: false })),
+	openRightSidebar: () => set(() => ({ isRightSidebarOpen: true })),
+	closeRightSidebar: () => set(() => ({ isRightSidebarOpen: false })),
 }));
 
 export default useRightSidebarStore;
