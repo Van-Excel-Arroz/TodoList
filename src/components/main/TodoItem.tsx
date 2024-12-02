@@ -9,12 +9,19 @@ import useRightSidebarStore from '@/context/RightSidebarContext';
 import useTodoStore from '@/context/todoContext';
 
 function TodoItem({ todo }: { todo: Todo }) {
-	const { toggleRightSidebar } = useRightSidebarStore();
-	const { setSelectedTodo } = useTodoStore();
+	const { openRightSidebar, closeRightSidebar } = useRightSidebarStore();
+	const { selectedTodo, setSelectedTodo } = useTodoStore();
 
 	const handleTodoClick = () => {
-		toggleRightSidebar();
-		setSelectedTodo(todo);
+		console.log(selectedTodo?.id);
+		console.log(todo.id);
+		if (selectedTodo?.id === todo.id) {
+			closeRightSidebar();
+			setSelectedTodo(null);
+		} else {
+			openRightSidebar();
+			setSelectedTodo(todo);
+		}
 	};
 
 	const handleCheckboxChange = async () => {
