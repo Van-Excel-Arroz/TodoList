@@ -28,13 +28,13 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 			className={`flex items-center pr-5 group relative w-full ${
 				isSelectedPath ? 'border-l-4 border-slate-500 bg-slate-200' : 'pl-1 hover:bg-slate-100'
 			}`}
-			onClick={closeRightSidebar}
 		>
 			{isEditing ? (
 				<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} />
 			) : (
 				<Link
 					href={`/tasks/${todolist.id}`}
+					onClick={closeRightSidebar}
 					className={`flex-1 text-ellipsis py-3 pl-5 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
 						isSelectedPath ? 'font-normal' : 'font-light'
 					}`}
