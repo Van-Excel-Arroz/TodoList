@@ -32,7 +32,6 @@ function TodoItem({ todo }: { todo: Todo }) {
 	};
 
 	return (
-		// ... existing code ...
 		<div
 			key={todo.id}
 			className={`grid grid-cols-12 cursor-pointer  active:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.15)] rounded-lg px-2 ${
