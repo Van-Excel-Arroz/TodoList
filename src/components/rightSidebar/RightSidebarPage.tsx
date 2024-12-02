@@ -2,6 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import RightSidebarWrapper from './RightSidebarWrapper';
+import RightSidebarHeader from './RightSidebarHeader';
 
 export default function RightSidebarPage() {
 	const searchParams = useSearchParams();
@@ -9,6 +10,7 @@ export default function RightSidebarPage() {
 
 	return (
 		<RightSidebarWrapper>
+			<RightSidebarHeader />
 			<h1>Hello World</h1>
 			<p>{todoId}</p>
 		</RightSidebarWrapper>
