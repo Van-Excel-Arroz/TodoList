@@ -6,11 +6,14 @@ import { Calendar, Check } from 'lucide-react';
 import { isToday, isTomorrow, format, isPast } from 'date-fns';
 import { Category, Todo } from '@/types';
 import { updateIsSelectedCategoryColorsAction, updateTodoCompletionAction } from '@/actions/todolist-action';
+import useRightSidebarStore from '@/context/RightSidebarContext';
 
 function TodoItem({ todo }: { todo: Todo }) {
+	const { openRightSidebar } = useRightSidebarStore();
 	const router = useRouter();
 
 	const handleTodoClick = () => {
+		openRightSidebar();
 		router.push(`/tasks/${todo.todo_list_id}/?todo=${todo.id}`);
 	};
 
