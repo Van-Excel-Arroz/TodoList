@@ -1,7 +1,6 @@
 'use client';
 
 import { memo } from 'react';
-import { useRouter } from 'next/navigation';
 import { Calendar, Check } from 'lucide-react';
 import { isToday, isTomorrow, format, isPast } from 'date-fns';
 import { Category, Todo } from '@/types';
@@ -10,12 +9,6 @@ import useRightSidebarStore from '@/context/RightSidebarContext';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openRightSidebar } = useRightSidebarStore();
-	const router = useRouter();
-
-	const handleTodoClick = () => {
-		openRightSidebar();
-		router.push(`/tasks/${todo.todo_list_id}/?todo=${todo.id}`);
-	};
 
 	const handleCheckboxChange = async () => {
 		await updateTodoCompletionAction(todo.id, !todo.is_completed, todo.todo_list_id);
@@ -29,7 +22,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 		<div
 			key={todo.id}
 			className="grid grid-cols-12 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg px-2"
-			onClick={handleTodoClick}
+			onClick={openRightSidebar}
 		>
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 			<div className="col-span-9 flex items-center py-2 pl-4">
