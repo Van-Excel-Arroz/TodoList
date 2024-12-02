@@ -38,7 +38,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 				) : (
 					<TodoWithoutDueDatetime isCompleted={todo.is_completed} task={todo.task_text} />
 				)}
-				<RenderCategories categories={todo.categories} handleCategoryClick={handleCategoryClick} />
+				{todo.categories && <RenderCategories categories={todo.categories} handleCategoryClick={handleCategoryClick} />}
 			</div>
 		</div>
 	);
