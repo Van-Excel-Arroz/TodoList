@@ -86,7 +86,7 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 const AddButton = () => (
 	<button
 		type="submit"
-		className="border rounded-lg shadow-md py-1 px-2 text-sm hover:bg-gray-100 active:bg-gray-200"
+		className="border rounded-lg py-1 px-2 text-sm hover:bg-gray-100 active:bg-gray-200"
 		aria-label="Add new todo"
 	>
 		Add
