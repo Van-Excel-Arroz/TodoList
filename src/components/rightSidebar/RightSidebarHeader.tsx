@@ -1,3 +1,5 @@
+'use client';
+
 import useRightSidebarStore from '@/context/RightSidebarContext';
 import { ArrowBigRightDashIcon } from 'lucide-react';
 
