@@ -4,7 +4,7 @@ export interface Todo {
 	due_datetime: string | null;
 	creation_date: string;
 	todo_list_id: number;
-	categories: Category[];
+	categories: Category[] | null;
 	is_completed: boolean;
 }
 

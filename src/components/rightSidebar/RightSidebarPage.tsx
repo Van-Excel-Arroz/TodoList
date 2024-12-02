@@ -1,18 +1,13 @@
-'use client';
-
-import { useSearchParams } from 'next/navigation';
 import RightSidebarWrapper from './RightSidebarWrapper';
 import RightSidebarHeader from './RightSidebarHeader';
+import { Todo } from '@/types';
 
-export default function RightSidebarPage() {
-	const searchParams = useSearchParams();
-	const todoId = searchParams.get('todo');
-
+export default function RightSidebarPage({ todo }: { todo: Todo }) {
 	return (
 		<RightSidebarWrapper>
 			<RightSidebarHeader />
 			<h1>Hello World</h1>
-			<p>{todoId}</p>
+			<p>{todo.task_text}</p>
 		</RightSidebarWrapper>
 	);
 }
