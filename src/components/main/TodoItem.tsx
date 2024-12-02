@@ -6,9 +6,16 @@ import { isToday, isTomorrow, format, isPast } from 'date-fns';
 import { Category, Todo } from '@/types';
 import { updateIsSelectedCategoryColorsAction, updateTodoCompletionAction } from '@/actions/todolist-action';
 import useRightSidebarStore from '@/context/RightSidebarContext';
+import useTodoStore from '@/context/todoContext';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openRightSidebar } = useRightSidebarStore();
+	const { setSelectedTodo } = useTodoStore();
+
+	const handleTodoClick = () => {
+		openRightSidebar();
+		setSelectedTodo(todo);
+	};
 
 	const handleCheckboxChange = async () => {
 		await updateTodoCompletionAction(todo.id, !todo.is_completed, todo.todo_list_id);
@@ -22,7 +29,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 		<div
 			key={todo.id}
 			className="grid grid-cols-12 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg px-2"
-			onClick={openRightSidebar}
+			onClick={handleTodoClick}
 		>
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 			<div className="col-span-9 flex items-center py-2 pl-4">
