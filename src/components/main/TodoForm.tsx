@@ -60,7 +60,7 @@ const TodoInput = ({ register }: { register: any }) => (
 );
 
 const TodoDateTimeInputs = ({ register }: { register: any }) => (
-	<div className="flex justify-between px-4 py-2 bg-white rounded-lg rounded-t-none w-full border border-t-0 drop-shadow-md text-sm">
+	<div className="flex justify-between px-4 py-1 bg-white rounded-lg rounded-t-none w-full border border-t-0 drop-shadow-md text-sm">
 		<div className="flex gap-10">
 			<input
 				{...register('date')}
