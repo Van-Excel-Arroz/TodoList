@@ -9,11 +9,11 @@ import useRightSidebarStore from '@/context/RightSidebarContext';
 import useTodoStore from '@/context/todoContext';
 
 function TodoItem({ todo }: { todo: Todo }) {
-	const { openRightSidebar } = useRightSidebarStore();
+	const { toggleRightSidebar } = useRightSidebarStore();
 	const { setSelectedTodo } = useTodoStore();
 
 	const handleTodoClick = () => {
-		openRightSidebar();
+		toggleRightSidebar();
 		setSelectedTodo(todo);
 	};
 
