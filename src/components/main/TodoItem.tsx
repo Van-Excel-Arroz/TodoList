@@ -11,11 +11,10 @@ import useTodoStore from '@/context/todoContext';
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openRightSidebar, closeRightSidebar } = useRightSidebarStore();
 	const { selectedTodo, setSelectedTodo } = useTodoStore();
+	const isSelected = selectedTodo?.id === todo.id;
 
 	const handleTodoClick = () => {
-		console.log(selectedTodo?.id);
-		console.log(todo.id);
-		if (selectedTodo?.id === todo.id) {
+		if (isSelected) {
 			closeRightSidebar();
 			setSelectedTodo(null);
 		} else {
@@ -33,9 +32,12 @@ function TodoItem({ todo }: { todo: Todo }) {
 	};
 
 	return (
+		// ... existing code ...
 		<div
 			key={todo.id}
-			className="grid grid-cols-12 cursor-pointer hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] rounded-lg px-2"
+			className={`grid grid-cols-12 cursor-pointer  active:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.15)] rounded-lg px-2 ${
+				isSelected ? 'shadow-[inset_0_0_0_2px_rgba(0,0,0,0.2)]' : 'hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)]'
+			}`}
 			onClick={handleTodoClick}
 		>
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
