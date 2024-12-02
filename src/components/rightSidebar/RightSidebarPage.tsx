@@ -2,15 +2,14 @@
 
 import RightSidebarWrapper from './RightSidebarWrapper';
 import RightSidebarHeader from './RightSidebarHeader';
-import { useSearchParams } from 'next/navigation';
+import useTodoStore from '@/context/todoContext';
 
 export default function RightSidebarPage() {
-	const todoId = useSearchParams().get('todo');
+	const { selectedTodo } = useTodoStore();
 	return (
 		<RightSidebarWrapper>
 			<RightSidebarHeader />
-			<h1>Hello World</h1>
-			{todoId}
+			<p>{selectedTodo?.task_text}</p>
 		</RightSidebarWrapper>
 	);
 }

@@ -7,6 +7,7 @@ import { deleteTodolistAction } from '@/actions/todolist-action';
 import { TodoList } from '@/types';
 import { CircleX, Pencil, Trash2 } from 'lucide-react';
 import EditTodolistForm from './EditTodolistForm';
+import useRightSidebarStore from '@/context/RightSidebarContext';
 
 interface TodoListItemProps {
 	todolist: TodoList;
@@ -16,6 +17,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 	const pathname = usePathname();
 	const isSelectedPath = pathname === `/tasks/${todolist.id}`;
 	const [isEditing, setIsEditing] = useState(false);
+	const { closeRightSidebar } = useRightSidebarStore();
 
 	const handleEditClick = (val: boolean) => {
 		setIsEditing(val);
@@ -26,6 +28,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 			className={`flex items-center pr-5 group relative w-full ${
 				isSelectedPath ? 'border-l-4 border-slate-500 bg-slate-200' : 'pl-1 hover:bg-slate-100'
 			}`}
+			onClick={closeRightSidebar}
 		>
 			{isEditing ? (
 				<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} />
