@@ -1,23 +1,21 @@
 'use client';
 
-import RightSidebarWrapper from './RightSidebarWrapper';
 import RightSidebarHeader from './RightSidebarHeader';
 import useTodoStore from '@/context/todoContext';
 import useRightSidebarStore from '@/context/RightSidebarContext';
 
 export default function RightSidebarPage() {
 	const { selectedTodo } = useTodoStore();
-	const { closeRightSidebar } = useRightSidebarStore();
-
-	if (!selectedTodo) {
-		closeRightSidebar();
-		return null;
-	}
+	const { isRightSidebarOpen } = useRightSidebarStore();
 
 	return (
-		<RightSidebarWrapper>
+		<div
+			className={`font-body border-l-2 rounded-l-3xl drop-shadow-xl bg-white pb-9 pt-6 h-screen transition-all duration-200 ease-in-out text-nowrap overflow-hidden ${
+				isRightSidebarOpen ? 'w-72' : 'w-0'
+			}`}
+		>
 			<RightSidebarHeader />
 			<p>{selectedTodo?.task_text}</p>
-		</RightSidebarWrapper>
+		</div>
 	);
 }
