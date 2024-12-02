@@ -1,17 +1,17 @@
 'use client';
 
 import { memo } from 'react';
+import { useRouter } from 'next/navigation';
 import { Calendar, Check } from 'lucide-react';
 import { isToday, isTomorrow, format, isPast } from 'date-fns';
 import { Category, Todo } from '@/types';
 import { updateIsSelectedCategoryColorsAction, updateTodoCompletionAction } from '@/actions/todolist-action';
-import { useRouter } from 'next/navigation';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const router = useRouter();
 
 	const handleTodoClick = () => {
-		router.push(`/tasks/${todo.todo_list_id}/?todoId=${todo.id}`);
+		router.push(`/tasks/${todo.todo_list_id}/?todo=${todo.id}`);
 	};
 
 	const handleCheckboxChange = async () => {

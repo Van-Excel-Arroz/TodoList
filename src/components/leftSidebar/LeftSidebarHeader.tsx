@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { format } from 'date-fns';
-import LeftSidebarToggle from '../SidebarToggle';
+import LeftSidebarToggle from '@/components/LeftSidebarToggle';
 
 export default function LeftSidebarHeader() {
 	const pathname = usePathname();
