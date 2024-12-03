@@ -2,7 +2,7 @@
 
 import { memo } from 'react';
 import { Calendar, Check, Trash2 } from 'lucide-react';
-import { isToday, isTomorrow, format, isPast } from 'date-fns';
+import { isToday, isTomorrow, format, isPast, isThisYear } from 'date-fns';
 import { Category, Todo } from '@/types';
 import {
 	deleteTodoAction,
@@ -151,7 +151,9 @@ export const DueDate = ({ dueDatetime, textSize = 'xs' }: { dueDatetime: string;
 				? 'Today' + format(dueDatetime, ` \'at\' h:mm a`)
 				: isTomorrow(dueDatetime)
 				? 'Tomorrow' + format(dueDatetime, ` \'at\' h:mm a`)
-				: format(dueDatetime, `EEE, MMMM d \'at\' h:mm a`)
+				: isThisYear(dueDatetime)
+				? format(dueDatetime, `EEE, MMMM d \'at\' h:mm a`)
+				: format(dueDatetime, `EEE, MMMM d yyyy \'at\' h:mm a`)
 			: '-'}
 	</p>
 );
