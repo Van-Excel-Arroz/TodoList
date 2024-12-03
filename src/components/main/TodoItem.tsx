@@ -58,9 +58,16 @@ export default memo(TodoItem);
 // COMPONENTS
 // ------------------------------------------------------------------------------------------------ //
 
-const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; handleOnClick: () => void }) => (
+export const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; handleOnClick: () => void }) => (
 	<div className="col-end-1 flex items-center">
-		<button className="flex items-center" onClick={handleOnClick} aria-label={isChecked ? 'checked' : 'unchecked'}>
+		<button
+			className="flex items-center"
+			onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+				event.stopPropagation();
+				handleOnClick();
+			}}
+			aria-label={isChecked ? 'checked' : 'unchecked'}
+		>
 			{isChecked ? (
 				<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md hover:bg-slate-800 active:bg-slate-700">
 					<Check color="white" size={15} />
@@ -117,7 +124,10 @@ const RenderCategories = ({
 				key={category.id}
 				className={`text-xs border shadow-md ml-2 rounded py-1 px-2 hover:bg-slate-100 hover:shadow-none active:bg-slate-200`}
 				style={{ color: category.hex_color }}
-				onClick={() => handleCategoryClick(category.category_title)}
+				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+					event.stopPropagation();
+					handleCategoryClick(category.category_title);
+				}}
 			>
 				{category.category_title}
 			</span>
