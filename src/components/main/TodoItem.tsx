@@ -1,10 +1,14 @@
 'use client';
 
 import { memo } from 'react';
-import { Calendar, Check } from 'lucide-react';
+import { Calendar, Check, Trash2 } from 'lucide-react';
 import { isToday, isTomorrow, format, isPast } from 'date-fns';
 import { Category, Todo } from '@/types';
-import { updateIsSelectedCategoryColorsAction, updateTodoCompletionAction } from '@/actions/todolist-action';
+import {
+	deleteTodoAction,
+	updateIsSelectedCategoryColorsAction,
+	updateTodoCompletionAction,
+} from '@/actions/todolist-action';
 import useRightSidebarStore from '@/context/RightSidebarContext';
 import useTodoStore from '@/context/todoContext';
 
@@ -33,22 +37,39 @@ function TodoItem({ todo }: { todo: Todo }) {
 		await updateIsSelectedCategoryColorsAction(categoryTitle, true, todo.todo_list_id);
 	};
 
+	const handleDeleteClick = async () => {
+		await deleteTodoAction(todo.id, todo.todo_list_id);
+		if (isSelected) {
+			closeRightSidebar();
+			setSelectedTodo(null);
+		}
+	};
+
 	return (
 		<div
 			key={todo.id}
-			className={`flex cursor-pointer  active:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.15)] rounded-lg px-2 ${
+			className={`flex cursor-pointer group active:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.15)] rounded-lg px-2 ${
 				isSelected ? 'bg-slate-200' : 'hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)]'
 			}`}
 			onClick={handleTodoClick}
 		>
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
-			<div className="col-span-9 flex items-center py-2 pl-4">
+			<div className="flex items-center py-2 pl-4 w-full">
 				{todo.due_datetime ? (
 					<TodoWithDueDatetime isCompleted={todo.is_completed} task={todo.task_text} dueDatetime={todo.due_datetime} />
 				) : (
 					<TodoWithoutDueDatetime isCompleted={todo.is_completed} task={todo.task_text} />
 				)}
 				{todo.categories && <RenderCategories categories={todo.categories} handleCategoryClick={handleCategoryClick} />}
+				<button
+					className="ml-auto justify-end p-1 rounded-md hover:bg-slate-200 opacity-0 group-hover:opacity-100"
+					onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+						event.stopPropagation();
+						handleDeleteClick();
+					}}
+				>
+					<Trash2 size={18} />
+				</button>
 			</div>
 		</div>
 	);
@@ -61,7 +82,7 @@ export default memo(TodoItem);
 // ------------------------------------------------------------------------------------------------ //
 
 export const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; handleOnClick: () => void }) => (
-	<div className="col-end-1 flex items-center">
+	<div className="flex items-center">
 		<button
 			className="flex items-center"
 			onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
