@@ -39,7 +39,7 @@ export default function RightSidebarPage() {
 						{selectedTodo?.due_datetime ? (
 							<DueDate dueDatetime={selectedTodo?.due_datetime!} textSize="base" />
 						) : (
-							<p className="text-sm text-slate-600">MM/DD/YYYY</p>
+							<p className="text-slate-600">MM/DD/YYYY</p>
 						)}
 					</div>
 				</div>
