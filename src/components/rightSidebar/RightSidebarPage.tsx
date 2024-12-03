@@ -39,6 +39,19 @@ export default function RightSidebarPage() {
 						<DueDate dueDatetime={selectedTodo?.due_datetime!} textSize="sm" />
 					</div>
 				</div>
+				<div className="flex flex-col items-start gap-4 bg-slate-100 rounded-md px-4 py-2 border">
+					<p className="text-xs text-slate-800">Category</p>
+					<div className="flex flex-wrap items-center gap-2 pb-2">
+						{selectedTodo?.categories?.map(category => (
+							<span
+								className={`text-sm border rounded py-1 px-2 shadow-md hover:bg-slate-10`}
+								style={{ color: category.hex_color }}
+							>
+								{category.category_title}
+							</span>
+						))}
+					</div>
+				</div>
 			</div>
 		</div>
 	);
