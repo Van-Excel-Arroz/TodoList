@@ -36,7 +36,11 @@ export default function RightSidebarPage() {
 					<Calendar size={20} className="text-slate-800" />
 					<div className="flex flex-col justify-start">
 						<p className="text-sm text-slate-600">Due</p>
-						<DueDate dueDatetime={selectedTodo?.due_datetime!} textSize="base" />
+						{selectedTodo?.due_datetime ? (
+							<DueDate dueDatetime={selectedTodo?.due_datetime!} textSize="base" />
+						) : (
+							<p className="text-sm text-slate-600">MM/DD/YYYY</p>
+						)}
 					</div>
 				</div>
 				<div className="flex flex-col items-start bg-slate-100 rounded-md px-4 py-2 border">
@@ -46,7 +50,9 @@ export default function RightSidebarPage() {
 							<Plus size={20} />
 						</button>
 					</div>
-					<div className="flex flex-wrap items-center gap-2 py-2">
+					<div
+						className={`flex flex-wrap items-center  gap-2 ${selectedTodo?.categories?.length === 0 ? 'py-0' : 'py-2'}`}
+					>
 						{selectedTodo?.categories?.map(category => (
 							<span
 								className={`border rounded py-1 px-2 shadow-md hover:bg-slate-10`}
