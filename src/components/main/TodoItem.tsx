@@ -106,7 +106,7 @@ const TodoWithDueDatetime = ({
 	dueDatetime: string;
 }) => (
 	<div className="flex flex-col">
-		<p className={` ${isCompleted && 'line-through'} text-sm text-nowrap`}>{task}</p>
+		<p className={` ${isCompleted && 'line-through'} text-sm text-nowrap overflow-hidden`}>{task}</p>
 		<div className="flex items-center gap-2">
 			<p className="text-xs text-slate-800">
 				<Calendar size={12} />
