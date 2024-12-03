@@ -35,7 +35,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 		<div
 			key={todo.id}
 			className={`flex cursor-pointer  active:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.15)] rounded-lg px-2 ${
-				isSelected ? 'shadow-[inset_0_0_0_2px_rgba(0,0,0,0.2)]' : 'hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)]'
+				isSelected ? 'bg-slate-200' : 'hover:shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)]'
 			}`}
 			onClick={handleTodoClick}
 		>
