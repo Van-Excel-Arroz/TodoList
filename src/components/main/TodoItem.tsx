@@ -63,6 +63,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 				{todo.categories && <RenderCategories categories={todo.categories} handleCategoryClick={handleCategoryClick} />}
 				<button
 					className="ml-auto justify-end p-1 rounded-md hover:bg-slate-200 opacity-0 group-hover:opacity-100"
+					aria-label="Delete Todo"
 					onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 						event.stopPropagation();
 						handleDeleteClick();
