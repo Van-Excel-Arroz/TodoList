@@ -1,6 +1,6 @@
 'use client';
 
-import { Calendar } from 'lucide-react';
+import { Calendar, Plus } from 'lucide-react';
 import { updateTodoCompletionAction } from '@/actions/todolist-action';
 import useTodoStore from '@/context/todoContext';
 import useRightSidebarStore from '@/context/RightSidebarContext';
@@ -30,21 +30,26 @@ export default function RightSidebarPage() {
 				<RightSidebarHeader />
 				<div className="flex items-center gap-4 bg-slate-100 rounded-md p-4 border">
 					<CheckBox isChecked={selectedTodo?.is_completed!} handleOnClick={handleCheckboxChange} />
-					<p className="text-lg">{selectedTodo?.task_text}</p>
+					<p className="text-lg overflow-hidden text-wrap">{selectedTodo?.task_text}</p>
 				</div>
 				<div className="flex items-center gap-4 bg-slate-100 rounded-md px-4 py-2 border">
-					<Calendar size={20} />
+					<Calendar size={20} className="text-slate-800" />
 					<div className="flex flex-col justify-start">
-						<p className="text-xs text-slate-800">Due</p>
-						<DueDate dueDatetime={selectedTodo?.due_datetime!} textSize="sm" />
+						<p className="text-sm text-slate-600">Due</p>
+						<DueDate dueDatetime={selectedTodo?.due_datetime!} textSize="base" />
 					</div>
 				</div>
-				<div className="flex flex-col items-start gap-4 bg-slate-100 rounded-md px-4 py-2 border">
-					<p className="text-xs text-slate-800">Category</p>
+				<div className="flex flex-col items-start bg-slate-100 rounded-md px-4 py-2 border">
+					<div className="flex justify-between w-full text-slate-600">
+						<p className="text-sm">Category</p>
+						<button className="block hover:bg-slate-200 rounded-md p-1" aria-label="Add Category">
+							<Plus size={20} />
+						</button>
+					</div>
 					<div className="flex flex-wrap items-center gap-2 pb-2">
 						{selectedTodo?.categories?.map(category => (
 							<span
-								className={`text-sm border rounded py-1 px-2 shadow-md hover:bg-slate-10`}
+								className={`border rounded py-1 px-2 shadow-md hover:bg-slate-10`}
 								style={{ color: category.hex_color }}
 							>
 								{category.category_title}
