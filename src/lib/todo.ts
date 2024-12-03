@@ -267,3 +267,13 @@ export async function sortTodosBySelectedCategory(selectedCategories: Category[]
 		return [];
 	}
 }
+
+export async function deleteTodo(todoId: number): Promise<boolean> {
+	try {
+		await query('DELETE FROM todos WHERE id = $1', [todoId]);
+		return true;
+	} catch (error) {
+		console.error('Error deleting todo in the database', error);
+		return false;
+	}
+}

@@ -1,6 +1,7 @@
 'use server';
 
 import {
+	deleteTodo,
 	storeCategories,
 	storeCategoriesColors,
 	storeTodo,
@@ -73,5 +74,15 @@ export async function updateIsSelectedCategoryColorsAction(
 		revalidatePath(`/tasks/${todolistId}`);
 	} else {
 		console.error('Failed to update is_selected in category_colors');
+	}
+}
+
+export async function deleteTodoAction(todoId: number, todolistId: number) {
+	const result = await deleteTodo(todoId);
+
+	if (result) {
+		revalidatePath(`/tasks/${todolistId}`);
+	} else {
+		console.error('Failed to delete todo');
 	}
 }
