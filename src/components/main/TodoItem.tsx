@@ -79,7 +79,7 @@ export const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; han
 	</div>
 );
 
-export const TodoWithDueDatetime = ({
+const TodoWithDueDatetime = ({
 	isCompleted,
 	task,
 	dueDatetime,
@@ -127,7 +127,7 @@ const RenderCategories = ({
 	</div>
 );
 
-const DueDate = ({ dueDatetime, textSize = 'xs' }: { dueDatetime: string; textSize?: string }) => (
+export const DueDate = ({ dueDatetime, textSize = 'xs' }: { dueDatetime: string; textSize?: string }) => (
 	<p className={`text-${textSize} ${dueDatetime && isPast(dueDatetime) ? 'text-red-500' : 'text-slate-800'}`}>
 		{dueDatetime
 			? isToday(dueDatetime)
