@@ -79,16 +79,14 @@ export const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; han
 	</div>
 );
 
-const TodoWithDueDatetime = ({
+export const TodoWithDueDatetime = ({
 	isCompleted,
 	task,
 	dueDatetime,
-	textSize = 'xs',
 }: {
 	isCompleted: boolean;
 	task: string;
 	dueDatetime: string;
-	textSize?: string;
 }) => (
 	<div className="flex flex-col">
 		<p className={` ${isCompleted && 'line-through'} text-sm`}>{task}</p>
@@ -96,15 +94,7 @@ const TodoWithDueDatetime = ({
 			<p className="text-xs text-slate-800">
 				<Calendar size={12} />
 			</p>
-			<p className={`text-${textSize} ${dueDatetime && isPast(dueDatetime) ? 'text-red-500' : 'text-slate-800'}`}>
-				{dueDatetime
-					? isToday(dueDatetime)
-						? 'Today' + format(dueDatetime, ` \'at\' h:mm a`)
-						: isTomorrow(dueDatetime)
-						? 'Tomorrow' + format(dueDatetime, ` \'at\' h:mm a`)
-						: format(dueDatetime, `EEE, MMMM d \'at\' h:mm a`)
-					: '-'}
-			</p>
+			<DueDate dueDatetime={dueDatetime} textSize="xs" />
 		</div>
 	</div>
 );
@@ -135,4 +125,16 @@ const RenderCategories = ({
 			</span>
 		))}
 	</div>
+);
+
+const DueDate = ({ dueDatetime, textSize = 'xs' }: { dueDatetime: string; textSize?: string }) => (
+	<p className={`text-${textSize} ${dueDatetime && isPast(dueDatetime) ? 'text-red-500' : 'text-slate-800'}`}>
+		{dueDatetime
+			? isToday(dueDatetime)
+				? 'Today' + format(dueDatetime, ` \'at\' h:mm a`)
+				: isTomorrow(dueDatetime)
+				? 'Tomorrow' + format(dueDatetime, ` \'at\' h:mm a`)
+				: format(dueDatetime, `EEE, MMMM d \'at\' h:mm a`)
+			: '-'}
+	</p>
 );

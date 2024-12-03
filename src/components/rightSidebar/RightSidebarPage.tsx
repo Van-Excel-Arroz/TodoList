@@ -3,14 +3,15 @@
 import RightSidebarHeader from './RightSidebarHeader';
 import useTodoStore from '@/context/todoContext';
 import useRightSidebarStore from '@/context/RightSidebarContext';
-import { CheckBox } from '../main/TodoItem';
+import { CheckBox, TodoWithDueDatetime } from '../main/TodoItem';
 import { updateTodoCompletionAction } from '@/actions/todolist-action';
 import { Calendar } from 'lucide-react';
-import { format, isPast, isToday, isTomorrow } from 'date-fns';
 
 export default function RightSidebarPage() {
 	const { selectedTodo, setSelectedTodo } = useTodoStore();
 	const { isRightSidebarOpen } = useRightSidebarStore();
+
+	if (!selectedTodo) return null;
 
 	const handleCheckboxChange = async () => {
 		if (!selectedTodo) return;
@@ -37,19 +38,7 @@ export default function RightSidebarPage() {
 					<Calendar size={20} />
 					<div className="flex flex-col justify-start">
 						<p className="text-sm text-slate-800">Due Date</p>
-						<p
-							className={`${
-								selectedTodo?.due_datetime && isPast(selectedTodo?.due_datetime) ? 'text-red-500' : 'text-slate-800'
-							}`}
-						>
-							{selectedTodo?.due_datetime
-								? isToday(selectedTodo?.due_datetime)
-									? 'Today' + format(selectedTodo?.due_datetime, ` \'at\' h:mm a`)
-									: isTomorrow(selectedTodo?.due_datetime)
-									? 'Tomorrow' + format(selectedTodo?.due_datetime, ` \'at\' h:mm a`)
-									: format(selectedTodo?.due_datetime, `EEE, MMMM d \'at\' h:mm a`)
-								: '-'}
-						</p>
+						<TodoWithDueDatetime isCompleted={selectedTodo.is_completed} task={selectedTodo.task_text} />
 					</div>
 				</div>
 			</div>
