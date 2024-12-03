@@ -29,7 +29,7 @@ export default function RightSidebarPage() {
 			<div className="flex flex-col gap-4 px-6">
 				<RightSidebarHeader />
 				<div className="flex items-center gap-4 bg-slate-100 rounded-md p-4 border">
-					<CheckBox isChecked={selectedTodo?.is_completed!} handleOnClick={handleCheckboxChange} />
+					<CheckBox isChecked={selectedTodo?.is_completed ?? false} handleOnClick={handleCheckboxChange} />
 					<p className="text-lg overflow-hidden text-wrap">{selectedTodo?.task_text}</p>
 				</div>
 				<div className="flex items-center gap-4 bg-slate-100 rounded-md px-4 py-2 border">
@@ -55,6 +55,7 @@ export default function RightSidebarPage() {
 					>
 						{selectedTodo?.categories?.map(category => (
 							<span
+								key={category.id}
 								className={`border rounded py-1 px-2 shadow-md hover:bg-slate-10`}
 								style={{ color: category.hex_color }}
 							>
