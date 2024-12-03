@@ -22,7 +22,7 @@ export default function RightSidebarPage() {
 
 	return (
 		<div
-			className={`bg-white pb-9 pt-6 h-screen transition-[width] duration-200 ease-in-out overflow-hidden ${
+			className={`bg-white pb-9 pt-6 border-l-2 shadow-xl h-screen transition-[width] duration-200 ease-in-out overflow-hidden ${
 				isRightSidebarOpen ? 'w-96' : 'w-0'
 			}`}
 		>

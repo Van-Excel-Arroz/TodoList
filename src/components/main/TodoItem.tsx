@@ -117,7 +117,7 @@ const TodoWithDueDatetime = ({
 );
 
 const TodoWithoutDueDatetime = ({ isCompleted, task }: { isCompleted: boolean; task: string }) => (
-	<p className={`py-2 ${isCompleted && 'line-through'} text-sm`}>{task}</p>
+	<p className={`py-2 ${isCompleted && 'line-through'}`}>{task}</p>
 );
 
 const RenderCategories = ({
