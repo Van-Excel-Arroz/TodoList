@@ -64,35 +64,37 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 	);
 }
 
-const CancelEditButton = memo(
-	({ handleEditClick, isActive }: { handleEditClick: (val: boolean) => void; isActive: boolean }) => {
-		return (
-			<button
-				onClick={() => handleEditClick(false)}
-				aria-label="Cancel Editing"
-				className={`p-1 ml-7  rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
-			>
-				<CircleX size={15} />
-			</button>
-		);
-	}
-);
+const CancelEditButton = ({
+	handleEditClick,
+	isActive,
+}: {
+	handleEditClick: (val: boolean) => void;
+	isActive: boolean;
+}) => {
+	return (
+		<button
+			onClick={() => handleEditClick(false)}
+			aria-label="Cancel Editing"
+			className={`p-1 ml-7  rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
+		>
+			<CircleX size={15} />
+		</button>
+	);
+};
 
-const EditButton = memo(
-	({ handleEditClick, isActive }: { handleEditClick: (val: boolean) => void; isActive: boolean }) => {
-		return (
-			<button
-				onClick={() => handleEditClick(true)}
-				aria-label="Edit Todolist"
-				className={`p-1  rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
-			>
-				<Pencil size={15} />
-			</button>
-		);
-	}
-);
+const EditButton = ({ handleEditClick, isActive }: { handleEditClick: (val: boolean) => void; isActive: boolean }) => {
+	return (
+		<button
+			onClick={() => handleEditClick(true)}
+			aria-label="Edit Todolist"
+			className={`p-1  rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
+		>
+			<Pencil size={15} />
+		</button>
+	);
+};
 
-const DeleteButton = memo(({ todolistId, isActive }: { todolistId: number; isActive: boolean }) => {
+const DeleteButton = ({ todolistId, isActive }: { todolistId: number; isActive: boolean }) => {
 	const router = useRouter();
 	const pathname = usePathname();
 
@@ -115,6 +117,6 @@ const DeleteButton = memo(({ todolistId, isActive }: { todolistId: number; isAct
 			</button>
 		</form>
 	);
-});
+};
 
 export default memo(TodoListItem);
