@@ -10,8 +10,8 @@ export default function RightSidebarPage() {
 
 	return (
 		<div
-			className={`bg-white pb-9 pt-6 h-screen transition-all duration-200 ease-in-out text-nowrap overflow-hidden ${
-				isRightSidebarOpen ? 'w-72' : 'w-0'
+			className={`bg-white pb-9 pt-6 h-screen transition-all duration-200 ease-in-out overflow-hidden ${
+				isRightSidebarOpen ? 'w-80' : 'w-0'
 			}`}
 		>
 			<RightSidebarHeader />
