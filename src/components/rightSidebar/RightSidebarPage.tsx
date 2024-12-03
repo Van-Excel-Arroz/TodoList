@@ -37,7 +37,7 @@ export default function RightSidebarPage() {
 					<div className="flex flex-col justify-start">
 						<p className="text-sm text-slate-600">Due</p>
 						{selectedTodo?.due_datetime ? (
-							<DueDate dueDatetime={selectedTodo?.due_datetime!} textSize="base" />
+							<DueDate dueDatetime={selectedTodo?.due_datetime ?? ''} textSize="base" />
 						) : (
 							<p className="text-slate-600">MM/DD/YYYY</p>
 						)}
