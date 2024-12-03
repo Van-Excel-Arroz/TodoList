@@ -40,13 +40,13 @@ export default function RightSidebarPage() {
 					</div>
 				</div>
 				<div className="flex flex-col items-start bg-slate-100 rounded-md px-4 py-2 border">
-					<div className="flex justify-between w-full text-slate-600">
+					<div className="flex justify-between items-center w-full text-slate-600">
 						<p className="text-sm">Category</p>
 						<button className="block hover:bg-slate-200 rounded-md p-1" aria-label="Add Category">
 							<Plus size={20} />
 						</button>
 					</div>
-					<div className="flex flex-wrap items-center gap-2 pb-2">
+					<div className="flex flex-wrap items-center gap-2 py-2">
 						{selectedTodo?.categories?.map(category => (
 							<span
 								className={`border rounded py-1 px-2 shadow-md hover:bg-slate-10`}

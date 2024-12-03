@@ -89,7 +89,7 @@ const TodoWithDueDatetime = ({
 	dueDatetime: string;
 }) => (
 	<div className="flex flex-col">
-		<p className={` ${isCompleted && 'line-through'} text-sm`}>{task}</p>
+		<p className={` ${isCompleted && 'line-through'} text-sm text-nowrap`}>{task}</p>
 		<div className="flex items-center gap-2">
 			<p className="text-xs text-slate-800">
 				<Calendar size={12} />
@@ -110,7 +110,7 @@ const RenderCategories = ({
 	categories: Category[];
 	handleCategoryClick: (categoryTitle: string) => void;
 }) => (
-	<div className="flex">
+	<div className="flex flex-wrap gap-1">
 		{categories?.map(category => (
 			<span
 				key={category.id}
