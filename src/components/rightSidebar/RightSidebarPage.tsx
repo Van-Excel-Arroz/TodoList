@@ -1,11 +1,11 @@
 'use client';
 
-import RightSidebarHeader from './RightSidebarHeader';
+import { Calendar } from 'lucide-react';
+import { updateTodoCompletionAction } from '@/actions/todolist-action';
 import useTodoStore from '@/context/todoContext';
 import useRightSidebarStore from '@/context/RightSidebarContext';
+import RightSidebarHeader from './RightSidebarHeader';
 import { CheckBox, DueDate } from '../main/TodoItem';
-import { updateTodoCompletionAction } from '@/actions/todolist-action';
-import { Calendar } from 'lucide-react';
 
 export default function RightSidebarPage() {
 	const { selectedTodo, setSelectedTodo } = useTodoStore();
@@ -35,7 +35,7 @@ export default function RightSidebarPage() {
 				<div className="flex items-center gap-4 bg-slate-100 rounded-md px-4 py-2 border">
 					<Calendar size={20} />
 					<div className="flex flex-col justify-start">
-						<p className="text-xs text-slate-800">Due Date</p>
+						<p className="text-xs text-slate-800">Due</p>
 						<DueDate dueDatetime={selectedTodo?.due_datetime!} textSize="sm" />
 					</div>
 				</div>
