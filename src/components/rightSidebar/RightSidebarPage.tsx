@@ -28,10 +28,11 @@ export default function RightSidebarPage() {
 		>
 			<div className="flex flex-col gap-4 px-6">
 				<RightSidebarHeader />
-				<div className="flex items-center gap-4 bg-slate-100 rounded-md p-4 border">
-					<CheckBox isChecked={selectedTodo?.is_completed ?? false} handleOnClick={handleCheckboxChange} />
-					<p className="text-lg overflow-hidden text-wrap">{selectedTodo?.task_text}</p>
-				</div>
+				<TodoTitle
+					title={selectedTodo?.task_text ?? ''}
+					isCompleted={selectedTodo?.is_completed ?? false}
+					handleCheckboxChange={handleCheckboxChange}
+				/>
 				<div className="flex items-center gap-4 bg-slate-100 rounded-md px-4 py-2 border">
 					<Calendar size={20} className="text-slate-800" />
 					<div className="flex flex-col justify-start">
@@ -68,3 +69,18 @@ export default function RightSidebarPage() {
 		</div>
 	);
 }
+
+const TodoTitle = ({
+	title,
+	isCompleted,
+	handleCheckboxChange,
+}: {
+	title: string;
+	isCompleted: boolean;
+	handleCheckboxChange: () => void;
+}) => (
+	<div className="flex items-center gap-4 bg-slate-100 rounded-md p-4 border">
+		<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
+		<p className="text-lg overflow-hidden text-wrap">{title}</p>
+	</div>
+);
