@@ -57,7 +57,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 		>
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 			<div className="flex items-center py-2 pl-4 w-full">
-				<TodoWithDueDatetimeOrCategories
+				<TodoContent
 					isCompleted={todo.is_completed}
 					task={todo.task_text}
 					dueDatetime={todo.due_datetime || ''}
@@ -101,7 +101,7 @@ export const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; han
 	</div>
 );
 
-const TodoWithDueDatetimeOrCategories = ({
+const TodoContent = ({
 	isCompleted,
 	task,
 	dueDatetime,
