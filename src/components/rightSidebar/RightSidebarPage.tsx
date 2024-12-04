@@ -5,21 +5,13 @@ import { updateTodoCompletionAction } from '@/actions/todolist-action';
 import useTodoStore from '@/context/todoContext';
 import useRightSidebarStore from '@/context/RightSidebarContext';
 import RightSidebarHeader from './RightSidebarHeader';
-import { CheckBox, DueDate } from '../main/TodoItem';
+import { DueDate } from '../main/TodoItem';
 import { Category } from '@/types';
+import TodoTitle from './TodoTitle';
 
 export default function RightSidebarPage() {
-	const { selectedTodo, setSelectedTodo } = useTodoStore();
+	const { selectedTodo } = useTodoStore();
 	const { isRightSidebarOpen } = useRightSidebarStore();
-
-	const handleCheckboxChange = async () => {
-		if (!selectedTodo) return;
-		await updateTodoCompletionAction(selectedTodo.id, !selectedTodo.is_completed, selectedTodo.todo_list_id);
-		setSelectedTodo({
-			...selectedTodo,
-			is_completed: !selectedTodo.is_completed,
-		});
-	};
 
 	return (
 		<div
@@ -29,32 +21,13 @@ export default function RightSidebarPage() {
 		>
 			<div className="flex flex-col gap-4 px-6">
 				<RightSidebarHeader />
-				<TodoTitle
-					title={selectedTodo?.task_text ?? ''}
-					isCompleted={selectedTodo?.is_completed ?? false}
-					handleCheckboxChange={handleCheckboxChange}
-				/>
+				<TodoTitle title={selectedTodo?.task_text ?? ''} isCompleted={selectedTodo?.is_completed ?? false} />
 				<TodoDueDate dueDatetime={selectedTodo?.due_datetime ?? ''} />
 				<TodoCategories categories={selectedTodo?.categories ?? []} />
 			</div>
 		</div>
 	);
 }
-
-const TodoTitle = ({
-	title,
-	isCompleted,
-	handleCheckboxChange,
-}: {
-	title: string;
-	isCompleted: boolean;
-	handleCheckboxChange: () => void;
-}) => (
-	<div className="flex items-center gap-4 bg-slate-100 rounded-md p-4 border">
-		<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
-		<p className="text-lg overflow-hidden text-wrap">{title}</p>
-	</div>
-);
 
 const TodoDueDate = ({ dueDatetime }: { dueDatetime: string }) => (
 	<div className="flex items-center gap-4 bg-slate-100 rounded-md px-4 py-2 border">
