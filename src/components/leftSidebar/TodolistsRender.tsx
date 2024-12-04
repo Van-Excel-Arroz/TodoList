@@ -7,9 +7,12 @@ export default function TodolistsRender({ todolists }: { todolists: TodoList[] }
 	return (
 		<div className="h-[calc(100%-90px)] overflow-y-auto overflow-x-hidden">
 			{isEmpty ? (
-				<p>Empty Todolsts</p>
+				<div className="text-center mt-4">
+					<p className="text-xl font-semibold mb-2">No Tasks Available</p>
+					<p className="text-gray-600">Start by adding a new todolist!</p>
+				</div>
 			) : (
-				<ul className="container mx-auto flex flex-col gap-2 mb-4">
+				<ul className=" flex flex-col gap-2 mb-4">
 					{todolists.map(todolist => (
 						<li key={todolist.id}>
 							<TodoListItem key={todolist.id} todolist={todolist} />
