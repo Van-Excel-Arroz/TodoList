@@ -122,18 +122,18 @@ const TodoWithDueDatetimeOrCategories = ({
 		>
 			{task}
 		</p>
-		<div className="flex items-center gap-4">
+		<div className="flex items-center gap-1 flex-wrap">
 			{dueDatetime && (
-				<div className="flex items-center gap-1">
+				<>
 					<Calendar size={12} className="text-slate-800" />
 					<DueDate dueDatetime={dueDatetime} textSize="xs" />
-				</div>
+				</>
 			)}
 			{categories.length > 0 && (
-				<div className="flex items-center gap-1 flex-wrap">
-					<Tag size={12} className="text-slate-800" />
+				<>
+					<Tag size={12} className="text-slate-800 ml-1" />
 					<RenderCategories categories={categories} handleCategoryClick={handleCategoryClick} />
-				</div>
+				</>
 			)}
 		</div>
 	</div>
