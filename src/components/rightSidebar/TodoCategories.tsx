@@ -20,6 +20,8 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 
 	const onSubmit = async (data: CategoryFormInputs) => {
 		console.log(data);
+		reset();
+		handleAddCategory(false);
 	};
 	return (
 		<div className="flex flex-col items-start bg-slate-100 rounded-md px-4 py-2 border">
