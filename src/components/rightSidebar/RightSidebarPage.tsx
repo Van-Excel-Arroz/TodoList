@@ -21,7 +21,7 @@ export default function RightSidebarPage() {
 				<RightSidebarHeader />
 				<TodoTitle title={selectedTodo?.task_text ?? ''} isCompleted={selectedTodo?.is_completed ?? false} />
 				<TodoDueDate dueDatetime={selectedTodo?.due_datetime ?? ''} />
-				<TodoCategories categories={selectedTodo?.categories ?? []} />
+				<TodoCategories categories={selectedTodo?.categories ?? []} todoId={selectedTodo?.id ?? 0} />
 			</div>
 		</div>
 	);

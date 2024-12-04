@@ -4,15 +4,26 @@ import { Plus, SendHorizontal, X } from 'lucide-react';
 import { Category } from '@/types';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import useTodoStore from '@/context/todoContext';
 
 interface CategoryFormInputs {
 	category_title: string;
 	hex_color: string;
 }
 
-export default function TodoCategories({ categories }: { categories: Category[] }) {
+interface TodoCategoriesProps {
+	categories: Category[];
+	todoId: number;
+}
+
+export default function TodoCategories({ categories, todoId }: TodoCategoriesProps) {
 	const [isAddingCategory, setIsAddingCategory] = useState(false);
 	const { register, handleSubmit, reset } = useForm<CategoryFormInputs>();
+	const { selectedTodo } = useTodoStore();
+
+	const isSelectedTodo = selectedTodo?.id === todoId;
+
+	if (isSelectedTodo) reset();
 
 	const handleAddCategory = (val: boolean) => {
 		setIsAddingCategory(val);
