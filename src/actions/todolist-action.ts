@@ -29,7 +29,8 @@ export async function createTodoAction(
 ) {
 	const todoId: number = await storeTodo(taskText, dueDatetime, todolistId);
 	const categoryColorsId = await storeCategoriesColors(categories, todolistId);
-	await storeCategories(todoId, categoryColorsId);
+	const validCategoryIds = categoryColorsId.filter((id): id is number => id !== undefined);
+	await storeCategories(todoId, validCategoryIds);
 
 	if (todoId) {
 		revalidatePath(`/tasks/${todolistId}`);
