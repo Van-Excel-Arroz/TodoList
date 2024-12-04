@@ -73,7 +73,7 @@ const TodoDueDate = ({ dueDatetime }: { dueDatetime: string }) => (
 const TodoCategories = ({ categories }: { categories: Category[] }) => (
 	<div className="flex flex-col items-start bg-slate-100 rounded-md px-4 py-2 border">
 		<div className="flex justify-between items-center w-full text-slate-600">
-			<p className="text-sm">Category</p>
+			<p className="text-sm">Categories</p>
 			<button className="block hover:bg-slate-200 rounded-md p-1" aria-label="Add Category">
 				<Plus size={20} />
 			</button>
