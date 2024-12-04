@@ -1,6 +1,7 @@
 'use server';
 
 import {
+	createCategoryColor,
 	deleteTodo,
 	storeCategories,
 	storeCategoriesColors,
@@ -85,4 +86,14 @@ export async function deleteTodoAction(todoId: number, todolistId: number) {
 	} else {
 		console.error('Failed to delete todo');
 	}
+}
+
+export async function addTodoCategoryAction(
+	categoryTitle: string,
+	hexColor: string,
+	todolistId: number,
+	todoId: number
+) {
+	const categoryColorsId = await createCategoryColor(categoryTitle, hexColor, todolistId);
+	await storeCategories(todoId, categoryColorsId);
 }

@@ -71,7 +71,11 @@ async function getCategoryColor(category: string, todolistId: number): Promise<C
 	}
 }
 
-async function createCategoryColor(category: string, color: string, todolistId: number) {
+export async function createCategoryColor(
+	category: string,
+	color: string,
+	todolistId: number
+): Promise<number | undefined> {
 	try {
 		const result = await query(
 			'INSERT INTO category_colors (category_title, hex_color, is_selected, todo_list_id) VALUES ($1, $2, FALSE, $3) RETURNING id',
@@ -103,7 +107,7 @@ export async function storeCategoriesColors(categories: string[], todolistId: nu
 
 		return categoryIds;
 	} catch (error) {
-		console.error('Error storing categories and colors in the database');
+		console.error('Error storing categories and colors in the database', error);
 		return [];
 	}
 }
@@ -111,10 +115,18 @@ export async function storeCategoriesColors(categories: string[], todolistId: nu
 export async function storeCategories(todoId: number, categoryColorsId: number[]) {
 	try {
 		for (let i = 0; i < categoryColorsId.length; i++) {
-			await query('INSERT INTO categories (todo_id, category_color_id) VALUES ($1, $2)', [todoId, categoryColorsId[i]]);
+			await storeCategory(todoId, categoryColorsId[i]);
 		}
 	} catch (error) {
-		console.error('Error inserting categories in the database');
+		console.error('Error inserting categories in the database', error);
+	}
+}
+
+export async function storeCategory(todoId: number, categoryColorId: number) {
+	try {
+		await query('INSERT INTO categories (todo_id, category_color_id) VALUES ($1, $2)', [todoId, categoryColorId]);
+	} catch (error) {
+		console.error('Error inserting category in the database', error);
 	}
 }
 
