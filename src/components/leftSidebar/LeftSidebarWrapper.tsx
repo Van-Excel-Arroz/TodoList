@@ -3,9 +3,15 @@
 import useLeftSidebarStore from '@/context/LeftSidebarContext';
 
 export default function LeftSidebarWrapper({ children }: { children: React.ReactNode }) {
-	const { isLeftSidebarOpen } = useLeftSidebarStore();
+	const { isLeftSidebarOpen, toggleLeftSidebar } = useLeftSidebarStore();
 	return (
 		<>
+			<div
+				className={`fixed inset-0 bg-black/20 transition-opacity md:hidden cursor-pointer ${
+					isLeftSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+				}`}
+				onClick={toggleLeftSidebar}
+			/>
 			<div
 				className={`border-r-2 rounded-r-3xl drop-shadow-xl bg-white pb-9 pt-6 h-[calc(100vh-3.5rem)] transition-all duration-200 ease-in-out text-nowrap overflow-hidden ${
 					isLeftSidebarOpen ? 'w-72' : 'w-0'
