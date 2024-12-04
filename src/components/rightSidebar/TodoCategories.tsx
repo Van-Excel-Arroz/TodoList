@@ -16,13 +16,15 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 				<p className="text-sm">Categories</p>
 				{isAddingCategory ? (
 					<div className="flex items-center gap-2 justify-end">
-						<input type="color" className="w-5 h-5" defaultValue="#000000" />
+						<input type="color" className="w-5 h-5 cursor-pointer" defaultValue="#000000" />
 						<input
 							type="text"
-							className="border rounded-md w-1/2 p-1 focus:outline-none focus:border-slate-400 hover:border-slate-400"
+							className="border rounded-md w-1/2 p-1 text-sm focus:outline-none focus:border-slate-400 hover:border-slate-400"
 						/>
-						<SendHorizontal size={20} />
-						<button onClick={() => handleAddCategory(false)}>
+						<button className="hover:bg-slate-200 rounded-md p-1">
+							<SendHorizontal size={20} />
+						</button>
+						<button onClick={() => handleAddCategory(false)} className="hover:bg-slate-200 rounded-md p-1">
 							<X size={20} />
 						</button>
 					</div>
