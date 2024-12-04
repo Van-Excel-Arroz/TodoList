@@ -22,7 +22,7 @@ export default function CategoryList({ selectedCategories, todoListId }: Categor
 						{selectedCategories.map(selectedCategory => (
 							<div
 								key={selectedCategory.id}
-								className="text-xs border shadow-md ml-2 rounded py-1 px-2 w-fit flex flex-row items-center justify-between gap-2 mt-6"
+								className="text-xs border shadow-md ml-2 rounded py-1 px-2 w-fit flex flex-row items-center justify-between gap-2 mt-6 bg-white"
 							>
 								<p style={{ color: selectedCategory.hex_color }}>{selectedCategory.category_title}</p>
 								<X
