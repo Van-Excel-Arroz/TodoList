@@ -13,7 +13,7 @@ export default function RightSidebarHeader() {
 		setSelectedTodo(null);
 	};
 	return (
-		<button onClick={handleCloseRightSidebar} aria-label="Close Todo Menu">
+		<button onClick={handleCloseRightSidebar} aria-label="Close Todo Menu" className="mt-1">
 			<ArrowBigRightDashIcon />
 		</button>
 	);
