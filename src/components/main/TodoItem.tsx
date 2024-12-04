@@ -90,7 +90,11 @@ export const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; han
 					<Check color="white" size={15} />
 				</div>
 			) : (
-				<div className="border border-black w-5 h-5 rounded-md hover:border-slate-600 active:border-slate-400"></div>
+				<div className="border border-black w-5 h-5 rounded-md active:border-slate-700 ">
+					<div className="flex justify-center items-center h-full opacity-0 hover:opacity-80">
+						<Check color="black" size={15} />
+					</div>
+				</div>
 			)}
 		</button>
 	</div>
