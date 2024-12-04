@@ -2,15 +2,21 @@ import { TodoList } from '@/types';
 import TodoListItem from './TodoListItem';
 
 export default function TodolistsRender({ todolists }: { todolists: TodoList[] }) {
+	const isEmpty = todolists.length === 0;
+
 	return (
 		<div className="h-[calc(100%-90px)] overflow-y-auto overflow-x-hidden">
-			<ul className="container mx-auto flex flex-col gap-2 mb-4">
-				{todolists.map(todolist => (
-					<li key={todolist.id}>
-						<TodoListItem key={todolist.id} todolist={todolist} />
-					</li>
-				))}
-			</ul>
+			{isEmpty ? (
+				<p>Empty Todolsts</p>
+			) : (
+				<ul className="container mx-auto flex flex-col gap-2 mb-4">
+					{todolists.map(todolist => (
+						<li key={todolist.id}>
+							<TodoListItem key={todolist.id} todolist={todolist} />
+						</li>
+					))}
+				</ul>
+			)}
 		</div>
 	);
 }

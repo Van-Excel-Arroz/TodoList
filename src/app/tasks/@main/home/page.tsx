@@ -1,5 +1,5 @@
-import EmptyTodolistMessage from '@/components/EmptyTodolistMessage';
+import NoTodoListSelected from '@/components/NoTodolistSelected';
 
 export default function HomePage() {
-	return <EmptyTodolistMessage />;
+	return <NoTodoListSelected />;
 }
