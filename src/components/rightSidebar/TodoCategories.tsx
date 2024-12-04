@@ -33,6 +33,8 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 						<input
 							type="text"
 							className="border rounded-md w-1/2 p-1 text-sm focus:outline-none focus:border-slate-400 hover:border-slate-400"
+							placeholder="Category Title"
+							autoComplete="off"
 							{...register('category_title', { maxLength: 20 })}
 						/>
 						<button className="hover:bg-slate-200 rounded-md p-1" aria-label="Add Category">
