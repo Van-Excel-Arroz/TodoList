@@ -1,7 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import { Calendar, Check, Trash2 } from 'lucide-react';
+import { Calendar, Check, Tag, Trash2 } from 'lucide-react';
 import { isToday, isTomorrow, format, isPast, isThisYear } from 'date-fns';
 import { Category, Todo } from '@/types';
 import {
@@ -57,17 +57,13 @@ function TodoItem({ todo }: { todo: Todo }) {
 		>
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 			<div className="flex items-center py-2 pl-4 w-full">
-				{todo.due_datetime || todo.categories ? (
-					<TodoWithDueDatetimeOrCategories
-						isCompleted={todo.is_completed}
-						task={todo.task_text}
-						dueDatetime={todo.due_datetime || ''}
-						categories={todo.categories || []}
-						handleCategoryClick={handleCategoryClick}
-					/>
-				) : (
-					<TodoWithoutDueDatetime isCompleted={todo.is_completed} task={todo.task_text} />
-				)}
+				<TodoWithDueDatetimeOrCategories
+					isCompleted={todo.is_completed}
+					task={todo.task_text}
+					dueDatetime={todo.due_datetime || ''}
+					categories={todo.categories || []}
+					handleCategoryClick={handleCategoryClick}
+				/>
 				<DeleteButton handleDeleteClick={handleDeleteClick} />
 			</div>
 		</div>
@@ -119,21 +115,28 @@ const TodoWithDueDatetimeOrCategories = ({
 	handleCategoryClick: (categoryTitle: string) => void;
 }) => (
 	<div className="flex flex-col">
-		<p className={` ${isCompleted && 'line-through'} text-sm text-nowrap overflow-hidden`}>{task}</p>
-		<div className="flex items-center gap-2 flex-wrap">
+		<p
+			className={` ${isCompleted && 'line-through'} ${
+				categories.length > 0 || dueDatetime !== '' ? 'text-sm' : 'text-base'
+			} text-nowrap overflow-hidden`}
+		>
+			{task}
+		</p>
+		<div className="flex items-center gap-4 flex-wrap">
 			{dueDatetime && (
-				<>
+				<div className="flex items-center gap-1">
 					<Calendar size={12} className="text-slate-800" />
 					<DueDate dueDatetime={dueDatetime} textSize="xs" />
-				</>
+				</div>
 			)}
-			{categories && <RenderCategories categories={categories} handleCategoryClick={handleCategoryClick} />}
+			{categories.length > 0 && (
+				<div className="flex items-center">
+					<Tag size={12} className="text-slate-800" />
+					<RenderCategories categories={categories} handleCategoryClick={handleCategoryClick} />
+				</div>
+			)}
 		</div>
 	</div>
-);
-
-const TodoWithoutDueDatetime = ({ isCompleted, task }: { isCompleted: boolean; task: string }) => (
-	<p className={`py-2 ${isCompleted && 'line-through'}`}>{task}</p>
 );
 
 const RenderCategories = ({
