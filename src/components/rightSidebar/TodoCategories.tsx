@@ -20,7 +20,7 @@ interface TodoCategoriesProps {
 export default function TodoCategories({ categories, todoId }: TodoCategoriesProps) {
 	const [isAddingCategory, setIsAddingCategory] = useState(false);
 	const { register, handleSubmit, reset } = useForm<CategoryFormInputs>();
-	const { selectedTodo } = useTodoStore();
+	const { selectedTodo, updateSelectedTodoCategories } = useTodoStore();
 
 	useEffect(() => {
 		setIsAddingCategory(false);
@@ -33,13 +33,15 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 
 	const onSubmit = async (data: CategoryFormInputs) => {
 		await addTodoCategoryAction(data.category_title, data.hex_color, selectedTodo!.todo_list_id, todoId);
-		categories.push({
+		const newCategory: Category = {
 			id: 0,
 			category_title: data.category_title,
 			hex_color: data.hex_color,
 			is_selected: false,
 			todo_list_id: selectedTodo!.todo_list_id,
-		});
+		};
+
+		updateSelectedTodoCategories(newCategory);
 		reset();
 		handleAddCategory(false);
 	};
