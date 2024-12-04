@@ -1,6 +1,6 @@
 'use client';
 
-import { Plus, Send, SendHorizontal, X } from 'lucide-react';
+import { Plus, SendHorizontal, X } from 'lucide-react';
 import { Category } from '@/types';
 import { useState } from 'react';
 
