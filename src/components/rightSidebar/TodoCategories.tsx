@@ -16,6 +16,7 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 
 	const handleAddCategory = (val: boolean) => {
 		setIsAddingCategory(val);
+		reset();
 	};
 
 	const onSubmit = async (data: CategoryFormInputs) => {
@@ -37,7 +38,7 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 							autoComplete="off"
 							{...register('category_title', { maxLength: 20 })}
 						/>
-						<button className="hover:bg-slate-200 rounded-md p-1" aria-label="Add Category">
+						<button className="hover:bg-slate-200 rounded-md p-1" aria-label="Add Category" type="submit">
 							<SendHorizontal size={20} />
 						</button>
 						<button
