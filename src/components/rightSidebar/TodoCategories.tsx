@@ -5,6 +5,7 @@ import { Category } from '@/types';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useTodoStore from '@/context/todoContext';
+import { addTodoCategoryAction } from '@/actions/todolist-action';
 
 interface CategoryFormInputs {
 	category_title: string;
@@ -31,7 +32,14 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 	};
 
 	const onSubmit = async (data: CategoryFormInputs) => {
-		console.log(data);
+		await addTodoCategoryAction(data.category_title, data.hex_color, selectedTodo!.todo_list_id, todoId);
+		categories.push({
+			id: 0,
+			category_title: data.category_title,
+			hex_color: data.hex_color,
+			is_selected: false,
+			todo_list_id: selectedTodo!.todo_list_id,
+		});
 		reset();
 		handleAddCategory(false);
 	};
