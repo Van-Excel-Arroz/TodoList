@@ -24,7 +24,7 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 
 	useEffect(() => {
 		setIsAddingCategory(false);
-	}, [selectedTodo, todoId, reset]);
+	}, [todoId]);
 
 	const handleAddCategory = (val: boolean) => {
 		setIsAddingCategory(val);
