@@ -8,7 +8,7 @@ import RightSidebarHeader from './RightSidebarHeader';
 import TodoCategories from './TodoCategories';
 
 export default function RightSidebarPage() {
-	const { selectedTodo } = useTodoStore();
+	const { selectedTodo, setSelectedTodo } = useTodoStore();
 	const { isRightSidebarOpen, closeRightSidebar } = useRightSidebarStore();
 
 	return (
@@ -17,7 +17,10 @@ export default function RightSidebarPage() {
 				className={`fixed inset-0 bg-black/20 transition-opacity md:hidden cursor-pointer z-40 ${
 					isRightSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
 				}`}
-				onClick={closeRightSidebar}
+				onClick={() => {
+					closeRightSidebar();
+					setSelectedTodo(null);
+				}}
 			/>
 			<div
 				className={`fixed lg:relative right-0 top-0 bg-white pb-9 pt-6 border-l-2 shadow-xl h-screen transition-[width] duration-200 ease-in-out overflow-hidden z-50 ${
