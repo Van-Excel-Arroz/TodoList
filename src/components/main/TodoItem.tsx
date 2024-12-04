@@ -122,7 +122,7 @@ const TodoWithDueDatetimeOrCategories = ({
 		>
 			{task}
 		</p>
-		<div className="flex items-center gap-4 flex-wrap">
+		<div className="flex items-center gap-4">
 			{dueDatetime && (
 				<div className="flex items-center gap-1">
 					<Calendar size={12} className="text-slate-800" />
@@ -130,7 +130,7 @@ const TodoWithDueDatetimeOrCategories = ({
 				</div>
 			)}
 			{categories.length > 0 && (
-				<div className="flex items-center">
+				<div className="flex items-center gap-1 flex-wrap">
 					<Tag size={12} className="text-slate-800" />
 					<RenderCategories categories={categories} handleCategoryClick={handleCategoryClick} />
 				</div>
@@ -146,7 +146,7 @@ const RenderCategories = ({
 	categories: Category[];
 	handleCategoryClick: (categoryTitle: string) => void;
 }) => (
-	<div className="flex flex-wrap gap-1">
+	<>
 		{categories?.map(category => (
 			<span
 				key={category.id}
@@ -160,7 +160,7 @@ const RenderCategories = ({
 				• {category.category_title}
 			</span>
 		))}
-	</div>
+	</>
 );
 
 export const DueDate = ({ dueDatetime, textSize = 'xs' }: { dueDatetime: string; textSize?: string }) => (
