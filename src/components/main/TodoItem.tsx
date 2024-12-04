@@ -57,12 +57,17 @@ function TodoItem({ todo }: { todo: Todo }) {
 		>
 			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 			<div className="flex items-center py-2 pl-4 w-full">
-				{todo.due_datetime ? (
-					<TodoWithDueDatetime isCompleted={todo.is_completed} task={todo.task_text} dueDatetime={todo.due_datetime} />
+				{todo.due_datetime || todo.categories ? (
+					<TodoWithDueDatetimeOrCategories
+						isCompleted={todo.is_completed}
+						task={todo.task_text}
+						dueDatetime={todo.due_datetime || ''}
+						categories={todo.categories || []}
+						handleCategoryClick={handleCategoryClick}
+					/>
 				) : (
 					<TodoWithoutDueDatetime isCompleted={todo.is_completed} task={todo.task_text} />
 				)}
-				{todo.categories && <RenderCategories categories={todo.categories} handleCategoryClick={handleCategoryClick} />}
 				<DeleteButton handleDeleteClick={handleDeleteClick} />
 			</div>
 		</div>
@@ -100,22 +105,29 @@ export const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; han
 	</div>
 );
 
-const TodoWithDueDatetime = ({
+const TodoWithDueDatetimeOrCategories = ({
 	isCompleted,
 	task,
 	dueDatetime,
+	categories,
+	handleCategoryClick,
 }: {
 	isCompleted: boolean;
 	task: string;
 	dueDatetime: string;
+	categories: Category[];
+	handleCategoryClick: (categoryTitle: string) => void;
 }) => (
 	<div className="flex flex-col">
 		<p className={` ${isCompleted && 'line-through'} text-sm text-nowrap overflow-hidden`}>{task}</p>
-		<div className="flex items-center gap-2">
-			<p className="text-xs text-slate-800">
-				<Calendar size={12} />
-			</p>
-			<DueDate dueDatetime={dueDatetime} textSize="xs" />
+		<div className="flex items-center gap-2 flex-wrap">
+			{dueDatetime && (
+				<>
+					<Calendar size={12} className="text-slate-800" />
+					<DueDate dueDatetime={dueDatetime} textSize="xs" />
+				</>
+			)}
+			{categories && <RenderCategories categories={categories} handleCategoryClick={handleCategoryClick} />}
 		</div>
 	</div>
 );
@@ -135,14 +147,14 @@ const RenderCategories = ({
 		{categories?.map(category => (
 			<span
 				key={category.id}
-				className={`text-xs border shadow-md ml-2 rounded py-1 px-2 hover:bg-slate-100 hover:shadow-none active:bg-slate-200`}
+				className="text-xs rounded p-1 hover:bg-slate-200 hover:shadow-none active:bg-slate-300"
 				style={{ color: category.hex_color }}
 				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 					event.stopPropagation();
 					handleCategoryClick(category.category_title);
 				}}
 			>
-				{category.category_title}
+				• {category.category_title}
 			</span>
 		))}
 	</div>
