@@ -5,6 +5,7 @@ import {
 	deleteTodo,
 	storeCategories,
 	storeCategoriesColors,
+	storeCategory,
 	storeTodo,
 	updateIsSelectedCategoryColors,
 	updateTodoCompletion,
@@ -95,5 +96,11 @@ export async function addTodoCategoryAction(
 	todoId: number
 ) {
 	const categoryColorsId = await createCategoryColor(categoryTitle, hexColor, todolistId);
-	await storeCategories(todoId, categoryColorsId);
+	await storeCategory(todoId, categoryColorsId!);
+
+	if (categoryColorsId) {
+		revalidatePath(`/tasks/${todolistId}`);
+	} else {
+		console.error('Failed to add category to todo');
+	}
 }
