@@ -2,7 +2,7 @@
 
 import { Plus, SendHorizontal, X } from 'lucide-react';
 import { Category } from '@/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useTodoStore from '@/context/todoContext';
 
@@ -21,9 +21,9 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 	const { register, handleSubmit, reset } = useForm<CategoryFormInputs>();
 	const { selectedTodo } = useTodoStore();
 
-	const isSelectedTodo = selectedTodo?.id === todoId;
-
-	if (isSelectedTodo) reset();
+	useEffect(() => {
+		setIsAddingCategory(false);
+	}, [selectedTodo, todoId, reset]);
 
 	const handleAddCategory = (val: boolean) => {
 		setIsAddingCategory(val);
