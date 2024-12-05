@@ -100,9 +100,9 @@ export async function addTodoCategoryAction(
 	const categoryColorsId = await createCategoryColor(categoryTitle, hexColor, todolistId);
 	const categoryId = await storeCategory(todoId, categoryColorsId!);
 
-	if (categoryId) {
+	if (categoryId && categoryColorsId) {
 		revalidatePath(`/tasks/${todolistId}`);
-		return categoryId;
+		return categoryColorsId;
 	} else {
 		console.error('Failed to add category to todo');
 		return;
