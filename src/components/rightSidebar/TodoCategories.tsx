@@ -1,6 +1,6 @@
 'use client';
 
-import { Plus, SendHorizontal, X } from 'lucide-react';
+import { Plus, SendHorizontal, Trash2, X } from 'lucide-react';
 import { Category } from '@/types';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';

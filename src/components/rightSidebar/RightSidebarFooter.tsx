@@ -27,6 +27,7 @@ export default function RightSidebarFooter({ creationDate, todoId, todolistId }:
 			<button
 				className="p-1 rounded-md hover:bg-slate-200 active:bg-slate-200 text-slate-600"
 				onClick={handleDeleteClick}
+				aria-label="Delete Todo"
 			>
 				<Trash2 />
 			</button>
