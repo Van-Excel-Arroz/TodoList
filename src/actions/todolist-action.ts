@@ -97,8 +97,8 @@ export async function addTodoCategoryAction(
 	todolistId: number,
 	todoId: number
 ): Promise<number | undefined> {
-	const categoryId = await createCategoryColor(categoryTitle, hexColor, todolistId);
-	await storeCategory(todoId, categoryId!);
+	const categoryColorsId = await createCategoryColor(categoryTitle, hexColor, todolistId);
+	const categoryId = await storeCategory(todoId, categoryColorsId!);
 
 	if (categoryId) {
 		revalidatePath(`/tasks/${todolistId}`);

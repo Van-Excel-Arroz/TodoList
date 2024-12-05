@@ -31,20 +31,22 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 		reset();
 	};
 
-	const handleRemoveCategory = async (categoryColorsId: number) => {
-		await deleteTodoCategoryAction(categoryColorsId, selectedTodo!.todo_list_id);
-		removeSelectedTodoCategory(categoryColorsId);
+	const handleRemoveCategory = async (categoryId: number) => {
+		console.log(`remove categoryId ${categoryId} and todoId ${todoId}`);
+		await deleteTodoCategoryAction(categoryId, selectedTodo!.todo_list_id);
+		removeSelectedTodoCategory(categoryId);
 	};
 
 	const onSubmit = async (data: CategoryFormInputs) => {
-		const categoryColorsId = await addTodoCategoryAction(
+		const categoryId = await addTodoCategoryAction(
 			data.category_title,
 			data.hex_color,
 			selectedTodo!.todo_list_id,
 			todoId
 		);
+		console.log(`submitting categoryId ${categoryId}`);
 		const newCategory: Category = {
-			id: categoryColorsId!,
+			id: categoryId!,
 			category_title: data.category_title,
 			hex_color: data.hex_color,
 			is_selected: false,

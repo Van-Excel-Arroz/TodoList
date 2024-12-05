@@ -83,7 +83,7 @@ export async function createCategoryColor(
 		);
 		return result.rows[0].id;
 	} catch (error) {
-		console.error('Error inserting category and colors in the database');
+		console.error('Error inserting category and colors in the database', error);
 		return;
 	}
 }
