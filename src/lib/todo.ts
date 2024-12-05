@@ -122,11 +122,16 @@ export async function storeCategories(todoId: number, categoryColorsId: number[]
 	}
 }
 
-export async function storeCategory(todoId: number, categoryColorId: number) {
+export async function storeCategory(todoId: number, categoryColorId: number): Promise<number | undefined> {
 	try {
-		await query('INSERT INTO categories (todo_id, category_color_id) VALUES ($1, $2)', [todoId, categoryColorId]);
+		const result = await query('INSERT INTO categories (todo_id, category_color_id) VALUES ($1, $2) RETURNING id', [
+			todoId,
+			categoryColorId,
+		]);
+		return result.rows[0].id;
 	} catch (error) {
 		console.error('Error inserting category in the database', error);
+		return;
 	}
 }
 
