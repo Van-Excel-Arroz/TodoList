@@ -127,9 +127,10 @@ const TodoContent = ({
 					<DueDate dueDatetime={dueDatetime} textSize="xs" />
 				</>
 			)}
+			{dueDatetime && categories.length > 0 && <p>•</p>}
 			{categories.length > 0 && (
 				<>
-					<Tag size={12} className="text-slate-800 ml-1" />
+					<Tag size={12} className="text-slate-800" />
 					<RenderCategories categories={categories} handleCategoryClick={handleCategoryClick} />
 				</>
 			)}
@@ -148,14 +149,15 @@ const RenderCategories = ({
 		{categories?.map(category => (
 			<span
 				key={category.id}
-				className="text-xs rounded p-1 hover:bg-slate-200 hover:shadow-none active:bg-slate-300"
-				style={{ color: category.hex_color }}
+				className="text-xs rounded-md flex gap-1"
+				style={{ color: category.hex_color, backgroundColor: `${category.hex_color}15`, padding: '2px' }}
 				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 					event.stopPropagation();
 					handleCategoryClick(category.category_title);
 				}}
 			>
-				• {category.category_title}
+				<p>○</p>
+				<p>{category.category_title}</p>
 			</span>
 		))}
 	</>
