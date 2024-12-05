@@ -19,6 +19,15 @@ const useTodoStore = create<TodoContextState>()((set: any) => ({
 				  }
 				: null,
 		})),
+	removeSelectedTodoCategory: (categoryId: number) =>
+		set((state: TodoContextState) => ({
+			selectedTodo: state.selectedTodo
+				? {
+						...state.selectedTodo,
+						categories: state.selectedTodo.categories?.filter(category => category.id !== categoryId),
+				  }
+				: null,
+		})),
 }));
 
 export default useTodoStore;
