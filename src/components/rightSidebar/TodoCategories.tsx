@@ -84,11 +84,10 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 				{categories.map(category => (
 					<span
 						key={category.id}
-						className="rounded-md flex items-center gap-1"
+						className="rounded-md flex items-center gap-1 px-2"
 						style={{
 							color: category.hex_color,
 							backgroundColor: `${category.hex_color}20`,
-							padding: '2px',
 						}}
 					>
 						<p className="pb-0.5 text-2xl">⦿</p>
