@@ -2,6 +2,7 @@
 
 import {
 	createCategoryColor,
+	deleteCategory,
 	deleteTodo,
 	storeCategories,
 	storeCategoriesColors,
@@ -103,5 +104,15 @@ export async function addTodoCategoryAction(
 		revalidatePath(`/tasks/${todolistId}`);
 	} else {
 		console.error('Failed to add category to todo');
+	}
+}
+
+export async function deleteTodoCategoryAction(categoryId: number, todoId: number, todolistId: number) {
+	const result = await deleteCategory(categoryId, todoId);
+
+	if (result) {
+		revalidatePath(`/tasks/${todolistId}`);
+	} else {
+		console.error('Failed to delete category from todo');
 	}
 }
