@@ -289,3 +289,12 @@ export async function deleteTodo(todoId: number): Promise<boolean> {
 		return false;
 	}
 }
+
+export async function deleteCategory(categoryId: number, todoId: number): Promise<boolean> {
+	try {
+		await query('DELETE FROM categories WHERE category_color_id = $1 AND todo_id = $2', [categoryId, todoId]);
+		return true;
+	} catch (error) {
+		return false;
+	}
+}
