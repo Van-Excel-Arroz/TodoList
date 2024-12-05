@@ -183,7 +183,7 @@ export const DueDate = ({ dueDatetime, textSize = 'xs' }: { dueDatetime: string;
 
 const DeleteButton = ({ handleDeleteClick }: { handleDeleteClick: () => void }) => (
 	<button
-		className="ml-auto justify-end p-1 rounded-md hover:bg-slate-200 opacity-0 group-hover:opacity-100"
+		className="ml-auto justify-end p-1 rounded-md hover:bg-slate-200 opacity-0 group-hover:opacity-100 text-slate-600"
 		aria-label="Delete Todo"
 		onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 			event.stopPropagation();
