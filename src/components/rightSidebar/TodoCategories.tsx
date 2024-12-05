@@ -1,6 +1,6 @@
 'use client';
 
-import { Plus, SendHorizontal, Trash2, X } from 'lucide-react';
+import { Plus, SendHorizontal, X } from 'lucide-react';
 import { Category } from '@/types';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -84,14 +84,16 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 				{categories.map(category => (
 					<span
 						key={category.id}
-						className="rounded-md flex items-center gap-1 px-2"
+						className="rounded-md flex items-center gap-2 px-2 py-1"
 						style={{
 							color: category.hex_color,
 							backgroundColor: `${category.hex_color}20`,
 						}}
 					>
-						<p className="pb-0.5 text-2xl">⦿</p>
 						<p>{category.category_title}</p>
+						<button className={`hover:bg-white active:bg-white rounded-md p-1`}>
+							<X size={16} />
+						</button>
 					</span>
 				))}
 			</div>
