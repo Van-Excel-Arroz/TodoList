@@ -14,7 +14,7 @@ export default function RightSidebarPage() {
 	return (
 		<>
 			<div
-				className={`fixed inset-0 bg-black/20 transition-opacity md:hidden cursor-pointer z-40 ${
+				className={`fixed inset-0 bg-black/20 transition-opacity lg:hidden cursor-pointer z-40 ${
 					isRightSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
 				}`}
 				onClick={() => {

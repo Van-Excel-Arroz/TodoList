@@ -8,7 +8,7 @@ export default function LeftSidebarWrapper({ children }: { children: React.React
 	return (
 		<>
 			<div
-				className={`fixed inset-0 bg-black/20 transition-opacity md:hidden cursor-pointer ${
+				className={`fixed inset-0 bg-black/20 transition-opacity lg:hidden cursor-pointer ${
 					isLeftSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
 				}`}
 				onClick={toggleLeftSidebar}
