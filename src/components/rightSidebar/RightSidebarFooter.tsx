@@ -11,7 +11,7 @@ export default function RightSidebarFooter({ creationDate, todoId }: RightSideba
 			{creationDate && (
 				<p className="text-sm text-slate-600">Created at: {new Date(creationDate).toLocaleDateString()} </p>
 			)}
-			<button className="p-1">
+			<button className="p-1 rounded-md hover:bg-slate-200 active:bg-slate-200">
 				<Trash2 />
 			</button>
 		</div>
