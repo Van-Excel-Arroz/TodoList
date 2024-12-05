@@ -150,7 +150,11 @@ const RenderCategories = ({
 			<span
 				key={category.id}
 				className="text-xs rounded-md flex items-center gap-1"
-				style={{ color: category.hex_color, backgroundColor: `${category.hex_color}15`, padding: '2px' }}
+				style={{
+					color: category.hex_color,
+					backgroundColor: `${category.hex_color}20`,
+					padding: '2px',
+				}}
 				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 					event.stopPropagation();
 					handleCategoryClick(category.category_title);
