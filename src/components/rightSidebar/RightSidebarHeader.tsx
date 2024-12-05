@@ -13,8 +13,11 @@ export default function RightSidebarHeader() {
 		setSelectedTodo(null);
 	};
 	return (
-		<button onClick={handleCloseRightSidebar} aria-label="Close Todo Menu" className="mt-1">
-			<ArrowBigRightDashIcon />
-		</button>
+		<div className="flex items-center justify-between mt-1">
+			<button onClick={handleCloseRightSidebar} aria-label="Close Todo Menu">
+				<ArrowBigRightDashIcon />
+			</button>
+			<p className="text-xl font-medium">Details</p>
+		</div>
 	);
 }

@@ -21,7 +21,7 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 	};
 
 	return (
-		<div className="flex items-center gap-4 bg-slate-100 rounded-md p-4 border">
+		<div className="flex items-center gap-4 bg-slate-100 rounded-md p-4 border border-slate-300">
 			<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
 			<p className="text-lg overflow-hidden text-wrap">{title}</p>
 		</div>
