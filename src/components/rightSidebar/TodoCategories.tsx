@@ -5,7 +5,7 @@ import { Category } from '@/types';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useTodoStore from '@/context/TodoContext';
-import { addTodoCategoryAction } from '@/actions/todolist-action';
+import { addTodoCategoryAction, deleteTodoCategoryAction } from '@/actions/todolist-action';
 
 interface CategoryFormInputs {
 	category_title: string;
@@ -31,7 +31,8 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 		reset();
 	};
 
-	const handleRemoveCategory = (categoryId: number) => {
+	const handleRemoveCategory = async (categoryId: number) => {
+		await deleteTodoCategoryAction(categoryId, todoId, selectedTodo!.todo_list_id);
 		removeSelectedTodoCategory(categoryId);
 	};
 
