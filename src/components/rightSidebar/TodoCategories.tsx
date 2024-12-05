@@ -98,7 +98,7 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 						<button
 							className={`hover:bg-white active:bg-white rounded-md p-1`}
 							aria-label="Remove Category"
-							onClick={() => handleRemoveCategory}
+							onClick={() => handleRemoveCategory(category.id)}
 						>
 							<X size={16} />
 						</button>
