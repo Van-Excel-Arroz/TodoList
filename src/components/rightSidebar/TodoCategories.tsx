@@ -37,14 +37,14 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 	};
 
 	const onSubmit = async (data: CategoryFormInputs) => {
-		const categoryId = await addTodoCategoryAction(
+		const categoryColorsId = await addTodoCategoryAction(
 			data.category_title,
 			data.hex_color,
 			selectedTodo!.todo_list_id,
 			todoId
 		);
 		const newCategory: Category = {
-			id: categoryId!,
+			id: categoryColorsId!,
 			category_title: data.category_title,
 			hex_color: data.hex_color,
 			is_selected: false,
