@@ -80,14 +80,19 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 					</button>
 				)}
 			</div>
-			<div className={`flex flex-wrap items-cente gap-2 ${categories.length === 0 ? 'py-0' : 'py-2'}`}>
+			<div className={`flex flex-wrap items-center gap-2 ${categories.length === 0 ? 'py-0' : 'py-2'}`}>
 				{categories.map(category => (
 					<span
 						key={category.id}
-						className={`bg-white border rounded py-1 px-2 shadow-md hover:bg-slate-10`}
-						style={{ color: category.hex_color }}
+						className="rounded-md flex items-center gap-1"
+						style={{
+							color: category.hex_color,
+							backgroundColor: `${category.hex_color}20`,
+							padding: '2px',
+						}}
 					>
-						{category.category_title}
+						<p className="pb-0.5 text-2xl">⦿</p>
+						<p>{category.category_title}</p>
 					</span>
 				))}
 			</div>
