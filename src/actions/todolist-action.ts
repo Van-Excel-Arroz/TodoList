@@ -97,20 +97,20 @@ export async function addTodoCategoryAction(
 	todolistId: number,
 	todoId: number
 ): Promise<number | undefined> {
-	const categoryColorsId = await createCategoryColor(categoryTitle, hexColor, todolistId);
-	const categoryId = await storeCategory(todoId, categoryColorsId!);
+	const categoryId = await createCategoryColor(categoryTitle, hexColor, todolistId);
+	await storeCategory(todoId, categoryId!);
 
-	if (categoryId && categoryColorsId) {
+	if (categoryId) {
 		revalidatePath(`/tasks/${todolistId}`);
-		return categoryColorsId;
+		return categoryId;
 	} else {
 		console.error('Failed to add category to todo');
 		return;
 	}
 }
 
-export async function deleteTodoCategoryAction(categoryId: number, todoId: number, todolistId: number) {
-	const result = await deleteCategory(categoryId, todoId);
+export async function deleteTodoCategoryAction(categoryId: number, todolistId: number) {
+	const result = await deleteCategory(categoryId);
 
 	if (result) {
 		revalidatePath(`/tasks/${todolistId}`);

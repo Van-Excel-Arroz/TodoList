@@ -31,9 +31,9 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 		reset();
 	};
 
-	const handleRemoveCategory = async (categoryId: number) => {
-		await deleteTodoCategoryAction(categoryId, todoId, selectedTodo!.todo_list_id);
-		removeSelectedTodoCategory(categoryId);
+	const handleRemoveCategory = async (categoryColorsId: number) => {
+		await deleteTodoCategoryAction(categoryColorsId, selectedTodo!.todo_list_id);
+		removeSelectedTodoCategory(categoryColorsId);
 	};
 
 	const onSubmit = async (data: CategoryFormInputs) => {

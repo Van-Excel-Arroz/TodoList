@@ -295,9 +295,9 @@ export async function deleteTodo(todoId: number): Promise<boolean> {
 	}
 }
 
-export async function deleteCategory(categoryId: number, todoId: number): Promise<boolean> {
+export async function deleteCategory(categoryId: number): Promise<boolean> {
 	try {
-		await query('DELETE FROM categories WHERE category_color_id = $1 AND todo_id = $2', [categoryId, todoId]);
+		await query('DELETE FROM categories WHERE id = $1', [categoryId]);
 		return true;
 	} catch (error) {
 		console.error('Error deleting category in the database', error);
