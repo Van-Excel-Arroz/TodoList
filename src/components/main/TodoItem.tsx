@@ -149,14 +149,14 @@ const RenderCategories = ({
 		{categories?.map(category => (
 			<span
 				key={category.id}
-				className="text-xs rounded-md flex gap-1"
+				className="text-xs rounded-md flex items-center gap-1"
 				style={{ color: category.hex_color, backgroundColor: `${category.hex_color}15`, padding: '2px' }}
 				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 					event.stopPropagation();
 					handleCategoryClick(category.category_title);
 				}}
 			>
-				<p>○</p>
+				<p className="pb-0.5">⦿</p>
 				<p>{category.category_title}</p>
 			</span>
 		))}
