@@ -82,7 +82,7 @@ export const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; han
 				event.stopPropagation();
 				handleOnClick();
 			}}
-			aria-label={isChecked ? 'checked' : 'unchecked'}
+			aria-label={isChecked ? 'Mark as incomplete' : 'Mark as complete'}
 		>
 			{isChecked ? (
 				<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md hover:bg-slate-800 active:bg-slate-700">
