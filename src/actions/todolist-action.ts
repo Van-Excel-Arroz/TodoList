@@ -96,14 +96,16 @@ export async function addTodoCategoryAction(
 	hexColor: string,
 	todolistId: number,
 	todoId: number
-) {
+): Promise<number | undefined> {
 	const categoryColorsId = await createCategoryColor(categoryTitle, hexColor, todolistId);
-	await storeCategory(todoId, categoryColorsId!);
+	const categoryId = await storeCategory(todoId, categoryColorsId!);
 
-	if (categoryColorsId) {
+	if (categoryId) {
 		revalidatePath(`/tasks/${todolistId}`);
+		return categoryId;
 	} else {
 		console.error('Failed to add category to todo');
+		return;
 	}
 }
 
