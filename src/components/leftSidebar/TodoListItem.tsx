@@ -8,7 +8,7 @@ import { TodoList } from '@/types';
 import { CircleX, Pencil, Trash2 } from 'lucide-react';
 import EditTodolistForm from './EditTodolistForm';
 import useRightSidebarStore from '@/context/RightSidebarContext';
-import useTodoStore from '@/context/todoContext';
+import useTodoStore from '@/context/TodoContext';
 
 interface TodoListItemProps {
 	todolist: TodoList;

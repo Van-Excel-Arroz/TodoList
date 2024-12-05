@@ -4,7 +4,7 @@ import { Plus, SendHorizontal, X } from 'lucide-react';
 import { Category } from '@/types';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import useTodoStore from '@/context/todoContext';
+import useTodoStore from '@/context/TodoContext';
 import { addTodoCategoryAction } from '@/actions/todolist-action';
 
 interface CategoryFormInputs {

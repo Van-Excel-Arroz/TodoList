@@ -1,6 +1,6 @@
 import { deleteTodoAction } from '@/actions/todolist-action';
 import useRightSidebarStore from '@/context/RightSidebarContext';
-import useTodoStore from '@/context/todoContext';
+import useTodoStore from '@/context/TodoContext';
 import { Trash2 } from 'lucide-react';
 
 interface RightSidebarFooterProps {

@@ -2,7 +2,7 @@
 
 import { CheckBox } from '../main/TodoItem';
 import { updateTodoCompletionAction } from '@/actions/todolist-action';
-import useTodoStore from '@/context/todoContext';
+import useTodoStore from '@/context/TodoContext';
 
 interface TodoTitleProps {
 	title: string;

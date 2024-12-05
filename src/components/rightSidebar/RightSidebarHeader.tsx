@@ -1,7 +1,7 @@
 'use client';
 
 import useRightSidebarStore from '@/context/RightSidebarContext';
-import useTodoStore from '@/context/todoContext';
+import useTodoStore from '@/context/TodoContext';
 import { ArrowBigRightDashIcon } from 'lucide-react';
 
 export default function RightSidebarHeader() {

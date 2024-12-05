@@ -10,7 +10,7 @@ import {
 	updateTodoCompletionAction,
 } from '@/actions/todolist-action';
 import useRightSidebarStore from '@/context/RightSidebarContext';
-import useTodoStore from '@/context/todoContext';
+import useTodoStore from '@/context/TodoContext';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openRightSidebar, closeRightSidebar } = useRightSidebarStore();

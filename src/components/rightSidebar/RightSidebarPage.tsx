@@ -1,6 +1,6 @@
 'use client';
 
-import useTodoStore from '@/context/todoContext';
+import useTodoStore from '@/context/TodoContext';
 import useRightSidebarStore from '@/context/RightSidebarContext';
 import TodoTitle from './TodoTitle';
 import TodoDueDate from './TodoDueDate';
