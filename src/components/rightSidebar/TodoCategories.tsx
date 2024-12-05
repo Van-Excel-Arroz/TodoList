@@ -20,7 +20,7 @@ interface TodoCategoriesProps {
 export default function TodoCategories({ categories, todoId }: TodoCategoriesProps) {
 	const [isAddingCategory, setIsAddingCategory] = useState(false);
 	const { register, handleSubmit, reset } = useForm<CategoryFormInputs>();
-	const { selectedTodo, updateSelectedTodoCategories } = useTodoStore();
+	const { selectedTodo, updateSelectedTodoCategory, removeSelectedTodoCategory } = useTodoStore();
 
 	useEffect(() => {
 		setIsAddingCategory(false);
@@ -29,6 +29,10 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 	const handleAddCategory = (val: boolean) => {
 		setIsAddingCategory(val);
 		reset();
+	};
+
+	const handleRemoveCategory = (categoryId: number) => {
+		removeSelectedTodoCategory(categoryId);
 	};
 
 	const onSubmit = async (data: CategoryFormInputs) => {
@@ -41,7 +45,7 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 			todo_list_id: selectedTodo!.todo_list_id,
 		};
 
-		updateSelectedTodoCategories(newCategory);
+		updateSelectedTodoCategory(newCategory);
 		reset();
 		handleAddCategory(false);
 	};
