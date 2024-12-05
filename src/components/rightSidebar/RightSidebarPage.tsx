@@ -12,11 +12,6 @@ export default function RightSidebarPage() {
 	const { selectedTodo, setSelectedTodo } = useTodoStore();
 	const { isRightSidebarOpen, closeRightSidebar } = useRightSidebarStore();
 
-	if (!selectedTodo) {
-		closeRightSidebar();
-		return null;
-	}
-
 	return (
 		<>
 			<div
