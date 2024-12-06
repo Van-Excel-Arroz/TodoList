@@ -1,10 +1,10 @@
 'use client';
 
-import useTodoListSidebarStore from '@/context/TodoListSidebarContext';
+import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import { ClipboardList } from 'lucide-react';
 
 export default function NoTodoListSelected() {
-	const { toggleTodoListSidebar } = useTodoListSidebarStore();
+	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
 	return (
 		<div className="flex flex-col items-center justify-center h-full">
 			<ClipboardList size={48} className="text-gray-400" />
@@ -15,7 +15,7 @@ export default function NoTodoListSelected() {
 				</p>
 				<button
 					className="mt-4 bg-black text-white px-4 py-2 rounded-md hover:bg-slate-900 active:bg-slate-800"
-					onClick={toggleTodoListSidebar}
+					onClick={toggleTodoListsSidebar}
 				>
 					Open Sidebar
 				</button>

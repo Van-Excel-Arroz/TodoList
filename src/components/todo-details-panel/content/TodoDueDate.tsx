@@ -1,7 +1,7 @@
 'use client';
 
+import { DueDate } from '@/components/todos/content/TodoItem';
 import { Calendar } from 'lucide-react';
-import { DueDate } from '@/components/todos/TodoItem';
 
 export default function TodoDueDate({ dueDatetime }: { dueDatetime: string }) {
 	return (

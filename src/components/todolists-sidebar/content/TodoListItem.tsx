@@ -7,8 +7,8 @@ import { deleteTodolistAction } from '@/actions/todolist-action';
 import { TodoList } from '@/types';
 import { CircleX, Pencil, Trash2 } from 'lucide-react';
 import EditTodolistForm from './EditTodolistForm';
-import useRightSidebarStore from '@/context/RightSidebarContext';
 import useTodoStore from '@/context/TodoContext';
+import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 
 interface TodoListItemProps {
 	todolist: TodoList;
@@ -18,11 +18,11 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 	const searchParams = useSearchParams();
 	const isSelectedPath = searchParams.get('id') === todolist.id.toString();
 	const [isEditing, setIsEditing] = useState(false);
-	const { closeRightSidebar } = useRightSidebarStore();
+	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { selectedTodo, setSelectedTodo } = useTodoStore();
 
 	const handleTodoListClick = () => {
-		closeRightSidebar();
+		closeTodoDetailsPanel();
 		if (selectedTodo?.todo_list_id === todolist.id) {
 			setSelectedTodo(null);
 		}
@@ -98,13 +98,13 @@ const DeleteButton = ({ todolistId, isActive }: { todolistId: number; isActive: 
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const currentId = searchParams.get('id');
-	const { closeRightSidebar } = useRightSidebarStore();
+	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 
 	const onSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 		await deleteTodolistAction(todolistId, 1);
 		if (currentId === todolistId.toString()) {
-			closeRightSidebar();
+			closeTodoDetailsPanel();
 			router.push('/tasks/');
 		}
 	};

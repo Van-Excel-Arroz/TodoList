@@ -1,15 +1,15 @@
 'use client';
 
-import useRightSidebarStore from '@/context/RightSidebarContext';
 import useTodoStore from '@/context/TodoContext';
+import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { ArrowBigRightDashIcon } from 'lucide-react';
 
 export default function TodoDetailsHeader() {
-	const { closeRightSidebar } = useRightSidebarStore();
+	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { setSelectedTodo } = useTodoStore();
 
 	const handleCloseRightSidebar = () => {
-		closeRightSidebar();
+		closeTodoDetailsPanel();
 		setSelectedTodo(null);
 	};
 	return (

@@ -1,8 +1,8 @@
 'use client';
 
 import { updateTodoCompletionAction } from '@/actions/todolist-action';
+import { CheckBox } from '@/components/todos/content/TodoItem';
 import useTodoStore from '@/context/TodoContext';
-import { CheckBox } from '@/components/todos/TodoItem';
 
 interface TodoTitleProps {
 	title: string;

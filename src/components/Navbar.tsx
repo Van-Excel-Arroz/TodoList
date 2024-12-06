@@ -1,11 +1,11 @@
 'use client';
 
-import useRightSidebarStore from '@/context/RightSidebarContext';
+import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { House } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Navbar() {
-	const { closeRightSidebar } = useRightSidebarStore();
+	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	return (
 		<nav className="bg-white border-b-2 border-b-slate-200 drop-shadow-md h-14 px-6 flex items-center gap-4">
 			<Link
@@ -13,7 +13,7 @@ export default function Navbar() {
 				className="text-lg font-bold"
 				aria-label="home"
 				onClick={() => {
-					closeRightSidebar();
+					closeTodoDetailsPanel();
 				}}
 			>
 				<House />
