@@ -1,5 +1,5 @@
 import Navbar from '@/components/Navbar';
-import RightSidebarPage from '@/components/todo-details-panel/RightSidebarPage';
+import TodoDetailsPanel from '@/components/todo-details-panel/TodoDetailsPanel';
 import TodoListSidebar from '@/components/todolist-sidebar/TodoListSidebar';
 
 interface LayoutProps {
@@ -21,7 +21,7 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
 					<main className="w-full overflow-y-auto z-10">{children}</main>
 
 					<aside className="absolute lg:sticky top-0 right-0 z-40">
-						<RightSidebarPage />
+						<TodoDetailsPanel />
 					</aside>
 				</div>
 			</div>

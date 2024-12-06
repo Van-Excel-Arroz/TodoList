@@ -9,7 +9,7 @@ interface RightSidebarFooterProps {
 	todolistId: number;
 }
 
-export default function RightSidebarFooter({ creationDate, todoId, todolistId }: RightSidebarFooterProps) {
+export default function TodoDetailsPanelFooter({ creationDate, todoId, todolistId }: RightSidebarFooterProps) {
 	const { closeRightSidebar } = useRightSidebarStore();
 	const { setSelectedTodo } = useTodoStore();
 
