@@ -1,10 +1,19 @@
 import TodoListPage from '@/components/main/TodoListPage';
 import NoTodoListSelected from '@/components/NoTodoListSelected';
 
-export default async function TasksPage({ searchParams }: { searchParams: { id?: string } }) {
-	if (!searchParams.id) {
+interface PageProps {
+	searchParams: {
+		id?: string;
+	};
+}
+
+export default async function TasksPage({ searchParams }: PageProps) {
+	const { id = '' } = await searchParams;
+
+	if (!id) {
 		return <NoTodoListSelected />;
 	}
-	const todolistId = Number(searchParams.id);
+
+	const todolistId = Number(id);
 	return <TodoListPage todolistId={todolistId} />;
 }
