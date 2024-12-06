@@ -98,11 +98,13 @@ const DeleteButton = ({ todolistId, isActive }: { todolistId: number; isActive: 
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const currentId = searchParams.get('id');
+	const { closeRightSidebar } = useRightSidebarStore();
 
 	const onSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 		await deleteTodolistAction(todolistId, 1);
 		if (currentId === todolistId.toString()) {
+			closeRightSidebar();
 			router.push('/tasks/');
 		}
 	};
