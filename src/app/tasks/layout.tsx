@@ -9,10 +9,10 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
 	return (
 		<>
-			<body className="flex flex-col bg-slates-100 bg-slate-200">
+			<body className="flex flex-col bg-slates-100 bg-slate-100">
 				<Navbar />
 				<div className="flex relative h-screen">
-					<div className="absolute lg:relative top-0 left-0 z-30">
+					<div className="absolute lg:sticky top-0 left-0 z-30">
 						<LeftSidebarPage />
 					</div>
 					<main className="w-full overflow-y-auto z-10">{children}</main>
