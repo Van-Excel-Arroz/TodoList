@@ -2,7 +2,7 @@
 
 import useTodoListSidebarStore from '@/context/TodoListSidebarContext';
 
-export default function TodoListSidebarWrapper({ children }: { children: React.ReactNode }) {
+export default function TodoListsSidebarWrapper({ children }: { children: React.ReactNode }) {
 	const { isTodoListSidebarOpen, toggleTodoListSidebar } = useTodoListSidebarStore();
 
 	return (

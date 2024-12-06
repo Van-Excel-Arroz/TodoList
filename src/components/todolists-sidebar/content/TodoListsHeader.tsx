@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { format } from 'date-fns';
 import TodoListSidebarToggle from './TodoListSidebarToggle';
 
-export default function TodoListHeader() {
+export default function TodoListsHeader() {
 	const pathname = usePathname();
 	const isHome = pathname === '/tasks/home';
 	return (

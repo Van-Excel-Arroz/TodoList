@@ -1,21 +1,21 @@
 import { TodoList } from '@/types';
 import { getTodolists } from '@/lib/todolist';
-import TodoListSidebarWrapper from './content/TodoListSidebarWrapper';
 import TodolistItems from './content/TodoListItems';
 import TodolistForm from './content/TodolistForm';
-import TodoListHeader from './content/TodoListHeader';
+import TodoListsSidebarWrapper from './content/TodoListsSidebarWrapper';
+import TodoListsHeader from './content/TodoListsHeader';
 
-export default async function TodoListSidebar() {
+export default async function TodoListsSidebar() {
 	const todolists: TodoList[] = (await getTodolists(1)) ?? [];
 	return (
 		<>
-			<TodoListSidebarWrapper>
+			<TodoListsSidebarWrapper>
 				<div className="flex flex-col gap-4 px-6">
-					<TodoListHeader />
+					<TodoListsHeader />
 					<TodolistForm />
 				</div>
 				<TodolistItems todolists={todolists} />
-			</TodoListSidebarWrapper>
+			</TodoListsSidebarWrapper>
 		</>
 	);
 }
