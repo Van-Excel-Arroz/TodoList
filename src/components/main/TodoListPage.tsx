@@ -7,8 +7,7 @@ import CategoryList from './CategoryList';
 import TodoListView from './TodoListView';
 import TodoListHeader from './TodoListHeader';
 
-export default async function TodoListPage({ params }: { params: any }) {
-	const todolistId = Number(params.id);
+export default async function TodoListPage({ todolistId }: { todolistId: number }) {
 	const todolist = await getTodolist(todolistId, 1);
 	const selectedCategories = await getSelectedCategories(todolistId);
 	let todos: Todo[];

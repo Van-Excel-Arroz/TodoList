@@ -3,24 +3,24 @@ import Navbar from '@/components/Navbar';
 import RightSidebarPage from '@/components/rightSidebar/RightSidebarPage';
 
 interface LayoutProps {
-	main: React.ReactNode;
+	children: React.ReactNode;
 }
 
-export default function Layout({ main }: LayoutProps) {
+export default function Layout({ children }: LayoutProps) {
 	return (
 		<>
-			<div className="flex flex-col bg-slates-100">
+			<body className="flex flex-col bg-slates-100 bg-slate-200">
 				<Navbar />
 				<div className="flex relative h-screen">
 					<div className="absolute lg:relative top-0 left-0 z-30">
 						<LeftSidebarPage />
 					</div>
-					<main className="w-full overflow-y-auto z-10">{main}</main>
+					<main className="w-full overflow-y-auto z-10">{children}</main>
 					<div className="absolute lg:relative top-0 right-0 z-40">
 						<RightSidebarPage />
 					</div>
 				</div>
-			</div>
+			</body>
 		</>
 	);
 }
