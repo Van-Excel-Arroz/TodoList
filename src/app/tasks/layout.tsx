@@ -1,4 +1,4 @@
-import LeftSidebarPage from '@/components/leftSidebar/LeftSidebarPage';
+import LeftSidebarPage from '@/components/TodoListSidebar/LeftSidebarPage';
 import Navbar from '@/components/Navbar';
 import RightSidebarPage from '@/components/rightSidebar/RightSidebarPage';
 
