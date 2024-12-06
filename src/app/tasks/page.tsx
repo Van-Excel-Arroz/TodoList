@@ -2,9 +2,9 @@ import TodoListPage from '@/components/main/TodoListPage';
 import NoTodoListSelected from '@/components/NoTodoListSelected';
 
 interface PageProps {
-	searchParams: {
+	searchParams: Promise<{
 		id?: string;
-	};
+	}>;
 }
 
 export default async function TasksPage({ searchParams }: PageProps) {

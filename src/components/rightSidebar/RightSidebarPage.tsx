@@ -35,8 +35,8 @@ export default function RightSidebarPage() {
 					<TodoCategories categories={selectedTodo?.categories ?? []} todoId={selectedTodo?.id ?? 0} />
 					<RightSidebarFooter
 						creationDate={selectedTodo?.creation_date ?? ''}
-						todoId={selectedTodo?.id!}
-						todolistId={selectedTodo?.todo_list_id!}
+						todoId={selectedTodo?.id ?? 0}
+						todolistId={selectedTodo?.todo_list_id ?? 0}
 					/>
 				</div>
 			</div>
