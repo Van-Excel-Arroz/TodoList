@@ -130,6 +130,13 @@ export async function storeCategories(todoId: number, categoryColorsId: number[]
 
 export async function storeCategory(todoId: number, categoryColorId: number): Promise<number | undefined> {
 	try {
+		const existingCategory = await query('SELECT * FROM categories WHERE todo_id = $1 AND category_color_id = $2', [
+			todoId,
+			categoryColorId,
+		]);
+
+		if (existingCategory.rows.length > 0) return;
+
 		const result = await query('INSERT INTO categories (todo_id, category_color_id) VALUES ($1, $2) RETURNING id', [
 			todoId,
 			categoryColorId,
