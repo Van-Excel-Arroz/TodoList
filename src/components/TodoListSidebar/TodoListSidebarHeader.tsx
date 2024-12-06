@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { format } from 'date-fns';
-import LeftSidebarToggle from '@/components/TodoListSidebar/LeftSidebarToggle';
+import TodoListSidebarToggle from './TodoListSidebarToggle';
 
 export default function TodoListSidebarHeader() {
 	const pathname = usePathname();
@@ -13,7 +13,7 @@ export default function TodoListSidebarHeader() {
 				<div className="text-xl flex justify-start font-semibold">{format(new Date(), `h:mm a`)} </div>
 				<div className="text-sm">{format(new Date(), `EEEE, MMMM d`)}</div>
 			</div>
-			{!isHome && <LeftSidebarToggle />}
+			{!isHome && <TodoListSidebarToggle />}
 		</div>
 	);
 }
