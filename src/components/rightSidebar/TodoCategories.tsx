@@ -44,7 +44,10 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 			selectedTodo!.todo_list_id,
 			todoId
 		);
+
 		console.log(`submitting categoryId ${categoryId}`);
+		if (!categoryId) return;
+
 		const newCategory: Category = {
 			id: categoryId!,
 			category_title: data.category_title,
