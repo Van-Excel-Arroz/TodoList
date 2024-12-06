@@ -2,7 +2,7 @@
 
 import { memo, useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { deleteTodolistAction } from '@/actions/todolist-action';
 import { TodoList } from '@/types';
 import { CircleX, Pencil, Trash2 } from 'lucide-react';
@@ -15,8 +15,8 @@ interface TodoListItemProps {
 }
 
 function TodoListItem({ todolist }: TodoListItemProps) {
-	const pathname = usePathname();
-	const isSelectedPath = pathname === `/tasks/${todolist.id}`;
+	const searchParams = useSearchParams();
+	const isSelectedPath = searchParams.get('id') === todolist.id.toString();
 	const [isEditing, setIsEditing] = useState(false);
 	const { closeRightSidebar } = useRightSidebarStore();
 	const { selectedTodo, setSelectedTodo } = useTodoStore();
@@ -42,7 +42,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 				<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} />
 			) : (
 				<Link
-					href={`/tasks/${todolist.id}`}
+					href={`/tasks/?id=${todolist.id}`}
 					onClick={handleTodoListClick}
 					className={`flex-1 text-ellipsis py-3 pl-5 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
 						isSelectedPath ? 'font-normal' : 'font-light'
@@ -96,13 +96,14 @@ const EditButton = ({ handleEditClick, isActive }: { handleEditClick: (val: bool
 
 const DeleteButton = ({ todolistId, isActive }: { todolistId: number; isActive: boolean }) => {
 	const router = useRouter();
-	const pathname = usePathname();
+	const searchParams = useSearchParams();
+	const currentId = searchParams.get('id');
 
 	const onSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 		await deleteTodolistAction(todolistId, 1);
-		if (pathname === `/tasks/${todolistId}`) {
-			router.push('/tasks/home');
+		if (currentId === todolistId.toString()) {
+			router.push('/tasks/');
 		}
 	};
 
