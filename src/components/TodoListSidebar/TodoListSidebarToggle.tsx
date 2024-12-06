@@ -1,13 +1,13 @@
 'use client';
 
-import useLeftSidebarStore from '@/context/LeftSidebarContext';
+import useTodoListSidebarStore from '@/context/TodoListSidebarContext';
 import { ArrowBigLeftDashIcon, Menu } from 'lucide-react';
 
 export default function TodoListSidebarToggle() {
-	const { toggleLeftSidebar, isLeftSidebarOpen } = useLeftSidebarStore();
+	const { toggleTodoListSidebar, isTodoListSidebarOpen } = useTodoListSidebarStore();
 	return (
-		<button onClick={toggleLeftSidebar} aria-label="Todolist Menu">
-			{isLeftSidebarOpen ? <ArrowBigLeftDashIcon /> : <Menu />}
+		<button onClick={toggleTodoListSidebar} aria-label="Todolist Menu">
+			{isTodoListSidebarOpen ? <ArrowBigLeftDashIcon /> : <Menu />}
 		</button>
 	);
 }
