@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Plus } from 'lucide-react';
 import { createTodolist } from '@/actions/todolist-action';
 
-export default function TodolistForm() {
+export default function TodolistSidebarForm() {
 	const {
 		register,
 		handleSubmit,

@@ -2,7 +2,7 @@
 
 import useLeftSidebarStore from '@/context/LeftSidebarContext';
 
-export default function LeftSidebarWrapper({ children }: { children: React.ReactNode }) {
+export default function TodoListSidebarWrapper({ children }: { children: React.ReactNode }) {
 	const { isLeftSidebarOpen, toggleLeftSidebar } = useLeftSidebarStore();
 
 	return (

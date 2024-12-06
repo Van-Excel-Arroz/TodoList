@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import RightSidebarPage from '@/components/rightSidebar/RightSidebarPage';
-import TodoListSidebar from '@/components/TodoListSidebar/LeftSidebarPage';
+import TodoListSidebar from '@/components/TodoListSidebar/TodoListSidebar';
 
 interface LayoutProps {
 	children: React.ReactNode;
