@@ -6,21 +6,23 @@ interface LayoutProps {
 	children: React.ReactNode;
 }
 
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children }: LayoutProps): JSX.Element {
 	return (
 		<>
 			<div className="flex flex-col h-screen bg-slates-100 overflow-hidden">
-				<div className="sticky top-0 left-0 z-20 w-full">
+				<header className="sticky top-0 left-0 z-20 w-full">
 					<Navbar />
-				</div>
+				</header>
 				<div className="flex h-screen">
-					<div className="absolute lg:sticky top-0 left-0 z-30">
+					<aside className="absolute lg:sticky top-0 left-0 z-30">
 						<LeftSidebarPage />
-					</div>
+					</aside>
+
 					<main className="w-full overflow-y-auto z-10">{children}</main>
-					<div className="absolute lg:sticky top-0 right-0 z-40">
+
+					<aside className="absolute lg:sticky top-0 right-0 z-40">
 						<RightSidebarPage />
-					</div>
+					</aside>
 				</div>
 			</div>
 		</>
