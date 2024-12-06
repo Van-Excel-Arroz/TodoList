@@ -5,8 +5,8 @@ import useRightSidebarStore from '@/context/RightSidebarContext';
 import TodoTitle from './TodoTitle';
 import TodoDueDate from './TodoDueDate';
 import TodoCategories from './TodoCategories';
-import TodoDetailsPanelHeader from './TodoDetailsPanelHeader';
-import TodoDetailsPanelFooter from './TodoDetailsPanelFooter';
+import TodoDetailsHeader from './TodoDetailsHeader';
+import TodoDetailsFooter from './TodoDetailsFooter';
 
 export default function TodoDetailsPanel() {
 	const { selectedTodo, setSelectedTodo } = useTodoStore();
@@ -29,11 +29,11 @@ export default function TodoDetailsPanel() {
 				}`}
 			>
 				<div className="flex flex-col gap-4 px-6">
-					<TodoDetailsPanelHeader />
+					<TodoDetailsHeader />
 					<TodoTitle title={selectedTodo?.task_text ?? ''} isCompleted={selectedTodo?.is_completed ?? false} />
 					<TodoDueDate dueDatetime={selectedTodo?.due_datetime ?? ''} />
 					<TodoCategories categories={selectedTodo?.categories ?? []} todoId={selectedTodo?.id ?? 0} />
-					<TodoDetailsPanelFooter
+					<TodoDetailsFooter
 						creationDate={selectedTodo?.creation_date ?? ''}
 						todoId={selectedTodo?.id ?? 0}
 						todolistId={selectedTodo?.todo_list_id ?? 0}
