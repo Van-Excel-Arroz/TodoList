@@ -3,18 +3,18 @@
 import { memo } from 'react';
 import { TodoList } from '@/types';
 import TodoListSidebarToggle from '../../todolists-sidebar/content/TodoListsSidebarToggle';
-import useTodoListSidebarStore from '@/context/TodoListSidebarContext';
+import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 
 interface TodoListHeaderProps {
 	todolist: TodoList;
 }
 
 function TodoListHeader({ todolist }: TodoListHeaderProps) {
-	const { isTodoListSidebarOpen } = useTodoListSidebarStore();
+	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 
 	return (
 		<div className="flex gap-4 items-center">
-			{!isTodoListSidebarOpen && <TodoListSidebarToggle />}
+			{!isTodoListsSidebarOpen && <TodoListSidebarToggle />}
 			<p className="text-lg font-bold">
 				{todolist.title} #{todolist.id}
 			</p>

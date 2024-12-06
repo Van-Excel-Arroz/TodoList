@@ -9,27 +9,27 @@ import {
 	updateIsSelectedCategoryColorsAction,
 	updateTodoCompletionAction,
 } from '@/actions/todolist-action';
-import useRightSidebarStore from '@/context/RightSidebarContext';
 import useTodoStore from '@/context/TodoContext';
+import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 
 function TodoItem({ todo }: { todo: Todo }) {
-	const { openRightSidebar, closeRightSidebar } = useRightSidebarStore();
+	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { selectedTodo, setSelectedTodo } = useTodoStore();
 	const isSelected = selectedTodo?.id === todo.id;
 
 	const handleTodoClick = () => {
 		if (isSelected) {
-			closeRightSidebar();
+			closeTodoDetailsPanel();
 			setSelectedTodo(null);
 		} else {
-			openRightSidebar();
+			openTodoDetailsPanel();
 			setSelectedTodo(todo);
 		}
 	};
 
 	const handleCheckboxChange = async () => {
 		await updateTodoCompletionAction(todo.id, !todo.is_completed, todo.todo_list_id);
-		closeRightSidebar();
+		closeTodoDetailsPanel();
 		setSelectedTodo(null);
 	};
 
@@ -40,7 +40,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const handleDeleteClick = async () => {
 		await deleteTodoAction(todo.id, todo.todo_list_id);
 		if (isSelected) {
-			closeRightSidebar();
+			closeTodoDetailsPanel();
 			setSelectedTodo(null);
 		}
 	};
