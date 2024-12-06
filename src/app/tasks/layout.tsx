@@ -9,7 +9,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
 	return (
 		<>
-			<body className="flex flex-col bg-slates-100 bg-slate-100">
+			<body className="flex flex-col bg-slates-100 bg-slate-100 overflow-hidden">
 				<Navbar />
 				<div className="flex relative h-screen">
 					<div className="absolute lg:sticky top-0 left-0 z-30">
