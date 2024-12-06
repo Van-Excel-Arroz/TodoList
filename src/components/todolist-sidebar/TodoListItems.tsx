@@ -1,7 +1,7 @@
 import { TodoList } from '@/types';
 import TodoListItem from './TodoListItem';
 
-export default function TodolistsRender({ todolists }: { todolists: TodoList[] }) {
+export default function TodolistItems({ todolists }: { todolists: TodoList[] }) {
 	const isEmpty = todolists.length === 0;
 
 	return (
