@@ -9,7 +9,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
 	return (
 		<>
-			<body className="flex flex-col bg-slates-100 overflow-hidden">
+			<div className="flex flex-col h-screen bg-slates-100 overflow-hidden">
 				<div className="sticky top-0 left-0 z-20 w-full">
 					<Navbar />
 				</div>
@@ -22,7 +22,7 @@ export default function Layout({ children }: LayoutProps) {
 						<RightSidebarPage />
 					</div>
 				</div>
-			</body>
+			</div>
 		</>
 	);
 }
