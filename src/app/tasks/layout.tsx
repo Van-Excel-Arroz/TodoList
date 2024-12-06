@@ -1,6 +1,6 @@
-import LeftSidebarPage from '@/components/TodoListSidebar/LeftSidebarPage';
 import Navbar from '@/components/Navbar';
 import RightSidebarPage from '@/components/rightSidebar/RightSidebarPage';
+import TodoListSidebar from '@/components/TodoListSidebar/LeftSidebarPage';
 
 interface LayoutProps {
 	children: React.ReactNode;
@@ -15,7 +15,7 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
 				</header>
 				<div className="flex h-screen">
 					<aside className="absolute lg:sticky top-0 left-0 z-30">
-						<LeftSidebarPage />
+						<TodoListSidebar />
 					</aside>
 
 					<main className="w-full overflow-y-auto z-10">{children}</main>
