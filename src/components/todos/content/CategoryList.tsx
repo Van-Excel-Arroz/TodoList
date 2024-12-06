@@ -17,23 +17,27 @@ export default function CategoryList({ selectedCategories, todoListId }: Categor
 	return (
 		<>
 			{selectedCategories.length > 0 ? (
-				<div>
-					<div className="flex flex-row">
-						{selectedCategories.map(selectedCategory => (
-							<div
-								key={selectedCategory.id}
-								className="text-xs border shadow-md ml-2 rounded py-1 px-2 w-fit flex flex-row items-center justify-between gap-2 mt-6 bg-white"
+				<div className="flex flex-row gap-2 pt-6">
+					{selectedCategories.map(selectedCategory => (
+						<span
+							key={selectedCategory.id}
+							className="rounded-md flex items-center gap-2 px-2 py-1"
+							style={{
+								color: selectedCategory.hex_color,
+								backgroundColor: `${selectedCategory.hex_color}20`,
+								border: `1px solid ${selectedCategory.hex_color}`,
+							}}
+						>
+							<p>{selectedCategory.category_title}</p>
+							<button
+								className={`hover:bg-white active:bg-white rounded-md p-1`}
+								onClick={() => handleCategoryClick(selectedCategory.category_title)}
+								aria-label={`Remove ${selectedCategory.category_title} category`}
 							>
-								<p style={{ color: selectedCategory.hex_color }}>{selectedCategory.category_title}</p>
-								<X
-									size={12}
-									className="hover:text-white hover:bg-gray-700 rounded-full cursor-pointer"
-									onClick={() => handleCategoryClick(selectedCategory.category_title)}
-									aria-label={`Remove ${selectedCategory.category_title} category`}
-								/>
-							</div>
-						))}
-					</div>
+								<X size={16} />
+							</button>
+						</span>
+					))}
 				</div>
 			) : null}
 		</>
