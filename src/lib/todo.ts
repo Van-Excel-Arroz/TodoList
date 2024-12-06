@@ -77,11 +77,17 @@ export async function createCategoryColor(
 	todolistId: number
 ): Promise<number | undefined> {
 	try {
-		const result = await query(
-			'INSERT INTO category_colors (category_title, hex_color, is_selected, todo_list_id) VALUES ($1, $2, FALSE, $3) RETURNING id',
-			[category, color, todolistId]
-		);
-		return result.rows[0].id;
+		const existingCategoryTitle = await query('SELECT * FROM category_colors WHERE category_title = $1', [category]);
+		if (existingCategoryTitle.rows.length > 0) {
+			await query('UPDATE category_colors SET hex_color = $1 WHERE category_title = $2 ', [color, category]);
+			return existingCategoryTitle.rows[0].id;
+		} else {
+			const result = await query(
+				'INSERT INTO category_colors (category_title, hex_color, is_selected, todo_list_id) VALUES ($1, $2, FALSE, $3) RETURNING id',
+				[category, color, todolistId]
+			);
+			return result.rows[0].id;
+		}
 	} catch (error) {
 		console.error('Error inserting category and colors in the database', error);
 		return;
