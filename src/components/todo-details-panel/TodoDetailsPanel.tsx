@@ -2,11 +2,11 @@
 
 import useTodoStore from '@/context/TodoContext';
 import useRightSidebarStore from '@/context/RightSidebarContext';
-import TodoTitle from './TodoTitle';
-import TodoDueDate from './TodoDueDate';
-import TodoCategories from './TodoCategories';
-import TodoDetailsHeader from './TodoDetailsHeader';
-import TodoDetailsFooter from './TodoDetailsFooter';
+import TodoTitle from './content/TodoTitle';
+import TodoDueDate from './content/TodoDueDate';
+import TodoCategories from './content/TodoCategories';
+import TodoDetailsHeader from './content/TodoDetailsHeader';
+import TodoDetailsFooter from './content/TodoDetailsFooter';
 
 export default function TodoDetailsPanel() {
 	const { selectedTodo, setSelectedTodo } = useTodoStore();
