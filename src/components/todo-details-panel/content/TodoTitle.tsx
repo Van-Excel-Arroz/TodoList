@@ -1,9 +1,9 @@
 'use client';
 
-import { updateTodoCompletionAction, updateTodoTitleAction } from '@/actions/todolist-action';
+import { updateTodoCompletionAction } from '@/actions/todo-action';
+import { updateTodoTitleAction } from '@/actions/todolist-action';
 import { CheckBox } from '@/components/todos/content/TodoItem';
 import useTodoStore from '@/context/TodoContext';
-import { updateTodoTitle } from '@/lib/todo';
 import { CircleX, Pencil, Save } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';

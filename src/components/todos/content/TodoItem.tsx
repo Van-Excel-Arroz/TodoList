@@ -4,13 +4,10 @@ import { memo } from 'react';
 import { Calendar, Check, Tag, Trash2 } from 'lucide-react';
 import { isToday, isTomorrow, format, isPast, isThisYear } from 'date-fns';
 import { Category, Todo } from '@/types';
-import {
-	deleteTodoAction,
-	updateIsSelectedCategoryColorsAction,
-	updateTodoCompletionAction,
-} from '@/actions/todolist-action';
+import { deleteTodoAction, updateIsSelectedCategoryColorsAction } from '@/actions/todolist-action';
 import useTodoStore from '@/context/TodoContext';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
+import { updateTodoCompletionAction } from '@/actions/todo-action';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();

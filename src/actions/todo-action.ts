@@ -1,7 +1,7 @@
 'use server';
 
 import { storeCategories, storeCategoriesColors } from '@/lib/category';
-import { storeTodo } from '@/lib/todo';
+import { storeTodo, updateTodoCompletion } from '@/lib/todo';
 import { revalidatePath } from 'next/cache';
 
 export async function createTodoAction(
@@ -20,5 +20,14 @@ export async function createTodoAction(
 	} else {
 		console.error('Failed to create the todo');
 		return null;
+	}
+}
+
+export async function updateTodoCompletionAction(todoId: number, isCompleted: boolean, todolistId: number) {
+	const result = await updateTodoCompletion(todoId, isCompleted);
+	if (result) {
+		revalidatePath(`/tasks/${todolistId}`);
+	} else {
+		console.error('Failed to update is_completed in todo');
 	}
 }
