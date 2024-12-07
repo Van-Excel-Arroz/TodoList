@@ -3,15 +3,12 @@
 import {
 	createCategoryColor,
 	deleteCategory,
-	deleteTodo,
 	storeCategories,
 	storeCategoriesColors,
 	storeCategory,
-	storeTodo,
 	updateIsSelectedCategoryColors,
-	updateTodoCompletion,
-	updateTodoTitle,
-} from '@/lib/todo';
+} from '@/lib/category';
+import { deleteTodo, storeTodo, updateTodoCompletion, updateTodoTitle } from '@/lib/todo';
 import { deleteTodolist, storeTodolist, updateTodolist } from '@/lib/todolist';
 import { revalidatePath } from 'next/cache';
 
