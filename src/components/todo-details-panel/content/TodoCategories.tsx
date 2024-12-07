@@ -5,7 +5,7 @@ import { Category } from '@/types';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useTodoStore from '@/context/TodoContext';
-import { addTodoCategoryAction, deleteTodoCategoryAction } from '@/actions/todolist-action';
+import { addTodoCategoryAction, deleteTodoCategoryAction } from '@/actions/category-action';
 
 interface TodoCategoriesProps {
 	categories: Category[];

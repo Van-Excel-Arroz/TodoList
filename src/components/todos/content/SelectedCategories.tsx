@@ -2,7 +2,7 @@
 
 import { X } from 'lucide-react';
 import { Category } from '@/types';
-import { updateIsSelectedCategoryColorsAction } from '@/actions/todolist-action';
+import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
 
 interface SelectedCategoriesProps {
 	selectedCategories: Category[];
