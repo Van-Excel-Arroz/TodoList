@@ -80,6 +80,10 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 	);
 }
 
+// ------------------------------------------------------------------------------------------------ //
+// COMPONENTS
+// ------------------------------------------------------------------------------------------------ //
+
 interface CategoryFormProps {
 	onSubmit: (data: CategoryFormInputs) => void;
 	onCancel: () => void;
