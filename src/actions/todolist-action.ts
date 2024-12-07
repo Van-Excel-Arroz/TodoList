@@ -44,16 +44,6 @@ export async function updateIsSelectedCategoryColorsAction(
 	}
 }
 
-export async function deleteTodoAction(todoId: number, todolistId: number) {
-	const result = await deleteTodo(todoId);
-
-	if (result) {
-		revalidatePath(`/tasks/${todolistId}`);
-	} else {
-		console.error('Failed to delete todo');
-	}
-}
-
 export async function addTodoCategoryAction(
 	categoryTitle: string,
 	hexColor: string,

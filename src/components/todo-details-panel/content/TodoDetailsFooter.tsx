@@ -1,4 +1,4 @@
-import { deleteTodoAction } from '@/actions/todolist-action';
+import { deleteTodoAction } from '@/actions/todo-action';
 import useTodoStore from '@/context/TodoContext';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { Trash2 } from 'lucide-react';
