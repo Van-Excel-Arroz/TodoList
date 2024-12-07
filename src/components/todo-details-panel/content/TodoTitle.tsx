@@ -1,7 +1,7 @@
 'use client';
 
 import { updateTodoCompletionAction } from '@/actions/todo-action';
-import { updateTodoTitleAction } from '@/actions/todolist-action';
+import { updateTodoTitleAction } from '@/actions/todo-action';
 import { CheckBox } from '@/components/todos/content/TodoItem';
 import useTodoStore from '@/context/TodoContext';
 import { CircleX, Pencil, Save } from 'lucide-react';

@@ -1,7 +1,7 @@
 'use server';
 
 import { storeCategories, storeCategoriesColors } from '@/lib/category';
-import { deleteTodo, storeTodo, updateTodoCompletion } from '@/lib/todo';
+import { deleteTodo, storeTodo, updateTodoCompletion, updateTodoTitle } from '@/lib/todo';
 import { revalidatePath } from 'next/cache';
 
 export async function createTodoAction(
@@ -39,5 +39,14 @@ export async function deleteTodoAction(todoId: number, todolistId: number) {
 		revalidatePath(`/tasks/${todolistId}`);
 	} else {
 		console.error('Failed to delete todo');
+	}
+}
+
+export async function updateTodoTitleAction(todoId: number, title: string, todolistId: number) {
+	const result = await updateTodoTitle(todoId, title);
+	if (result) {
+		revalidatePath(`/tasks/${todolistId}`);
+	} else {
+		console.error('Failed to update todo title');
 	}
 }
