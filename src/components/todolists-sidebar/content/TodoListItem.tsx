@@ -16,8 +16,10 @@ interface TodoListItemProps {
 }
 
 function TodoListItem({ todolist }: TodoListItemProps) {
+	const router = useRouter();
 	const searchParams = useSearchParams();
 	const isSelectedPath = searchParams.get('id') === todolist.id.toString();
+	const currentId = searchParams.get('id');
 	const [isEditing, setIsEditing] = useState(false);
 	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { selectedTodo, setSelectedTodo } = useTodoStore();
@@ -31,6 +33,14 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 
 	const handleEditClick = (val: boolean) => {
 		setIsEditing(val);
+	};
+
+	const onSubmit = async () => {
+		await deleteTodolistAction(todolist.id, 1);
+		if (currentId === todolist.id.toString()) {
+			closeTodoDetailsPanel();
+			router.push('/tasks/');
+		}
 	};
 
 	return (
@@ -54,11 +64,17 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 			)}
 
 			{isEditing ? (
-				<CancelEditButton handleEditClick={handleEditClick} isActive={isSelectedPath} />
+				<Button onClick={() => handleEditClick(false)} ariaLabel="Cancel Editing" isActive={isSelectedPath}>
+					<CircleX size={15} />
+				</Button>
 			) : (
 				<div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 absolute right-5">
-					<EditButton handleEditClick={handleEditClick} isActive={isSelectedPath} />
-					<DeleteButton todolistId={todolist.id} isActive={isSelectedPath} />
+					<Button onClick={() => handleEditClick(true)} ariaLabel="Edit Todolist Title" isActive={isSelectedPath}>
+						<Pencil size={15} />
+					</Button>
+					<Button type="submit" ariaLabel="Delete Todolist" isActive={isSelectedPath} onClick={onSubmit}>
+						<Trash2 size={15} />
+					</Button>
 				</div>
 			)}
 		</div>
@@ -77,7 +93,7 @@ const Button = ({
 	isActive,
 }: {
 	children: React.ReactNode;
-	onClick?: () => void;
+	onClick?: () => void | Promise<void>;
 	type?: 'submit';
 	ariaLabel: string;
 	isActive: boolean;
@@ -91,52 +107,6 @@ const Button = ({
 		>
 			{children}
 		</button>
-	);
-};
-
-const CancelEditButton = ({
-	handleEditClick,
-	isActive,
-}: {
-	handleEditClick: (val: boolean) => void;
-	isActive: boolean;
-}) => {
-	return (
-		<Button onClick={() => handleEditClick(false)} ariaLabel="Cancel Editing" isActive={isActive}>
-			<CircleX size={15} />
-		</Button>
-	);
-};
-
-const EditButton = ({ handleEditClick, isActive }: { handleEditClick: (val: boolean) => void; isActive: boolean }) => {
-	return (
-		<Button onClick={() => handleEditClick(true)} ariaLabel="Edit Todolist Title" isActive={isActive}>
-			<Pencil size={15} />
-		</Button>
-	);
-};
-
-const DeleteButton = ({ todolistId, isActive }: { todolistId: number; isActive: boolean }) => {
-	const router = useRouter();
-	const searchParams = useSearchParams();
-	const currentId = searchParams.get('id');
-	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
-
-	const onSubmit = async (event: React.FormEvent) => {
-		event.preventDefault();
-		await deleteTodolistAction(todolistId, 1);
-		if (currentId === todolistId.toString()) {
-			closeTodoDetailsPanel();
-			router.push('/tasks/');
-		}
-	};
-
-	return (
-		<form onSubmit={onSubmit} className="flex items-center">
-			<Button type="submit" ariaLabel="Delete Todolist" isActive={isActive}>
-				<Trash2 size={15} />
-			</Button>
-		</form>
 	);
 };
 
