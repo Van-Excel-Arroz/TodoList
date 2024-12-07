@@ -32,7 +32,7 @@ const useTodoStore = create<TodoContextState>()((set: any) => ({
 		})),
 	updateSelectedTodoTitle: (newTitle: string) =>
 		set((state: TodoContextState) => ({
-			selectedTodo: state.selectedTodo ? { ...state.selectedTodo, title: newTitle } : null,
+			selectedTodo: state.selectedTodo ? { ...state.selectedTodo, task_text: newTitle } : null,
 		})),
 }));
 
