@@ -1,5 +1,3 @@
-'use server';
-
 import { Category, Todo } from '@/types';
 import { query } from './db';
 import { PREDEFINED_COLORS } from '@/utils/constants';
