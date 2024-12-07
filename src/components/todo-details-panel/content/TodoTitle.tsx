@@ -4,7 +4,7 @@ import { updateTodoCompletionAction } from '@/actions/todo-action';
 import { updateTodoTitleAction } from '@/actions/todo-action';
 import { CheckBox } from '@/components/todos/content/TodoItem';
 import useTodoStore from '@/context/TodoContext';
-import { CircleX, Pencil, Save } from 'lucide-react';
+import { Check, Pencil, X } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -105,10 +105,10 @@ function EditTodoForm({
 			/>
 			<div className="flex gap-2">
 				<Button type="submit" ariaLabel="Save New Todo Title">
-					<Save size={18} />
+					<Check size={18} />
 				</Button>
 				<Button onClick={() => handleEditClick(false)} ariaLabel="Cancel Editing Todo Title">
-					<CircleX size={18} />
+					<X size={18} />
 				</Button>
 			</div>
 		</form>
