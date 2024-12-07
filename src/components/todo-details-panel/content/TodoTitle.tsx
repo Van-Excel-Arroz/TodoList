@@ -30,8 +30,18 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 		setIsEditing(val);
 	};
 
+	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+			handleEditClick(false);
+		}
+	};
+
 	return (
-		<div className="flex justify-between bg-slate-100 rounded-md p-4 border border-slate-300">
+		<div
+			className="flex justify-between bg-slate-100 rounded-md p-4 border border-slate-300"
+			onBlur={handleInputBlur}
+			tabIndex={-1}
+		>
 			<div className="flex items-center gap-4">
 				<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
 				{isEditing ? (
@@ -83,10 +93,6 @@ function EditTodoForm({
 		handleEditClick(false);
 	};
 
-	const handleInputBlur = () => {
-		handleEditClick(false);
-	};
-
 	return (
 		<form className="flex items-center gap-2" onSubmit={handleSubmit(onSubmit)}>
 			<input
@@ -96,7 +102,6 @@ function EditTodoForm({
 				autoFocus
 				placeholder={title}
 				defaultValue={title}
-				onBlur={handleInputBlur}
 			/>
 			<div className="flex gap-2">
 				<Button type="submit" ariaLabel="Save New Todo Title">
