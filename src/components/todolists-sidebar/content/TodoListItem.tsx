@@ -36,7 +36,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 	return (
 		<div
 			className={`flex items-center pr-5 group relative w-full active:bg-sky-50 ${
-				isSelectedPath ? 'border-l-4 border-slate-400 bg-sky-100' : 'pl-1 hover:bg-sky-50'
+				isSelectedPath ? 'border-l-4 border-slate-400 bg-sky-100 active:bg-sky-100' : 'pl-1 hover:bg-sky-50'
 			}`}
 		>
 			{isEditing ? (
@@ -56,7 +56,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 			{isEditing ? (
 				<CancelEditButton handleEditClick={handleEditClick} isActive={isSelectedPath} />
 			) : (
-				<div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 absolute right-5 text-slate-600">
+				<div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 absolute right-5">
 					<EditButton handleEditClick={handleEditClick} isActive={isSelectedPath} />
 					<DeleteButton todolistId={todolist.id} isActive={isSelectedPath} />
 				</div>
@@ -77,14 +77,14 @@ const Button = ({
 	isActive,
 }: {
 	children: React.ReactNode;
-	onClick: () => void;
+	onClick?: () => void;
 	type?: 'submit';
 	ariaLabel: string;
 	isActive: boolean;
 }) => {
 	return (
 		<button
-			onClick={onClick}
+			onClick={onClick || undefined}
 			aria-label={ariaLabel}
 			className={`p-1 text-slate-600 rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
 			type={type}
@@ -110,13 +110,9 @@ const CancelEditButton = ({
 
 const EditButton = ({ handleEditClick, isActive }: { handleEditClick: (val: boolean) => void; isActive: boolean }) => {
 	return (
-		<button
-			onClick={() => handleEditClick(true)}
-			aria-label="Edit Todolist"
-			className={`p-1  rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
-		>
+		<Button onClick={() => handleEditClick(true)} ariaLabel="Edit Todolist Title" isActive={isActive}>
 			<Pencil size={15} />
-		</button>
+		</Button>
 	);
 };
 
@@ -137,13 +133,9 @@ const DeleteButton = ({ todolistId, isActive }: { todolistId: number; isActive: 
 
 	return (
 		<form onSubmit={onSubmit} className="flex items-center">
-			<button
-				type="submit"
-				aria-label="Delete Todolist"
-				className={`p-1  rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
-			>
+			<Button type="submit" ariaLabel="Delete Todolist" isActive={isActive}>
 				<Trash2 size={15} />
-			</button>
+			</Button>
 		</form>
 	);
 };
