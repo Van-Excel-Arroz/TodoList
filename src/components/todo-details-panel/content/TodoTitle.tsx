@@ -47,7 +47,7 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 				)}
 			</div>
 			{isEditing ? null : (
-				<Button onClick={() => handleEditClick(true)}>
+				<Button onClick={() => handleEditClick(true)} ariaLabel="Edit Todo Title">
 					<Pencil size={18} />
 				</Button>
 			)}
@@ -55,12 +55,23 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 	);
 }
 
-function Button({ children, onClick, type }: { children: React.ReactNode; onClick?: () => void; type?: 'submit' }) {
+function Button({
+	children,
+	onClick,
+	type,
+	ariaLabel,
+}: {
+	children: React.ReactNode;
+	onClick?: () => void;
+	type?: 'submit';
+	ariaLabel: string;
+}) {
 	return (
 		<button
 			className="hover:bg-slate-200 active:bg-slate-200 rounded-md p-1 text-slate-600"
 			onClick={() => onClick && onClick()}
 			type={type}
+			aria-label={ariaLabel}
 		>
 			{children}
 		</button>
@@ -107,10 +118,10 @@ function EditTodoForm({
 				onBlur={handleInputBlur}
 			/>
 			<div className="flex gap-2">
-				<Button type="submit">
+				<Button type="submit" ariaLabel="Save New Todo Title">
 					<Save size={18} />
 				</Button>
-				<Button onClick={() => handleEditClick(false)}>
+				<Button onClick={() => handleEditClick(false)} ariaLabel="Cancel Editing Todo Title">
 					<CircleX size={18} />
 				</Button>
 			</div>
