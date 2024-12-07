@@ -11,11 +11,7 @@ import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { updateTodolistAction } from '@/actions/todolist-action';
 import { useForm } from 'react-hook-form';
 
-interface TodoListItemProps {
-	todolist: TodoList;
-}
-
-function TodoListItem({ todolist }: TodoListItemProps) {
+function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const isSelectedPath = searchParams.get('id') === todolist.id.toString();
@@ -43,11 +39,16 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 		}
 	};
 
+	const handleInputBlur = () => {
+		handleEditClick(false);
+	};
+
 	return (
 		<div
 			className={`flex items-center pr-5 group relative w-full active:bg-sky-50 ${
 				isSelectedPath ? 'border-l-4 border-slate-400 bg-sky-100 active:bg-sky-100' : 'pl-1 hover:bg-sky-50'
 			}`}
+			onBlur={handleInputBlur}
 		>
 			{isEditing ? (
 				<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} isActive={isSelectedPath} />
@@ -131,10 +132,6 @@ const EditTodolistForm = ({
 		reset();
 	};
 
-	const handleInputBlur = () => {
-		handleEditClick(false);
-	};
-
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex items-center">
 			<input
@@ -143,7 +140,6 @@ const EditTodolistForm = ({
 				placeholder={todolist.title}
 				className="bg-transparent focus:outline-none border-b border-slate-950 my-3 mx-5 w-5/6"
 				autoFocus
-				onBlur={handleInputBlur}
 				defaultValue={todolist.title}
 			/>
 			<div className="flex items-center gap-2">
