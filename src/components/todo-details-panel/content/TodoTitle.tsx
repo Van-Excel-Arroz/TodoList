@@ -55,9 +55,13 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 	);
 }
 
-function Button({ children, onClick }: { children: React.ReactNode; onClick: () => void }) {
+function Button({ children, onClick, type }: { children: React.ReactNode; onClick?: () => void; type?: 'submit' }) {
 	return (
-		<button className="hover:bg-slate-200 active:bg-slate-200 rounded-md p-1 text-slate-600" onClick={() => onClick()}>
+		<button
+			className="hover:bg-slate-200 active:bg-slate-200 rounded-md p-1 text-slate-600"
+			onClick={() => onClick && onClick()}
+			type={type}
+		>
 			{children}
 		</button>
 	);
@@ -82,10 +86,9 @@ function EditTodoForm({
 		if (title !== data.title) {
 			await updateTodoTitleAction(todoId, data.title, todolistId);
 			updateSelectedTodoTitle(data.title);
-		} else {
-			handleEditClick(false);
 		}
 		reset();
+		handleEditClick(false);
 	};
 
 	const handleInputBlur = () => {
@@ -104,7 +107,7 @@ function EditTodoForm({
 				onBlur={handleInputBlur}
 			/>
 			<div className="flex gap-2">
-				<Button onClick={() => handleEditClick(true)}>
+				<Button type="submit">
 					<Save size={18} />
 				</Button>
 				<Button onClick={() => handleEditClick(false)}>
