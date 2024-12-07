@@ -1,8 +1,9 @@
 'use client';
 
-import { updateTodoCompletionAction } from '@/actions/todolist-action';
+import { updateTodoCompletionAction, updateTodoTitleAction } from '@/actions/todolist-action';
 import { CheckBox } from '@/components/todos/content/TodoItem';
 import useTodoStore from '@/context/TodoContext';
+import { updateTodoTitle } from '@/lib/todo';
 import { CircleX, Pencil, Save } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -13,7 +14,7 @@ interface TodoTitleProps {
 }
 
 export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
-	const { selectedTodo, setSelectedTodo } = useTodoStore();
+	const { selectedTodo, setSelectedTodo, updateSelectedTodoTitle } = useTodoStore();
 	const [isEditing, setIsEditing] = useState(false);
 
 	const handleCheckboxChange = async () => {
@@ -34,7 +35,13 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 			<div className="flex items-center gap-4">
 				<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
 				{isEditing ? (
-					<EditTodoForm title={title} handleEditClick={handleEditClick} />
+					<EditTodoForm
+						title={title}
+						handleEditClick={handleEditClick}
+						todoId={selectedTodo!.id}
+						todolistId={selectedTodo!.todo_list_id}
+						updateSelectedTodoTitle={updateSelectedTodoTitle}
+					/>
 				) : (
 					<p className="text-lg overflow-hidden text-wrap break-all">{title}</p>
 				)}
@@ -56,13 +63,37 @@ function Button({ children, onClick }: { children: React.ReactNode; onClick: () 
 	);
 }
 
-function EditTodoForm({ title, handleEditClick }: { title: string; handleEditClick: (val: boolean) => void }) {
+function EditTodoForm({
+	title,
+	handleEditClick,
+	todoId,
+	todolistId,
+	updateSelectedTodoTitle,
+}: {
+	title: string;
+	handleEditClick: (val: boolean) => void;
+	todoId: number;
+	todolistId: number;
+	updateSelectedTodoTitle: (newTitle: string) => void;
+}) {
 	const { register, handleSubmit, reset } = useForm<{ title: string }>();
 
-	const onSubmit = async (data: { title: string }) => {};
+	const onSubmit = async (data: { title: string }) => {
+		if (title !== data.title) {
+			await updateTodoTitleAction(todoId, data.title, todolistId);
+			updateSelectedTodoTitle(data.title);
+		} else {
+			handleEditClick(false);
+		}
+		reset();
+	};
+
+	const handleInputBlur = () => {
+		handleEditClick(false);
+	};
 
 	return (
-		<form className="flex items-center gap-2">
+		<form className="flex items-center gap-2" onSubmit={handleSubmit(onSubmit)}>
 			<input
 				{...register('title')}
 				type="text"
@@ -70,6 +101,7 @@ function EditTodoForm({ title, handleEditClick }: { title: string; handleEditCli
 				autoFocus
 				placeholder={title}
 				defaultValue={title}
+				onBlur={handleInputBlur}
 			/>
 			<div className="flex gap-2">
 				<Button onClick={() => handleEditClick(true)}>

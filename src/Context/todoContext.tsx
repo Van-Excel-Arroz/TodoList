@@ -6,6 +6,7 @@ interface TodoContextState {
 	setSelectedTodo: (todo: Todo | null) => void;
 	updateSelectedTodoCategory: (newCategory: Category) => void;
 	removeSelectedTodoCategory: (categoryId: number) => void;
+	updateSelectedTodoTitle: (newTitle: string) => void;
 }
 
 const useTodoStore = create<TodoContextState>()((set: any) => ({
@@ -28,6 +29,10 @@ const useTodoStore = create<TodoContextState>()((set: any) => ({
 						categories: state.selectedTodo.categories?.filter(category => category.id !== categoryId),
 				  }
 				: null,
+		})),
+	updateSelectedTodoTitle: (newTitle: string) =>
+		set((state: TodoContextState) => ({
+			selectedTodo: state.selectedTodo ? { ...state.selectedTodo, title: newTitle } : null,
 		})),
 }));
 
