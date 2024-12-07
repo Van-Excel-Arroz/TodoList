@@ -15,15 +15,6 @@ interface TodoListItemProps {
 	todolist: TodoList;
 }
 
-interface FormInputs {
-	title: string;
-}
-
-interface EditTodolistFormProps {
-	todolist: TodoList;
-	handleEditClick: (val: boolean) => void;
-}
-
 function TodoListItem({ todolist }: TodoListItemProps) {
 	const searchParams = useSearchParams();
 	const isSelectedPath = searchParams.get('id') === todolist.id.toString();
@@ -136,14 +127,22 @@ const DeleteButton = ({ todolistId, isActive }: { todolistId: number; isActive: 
 	);
 };
 
-const EditTodolistForm = ({ todolist, handleEditClick }: EditTodolistFormProps) => {
-	const { register, handleSubmit, reset } = useForm<FormInputs>({
+const EditTodolistForm = ({
+	todolist,
+	handleEditClick,
+}: {
+	todolist: TodoList;
+	handleEditClick: (val: boolean) => void;
+}) => {
+	const { register, handleSubmit, reset } = useForm<{
+		title: string;
+	}>({
 		defaultValues: {
 			title: todolist.title,
 		},
 	});
 
-	const onSubmit = async (data: FormInputs) => {
+	const onSubmit = async (data: { title: string }) => {
 		if (todolist.title !== data.title) {
 			await updateTodolistAction(todolist.id, data.title);
 		}
