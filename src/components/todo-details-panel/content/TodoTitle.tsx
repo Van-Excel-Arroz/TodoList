@@ -55,28 +55,9 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 	);
 }
 
-function Button({
-	children,
-	onClick,
-	type,
-	ariaLabel,
-}: {
-	children: React.ReactNode;
-	onClick?: () => void;
-	type?: 'submit';
-	ariaLabel: string;
-}) {
-	return (
-		<button
-			className="hover:bg-slate-200 active:bg-slate-200 rounded-md p-1 text-slate-600"
-			onClick={() => onClick && onClick()}
-			type={type}
-			aria-label={ariaLabel}
-		>
-			{children}
-		</button>
-	);
-}
+// ------------------------------------------------------------------------------------------------ //
+// COMPONENTS
+// ------------------------------------------------------------------------------------------------ //
 
 function EditTodoForm({
 	title,
@@ -126,5 +107,25 @@ function EditTodoForm({
 				</Button>
 			</div>
 		</form>
+	);
+}
+
+interface ButtonProps {
+	children: React.ReactNode;
+	onClick?: () => void;
+	type?: 'submit';
+	ariaLabel: string;
+}
+
+function Button({ children, onClick, type, ariaLabel }: ButtonProps) {
+	return (
+		<button
+			className="hover:bg-slate-200 active:bg-slate-200 rounded-md p-1 text-slate-600"
+			onClick={() => onClick && onClick()}
+			type={type}
+			aria-label={ariaLabel}
+		>
+			{children}
+		</button>
 	);
 }
