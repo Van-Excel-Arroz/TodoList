@@ -1,14 +1,7 @@
 'use server';
 
-import {
-	createCategoryColor,
-	deleteCategory,
-	storeCategories,
-	storeCategoriesColors,
-	storeCategory,
-	updateIsSelectedCategoryColors,
-} from '@/lib/category';
-import { deleteTodo, storeTodo, updateTodoCompletion, updateTodoTitle } from '@/lib/todo';
+import { createCategoryColor, deleteCategory, storeCategory, updateIsSelectedCategoryColors } from '@/lib/category';
+import { deleteTodo, updateTodoCompletion, updateTodoTitle } from '@/lib/todo';
 import { deleteTodolist, storeTodolist, updateTodolist } from '@/lib/todolist';
 import { revalidatePath } from 'next/cache';
 
@@ -18,25 +11,6 @@ export async function createTodolist(title: string) {
 		revalidatePath(`/tasks/${todolistId}`);
 	}
 	return todolistId;
-}
-
-export async function createTodoAction(
-	taskText: string,
-	dueDatetime: string | null,
-	todolistId: number,
-	categories: string[]
-) {
-	const todoId: number = await storeTodo(taskText, dueDatetime, todolistId);
-	const categoryColorsId = await storeCategoriesColors(categories, todolistId);
-	const validCategoryIds = categoryColorsId.filter((id): id is number => id !== undefined);
-	await storeCategories(todoId, validCategoryIds);
-
-	if (todoId) {
-		revalidatePath(`/tasks/${todolistId}`);
-	} else {
-		console.error('Failed to create the todo');
-		return null;
-	}
 }
 
 export async function deleteTodolistAction(todolistId: number, user_id: number) {

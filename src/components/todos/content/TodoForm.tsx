@@ -2,7 +2,7 @@
 
 import { memo } from 'react';
 import { useForm } from 'react-hook-form';
-import { createTodoAction } from '@/actions/todolist-action';
+import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
 
 interface TodoFormData {
