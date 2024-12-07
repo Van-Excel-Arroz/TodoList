@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { deleteTodolistAction } from '@/actions/todolist-action';
 import { TodoList } from '@/types';
-import { CircleX, Pencil, Trash2 } from 'lucide-react';
+import { Check, Pencil, Trash2, X } from 'lucide-react';
 import useTodoStore from '@/context/TodoContext';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { updateTodolistAction } from '@/actions/todolist-action';
@@ -50,7 +50,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 			}`}
 		>
 			{isEditing ? (
-				<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} />
+				<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} isActive={isSelectedPath} />
 			) : (
 				<Link
 					href={`/tasks/?id=${todolist.id}`}
@@ -63,11 +63,7 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 				</Link>
 			)}
 
-			{isEditing ? (
-				<Button onClick={() => handleEditClick(false)} ariaLabel="Cancel Editing" isActive={isSelectedPath}>
-					<CircleX size={15} />
-				</Button>
-			) : (
+			{!isEditing && (
 				<div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 absolute right-5">
 					<Button onClick={() => handleEditClick(true)} ariaLabel="Edit Todolist Title" isActive={isSelectedPath}>
 						<Pencil size={15} />
@@ -113,9 +109,11 @@ const Button = ({
 const EditTodolistForm = ({
 	todolist,
 	handleEditClick,
+	isActive,
 }: {
 	todolist: TodoList;
 	handleEditClick: (val: boolean) => void;
+	isActive: boolean;
 }) => {
 	const { register, handleSubmit, reset } = useForm<{
 		title: string;
@@ -138,16 +136,25 @@ const EditTodolistForm = ({
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form onSubmit={handleSubmit(onSubmit)} className="flex items-center">
 			<input
 				{...register('title')}
 				type="text"
 				placeholder={todolist.title}
-				className="bg-transparent focus:outline-none border-b border-slate-950 my-3 mx-5 w-full"
+				className="bg-transparent focus:outline-none border-b border-slate-950 my-3 mx-5 w-5/6"
 				autoFocus
 				onBlur={handleInputBlur}
 				defaultValue={todolist.title}
 			/>
+			<div className="flex items-center gap-2">
+				<Button type="submit" ariaLabel="Save New Todolist Title" isActive={isActive}>
+					<Check size={15} />
+				</Button>
+
+				<Button onClick={() => handleEditClick(false)} ariaLabel="Cancel Editing" isActive={isActive}>
+					<X size={15} />
+				</Button>
+			</div>
 		</form>
 	);
 };
