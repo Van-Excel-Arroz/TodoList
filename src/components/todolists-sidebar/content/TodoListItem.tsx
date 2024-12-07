@@ -69,6 +69,31 @@ function TodoListItem({ todolist }: TodoListItemProps) {
 // COMPONENTS
 // ------------------------------------------------------------------------------------------------ //
 
+const Button = ({
+	children,
+	onClick,
+	type,
+	ariaLabel,
+	isActive,
+}: {
+	children: React.ReactNode;
+	onClick: () => void;
+	type?: 'submit';
+	ariaLabel: string;
+	isActive: boolean;
+}) => {
+	return (
+		<button
+			onClick={onClick}
+			aria-label={ariaLabel}
+			className={`p-1 text-slate-600 rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
+			type={type}
+		>
+			{children}
+		</button>
+	);
+};
+
 const CancelEditButton = ({
 	handleEditClick,
 	isActive,
@@ -77,13 +102,9 @@ const CancelEditButton = ({
 	isActive: boolean;
 }) => {
 	return (
-		<button
-			onClick={() => handleEditClick(false)}
-			aria-label="Cancel Editing"
-			className={`p-1 ml-7 text-slate-600 rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
-		>
+		<Button onClick={() => handleEditClick(false)} ariaLabel="Cancel Editing" isActive={isActive}>
 			<CircleX size={15} />
-		</button>
+		</Button>
 	);
 };
 
