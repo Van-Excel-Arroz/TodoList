@@ -39,8 +39,10 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 		}
 	};
 
-	const handleInputBlur = () => {
-		handleEditClick(false);
+	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+			handleEditClick(false);
+		}
 	};
 
 	return (
@@ -49,6 +51,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 				isSelectedPath ? 'border-l-4 border-slate-400 bg-sky-100 active:bg-sky-100' : 'pl-1 hover:bg-sky-50'
 			}`}
 			onBlur={handleInputBlur}
+			tabIndex={-1}
 		>
 			{isEditing ? (
 				<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} isActive={isSelectedPath} />
