@@ -3,9 +3,9 @@ import { getSelectedCategories, getTodosWithCategories, sortTodosBySelectedCateg
 import { getTodolist } from '@/lib/todolist';
 import { Todo } from '@/types';
 import TodoForm from './content/TodoForm';
-import CategoryList from './content/CategoryList';
 import TodoListView from './content/TodoListView';
 import TodoListHeader from './content/TodoListHeader';
+import SelectedCategories from './content/SelectedCategories';
 
 export default async function TodoListPage({ todolistId }: { todolistId: number }) {
 	const todolist = await getTodolist(todolistId, 1);
@@ -23,7 +23,7 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 			<div className="font-body flex flex-col px-6 p-9">
 				<TodoListHeader todolist={todolist} />
 				<TodoForm todolistId={todolistId} />
-				<CategoryList selectedCategories={selectedCategories} todoListId={todolistId} />
+				<SelectedCategories selectedCategories={selectedCategories} todoListId={todolistId} />
 				<TodoListView todos={todos} />
 			</div>
 		</Suspense>

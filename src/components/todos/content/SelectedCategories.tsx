@@ -4,12 +4,12 @@ import { X } from 'lucide-react';
 import { Category } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/todolist-action';
 
-interface CategoryListProps {
+interface SelectedCategoriesProps {
 	selectedCategories: Category[];
 	todoListId: number;
 }
 
-export default function CategoryList({ selectedCategories, todoListId }: CategoryListProps) {
+export default function SelectedCategories({ selectedCategories, todoListId }: SelectedCategoriesProps) {
 	const handleCategoryClick = async (categoryTitle: string) => {
 		await updateIsSelectedCategoryColorsAction(categoryTitle, false, todoListId);
 	};
