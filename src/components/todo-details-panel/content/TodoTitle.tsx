@@ -5,6 +5,7 @@ import { CheckBox } from '@/components/todos/content/TodoItem';
 import useTodoStore from '@/context/TodoContext';
 import { CircleX, Pencil, Save } from 'lucide-react';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 interface TodoTitleProps {
 	title: string;
@@ -33,21 +34,12 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 			<div className="flex items-center gap-4">
 				<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
 				{isEditing ? (
-					<p className="text-lg ">Editing</p>
+					<EditTodoForm title={title} handleEditClick={handleEditClick} />
 				) : (
 					<p className="text-lg overflow-hidden text-wrap break-all">{title}</p>
 				)}
 			</div>
-			{isEditing ? (
-				<div className="flex gap-2">
-					<Button onClick={() => handleEditClick(true)}>
-						<Save size={18} />
-					</Button>
-					<Button onClick={() => handleEditClick(false)}>
-						<CircleX size={18} />
-					</Button>
-				</div>
-			) : (
+			{isEditing ? null : (
 				<Button onClick={() => handleEditClick(true)}>
 					<Pencil size={18} />
 				</Button>
@@ -56,10 +48,37 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 	);
 }
 
-const Button = ({ children, onClick }: { children: React.ReactNode; onClick: () => void }) => {
+function Button({ children, onClick }: { children: React.ReactNode; onClick: () => void }) {
 	return (
 		<button className="hover:bg-slate-200 active:bg-slate-200 rounded-md p-1 text-slate-600" onClick={() => onClick()}>
 			{children}
 		</button>
 	);
-};
+}
+
+function EditTodoForm({ title, handleEditClick }: { title: string; handleEditClick: (val: boolean) => void }) {
+	const { register, handleSubmit, reset } = useForm<{ title: string }>();
+
+	const onSubmit = async (data: { title: string }) => {};
+
+	return (
+		<form className="flex items-center gap-2">
+			<input
+				{...register('title')}
+				type="text"
+				className="text-lg bg-transparent focus:outline-none border-b border-slate-950 w-11/12"
+				autoFocus
+				placeholder={title}
+				defaultValue={title}
+			/>
+			<div className="flex gap-2">
+				<Button onClick={() => handleEditClick(true)}>
+					<Save size={18} />
+				</Button>
+				<Button onClick={() => handleEditClick(false)}>
+					<CircleX size={18} />
+				</Button>
+			</div>
+		</form>
+	);
+}

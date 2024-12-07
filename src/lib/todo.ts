@@ -317,3 +317,13 @@ export async function deleteCategory(categoryId: number): Promise<boolean> {
 		return false;
 	}
 }
+
+export async function updateTodoTitle(todoId: number, title: string): Promise<boolean> {
+	try {
+		await query('UPDATE todos SET task_text = $1 WHERE id = $2', [title, todoId]);
+		return true;
+	} catch (error) {
+		console.error('Error updating todo title in the database', error);
+		return false;
+	}
+}
