@@ -69,19 +69,15 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 // COMPONENTS
 // ------------------------------------------------------------------------------------------------ //
 
-function EditTodoForm({
-	title,
-	handleEditClick,
-	todoId,
-	todolistId,
-	updateSelectedTodoTitle,
-}: {
+interface EditTodoFormProps {
 	title: string;
 	handleEditClick: (val: boolean) => void;
 	todoId: number;
 	todolistId: number;
 	updateSelectedTodoTitle: (newTitle: string) => void;
-}) {
+}
+
+function EditTodoForm({ title, handleEditClick, todoId, todolistId, updateSelectedTodoTitle }: EditTodoFormProps) {
 	const { register, handleSubmit, reset } = useForm<{ title: string }>();
 
 	const onSubmit = async (data: { title: string }) => {
@@ -115,17 +111,14 @@ function EditTodoForm({
 	);
 }
 
-function Button({
-	children,
-	onClick,
-	type,
-	ariaLabel,
-}: {
+interface ButtonProps {
 	children: React.ReactNode;
 	onClick?: () => void;
 	type?: 'submit';
 	ariaLabel: string;
-}) {
+}
+
+function Button({ children, onClick, type, ariaLabel }: ButtonProps) {
 	return (
 		<button
 			className="hover:bg-slate-200 active:bg-slate-200 rounded-md p-1 text-slate-600"
