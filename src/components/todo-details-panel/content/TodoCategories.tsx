@@ -97,9 +97,9 @@ interface CategoryFormInputs {
 function CategoryForm({ onSubmit, onCancel }: CategoryFormProps) {
 	const { register, handleSubmit, reset } = useForm<CategoryFormInputs>();
 
-	const handleFormSubmit = async (data: CategoryFormInputs) => {
+	const handleFormSubmit = (data: CategoryFormInputs) => {
 		if (data.category_title.length === 0) return;
-		await onSubmit(data);
+		onSubmit(data);
 		reset();
 	};
 
