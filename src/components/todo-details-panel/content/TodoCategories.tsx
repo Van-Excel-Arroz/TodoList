@@ -30,7 +30,7 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 		removeSelectedTodoCategory(categoryId);
 	};
 
-	const onSubmit = async (data: { category_title: string; hex_color: string }) => {
+	const onSubmit = async (data: CategoryFormInputs) => {
 		const categoryId = await addTodoCategoryAction(
 			data.category_title,
 			data.hex_color,
@@ -84,19 +84,20 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 // COMPONENTS
 // ------------------------------------------------------------------------------------------------ //
 
-function CategoryForm({
-	onSubmit,
-	onCancel,
-}: {
-	onSubmit: (data: { category_title: string; hex_color: string }) => void;
+interface CategoryFormProps {
+	onSubmit: (data: CategoryFormInputs) => void;
 	onCancel: () => void;
-}) {
-	const { register, handleSubmit, reset } = useForm<{
-		category_title: string;
-		hex_color: string;
-	}>();
+}
 
-	const handleFormSubmit = (data: { category_title: string; hex_color: string }) => {
+interface CategoryFormInputs {
+	category_title: string;
+	hex_color: string;
+}
+
+function CategoryForm({ onSubmit, onCancel }: CategoryFormProps) {
+	const { register, handleSubmit, reset } = useForm<CategoryFormInputs>();
+
+	const handleFormSubmit = (data: CategoryFormInputs) => {
 		if (data.category_title.length === 0) return;
 		onSubmit(data);
 		reset();
