@@ -9,15 +9,10 @@ interface PageProps {
 }
 
 export default async function TasksPage({ searchParams }: PageProps) {
-	const { id } = await searchParams; // Expecting id to be a string
-	console.log('ID from searchParams:', id); // Debugging log
-
+	const { id } = await searchParams;
 	const todolist_ids = await getTodolistIds();
-	console.log('Todo List IDs:', todolist_ids); // Debugging log
-
-	// Convert id to a number and check for existence
 	const existingId = todolist_ids.find(todolistId => todolistId.id === Number(id));
-	console.log('Existing ID:', existingId); // Debugging log
+	console.log('Existing ID:', existingId);
 
 	if (id && existingId) {
 		const todolistId = Number(id);
