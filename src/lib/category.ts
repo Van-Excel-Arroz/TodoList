@@ -26,7 +26,11 @@ export async function createCategoryColor(
 			[category, todolistId]
 		);
 		if (existingCategoryTitle.rows.length > 0) {
-			await query('UPDATE category_colors SET hex_color = $1 WHERE category_title = $2 ', [color, category]);
+			await query('UPDATE category_colors SET hex_color = $1 WHERE category_title = $2 AND id = $3 ', [
+				color,
+				category,
+				existingCategoryTitle.rows[0].id,
+			]);
 			return existingCategoryTitle.rows[0].id;
 		} else {
 			const result = await query(
