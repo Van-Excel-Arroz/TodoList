@@ -10,12 +10,11 @@ interface PageProps {
 
 export default async function TasksPage({ searchParams }: PageProps) {
 	const { id } = await searchParams;
+	const todolistId = Number(id);
 	const todolist_ids = await getTodolistIds();
-	const existingId = todolist_ids.find(todolistId => todolistId.id === Number(id));
-	console.log('Existing ID:', existingId);
+	const existingId = todolist_ids.find(existingId => existingId.id === todolistId);
 
 	if (id && existingId) {
-		const todolistId = Number(id);
 		return <TodoListPage todolistId={todolistId} />;
 	} else {
 		return <NoTodoListSelected />;
