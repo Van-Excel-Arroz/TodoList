@@ -138,7 +138,7 @@ function CategoryTag({ category, onRemove }: CategoryTagProps) {
 		>
 			<p>{category.category_title}</p>
 			<button
-				className={`hover:bg-white active:bg-white rounded-md p-1`}
+				className="rounded-md p-1 hover:bg-white hover:outline hover:outline-1 active:bg-white "
 				aria-label="Remove Category"
 				onClick={() => onRemove(category.id)}
 			>

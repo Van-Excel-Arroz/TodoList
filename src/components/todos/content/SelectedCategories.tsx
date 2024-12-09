@@ -37,7 +37,7 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 							>
 								<p className="text-sm">{selectedCategory.category_title}</p>
 								<button
-									className={`hover:bg-white active:bg-white rounded-md p-1`}
+									className=" active:bg-white rounded-md p-1 hover:bg-white hover:outline hover:outline-1"
 									onClick={() => handleCategoryClick(selectedCategory.category_title)}
 									aria-label={`Remove ${selectedCategory.category_title} category`}
 								>

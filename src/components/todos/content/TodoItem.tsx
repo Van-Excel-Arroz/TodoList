@@ -128,14 +128,14 @@ const TodoContent = ({
 			{categories.length > 0 && (
 				<>
 					<Tag size={12} className="text-slate-800" />
-					<RenderCategories categories={categories} handleCategoryClick={handleCategoryClick} />
+					<RenderCategoryTags categories={categories} handleCategoryClick={handleCategoryClick} />
 				</>
 			)}
 		</div>
 	</div>
 );
 
-const RenderCategories = ({
+const RenderCategoryTags = ({
 	categories,
 	handleCategoryClick,
 }: {
@@ -146,7 +146,7 @@ const RenderCategories = ({
 		{categories?.map(category => (
 			<span
 				key={category.id}
-				className="text-xs rounded-md flex items-center gap-1"
+				className="text-xs rounded-md flex items-center gap-1 hover:outline hover:outline-1"
 				style={{
 					color: category.hex_color,
 					backgroundColor: `${category.hex_color}20`,
