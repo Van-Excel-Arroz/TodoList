@@ -85,19 +85,15 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 // COMPONENTS
 // ------------------------------------------------------------------------------------------------ //
 
-const Button = ({
-	children,
-	onClick,
-	type,
-	ariaLabel,
-	isActive,
-}: {
+interface ButtonProps {
 	children: React.ReactNode;
 	onClick?: () => void | Promise<void>;
 	type?: 'submit';
 	ariaLabel: string;
 	isActive: boolean;
-}) => {
+}
+
+const Button = ({ children, onClick, type, ariaLabel, isActive }: ButtonProps) => {
 	return (
 		<button
 			onClick={onClick || undefined}
@@ -110,22 +106,16 @@ const Button = ({
 	);
 };
 
-const EditTodolistForm = ({
-	todolist,
-	handleEditClick,
-	isActive,
-}: {
+interface EditTodolistFormProps {
 	todolist: TodoList;
 	handleEditClick: (val: boolean) => void;
 	isActive: boolean;
-}) => {
+}
+
+const EditTodolistForm = ({ todolist, handleEditClick, isActive }: EditTodolistFormProps) => {
 	const { register, handleSubmit, reset } = useForm<{
 		title: string;
-	}>({
-		defaultValues: {
-			title: todolist.title,
-		},
-	});
+	}>();
 
 	const onSubmit = async (data: { title: string }) => {
 		if (todolist.title !== data.title) {
