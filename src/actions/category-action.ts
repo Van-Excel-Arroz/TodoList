@@ -32,11 +32,11 @@ export async function deleteTodoCategoryAction(categoryId: number, todolistId: n
 }
 
 export async function updateIsSelectedCategoryColorsAction(
-	categoryTitle: string,
+	categoryColorId: number,
 	isSelected: boolean,
 	todolistId: number
 ) {
-	const result = await updateIsSelectedCategoryColors(categoryTitle, isSelected);
+	const result = await updateIsSelectedCategoryColors(categoryColorId, isSelected);
 	if (result) {
 		revalidatePath(`/tasks/${todolistId}`);
 	} else {
