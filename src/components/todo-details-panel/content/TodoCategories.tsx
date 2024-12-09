@@ -25,7 +25,6 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 	};
 
 	const handleRemoveCategory = async (categoryId: number) => {
-		console.log(`remove categoryId ${categoryId} and todoId ${todoId}`);
 		await deleteTodoCategoryAction(categoryId, selectedTodo!.todo_list_id);
 		removeSelectedTodoCategory(categoryId);
 	};
@@ -38,7 +37,6 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 			todoId
 		);
 
-		console.log(`submitting categoryId ${categoryId}`);
 		if (!categoryId) return;
 
 		const newCategory: Category = {

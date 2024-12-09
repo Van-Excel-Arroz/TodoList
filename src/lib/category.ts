@@ -138,9 +138,17 @@ export async function storeCategory(todoId: number, categoryColorId: number): Pr
 	}
 }
 
-export async function updateIsSelectedCategoryColors(categoryColorId: number, isSelected: boolean): Promise<boolean> {
+export async function updateIsSelectedCategoryColors(
+	isSelected: boolean,
+	categoryTitle: string,
+	todolistId: number
+): Promise<boolean> {
 	try {
-		await query('UPDATE category_colors SET is_selected = $1 WHERE id = $2', [isSelected, categoryColorId]);
+		await query('UPDATE category_colors SET is_selected = $1 WHERE category_title = $2 AND todo_list_id = $3', [
+			isSelected,
+			categoryTitle,
+			todolistId,
+		]);
 		return true;
 	} catch (error) {
 		console.error('Error updating isSelected in category_colors from the database', error);

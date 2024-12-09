@@ -31,6 +31,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	};
 
 	const handleCategoryClick = async (categoryId: number) => {
+		console.log(categoryId);
 		await updateIsSelectedCategoryColorsAction(categoryId, true, todo.todo_list_id);
 	};
 
@@ -154,7 +155,7 @@ const RenderCategories = ({
 				}}
 				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 					event.stopPropagation();
-					handleCategoryClick(category.id);
+					handleCategoryClick(category.title);
 				}}
 			>
 				<p className="pb-0.5 text-xs">⦿</p>
