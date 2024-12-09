@@ -162,3 +162,12 @@ export async function deleteCategory(categoryId: number): Promise<boolean> {
 		return false;
 	}
 }
+
+export async function getCategories(): Promise<boolean> {
+	try {
+		await query('SELECT * FROM categories');
+		return true;
+	} catch (error) {
+		return false;
+	}
+}
