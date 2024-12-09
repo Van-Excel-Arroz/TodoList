@@ -10,6 +10,7 @@ import useTodoStore from '@/context/TodoContext';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { updateTodolistAction } from '@/actions/todolist-action';
 import { useForm } from 'react-hook-form';
+import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 
 function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const router = useRouter();
@@ -19,9 +20,14 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const [isEditing, setIsEditing] = useState(false);
 	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { selectedTodo, setSelectedTodo } = useTodoStore();
+	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
 
 	const handleTodoListClick = () => {
 		closeTodoDetailsPanel();
+		const mediaQuery = window.matchMedia('(max-width: 1024px)');
+		if (mediaQuery.matches) {
+			toggleTodoListsSidebar();
+		}
 		if (selectedTodo?.todo_list_id === todolist.id) {
 			setSelectedTodo(null);
 		}
