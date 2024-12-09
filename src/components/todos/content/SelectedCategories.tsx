@@ -14,8 +14,8 @@ interface SelectedCategoriesProps {
 export default function SelectedCategories({ selectedCategories, todoListId }: SelectedCategoriesProps) {
 	const [isOpen, setIsOpen] = useState(false);
 
-	const handleCategoryClick = async (categoryColorId: number) => {
-		await updateIsSelectedCategoryColorsAction(categoryColorId, false, todoListId);
+	const handleCategoryClick = async (categoryTitle: string) => {
+		await updateIsSelectedCategoryColorsAction(false, categoryTitle, todoListId);
 	};
 
 	return (
@@ -43,7 +43,7 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 								<p>{selectedCategory.category_title}</p>
 								<button
 									className={`hover:bg-white active:bg-white rounded-md p-1`}
-									onClick={() => handleCategoryClick(selectedCategory.id)}
+									onClick={() => handleCategoryClick(selectedCategory.category_title)}
 									aria-label={`Remove ${selectedCategory.category_title} category`}
 								>
 									<X size={16} />
