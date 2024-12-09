@@ -30,9 +30,8 @@ function TodoItem({ todo }: { todo: Todo }) {
 		setSelectedTodo(null);
 	};
 
-	const handleCategoryClick = async (categoryId: number) => {
-		console.log(categoryId);
-		await updateIsSelectedCategoryColorsAction(categoryId, true, todo.todo_list_id);
+	const handleCategoryClick = async (categoryTitle: string) => {
+		await updateIsSelectedCategoryColorsAction(true, categoryTitle, todo.todo_list_id);
 	};
 
 	const handleDeleteClick = async () => {
@@ -108,7 +107,7 @@ const TodoContent = ({
 	task: string;
 	dueDatetime: string;
 	categories: Category[];
-	handleCategoryClick: (categoryId: number) => void;
+	handleCategoryClick: (categoryTitle: string) => void;
 }) => (
 	<div className="flex flex-col">
 		<p
@@ -141,7 +140,7 @@ const RenderCategories = ({
 	handleCategoryClick,
 }: {
 	categories: Category[];
-	handleCategoryClick: (categoryId: number) => void;
+	handleCategoryClick: (categoryTitle: string) => void;
 }) => (
 	<>
 		{categories?.map(category => (
@@ -155,7 +154,7 @@ const RenderCategories = ({
 				}}
 				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 					event.stopPropagation();
-					handleCategoryClick(category.title);
+					handleCategoryClick(category.category_title);
 				}}
 			>
 				<p className="pb-0.5 text-xs">⦿</p>
