@@ -36,9 +36,11 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 						<SelectedCategoryTags categories={selectedCategories} handleCategoryClick={handleCategoryClick} />
 					</div>
 
-					<Button ariaLabel="Open Categories Dropdown Filter" onClick={() => setIsOpen(prev => !prev)}>
-						<ChevronRight size={14} />
-					</Button>
+					<div className={`${isOpen && 'rotate-180'} transition-all duration-500`}>
+						<Button ariaLabel="Open Categories Dropdown Filter" onClick={() => setIsOpen(prev => !prev)}>
+							<ChevronRight size={14} />
+						</Button>
+					</div>
 				</div>
 			</div>
 		</>
