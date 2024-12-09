@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronDown, ChevronRight, Filter, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Filter, X } from 'lucide-react';
 import { Category } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
 import { useState } from 'react';
@@ -22,11 +22,17 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 		<>
 			<div className="flex items-center gap-2 my-6">
 				<Filter />
-				<div className="flex items-center gap-2 bg-white border border-slate-300 px-2 py-1 rounded-md">
-					<p className="text-sm d">Categories:</p>
-					<SelectedCategoryTags categories={selectedCategories} handleCategoryClick={handleCategoryClick} />
+				<div className={`flex items-center gap-2 bg-white border border-slate-300 px-2 py-1 rounded-lg group w-fit`}>
+					<p className="text-sm">Categories:</p>
+					<div
+						className={`flex gap-2 transition-all duration-1000 ease-in-out ${
+							isOpen ? 'w-full' : 'w-0'
+						} overflow-hidden`}
+					>
+						<SelectedCategoryTags categories={selectedCategories} handleCategoryClick={handleCategoryClick} />
+					</div>
 					<Button ariaLabel="Open Categories Dropdown Filter" onClick={() => setIsOpen(prev => !prev)}>
-						<ChevronRight size={14} />
+						{isOpen ? <ChevronLeft size={14} /> : <ChevronRight size={14} />}
 					</Button>
 				</div>
 			</div>
@@ -45,7 +51,7 @@ interface SelectedCategoryTagsProps {
 
 const SelectedCategoryTags = ({ categories, handleCategoryClick }: SelectedCategoryTagsProps) => {
 	return (
-		<div className="flex gap-2">
+		<>
 			{categories.map(category => (
 				<span
 					key={category.id}
@@ -66,6 +72,6 @@ const SelectedCategoryTags = ({ categories, handleCategoryClick }: SelectedCateg
 					</button>
 				</span>
 			))}
-		</div>
+		</>
 	);
 };
