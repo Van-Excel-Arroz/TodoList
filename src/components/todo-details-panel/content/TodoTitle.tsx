@@ -118,7 +118,7 @@ interface ButtonProps {
 	ariaLabel: string;
 }
 
-function Button({ children, onClick, type, ariaLabel }: ButtonProps) {
+export function Button({ children, onClick, type, ariaLabel }: ButtonProps) {
 	return (
 		<button
 			className="hover:bg-slate-200 active:bg-slate-200 rounded-md p-1 text-slate-600"
