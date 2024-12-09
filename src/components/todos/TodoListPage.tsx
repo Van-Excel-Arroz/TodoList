@@ -7,9 +7,15 @@ import TodoListView from './content/TodoListView';
 import TodoListHeader from './content/TodoListHeader';
 import SelectedCategories from './content/SelectedCategories';
 import { getSelectedCategories } from '@/lib/category';
+import { redirect } from 'next/navigation';
 
 export default async function TodoListPage({ todolistId }: { todolistId: number }) {
 	const todolist = await getTodolist(todolistId, 1);
+
+	if (!todolist) {
+		redirect('/tasks/');
+	}
+
 	const selectedCategories = await getSelectedCategories(todolistId);
 	let todos: Todo[];
 
