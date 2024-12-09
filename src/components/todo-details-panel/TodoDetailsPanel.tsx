@@ -15,7 +15,7 @@ export default function TodoDetailsPanel() {
 	return (
 		<>
 			<div
-				className={`fixed inset-0 bg-black/20 transition-opacity lg:hidden cursor-pointer z-40 ${
+				className={`fixed inset-0 bg-black/20 transition-opacity duration-300 lg:hidden cursor-pointer z-40 ${
 					isTodoDetailsPanelOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
 				}`}
 				onClick={() => {

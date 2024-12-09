@@ -8,7 +8,7 @@ export default function TodoListsSidebarWrapper({ children }: { children: React.
 	return (
 		<>
 			<div
-				className={`fixed inset-0 bg-black/20 transition-opacity lg:hidden cursor-pointer ${
+				className={`fixed inset-0 bg-black/20 transition-opacity duration-300 lg:hidden cursor-pointer ${
 					isTodoListsSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
 				}`}
 				onClick={toggleTodoListsSidebar}
