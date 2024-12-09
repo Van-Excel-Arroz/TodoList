@@ -1,5 +1,7 @@
 import TodoListPage from '@/components/todos/TodoListPage';
 import NoTodoListSelected from '@/components/NoTodoListSelected';
+import { getTodolistIds } from '@/lib/todolist';
+import { redirect } from 'next/navigation';
 
 interface PageProps {
 	searchParams: Promise<{
@@ -9,11 +11,13 @@ interface PageProps {
 
 export default async function TasksPage({ searchParams }: PageProps) {
 	const { id = '' } = await searchParams;
+	const todolist_ids = await getTodolistIds();
+	const existingId = todolist_ids.find(todolistId => todolistId === Number(id));
 
-	if (!id) {
+	if (existingId) {
+		const todolistId = Number(id);
+		return <TodoListPage todolistId={todolistId} />;
+	} else {
 		return <NoTodoListSelected />;
 	}
-
-	const todolistId = Number(id);
-	return <TodoListPage todolistId={todolistId} />;
 }
