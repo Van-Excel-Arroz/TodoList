@@ -75,3 +75,17 @@ export async function updateTodolist(todolistId: number, title: string) {
 		return false;
 	}
 }
+
+export async function getTodolistIds(): Promise<number[] | []> {
+	try {
+		const result = await query(
+			`
+				SELECT id FROM todo_lists
+			`
+		);
+		return result.rows;
+	} catch (error) {
+		console.error('Error fetching todolist IDs in the database', error);
+		return [];
+	}
+}
