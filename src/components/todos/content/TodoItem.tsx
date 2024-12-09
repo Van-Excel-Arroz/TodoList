@@ -71,7 +71,12 @@ export default memo(TodoItem);
 // COMPONENTS
 // ------------------------------------------------------------------------------------------------ //
 
-export const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; handleOnClick: () => void }) => (
+interface CheckBoxProps {
+	isChecked: boolean;
+	handleOnClick: () => void;
+}
+
+export const CheckBox = ({ isChecked, handleOnClick }: CheckBoxProps) => (
 	<div className="flex items-center">
 		<button
 			className="flex items-center"
@@ -96,19 +101,15 @@ export const CheckBox = ({ isChecked, handleOnClick }: { isChecked: boolean; han
 	</div>
 );
 
-const TodoContent = ({
-	isCompleted,
-	task,
-	dueDatetime,
-	categories,
-	handleCategoryClick,
-}: {
+interface TodoContentProps {
 	isCompleted: boolean;
 	task: string;
 	dueDatetime: string;
 	categories: Category[];
 	handleCategoryClick: (categoryTitle: string) => void;
-}) => (
+}
+
+const TodoContent = ({ isCompleted, task, dueDatetime, categories, handleCategoryClick }: TodoContentProps) => (
 	<div className="flex flex-col">
 		<p
 			className={` ${isCompleted && 'line-through'} ${
@@ -135,13 +136,12 @@ const TodoContent = ({
 	</div>
 );
 
-const RenderCategoryTags = ({
-	categories,
-	handleCategoryClick,
-}: {
+interface RenderCategoryTagsProps {
 	categories: Category[];
 	handleCategoryClick: (categoryTitle: string) => void;
-}) => (
+}
+
+const RenderCategoryTags = ({ categories, handleCategoryClick }: RenderCategoryTagsProps) => (
 	<>
 		{categories?.map(category => (
 			<span
@@ -164,7 +164,12 @@ const RenderCategoryTags = ({
 	</>
 );
 
-export const DueDate = ({ dueDatetime, textSize = 'xs' }: { dueDatetime: string; textSize?: string }) => (
+interface DueDateProps {
+	dueDatetime: string;
+	textSize?: string;
+}
+
+export const DueDate = ({ dueDatetime, textSize = 'xs' }: DueDateProps) => (
 	<p className={`text-${textSize} ${dueDatetime && isPast(dueDatetime) ? 'text-red-500' : 'text-slate-800'}`}>
 		{dueDatetime
 			? isToday(dueDatetime)
