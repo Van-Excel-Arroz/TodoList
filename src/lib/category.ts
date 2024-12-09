@@ -21,7 +21,10 @@ export async function createCategoryColor(
 	todolistId: number
 ): Promise<number | undefined> {
 	try {
-		const existingCategoryTitle = await query('SELECT * FROM category_colors WHERE category_title = $1', [category]);
+		const existingCategoryTitle = await query(
+			'SELECT * FROM category_colors WHERE category_title = $1 AND todo_list_id = $2',
+			[category, todolistId]
+		);
 		if (existingCategoryTitle.rows.length > 0) {
 			await query('UPDATE category_colors SET hex_color = $1 WHERE category_title = $2 ', [color, category]);
 			return existingCategoryTitle.rows[0].id;
