@@ -60,7 +60,7 @@ const TodoInput = ({ register }: { register: any }) => (
 );
 
 const TodoDateTimeInputs = ({ register }: { register: any }) => (
-	<div className="flex justify-between px-4 py-1 bg-white rounded-lg rounded-t-none w-full border border-t-0 drop-shadow-md text-sm">
+	<div className="flex flex-wrap gap-2 justify-between px-4 py-1 bg-white rounded-lg rounded-t-none w-full border border-t-0 drop-shadow-md text-sm">
 		<div className="flex gap-10">
 			<input
 				{...register('date')}
@@ -86,7 +86,7 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 const AddButton = () => (
 	<button
 		type="submit"
-		className="border rounded-lg py-1 px-2 text-sm hover:bg-gray-100 active:bg-gray-200"
+		className="border border-slate-300 rounded-lg py-1 px-2 text-sm hover:bg-gray-100 active:bg-gray-200"
 		aria-label="Add new todo"
 	>
 		Add
