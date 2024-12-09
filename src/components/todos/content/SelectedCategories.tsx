@@ -23,7 +23,7 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 			<div className="flex items-center gap-2 my-6">
 				<Filter />
 				<div
-					className={`flex items-center justify-between bg-white border border-slate-300 px-2 py-1 rounded-lg transition-all duration-300 ease-in-out   ${
+					className={`flex items-center justify-between bg-white border border-slate-300 p-2 rounded-lg transition-all duration-300 ease-in-out   ${
 						isOpen ? 'w-full' : 'w-28'
 					}`}
 				>
