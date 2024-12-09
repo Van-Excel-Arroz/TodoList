@@ -76,7 +76,7 @@ export async function updateTodolist(todolistId: number, title: string) {
 	}
 }
 
-export async function getTodolistIds(): Promise<number[] | []> {
+export async function getTodolistIds(): Promise<{ id: number }[] | []> {
 	try {
 		const result = await query(
 			`
