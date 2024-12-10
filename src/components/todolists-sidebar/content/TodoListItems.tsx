@@ -12,7 +12,7 @@ export default function TodolistItems({ todolists }: { todolists: TodoList[] }) 
 					<p className="text-gray-600">Start by adding a new todolist!</p>
 				</div>
 			) : (
-				<ul className=" flex flex-col gap-2 mb-4">
+				<ul className=" flex flex-col mb-4">
 					{todolists.map(todolist => (
 						<li key={todolist.id}>
 							<TodoListItem key={todolist.id} todolist={todolist} />

@@ -53,8 +53,8 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 
 	return (
 		<div
-			className={`flex items-center pr-5 group relative w-full active:bg-sky-50 ${
-				isSelectedPath ? 'border-l-4 border-slate-400 bg-sky-100 active:bg-sky-100' : 'pl-1 hover:bg-sky-50'
+			className={`flex items-center pr-5 ml-5 group relative w-11/12 active:bg-sky-50 pl-4  ${
+				isSelectedPath ? 'border-l-4  border-slate-400' : 'border-l-4  border-slate-200'
 			}`}
 			onBlur={handleInputBlur}
 			tabIndex={-1}
@@ -65,7 +65,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 				<Link
 					href={`/tasks/?id=${todolist.id}`}
 					onClick={handleTodoListClick}
-					className={`flex-1 text-ellipsis py-3 pl-5 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
+					className={`text-sm lg:text-base flex-1 text-ellipsis py-1 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
 						isSelectedPath ? 'font-normal' : 'font-light'
 					}`}
 				>
