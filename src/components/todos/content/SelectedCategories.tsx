@@ -29,7 +29,7 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 				>
 					<p className="text-sm">Categories:</p>
 					{!isOpen && selectedCategories.length > 0 && (
-						<p className="text-xs px-2 py-1 border border-sky-300 bg-sky-200 rounded-full ml-2">
+						<p className="text-xs px-2 py-1 border border-sky-300 bg-sky-100 rounded-full ml-2">
 							{selectedCategories.length}
 						</p>
 					)}
