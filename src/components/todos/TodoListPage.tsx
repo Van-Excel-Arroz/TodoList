@@ -30,8 +30,17 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 			<div className="font-body flex flex-col px-6 p-9">
 				<TodoListHeader todolist={todolist} />
 				<TodoForm todolistId={todolistId} />
-				<SelectedCategories selectedCategories={selectedCategories} todoListId={todolistId} />
-				<TodoListView todos={todos} />
+				{todos.length > 0 ? (
+					<>
+						<SelectedCategories selectedCategories={selectedCategories} todoListId={todolistId} />
+						<TodoListView todos={todos} />
+					</>
+				) : (
+					<div className="flex flex-col items-center justify-center text-gray-600 mt-10">
+						<p className="text-lg">No todos found</p>
+						<p className="text-sm">Create a new todo to get started</p>
+					</div>
+				)}
 			</div>
 		</Suspense>
 	);
