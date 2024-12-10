@@ -8,7 +8,7 @@ interface TodoSectionProps {
 
 export default function TodoSection({ title, todos }: TodoSectionProps) {
 	return (
-		<div className="bg-white px-4 py-4 border rounded-2xl mb-6">
+		<div className="py-2 border-b-2">
 			<div className="grid grid-cols-12 font-semibold mb-2">
 				<p className="col-span-9 ml-12">{title}</p>
 			</div>

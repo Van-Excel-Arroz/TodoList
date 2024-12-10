@@ -16,7 +16,7 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 
 	return (
 		<>
-			<div className="flex items-center gap-2 my-6 px-4 py-2 w-full">
+			<div className="flex items-center border-b-2 gap-2 mt-3 py-2 w-full">
 				<Filter size={16} />
 				<div className="flex items-center">
 					<p className="text-sm">Categories</p>
