@@ -1,5 +1,6 @@
 import { Todo } from '@/types';
 import TodoItem from './TodoItem';
+import { ChevronDown } from 'lucide-react';
 
 interface TodoSectionProps {
 	title: string;
@@ -8,10 +9,14 @@ interface TodoSectionProps {
 
 export default function TodoSection({ title, todos }: TodoSectionProps) {
 	return (
-		<div className="pt-2 pb-1 border-b-2 border-slate-200">
-			<div className="grid grid-cols-12 font-semibold mb-2">
-				<p className="col-span-9 ml-12">{title}</p>
+		<div className="border-b-2 border-slate-200 py-2">
+			<div className="flex items-center">
+				<button className="p-1 hover:bg-slate-200 rounded-md">
+					<ChevronDown size={20} />
+				</button>
+				<p className="px-4 font-semibold">{title}</p>
 			</div>
+
 			<ul>
 				{todos.map(todo => (
 					<li key={todo.id}>
