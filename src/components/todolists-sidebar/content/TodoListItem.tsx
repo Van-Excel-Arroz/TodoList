@@ -139,7 +139,7 @@ const EditTodolistForm = ({ todolist, handleEditClick, isActive }: EditTodolistF
 				{...register('title')}
 				type="text"
 				placeholder={todolist.title}
-				className="bg-transparent focus:outline-none border-b border-slate-950 my-1 mr-2 w-3/4 "
+				className="text-sm lg:text-lg bg-transparent focus:outline-none border-b border-slate-950 my-1 mr-2 w-3/4 "
 				autoFocus
 				defaultValue={todolist.title}
 			/>
