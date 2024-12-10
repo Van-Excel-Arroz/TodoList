@@ -27,7 +27,7 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 
 	return (
 		<Suspense fallback={<LoadingAnimation />}>
-			<div className="font-body flex flex-col px-6 p-9">
+			<div className="font-body flex flex-col px-6 p-9 mb-24">
 				<TodoListHeader todolist={todolist} />
 				<TodoForm todolistId={todolistId} />
 				{todos.length > 0 ? (
