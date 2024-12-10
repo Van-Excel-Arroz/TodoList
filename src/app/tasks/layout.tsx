@@ -9,7 +9,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps): JSX.Element {
 	return (
 		<>
-			<div className="flex flex-col h-screen bg-slates-100 overflow-hidden">
+			<div className="flex flex-col h-screen overflow-hidden">
 				<header className="sticky top-0 left-0 z-20 w-full">
 					<Navbar />
 				</header>
