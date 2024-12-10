@@ -1,10 +1,8 @@
 'use client';
 
-import { ChevronRight, Filter, X } from 'lucide-react';
+import { Filter, X } from 'lucide-react';
 import { Category } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
-import { useState } from 'react';
-import { Button } from '@/components/todo-details-panel/content/TodoTitle';
 
 interface SelectedCategoriesProps {
 	selectedCategories: Category[];
@@ -12,40 +10,22 @@ interface SelectedCategoriesProps {
 }
 
 export default function SelectedCategories({ selectedCategories, todoListId }: SelectedCategoriesProps) {
-	const [isOpen, setIsOpen] = useState(false);
-
 	const handleCategoryClick = async (categoryTitle: string) => {
 		await updateIsSelectedCategoryColorsAction(false, categoryTitle, todoListId);
 	};
 
 	return (
 		<>
-			<div className="flex items-center gap-2 my-6">
-				<Filter />
-				<div
-					className={`flex items-center justify-between bg-white border border-slate-300 p-2 rounded-lg transition-all duration-300 ease-in-out   ${
-						isOpen ? 'w-full' : selectedCategories.length > 0 ? 'w-36' : 'w-28'
-					}`}
-				>
-					<p className="text-sm">Categories:</p>
-					{!isOpen && selectedCategories.length > 0 && (
-						<p className="text-xs px-2 py-1 border border-sky-300 bg-sky-100 rounded-full ml-2">
-							{selectedCategories.length}
-						</p>
-					)}
-					<div
-						className={`flex gap-2 transition-all duration-200 ease-in-out ml-2 overflow-hidden ${
-							isOpen ? 'w-full' : 'w-0'
-						}`}
-					>
-						<SelectedCategoryTags categories={selectedCategories} handleCategoryClick={handleCategoryClick} />
-					</div>
-
-					<div className={`${isOpen && 'rotate-180'} transition-all duration-500`}>
-						<Button ariaLabel="Open Categories Dropdown Filter" onClick={() => setIsOpen(prev => !prev)}>
-							<ChevronRight size={14} />
-						</Button>
-					</div>
+			<div className="flex items-center gap-2 my-6 p-2 bg-white border border-slate-300 rounded-lg w-full">
+				<Filter size={16} />
+				<p className="text-sm">Categories</p>
+				{selectedCategories.length > 0 && (
+					<p className="text-xs px-4 py-1  border border-sky-300 bg-sky-100 rounded-full">
+						{selectedCategories.length}
+					</p>
+				)}
+				<div className="flex gap-2 overflow-hidden">
+					<SelectedCategoryTags categories={selectedCategories} handleCategoryClick={handleCategoryClick} />
 				</div>
 			</div>
 		</>
