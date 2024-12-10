@@ -53,10 +53,10 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 
 	return (
 		<div
-			className={`flex items-center pr-5 ml-5 group relative w-11/12 active:bg-sky-50 pl-4  ${
+			className={`flex items-center pr-5 ml-5 group relative w-11/12 pl-4  ${
 				isSelectedPath
 					? 'border-l-4  border-slate-400 bg-sky-100'
-					: 'border-l-4  border-slate-200 hover:border-slate-300'
+					: 'border-l-4  border-slate-200 hover:border-slate-300 hover:bg-sky-50 '
 			}`}
 			onBlur={handleInputBlur}
 			tabIndex={-1}
