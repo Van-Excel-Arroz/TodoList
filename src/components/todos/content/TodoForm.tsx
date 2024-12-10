@@ -65,7 +65,7 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 			<input
 				{...register('date')}
 				type="date"
-				className="bg-transparent focus:outline-slate-400 cursor-pointer"
+				className="bg-transparent focus:outline-slate-400 cursor-pointer hover:outline hover:outline-1 hover:outline-slate-400 rounded-lg"
 				id="date"
 				aria-label="Due Date"
 			/>
@@ -74,7 +74,7 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 				{...register('time')}
 				type="time"
 				step="1"
-				className="bg-transparent focus:outline-slate-400 cursor-pointer"
+				className="bg-transparent focus:outline-slate-400 cursor-pointer hover:outline hover:outline-1 hover:outline-slate-400 rounded-lg"
 				id="time"
 				aria-label="Due Time"
 			/>
@@ -86,7 +86,7 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 const AddButton = () => (
 	<button
 		type="submit"
-		className="border border-slate-300 rounded-lg py-1 px-2 text-sm hover:bg-gray-100 active:bg-gray-200"
+		className="border border-slate-300 rounded-lg py-1 px-2 text-sm hover:bg-gray-100 hover:border hover:border-slate-400 active:bg-gray-200"
 		aria-label="Add new todo"
 	>
 		Add

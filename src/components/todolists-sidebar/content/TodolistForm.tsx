@@ -38,10 +38,10 @@ export default function TodolistForm() {
 const AddButton = () => (
 	<button
 		type="submit"
-		className="border rounded-lg rounded-l-none shadow-md py-1 px-2 text-lg hover:bg-gray-100 active:bg-gray-200"
+		className="border rounded-lg rounded-l-none shadow-md py-1 px-2 text-lg bg-white hover:bg-gray-100 hover:border-gray-400 active:bg-gray-200"
 		aria-label="Add new list"
 	>
-		<Plus size={20} className="text-gray-400" />
+		<Plus size={20} className="text-gray-600" />
 	</button>
 );
 
