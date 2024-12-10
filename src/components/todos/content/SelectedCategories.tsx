@@ -24,10 +24,15 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 				<Filter />
 				<div
 					className={`flex items-center justify-between bg-white border border-slate-300 p-2 rounded-lg transition-all duration-300 ease-in-out   ${
-						isOpen ? 'w-full' : 'w-28'
+						isOpen ? 'w-full' : selectedCategories.length > 0 ? 'w-36' : 'w-28'
 					}`}
 				>
 					<p className="text-sm">Categories:</p>
+					{!isOpen && selectedCategories.length > 0 && (
+						<p className="text-xs px-2 py-1 border border-sky-300 bg-sky-200 rounded-full ml-2">
+							{selectedCategories.length}
+						</p>
+					)}
 					<div
 						className={`flex gap-2 transition-all duration-200 ease-in-out ml-2 overflow-hidden ${
 							isOpen ? 'w-full' : 'w-0'
