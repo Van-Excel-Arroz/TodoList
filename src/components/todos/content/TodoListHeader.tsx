@@ -15,7 +15,7 @@ function TodoListHeader({ todolist }: TodoListHeaderProps) {
 	return (
 		<div className="flex gap-4 items-center">
 			{!isTodoListsSidebarOpen && <TodoListsSidebarToggle />}
-			<p className="text-lg font-bold">
+			<p className="text-lg font-bold break-all">
 				{todolist.title} #{todolist.id}
 			</p>
 		</div>
