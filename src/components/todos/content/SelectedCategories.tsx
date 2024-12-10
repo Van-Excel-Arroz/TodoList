@@ -16,14 +16,16 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 
 	return (
 		<>
-			<div className="flex items-center gap-2 my-6 p-2 bg-white border border-slate-300 rounded-lg w-full">
+			<div className="flex items-center gap-2 my-6 px-4 py-2 bg-white border border-slate-300 rounded-lg w-full">
 				<Filter size={16} />
-				<p className="text-sm">Categories</p>
-				{selectedCategories.length > 0 && (
-					<p className="text-xs px-4 py-1  border border-sky-300 bg-sky-100 rounded-full">
-						{selectedCategories.length}
-					</p>
-				)}
+				<div className="flex items-center">
+					<p className="text-sm">Categories</p>
+					{selectedCategories.length > 0 && (
+						<p className="text-xs px-4 py-1 border scale-75 border-sky-300 bg-sky-100 rounded-full">
+							{selectedCategories.length}
+						</p>
+					)}
+				</div>
 				<div className="flex gap-2 overflow-hidden">
 					<SelectedCategoryTags categories={selectedCategories} handleCategoryClick={handleCategoryClick} />
 				</div>
