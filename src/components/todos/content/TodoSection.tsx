@@ -12,7 +12,7 @@ interface TodoSectionProps {
 }
 
 export default function TodoSection({ title, todos }: TodoSectionProps) {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	let isTodosEmpty = todos.length === 0;
 
 	return (
