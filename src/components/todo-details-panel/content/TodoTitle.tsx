@@ -122,7 +122,7 @@ interface ButtonProps {
 export function Button({ children, onClick, type, ariaLabel, disabled }: ButtonProps) {
 	return (
 		<button
-			className="hover:bg-slate-200 active:bg-slate-200 rounded-md p-1 text-slate-600"
+			className="hover:bg-slate-200 active:bg-slate-200 rounded-md p-1 text-slate-600 cursor-pointer"
 			onClick={() => onClick && onClick()}
 			type={type}
 			aria-label={ariaLabel}

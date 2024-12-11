@@ -11,11 +11,15 @@ interface TodoSectionProps {
 
 export default function TodoSection({ title, todos }: TodoSectionProps) {
 	const [isOpen, setIsOpen] = useState(false);
+	let disabledButton = false;
+	if (todos.length === 0) {
+		disabledButton = true;
+	}
 
 	return (
 		<div className={`border-b-2 border-slate-200 py-2 overflow-hidden ${isOpen ? 'h-auto' : 'h-12'}`}>
 			<div className="flex items-center">
-				<Button ariaLabel="Toggle Todo Section" onClick={() => setIsOpen(prev => !prev)}>
+				<Button ariaLabel="Toggle Todo Section" onClick={() => setIsOpen(prev => !prev)} disabled={disabledButton}>
 					<ChevronDown size={20} />
 				</Button>
 				<p className="pl-2 font-semibold">{title}</p>
