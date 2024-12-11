@@ -3,6 +3,7 @@
 import { Filter, X } from 'lucide-react';
 import { Category } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
+import { useState } from 'react';
 
 interface SelectedCategoriesProps {
 	selectedCategories: Category[];
@@ -31,22 +32,26 @@ interface CategoriesFilterProps {
 
 const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => {
 	const isCategoriesEmpty = categories.length > 0;
+
 	const handleCategoryClick = async (categoryTitle: string) => {
 		await updateIsSelectedCategoryColorsAction(false, categoryTitle, todoListId);
 	};
+
 	return (
 		<div className="flex items-center relative group">
-			<p className="text-sm cursor-pointer">Categories</p>
-			<p
-				className={`px-2 border scale-75 border-sky-300 bg-sky-100 rounded-full opacity-0 ${
-					isCategoriesEmpty && 'opacity-100'
-				}`}
-			>
-				{categories.length}
-			</p>
+			<div className="flex items-center">
+				<p className="text-sm cursor-pointer">Categories</p>
+				<p
+					className={`px-2 border scale-75 border-sky-300 bg-sky-100 rounded-full opacity-0 ${
+						isCategoriesEmpty && 'opacity-100'
+					}`}
+				>
+					{categories.length}
+				</p>
+			</div>
 
 			{isCategoriesEmpty && (
-				<div className="z-50 absolute top-6 -left-8 hidden group-hover:block hover:block">
+				<div className={`z-50 absolute top-6 -left-8 hidden group-hover:block`}>
 					<div className="w-[50vw] lg:w-[40vw] flex flex-wrap items-start p-4 gap-2 drop-shadow-md rounded-lg bg-white border border-slate-300">
 						{categories.map(category => (
 							<span
