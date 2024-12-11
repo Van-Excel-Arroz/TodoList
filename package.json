@@ -10,6 +10,7 @@
 		"analyze": "set ANALYZE=true && next build"
 	},
 	"dependencies": {
+		"@fontsource/sen": "^5.1.0",
 		"date-fns": "^4.1.0",
 		"lucide-react": "^0.460.0",
 		"next": "^15.0.4",
