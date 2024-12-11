@@ -16,8 +16,8 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 	let disabledButton = todos.length === 0;
 
 	return (
-		<div className={`border-b-2 border-slate-200 overflow-hidden py-2 transition-all duration-200 ease-in-out`}>
-			<div className="flex items-center">
+		<div className={`border-b-2 border-slate-200 overflow-hidden transition-all duration-200 ease-in-out`}>
+			<div className="flex items-center py-2">
 				<Button ariaLabel="Toggle Todo Section" onClick={() => setIsOpen(prev => !prev)} disabled={disabledButton}>
 					<ChevronDown size={20} />
 				</Button>
