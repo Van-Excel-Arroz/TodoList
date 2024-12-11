@@ -66,7 +66,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 					href={`/tasks/?id=${todolist.id}`}
 					onClick={handleTodoListClick}
 					className={`text-sm lg:text-base flex-1 text-ellipsis py-1 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
-						isSelectedPath ? 'font-normal' : 'font-light'
+						isSelectedPath ? 'font-bold' : 'font-normal'
 					}`}
 				>
 					{todolist.title}
