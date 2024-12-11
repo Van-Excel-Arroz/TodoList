@@ -14,7 +14,7 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 				<button className="p-1 hover:bg-slate-200 rounded-md">
 					<ChevronDown size={20} />
 				</button>
-				<p className="px-4 font-semibold">{title}</p>
+				<p className="pl-2 font-semibold">{title}</p>
 			</div>
 
 			<ul>
