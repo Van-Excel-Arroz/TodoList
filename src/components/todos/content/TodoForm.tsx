@@ -55,6 +55,7 @@ const TodoInput = ({ register }: { register: any }) => (
 		type="text"
 		placeholder="Add a task... #Category"
 		autoComplete="off"
+		autoFocus
 		className="border rounded-lg rounded-b-none py-2 px-4 w-full drop-shadow-md focus:outline-none focus:border-slate-400 hover:border-slate-400"
 	/>
 );
