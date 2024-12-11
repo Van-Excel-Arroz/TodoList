@@ -75,10 +75,10 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 
 			{!isEditing && (
 				<div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 absolute right-5">
-					<Button onClick={() => handleEditClick(true)} ariaLabel="Edit Todolist Title" isActive={isSelectedPath}>
+					<Button onClick={() => handleEditClick(true)} ariaLabel="Edit Todolist Title">
 						<Pencil size={15} />
 					</Button>
-					<Button type="submit" ariaLabel="Delete Todolist" isActive={isSelectedPath} onClick={onSubmit}>
+					<Button type="submit" ariaLabel="Delete Todolist" onClick={onSubmit}>
 						<Trash2 size={15} />
 					</Button>
 				</div>
@@ -96,15 +96,14 @@ interface ButtonProps {
 	onClick?: () => void | Promise<void>;
 	type?: 'submit';
 	ariaLabel: string;
-	isActive: boolean;
 }
 
-const Button = ({ children, onClick, type, ariaLabel, isActive }: ButtonProps) => {
+const Button = ({ children, onClick, type, ariaLabel }: ButtonProps) => {
 	return (
 		<button
 			onClick={onClick || undefined}
 			aria-label={ariaLabel}
-			className={`p-1 text-slate-600 rounded-md ${isActive ? 'hover:bg-slate-100' : 'hover:bg-slate-200'}`}
+			className="p-1 text-slate-600 rounded-md hover:bg-slate-200"
 			type={type}
 		>
 			{children}
@@ -142,11 +141,11 @@ const EditTodolistForm = ({ todolist, handleEditClick, isActive }: EditTodolistF
 				defaultValue={todolist.title}
 			/>
 			<div className="flex items-center gap-2">
-				<Button type="submit" ariaLabel="Save New Todolist Title" isActive={isActive}>
+				<Button type="submit" ariaLabel="Save New Todolist Title">
 					<Check size={15} />
 				</Button>
 
-				<Button onClick={() => handleEditClick(false)} ariaLabel="Cancel Editing" isActive={isActive}>
+				<Button onClick={() => handleEditClick(false)} ariaLabel="Cancel Editing">
 					<X size={15} />
 				</Button>
 			</div>
