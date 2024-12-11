@@ -31,7 +31,7 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 
 					{isSelectedCategoriesEmpty && (
 						<div className="z-50 absolute top-6 -left-8 hidden group-hover:block hover:block">
-							<div className="w-[30vw] flex flex-wrap items-start px-4 py-2 gap-2 shadow-md rounded-lg bg-white border border-slate-300">
+							<div className="w-[50vw] lg:w-[30vw] flex flex-wrap items-start p-4 gap-2 shadow-md rounded-lg bg-white border border-slate-300">
 								<SelectedCategoryTags categories={selectedCategories} handleCategoryClick={handleCategoryClick} />
 							</div>
 						</div>
@@ -64,7 +64,7 @@ const SelectedCategoryTags = ({ categories, handleCategoryClick }: SelectedCateg
 						border: `1px solid ${category.hex_color}70`,
 					}}
 				>
-					<p className="text-sm">{category.category_title}</p>
+					<p className="text-xs lg:text-sm">{category.category_title}</p>
 					<button
 						className=" active:bg-white rounded-md p-1 hover:bg-white hover:outline hover:outline-1"
 						onClick={() => handleCategoryClick(category.category_title)}
