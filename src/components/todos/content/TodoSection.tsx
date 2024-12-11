@@ -1,3 +1,5 @@
+'use client';
+
 import { Todo } from '@/types';
 import TodoItem from './TodoItem';
 import { ChevronDown } from 'lucide-react';
@@ -11,10 +13,7 @@ interface TodoSectionProps {
 
 export default function TodoSection({ title, todos }: TodoSectionProps) {
 	const [isOpen, setIsOpen] = useState(false);
-	let disabledButton = false;
-	if (todos.length === 0) {
-		disabledButton = true;
-	}
+	let disabledButton = todos.length === 0;
 
 	return (
 		<div className={`border-b-2 border-slate-200 py-2 overflow-hidden ${isOpen ? 'h-auto' : 'h-12'}`}>
