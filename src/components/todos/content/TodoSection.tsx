@@ -18,7 +18,7 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 	return (
 		<div
 			className={`border-b-2 border-slate-200 overflow-hidden transition-all duration-200 ease-in-out ${
-				isOpen && 'pb-2'
+				isOpen && !isTodosEmpty && 'pb-2'
 			}`}
 		>
 			<div className="flex items-center py-2">
