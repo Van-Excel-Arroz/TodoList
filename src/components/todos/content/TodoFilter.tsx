@@ -9,7 +9,7 @@ interface SelectedCategoriesProps {
 	todoListId: number;
 }
 
-export default function SelectedCategories({ selectedCategories, todoListId }: SelectedCategoriesProps) {
+export default function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps) {
 	return (
 		<>
 			<div className="flex items-center border-b-2 border-slate-200 gap-2 mt-3 py-2 px-2 w-full">

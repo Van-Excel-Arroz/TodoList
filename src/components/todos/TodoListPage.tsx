@@ -5,9 +5,9 @@ import { Todo } from '@/types';
 import TodoForm from './content/TodoForm';
 import TodoListView from './content/TodoListView';
 import TodoListHeader from './content/TodoListHeader';
-import SelectedCategories from './content/SelectedCategories';
 import { getSelectedCategories } from '@/lib/category';
 import { redirect } from 'next/navigation';
+import TodoFilter from './content/TodoFilter';
 
 export default async function TodoListPage({ todolistId }: { todolistId: number }) {
 	const todolist = await getTodolist(todolistId, 1);
@@ -32,7 +32,7 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 				<TodoForm todolistId={todolistId} />
 				{todos.length > 0 ? (
 					<>
-						<SelectedCategories selectedCategories={selectedCategories} todoListId={todolistId} />
+						<TodoFilter selectedCategories={selectedCategories} todoListId={todolistId} />
 						<TodoListView todos={todos} />
 					</>
 				) : (
