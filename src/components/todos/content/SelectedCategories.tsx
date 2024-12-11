@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronDown, Filter, X } from 'lucide-react';
+import { Filter, X } from 'lucide-react';
 import { Category } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
 
@@ -18,11 +18,17 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 		<>
 			<div className="flex items-center border-b-2 border-slate-200 gap-2 mt-3 py-2 px-2 w-full">
 				<Filter size={16} className="text-slate-600" />
-				<div className="flex items-center">
+				<div className="flex items-center relative group cursor-pointer">
 					<p className="text-sm">Categories</p>
 					{selectedCategories.length > 0 && (
-						<p className=" px-2 border scale-75 border-sky-300 bg-sky-100 rounded-full">{selectedCategories.length}</p>
+						<p className="px-2 border scale-75 border-sky-300 bg-sky-100 rounded-full">{selectedCategories.length}</p>
 					)}
+
+					<div className="z-50 absolute top-10 -left-8  hidden group-hover:block">
+						<div className="flex flex-col items-start px-4 py-2 gap-2 rounded-lg bg-white border border-slate-300">
+							<SelectedCategoryTags categories={selectedCategories} handleCategoryClick={handleCategoryClick} />
+						</div>
+					</div>
 				</div>
 			</div>
 		</>
