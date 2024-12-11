@@ -16,7 +16,7 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 	let disabledButton = todos.length === 0;
 
 	return (
-		<div className={`border-b-2 border-slate-200 overflow-hidden py-2 ${isOpen ? 'h-auto  ' : 'h-12'}`}>
+		<div className={`border-b-2 border-slate-200 overflow-hidden py-2 transition-all duration-200 ease-in-out`}>
 			<div className="flex items-center">
 				<Button ariaLabel="Toggle Todo Section" onClick={() => setIsOpen(prev => !prev)} disabled={disabledButton}>
 					<ChevronDown size={20} />
@@ -24,15 +24,13 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 				<p className="pl-2 font-semibold">{title}</p>
 			</div>
 
-			{isOpen && (
-				<ul>
-					{todos.map(todo => (
-						<li key={todo.id}>
-							<TodoItem todo={todo} />
-						</li>
-					))}
-				</ul>
-			)}
+			<ul className={`${isOpen ? 'block' : 'hidden'}`}>
+				{todos.map(todo => (
+					<li key={todo.id}>
+						<TodoItem todo={todo} />
+					</li>
+				))}
+			</ul>
 		</div>
 	);
 }
