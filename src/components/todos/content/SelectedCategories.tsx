@@ -21,9 +21,7 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 				<div className="flex items-center">
 					<p className="text-sm">Categories</p>
 					{selectedCategories.length > 0 && (
-						<p className="text-xs px-4 py-1 border scale-75 border-sky-300 bg-sky-100 rounded-full">
-							{selectedCategories.length}
-						</p>
+						<p className=" px-2 border scale-75 border-sky-300 bg-sky-100 rounded-full">{selectedCategories.length}</p>
 					)}
 				</div>
 			</div>
