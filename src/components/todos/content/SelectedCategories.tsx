@@ -10,6 +10,7 @@ interface SelectedCategoriesProps {
 }
 
 export default function SelectedCategories({ selectedCategories, todoListId }: SelectedCategoriesProps) {
+	const isSelectedCategoriesEmpty = selectedCategories.length > 0;
 	const handleCategoryClick = async (categoryTitle: string) => {
 		await updateIsSelectedCategoryColorsAction(false, categoryTitle, todoListId);
 	};
@@ -20,15 +21,17 @@ export default function SelectedCategories({ selectedCategories, todoListId }: S
 				<Filter size={16} className="text-slate-600" />
 				<div className="flex items-center relative group cursor-pointer">
 					<p className="text-sm">Categories</p>
-					{selectedCategories.length > 0 && (
+					{isSelectedCategoriesEmpty && (
 						<p className="px-2 border scale-75 border-sky-300 bg-sky-100 rounded-full">{selectedCategories.length}</p>
 					)}
 
-					<div className="z-50 absolute top-10 -left-8  hidden group-hover:block">
-						<div className="flex flex-col items-start px-4 py-2 gap-2 rounded-lg bg-white border border-slate-300">
-							<SelectedCategoryTags categories={selectedCategories} handleCategoryClick={handleCategoryClick} />
+					{isSelectedCategoriesEmpty && (
+						<div className="z-50 absolute top-6 -left-8 hidden group-hover:block hover:block">
+							<div className="flex flex-col items-start px-4 py-2 gap-2 rounded-lg bg-white border border-slate-300">
+								<SelectedCategoryTags categories={selectedCategories} handleCategoryClick={handleCategoryClick} />
+							</div>
 						</div>
-					</div>
+					)}
 				</div>
 			</div>
 		</>
