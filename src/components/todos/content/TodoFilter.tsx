@@ -14,22 +14,36 @@ interface SelectedCategoriesProps {
 function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps) {
 	return (
 		<>
-			<div className="flex items-center border-b-2 border-slate-200 gap-2 mt-3 py-2 w-full">
+			<div className="flex items-center mt-3 py-2 gap-2 w-full border-b-2 border-slate-200">
 				<Button ariaLabel="Filter">
 					<Filter size={20} className="text-slate-600" />
 				</Button>
-				<CategoriesFilter categories={selectedCategories} todoListId={todoListId} />
-				<div className="flex items-center gap-1">
-					<p className="text-sm">Due Date</p>
-					<Button ariaLabel="Reverse Date Order">
-						<ChevronDown size={14} />
-					</Button>
-				</div>
-				<div className="flex items-center gap-1">
-					<p className="text-sm">Alphabetically</p>
-					<Button ariaLabel="Reverse Date Order">
-						<ChevronDown size={14} />
-					</Button>
+				<div className="flex items-center gap-4">
+					<CategoriesFilter categories={selectedCategories} todoListId={todoListId} />
+					<div className="flex items-center gap-1">
+						<p className="text-sm">Due Date</p>
+						<Button ariaLabel="Reverse Date Order">
+							<ChevronDown size={14} />
+						</Button>
+					</div>
+					<div className="flex items-center gap-1">
+						<p className="text-sm">Alphabetically</p>
+						<Button ariaLabel="Reverse Date Order">
+							<ChevronDown size={14} />
+						</Button>
+					</div>
+					<div className="flex items-center gap-1">
+						<p className="text-sm">Creation Date</p>
+						<Button ariaLabel="Reverse Date Order">
+							<ChevronDown size={14} />
+						</Button>
+					</div>
+					<div className="flex items-center gap-1">
+						<p className="text-sm">Importance</p>
+						<Button ariaLabel="Reverse Date Order">
+							<ChevronDown size={14} />
+						</Button>
+					</div>
 				</div>
 			</div>
 		</>
