@@ -33,7 +33,7 @@ interface CategoriesFilterProps {
 }
 
 const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => {
-	const isCategoriesEmpty = categories.length > 0;
+	const isCategoriesNotEmpty = categories.length > 0;
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleCategoryClick = async (categoryTitle: string) => {
@@ -43,21 +43,21 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 	return (
 		<div className="flex items-center relative rounded-md">
 			<div
-				className={`flex items-center cursor-pointer rounded-md p-1 hover:outline outline-1 outline-slate-300 ${
-					isOpen && isCategoriesEmpty && 'outline outline-1 outline-slate-400 rounded-md'
+				className={`flex items-center cursor-pointer p-1  ${
+					isOpen && isCategoriesNotEmpty && 'border border-white hover:border-b-slate-900 '
 				}`}
 				onClick={() => setIsOpen(true)}
 			>
-				<p className="text-sm">Categories</p>
+				<p className="text-sm border border-white hover:border-b-slate-900 ">Categories</p>
 
-				{isCategoriesEmpty && (
+				{isCategoriesNotEmpty && (
 					<p className="ml-2 px-2 bg-sky-100 rounded-full text-sm outline-1 outline outline-sky-400">
 						{categories.length}
 					</p>
 				)}
 			</div>
 
-			{isCategoriesEmpty && (
+			{isCategoriesNotEmpty && (
 				<div className={`z-10 absolute top-9 -left-1 ${isOpen ? 'block' : 'hidden'}`}>
 					<div className="w-[50vw] lg:w-[40vw] flex flex-wrap items-start px-4 pt-7 pb-4 gap-2 drop-shadow-md rounded-lg bg-white border border-slate-300 relative">
 						<button
