@@ -54,7 +54,7 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 		<div className="flex flex-col items-start bg-slate-100 rounded-md px-4 py-2 border border-slate-300">
 			<div className="flex justify-between items-center w-full text-slate-600">
 				{!isAddingCategory && (
-					<div className="flex items-center gap-2">
+					<div className="flex items-center gap-2 pl-1">
 						<Tag size={16} />
 						<p className="text-sm">Categories</p>
 					</div>
@@ -108,7 +108,7 @@ function CategoryForm({ onSubmit, onCancel }: CategoryFormProps) {
 			<input type="color" className="w-10 h-7 cursor-pointer" defaultValue="#000000" {...register('hex_color')} />
 			<input
 				type="text"
-				className="border rounded-md p-1 w-full text-sm focus:outline-none focus:border-slate-400 hover:border-slate-400"
+				className="border rounded-md w-full p-1 text-sm focus:outline-none focus:border-slate-400 hover:border-slate-400"
 				placeholder="Category Title"
 				autoComplete="off"
 				{...register('category_title', { maxLength: 20 })}
