@@ -49,13 +49,12 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 				onClick={() => setIsOpen(true)}
 			>
 				<p className="text-sm">Categories</p>
-				<p
-					className={`px-2 border scale-75 border-sky-300 bg-sky-100 rounded-full opacity-0 ${
-						isCategoriesEmpty && 'opacity-100'
-					}`}
-				>
-					{categories.length}
-				</p>
+
+				{isCategoriesEmpty && (
+					<p className="ml-2 px-2 bg-sky-100 rounded-full text-sm outline-1 outline outline-sky-400">
+						{categories.length}
+					</p>
+				)}
 			</div>
 
 			{isCategoriesEmpty && (
