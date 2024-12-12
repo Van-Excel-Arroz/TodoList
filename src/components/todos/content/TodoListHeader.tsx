@@ -15,7 +15,7 @@ function TodoListHeader({ todolist }: TodoListHeaderProps) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 
 	return (
-		<div className="sticky top-0 bg-white z-50">
+		<div className="sticky top-0 bg-white z-50 pt-8">
 			<div className="flex items-center gap-2">
 				{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : <List />}
 				<p className="text-lg font-bold text-ellipsis overflow-hidden w-[50vw]">{todolist.title}</p>
