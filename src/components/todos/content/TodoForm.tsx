@@ -4,6 +4,8 @@ import { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
+import { SendHorizonal } from 'lucide-react';
+import { Button } from '@/components/todo-details-panel/content/TodoTitle';
 
 interface TodoFormData {
 	todo?: string;
@@ -85,13 +87,9 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 );
 
 const AddButton = () => (
-	<button
-		type="submit"
-		className="border border-slate-300 rounded-lg py-1 px-2 text-sm hover:bg-gray-100 hover:border hover:border-slate-400 active:bg-gray-200"
-		aria-label="Add new todo"
-	>
-		Add
-	</button>
+	<Button type="submit" ariaLabel="Add new Todo">
+		<SendHorizonal size={20} />
+	</Button>
 );
 
 export default memo(TodoForm);
