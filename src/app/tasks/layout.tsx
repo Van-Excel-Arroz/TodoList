@@ -18,7 +18,7 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
 						<TodoListsSidebar />
 					</aside>
 
-					<main className="w-full overflow-y-auto z-10">{children}</main>
+					<main className="w-full  overflow-y-scroll z-10">{children}</main>
 
 					<aside className="absolute lg:sticky top-0 right-0 z-40">
 						<TodoDetailsPanel />
