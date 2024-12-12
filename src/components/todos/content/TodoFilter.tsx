@@ -19,10 +19,16 @@ function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps)
 					<Filter size={20} className="text-slate-600" />
 				</Button>
 				<CategoriesFilter categories={selectedCategories} todoListId={todoListId} />
-				<div className="flex items-center  gap-1">
+				<div className="flex items-center gap-1">
 					<p className="text-sm">Due Date</p>
 					<Button ariaLabel="Reverse Date Order">
-						<ChevronDown size={18} />
+						<ChevronDown size={14} />
+					</Button>
+				</div>
+				<div className="flex items-center gap-1">
+					<p className="text-sm">Alphabetically</p>
+					<Button ariaLabel="Reverse Date Order">
+						<ChevronDown size={14} />
 					</Button>
 				</div>
 			</div>
