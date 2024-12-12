@@ -38,7 +38,7 @@ export default function TodolistForm() {
 const AddButton = () => (
 	<button
 		type="submit"
-		className="border rounded-lg rounded-l-none shadow-md py-1 px-2 text-lg bg-white hover:bg-gray-100 hover:border-gray-400 active:bg-gray-200"
+		className="rounded-lg rounded-l-none py-1 px-2 text-lg outline outline-1 outline-slate-300 hover:outline-slate-400 active:bg-gray-200 shadow-md"
 		aria-label="Add new list"
 	>
 		<Plus size={20} className="text-gray-600" />
@@ -53,6 +53,6 @@ const TitleInput = ({ register }: { register: any }) => (
 		})}
 		type="text"
 		placeholder="New list"
-		className="border rounded-lg rounded-r-none py-2 px-2 w-full drop-shadow-md focus:outline-none focus:border-gray-400 hover:border-gray-400"
+		className=" rounded-lg rounded-r-none py-2 px-2 w-full outline outline-1 outline-slate-300 hover:outline-slate-400 focus:outline-slate-400 shadow-md"
 	/>
 );
