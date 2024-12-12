@@ -60,7 +60,7 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 
 			{isCategoriesEmpty && (
 				<div className={`z-10 absolute top-9 -left-1 ${isOpen ? 'block' : 'hidden'}`}>
-					<div className="w-[50vw] lg:w-[40vw] flex flex-wrap items-start px-4 py-7 gap-2 drop-shadow-md rounded-lg bg-white border border-slate-300 relative">
+					<div className="w-[50vw] lg:w-[40vw] flex flex-wrap items-start px-4 pt-7 pb-4 gap-2 drop-shadow-md rounded-lg bg-white border border-slate-300 relative">
 						<button
 							className="absolute right-3 top-1 p-1 hover:bg-slate-200 rounded-md"
 							onClick={() => setIsOpen(false)}
