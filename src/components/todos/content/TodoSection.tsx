@@ -16,27 +16,33 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 	let isTodosEmpty = todos.length === 0;
 
 	return (
-		<div
-			className={`border-b-2 border-slate-200 overflow-hidden transition-all duration-200 ease-in-out ${
-				isOpen && !isTodosEmpty && 'pb-2'
-			}`}
-		>
+		<div className={`border-b-2 border-slate-200 overflow-hidden`}>
 			<div className="flex items-center py-2">
 				<Button ariaLabel="Toggle Todo Section" onClick={() => setIsOpen(prev => !prev)} disabled={isTodosEmpty}>
-					<div className={`${isOpen && !isTodosEmpty && 'rotate-180'}`}>
+					<div
+						className={`transition-transform duration-200 ease-in-out ${isOpen && !isTodosEmpty ? 'rotate-180' : ''}`}
+					>
 						<ChevronDown size={20} />
 					</div>
 				</Button>
 				<p className="pl-2 font-semibold">{title}</p>
 			</div>
 
-			<ul className={`${isOpen ? 'block' : 'hidden'}`}>
-				{todos.map(todo => (
-					<li key={todo.id}>
-						<TodoItem todo={todo} />
-					</li>
-				))}
-			</ul>
+			<div
+				className={`
+            transition-all duration-300 ease-in-out 
+            overflow-hidden 
+            ${isOpen && !isTodosEmpty ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}
+        `}
+			>
+				<ul>
+					{todos.map(todo => (
+						<li key={todo.id}>
+							<TodoItem todo={todo} />
+						</li>
+					))}
+				</ul>
+			</div>
 		</div>
 	);
 }

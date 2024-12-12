@@ -3,7 +3,6 @@
 import { Filter, X } from 'lucide-react';
 import { Category } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
-import { useState } from 'react';
 
 interface SelectedCategoriesProps {
 	selectedCategories: Category[];
