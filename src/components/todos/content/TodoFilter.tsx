@@ -20,7 +20,7 @@ function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps)
 				</Button>
 				<div className="flex items-center gap-4">
 					<CategoriesFilter categories={selectedCategories} todoListId={todoListId} />
-					<div className="flex items-center gap-1 cursor-pointer ">
+					<div className="flex items-center gap-1 cursor-pointer">
 						<p className="text-sm border border-white hover:border-b-slate-900">Due Date</p>
 						<Button ariaLabel="Reverse Date Order">
 							<ChevronDown size={14} />
