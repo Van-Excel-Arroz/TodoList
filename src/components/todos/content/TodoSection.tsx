@@ -32,7 +32,7 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 				className={`
             transition-all duration-300 ease-in-out 
             overflow-hidden 
-            ${isOpen && !isTodosEmpty ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}
+            ${isOpen && !isTodosEmpty ? 'max-h-screen' : 'max-h-0'}
         `}
 			>
 				<ul>
