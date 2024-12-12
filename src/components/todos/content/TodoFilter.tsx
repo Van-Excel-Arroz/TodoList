@@ -42,7 +42,7 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 
 	return (
 		<div className="flex items-center relative rounded-md">
-			<div className={`flex items-center cursor-pointer p-1 `} onClick={() => setIsOpen(true)}>
+			<div className="flex items-center cursor-pointer p-1" onClick={() => setIsOpen(true)}>
 				<p
 					className={`text-sm border border-white hover:border-b-slate-900  ${
 						isOpen && isCategoriesNotEmpty && 'border-b-slate-900'
@@ -60,34 +60,36 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 
 			{isCategoriesNotEmpty && (
 				<div className={`z-10 absolute top-9 -left-1 ${isOpen ? 'block' : 'hidden'}`}>
-					<div className="w-[50vw] lg:w-[40vw] flex flex-wrap items-start px-4 pt-7 pb-4 gap-2 drop-shadow-md rounded-lg bg-white border border-slate-300 relative">
+					<div className="w-[50vw] lg:w-[40vw] px-4 py-3 drop-shadow-md rounded-lg bg-white border border-slate-300 relative">
 						<button
-							className="absolute right-3 top-1 p-1 hover:bg-slate-200 rounded-md"
+							className="absolute right-3 top-3 p-1 hover:bg-slate-200 rounded-md"
 							onClick={() => setIsOpen(false)}
 							aria-label="Close Selected Categories Filter"
 						>
-							<X size={14} />
+							<X size={18} />
 						</button>
-						{categories.map(category => (
-							<span
-								key={category.id}
-								className="rounded-md flex items-center gap-1 pl-1"
-								style={{
-									color: category.hex_color,
-									backgroundColor: `${category.hex_color}20`,
-									border: `1px solid ${category.hex_color}70`,
-								}}
-							>
-								<p className="text-xs lg:text-sm">{category.category_title}</p>
-								<button
-									className=" active:bg-white rounded-md p-1 hover:bg-white hover:outline hover:outline-1"
-									onClick={() => handleCategoryClick(category.category_title)}
-									aria-label={`Remove ${category.category_title} category`}
+						<div className=" flex flex-wrap items-start gap-2 w-11/12">
+							{categories.map(category => (
+								<span
+									key={category.id}
+									className="rounded-md flex items-center gap-1 pl-1"
+									style={{
+										color: category.hex_color,
+										backgroundColor: `${category.hex_color}20`,
+										border: `1px solid ${category.hex_color}70`,
+									}}
 								>
-									<X size={12} />
-								</button>
-							</span>
-						))}
+									<p className="text-xs lg:text-sm">{category.category_title}</p>
+									<button
+										className=" active:bg-white rounded-md p-1 hover:bg-white hover:outline hover:outline-1"
+										onClick={() => handleCategoryClick(category.category_title)}
+										aria-label={`Remove ${category.category_title} category`}
+									>
+										<X size={14} />
+									</button>
+								</span>
+							))}
+						</div>
 					</div>
 				</div>
 			)}
