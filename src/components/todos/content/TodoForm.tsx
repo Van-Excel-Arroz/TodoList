@@ -43,7 +43,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="mt-7 flex flex-col items-start rounded-lg outline outline-1 outline-slate-300 shadow-md hover:outline-slate-400"
+			className="mt-7 flex flex-col items-start rounded-lg outline outline-1 outline-slate-300 shadow-md hover:outline-slate-400 sticky top-0 bg-white z-50"
 		>
 			<TodoInput register={register} />
 			<TodoDateTimeInputs register={register} />
@@ -71,7 +71,7 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 			<input
 				{...register('date')}
 				type="date"
-				className="bg-transparent focus:outline-slate-400 cursor-pointer hover:outline hover:outline-1 hover:outline-slate-400 rounded-lg"
+				className="focus:outline-slate-400 cursor-pointer hover:outline hover:outline-1 hover:outline-slate-400 rounded-lg"
 				id="date"
 				aria-label="Due Date"
 			/>
@@ -80,7 +80,7 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 				{...register('time')}
 				type="time"
 				step="1"
-				className="bg-transparent focus:outline-slate-400 cursor-pointer hover:outline hover:outline-1 hover:outline-slate-400 rounded-lg"
+				className="focus:outline-slate-400 cursor-pointer hover:outline hover:outline-1 hover:outline-slate-400 rounded-lg"
 				id="time"
 				aria-label="Due Time"
 			/>
