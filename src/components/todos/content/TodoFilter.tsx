@@ -3,14 +3,14 @@
 import { Filter, X } from 'lucide-react';
 import { Category } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 interface SelectedCategoriesProps {
 	selectedCategories: Category[];
 	todoListId: number;
 }
 
-export default function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps) {
+function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps) {
 	return (
 		<>
 			<div className="flex items-center border-b-2 border-slate-200 gap-2 mt-3 py-2 px-2 w-full">
@@ -20,6 +20,8 @@ export default function TodoFilter({ selectedCategories, todoListId }: SelectedC
 		</>
 	);
 }
+
+export default memo(TodoFilter);
 
 // ------------------------------------------------------------------------------------------------ //
 // COMPONENTS
