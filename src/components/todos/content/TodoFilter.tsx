@@ -60,7 +60,7 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 
 			{isCategoriesNotEmpty && (
 				<div className={`z-10 absolute top-9 -left-1 ${isOpen ? 'block' : 'hidden'}`}>
-					<div className="w-[50vw] lg:w-[40vw] px-4 py-3 drop-shadow-md rounded-lg bg-white border border-slate-300 relative">
+					<div className="w-[50vw] lg:w-[40vw] px-3 py-3 drop-shadow-md rounded-lg bg-white border border-slate-300 relative">
 						<button
 							className="absolute right-3 top-3 p-1 hover:bg-slate-200 rounded-md"
 							onClick={() => setIsOpen(false)}
@@ -68,7 +68,7 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 						>
 							<X size={18} />
 						</button>
-						<div className=" flex flex-wrap items-start gap-2 w-11/12">
+						<div className=" flex flex-wrap items-start gap-2 w-11/12 lg:w-11/12">
 							{categories.map(category => (
 								<span
 									key={category.id}
