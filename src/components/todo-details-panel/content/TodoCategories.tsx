@@ -53,10 +53,12 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 	return (
 		<div className="flex flex-col items-start bg-slate-100 rounded-md px-4 py-2 border border-slate-300">
 			<div className="flex justify-between items-center w-full text-slate-600">
-				<div className="flex items-center gap-2">
-					<Tag size={16} />
-					<p className="text-sm">Categories</p>
-				</div>
+				{!isAddingCategory && (
+					<div className="flex items-center gap-2">
+						<Tag size={16} />
+						<p className="text-sm">Categories</p>
+					</div>
+				)}
 				{isAddingCategory ? (
 					<CategoryForm onSubmit={onSubmit} onCancel={() => handleAddCategory(false)} />
 				) : (
@@ -102,21 +104,24 @@ function CategoryForm({ onSubmit, onCancel }: CategoryFormProps) {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(handleFormSubmit)} className="flex items-center gap-2 justify-end">
-			<input type="color" className="w-5 h-5 cursor-pointer" defaultValue="#000000" {...register('hex_color')} />
+		<form onSubmit={handleSubmit(handleFormSubmit)} className="flex items-center gap-2 justify-between w-full">
+			<input type="color" className="w-10 h-7 cursor-pointer" defaultValue="#000000" {...register('hex_color')} />
 			<input
 				type="text"
-				className="border rounded-md w-1/2 p-1 text-sm focus:outline-none focus:border-slate-400 hover:border-slate-400"
+				className="border rounded-md p-1 w-full text-sm focus:outline-none focus:border-slate-400 hover:border-slate-400"
 				placeholder="Category Title"
 				autoComplete="off"
 				{...register('category_title', { maxLength: 20 })}
 			/>
-			<button className="hover:bg-slate-200 rounded-md p-1" aria-label="Add Category" type="submit">
-				<SendHorizontal size={20} />
-			</button>
-			<button onClick={onCancel} className="hover:bg-slate-200 rounded-md p-1" aria-label="Cancel Adding Category">
-				<X size={20} />
-			</button>
+
+			<div className="flex items-center gap-1">
+				<button className="hover:bg-slate-200 rounded-md p-1" aria-label="Add Category" type="submit">
+					<SendHorizontal size={20} />
+				</button>
+				<button onClick={onCancel} className="hover:bg-slate-200 rounded-md p-1" aria-label="Cancel Adding Category">
+					<X size={20} />
+				</button>
+			</div>
 		</form>
 	);
 }
