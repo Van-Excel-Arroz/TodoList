@@ -41,7 +41,10 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="mt-7 flex flex-col items-start">
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			className="mt-7 flex flex-col items-start rounded-lg outline outline-1 outline-slate-300 shadow-md hover:outline-slate-400"
+		>
 			<TodoInput register={register} />
 			<TodoDateTimeInputs register={register} />
 		</form>
@@ -58,12 +61,12 @@ const TodoInput = ({ register }: { register: any }) => (
 		placeholder="Add a task... #Category"
 		autoComplete="off"
 		autoFocus
-		className="border rounded-lg rounded-b-none py-2 px-4 w-full drop-shadow-md focus:outline-none focus:border-slate-400 hover:border-slate-400"
+		className="py-2 px-4 w-full focus:outline-none"
 	/>
 );
 
 const TodoDateTimeInputs = ({ register }: { register: any }) => (
-	<div className="flex flex-wrap gap-2 justify-between px-4 py-1 bg-white rounded-lg rounded-t-none w-full border border-t-0 drop-shadow-md text-sm">
+	<div className="flex flex-wrap gap-2 justify-between px-4 pb-2 w-full text-sm">
 		<div className="flex gap-10">
 			<input
 				{...register('date')}
