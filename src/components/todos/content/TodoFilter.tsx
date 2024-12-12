@@ -35,7 +35,6 @@ interface CategoriesFilterProps {
 const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => {
 	const isCategoriesEmpty = categories.length > 0;
 	const [isOpen, setIsOpen] = useState(false);
-	console.log(isOpen);
 
 	const handleCategoryClick = async (categoryTitle: string) => {
 		await updateIsSelectedCategoryColorsAction(false, categoryTitle, todoListId);
