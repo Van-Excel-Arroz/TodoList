@@ -42,13 +42,14 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 
 	return (
 		<div className="flex items-center relative rounded-md">
-			<div
-				className={`flex items-center cursor-pointer p-1  ${
-					isOpen && isCategoriesNotEmpty && 'border border-white hover:border-b-slate-900 '
-				}`}
-				onClick={() => setIsOpen(true)}
-			>
-				<p className="text-sm border border-white hover:border-b-slate-900 ">Categories</p>
+			<div className={`flex items-center cursor-pointer p-1 `} onClick={() => setIsOpen(true)}>
+				<p
+					className={`text-sm border border-white hover:border-b-slate-900  ${
+						isOpen && isCategoriesNotEmpty && 'border-b-slate-900'
+					} `}
+				>
+					Categories
+				</p>
 
 				{isCategoriesNotEmpty && (
 					<p className="ml-2 px-2 bg-sky-100 rounded-full text-sm outline-1 outline outline-sky-400">
