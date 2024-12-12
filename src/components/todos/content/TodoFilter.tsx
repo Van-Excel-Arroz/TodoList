@@ -40,9 +40,9 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 	};
 
 	return (
-		<div className="flex items-center relative group  rounded-md">
+		<div className="flex items-center relative rounded-md">
 			<div
-				className={`flex items-center cursor-pointer hover:bg-slate-100 p-1 ${
+				className={`flex items-center cursor-pointer rounded-md p-1 hover:outline outline-1 outline-slate-300 ${
 					isOpen && 'outline outline-1 outline-slate-300 rounded-md'
 				}`}
 				onClick={() => setIsOpen(true)}
@@ -58,14 +58,14 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 			</div>
 
 			{isCategoriesEmpty && (
-				<div className={`z-10 absolute top-8 -left-8 ${isOpen ? 'block' : 'hidden'} group-hover:block`}>
-					<div className="w-[50vw] lg:w-[40vw] flex flex-wrap items-start px-4 py-6 gap-2 drop-shadow-md rounded-lg bg-white border border-slate-300 relative">
+				<div className={`z-10 absolute top-9 -left-1 ${isOpen ? 'block' : 'hidden'}`}>
+					<div className="w-[50vw] lg:w-[40vw] flex flex-wrap items-start px-4 py-7 gap-2 drop-shadow-md rounded-lg bg-white border border-slate-300 relative">
 						<button
 							className="absolute right-3 top-1 p-1 hover:bg-slate-200 rounded-md"
 							onClick={() => setIsOpen(false)}
 							aria-label="Close Selected Categories Filter"
 						>
-							<X size={18} />
+							<X size={14} />
 						</button>
 						{categories.map(category => (
 							<span
