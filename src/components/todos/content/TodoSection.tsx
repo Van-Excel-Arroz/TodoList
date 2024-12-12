@@ -17,7 +17,7 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 
 	return (
 		<div className={`border-b-2 border-slate-200 overflow-hidden`}>
-			<div className="flex items-center py-2">
+			<div className="flex items-center py-2 gap-2">
 				<Button ariaLabel="Toggle Todo Section" onClick={() => setIsOpen(prev => !prev)} disabled={isTodosEmpty}>
 					<div
 						className={`transition-transform duration-200 ease-in-out ${isOpen && !isTodosEmpty ? 'rotate-180' : ''}`}
@@ -25,7 +25,7 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 						<ChevronDown size={20} />
 					</div>
 				</Button>
-				<p className="pl-2 font-semibold">{title}</p>
+				<p className="font-semibold">{title}</p>
 			</div>
 
 			<div

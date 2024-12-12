@@ -16,7 +16,7 @@ function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps)
 		<>
 			<div className="flex items-center border-b-2 border-slate-200 gap-2 mt-3 py-2 w-full">
 				<Button ariaLabel="Filter">
-					<Filter size={18} className="text-slate-600" />
+					<Filter size={20} className="text-slate-600" />
 				</Button>
 				<CategoriesFilter categories={selectedCategories} todoListId={todoListId} />
 				<div className="flex items-center  gap-1">
@@ -51,7 +51,7 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 
 	return (
 		<div className="flex items-center relative rounded-md">
-			<div className="flex items-center cursor-pointer p-1" onClick={() => setIsOpen(true)}>
+			<div className="flex items-center cursor-pointer" onClick={() => setIsOpen(true)}>
 				<p
 					className={`text-sm border border-white hover:border-b-slate-900  ${
 						isOpen && isCategoriesNotEmpty && 'border-b-slate-900'
