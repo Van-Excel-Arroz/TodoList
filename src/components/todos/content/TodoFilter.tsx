@@ -20,26 +20,26 @@ function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps)
 				</Button>
 				<div className="flex items-center gap-4">
 					<CategoriesFilter categories={selectedCategories} todoListId={todoListId} />
-					<div className="flex items-center gap-1">
-						<p className="text-sm">Due Date</p>
+					<div className="flex items-center gap-1 cursor-pointer ">
+						<p className="text-sm border border-white hover:border-b-slate-900">Due Date</p>
 						<Button ariaLabel="Reverse Date Order">
 							<ChevronDown size={14} />
 						</Button>
 					</div>
-					<div className="flex items-center gap-1">
-						<p className="text-sm">Alphabetically</p>
+					<div className="flex items-center gap-1 cursor-pointer">
+						<p className="text-sm border border-white hover:border-b-slate-900">Alphabetically</p>
 						<Button ariaLabel="Reverse Alphabetical Order">
 							<ChevronDown size={14} />
 						</Button>
 					</div>
-					<div className="flex items-center gap-1">
-						<p className="text-sm">Creation Date</p>
+					<div className="flex items-center gap-1 cursor-pointer">
+						<p className="text-sm border border-white hover:border-b-slate-900">Creation Date</p>
 						<Button ariaLabel="Reverse Creation Date Order">
 							<ChevronDown size={14} />
 						</Button>
 					</div>
-					<div className="flex items-center gap-1">
-						<p className="text-sm">Importance</p>
+					<div className="flex items-center gap-1 cursor-pointer">
+						<p className="text-sm border border-white hover:border-b-slate-900">Importance</p>
 						<Button ariaLabel="Reverse Importance Order">
 							<ChevronDown size={14} />
 						</Button>
