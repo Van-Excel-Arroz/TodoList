@@ -14,32 +14,32 @@ interface SelectedCategoriesProps {
 function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps) {
 	return (
 		<>
-			<div className="flex items-center mt-3 py-2 gap-2 w-full border-b-2 border-slate-200">
+			<div className="text-xs lg:text-sm flex items-center mt-3 py-2 gap-2 w-full border-b-2 border-slate-200">
 				<Button ariaLabel="Filter">
 					<Filter size={20} className="text-slate-600" />
 				</Button>
-				<div className="flex items-center gap-4">
+				<div className="flex items-center gap-4 flex-wrap">
 					<CategoriesFilter categories={selectedCategories} todoListId={todoListId} />
 					<div className="flex items-center gap-1 cursor-pointer">
-						<p className="text-sm border border-white hover:border-b-slate-900">Due Date</p>
+						<p className="border border-white hover:border-b-slate-900">Due Date</p>
 						<Button ariaLabel="Reverse Date Order">
 							<ChevronDown size={14} />
 						</Button>
 					</div>
 					<div className="flex items-center gap-1 cursor-pointer">
-						<p className="text-sm border border-white hover:border-b-slate-900">Alphabetically</p>
+						<p className="border border-white hover:border-b-slate-900">Alphabetically</p>
 						<Button ariaLabel="Reverse Alphabetical Order">
 							<ChevronDown size={14} />
 						</Button>
 					</div>
 					<div className="flex items-center gap-1 cursor-pointer">
-						<p className="text-sm border border-white hover:border-b-slate-900">Creation Date</p>
+						<p className="border border-white hover:border-b-slate-900">Creation Date</p>
 						<Button ariaLabel="Reverse Creation Date Order">
 							<ChevronDown size={14} />
 						</Button>
 					</div>
 					<div className="flex items-center gap-1 cursor-pointer">
-						<p className="text-sm border border-white hover:border-b-slate-900">Importance</p>
+						<p className="border border-white hover:border-b-slate-900">Importance</p>
 						<Button ariaLabel="Reverse Importance Order">
 							<ChevronDown size={14} />
 						</Button>
@@ -73,7 +73,7 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 		<div className="flex items-center relative rounded-md">
 			<div className="flex items-center cursor-pointer" onClick={() => setIsOpen(true)}>
 				<p
-					className={`text-sm border border-white hover:border-b-slate-900  ${
+					className={`border border-white hover:border-b-slate-900  ${
 						isOpen && isCategoriesNotEmpty && 'border-b-slate-900'
 					} `}
 				>
