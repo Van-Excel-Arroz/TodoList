@@ -1,9 +1,10 @@
 'use client';
 
-import { Filter, X } from 'lucide-react';
+import { ChevronDown, Filter, X } from 'lucide-react';
 import { Category } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
 import { memo, useState } from 'react';
+import { Button } from '@/components/todo-details-panel/content/TodoTitle';
 
 interface SelectedCategoriesProps {
 	selectedCategories: Category[];
@@ -13,9 +14,17 @@ interface SelectedCategoriesProps {
 function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps) {
 	return (
 		<>
-			<div className="flex items-center border-b-2 border-slate-200 gap-2 mt-3 py-2 px-2 w-full">
-				<Filter size={16} className="text-slate-600" />
+			<div className="flex items-center border-b-2 border-slate-200 gap-2 mt-3 py-2 w-full">
+				<Button ariaLabel="Filter">
+					<Filter size={18} className="text-slate-600" />
+				</Button>
 				<CategoriesFilter categories={selectedCategories} todoListId={todoListId} />
+				<div className="flex items-center  gap-1">
+					<p className="text-sm">Due Date</p>
+					<Button ariaLabel="Reverse Date Order">
+						<ChevronDown size={18} />
+					</Button>
+				</div>
 			</div>
 		</>
 	);
@@ -52,7 +61,7 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 				</p>
 
 				{isCategoriesNotEmpty && (
-					<p className="ml-2 px-2 bg-sky-100 rounded-full text-sm outline-1 outline outline-sky-400">
+					<p className="px-2 scale-75 bg-sky-100 rounded-full text-sm outline-1 outline outline-sky-400">
 						{categories.length}
 					</p>
 				)}
