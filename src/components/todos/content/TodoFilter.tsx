@@ -28,19 +28,19 @@ function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps)
 					</div>
 					<div className="flex items-center gap-1">
 						<p className="text-sm">Alphabetically</p>
-						<Button ariaLabel="Reverse Date Order">
+						<Button ariaLabel="Reverse Alphabetical Order">
 							<ChevronDown size={14} />
 						</Button>
 					</div>
 					<div className="flex items-center gap-1">
 						<p className="text-sm">Creation Date</p>
-						<Button ariaLabel="Reverse Date Order">
+						<Button ariaLabel="Reverse Creation Date Order">
 							<ChevronDown size={14} />
 						</Button>
 					</div>
 					<div className="flex items-center gap-1">
 						<p className="text-sm">Importance</p>
-						<Button ariaLabel="Reverse Date Order">
+						<Button ariaLabel="Reverse Importance Order">
 							<ChevronDown size={14} />
 						</Button>
 					</div>
