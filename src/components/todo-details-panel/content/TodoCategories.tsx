@@ -27,7 +27,7 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 	};
 
 	const handleRemoveCategory = async (categoryId: number) => {
-		await deleteTodoCategoryAction(categoryId, selectedTodo!.todo_list_id);
+		await deleteTodoCategoryAction(categoryId);
 		removeSelectedTodoCategory(categoryId);
 	};
 

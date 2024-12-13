@@ -20,14 +20,10 @@ export async function addTodoCategoryAction(
 	}
 }
 
-export async function deleteTodoCategoryAction(categoryId: number, todolistId: number) {
+export async function deleteTodoCategoryAction(categoryId: number) {
 	const result = await deleteCategory(categoryId);
 
-	if (result) {
-		revalidatePath(`/tasks/${todolistId}`);
-	} else {
-		console.error('Failed to delete category from todo');
-	}
+	if (!result) console.error('Failed to delete category from todo');
 }
 
 export async function updateIsSelectedCategoryColorsAction(
