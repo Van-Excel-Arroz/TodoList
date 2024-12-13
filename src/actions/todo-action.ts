@@ -49,7 +49,7 @@ export async function updateTodoCompletionAction(todoId: number, isCompleted: bo
 	}
 }
 
-export async function deleteTodoAction(todoId: number, todolistId: number): Promise<boolean> {
+export async function deleteTodoAction(todoId: number): Promise<boolean> {
 	const result = await deleteTodo(todoId);
 
 	if (result) {
