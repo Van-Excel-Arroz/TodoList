@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import { getTodosWithCategories, sortTodosBySelectedCategory } from '@/lib/todo';
 import { getTodolist } from '@/lib/todolist';
 import { Todo } from '@/types';
-import TodoForm from './content/TodoForm';
 import TodoListView from './content/TodoListView';
 import TodoListHeader from './content/TodoListHeader';
 import { getSelectedCategories } from '@/lib/category';
