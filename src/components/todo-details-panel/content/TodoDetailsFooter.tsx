@@ -1,6 +1,7 @@
 import { deleteTodoAction } from '@/actions/todo-action';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
+import useTodosStore from '@/context/TodosContext';
 import { Trash2 } from 'lucide-react';
 
 interface RightSidebarFooterProps {
@@ -11,9 +12,11 @@ interface RightSidebarFooterProps {
 export default function TodoDetailsFooter({ creationDate, todoId }: RightSidebarFooterProps) {
 	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { setSelectedTodo } = useSelectedTodoStore();
+	const { deleteTodo } = useTodosStore();
 
 	const handleDeleteClick = async () => {
 		await deleteTodoAction(todoId);
+		deleteTodo(todoId);
 		closeTodoDetailsPanel();
 		setSelectedTodo(null);
 	};
