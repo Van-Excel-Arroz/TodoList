@@ -7,8 +7,7 @@ import { extractCategory, extractTitle } from '@/utils/category';
 import { SendHorizonal } from 'lucide-react';
 import { Button } from '@/components/todo-details-panel/content/TodoTitle';
 import useTodosStore from '@/context/TodosContext';
-import { Category, Todo } from '@/types';
-import { getCategoryColor } from '@/lib/category';
+import { Todo } from '@/types';
 
 interface TodoFormData {
 	todo?: string;
