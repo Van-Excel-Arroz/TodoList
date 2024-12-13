@@ -19,7 +19,7 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 
 	const handleCheckboxChange = async () => {
 		if (!selectedTodo) return;
-		await updateTodoCompletionAction(selectedTodo.id, !selectedTodo.is_completed, selectedTodo.todo_list_id);
+		await updateTodoCompletionAction(selectedTodo.id, !selectedTodo.is_completed);
 		setSelectedTodo({
 			...selectedTodo,
 			is_completed: !selectedTodo.is_completed,
