@@ -6,15 +6,14 @@ import { Trash2 } from 'lucide-react';
 interface RightSidebarFooterProps {
 	creationDate: string;
 	todoId: number;
-	todolistId: number;
 }
 
-export default function TodoDetailsFooter({ creationDate, todoId, todolistId }: RightSidebarFooterProps) {
+export default function TodoDetailsFooter({ creationDate, todoId }: RightSidebarFooterProps) {
 	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { setSelectedTodo } = useSelectedTodoStore();
 
 	const handleDeleteClick = async () => {
-		await deleteTodoAction(todoId, todolistId);
+		await deleteTodoAction(todoId);
 		closeTodoDetailsPanel();
 		setSelectedTodo(null);
 	};
