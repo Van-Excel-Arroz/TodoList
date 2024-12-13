@@ -6,6 +6,7 @@ interface TodosContextState {
 	setTodos: (todos: Todo[]) => void;
 	addTodo: (newTodo: Todo) => void;
 	deleteTodo: (todoId: number) => void;
+	updateCompletion: (todoId: number) => void;
 }
 
 const useTodosStore = create<TodosContextState>()((set: any) => ({
@@ -18,6 +19,12 @@ const useTodosStore = create<TodosContextState>()((set: any) => ({
 	deleteTodo: (todoId: number) =>
 		set((state: TodosContextState) => ({
 			initialTodos: state.initialTodos.filter(todo => todo.id !== todoId),
+		})),
+	updateCompletion: (todoId: number) =>
+		set((state: TodosContextState) => ({
+			initialTodos: state.initialTodos.map(todo =>
+				todo.id === todoId ? { ...todo, is_completed: !todo.is_completed } : todo
+			),
 		})),
 }));
 
