@@ -13,7 +13,7 @@ import useTodosStore from '@/context/TodosContext';
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { selectedTodo, setSelectedTodo } = useSelectedTodoStore();
-	const { deleteTodo } = useTodosStore();
+	const { deleteTodo, updateTodoCompletion } = useTodosStore();
 	const isSelected = selectedTodo?.id === todo.id;
 
 	const handleTodoClick = () => {
@@ -28,12 +28,14 @@ function TodoItem({ todo }: { todo: Todo }) {
 
 	const handleCheckboxChange = async () => {
 		await updateTodoCompletionAction(todo.id, !todo.is_completed);
+
 		closeTodoDetailsPanel();
 		setSelectedTodo(null);
 	};
 
 	const handleCategoryClick = async (categoryTitle: string) => {
 		await updateIsSelectedCategoryColorsAction(true, categoryTitle, todo.todo_list_id);
+		updateTodoCompletion(todo.id);
 	};
 
 	const handleDeleteClick = async () => {
