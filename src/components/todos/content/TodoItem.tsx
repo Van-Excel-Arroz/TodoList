@@ -37,7 +37,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	};
 
 	const handleDeleteClick = async () => {
-		await deleteTodoAction(todo.id, todo.todo_list_id);
+		await deleteTodoAction(todo.id);
 		deleteTodo(todo.id);
 		if (isSelected) {
 			closeTodoDetailsPanel();
