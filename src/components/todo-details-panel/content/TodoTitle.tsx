@@ -76,7 +76,6 @@ interface EditTodoFormProps {
 	title: string;
 	handleEditClick: (val: boolean) => void;
 	todoId: number;
-
 	updateSelectedTodoTitle: (newTitle: string) => void;
 }
 
@@ -88,7 +87,7 @@ function EditTodoForm({ title, handleEditClick, todoId, updateSelectedTodoTitle 
 		if (title !== data.title) {
 			await updateTodoTitleAction(todoId, data.title);
 			updateSelectedTodoTitle(data.title);
-			updateTodoTitle(todoId, title);
+			updateTodoTitle(todoId, data.title);
 		}
 		reset();
 		handleEditClick(false);
