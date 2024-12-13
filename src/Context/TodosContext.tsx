@@ -7,6 +7,7 @@ interface TodosContextState {
 	addTodo: (newTodo: Todo) => void;
 	deleteTodo: (todoId: number) => void;
 	updateTodoCompletion: (todoId: number) => void;
+	updateTodoTitle: (todoId: number, newTitle: string) => void;
 }
 
 const useTodosStore = create<TodosContextState>()((set: any) => ({
@@ -25,6 +26,10 @@ const useTodosStore = create<TodosContextState>()((set: any) => ({
 			initialTodos: state.initialTodos.map(todo =>
 				todo.id === todoId ? { ...todo, is_completed: !todo.is_completed } : todo
 			),
+		})),
+	updateTodoTitle: (todoId: number, newTitle: string) =>
+		set((state: TodosContextState) => ({
+			initialTodos: state.initialTodos.map(todo => (todo.id === todoId ? { ...todo, task_text: newTitle } : todo)),
 		})),
 }));
 
