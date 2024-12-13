@@ -50,11 +50,7 @@ export async function deleteTodoAction(todoId: number) {
 	if (!result) console.error('Failed to delete todo');
 }
 
-export async function updateTodoTitleAction(todoId: number, title: string, todolistId: number) {
+export async function updateTodoTitleAction(todoId: number, title: string) {
 	const result = await updateTodoTitle(todoId, title);
-	if (result) {
-		revalidatePath(`/tasks/${todolistId}`);
-	} else {
-		console.error('Failed to update todo title');
-	}
+	if (!result) console.error('Failed to update todo title');
 }

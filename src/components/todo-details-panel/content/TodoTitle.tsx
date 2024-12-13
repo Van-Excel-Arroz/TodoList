@@ -53,7 +53,6 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 						title={title}
 						handleEditClick={handleEditClick}
 						todoId={selectedTodo!.id}
-						todolistId={selectedTodo!.todo_list_id}
 						updateSelectedTodoTitle={updateSelectedTodoTitle}
 					/>
 				) : (
@@ -77,16 +76,16 @@ interface EditTodoFormProps {
 	title: string;
 	handleEditClick: (val: boolean) => void;
 	todoId: number;
-	todolistId: number;
+
 	updateSelectedTodoTitle: (newTitle: string) => void;
 }
 
-function EditTodoForm({ title, handleEditClick, todoId, todolistId, updateSelectedTodoTitle }: EditTodoFormProps) {
+function EditTodoForm({ title, handleEditClick, todoId, updateSelectedTodoTitle }: EditTodoFormProps) {
 	const { register, handleSubmit, reset } = useForm<{ title: string }>();
 
 	const onSubmit = async (data: { title: string }) => {
 		if (title !== data.title) {
-			await updateTodoTitleAction(todoId, data.title, todolistId);
+			await updateTodoTitleAction(todoId, data.title);
 			updateSelectedTodoTitle(data.title);
 		}
 		reset();
