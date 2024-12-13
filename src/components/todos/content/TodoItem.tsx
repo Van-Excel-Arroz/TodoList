@@ -28,14 +28,13 @@ function TodoItem({ todo }: { todo: Todo }) {
 
 	const handleCheckboxChange = async () => {
 		await updateTodoCompletionAction(todo.id, !todo.is_completed);
-
+		updateTodoCompletion(todo.id);
 		closeTodoDetailsPanel();
 		setSelectedTodo(null);
 	};
 
 	const handleCategoryClick = async (categoryTitle: string) => {
 		await updateIsSelectedCategoryColorsAction(true, categoryTitle, todo.todo_list_id);
-		updateTodoCompletion(todo.id);
 	};
 
 	const handleDeleteClick = async () => {
