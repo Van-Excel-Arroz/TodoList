@@ -5,13 +5,13 @@ import { Calendar, Check, Tag, Trash2 } from 'lucide-react';
 import { isToday, isTomorrow, format, isPast, isThisYear } from 'date-fns';
 import { Category, Todo } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
-import useTodoStore from '@/context/TodoContext';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { deleteTodoAction, updateTodoCompletionAction } from '@/actions/todo-action';
+import useSelectedTodoStore from '@/context/SelectedTodoContext';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
-	const { selectedTodo, setSelectedTodo } = useTodoStore();
+	const { selectedTodo, setSelectedTodo } = useSelectedTodoStore();
 	const isSelected = selectedTodo?.id === todo.id;
 
 	const handleTodoClick = () => {

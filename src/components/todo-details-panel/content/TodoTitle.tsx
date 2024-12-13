@@ -3,7 +3,7 @@
 import { updateTodoCompletionAction } from '@/actions/todo-action';
 import { updateTodoTitleAction } from '@/actions/todo-action';
 import { CheckBox } from '@/components/todos/content/TodoItem';
-import useTodoStore from '@/context/TodoContext';
+import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import { Check, Pencil, X } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -14,7 +14,7 @@ interface TodoTitleProps {
 }
 
 export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
-	const { selectedTodo, setSelectedTodo, updateSelectedTodoTitle } = useTodoStore();
+	const { selectedTodo, setSelectedTodo, updateSelectedTodoTitle } = useSelectedTodoStore();
 	const [isEditing, setIsEditing] = useState(false);
 
 	const handleCheckboxChange = async () => {

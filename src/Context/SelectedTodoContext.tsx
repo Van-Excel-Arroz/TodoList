@@ -1,7 +1,7 @@
 import { Category, Todo } from '@/types';
 import { create } from 'zustand';
 
-interface TodoContextState {
+interface SelectedTodoContextState {
 	selectedTodo: Todo | null;
 	setSelectedTodo: (todo: Todo | null) => void;
 	updateSelectedTodoCategory: (newCategory: Category) => void;
@@ -9,11 +9,11 @@ interface TodoContextState {
 	updateSelectedTodoTitle: (newTitle: string) => void;
 }
 
-const useTodoStore = create<TodoContextState>()((set: any) => ({
+const useSelectedTodoStore = create<SelectedTodoContextState>()((set: any) => ({
 	selectedTodo: null,
 	setSelectedTodo: (todo: Todo | null) => set({ selectedTodo: todo }),
 	updateSelectedTodoCategory: (newCategory: Category) =>
-		set((state: TodoContextState) => ({
+		set((state: SelectedTodoContextState) => ({
 			selectedTodo: state.selectedTodo
 				? {
 						...state.selectedTodo,
@@ -22,7 +22,7 @@ const useTodoStore = create<TodoContextState>()((set: any) => ({
 				: null,
 		})),
 	removeSelectedTodoCategory: (categoryId: number) =>
-		set((state: TodoContextState) => ({
+		set((state: SelectedTodoContextState) => ({
 			selectedTodo: state.selectedTodo
 				? {
 						...state.selectedTodo,
@@ -31,9 +31,9 @@ const useTodoStore = create<TodoContextState>()((set: any) => ({
 				: null,
 		})),
 	updateSelectedTodoTitle: (newTitle: string) =>
-		set((state: TodoContextState) => ({
+		set((state: SelectedTodoContextState) => ({
 			selectedTodo: state.selectedTodo ? { ...state.selectedTodo, task_text: newTitle } : null,
 		})),
 }));
 
-export default useTodoStore;
+export default useSelectedTodoStore;

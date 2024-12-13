@@ -1,15 +1,15 @@
 'use client';
 
-import useTodoStore from '@/context/TodoContext';
 import TodoTitle from './content/TodoTitle';
 import TodoDueDate from './content/TodoDueDate';
 import TodoCategories from './content/TodoCategories';
 import TodoDetailsHeader from './content/TodoDetailsHeader';
 import TodoDetailsFooter from './content/TodoDetailsFooter';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
+import useSelectedTodoStore from '@/context/SelectedTodoContext';
 
 export default function TodoDetailsPanel() {
-	const { selectedTodo, setSelectedTodo } = useTodoStore();
+	const { selectedTodo, setSelectedTodo } = useSelectedTodoStore();
 	const { isTodoDetailsPanelOpen, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 
 	return (

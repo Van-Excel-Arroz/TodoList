@@ -4,8 +4,8 @@ import { Plus, SendHorizontal, Tag, X } from 'lucide-react';
 import { Category } from '@/types';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import useTodoStore from '@/context/TodoContext';
 import { addTodoCategoryAction, deleteTodoCategoryAction } from '@/actions/category-action';
+import useSelectedTodoStore from '@/context/SelectedTodoContext';
 
 interface TodoCategoriesProps {
 	categories: Category[];
@@ -14,7 +14,7 @@ interface TodoCategoriesProps {
 
 export default function TodoCategories({ categories, todoId }: TodoCategoriesProps) {
 	const [isAddingCategory, setIsAddingCategory] = useState(false);
-	const { selectedTodo, updateSelectedTodoCategory, removeSelectedTodoCategory } = useTodoStore();
+	const { selectedTodo, updateSelectedTodoCategory, removeSelectedTodoCategory } = useSelectedTodoStore();
 
 	useEffect(() => {
 		setIsAddingCategory(false);
