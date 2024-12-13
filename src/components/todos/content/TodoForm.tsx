@@ -6,6 +6,8 @@ import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
 import { SendHorizonal } from 'lucide-react';
 import { Button } from '@/components/todo-details-panel/content/TodoTitle';
+import useTodosStore from '@/context/TodosContext';
+import { Todo } from '@/types';
 
 interface TodoFormData {
 	todo?: string;
@@ -19,6 +21,7 @@ interface TodoFormProps {
 
 function TodoForm({ todolistId }: TodoFormProps) {
 	const { register, handleSubmit, reset } = useForm();
+	const { addTodo } = useTodosStore();
 
 	const createTimestamp = (date: string | undefined, time: string | undefined): string | null => {
 		const now = new Date().toISOString().split('T')[0];
@@ -36,6 +39,10 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		const timestamp: string | null = createTimestamp(data.date, data.time);
 
 		await createTodoAction(todoTask, timestamp, todolistId, categoryTitles);
+
+		const newTodo: Todo = {
+			id: 
+		}
 
 		reset();
 	};
