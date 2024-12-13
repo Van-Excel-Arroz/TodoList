@@ -6,13 +6,13 @@ import TodoListView from './TodoListView';
 import useTodosStore from '@/context/TodosContext';
 import { useEffect } from 'react';
 
-interface TodoMainProps {
+interface TodoListMainProps {
 	selectedCategories: Category[];
 	todolistId: number;
 	todos: Todo[];
 }
 
-export default function TodoMain({ selectedCategories, todolistId, todos }: TodoMainProps) {
+export default function TodoListMain({ selectedCategories, todolistId, todos }: TodoListMainProps) {
 	const { initialTodos, setTodos } = useTodosStore();
 	useEffect(() => {
 		setTodos(todos);

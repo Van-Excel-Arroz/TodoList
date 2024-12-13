@@ -5,7 +5,7 @@ import { Todo } from '@/types';
 import TodoListHeader from './content/TodoListHeader';
 import { getSelectedCategories } from '@/lib/category';
 import { redirect } from 'next/navigation';
-import TodoMain from './content/TodoMain';
+import TodoListMain from './content/TodoListMain';
 
 export default async function TodoListPage({ todolistId }: { todolistId: number }) {
 	const todolist = await getTodolist(todolistId, 1);
@@ -27,7 +27,7 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 		<Suspense fallback={<LoadingAnimation />}>
 			<div className="flex flex-col px-6 mb-24 relative">
 				<TodoListHeader todolist={todolist} />
-				<TodoMain selectedCategories={selectedCategories} todolistId={todolistId} todos={todos} />
+				<TodoListMain selectedCategories={selectedCategories} todolistId={todolistId} todos={todos} />
 			</div>
 		</Suspense>
 	);
