@@ -82,11 +82,13 @@ interface EditTodoFormProps {
 
 function EditTodoForm({ title, handleEditClick, todoId, updateSelectedTodoTitle }: EditTodoFormProps) {
 	const { register, handleSubmit, reset } = useForm<{ title: string }>();
+	const { updateTodoTitle } = useTodosStore();
 
 	const onSubmit = async (data: { title: string }) => {
 		if (title !== data.title) {
 			await updateTodoTitleAction(todoId, data.title);
 			updateSelectedTodoTitle(data.title);
+			updateTodoTitle(todoId, title);
 		}
 		reset();
 		handleEditClick(false);
