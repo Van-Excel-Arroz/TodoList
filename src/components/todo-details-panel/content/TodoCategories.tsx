@@ -16,7 +16,7 @@ interface TodoCategoriesProps {
 export default function TodoCategories({ categories, todoId }: TodoCategoriesProps) {
 	const [isAddingCategory, setIsAddingCategory] = useState(false);
 	const { selectedTodo, updateSelectedTodoCategory, removeSelectedTodoCategory } = useSelectedTodoStore();
-	const { addCategory } = useTodosStore();
+	const { addCategory, deleteCategory } = useTodosStore();
 
 	useEffect(() => {
 		setIsAddingCategory(false);
@@ -29,6 +29,7 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 	const handleRemoveCategory = async (categoryId: number) => {
 		await deleteTodoCategoryAction(categoryId);
 		removeSelectedTodoCategory(categoryId);
+		deleteCategory(todoId, categoryId);
 	};
 
 	const onSubmit = async (data: CategoryFormInputs) => {
