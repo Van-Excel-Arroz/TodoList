@@ -2,9 +2,13 @@ import { Todo } from '@/types';
 import { create } from 'zustand';
 
 interface TodosContextState {
-	initialTodos: Todo[];
+	todos: Todo[];
+	setTodos: (todos: Todo[]) => void;
 }
 
 const useTodosStore = create<TodosContextState>()((set: any) => ({
-	initialTodos: [],
+	todos: [],
+	setTodos: (todos: Todo[]) => set({ todos }),
 }));
+
+export default useTodosStore;
