@@ -4,6 +4,7 @@ import { create } from 'zustand';
 interface TodosContextState {
 	initialTodos: Todo[];
 	setTodos: (todos: Todo[]) => void;
+	addTodo: (newTodo: Todo) => void;
 }
 
 const useTodosStore = create<TodosContextState>()((set: any) => ({
