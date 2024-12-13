@@ -11,7 +11,6 @@ export async function addTodoCategoryAction(
 ): Promise<number | undefined> {
 	const categoryColorsId = await createCategoryColor(categoryTitle, hexColor, todolistId);
 	const categoryId = await storeCategory(todoId, categoryColorsId!);
-	console.log(categoryId);
 
 	if (categoryId) {
 		return categoryId;
