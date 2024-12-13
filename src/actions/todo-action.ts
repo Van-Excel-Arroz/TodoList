@@ -40,13 +40,9 @@ export async function createTodoAction(
 	}
 }
 
-export async function updateTodoCompletionAction(todoId: number, isCompleted: boolean, todolistId: number) {
+export async function updateTodoCompletionAction(todoId: number, isCompleted: boolean) {
 	const result = await updateTodoCompletion(todoId, isCompleted);
-	if (result) {
-		revalidatePath(`/tasks/${todolistId}`);
-	} else {
-		console.error('Failed to update is_completed in todo');
-	}
+	if (!result) console.error('Failed to update is_completed in todo');
 }
 
 export async function deleteTodoAction(todoId: number) {

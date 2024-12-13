@@ -27,7 +27,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	};
 
 	const handleCheckboxChange = async () => {
-		await updateTodoCompletionAction(todo.id, !todo.is_completed, todo.todo_list_id);
+		await updateTodoCompletionAction(todo.id, !todo.is_completed);
 		closeTodoDetailsPanel();
 		setSelectedTodo(null);
 	};
