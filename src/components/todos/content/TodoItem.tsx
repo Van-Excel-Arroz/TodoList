@@ -8,10 +8,12 @@ import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action'
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { deleteTodoAction, updateTodoCompletionAction } from '@/actions/todo-action';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
+import useTodosStore from '@/context/TodosContext';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { selectedTodo, setSelectedTodo } = useSelectedTodoStore();
+	const { deleteTodo } = useTodosStore();
 	const isSelected = selectedTodo?.id === todo.id;
 
 	const handleTodoClick = () => {
@@ -36,6 +38,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 
 	const handleDeleteClick = async () => {
 		await deleteTodoAction(todo.id, todo.todo_list_id);
+		deleteTodo(todo.id);
 		if (isSelected) {
 			closeTodoDetailsPanel();
 			setSelectedTodo(null);

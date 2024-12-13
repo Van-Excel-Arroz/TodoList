@@ -49,13 +49,14 @@ export async function updateTodoCompletionAction(todoId: number, isCompleted: bo
 	}
 }
 
-export async function deleteTodoAction(todoId: number, todolistId: number) {
+export async function deleteTodoAction(todoId: number, todolistId: number): Promise<boolean> {
 	const result = await deleteTodo(todoId);
 
 	if (result) {
-		revalidatePath(`/tasks/${todolistId}`);
+		return true;
 	} else {
 		console.error('Failed to delete todo');
+		return false;
 	}
 }
 
