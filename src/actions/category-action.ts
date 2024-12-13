@@ -14,7 +14,6 @@ export async function addTodoCategoryAction(
 	console.log(categoryId);
 
 	if (categoryId) {
-		revalidatePath(`/tasks/${todolistId}`);
 		return categoryId;
 	} else {
 		console.error('Failed to add category to todo');

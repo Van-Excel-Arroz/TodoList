@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { addTodoCategoryAction, deleteTodoCategoryAction } from '@/actions/category-action';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
+import useTodosStore from '@/context/TodosContext';
 
 interface TodoCategoriesProps {
 	categories: Category[];
@@ -15,6 +16,7 @@ interface TodoCategoriesProps {
 export default function TodoCategories({ categories, todoId }: TodoCategoriesProps) {
 	const [isAddingCategory, setIsAddingCategory] = useState(false);
 	const { selectedTodo, updateSelectedTodoCategory, removeSelectedTodoCategory } = useSelectedTodoStore();
+	const { addCategory } = useTodosStore();
 
 	useEffect(() => {
 		setIsAddingCategory(false);
@@ -48,6 +50,7 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 		};
 
 		updateSelectedTodoCategory(newCategory);
+		addCategory(todoId, newCategory);
 		handleAddCategory(false);
 	};
 	return (
