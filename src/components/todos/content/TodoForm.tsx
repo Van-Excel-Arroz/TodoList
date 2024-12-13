@@ -39,34 +39,22 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		const categoryTitles: string[] = extractCategory(data.todo);
 		const timestamp: string | null = createTimestamp(data.date, data.time);
 
-		const todoId = await createTodoAction(todoTask, timestamp, todolistId, categoryTitles);
+		const result = await createTodoAction(todoTask, timestamp, todolistId, categoryTitles);
 
-		const categoriesWithDetails = await Promise.all(
-			categoryTitles.map(async title => {
-				const category = await getCategoryColor(title, todolistId);
-				return category
-					? {
-							id: category.id,
-							category_title: category.category_title,
-							hex_color: category.hex_color,
-							is_selected: false,
-							todo_list_id: todolistId,
-					  }
-					: null;
-			})
-		);
+		if (result) {
+			const { todoId, validCategories } = result;
+			const newTodo: Todo = {
+				id: todoId,
+				task_text: todoTask,
+				due_datetime: timestamp,
+				creation_date: new Date().toISOString(),
+				todo_list_id: todolistId,
+				categories: validCategories,
+				is_completed: false,
+			};
 
-		const newTodo: Todo = {
-			id: todoId!,
-			task_text: todoTask,
-			due_datetime: timestamp,
-			creation_date: new Date().toISOString(),
-			todo_list_id: todolistId,
-			categories: categoriesWithDetails.filter((category): category is Category => category !== null) || null,
-			is_completed: false,
-		};
-
-		addTodo(newTodo);
+			addTodo(newTodo);
+		}
 
 		reset();
 	};

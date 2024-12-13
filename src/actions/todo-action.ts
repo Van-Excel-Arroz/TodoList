@@ -1,7 +1,8 @@
 'use server';
 
-import { storeCategories, storeCategoriesColors } from '@/lib/category';
+import { getCategoryColor, storeCategories, storeCategoriesColors } from '@/lib/category';
 import { deleteTodo, storeTodo, updateTodoCompletion, updateTodoTitle } from '@/lib/todo';
+import { Category } from '@/types';
 import { revalidatePath } from 'next/cache';
 
 export async function createTodoAction(
@@ -9,14 +10,30 @@ export async function createTodoAction(
 	dueDatetime: string | null,
 	todolistId: number,
 	categories: string[]
-): Promise<number | null> {
+) {
 	const todoId: number = await storeTodo(taskText, dueDatetime, todolistId);
 	const categoryColorsId = await storeCategoriesColors(categories, todolistId);
 	const validCategoryIds = categoryColorsId.filter((id): id is number => id !== undefined);
 	await storeCategories(todoId, validCategoryIds);
 
+	const categoriesWithDetails = await Promise.all(
+		categories.map(async title => {
+			const category = await getCategoryColor(title, todolistId);
+			return category
+				? {
+						id: category.id,
+						category_title: category.category_title,
+						hex_color: category.hex_color,
+						is_selected: false,
+						todo_list_id: todolistId,
+				  }
+				: null;
+		})
+	);
+	const validCategories = categoriesWithDetails.filter(Boolean) as Category[];
+
 	if (todoId) {
-		return todoId;
+		return { validCategories, todoId };
 	} else {
 		console.error('Failed to create the todo');
 		return null;
