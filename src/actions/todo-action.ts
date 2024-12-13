@@ -49,15 +49,9 @@ export async function updateTodoCompletionAction(todoId: number, isCompleted: bo
 	}
 }
 
-export async function deleteTodoAction(todoId: number): Promise<boolean> {
+export async function deleteTodoAction(todoId: number) {
 	const result = await deleteTodo(todoId);
-
-	if (result) {
-		return true;
-	} else {
-		console.error('Failed to delete todo');
-		return false;
-	}
+	if (!result) console.error('Failed to delete todo');
 }
 
 export async function updateTodoTitleAction(todoId: number, title: string, todolistId: number) {
