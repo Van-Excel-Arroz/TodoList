@@ -2,7 +2,7 @@ import { Category } from '@/types';
 import { query } from './db';
 import { PREDEFINED_COLORS } from '@/utils/constants';
 
-async function getCategoryColor(category: string, todolistId: number): Promise<Category | null> {
+export async function getCategoryColor(category: string, todolistId: number): Promise<Category | null> {
 	try {
 		const result = await query('SELECT * FROM category_colors WHERE category_title = $1 AND todo_list_id = $2', [
 			category,

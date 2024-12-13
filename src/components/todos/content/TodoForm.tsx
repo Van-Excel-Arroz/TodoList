@@ -7,7 +7,8 @@ import { extractCategory, extractTitle } from '@/utils/category';
 import { SendHorizonal } from 'lucide-react';
 import { Button } from '@/components/todo-details-panel/content/TodoTitle';
 import useTodosStore from '@/context/TodosContext';
-import { Todo } from '@/types';
+import { Category, Todo } from '@/types';
+import { getCategoryColor } from '@/lib/category';
 
 interface TodoFormData {
 	todo?: string;
@@ -38,11 +39,34 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		const categoryTitles: string[] = extractCategory(data.todo);
 		const timestamp: string | null = createTimestamp(data.date, data.time);
 
-		await createTodoAction(todoTask, timestamp, todolistId, categoryTitles);
+		const todoId = await createTodoAction(todoTask, timestamp, todolistId, categoryTitles);
+
+		const categoriesWithDetails = await Promise.all(
+			categoryTitles.map(async title => {
+				const category = await getCategoryColor(title, todolistId);
+				return category
+					? {
+							id: category.id,
+							category_title: category.category_title,
+							hex_color: category.hex_color,
+							is_selected: false,
+							todo_list_id: todolistId,
+					  }
+					: null;
+			})
+		);
 
 		const newTodo: Todo = {
-			id: 
-		}
+			id: todoId!,
+			task_text: todoTask,
+			due_datetime: timestamp,
+			creation_date: new Date().toISOString(),
+			todo_list_id: todolistId,
+			categories: categoriesWithDetails.filter((category): category is Category => category !== null) || null,
+			is_completed: false,
+		};
+
+		addTodo(newTodo);
 
 		reset();
 	};
