@@ -2,11 +2,10 @@ import { Suspense } from 'react';
 import { getTodosWithCategories, sortTodosBySelectedCategory } from '@/lib/todo';
 import { getTodolist } from '@/lib/todolist';
 import { Todo } from '@/types';
-import TodoListView from './content/TodoListView';
 import TodoListHeader from './content/TodoListHeader';
 import { getSelectedCategories } from '@/lib/category';
 import { redirect } from 'next/navigation';
-import TodoFilter from './content/TodoFilter';
+import TodoMain from './content/TodoMain';
 
 export default async function TodoListPage({ todolistId }: { todolistId: number }) {
 	const todolist = await getTodolist(todolistId, 1);
@@ -28,14 +27,7 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 		<Suspense fallback={<LoadingAnimation />}>
 			<div className="flex flex-col px-6 mb-24 relative">
 				<TodoListHeader todolist={todolist} />
-				{todos.length > 0 ? (
-					<>
-						<TodoFilter selectedCategories={selectedCategories} todoListId={todolistId} />
-						<TodoListView todos={todos} />
-					</>
-				) : (
-					<NoTodos />
-				)}
+				<TodoMain selectedCategories={selectedCategories} todolistId={todolistId} todos={todos} />
 			</div>
 		</Suspense>
 	);
