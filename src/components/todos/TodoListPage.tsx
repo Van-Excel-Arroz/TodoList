@@ -42,12 +42,3 @@ const LoadingAnimation = () => (
 		<h1 className="text-2xl font-bold">Loading.....</h1>
 	</div>
 );
-
-const NoTodos = () => {
-	return (
-		<div className="flex flex-col items-center justify-center text-gray-600 mt-10">
-			<p className="text-lg">No todos found</p>
-			<p className="text-sm">Create a new todo to get started</p>
-		</div>
-	);
-};
