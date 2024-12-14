@@ -13,7 +13,7 @@ interface TodoListMainProps {
 }
 
 export default function TodoListMain({ selectedCategories, todolistId, todos }: TodoListMainProps) {
-	const { initialTodos, setTodos } = useTodosStore();
+	const { todos: initialTodos, setTodos } = useTodosStore();
 	useEffect(() => {
 		setTodos(todos);
 	}, [todos, setTodos]);
