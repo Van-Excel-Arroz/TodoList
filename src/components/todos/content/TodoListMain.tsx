@@ -9,21 +9,21 @@ import { useEffect } from 'react';
 interface TodoListMainProps {
 	selectedCategories: Category[];
 	todolistId: number;
-	todos: Todo[];
+	initialTodos: Todo[];
 }
 
-export default function TodoListMain({ selectedCategories, todolistId, todos }: TodoListMainProps) {
-	const { todos: initialTodos, setTodos } = useTodosStore();
+export default function TodoListMain({ selectedCategories, todolistId, initialTodos }: TodoListMainProps) {
+	const { todos, setTodos } = useTodosStore();
 	useEffect(() => {
-		setTodos(todos);
-	}, [todos, setTodos]);
+		setTodos(initialTodos);
+	}, [initialTodos, setTodos]);
 
 	return (
 		<>
-			{initialTodos.length > 0 ? (
+			{todos.length > 0 ? (
 				<>
 					<TodoFilter selectedCategories={selectedCategories} todoListId={todolistId} />
-					<TodoListView todos={initialTodos} />
+					<TodoListView todos={todos} />
 				</>
 			) : (
 				<NoTodos />

@@ -14,24 +14,24 @@ interface TodosContextState {
 
 const useTodosStore = create<TodosContextState>()((set: any) => ({
 	todos: [],
-	setTodos: (todos: Todo[]) => set({ initialTodos: todos }),
+	setTodos: (todos: Todo[]) => set({ todos: todos }),
 	addTodo: (newTodo: Todo) =>
 		set((state: TodosContextState) => ({
-			initialTodos: [...state.todos, newTodo],
+			todos: [...state.todos, newTodo],
 		})),
 	addCategory: (todoId: number, newCategory: Category) =>
 		set((state: TodosContextState) => ({
-			initialTodos: state.todos.map(todo =>
+			todos: state.todos.map(todo =>
 				todo.id === todoId ? { ...todo, categories: [...(todo.categories || []), newCategory] } : todo
 			),
 		})),
 	deleteTodo: (todoId: number) =>
 		set((state: TodosContextState) => ({
-			initialTodos: state.todos.filter(todo => todo.id !== todoId),
+			todos: state.todos.filter(todo => todo.id !== todoId),
 		})),
 	deleteCategory: (todoId: number, categoryId: number) =>
 		set((state: TodosContextState) => ({
-			initialTodos: state.todos.map(todo =>
+			todos: state.todos.map(todo =>
 				todo.id === todoId
 					? { ...todo, categories: todo.categories?.filter(category => category.id !== categoryId) }
 					: todo
@@ -39,13 +39,11 @@ const useTodosStore = create<TodosContextState>()((set: any) => ({
 		})),
 	toggleTodoCompletion: (todoId: number) =>
 		set((state: TodosContextState) => ({
-			initialTodos: state.todos.map(todo =>
-				todo.id === todoId ? { ...todo, is_completed: !todo.is_completed } : todo
-			),
+			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, is_completed: !todo.is_completed } : todo)),
 		})),
 	updateTodoTitle: (todoId: number, newTitle: string) =>
 		set((state: TodosContextState) => ({
-			initialTodos: state.todos.map(todo => (todo.id === todoId ? { ...todo, task_text: newTitle } : todo)),
+			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, task_text: newTitle } : todo)),
 		})),
 }));
 
