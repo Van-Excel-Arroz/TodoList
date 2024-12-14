@@ -6,16 +6,8 @@ interface TodoListViewProps {
 }
 
 export default function TodoListView({ todos }: TodoListViewProps) {
-	const incompletedTodos: Todo[] = [];
-	const completedTodos: Todo[] = [];
-
-	for (const todo of todos) {
-		if (todo.is_completed) {
-			completedTodos.push(todo);
-		} else {
-			incompletedTodos.push(todo);
-		}
-	}
+	const incompletedTodos = todos.filter(todo => !todo.is_completed);
+	const completedTodos = todos.filter(todo => todo.is_completed);
 
 	return (
 		<div>
