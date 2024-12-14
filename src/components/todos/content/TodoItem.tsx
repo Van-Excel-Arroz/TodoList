@@ -13,7 +13,7 @@ import useTodosStore from '@/context/TodosContext';
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { selectedTodo, setSelectedTodo } = useSelectedTodoStore();
-	const { deleteTodo, updateTodoCompletion } = useTodosStore();
+	const { deleteTodo, toggleTodoCompletion } = useTodosStore();
 	const isSelected = selectedTodo?.id === todo.id;
 
 	const handleTodoClick = () => {
@@ -28,7 +28,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 
 	const handleCheckboxChange = async () => {
 		await updateTodoCompletionAction(todo.id, !todo.is_completed);
-		updateTodoCompletion(todo.id);
+		toggleTodoCompletion(todo.id);
 		closeTodoDetailsPanel();
 		setSelectedTodo(null);
 	};

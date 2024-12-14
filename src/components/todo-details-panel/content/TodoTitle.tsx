@@ -16,13 +16,13 @@ interface TodoTitleProps {
 
 export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 	const { selectedTodo, setSelectedTodo, updateSelectedTodoTitle } = useSelectedTodoStore();
-	const { updateTodoCompletion } = useTodosStore();
+	const { toggleTodoCompletion } = useTodosStore();
 	const [isEditing, setIsEditing] = useState(false);
 
 	const handleCheckboxChange = async () => {
 		if (!selectedTodo) return;
 		await updateTodoCompletionAction(selectedTodo.id, !selectedTodo.is_completed);
-		updateTodoCompletion(selectedTodo.id);
+		toggleTodoCompletion(selectedTodo.id);
 
 		setSelectedTodo({
 			...selectedTodo,
