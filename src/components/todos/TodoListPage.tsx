@@ -15,13 +15,10 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 	}
 
 	const selectedCategories = await getSelectedCategories(todolistId);
-	let todos: Todo[];
-
-	if (selectedCategories.length > 0) {
-		todos = await sortTodosBySelectedCategory(selectedCategories, todolistId);
-	} else {
-		todos = await getTodosWithCategories(todolistId);
-	}
+	let todos =
+		selectedCategories.length > 0
+			? await sortTodosBySelectedCategory(selectedCategories, todolistId)
+			: await getTodosWithCategories(todolistId);
 
 	return (
 		<Suspense fallback={<LoadingAnimation />}>
