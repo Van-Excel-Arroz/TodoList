@@ -3,7 +3,7 @@
 import { ChevronDown, Filter, X } from 'lucide-react';
 import { Category } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Button } from '@/components/todo-details-panel/content/TodoTitle';
 
 interface SelectedCategoriesProps {
@@ -64,6 +64,10 @@ interface CategoriesFilterProps {
 const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => {
 	const isCategoriesNotEmpty = categories.length > 0;
 	const [isOpen, setIsOpen] = useState(false);
+
+	useEffect(()=> {
+		setIsOpen(false)
+	}, [todoListId])
 
 	const handleCategoryClick = async (categoryTitle: string) => {
 		await updateIsSelectedCategoryColorsAction(false, categoryTitle, todoListId);
