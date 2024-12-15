@@ -15,25 +15,21 @@ const useSelectedTodoStore = create<SelectedTodoContextState>()((set: any) => ({
 	setSelectedTodo: (todo: Todo | null) => set({ selectedTodo: todo }),
 	updateSelectedTodoCategory: (newCategory: Category) =>
 		set((state: SelectedTodoContextState) => ({
-			selectedTodo: state.selectedTodo
-				? {
-						...state.selectedTodo,
-						categories: [...(state.selectedTodo.categories || []), newCategory],
-				  }
-				: null,
+			selectedTodo: {
+				...state.selectedTodo,
+				categories: [...(state.selectedTodo!.categories || []), newCategory],
+			},
 		})),
 	removeSelectedTodoCategory: (categoryId: number) =>
 		set((state: SelectedTodoContextState) => ({
-			selectedTodo: state.selectedTodo
-				? {
-						...state.selectedTodo,
-						categories: state.selectedTodo.categories?.filter(category => category.id !== categoryId),
-				  }
-				: null,
+			selectedTodo: {
+				...state.selectedTodo,
+				categories: state.selectedTodo!.categories?.filter(category => category.id !== categoryId),
+			},
 		})),
 	updateSelectedTodoTitle: (newTitle: string) =>
 		set((state: SelectedTodoContextState) => ({
-			selectedTodo: state.selectedTodo ? { ...state.selectedTodo, task_text: newTitle } : null,
+			selectedTodo: { ...state.selectedTodo, task_text: newTitle },
 		})),
 	toggleSelectedTodoCompletion: (todoId: number) =>
 		set((state: SelectedTodoContextState) => ({
