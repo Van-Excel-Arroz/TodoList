@@ -1,5 +1,6 @@
 export interface Todo {
 	id: number;
+	order_index: number;
 	task_text: string;
 	due_datetime: string | null;
 	creation_date: string;
