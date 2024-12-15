@@ -22,7 +22,7 @@ export default function TodoListsHeader() {
 		<div className="flex justify-between">
 			<div className="flex flex-col">
 				<div className="text-xl flex justify-start font-semibold">{format(currentTime, `h:mm a`)} </div>
-				<div className="text-sm">{format(new Date(), `EEEE, MMMM d`)}</div>
+				<div className="text-sm">{format(currentTime, `EEEE, MMMM d`)}</div>
 			</div>
 			{!isHome && <TodoListsSidebarToggle />}
 		</div>
