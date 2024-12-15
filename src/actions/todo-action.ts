@@ -3,7 +3,6 @@
 import { getCategoryColor, storeCategories, storeCategoriesColors } from '@/lib/category';
 import { deleteTodo, storeTodo, updateTodoCompletion, updateTodoTitle } from '@/lib/todo';
 import { Category } from '@/types';
-import { revalidatePath } from 'next/cache';
 
 export async function createTodoAction(
 	taskText: string,
