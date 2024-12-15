@@ -23,7 +23,6 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 		if (!selectedTodo) return;
 		await updateTodoCompletionAction(selectedTodo.id, !selectedTodo.is_completed);
 		toggleTodoCompletion(selectedTodo.id);
-
 		toggleSelectedTodoCompletion(selectedTodo.id);
 	};
 
