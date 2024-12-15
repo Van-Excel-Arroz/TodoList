@@ -7,6 +7,7 @@ interface SelectedTodoContextState {
 	updateSelectedTodoCategory: (newCategory: Category) => void;
 	removeSelectedTodoCategory: (categoryId: number) => void;
 	updateSelectedTodoTitle: (newTitle: string) => void;
+	toggleSelectedTodoCompletion: (todoId: number) => void;
 }
 
 const useSelectedTodoStore = create<SelectedTodoContextState>()((set: any) => ({
@@ -33,6 +34,13 @@ const useSelectedTodoStore = create<SelectedTodoContextState>()((set: any) => ({
 	updateSelectedTodoTitle: (newTitle: string) =>
 		set((state: SelectedTodoContextState) => ({
 			selectedTodo: state.selectedTodo ? { ...state.selectedTodo, task_text: newTitle } : null,
+		})),
+	toggleSelectedTodoCompletion: (todoId: number) =>
+		set((state: SelectedTodoContextState) => ({
+			selectedTodo:
+				state.selectedTodo && state.selectedTodo.id === todoId
+					? { ...state.selectedTodo, is_completed: !state.selectedTodo.is_completed }
+					: null,
 		})),
 }));
 

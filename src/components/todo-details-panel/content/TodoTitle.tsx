@@ -15,7 +15,7 @@ interface TodoTitleProps {
 }
 
 export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
-	const { selectedTodo, setSelectedTodo, updateSelectedTodoTitle } = useSelectedTodoStore();
+	const { selectedTodo, toggleSelectedTodoCompletion, updateSelectedTodoTitle } = useSelectedTodoStore();
 	const { toggleTodoCompletion } = useTodosStore();
 	const [isEditing, setIsEditing] = useState(false);
 
@@ -24,10 +24,7 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 		await updateTodoCompletionAction(selectedTodo.id, !selectedTodo.is_completed);
 		toggleTodoCompletion(selectedTodo.id);
 
-		setSelectedTodo({
-			...selectedTodo,
-			is_completed: !selectedTodo.is_completed,
-		});
+		toggleSelectedTodoCompletion(selectedTodo.id);
 	};
 
 	const handleEditClick = (val: boolean) => {
