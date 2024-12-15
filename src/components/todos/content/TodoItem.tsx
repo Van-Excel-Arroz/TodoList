@@ -12,7 +12,7 @@ import useTodosStore from '@/context/TodosContext';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
-	const { selectedTodo, setSelectedTodo } = useSelectedTodoStore();
+	const { selectedTodo, setSelectedTodo, toggleSelectedTodoCompletion } = useSelectedTodoStore();
 	const { deleteTodo, toggleTodoCompletion } = useTodosStore();
 	const isSelected = selectedTodo?.id === todo.id;
 
@@ -29,6 +29,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const handleCheckboxChange = async () => {
 		await updateTodoCompletionAction(todo.id, !todo.is_completed);
 		toggleTodoCompletion(todo.id);
+		toggleSelectedTodoCompletion(todo.id);
 	};
 
 	const handleCategoryClick = async (categoryTitle: string) => {
