@@ -65,9 +65,10 @@ const CategoriesFilter = ({ categories, todoListId }: CategoriesFilterProps) => 
 	const isCategoriesNotEmpty = categories.length > 0;
 	const [isOpen, setIsOpen] = useState(false);
 
-	useEffect(()=> {
-		setIsOpen(false)
-	}, [todoListId])
+	useEffect(() => {
+		if (!isCategoriesNotEmpty) setIsOpen(false);
+		setIsOpen(false);
+	}, [todoListId, isCategoriesNotEmpty]);
 
 	const handleCategoryClick = async (categoryTitle: string) => {
 		await updateIsSelectedCategoryColorsAction(false, categoryTitle, todoListId);
