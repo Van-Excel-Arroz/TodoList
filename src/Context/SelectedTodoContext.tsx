@@ -40,7 +40,7 @@ const useSelectedTodoStore = create<SelectedTodoContextState>()((set: any) => ({
 			selectedTodo:
 				state.selectedTodo && state.selectedTodo.id === todoId
 					? { ...state.selectedTodo, is_completed: !state.selectedTodo.is_completed }
-					: null,
+					: state.selectedTodo,
 		})),
 }));
 
