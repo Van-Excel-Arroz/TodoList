@@ -44,6 +44,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			const { todoId, validCategories } = result;
 			const newTodo: Todo = {
 				id: todoId,
+				order_index: 0,
 				task_text: todoTask,
 				due_datetime: timestamp,
 				creation_date: new Date().toISOString(),
