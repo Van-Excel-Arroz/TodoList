@@ -16,7 +16,7 @@ export default function TodoListMain({ selectedCategories, todolistId, initialTo
 	const { todos, setTodos } = useTodosStore();
 	useEffect(() => {
 		setTodos(initialTodos);
-	}, [initialTodos, setTodos]);
+	}, [initialTodos]);
 
 	return (
 		<>
