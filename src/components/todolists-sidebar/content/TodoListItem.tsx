@@ -22,6 +22,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { selectedTodo, setSelectedTodo } = useSelectedTodoStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
+	const { deleteTodolist } = useTodoListsStore();
 
 	const handleTodoListClick = () => {
 		closeTodoDetailsPanel();
@@ -40,6 +41,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 
 	const onSubmit = async () => {
 		await deleteTodolistAction(todolist.id);
+		deleteTodolist(todolist.id);
 		if (currentId === todolist.id.toString()) {
 			closeTodoDetailsPanel();
 			router.push('/tasks/');
