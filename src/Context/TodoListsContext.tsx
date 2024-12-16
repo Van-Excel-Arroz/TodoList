@@ -12,7 +12,7 @@ const useTodoListsStore = create<TodoListContextState>()((set: any) => ({
 	setTodolists: (todolists: TodoList[]) => set({ todolists: todolists }),
 	addTodolist: (newTodolist: TodoList) =>
 		set((state: TodoListContextState) => ({
-			todolist: [...state.todolists, newTodolist],
+			todolists: [...state.todolists, newTodolist],
 		})),
 }));
 
