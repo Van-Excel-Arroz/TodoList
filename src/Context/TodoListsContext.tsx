@@ -5,6 +5,7 @@ interface TodoListContextState {
 	todolists: TodoList[];
 	setTodolists: (todolists: TodoList[]) => void;
 	addTodolist: (newTodolist: TodoList) => void;
+	updateTodolistTitle: (todolistId: number, newTitle: string) => void;
 }
 
 const useTodoListsStore = create<TodoListContextState>()((set: any) => ({
@@ -13,6 +14,12 @@ const useTodoListsStore = create<TodoListContextState>()((set: any) => ({
 	addTodolist: (newTodolist: TodoList) =>
 		set((state: TodoListContextState) => ({
 			todolists: [...state.todolists, newTodolist],
+		})),
+	updateTodolistTitle: (todolistId: number, newTitle: string) =>
+		set((state: TodoListContextState) => ({
+			todolits: state.todolists.map(todolist =>
+				todolist.id === todolistId ? { ...todolist, title: newTitle } : todolist
+			),
 		})),
 }));
 
