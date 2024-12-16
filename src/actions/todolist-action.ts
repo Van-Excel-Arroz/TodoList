@@ -24,9 +24,5 @@ export async function deleteTodolistAction(todolistId: number, user_id: number) 
 
 export async function updateTodolistAction(todolistId: number, title: string) {
 	const result = await updateTodolist(todolistId, title);
-	if (result) {
-		revalidatePath(`/tasks/${todolistId}`);
-	} else {
-		console.error('Failed to update the todolist');
-	}
+	if (!result) console.error('Failed to update the todolist');
 }
