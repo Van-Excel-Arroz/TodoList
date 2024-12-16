@@ -17,7 +17,7 @@ const useTodoListsStore = create<TodoListContextState>()((set: any) => ({
 		})),
 	updateTodolistTitle: (todolistId: number, newTitle: string) =>
 		set((state: TodoListContextState) => ({
-			todolits: state.todolists.map(todolist =>
+			todolists: state.todolists.map(todolist =>
 				todolist.id === todolistId ? { ...todolist, title: newTitle } : todolist
 			),
 		})),
