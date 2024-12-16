@@ -3,6 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { Plus } from 'lucide-react';
 import { createTodolist } from '@/actions/todolist-action';
+import useTodoListsStore from '@/context/TodoListsContext';
 
 export default function TodolistForm() {
 	const {
@@ -12,9 +13,13 @@ export default function TodolistForm() {
 		reset,
 	} = useForm();
 
+	const { addTodolist } = useTodoListsStore();
+
 	async function onSubmit(data: any) {
 		if (!data.title?.trim()) return;
 		await createTodolist(data.title);
+
+		addT;
 		reset();
 	}
 
