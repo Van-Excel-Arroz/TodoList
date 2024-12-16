@@ -60,7 +60,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 			tabIndex={-1}
 		>
 			{isEditing ? (
-				<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} isActive={isSelectedPath} />
+				<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} />
 			) : (
 				<Link
 					href={`/tasks/?id=${todolist.id}`}
@@ -114,10 +114,9 @@ const Button = ({ children, onClick, type, ariaLabel }: ButtonProps) => {
 interface EditTodolistFormProps {
 	todolist: TodoList;
 	handleEditClick: (val: boolean) => void;
-	isActive: boolean;
 }
 
-const EditTodolistForm = ({ todolist, handleEditClick, isActive }: EditTodolistFormProps) => {
+const EditTodolistForm = ({ todolist, handleEditClick }: EditTodolistFormProps) => {
 	const { register, handleSubmit, reset } = useForm<{
 		title: string;
 	}>();
