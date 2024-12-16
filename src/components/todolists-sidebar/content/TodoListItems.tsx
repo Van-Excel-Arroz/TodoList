@@ -8,8 +8,10 @@ import useTodoListsStore from '@/context/TodoListsContext';
 export default function TodolistItems({ initialTodoLists }: { initialTodoLists: TodoList[] }) {
 	const { todolists, setTodolists } = useTodoListsStore();
 	useEffect(() => {
-		setTodolists(initialTodoLists);
-	}, [initialTodoLists]);
+		if (todolists.length === 0) {
+			setTodolists(initialTodoLists);
+		}
+	}, [initialTodoLists, setTodolists, todolists]);
 	const isEmpty = todolists.length === 0;
 
 	return (
