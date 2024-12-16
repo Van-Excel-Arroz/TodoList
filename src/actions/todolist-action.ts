@@ -5,10 +5,7 @@ import { revalidatePath } from 'next/cache';
 
 export async function createTodolist(title: string) {
 	const todolistId = await storeTodolist(title, 1);
-	if (todolistId) {
-		revalidatePath(`/tasks/${todolistId}`);
-	}
-	return todolistId;
+	if (!todolistId) console.error('Failed to add the todolist');
 }
 
 export async function deleteTodolistAction(todolistId: number, user_id: number) {
