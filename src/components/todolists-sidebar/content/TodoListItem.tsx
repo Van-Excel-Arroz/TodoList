@@ -39,7 +39,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 	};
 
 	const onSubmit = async () => {
-		await deleteTodolistAction(todolist.id, 1);
+		await deleteTodolistAction(todolist.id);
 		if (currentId === todolist.id.toString()) {
 			closeTodoDetailsPanel();
 			router.push('/tasks/');

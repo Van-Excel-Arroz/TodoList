@@ -46,13 +46,13 @@ export async function getTodolist(todolistId: number, user_id: number) {
 	}
 }
 
-export async function deleteTodolist(todolistId: number, user_id: number) {
+export async function deleteTodolist(todolistId: number) {
 	try {
 		await query(
 			`
-			DELETE FROM todo_lists WHERE id = $1 AND user_id = $2
+			DELETE FROM todo_lists WHERE id = $1
 			`,
-			[todolistId, user_id]
+			[todolistId]
 		);
 		return true;
 	} catch (error) {

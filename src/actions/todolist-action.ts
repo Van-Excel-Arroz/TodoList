@@ -13,8 +13,8 @@ export async function createTodolist(title: string) {
 	}
 }
 
-export async function deleteTodolistAction(todolistId: number, user_id: number) {
-	const result = await deleteTodolist(todolistId, user_id);
+export async function deleteTodolistAction(todolistId: number) {
+	const result = await deleteTodolist(todolistId);
 	if (result) {
 		revalidatePath(`/tasks/home`);
 	} else {

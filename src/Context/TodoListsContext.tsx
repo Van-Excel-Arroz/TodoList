@@ -6,6 +6,7 @@ interface TodoListContextState {
 	setTodolists: (todolists: TodoList[]) => void;
 	addTodolist: (newTodolist: TodoList) => void;
 	updateTodolistTitle: (todolistId: number, newTitle: string) => void;
+	deleteTodolist: (todolisId: number) => void;
 }
 
 const useTodoListsStore = create<TodoListContextState>()((set: any) => ({
@@ -21,6 +22,7 @@ const useTodoListsStore = create<TodoListContextState>()((set: any) => ({
 				todolist.id === todolistId ? { ...todolist, title: newTitle } : todolist
 			),
 		})),
+	deleteTodolist()
 }));
 
 export default useTodoListsStore;
