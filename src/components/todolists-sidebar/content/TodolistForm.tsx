@@ -17,9 +17,9 @@ export default function TodolistForm() {
 
 	async function onSubmit(data: any) {
 		if (!data.title?.trim()) return;
-		await createTodolist(data.title);
+		const todolistId = await createTodolist(data.title);
 
-		addT;
+		addTodolist({ id: todolistId, title: data.title });
 		reset();
 	}
 
