@@ -11,6 +11,7 @@ import { updateTodolistAction } from '@/actions/todolist-action';
 import { useForm } from 'react-hook-form';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
+import useTodoListsStore from '@/context/TodoListsContext';
 
 function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const router = useRouter();
@@ -120,10 +121,12 @@ const EditTodolistForm = ({ todolist, handleEditClick }: EditTodolistFormProps) 
 	const { register, handleSubmit, reset } = useForm<{
 		title: string;
 	}>();
+	const { updateTodolistTitle } = useTodoListsStore();
 
 	const onSubmit = async (data: { title: string }) => {
 		if (todolist.title !== data.title) {
 			await updateTodolistAction(todolist.id, data.title);
+			updateTodolistTitle(todolist.id, data.title);
 		}
 		handleEditClick(false);
 		reset();
