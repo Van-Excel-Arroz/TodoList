@@ -124,6 +124,7 @@ const EditTodolistForm = ({ todolist, handleEditClick }: EditTodolistFormProps) 
 	const { updateTodolistTitle } = useTodoListsStore();
 
 	const onSubmit = async (data: { title: string }) => {
+		if (!data.title) return;
 		if (todolist.title !== data.title) {
 			await updateTodolistAction(todolist.id, data.title);
 			updateTodolistTitle(todolist.id, data.title);
