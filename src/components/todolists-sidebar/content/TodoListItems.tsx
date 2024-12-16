@@ -1,7 +1,15 @@
+'use client';
+
 import { TodoList } from '@/types';
 import TodoListItem from './TodoListItem';
+import { useEffect } from 'react';
+import useTodoListsStore from '@/context/TodoListsContext';
 
-export default function TodolistItems({ todolists }: { todolists: TodoList[] }) {
+export default function TodolistItems({ initialTodoLists }: { initialTodoLists: TodoList[] }) {
+	const { todolists, setTodolists } = useTodoListsStore();
+	useEffect(() => {
+		setTodolists(initialTodoLists);
+	}, [initialTodoLists]);
 	const isEmpty = todolists.length === 0;
 
 	return (

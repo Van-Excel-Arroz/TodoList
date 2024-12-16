@@ -14,7 +14,7 @@ export default async function TodoListsSidebar() {
 					<TodoListsHeader />
 					<TodolistForm />
 				</div>
-				<TodolistItems todolists={todolists} />
+				<TodolistItems initialTodoLists={todolists} />
 			</TodoListsSidebarWrapper>
 		</>
 	);
