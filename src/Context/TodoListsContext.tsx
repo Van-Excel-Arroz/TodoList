@@ -6,7 +6,7 @@ interface TodoListContextState {
 	setTodolists: (todolists: TodoList[]) => void;
 	addTodolist: (newTodolist: TodoList) => void;
 	updateTodolistTitle: (todolistId: number, newTitle: string) => void;
-	deleteTodolist: (todolisId: number) => void;
+	deleteTodolist: (todolistId: number) => void;
 }
 
 const useTodoListsStore = create<TodoListContextState>()((set: any) => ({
@@ -22,7 +22,10 @@ const useTodoListsStore = create<TodoListContextState>()((set: any) => ({
 				todolist.id === todolistId ? { ...todolist, title: newTitle } : todolist
 			),
 		})),
-	deleteTodolist()
+	deleteTodolist: (todolistId: number) =>
+		set((state: TodoListContextState) => ({
+			todolists: state.todolists.filter(todolist => todolist.id !== todolistId),
+		})),
 }));
 
 export default useTodoListsStore;
