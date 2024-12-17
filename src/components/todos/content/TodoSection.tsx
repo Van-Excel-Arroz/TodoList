@@ -15,11 +15,11 @@ interface TodoSectionProps {
 const itemVariants = {
 	initial: {
 		opacity: 0,
-		y: -20,
+		x: -20,
 	},
 	animate: {
 		opacity: 1,
-		y: 0,
+		x: 0,
 	},
 	exit: {
 		opacity: 0,
@@ -50,17 +50,15 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 				animate={{ height: isOpen && !isTodosEmpty ? 'auto' : 0 }}
 				transition={{ duration: 0.3 }}
 			>
-				{isOpen && (
-					<ul className="space-y-2 mb-2">
-						<AnimatePresence mode="popLayout" initial={false}>
-							{todos.map(todo => (
-								<motion.li key={todo.id} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
-									<TodoItem todo={todo} />
-								</motion.li>
-							))}
-						</AnimatePresence>
-					</ul>
-				)}
+				<ul className="space-y-2 mb-2">
+					<AnimatePresence mode="popLayout" initial={false}>
+						{todos.map(todo => (
+							<motion.li key={todo.id} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
+								<TodoItem todo={todo} />
+							</motion.li>
+						))}
+					</AnimatePresence>
+				</ul>
 			</motion.div>
 		</div>
 	);
