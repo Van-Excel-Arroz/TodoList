@@ -24,9 +24,6 @@ const itemVariants = {
 	exit: {
 		opacity: 0,
 		x: -20,
-		transition: {
-			duration: 0.2,
-		},
 	},
 };
 
