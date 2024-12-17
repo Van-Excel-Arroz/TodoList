@@ -50,15 +50,17 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 				animate={{ height: isOpen && !isTodosEmpty ? 'auto' : 0 }}
 				transition={{ duration: 0.3 }}
 			>
-				<ul className="space-y-2 mb-2">
-					<AnimatePresence mode="popLayout" initial={false}>
-						{todos.map(todo => (
-							<motion.li key={todo.id} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
-								<TodoItem todo={todo} />
-							</motion.li>
-						))}
-					</AnimatePresence>
-				</ul>
+				{isOpen && (
+					<ul className="space-y-2 mb-2">
+						<AnimatePresence mode="popLayout" initial={false}>
+							{todos.map(todo => (
+								<motion.li key={todo.id} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
+									<TodoItem todo={todo} />
+								</motion.li>
+							))}
+						</AnimatePresence>
+					</ul>
+				)}
 			</motion.div>
 		</div>
 	);
