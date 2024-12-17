@@ -19,7 +19,7 @@ export default function TodoListMain({ selectedCategories, todolistId, initialTo
 	}, [initialTodos]);
 
 	return (
-		<>
+		<div className="w-11/12 mx-auto">
 			{todos.length > 0 ? (
 				<>
 					<TodoFilter selectedCategories={selectedCategories} todoListId={todolistId} />
@@ -28,7 +28,7 @@ export default function TodoListMain({ selectedCategories, todolistId, initialTo
 			) : (
 				<NoTodos />
 			)}
-		</>
+		</div>
 	);
 }
 
