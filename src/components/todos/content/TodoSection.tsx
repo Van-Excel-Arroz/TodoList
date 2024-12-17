@@ -4,7 +4,7 @@ import { Todo } from '@/types';
 import TodoItem from './TodoItem';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/todo-details-panel/content/TodoTitle';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface TodoSectionProps {
