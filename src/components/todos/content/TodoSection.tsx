@@ -4,8 +4,8 @@ import { Todo } from '@/types';
 import TodoItem from './TodoItem';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/todo-details-panel/content/TodoTitle';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useMemo, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface TodoSectionProps {
 	title: string;
@@ -14,7 +14,8 @@ interface TodoSectionProps {
 
 export default function TodoSection({ title, todos }: TodoSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
-	let isTodosEmpty = todos.length === 0;
+
+	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
 
 	return (
 		<div className={`border-b-2 border-slate-200 overflow-hidden`}>
@@ -29,28 +30,24 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 				<p className="font-semibold">{title}</p>
 			</div>
 
-			<div
+			<motion.div
 				className={`
-            transition-all duration-300 ease-in-out 
             overflow-hidden 
-            ${isOpen && !isTodosEmpty ? 'h-auto' : 'max-h-0'}
         `}
+				initial={{ height: isOpen && !isTodosEmpty ? 'auto' : 0 }}
+				animate={{ height: isOpen && !isTodosEmpty ? 'auto' : 0 }}
+				transition={{ duration: 0.3 }}
 			>
-				<motion.ul>
-					{todos.map(todo => (
-						<motion.li
-							key={todo.id}
-							layout
-							initial={{ opacity: 0, y: -20 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: -20 }}
-							transition={{ duration: 0.3 }}
-						>
-							<TodoItem todo={todo} />
-						</motion.li>
-					))}
-				</motion.ul>
-			</div>
+				<AnimatePresence>
+					<motion.ul>
+						{todos.map(todo => (
+							<motion.li key={todo.id}>
+								<TodoItem todo={todo} />
+							</motion.li>
+						))}
+					</motion.ul>
+				</AnimatePresence>
+			</motion.div>
 		</div>
 	);
 }
