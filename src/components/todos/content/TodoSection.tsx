@@ -12,9 +12,34 @@ interface TodoSectionProps {
 	todos: Todo[];
 }
 
+const itemVariants = {
+	initial: {
+		opacity: 0,
+		height: 0,
+		y: -20,
+	},
+	animate: {
+		opacity: 1,
+		height: 'auto',
+		y: 0,
+		transition: {
+			type: 'spring',
+			stiffness: 300,
+			damping: 30,
+		},
+	},
+	exit: {
+		opacity: 0,
+		height: 0,
+		y: 20,
+		transition: {
+			duration: 0.2,
+		},
+	},
+};
+
 export default function TodoSection({ title, todos }: TodoSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
-
 	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
 
 	return (
@@ -36,15 +61,15 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 				animate={{ height: isOpen && !isTodosEmpty ? 'auto' : 0 }}
 				transition={{ duration: 0.3 }}
 			>
-				<AnimatePresence>
-					<motion.ul>
+				<ul className="space-y-1">
+					<AnimatePresence mode="popLayout" initial={false}>
 						{todos.map(todo => (
-							<motion.li key={todo.id}>
+							<motion.li key={todo.id} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
 								<TodoItem todo={todo} />
 							</motion.li>
 						))}
-					</motion.ul>
-				</AnimatePresence>
+					</AnimatePresence>
+				</ul>
 			</motion.div>
 		</div>
 	);
