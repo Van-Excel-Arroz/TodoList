@@ -29,11 +29,11 @@ const itemVariants = {
 };
 
 export default function TodoSection({ title, todos }: TodoSectionProps) {
-	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [isOpen, setIsOpen] = useState<boolean>(true);
 	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
 
 	return (
-		<div className={`border-b-2 border-slate-200 overflow-hidden`}>
+		<div className="overflow-hidden">
 			<div className="flex items-center py-2 gap-2">
 				<Button ariaLabel="Toggle Todo Section" onClick={() => setIsOpen(prev => !prev)} disabled={isTodosEmpty}>
 					<div
