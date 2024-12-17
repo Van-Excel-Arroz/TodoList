@@ -5,6 +5,7 @@ import TodoItem from './TodoItem';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/todo-details-panel/content/TodoTitle';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface TodoSectionProps {
 	title: string;
@@ -35,13 +36,20 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
             ${isOpen && !isTodosEmpty ? 'h-auto' : 'max-h-0'}
         `}
 			>
-				<ul>
+				<motion.ul>
 					{todos.map(todo => (
-						<li key={todo.id}>
+						<motion.li
+							key={todo.id}
+							layout
+							initial={{ opacity: 0, y: -20 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -20 }}
+							transition={{ duration: 0.3 }}
+						>
 							<TodoItem todo={todo} />
-						</li>
+						</motion.li>
 					))}
-				</ul>
+				</motion.ul>
 			</div>
 		</div>
 	);
