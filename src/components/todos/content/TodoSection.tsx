@@ -16,6 +16,7 @@ const itemVariants = {
 	initial: {
 		opacity: 0,
 		x: -20,
+		transition: { duration: 0.3 },
 	},
 	animate: {
 		opacity: 1,
@@ -48,16 +49,14 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 				className="overflow-hidden"
 				initial={{ height: isOpen && !isTodosEmpty ? 'auto' : 0 }}
 				animate={{ height: isOpen && !isTodosEmpty ? 'auto' : 0 }}
-				transition={{ duration: 0.3 }}
+				transition={{ duration: 0.25 }}
 			>
-				<ul className="space-y-2 mb-2">
-					<AnimatePresence mode="popLayout" initial={false}>
-						{todos.map(todo => (
-							<motion.li key={todo.id} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
-								<TodoItem todo={todo} />
-							</motion.li>
-						))}
-					</AnimatePresence>
+				<ul>
+					{todos.map(todo => (
+						<motion.li key={todo.id} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
+							<TodoItem todo={todo} />
+						</motion.li>
+					))}
 				</ul>
 			</motion.div>
 		</div>
