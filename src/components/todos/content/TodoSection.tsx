@@ -31,7 +31,7 @@ const itemVariants = {
 	exit: {
 		opacity: 0,
 		height: 0,
-		y: 20,
+		x: -20,
 		transition: {
 			duration: 0.2,
 		},
@@ -61,7 +61,7 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 				animate={{ height: isOpen && !isTodosEmpty ? 'auto' : 0 }}
 				transition={{ duration: 0.3 }}
 			>
-				<ul className="space-y-2">
+				<ul className="space-y-2 mb-2">
 					<AnimatePresence mode="popLayout" initial={false}>
 						{todos.map(todo => (
 							<motion.li key={todo.id} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
