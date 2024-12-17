@@ -31,9 +31,7 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 			</div>
 
 			<motion.div
-				className={`
-            overflow-hidden 
-        `}
+				className="overflow-hidden"
 				initial={{ height: isOpen && !isTodosEmpty ? 'auto' : 0 }}
 				animate={{ height: isOpen && !isTodosEmpty ? 'auto' : 0 }}
 				transition={{ duration: 0.3 }}
