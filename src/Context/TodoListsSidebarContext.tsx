@@ -16,8 +16,7 @@ const useTodoListsSidebarStore = create<TodoListsSidebarState>()(
 				})),
 		}),
 		{
-			name: 'todo-lists-sidebar-storage', // unique name for localStorage
-			// Optional: specify which parts of the state to persist
+			name: 'todo-lists-sidebar-storage',
 			partialize: state => ({
 				isTodoListsSidebarOpen: state.isTodoListsSidebarOpen,
 			}),
