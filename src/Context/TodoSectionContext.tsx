@@ -2,59 +2,42 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 interface TodoSectionState {
-	openSections: Record<string, Record<string, boolean>>;
-	toggleSection: (todolistId: string, sectionTitle: string) => void;
-	initializeSectionState: (todolistId: string, sectionTitle: string) => void;
+	openSections: Record<string, boolean>;
+	toggleSection: (sectionTitle: string) => void;
+	initializeSectionState: (sectionTitle: string) => void;
 }
 
-const useTodoSectionStore = create<TodoSectionState>()(
-	persist(
-		set => ({
-			openSections: {},
+const useTodoSectionStore = (todoListId: string) =>
+	create<TodoSectionState>()(
+		persist(
+			set => ({
+				openSections: {},
 
-			toggleSection: (todoListId, sectionTitle) =>
-				set(state => {
-					const currentListSections = state.openSections[todoListId] || {};
-					return {
-						openSections: {
-							...state.openSections,
-							[todoListId]: {
-								...currentListSections,
-								[sectionTitle]: !(currentListSections[sectionTitle] || false),
+				toggleSection: (sectionTitle: string) =>
+					set(state => {
+						return {
+							openSections: {
+								...state.openSections,
+								[sectionTitle]: !state.openSections[sectionTitle],
 							},
-						},
-					};
-				}),
+						};
+					}),
 
-			initializeSectionState: (todoListId, sectionTitle) =>
-				set(state => {
-					return {
-						openSections: {
-							...state.openSections,
-							[todoListId]: {
-								...(state.openSections[todoListId] || {}),
-								[sectionTitle]: state.openSections[todoListId]?.[sectionTitle] ?? true,
+				initializeSectionState: (sectionTitle: string) =>
+					set(state => {
+						return {
+							openSections: {
+								...state.openSections,
+								[sectionTitle]: state.openSections[sectionTitle] ?? true,
 							},
-						},
-					};
-				}),
-		}),
-		{
-			name: 'todo-section-storage',
-			partialize: state => ({ openSections: state.openSections }),
-		}
-	)
-);
+						};
+					}),
+			}),
+			{
+				name: `todo-section-storage-${todoListId}`,
+				partialize: state => ({ openSections: state.openSections }),
+			}
+		)
+	);
 
 export default useTodoSectionStore;
-
-// {
-//   "project-vacation": {
-//     "Todos": true,
-//     "Completed Todos": false
-//   },
-//   "work-tasks": {
-//     "Todos": true,
-//     "Completed Todos": true
-//   }
-// }
