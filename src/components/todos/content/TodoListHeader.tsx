@@ -18,9 +18,11 @@ function TodoListHeader({ todolist, selectedCategories }: TodoListHeaderProps) {
 
 	return (
 		<div className="sticky top-0 bg-white z-50">
-			<div className="flex items-center gap-2 py-5">
-				{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : <List />}
-				<p className="text-lg font-bold text-ellipsis overflow-hidden w-[50vw]">{todolist.title}</p>
+			<div className="flex justify-between py-5">
+				<div className="flex items-center gap-2">
+					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : <List />}
+					<p className="text-lg font-bold">{todolist.title}</p>
+				</div>
 				<TodoFilter selectedCategories={selectedCategories} todoListId={todolist.id} />
 			</div>
 			<TodoForm todolistId={todolist.id} />
