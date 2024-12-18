@@ -44,12 +44,11 @@ function TodoItem({ todo }: { todo: Todo }) {
 			setSelectedTodo(null);
 		}
 	};
-
 	return (
 		<div
 			key={todo.id}
-			className={`flex cursor-pointer group px-5 mb-2  active:bg-sky-50 rounded-lg ${
-				isSelected ? 'bg-sky-100 drop-shadow-md ' : 'bg-white hover:bg-sky-50 drop-shadow-sm hover:drop-shadow-md'
+			className={`flex cursor-pointer group px-5 mb-2 mx-2 shadow-[0_2px_5px_-1px_rgba(50,50,93,0.25),0_1px_3px_-1px_rgba(0,0,0,0.2)] active:bg-sky-50 rounded-lg ${
+				isSelected ? 'bg-sky-100' : 'bg-white hover:bg-sky-50 '
 			}`}
 			onClick={handleTodoClick}
 		>
