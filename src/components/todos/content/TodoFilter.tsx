@@ -16,7 +16,7 @@ function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps)
 		<>
 			<div className="text-xs 2xl:text-sm flex items-center gap-2">
 				<Button ariaLabel="Filter">
-					<Filter size={16} className="text-slate-600" />
+					<Filter size={20} className="text-slate-600" />
 				</Button>
 				{/* <div className="flex items-center gap-4 flex-wrap">
 					<CategoriesFilter categories={selectedCategories} todoListId={todoListId} />
