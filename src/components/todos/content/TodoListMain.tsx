@@ -6,13 +6,7 @@ import TodoListView from './TodoListView';
 import useTodosStore from '@/context/TodosContext';
 import { useEffect } from 'react';
 
-interface TodoListMainProps {
-	selectedCategories: Category[];
-	todolistId: number;
-	initialTodos: Todo[];
-}
-
-export default function TodoListMain({ selectedCategories, todolistId, initialTodos }: TodoListMainProps) {
+export default function TodoListMain({ initialTodos }: { initialTodos: Todo[] }) {
 	const { todos, setTodos } = useTodosStore();
 	useEffect(() => {
 		setTodos(initialTodos);
@@ -22,7 +16,6 @@ export default function TodoListMain({ selectedCategories, todolistId, initialTo
 		<div className="w-[95%] mx-auto">
 			{todos.length > 0 ? (
 				<>
-					<TodoFilter selectedCategories={selectedCategories} todoListId={todolistId} />
 					<TodoListView todos={todos} />
 				</>
 			) : (
