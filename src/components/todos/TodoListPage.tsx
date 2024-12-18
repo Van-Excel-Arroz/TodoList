@@ -14,7 +14,7 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 	}
 
 	const selectedCategories = await getSelectedCategories(todolistId);
-	let todos =
+	const todos =
 		selectedCategories.length > 0
 			? await sortTodosBySelectedCategory(selectedCategories, todolistId)
 			: await getTodosWithCategories(todolistId);
