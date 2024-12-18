@@ -16,7 +16,7 @@ export default function TodoListMain({ selectedCategories, todolistId, initialTo
 	const { todos, setTodos } = useTodosStore();
 	useEffect(() => {
 		setTodos(initialTodos);
-	}, [initialTodos]);
+	}, [initialTodos, setTodos]);
 
 	return (
 		<div className="w-[95%] mx-auto">
