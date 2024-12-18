@@ -1,7 +1,6 @@
 'use client';
 
-import { Category, Todo } from '@/types';
-import TodoFilter from './TodoFilter';
+import { Todo } from '@/types';
 import TodoListView from './TodoListView';
 import useTodosStore from '@/context/TodosContext';
 import { useEffect } from 'react';
