@@ -4,8 +4,10 @@ import { Todo } from '@/types';
 import TodoItem from './TodoItem';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/todo-details-panel/content/TodoTitle';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useParams } from 'next/navigation';
+import useTodoSectionStore from '@/context/TodoSectionContext';
 
 interface TodoSectionProps {
 	title: string;
@@ -25,13 +27,24 @@ const itemVariants = {
 };
 
 export default function TodoSection({ title, todos }: TodoSectionProps) {
-	const [isOpen, setIsOpen] = useState<boolean>(true);
+	const params = useParams();
+	const todolistId = params.id as string;
+	const { openSections, toggleSection, initializeSectionState } = useTodoSectionStore();
 	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
 
+	useEffect(() => {
+		initializeSectionState(todolistId, title);
+	}, [todolistId, title]);
+
+	const isOpen = openSections[todolistId]?.[title] ?? true;
 	return (
 		<div className="overflow-hidden">
 			<div className="flex items-center py-2 gap-2">
-				<Button ariaLabel="Toggle Todo Section" onClick={() => setIsOpen(prev => !prev)} disabled={isTodosEmpty}>
+				<Button
+					ariaLabel="Toggle Todo Section"
+					onClick={() => toggleSection(todolistId, title)}
+					disabled={isTodosEmpty}
+				>
 					<div
 						className={`transition-transform duration-200 ease-in-out ${isOpen && !isTodosEmpty ? 'rotate-180' : ''}`}
 					>
