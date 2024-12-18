@@ -22,7 +22,7 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 	return (
 		<Suspense fallback={<LoadingAnimation />}>
 			<div className="flex flex-col px-6 mb-24 relative">
-				<TodoListHeader todolist={todolist} selectedCategories={selectedCategories} todolistId={todolistId} />
+				<TodoListHeader todolist={todolist} selectedCategories={selectedCategories} />
 				<TodoListMain initialTodos={todos} />
 			</div>
 		</Suspense>

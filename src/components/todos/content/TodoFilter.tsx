@@ -18,7 +18,7 @@ function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps)
 				<Button ariaLabel="Filter">
 					<Filter size={16} className="text-slate-600" />
 				</Button>
-				<div className="flex items-center gap-4 flex-wrap">
+				{/* <div className="flex items-center gap-4 flex-wrap">
 					<CategoriesFilter categories={selectedCategories} todoListId={todoListId} />
 					<div className="flex items-center cursor-pointer">
 						<p className="border border-white hover:border-b-slate-900">Due Date</p>
@@ -44,7 +44,7 @@ function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps)
 							<ChevronDown size={14} />
 						</Button>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</>
 	);
