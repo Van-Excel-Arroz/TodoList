@@ -28,21 +28,22 @@ const itemVariants = {
 
 export default function TodoSection({ title, todos }: TodoSectionProps) {
 	const params = useParams();
-	const todolistId = params.id as string;
+	const todoListId = params.id as string;
+
 	const { openSections, toggleSection, initializeSectionState } = useTodoSectionStore();
 	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
 
 	useEffect(() => {
-		initializeSectionState(todolistId, title);
-	}, [todolistId, title]);
+		initializeSectionState(todoListId, title);
+	}, [todoListId, title]);
 
-	const isOpen = openSections[todolistId]?.[title] ?? true;
+	const isOpen = openSections[todoListId]?.[title] ?? true;
 	return (
 		<div className="overflow-hidden">
 			<div className="flex items-center py-2 gap-2">
 				<Button
 					ariaLabel="Toggle Todo Section"
-					onClick={() => toggleSection(todolistId, title)}
+					onClick={() => toggleSection(todoListId, title)}
 					disabled={isTodosEmpty}
 				>
 					<div

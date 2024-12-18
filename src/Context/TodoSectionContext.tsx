@@ -11,6 +11,7 @@ const useTodoSectionStore = create<TodoSectionState>()(
 	persist(
 		set => ({
 			openSections: {},
+
 			toggleSection: (todoListId, sectionTitle) =>
 				set(state => {
 					const currentListSections = state.openSections[todoListId] || {};
@@ -24,20 +25,18 @@ const useTodoSectionStore = create<TodoSectionState>()(
 						},
 					};
 				}),
-			initializeSectionState: (todolistId, sectionTitle) =>
+
+			initializeSectionState: (todoListId, sectionTitle) =>
 				set(state => {
-					if (!state.openSections[todolistId]?.[sectionTitle]) {
-						return {
-							openSections: {
-								...state.openSections,
-								[todolistId]: {
-									...(state.openSections[todolistId] || {}),
-									[sectionTitle]: true,
-								},
+					return {
+						openSections: {
+							...state.openSections,
+							[todoListId]: {
+								...(state.openSections[todoListId] || {}),
+								[sectionTitle]: state.openSections[todoListId]?.[sectionTitle] ?? true,
 							},
-						};
-					}
-					return state;
+						},
+					};
 				}),
 		}),
 		{
