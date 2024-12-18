@@ -48,3 +48,14 @@ const useTodoSectionStore = create<TodoSectionState>()(
 );
 
 export default useTodoSectionStore;
+
+// {
+//   "project-vacation": {
+//     "Todos": true,
+//     "Completed Todos": false
+//   },
+//   "work-tasks": {
+//     "Todos": true,
+//     "Completed Todos": true
+//   }
+// }
