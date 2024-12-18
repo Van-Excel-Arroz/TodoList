@@ -48,8 +48,8 @@ function TodoItem({ todo }: { todo: Todo }) {
 	return (
 		<div
 			key={todo.id}
-			className={`flex cursor-pointer group active:bg-sky-50 rounded-lg px-1 ${
-				isSelected ? 'bg-sky-100 ' : 'hover:bg-sky-50'
+			className={`flex cursor-pointer group px-5 mb-2  active:bg-sky-50 rounded-lg ${
+				isSelected ? 'bg-sky-100 drop-shadow-md ' : 'bg-white hover:bg-sky-50 drop-shadow-sm hover:drop-shadow-md'
 			}`}
 			onClick={handleTodoClick}
 		>
