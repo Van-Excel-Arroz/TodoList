@@ -68,9 +68,15 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			{/* <TodoDateTimeInputs register={register} /> */}
 			<div className="flex items-center justify-between w-full pb-1">
 				<div className="flex items-center gap-2 text-slate-600">
-					<CalendarPlus size={18} />
-					<AlarmClockPlus size={18} />
-					<Repeat size={18} />
+					<Button ariaLabel="Add Due Date">
+						<CalendarPlus size={18} />
+					</Button>
+					<Button ariaLabel="Add Due Time">
+						<AlarmClockPlus size={18} />
+					</Button>
+					<Button ariaLabel="Repeat">
+						<Repeat size={18} />
+					</Button>
 				</div>
 				<AddButton />
 			</div>
@@ -88,7 +94,7 @@ const TodoInput = ({ register }: { register: any }) => (
 		placeholder="Add a task... #Category"
 		autoComplete="off"
 		autoFocus
-		className="pt-2 w-full focus:outline-none"
+		className="pt-1 px-1 w-full focus:outline-none"
 	/>
 );
 
