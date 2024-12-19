@@ -123,7 +123,7 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 
 const AddButton = () => (
 	<Button type="submit" ariaLabel="Add new Todo">
-		<SendHorizonal size={20} />
+		<SendHorizonal size={18} />
 	</Button>
 );
 
