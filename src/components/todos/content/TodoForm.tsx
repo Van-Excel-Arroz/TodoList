@@ -1,6 +1,6 @@
 'use client';
 
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
@@ -69,16 +69,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			{/* <TodoDateTimeInputs register={register} /> */}
 			<div className="flex items-center justify-between w-full pb-1">
 				<div className="flex items-center gap-2 text-slate-600">
-					<Button ariaLabel="Add Due Date">
-						<CalendarPlus size={18} />
-						<div className="absolute top-10 -left-4 bg-white border-2 border-slate-300  rounded-md flex flex-col w-44">
-							<p className="border-b-2 border-slate-300 py-2">Select Due Date</p>
-							<p className="hover:bg-slate-200 p-2">Today ({format(new Date(), 'EEE')})</p>
-							<p className="hover:bg-slate-200 p-2">Tommorow ({format(add(new Date(), { days: 1 }), 'EEE')})</p>
-							<p className="hover:bg-slate-200 p-2">Next {format(add(new Date(), { days: 7 }), 'EEEE')}</p>
-							<p className="hover:bg-slate-200 py-2">Custom</p>
-						</div>
-					</Button>
+					<DueDate />
 					<Button ariaLabel="Add Due Time">
 						<AlarmClockPlus size={18} />
 					</Button>
@@ -91,6 +82,23 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		</form>
 	);
 }
+
+const DueDate = () => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	return (
+		<Button ariaLabel="Add Due Date">
+			<CalendarPlus size={18} />
+			<div className="absolute top-10 -left-4 bg-white border-2 border-slate-300  rounded-md flex flex-col w-44 drop-shadow-md">
+				<p className="border-b-2 border-slate-300 py-2">Select Due Date</p>
+				<p className="hover:bg-slate-200 p-2">Today ({format(new Date(), 'EEE')})</p>
+				<p className="hover:bg-slate-200 p-2">Tommorow ({format(add(new Date(), { days: 1 }), 'EEE')})</p>
+				<p className="hover:bg-slate-200 p-2">Next {format(add(new Date(), { days: 7 }), 'EEEE')}</p>
+				<p className="hover:bg-slate-200 py-2">Custom</p>
+			</div>
+		</Button>
+	);
+};
 
 const TodoInput = ({ register }: { register: any }) => (
 	<input
