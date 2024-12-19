@@ -14,7 +14,7 @@ interface SelectedCategoriesProps {
 function TodoFilter({ selectedCategories, todoListId }: SelectedCategoriesProps) {
 	return (
 		<>
-			<div className="text-xs 2xl:text-sm flex items-center gap-2">
+			<div className="text-xs 2xl:text-sm flex items-center gap-2 mr-4">
 				<Button ariaLabel="Filter">
 					<Filter size={20} className="text-slate-600" />
 				</Button>
