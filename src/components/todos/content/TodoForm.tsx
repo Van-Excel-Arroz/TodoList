@@ -72,20 +72,11 @@ function TodoForm({ todolistId }: TodoFormProps) {
 					<Button ariaLabel="Add Due Date">
 						<CalendarPlus size={18} />
 						<div className="absolute top-10 -left-4 bg-white border-2 border-slate-300  rounded-md flex flex-col w-44">
-							<p className="border-b-2 border-slate-300 py-2">Due Date</p>
-							<div className="hover:bg-slate-200 p-2 flex items-center justify-between">
-								<p>Today</p>
-								<p>{format(new Date(), 'EEE')}</p>
-							</div>
-							<div className="hover:bg-slate-200 p-2 flex items-center justify-between">
-								<p>Tommorow</p>
-								<p>{format(add(new Date(), { days: 1 }), 'EEE')}</p>
-							</div>
-							<div className="hover:bg-slate-200 p-2 flex items-center justify-between">
-								<p>Next Week</p>
-								<p>{format(add(new Date(), { days: 7 }), 'EEE')}</p>
-							</div>
-							<p className="hover:bg-slate-200 py-2">Pick your own date</p>
+							<p className="border-b-2 border-slate-300 py-2">Select Due Date</p>
+							<p className="hover:bg-slate-200 p-2">Today ({format(new Date(), 'EEE')})</p>
+							<p className="hover:bg-slate-200 p-2">Tommorow ({format(add(new Date(), { days: 1 }), 'EEE')})</p>
+							<p className="hover:bg-slate-200 p-2">Next {format(add(new Date(), { days: 7 }), 'EEEE')}</p>
+							<p className="hover:bg-slate-200 py-2">Custom</p>
 						</div>
 					</Button>
 					<Button ariaLabel="Add Due Time">
