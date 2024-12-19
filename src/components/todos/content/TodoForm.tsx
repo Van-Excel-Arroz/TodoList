@@ -62,7 +62,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col items-start rounded-lg outline outline-1 outline-slate-300 shadow-md hover:outline-slate-400  px-4"
+			className="flex flex-col items-start rounded-lg outline outline-1 outline-slate-300 shadow-md hover:outline-slate-400 px-4"
 		>
 			<TodoInput register={register} />
 			{/* <TodoDateTimeInputs register={register} /> */}
