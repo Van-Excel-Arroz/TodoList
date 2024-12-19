@@ -52,7 +52,7 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 						updateSelectedTodoTitle={updateSelectedTodoTitle}
 					/>
 				) : (
-					<p className="text-lg overflow-hidden text-wrap break-all">{title}</p>
+					<p className="text-lg overflow-hidden text-wrap break-words">{title}</p>
 				)}
 			</div>
 			{isEditing ? null : (
