@@ -4,7 +4,6 @@ import { memo } from 'react';
 import { Category, TodoList } from '@/types';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import TodoListsSidebarToggle from '../../todolists-sidebar/content/TodoListsSidebarToggle';
-import { List } from 'lucide-react';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 
@@ -20,7 +19,7 @@ function TodoListHeader({ todolist, selectedCategories }: TodoListHeaderProps) {
 		<div className="sticky top-0 bg-white z-50">
 			<div className="flex justify-between pt-5 py-2">
 				<div className="flex items-center gap-2">
-					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : <List />}
+					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					<p className="text-lg font-bold">{todolist.title}</p>
 				</div>
 				<TodoFilter selectedCategories={selectedCategories} todoListId={todolist.id} />
