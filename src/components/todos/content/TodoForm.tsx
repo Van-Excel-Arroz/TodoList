@@ -101,7 +101,7 @@ const DueDate = () => {
     before:content-[''] before:absolute before:-top-2 before:left-5 before:w-4 before:h-4 before:bg-white before:border-t-2 before:border-l-2 before:border-slate-300 before:rotate-45
     ${isOpen ? 'block' : 'hidden'}`}
 			>
-				<p className="border border-slate-300 p-2">Select Due Date</p>
+				<p className="border-b-2 border-slate-300 p-2">Select Due Date</p>
 				<p className={menuItemStyle}>Today ({format(new Date(), 'EEE')})</p>
 				<p className={menuItemStyle}>Tommorow ({format(add(new Date(), { days: 1 }), 'EEE')})</p>
 				<p className={menuItemStyle}>Next {format(add(new Date(), { days: 7 }), 'EEEE')}</p>
