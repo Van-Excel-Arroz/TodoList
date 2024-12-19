@@ -91,7 +91,7 @@ const DueDate = () => {
 	};
 
 	return (
-		<div className="relative flex" onBlur={handleInputBlur}>
+		<div className="relative flex" onBlur={handleInputBlur} tabIndex={-1}>
 			<Button ariaLabel="Add Due Date" onClick={() => setIsOpen(prev => !prev)}>
 				<CalendarPlus size={18} />
 			</Button>
