@@ -85,6 +85,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 const DueDate = () => {
 	const [isOpen, setIsOpen] = useState(false);
+	const menuItemStyle = 'hover:bg-slate-200 p-2 cursor-pointer';
 
 	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
 		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
@@ -104,10 +105,10 @@ const DueDate = () => {
 				}`}
 			>
 				<p className="border-b-2 border-slate-300 p-2">Select Due Date</p>
-				<p className="hover:bg-slate-200 p-2">Today ({format(new Date(), 'EEE')})</p>
-				<p className="hover:bg-slate-200 p-2">Tommorow ({format(add(new Date(), { days: 1 }), 'EEE')})</p>
-				<p className="hover:bg-slate-200 p-2">Next {format(add(new Date(), { days: 7 }), 'EEEE')}</p>
-				<p className="hover:bg-slate-200 p-2">Custom</p>
+				<p className={menuItemStyle}>Today ({format(new Date(), 'EEE')})</p>
+				<p className={menuItemStyle}>Tommorow ({format(add(new Date(), { days: 1 }), 'EEE')})</p>
+				<p className={menuItemStyle}>Next {format(add(new Date(), { days: 7 }), 'EEEE')}</p>
+				<p className={menuItemStyle}>Custom</p>
 			</div>
 		</div>
 	);
