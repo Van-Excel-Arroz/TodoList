@@ -4,7 +4,7 @@ import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
-import { AlarmClockPlus, CalendarPlus, ChevronUpSquare, Repeat, SendHorizonal } from 'lucide-react';
+import { CalendarPlus, Repeat, SendHorizonal } from 'lucide-react';
 import { Button } from '@/components/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
@@ -70,9 +70,6 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			<div className="flex items-center justify-between w-full pb-1">
 				<div className="flex items-center gap-2 text-slate-600">
 					<DueDate />
-					<Button ariaLabel="Add Due Time">
-						<AlarmClockPlus size={18} />
-					</Button>
 					<Button ariaLabel="Repeat">
 						<Repeat size={18} />
 					</Button>
