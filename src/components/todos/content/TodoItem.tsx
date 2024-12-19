@@ -112,9 +112,9 @@ interface TodoContentProps {
 }
 
 const TodoContent = ({ isCompleted, task, dueDatetime, categories, handleCategoryClick }: TodoContentProps) => (
-	<div className="flex flex-col select-none">
+	<div className="flex flex-col select-none overflow-hidden py-1 ">
 		<p
-			className={` text-nowrap overflow-hidden ${isCompleted && 'line-through'} ${
+			className={`text-nowrap text-ellipsis overflow-hidden ${isCompleted && 'line-through'} ${
 				categories.length > 0 || dueDatetime !== '' ? 'text-sm' : 'text-base'
 			}`}
 		>
