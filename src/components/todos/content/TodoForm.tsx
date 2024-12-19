@@ -100,7 +100,7 @@ const DueDate = () => {
 			</Button>
 
 			<div
-				className={`absolute top-10 -left-4 bg-white border-2 border-slate-300  text-center rounded-md flex flex-col w-44 drop-shadow-md text-black ${
+				className={`absolute top-10 -left-4 bg-white border-2 border-slate-300  text-center text-black text-sm rounded-md flex flex-col w-44 drop-shadow-md  ${
 					isOpen ? 'block' : 'hidden'
 				}`}
 			>
