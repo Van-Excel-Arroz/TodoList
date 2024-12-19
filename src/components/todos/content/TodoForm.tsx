@@ -4,7 +4,7 @@ import { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
-import { SendHorizonal } from 'lucide-react';
+import { AlarmClockPlus, CalendarPlus, Repeat, SendHorizonal } from 'lucide-react';
 import { Button } from '@/components/todo-details-panel/content/TodoTitle';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
@@ -62,10 +62,18 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col items-start rounded-lg outline outline-1 outline-slate-300 shadow-md hover:outline-slate-400"
+			className="flex flex-col items-start rounded-lg outline outline-1 outline-slate-300 shadow-md hover:outline-slate-400  px-4"
 		>
 			<TodoInput register={register} />
-			<TodoDateTimeInputs register={register} />
+			{/* <TodoDateTimeInputs register={register} /> */}
+			<div className="flex items-center justify-between w-full pb-1">
+				<div className="flex items-center gap-2 text-slate-600">
+					<CalendarPlus size={18} />
+					<AlarmClockPlus size={18} />
+					<Repeat size={18} />
+				</div>
+				<AddButton />
+			</div>
 		</form>
 	);
 }
@@ -80,7 +88,7 @@ const TodoInput = ({ register }: { register: any }) => (
 		placeholder="Add a task... #Category"
 		autoComplete="off"
 		autoFocus
-		className="py-2 px-4 w-full focus:outline-none"
+		className="pt-2 w-full focus:outline-none"
 	/>
 );
 
@@ -104,7 +112,6 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 				aria-label="Due Time"
 			/>
 		</div>
-		<AddButton />
 	</div>
 );
 
