@@ -4,7 +4,7 @@ import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
-import { AlarmClockPlus, CalendarPlus, Repeat, SendHorizonal } from 'lucide-react';
+import { AlarmClockPlus, CalendarPlus, ChevronUpSquare, Repeat, SendHorizonal } from 'lucide-react';
 import { Button } from '@/components/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
@@ -100,9 +100,9 @@ const DueDate = () => {
 			</Button>
 
 			<div
-				className={`absolute top-10 -left-4 bg-white border-2 border-slate-300  text-center text-black text-sm rounded-md flex flex-col w-44 drop-shadow-md  ${
-					isOpen ? 'block' : 'hidden'
-				}`}
+				className={`absolute top-10 -left-4 bg-white border-2 border-slate-300 text-center text-black text-sm rounded-md flex flex-col w-44 drop-shadow-md 
+    before:content-[''] before:absolute before:-top-2 before:left-5 before:w-4 before:h-4 before:bg-white before:border-t-2 before:border-l-2 before:border-slate-300 before:rotate-45
+    ${isOpen ? 'block' : 'hidden'}`}
 			>
 				<p className="border-b-2 border-slate-300 p-2">Select Due Date</p>
 				<p className={menuItemStyle}>Today ({format(new Date(), 'EEE')})</p>
