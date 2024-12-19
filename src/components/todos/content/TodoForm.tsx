@@ -70,6 +70,13 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				<div className="flex items-center gap-2 text-slate-600">
 					<Button ariaLabel="Add Due Date">
 						<CalendarPlus size={18} />
+						<div className="absolute top-10 -left-4 bg-white border-2 border-slate-300  rounded-md flex flex-col w-40">
+							<p className="border-b-2 border-slate-300 py-2">Due Date</p>
+							<p className="hover:bg-slate-200 py-2">Today</p>
+							<p className="hover:bg-slate-200 py-2">Tommorow</p>
+							<p className="hover:bg-slate-200 py-2">Next Week</p>
+							<p className="hover:bg-slate-200 py-2">Pick a date</p>
+						</div>
 					</Button>
 					<Button ariaLabel="Add Due Time">
 						<AlarmClockPlus size={18} />
