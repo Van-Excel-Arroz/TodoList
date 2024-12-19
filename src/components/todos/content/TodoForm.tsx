@@ -87,9 +87,13 @@ const DueDate = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<Button ariaLabel="Add Due Date">
+		<Button ariaLabel="Add Due Date" onClick={() => setIsOpen(prev => !prev)}>
 			<CalendarPlus size={18} />
-			<div className="absolute top-10 -left-4 bg-white border-2 border-slate-300  rounded-md flex flex-col w-44 drop-shadow-md">
+			<div
+				className={`absolute top-10 -left-4 bg-white border-2 border-slate-300  rounded-md flex flex-col w-44 drop-shadow-md ${
+					isOpen ? 'block' : 'hidden'
+				}`}
+			>
 				<p className="border-b-2 border-slate-300 py-2">Select Due Date</p>
 				<p className="hover:bg-slate-200 p-2">Today ({format(new Date(), 'EEE')})</p>
 				<p className="hover:bg-slate-200 p-2">Tommorow ({format(add(new Date(), { days: 1 }), 'EEE')})</p>
