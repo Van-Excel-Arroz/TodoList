@@ -8,6 +8,7 @@ import { AlarmClockPlus, CalendarPlus, Repeat, SendHorizonal } from 'lucide-reac
 import { Button } from '@/components/todo-details-panel/content/TodoTitle';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
+import { add, format } from 'date-fns';
 
 interface TodoFormData {
 	todo?: string;
@@ -70,12 +71,21 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				<div className="flex items-center gap-2 text-slate-600">
 					<Button ariaLabel="Add Due Date">
 						<CalendarPlus size={18} />
-						<div className="absolute top-10 -left-4 bg-white border-2 border-slate-300  rounded-md flex flex-col w-40">
+						<div className="absolute top-10 -left-4 bg-white border-2 border-slate-300  rounded-md flex flex-col w-44">
 							<p className="border-b-2 border-slate-300 py-2">Due Date</p>
-							<p className="hover:bg-slate-200 py-2">Today</p>
-							<p className="hover:bg-slate-200 py-2">Tommorow</p>
-							<p className="hover:bg-slate-200 py-2">Next Week</p>
-							<p className="hover:bg-slate-200 py-2">Pick a date</p>
+							<div className="hover:bg-slate-200 p-2 flex items-center justify-between">
+								<p>Today</p>
+								<p>{format(new Date(), 'EEE')}</p>
+							</div>
+							<div className="hover:bg-slate-200 p-2 flex items-center justify-between">
+								<p>Tommorow</p>
+								<p>{format(add(new Date(), { days: 1 }), 'EEE')}</p>
+							</div>
+							<div className="hover:bg-slate-200 p-2 flex items-center justify-between">
+								<p>Next Week</p>
+								<p>{format(add(new Date(), { days: 7 }), 'EEE')}</p>
+							</div>
+							<p className="hover:bg-slate-200 py-2">Pick your own date</p>
 						</div>
 					</Button>
 					<Button ariaLabel="Add Due Time">
