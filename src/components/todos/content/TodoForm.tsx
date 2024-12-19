@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
 import { AlarmClockPlus, CalendarPlus, Repeat, SendHorizonal } from 'lucide-react';
-import { Button } from '@/components/todo-details-panel/content/TodoTitle';
+import { Button } from '@/components/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
 import { add, format } from 'date-fns';

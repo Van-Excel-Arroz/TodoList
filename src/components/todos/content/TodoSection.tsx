@@ -3,7 +3,7 @@
 import { Todo } from '@/types';
 import TodoItem from './TodoItem';
 import { ChevronDown } from 'lucide-react';
-import { Button } from '@/components/todo-details-panel/content/TodoTitle';
+import { Button } from '@/components/Button';
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 
