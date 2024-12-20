@@ -12,6 +12,7 @@ interface DueDateInputProps {
 
 export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputProps) {
 	const [isOpen, setIsOpen] = useState(false);
+	const [showCustomeDatePicker, setShowCustomDatePicker] = useState(false);
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 
 	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
@@ -75,7 +76,15 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 					<p className={menuItemStyle} onClick={() => handleSetDueDate('next week')}>
 						Next {format(add(new Date(), { days: 7 }), 'EEEE')}
 					</p>
-					<p className={menuItemStyle}>Custom</p>
+					<p
+						className={menuItemStyle}
+						onClick={() => {
+							setShowCustomDatePicker(true);
+							setIsOpen(false);
+						}}
+					>
+						Custom
+					</p>
 
 					<button
 						aria-label="Clear Due Date"
@@ -88,7 +97,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 					</button>
 				</div>
 			</div>
-			{dueDate && <DateTime value={dueDate} />}
+			{(dueDate || showCustomeDatePicker) && <DateTime value={dueDate} open={showCustomeDatePicker} />}
 		</>
 	);
 }
