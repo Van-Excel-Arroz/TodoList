@@ -47,23 +47,22 @@ function TodoItem({ todo }: { todo: Todo }) {
 	return (
 		<div
 			key={todo.id}
-			className={`flex flex-col cursor-pointer relative group px-5 py-2 mx-2 active:bg-sky-50 rounded-lg ${
+			className={`flex flex-col cursor-pointer relative group px-5 py-2 mx-2 active:bg-sky-50 rounded-lg select-none ${
 				isSelected ? 'bg-sky-100' : 'bg-white hover:bg-sky-50 '
 			}`}
 			onClick={handleTodoClick}
 		>
 			<div className="flex items-center">
 				<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
-				<div className="flex items-center pl-2 w-full">
-					<TodoContent
-						isCompleted={todo.is_completed}
-						task={todo.task_text}
-						dueDatetime={todo.due_datetime || ''}
-						categories={todo.categories || []}
-						handleCategoryClick={handleCategoryClick}
-					/>
-					<DeleteButton handleDeleteClick={handleDeleteClick} />
-				</div>
+				<p
+					className={`pl-2 w-[95%] group-hover:w-11/12 text-nowrap text-ellipsis overflow-hidden text-lg 12 ${
+						todo.is_completed && 'line-through text-slate-700'
+					}
+			}`}
+				>
+					{todo.task_text}
+				</p>
+				<DeleteButton handleDeleteClick={handleDeleteClick} />
 			</div>
 
 			<div className="ml-7 flex items-center gap-1 flex-wrap">
@@ -130,7 +129,7 @@ interface TodoContentProps {
 }
 
 const TodoContent = ({ isCompleted, task, dueDatetime, categories, handleCategoryClick }: TodoContentProps) => (
-	<div className="flex flex-col select-none w-[95%] group-hover:w-11/12">
+	<div className="flex flex-col w-[95%] group-hover:w-11/12">
 		<p
 			className={`text-nowrap text-ellipsis overflow-hidden text-lg 12 ${isCompleted && 'line-through text-slate-700'}
 			}`}
@@ -189,7 +188,7 @@ export const DueDate = ({ dueDatetime, textSize = 'xs' }: DueDateProps) => (
 
 const DeleteButton = ({ handleDeleteClick }: { handleDeleteClick: () => void }) => (
 	<button
-		className="absolute right-5 p-1 rounded-md hover:bg-slate-200 opacity-0 group-hover:opacity-100 text-slate-600"
+		className="absolute right-3 p-1 rounded-md hover:bg-slate-200 opacity-0 group-hover:opacity-100 text-slate-600"
 		aria-label="Delete Todo"
 		onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 			event.stopPropagation();
