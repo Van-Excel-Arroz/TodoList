@@ -77,9 +77,9 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	};
 
 	const handleDateFormat = (date: Date) => {
-		if (isToday(date)) return format(date, '[Today at] h:mm a');
-		if (isTomorrow(date)) return format(date, '[Tomorrow at] h:mm a');
-		return format(date, `EEE, MMMM d \'at\' h:mm a`);
+		if (isToday(date)) return format(date, "'Today at' h:mm a");
+		if (isTomorrow(date)) return format(date, "'Tomorrow at' h:mm a");
+		return format(date, "EEE, MMMM d 'at' h:mm a");
 	};
 	return (
 		<form
