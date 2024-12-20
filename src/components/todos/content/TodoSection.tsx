@@ -30,7 +30,7 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 
 	return (
 		<div className="overflow-hidden">
-			<div className="flex items-center py-2 gap-2">
+			<div className="flex items-center py-2 px-6 gap-2">
 				<Button ariaLabel="Toggle Todo Section" onClick={() => setIsOpen(prev => !prev)} disabled={isTodosEmpty}>
 					<div
 						className={`transition-transform duration-200 ease-in-out ${isOpen && !isTodosEmpty ? 'rotate-180' : ''}`}
