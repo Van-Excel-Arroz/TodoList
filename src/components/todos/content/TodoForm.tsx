@@ -4,7 +4,7 @@ import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
-import { CalendarPlus, Repeat, SendHorizonal, Trash2 } from 'lucide-react';
+import { Calendar, CalendarPlus, Repeat, SendHorizonal, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
@@ -128,7 +128,13 @@ const DueDate = ({
 	return (
 		<div className="relative flex" onBlur={handleInputBlur} tabIndex={-1}>
 			<Button ariaLabel="Add Due Date" onClick={() => setIsOpen(prev => !prev)}>
-				{dueDate ? <p className="text-sm">{handleDateFormat(dueDate)}</p> : <CalendarPlus size={18} />}
+				{dueDate ? (
+					<p className="text-sm flex items-center gap-2">
+						<Calendar size={18} /> {handleDateFormat(dueDate)}
+					</p>
+				) : (
+					<CalendarPlus size={18} />
+				)}
 			</Button>
 
 			<div
