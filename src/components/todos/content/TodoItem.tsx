@@ -47,7 +47,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	return (
 		<div
 			key={todo.id}
-			className={`flex flex-col cursor-pointer relative group px-5 py-2 mx-2 active:bg-sky-50 rounded-lg select-none ${
+			className={`flex flex-col cursor-pointer relative group py-2 px-1 active:bg-sky-50 rounded-lg select-none ${
 				isSelected ? 'bg-sky-100' : 'bg-white hover:bg-sky-50 '
 			}`}
 			onClick={handleTodoClick}
@@ -55,7 +55,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 			<div className="flex items-center">
 				<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 				<p
-					className={`pl-2 w-[95%] group-hover:w-11/12 text-nowrap text-ellipsis overflow-hidden text-lg 12 ${
+					className={`pl-2 w-[95%] group-hover:w-11/12 text-nowrap text-ellipsis overflow-hidden ${
 						todo.is_completed && 'line-through text-slate-700'
 					}
 			}`}
