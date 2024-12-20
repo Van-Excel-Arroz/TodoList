@@ -23,7 +23,7 @@ interface TodoFormProps {
 function TodoForm({ todolistId }: TodoFormProps) {
 	const { register, handleSubmit, reset } = useForm();
 	const { addTodo } = useTodosStore();
-	const [dueDate, setDueDate] = useState<Date>();
+	const [dueDate, setDueDate] = useState<Date | null>();
 
 	const createTimestamp = (date: string | undefined, time: string | undefined): string | null => {
 		const now = new Date().toISOString().split('T')[0];
@@ -38,9 +38,10 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 		const todoTask: string = extractTitle(data.todo);
 		const categoryTitles: string[] = extractCategory(data.todo);
-		const timestamp: string | null = createTimestamp(data.date, data.time);
+		const customDate: string | null = createTimestamp(data.date, data.time);
+		const finalDate = customDate ?? (dueDate ? dueDate.toISOString() : null);
 
-		const result = await createTodoAction(todoTask, timestamp, todolistId, categoryTitles);
+		const result = await createTodoAction(todoTask, finalDate, todolistId, categoryTitles);
 
 		if (result) {
 			const { todoId, validCategories } = result;
@@ -48,7 +49,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				id: todoId,
 				order_index: 0,
 				task_text: todoTask,
-				due_datetime: timestamp ?? (dueDate ? dueDate.toISOString() : null),
+				due_datetime: finalDate,
 				creation_date: new Date().toISOString(),
 				todo_list_id: todolistId,
 				categories: validCategories,
@@ -57,7 +58,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 			addTodo(newTodo);
 		}
-
+		setDueDate(null);
 		reset();
 	};
 
