@@ -120,14 +120,6 @@ export const CheckBox = ({ isChecked, handleOnClick }: CheckBoxProps) => (
 	</div>
 );
 
-interface TodoContentProps {
-	isCompleted: boolean;
-	task: string;
-	dueDatetime: string;
-	categories: Category[];
-	handleCategoryClick: (categoryTitle: string) => void;
-}
-
 interface RenderCategoryTagsProps {
 	categories: Category[];
 	handleCategoryClick: (categoryTitle: string) => void;
