@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 interface DueDateInputProps {
 	dueDate: Date | undefined;
-	setDueDate: any;
+	setDueDate: (newDueDate: Date | undefined) => void;
 }
 
 export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputProps) {
