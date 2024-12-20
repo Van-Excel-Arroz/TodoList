@@ -1,5 +1,5 @@
 import TodoListPage from '@/components/todos/TodoListPage';
-import NoTodoListSelected from '@/components/NoTodoListSelected';
+import NoTodoListSelected from '@/components/ui/NoTodoListSelected';
 
 interface PageProps {
 	searchParams: Promise<{

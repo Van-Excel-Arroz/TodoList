@@ -4,7 +4,7 @@ import { ChevronDown, Filter, X } from 'lucide-react';
 import { Category } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
 import { memo, useEffect, useState } from 'react';
-import { Button } from '@/components/Button';
+import { Button } from '@/components/ui/Button';
 
 interface SelectedCategoriesProps {
 	selectedCategories: Category[];
