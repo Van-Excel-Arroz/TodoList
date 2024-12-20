@@ -4,7 +4,7 @@ import { memo } from 'react';
 import { Category, TodoList } from '@/types';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import TodoListsSidebarToggle from '../../todolists-sidebar/content/TodoListsSidebarToggle';
-import TodoForm from './TodoForm';
+import TodoForm from './components/TodoForm';
 import TodoFilter from './TodoFilter';
 import { ArrowDownUp } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
