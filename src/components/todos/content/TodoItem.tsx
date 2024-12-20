@@ -47,21 +47,39 @@ function TodoItem({ todo }: { todo: Todo }) {
 	return (
 		<div
 			key={todo.id}
-			className={`flex cursor-pointer group px-5 mb-2 mx-2 shadow-[0_1px_5px_-1px_rgba(50,50,93,0.25),0_1px_3px_-1px_rgba(0,0,0,0.2)] active:bg-sky-50 rounded-lg ${
+			className={`flex flex-col cursor-pointer relative group px-5 py-2 mx-2 active:bg-sky-50 rounded-lg ${
 				isSelected ? 'bg-sky-100' : 'bg-white hover:bg-sky-50 '
 			}`}
 			onClick={handleTodoClick}
 		>
-			<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
-			<div className="flex items-center py-2 pl-4 w-full">
-				<TodoContent
-					isCompleted={todo.is_completed}
-					task={todo.task_text}
-					dueDatetime={todo.due_datetime || ''}
-					categories={todo.categories || []}
-					handleCategoryClick={handleCategoryClick}
-				/>
-				<DeleteButton handleDeleteClick={handleDeleteClick} />
+			<div className="flex items-center">
+				<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
+				<div className="flex items-center pl-2 w-full">
+					<TodoContent
+						isCompleted={todo.is_completed}
+						task={todo.task_text}
+						dueDatetime={todo.due_datetime || ''}
+						categories={todo.categories || []}
+						handleCategoryClick={handleCategoryClick}
+					/>
+					<DeleteButton handleDeleteClick={handleDeleteClick} />
+				</div>
+			</div>
+
+			<div className="ml-7 flex items-center gap-1 flex-wrap">
+				{todo.due_datetime && (
+					<>
+						<Calendar size={12} className="text-slate-800" />
+						<DueDate dueDatetime={todo.due_datetime} textSize="xs" />
+					</>
+				)}
+				{todo.due_datetime && todo.categories!.length > 0 && <p>•</p>}
+				{todo.categories!.length > 0 && (
+					<>
+						<Tag size={12} className="text-slate-800" />
+						<RenderCategoryTags categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
+					</>
+				)}
 			</div>
 		</div>
 	);
@@ -112,28 +130,13 @@ interface TodoContentProps {
 }
 
 const TodoContent = ({ isCompleted, task, dueDatetime, categories, handleCategoryClick }: TodoContentProps) => (
-	<div className="flex flex-col select-none w-full hover:w-11/12">
+	<div className="flex flex-col select-none w-full group-hover:w-11/12">
 		<p
 			className={`text-nowrap text-ellipsis overflow-hidden text-lg 12 ${isCompleted && 'line-through text-slate-700'}
 			}`}
 		>
 			{task}
 		</p>
-		<div className="flex items-center gap-1 flex-wrap">
-			{dueDatetime && (
-				<>
-					<Calendar size={12} className="text-slate-800" />
-					<DueDate dueDatetime={dueDatetime} textSize="xs" />
-				</>
-			)}
-			{dueDatetime && categories.length > 0 && <p>•</p>}
-			{categories.length > 0 && (
-				<>
-					<Tag size={12} className="text-slate-800" />
-					<RenderCategoryTags categories={categories} handleCategoryClick={handleCategoryClick} />
-				</>
-			)}
-		</div>
 	</div>
 );
 
@@ -186,7 +189,7 @@ export const DueDate = ({ dueDatetime, textSize = 'xs' }: DueDateProps) => (
 
 const DeleteButton = ({ handleDeleteClick }: { handleDeleteClick: () => void }) => (
 	<button
-		className="ml-auto justify-end p-1 rounded-md hover:bg-slate-200 opacity-0 group-hover:opacity-100 text-slate-600"
+		className="absolute right-5 p-1 rounded-md hover:bg-slate-200 opacity-0 group-hover:opacity-100 text-slate-600"
 		aria-label="Delete Todo"
 		onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 			event.stopPropagation();
