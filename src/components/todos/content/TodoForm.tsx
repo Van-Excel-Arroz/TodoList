@@ -124,7 +124,7 @@ const DueDate = ({
 	return (
 		<div className="relative flex" onBlur={handleInputBlur} tabIndex={-1}>
 			<Button ariaLabel="Add Due Date" onClick={() => setIsOpen(prev => !prev)}>
-				{dueDate ? <p>{handleDateFormat(dueDate)}</p> : <CalendarPlus size={18} />}
+				{dueDate ? <p className="text-sm">{handleDateFormat(dueDate)}</p> : <CalendarPlus size={18} />}
 			</Button>
 
 			<div
