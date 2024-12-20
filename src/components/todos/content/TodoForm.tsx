@@ -23,7 +23,7 @@ interface TodoFormProps {
 function TodoForm({ todolistId }: TodoFormProps) {
 	const { register, handleSubmit, reset } = useForm();
 	const { addTodo } = useTodosStore();
-	const [dueDate, setDueDate] = useState<Date | null>();
+	const [dueDate, setDueDate] = useState<Date>();
 
 	const createTimestamp = (date: string | undefined, time: string | undefined): string | null => {
 		const now = new Date().toISOString().split('T')[0];
@@ -58,7 +58,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 			addTodo(newTodo);
 		}
-		setDueDate(null);
+		setDueDate(undefined);
 		reset();
 	};
 
@@ -80,11 +80,6 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		setDueDate(endOfDay);
 	};
 
-	const handleDateFormat = (date: Date) => {
-		if (isToday(date)) return format(date, "'Today at' h:mm a");
-		if (isTomorrow(date)) return format(date, "'Tomorrow at' h:mm a");
-		return format(date, "EEE, MMMM d 'at' h:mm a");
-	};
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
@@ -93,7 +88,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			<TodoInput register={register} />
 			<div className="flex items-center justify-between w-full pb-1">
 				<div className="flex items-center gap-2 text-slate-600">
-					{dueDate ? <p>{handleDateFormat(dueDate)}</p> : <DueDate handleSetDueDate={handleSetDueDate} />}
+					<DueDate handleSetDueDate={handleSetDueDate} dueDate={dueDate} />
 					<Button ariaLabel="Repeat">
 						<Repeat size={18} />
 					</Button>
@@ -104,7 +99,13 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	);
 }
 
-const DueDate = ({ handleSetDueDate }: { handleSetDueDate: (date: 'today' | 'tomorrow' | 'next week') => void }) => {
+const DueDate = ({
+	handleSetDueDate,
+	dueDate,
+}: {
+	handleSetDueDate: (date: 'today' | 'tomorrow' | 'next week') => void;
+	dueDate: Date | undefined;
+}) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const menuItemStyle = 'hover:bg-slate-200 p-2 cursor-pointer';
 
@@ -114,10 +115,16 @@ const DueDate = ({ handleSetDueDate }: { handleSetDueDate: (date: 'today' | 'tom
 		}
 	};
 
+	const handleDateFormat = (date: Date) => {
+		if (isToday(date)) return format(date, "'Today at' h:mm a");
+		if (isTomorrow(date)) return format(date, "'Tomorrow at' h:mm a");
+		return format(date, "EEE, MMMM d 'at' h:mm a");
+	};
+
 	return (
 		<div className="relative flex" onBlur={handleInputBlur} tabIndex={-1}>
 			<Button ariaLabel="Add Due Date" onClick={() => setIsOpen(prev => !prev)}>
-				<CalendarPlus size={18} />
+				{dueDate ? <p>{handleDateFormat(dueDate)}</p> : <CalendarPlus size={18} />}
 			</Button>
 
 			<div
