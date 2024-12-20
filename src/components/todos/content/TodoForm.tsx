@@ -8,7 +8,7 @@ import { CalendarPlus, Repeat, SendHorizonal } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
-import { add, format } from 'date-fns';
+import { add, format, isToday, isTomorrow } from 'date-fns';
 
 interface TodoFormData {
 	todo?: string;
@@ -62,12 +62,12 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	const [dueDate, setDueDate] = useState<Date>();
 
-	const handleSetDueDate = (date: 'today' | 'tommorow' | 'next week') => {
+	const handleSetDueDate = (date: 'today' | 'tomorrow' | 'next week') => {
 		switch (date) {
 			case 'today':
 				setDueDate(new Date());
 				break;
-			case 'tommorow':
+			case 'tomorrow':
 				setDueDate(add(new Date(), { days: 1 }));
 				break;
 			case 'next week':
@@ -75,16 +75,21 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				break;
 		}
 	};
+
+	const handleDateFormat = (date: Date) => {
+		if (isToday(date)) return format(date, '[Today at] h:mm a');
+		if (isTomorrow(date)) return format(date, '[Tomorrow at] h:mm a');
+		return format(date, `EEE, MMMM d \'at\' h:mm a`);
+	};
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
 			className="flex flex-col items-start rounded-lg outline outline-1 outline-slate-300 shadow-md hover:outline-slate-400 px-4"
 		>
 			<TodoInput register={register} />
-			{/* <TodoDateTimeInputs register={register} /> */}
 			<div className="flex items-center justify-between w-full pb-1">
 				<div className="flex items-center gap-2 text-slate-600">
-					{dueDate ? <p>{dueDate.toLocaleString()}</p> : <DueDate handleSetDueDate={handleSetDueDate} />}
+					{dueDate ? <p>{handleDateFormat(dueDate)}</p> : <DueDate handleSetDueDate={handleSetDueDate} />}
 					<Button ariaLabel="Repeat">
 						<Repeat size={18} />
 					</Button>
@@ -95,7 +100,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	);
 }
 
-const DueDate = ({ handleSetDueDate }: { handleSetDueDate: (date: 'today' | 'tommorow' | 'next week') => void }) => {
+const DueDate = ({ handleSetDueDate }: { handleSetDueDate: (date: 'today' | 'tomorrow' | 'next week') => void }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const menuItemStyle = 'hover:bg-slate-200 p-2 cursor-pointer';
 
@@ -122,7 +127,7 @@ const DueDate = ({ handleSetDueDate }: { handleSetDueDate: (date: 'today' | 'tom
 				<p className={menuItemStyle} onClick={() => handleSetDueDate('today')}>
 					Today ({format(new Date(), 'EEE')})
 				</p>
-				<p className={menuItemStyle} onClick={() => handleSetDueDate('tommorow')}>
+				<p className={menuItemStyle} onClick={() => handleSetDueDate('tomorrow')}>
 					Tommorow ({format(add(new Date(), { days: 1 }), 'EEE')})
 				</p>
 				<p className={menuItemStyle} onClick={() => handleSetDueDate('next week')}>
