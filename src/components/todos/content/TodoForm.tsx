@@ -111,7 +111,7 @@ const DueDate = ({
 	dueDate: Date | undefined;
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const menuItemStyle = 'hover:bg-slate-200 p-2 cursor-pointer';
+	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 
 	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
 		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
