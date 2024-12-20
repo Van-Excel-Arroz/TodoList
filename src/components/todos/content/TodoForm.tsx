@@ -157,16 +157,15 @@ const DueDate = ({
 					Next {format(add(new Date(), { days: 7 }), 'EEEE')}
 				</p>
 				<p className={menuItemStyle}>Custom</p>
-				{dueDate && (
-					<button
-						aria-label="Clear Due Date"
-						onClick={() => handleSetDueDate()}
-						className={`flex items-center justify-center gap-2 border-t border-slate-300 ${menuItemStyle}`}
-					>
-						<Trash2 size={16} />
-						<p>Clear</p>
-					</button>
-				)}
+
+				<button
+					aria-label="Clear Due Date"
+					onClick={() => handleSetDueDate()}
+					className={`flex items-center justify-center gap-2 border-t border-slate-300 ${menuItemStyle}`}
+				>
+					<Trash2 size={16} />
+					<p>Clear</p>
+				</button>
 			</div>
 		</div>
 	);
