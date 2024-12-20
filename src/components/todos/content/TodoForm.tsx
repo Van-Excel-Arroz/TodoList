@@ -84,7 +84,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			{/* <TodoDateTimeInputs register={register} /> */}
 			<div className="flex items-center justify-between w-full pb-1">
 				<div className="flex items-center gap-2 text-slate-600">
-					{dueDate ? <p>{dueDate.toLocaleString()}</p> : <DueDate />}
+					{dueDate ? <p>{dueDate.toLocaleString()}</p> : <DueDate handleSetDueDate={handleSetDueDate} />}
 					<Button ariaLabel="Repeat">
 						<Repeat size={18} />
 					</Button>
@@ -95,7 +95,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	);
 }
 
-const DueDate = () => {
+const DueDate = ({ handleSetDueDate }: { handleSetDueDate: (date: 'today' | 'tommorow' | 'next week') => void }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const menuItemStyle = 'hover:bg-slate-200 p-2 cursor-pointer';
 
@@ -119,9 +119,15 @@ const DueDate = () => {
     ${isOpen ? 'block' : 'hidden'}`}
 			>
 				<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
-				<p className={menuItemStyle}>Today ({format(new Date(), 'EEE')})</p>
-				<p className={menuItemStyle}>Tommorow ({format(add(new Date(), { days: 1 }), 'EEE')})</p>
-				<p className={menuItemStyle}>Next {format(add(new Date(), { days: 7 }), 'EEEE')}</p>
+				<p className={menuItemStyle} onClick={() => handleSetDueDate('today')}>
+					Today ({format(new Date(), 'EEE')})
+				</p>
+				<p className={menuItemStyle} onClick={() => handleSetDueDate('tommorow')}>
+					Tommorow ({format(add(new Date(), { days: 1 }), 'EEE')})
+				</p>
+				<p className={menuItemStyle} onClick={() => handleSetDueDate('next week')}>
+					Next {format(add(new Date(), { days: 7 }), 'EEEE')}
+				</p>
 				<p className={menuItemStyle}>Custom</p>
 			</div>
 		</div>
