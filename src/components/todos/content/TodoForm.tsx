@@ -62,7 +62,11 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		reset();
 	};
 
-	const handleSetDueDate = (date: 'today' | 'tomorrow' | 'next week') => {
+	const handleSetDueDate = (date?: 'today' | 'tomorrow' | 'next week') => {
+		if (!date) {
+			setDueDate(undefined);
+			return;
+		}
 		let baseDate = new Date();
 
 		switch (date) {
@@ -103,7 +107,7 @@ const DueDate = ({
 	handleSetDueDate,
 	dueDate,
 }: {
-	handleSetDueDate: (date: 'today' | 'tomorrow' | 'next week') => void;
+	handleSetDueDate: (date?: 'today' | 'tomorrow' | 'next week') => void;
 	dueDate: Date | undefined;
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -150,6 +154,7 @@ const DueDate = ({
 				{dueDate && (
 					<button
 						aria-label="Clear Due Date"
+						onClick={() => handleSetDueDate()}
 						className={`flex items-center justify-center gap-2 border-t border-slate-300 ${menuItemStyle}`}
 					>
 						<Trash2 size={16} />
