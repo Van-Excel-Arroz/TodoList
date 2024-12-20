@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function Navbar() {
 	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	return (
-		<nav className="bg-white border-b-2 border-b-slate-200 drop-shadow-md h-10 px-6 flex items-center gap-4">
+		<nav className="bg-white border-b border-b-slate-300 drop-shadow-md h-10 px-6 flex items-center gap-4">
 			<Link
 				href="/"
 				className="text-lg font-bold"
