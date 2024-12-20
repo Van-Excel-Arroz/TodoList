@@ -19,6 +19,8 @@ export default function TodolistForm() {
 		if (!data.title?.trim()) return;
 		const todolistId = await createTodolist(data.title);
 
+		if (!todolistId) return;
+
 		addTodolist({ id: todolistId, title: data.title });
 		reset();
 	}
@@ -26,11 +28,11 @@ export default function TodolistForm() {
 	return (
 		<>
 			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-2">
+				{errors.title?.message && <p>{errors.title.message as string}</p>}
 				<div className="flex flex-row justify-center ">
 					<TitleInput register={register} />
 					<AddButton />
 				</div>
-				{errors.title?.message && typeof errors.title.message === 'string' && <p>{errors.title.message}</p>}
 			</form>
 		</>
 	);

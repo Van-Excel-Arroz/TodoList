@@ -1,7 +1,6 @@
 'use server';
 
 import { deleteTodolist, storeTodolist, updateTodolist } from '@/lib/todolist';
-import { revalidatePath } from 'next/cache';
 
 export async function createTodolist(title: string) {
 	const todolistId = await storeTodolist(title, 1);
