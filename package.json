@@ -17,6 +17,7 @@
 		"next": "^15.0.4",
 		"pg": "^8.13.0",
 		"react": "^19.0.0",
+		"react-datetime-picker": "^6.0.1",
 		"react-dom": "^19.0.0",
 		"react-hook-form": "^7.53.0",
 		"zustand": "^5.0.1"
