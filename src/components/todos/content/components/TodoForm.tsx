@@ -10,6 +10,7 @@ import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
 import { add, setHours, setMinutes, setSeconds } from 'date-fns';
 import DueDateInput from '../ui/DueDateInput';
+import TodoInput from '../ui/TodoInput';
 
 interface TodoFormData {
 	todo?: string;
@@ -103,20 +104,6 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		</form>
 	);
 }
-
-const TodoInput = ({ register }: { register: any }) => (
-	<input
-		{...register('todo', {
-			required: true,
-			maxLength: { value: 100, message: 'Exceeded maximum length of 100' },
-		})}
-		type="text"
-		placeholder="Add a task... #Category"
-		autoComplete="off"
-		autoFocus
-		className="pt-1 px-1 w-full focus:outline-none"
-	/>
-);
 
 const TodoDateTimeInputs = ({ register }: { register: any }) => (
 	<div className="flex flex-wrap gap-2 justify-between px-4 pb-2 w-full text-sm">
