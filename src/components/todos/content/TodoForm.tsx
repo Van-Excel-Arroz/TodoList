@@ -98,9 +98,9 @@ const DueDate = () => {
 
 			<div
 				className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg 
-    flex flex-col w-44 border border-gray-200 shadow-lg
+    flex flex-col w-44 border border-gray-300 shadow-lg
     before:content-[''] before:absolute before:-top-2 before:left-5 before:w-4 before:h-4 
-    before:bg-white before:border-t before:border-l before:border-gray-200 before:rotate-45
+    before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45
     ${isOpen ? 'block' : 'hidden'}`}
 			>
 				<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
