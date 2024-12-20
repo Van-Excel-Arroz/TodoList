@@ -8,7 +8,7 @@ import { CalendarPlus, Repeat, SendHorizonal } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
-import { add, format, isToday, isTomorrow } from 'date-fns';
+import { add, format, isToday, isTomorrow, setHours, setMinutes, setSeconds } from 'date-fns';
 
 interface TodoFormData {
 	todo?: string;
@@ -63,17 +63,21 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	const [dueDate, setDueDate] = useState<Date>();
 
 	const handleSetDueDate = (date: 'today' | 'tomorrow' | 'next week') => {
+		let baseDate = new Date();
+
 		switch (date) {
 			case 'today':
-				setDueDate(new Date());
+				baseDate = new Date();
 				break;
 			case 'tomorrow':
-				setDueDate(add(new Date(), { days: 1 }));
+				baseDate = add(new Date(), { days: 1 });
 				break;
 			case 'next week':
-				setDueDate(add(new Date(), { days: 7 }));
+				baseDate = add(new Date(), { days: 7 });
 				break;
 		}
+		const endOfDay = setSeconds(setMinutes(setHours(baseDate, 23), 59), 59);
+		setDueDate(endOfDay);
 	};
 
 	const handleDateFormat = (date: Date) => {
