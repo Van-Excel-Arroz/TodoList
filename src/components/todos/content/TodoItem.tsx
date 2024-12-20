@@ -128,17 +128,6 @@ interface TodoContentProps {
 	handleCategoryClick: (categoryTitle: string) => void;
 }
 
-const TodoContent = ({ isCompleted, task, dueDatetime, categories, handleCategoryClick }: TodoContentProps) => (
-	<div className="flex flex-col w-[95%] group-hover:w-11/12">
-		<p
-			className={`text-nowrap text-ellipsis overflow-hidden text-lg 12 ${isCompleted && 'line-through text-slate-700'}
-			}`}
-		>
-			{task}
-		</p>
-	</div>
-);
-
 interface RenderCategoryTagsProps {
 	categories: Category[];
 	handleCategoryClick: (categoryTitle: string) => void;
