@@ -25,7 +25,7 @@ export default function TodolistItems({ initialTodoLists }: { initialTodoLists: 
 				<ul className=" flex flex-col mb-4">
 					{todolists.map(todolist => (
 						<li key={todolist.id}>
-							<TodoListItem key={todolist.id} todolist={todolist} />
+							<TodoListItem todolist={todolist} />
 						</li>
 					))}
 				</ul>
