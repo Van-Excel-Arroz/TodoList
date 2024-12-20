@@ -160,6 +160,7 @@ const DueDate = ({
 
 				<button
 					aria-label="Clear Due Date"
+					type="button"
 					onClick={() => handleSetDueDate()}
 					className={`flex items-center justify-center gap-2 border-t border-slate-300 ${menuItemStyle}`}
 				>
