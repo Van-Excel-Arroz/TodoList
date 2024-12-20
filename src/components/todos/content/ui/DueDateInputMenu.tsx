@@ -8,7 +8,7 @@ interface DueDateInputProps {
 	dueDate: Date | undefined;
 }
 
-export default function DueDateInput({ handleSetDueDate, dueDate }: DueDateInputProps) {
+export default function DueDateInputMenu({ handleSetDueDate, dueDate }: DueDateInputProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 

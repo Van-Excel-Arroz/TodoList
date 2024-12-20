@@ -9,8 +9,8 @@ import { Button } from '@/components/ui/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
 import { add, setHours, setMinutes, setSeconds } from 'date-fns';
-import DueDateInput from '../ui/DueDateInput';
 import TodoInput from '../ui/TodoInput';
+import DueDateInputMenu from '../ui/DueDateInputMenu';
 
 interface TodoFormData {
 	todo?: string;
@@ -94,18 +94,20 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			<TodoInput register={register} />
 			<div className="flex items-center justify-between w-full pb-1">
 				<div className="flex items-center gap-2 text-slate-600">
-					<DueDateInput handleSetDueDate={handleSetDueDate} dueDate={dueDate} />
+					<DueDateInputMenu handleSetDueDate={handleSetDueDate} dueDate={dueDate} />
 					<Button ariaLabel="Repeat">
 						<Repeat size={18} />
 					</Button>
 				</div>
-				<AddButton />
+				<Button type="submit" ariaLabel="Add new Todo">
+					<SendHorizonal size={18} />
+				</Button>
 			</div>
 		</form>
 	);
 }
 
-const TodoDateTimeInputs = ({ register }: { register: any }) => (
+const DuedDateInputs = ({ register }: { register: any }) => (
 	<div className="flex flex-wrap gap-2 justify-between px-4 pb-2 w-full text-sm">
 		<div className="flex gap-10">
 			<input
@@ -126,12 +128,6 @@ const TodoDateTimeInputs = ({ register }: { register: any }) => (
 			/>
 		</div>
 	</div>
-);
-
-const AddButton = () => (
-	<Button type="submit" ariaLabel="Add new Todo">
-		<SendHorizonal size={18} />
-	</Button>
 );
 
 export default memo(TodoForm);
