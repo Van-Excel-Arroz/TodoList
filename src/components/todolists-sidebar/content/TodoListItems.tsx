@@ -15,7 +15,7 @@ export default function TodolistItems({ initialTodoLists }: { initialTodoLists: 
 	const isEmpty = todolists.length === 0;
 
 	return (
-		<div className="h-[calc(100%-90px)] overflow-y-auto overflow-x-hidden">
+		<div className="h-[calc(100%-90px)] overflow-y-auto overflow-hidden">
 			{isEmpty ? (
 				<div className="text-center mt-4">
 					<p className="text-xl font-semibold mb-2">No Tasks Available</p>
