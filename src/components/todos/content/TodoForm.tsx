@@ -134,7 +134,9 @@ const DueDate = ({
     before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45
     ${isOpen ? 'block' : 'hidden'}`}
 			>
-				<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
+				<p className="border-b border-gray-200 p-2 font-medium">
+					{dueDate ? format(dueDate, 'MM/dd/yy hh:mm:ss a') : 'Select Due Date'}
+				</p>
 				<p className={menuItemStyle} onClick={() => handleSetDueDate('today')}>
 					Today ({format(new Date(), 'EEE')})
 				</p>
