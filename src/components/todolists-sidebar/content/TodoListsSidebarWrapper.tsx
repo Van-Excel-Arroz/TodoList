@@ -14,7 +14,7 @@ export default function TodoListsSidebarWrapper({ children }: { children: React.
 				onClick={toggleTodoListsSidebar}
 			/>
 			<div
-				className={`fixed lg:relative left-0 top-0 border-r-2 rounded-r-3xl drop-shadow-xl bg-white pb-9 pt-6 lg:h-[calc(100vh-2.5rem)] h-screen transition-all duration-200 ease-in-out text-nowrap overflow-hidden backdrop-blur-sm bg-opacity-80 ${
+				className={`fixed lg:relative left-0 border-r border-slate-300 top-0 drop-shadow-xl bg-white pb-9 pt-6 lg:h-[calc(100vh-2.5rem)] h-screen transition-all duration-200 ease-in-out text-nowrap overflow-hidden backdrop-blur-sm bg-opacity-80 ${
 					isTodoListsSidebarOpen ? 'w-72' : 'w-0'
 				}`}
 			>
