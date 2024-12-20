@@ -6,6 +6,8 @@ import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import TodoListsSidebarToggle from '../../todolists-sidebar/content/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
+import { ArrowDownUp } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
 
 interface TodoListHeaderProps {
 	todolist: TodoList;
@@ -22,7 +24,12 @@ function TodoListHeader({ todolist, selectedCategories }: TodoListHeaderProps) {
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					<p className="text-lg font-bold">{todolist.title}</p>
 				</div>
-				<TodoFilter selectedCategories={selectedCategories} todoListId={todolist.id} />
+				<div className="flex items-center gap-2">
+					<Button ariaLabel="Sort">
+						<ArrowDownUp size={20} />
+					</Button>
+					<TodoFilter selectedCategories={selectedCategories} todoListId={todolist.id} />
+				</div>
 			</div>
 			<TodoForm todolistId={todolist.id} />
 		</div>
