@@ -60,6 +60,21 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		reset();
 	};
 
+	const [dueDate, setDueDate] = useState<Date>();
+
+	const handleSetDueDate = (date: 'today' | 'tommorow' | 'next week') => {
+		switch (date) {
+			case 'today':
+				setDueDate(new Date());
+				break;
+			case 'tommorow':
+				setDueDate(add(new Date(), { days: 1 }));
+				break;
+			case 'next week':
+				setDueDate(add(new Date(), { days: 7 }));
+				break;
+		}
+	};
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
@@ -69,7 +84,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			{/* <TodoDateTimeInputs register={register} /> */}
 			<div className="flex items-center justify-between w-full pb-1">
 				<div className="flex items-center gap-2 text-slate-600">
-					<DueDate />
+					{dueDate ? <p>{dueDate.toLocaleString()}</p> : <DueDate />}
 					<Button ariaLabel="Repeat">
 						<Repeat size={18} />
 					</Button>
