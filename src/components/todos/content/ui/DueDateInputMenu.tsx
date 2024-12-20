@@ -1,14 +1,14 @@
 import { Button } from '@/components/ui/Button';
-import { add, format, isToday, isTomorrow } from 'date-fns';
+import { add, format, isToday, isTomorrow, setHours, setMinutes, setSeconds } from 'date-fns';
 import { Calendar, CalendarPlus, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
 interface DueDateInputProps {
-	handleSetDueDate: (date?: 'today' | 'tomorrow' | 'next week') => void;
 	dueDate: Date | undefined;
+	setDueDate: any;
 }
 
-export default function DueDateInputMenu({ handleSetDueDate, dueDate }: DueDateInputProps) {
+export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 
@@ -16,6 +16,28 @@ export default function DueDateInputMenu({ handleSetDueDate, dueDate }: DueDateI
 		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
 			setIsOpen(false);
 		}
+	};
+
+	const handleSetDueDate = (date?: 'today' | 'tomorrow' | 'next week') => {
+		if (!date) {
+			setDueDate(undefined);
+			return;
+		}
+		let baseDate = new Date();
+
+		switch (date) {
+			case 'today':
+				baseDate = new Date();
+				break;
+			case 'tomorrow':
+				baseDate = add(new Date(), { days: 1 });
+				break;
+			case 'next week':
+				baseDate = add(new Date(), { days: 7 });
+				break;
+		}
+		const endOfDay = setSeconds(setMinutes(setHours(baseDate, 23), 59), 59);
+		setDueDate(endOfDay);
 	};
 
 	const handleDateFormat = (date: Date) => {

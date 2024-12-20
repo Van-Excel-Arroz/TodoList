@@ -8,7 +8,6 @@ import { Repeat, SendHorizonal } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
-import { add, setHours, setMinutes, setSeconds } from 'date-fns';
 import TodoInput from '../ui/TodoInput';
 import DueDateInputMenu from '../ui/DueDateInputMenu';
 
@@ -64,28 +63,6 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		reset();
 	};
 
-	const handleSetDueDate = (date?: 'today' | 'tomorrow' | 'next week') => {
-		if (!date) {
-			setDueDate(undefined);
-			return;
-		}
-		let baseDate = new Date();
-
-		switch (date) {
-			case 'today':
-				baseDate = new Date();
-				break;
-			case 'tomorrow':
-				baseDate = add(new Date(), { days: 1 });
-				break;
-			case 'next week':
-				baseDate = add(new Date(), { days: 7 });
-				break;
-		}
-		const endOfDay = setSeconds(setMinutes(setHours(baseDate, 23), 59), 59);
-		setDueDate(endOfDay);
-	};
-
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
@@ -94,7 +71,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			<TodoInput register={register} />
 			<div className="flex items-center justify-between w-full pb-1">
 				<div className="flex items-center gap-2 text-slate-600">
-					<DueDateInputMenu handleSetDueDate={handleSetDueDate} dueDate={dueDate} />
+					<DueDateInputMenu dueDate={dueDate} setDueDate={setDueDate} />
 					<Button ariaLabel="Repeat">
 						<Repeat size={18} />
 					</Button>
