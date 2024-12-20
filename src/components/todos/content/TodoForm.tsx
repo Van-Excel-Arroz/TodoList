@@ -4,7 +4,7 @@ import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
-import { CalendarPlus, Repeat, SendHorizonal } from 'lucide-react';
+import { CalendarPlus, Repeat, SendHorizonal, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
@@ -147,6 +147,15 @@ const DueDate = ({
 					Next {format(add(new Date(), { days: 7 }), 'EEEE')}
 				</p>
 				<p className={menuItemStyle}>Custom</p>
+				{dueDate && (
+					<button
+						aria-label="Clear Due Date"
+						className={`flex items-center justify-center gap-2 border-t border-slate-300 ${menuItemStyle}`}
+					>
+						<Trash2 size={16} />
+						<p>Clear</p>
+					</button>
+				)}
 			</div>
 		</div>
 	);
