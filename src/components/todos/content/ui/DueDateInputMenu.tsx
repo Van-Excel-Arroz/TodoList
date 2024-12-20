@@ -42,12 +42,6 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 		setDueDate(endOfDay);
 	};
 
-	const handleDateFormat = (date: Date) => {
-		if (isToday(date)) return format(date, "'Today at' h:mm a");
-		if (isTomorrow(date)) return format(date, "'Tomorrow at' h:mm a");
-		return format(date, "EEE, MMMM d 'at' h:mm a");
-	};
-
 	return (
 		<>
 			<div className="relative flex" onBlur={handleInputBlur} tabIndex={-1}>
@@ -56,7 +50,6 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 						<Button ariaLabel="Add Due Date" onClick={() => setIsOpen(prev => !prev)}>
 							<Calendar size={18} />
 						</Button>
-						<DateTime initialValue={dueDate} />
 					</p>
 				) : (
 					<Button ariaLabel="Add Due Date" onClick={() => setIsOpen(prev => !prev)}>
@@ -95,6 +88,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 					</button>
 				</div>
 			</div>
+			{dueDate && <DateTime value={dueDate} />}
 		</>
 	);
 }
