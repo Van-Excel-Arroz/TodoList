@@ -13,6 +13,7 @@ interface DueDateInputProps {
 export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [showCustomDatePicker, setShowCustomDatePicker] = useState(false);
+	const [showCustomDatePickerMenu, setShowCustomDatePickerMenu] = useState(false);
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 	const notch =
 		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
@@ -63,17 +64,23 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 		<>
 			<div className="relative flex" onBlur={handleSelectMenuInputBlur} tabIndex={-1}>
 				{dueDate || showCustomDatePicker ? (
-					<div className="flex items-center py-0 gap-2">
+					<div className="flex items-center py-0">
 						<Button
 							ariaLabel="Edit Due Date"
 							onClick={() => {
 								setIsOpen(prev => !prev);
-								setShowCustomDatePicker(false);
+								setShowCustomDatePickerMenu(false);
 							}}
 						>
 							<Calendar size={20} />
 						</Button>
-						<Button ariaLabel="Due Date" onClick={() => setShowCustomDatePicker(prev => !prev)}>
+						<Button
+							ariaLabel="Due Date"
+							onClick={() => {
+								setShowCustomDatePickerMenu(prev => !prev);
+								setIsOpen(false);
+							}}
+						>
 							<p>{dueDate ? format(dueDate, 'MM/dd/yy hh:mm a') : 'MM/DD/YY HH:MM a'}</p>
 						</Button>
 					</div>
@@ -82,7 +89,6 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 						ariaLabel="Add Due Date"
 						onClick={() => {
 							setIsOpen(prev => !prev);
-							setShowCustomDatePicker(false);
 						}}
 					>
 						<CalendarPlus size={20} />
@@ -110,6 +116,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 						className={menuItemStyle}
 						onClick={() => {
 							setShowCustomDatePicker(true);
+							setShowCustomDatePickerMenu(true);
 							setIsOpen(false);
 						}}
 					>
@@ -128,7 +135,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 
 				<div
 					className={`absolute top-10 left-0 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
-						showCustomDatePicker ? 'block' : 'hidden'
+						showCustomDatePickerMenu ? 'block' : 'hidden'
 					}`}
 					onBlur={handleCustomeDatePickerInputBlur}
 					tabIndex={-1}
@@ -136,7 +143,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 					<div className="relative">
 						<DateTime
 							value={dueDate}
-							open={showCustomDatePicker}
+							open={showCustomDatePickerMenu}
 							onChange={handleDateTimeChange}
 							closeOnSelect={true}
 							input={false}
