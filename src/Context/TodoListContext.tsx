@@ -9,7 +9,7 @@ interface TodoListContextState {
 const useTodoListStore = create<TodoListContextState>()((set: any) => ({
 	todolist: null,
 	setTodoList: (todolist: TodoList) => set({ todolist: todolist }),
-	updateTodolistTitle: (todolistId: number, newTitle: string) =>
+	updateTitle: (todolistId: number, newTitle: string) =>
 		set((state: TodoListContextState) => ({
 			todolist: state.todolist?.id === todolistId ? { ...state.todolist, title: newTitle } : state.todolist,
 		})),
