@@ -5,14 +5,13 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { deleteTodolistAction } from '@/actions/todolist-action';
 import { TodoList } from '@/types';
-import { Check, Pencil, Trash2, X } from 'lucide-react';
+import { Pencil, Trash2 } from 'lucide-react';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
-import { updateTodolistAction } from '@/actions/todolist-action';
-import { useForm } from 'react-hook-form';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodoListsStore from '@/context/TodoListsContext';
-import useTodoListStore from '@/context/TodoListContext';
+import { Button } from '@/components/ui/Button';
+import EditTodoListForm from '../ui/EditTodoListForm';
 
 function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const router = useRouter();
@@ -64,7 +63,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 			tabIndex={-1}
 		>
 			{isEditing ? (
-				<EditTodolistForm todolist={todolist} handleEditClick={handleEditClick} />
+				<EditTodoListForm todolist={todolist} handleEditClick={handleEditClick} />
 			) : (
 				<Link
 					href={`/tasks/?id=${todolist.id}`}
@@ -90,75 +89,5 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 		</div>
 	);
 }
-
-// ------------------------------------------------------------------------------------------------ //
-// COMPONENTS
-// ------------------------------------------------------------------------------------------------ //
-
-interface ButtonProps {
-	children: React.ReactNode;
-	onClick?: () => void | Promise<void>;
-	type?: 'submit';
-	ariaLabel: string;
-}
-
-const Button = ({ children, onClick, type, ariaLabel }: ButtonProps) => {
-	return (
-		<button
-			onClick={onClick || undefined}
-			aria-label={ariaLabel}
-			className="p-1 text-slate-600 rounded-md hover:bg-slate-200"
-			type={type}
-		>
-			{children}
-		</button>
-	);
-};
-
-interface EditTodolistFormProps {
-	todolist: TodoList;
-	handleEditClick: (val: boolean) => void;
-}
-
-const EditTodolistForm = ({ todolist, handleEditClick }: EditTodolistFormProps) => {
-	const { register, handleSubmit, reset } = useForm<{
-		title: string;
-	}>();
-	const { updateTodolistTitle } = useTodoListsStore();
-	const { updateTitle: updateSelectedTodolistTite } = useTodoListStore();
-
-	const onSubmit = async (data: { title: string }) => {
-		if (!data.title?.trim()) return;
-		if (todolist.title !== data.title) {
-			await updateTodolistAction(todolist.id, data.title);
-			updateTodolistTitle(todolist.id, data.title);
-			updateSelectedTodolistTite(todolist.id, data.title);
-		}
-		handleEditClick(false);
-		reset();
-	};
-
-	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="flex items-center">
-			<input
-				{...register('title')}
-				type="text"
-				placeholder={todolist.title}
-				className="text-sm lg:text-base bg-transparent focus:outline-none border-b border-slate-950 my-1 mr-2 w-3/4 "
-				autoFocus
-				defaultValue={todolist.title}
-			/>
-			<div className="flex items-center gap-2">
-				<Button type="submit" ariaLabel="Save New Todolist Title">
-					<Check size={15} />
-				</Button>
-
-				<Button onClick={() => handleEditClick(false)} ariaLabel="Cancel Editing">
-					<X size={15} />
-				</Button>
-			</div>
-		</form>
-	);
-};
 
 export default memo(TodoListItem);

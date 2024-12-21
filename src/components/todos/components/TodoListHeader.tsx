@@ -3,7 +3,7 @@
 import { memo, useEffect } from 'react';
 import { TodoList } from '@/types';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
-import TodoListsSidebarToggle from '../../todolists-sidebar/content/TodoListsSidebarToggle';
+import TodoListsSidebarToggle from '../../todolists-sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import { ArrowDownUp } from 'lucide-react';

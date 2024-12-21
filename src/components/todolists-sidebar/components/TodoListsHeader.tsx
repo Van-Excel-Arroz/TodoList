@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { format } from 'date-fns';
-import TodoListsSidebarToggle from './TodoListsSidebarToggle';
+import TodoListsSidebarToggle from '../ui/TodoListsSidebarToggle';
 import { useEffect, useState } from 'react';
 
 export default function TodoListsHeader() {
