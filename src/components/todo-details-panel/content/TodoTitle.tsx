@@ -3,7 +3,7 @@
 import { updateTodoCompletionAction } from '@/actions/todo-action';
 import { updateTodoTitleAction } from '@/actions/todo-action';
 import { Button } from '@/components/ui/Button';
-import { CheckBox } from '@/components/todos/content/TodoItem';
+import CheckBox from '@/components/ui/CheckBox';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 import { Check, Pencil, X } from 'lucide-react';

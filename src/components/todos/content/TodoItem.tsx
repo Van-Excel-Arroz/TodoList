@@ -1,7 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import { Calendar, Check, Tag, Trash2 } from 'lucide-react';
+import { Calendar, Tag, Trash2 } from 'lucide-react';
 import { isToday, isTomorrow, format, isPast, isThisYear } from 'date-fns';
 import { Category, Todo } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
@@ -9,6 +9,7 @@ import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { deleteTodoAction, updateTodoCompletionAction } from '@/actions/todo-action';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
+import CheckBox from '@/components/ui/CheckBox';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
@@ -89,36 +90,6 @@ export default memo(TodoItem);
 // ------------------------------------------------------------------------------------------------ //
 // COMPONENTS
 // ------------------------------------------------------------------------------------------------ //
-
-interface CheckBoxProps {
-	isChecked: boolean;
-	handleOnClick: () => void;
-}
-
-export const CheckBox = ({ isChecked, handleOnClick }: CheckBoxProps) => (
-	<div className="flex items-center">
-		<button
-			className="flex items-center"
-			onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-				event.stopPropagation();
-				handleOnClick();
-			}}
-			aria-label={isChecked ? 'Mark as incomplete' : 'Mark as complete'}
-		>
-			{isChecked ? (
-				<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md hover:bg-slate-800 active:bg-slate-700">
-					<Check color="white" size={15} />
-				</div>
-			) : (
-				<div className="border border-black w-5 h-5 rounded-md active:border-slate-700 ">
-					<div className="flex justify-center items-center h-full opacity-0 hover:opacity-80">
-						<Check color="black" size={15} />
-					</div>
-				</div>
-			)}
-		</button>
-	</div>
-);
 
 interface RenderCategoryTagsProps {
 	categories: Category[];
