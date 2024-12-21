@@ -1,7 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import { Calendar, Tag, Trash2 } from 'lucide-react';
+import { Calendar, Tag } from 'lucide-react';
 import { Todo } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
@@ -11,6 +11,7 @@ import useTodosStore from '@/context/TodosContext';
 import CheckBox from '@/components/ui/CheckBox';
 import CategoryTags from '../ui/CategoryTags';
 import DueDate from '../ui/DueDate';
+import DeleteTodoButton from '../ui/DeleteTodoButton';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
@@ -64,7 +65,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 				>
 					{todo.task_text}
 				</p>
-				<DeleteButton handleDeleteClick={handleDeleteClick} />
+				<DeleteTodoButton handleDeleteClick={handleDeleteClick} />
 			</div>
 
 			<div className="ml-7 flex items-center gap-1 flex-wrap">
@@ -87,16 +88,3 @@ function TodoItem({ todo }: { todo: Todo }) {
 }
 
 export default memo(TodoItem);
-
-const DeleteButton = ({ handleDeleteClick }: { handleDeleteClick: () => void }) => (
-	<button
-		className="absolute right-3 p-1 rounded-md hover:bg-slate-200 opacity-0 group-hover:opacity-100 text-slate-600"
-		aria-label="Delete Todo"
-		onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-			event.stopPropagation();
-			handleDeleteClick();
-		}}
-	>
-		<Trash2 size={18} />
-	</button>
-);
