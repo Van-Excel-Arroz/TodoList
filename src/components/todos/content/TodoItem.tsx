@@ -3,13 +3,14 @@
 import { memo } from 'react';
 import { Calendar, Tag, Trash2 } from 'lucide-react';
 import { isToday, isTomorrow, format, isPast, isThisYear } from 'date-fns';
-import { Category, Todo } from '@/types';
+import { Todo } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { deleteTodoAction, updateTodoCompletionAction } from '@/actions/todo-action';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 import CheckBox from '@/components/ui/CheckBox';
+import CategoryTags from './ui/CategoryTags';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
@@ -77,7 +78,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 				{todo.categories!.length > 0 && (
 					<>
 						<Tag size={12} className="text-slate-800" />
-						<RenderCategoryTags categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
+						<CategoryTags categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
 					</>
 				)}
 			</div>
@@ -86,38 +87,6 @@ function TodoItem({ todo }: { todo: Todo }) {
 }
 
 export default memo(TodoItem);
-
-// ------------------------------------------------------------------------------------------------ //
-// COMPONENTS
-// ------------------------------------------------------------------------------------------------ //
-
-interface RenderCategoryTagsProps {
-	categories: Category[];
-	handleCategoryClick: (categoryTitle: string) => void;
-}
-
-const RenderCategoryTags = ({ categories, handleCategoryClick }: RenderCategoryTagsProps) => (
-	<>
-		{categories?.map(category => (
-			<span
-				key={category.id}
-				className="text-xs rounded-md flex items-center gap-1 hover:outline hover:outline-1"
-				style={{
-					color: category.hex_color,
-					backgroundColor: `${category.hex_color}20`,
-					padding: '2px',
-				}}
-				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-					event.stopPropagation();
-					handleCategoryClick(category.category_title);
-				}}
-			>
-				<p className="pb-0.5 text-xs">⦿</p>
-				<p>{category.category_title}</p>
-			</span>
-		))}
-	</>
-);
 
 interface DueDateProps {
 	dueDatetime: string;
