@@ -65,11 +65,11 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 				<Button ariaLabel="Add Due Date" onClick={() => setIsOpen(prev => !prev)}>
 					{dueDate ? (
 						<div className="flex items-center py-0 gap-2">
-							<Calendar size={18} />
-							<p className="text-sm m-0 p-0">{format(dueDate, 'MM/dd/yy hh:mm a')}</p>
+							<Calendar size={20} />
+							<p>{format(dueDate, 'MM/dd/yy hh:mm a')}</p>
 						</div>
 					) : (
-						<CalendarPlus size={18} />
+						<CalendarPlus size={20} />
 					)}
 				</Button>
 
