@@ -1,7 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import { Calendar, Tag } from 'lucide-react';
+import { Tag } from 'lucide-react';
 import { Todo } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
@@ -73,7 +73,6 @@ function TodoItem({ todo }: { todo: Todo }) {
 				{todo.due_datetime && todo.categories!.length > 0 && <p>•</p>}
 				{todo.categories!.length > 0 && (
 					<>
-						<Tag size={12} className="text-slate-800" />
 						<CategoryTags categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
 					</>
 				)}
