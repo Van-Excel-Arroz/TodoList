@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/Button';
 import { add, format, setHours, setMinutes, setSeconds } from 'date-fns';
-import { Calendar, CalendarPlus, Trash2 } from 'lucide-react';
+import { Calendar, CalendarPlus, Trash2, X } from 'lucide-react';
 import { useState } from 'react';
 import DateTime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
@@ -26,7 +26,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 
 	const handleCustomeDatePickerInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
 		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-			setShowCustomDatePicker(false);
+			setShowCustomDatePickerMenu(false);
 		}
 	};
 
@@ -148,6 +148,13 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 							closeOnSelect={true}
 							input={false}
 						/>
+						<button
+							aria-label="Close Custom Date Picker"
+							className="absolute -top-3 -right-3 bg-white p-1 border rounded-full border-gray-300 hover:bg-slate-200"
+							onClick={() => setShowCustomDatePickerMenu(false)}
+						>
+							<X size={18} />
+						</button>
 					</div>
 				</div>
 			</div>
