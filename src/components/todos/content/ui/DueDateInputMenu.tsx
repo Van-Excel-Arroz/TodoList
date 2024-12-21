@@ -66,7 +66,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 					{dueDate ? (
 						<div className="flex items-center py-0 gap-2">
 							<Calendar size={18} />
-							<p>{format(dueDate, 'MM/dd/yy hh:mm a')}</p>
+							<p className="text-sm m-0 p-0">{format(dueDate, 'MM/dd/yy hh:mm a')}</p>
 						</div>
 					) : (
 						<CalendarPlus size={18} />
