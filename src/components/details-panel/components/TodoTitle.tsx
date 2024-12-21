@@ -1,14 +1,14 @@
 'use client';
 
 import { updateTodoCompletionAction } from '@/actions/todo-action';
-import { Button } from '@/components/ui/Button';
-import CheckBox from '@/components/ui/CheckBox';
+
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 import { Pencil } from 'lucide-react';
 import { useState } from 'react';
-
 import EditTodoTitleForm from '../ui/EditTodoTitleForm';
+import CheckBox from '@/components/ui-shared/CheckBox';
+import { Button } from '@/components/ui-shared/Button';
 
 interface TodoTitleProps {
 	title: string;
