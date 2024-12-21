@@ -15,9 +15,15 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 	const [showCustomDatePicker, setShowCustomDatePicker] = useState(false);
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 
-	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+	const handleSelectMenuInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
 		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
 			setIsOpen(false);
+		}
+	};
+
+	const handleCustomeDatePickerInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+			setShowCustomDatePicker(false);
 		}
 	};
 
@@ -53,7 +59,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 
 	return (
 		<>
-			<div className="relative flex" onBlur={handleInputBlur} tabIndex={-1}>
+			<div className="relative flex" onBlur={handleSelectMenuInputBlur} tabIndex={-1}>
 				<Button ariaLabel="Add Due Date" onClick={() => setIsOpen(prev => !prev)}>
 					{dueDate ? (
 						<p className="flex items-center py-0 gap-2">
@@ -108,6 +114,8 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 					className={`absolute top-10 left-0 border border-gray-300 shadow-md rounded-md ${
 						showCustomDatePicker ? 'block' : 'hidden'
 					}`}
+					onBlur={handleCustomeDatePickerInputBlur}
+					tabIndex={-1}
 				>
 					<DateTime
 						value={dueDate}
