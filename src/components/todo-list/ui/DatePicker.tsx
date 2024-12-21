@@ -35,6 +35,9 @@ export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
 			) {
 				setIsCalendarOpen(false);
 			}
+			if (isTimeOpen && customTimePickerRef.current && !customTimePickerRef.current.contains(event.target as Node)) {
+				setIsTimeOpen(false);
+			}
 		};
 
 		document.addEventListener('mousedown', handleClickOutside);
@@ -161,7 +164,7 @@ export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
 			<div
 				ref={customTimePickerRef}
 				className={`absolute top-10 left-16 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
-					isCalendarOpen ? 'block' : 'hidden'
+					isTimeOpen ? 'block' : 'hidden'
 				}`}
 			>
 				<div className="relative">
