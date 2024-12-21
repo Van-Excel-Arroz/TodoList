@@ -4,6 +4,7 @@ import { TodoList } from '@/types';
 interface TodoListContextState {
 	todolist: TodoList | null;
 	setTodoList: (todolist: TodoList) => void;
+	updateTitle: (todolistId: number, newTitle: string) => void;
 }
 
 const useTodoListStore = create<TodoListContextState>()((set: any) => ({
