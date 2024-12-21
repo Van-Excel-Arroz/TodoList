@@ -6,7 +6,7 @@ interface CategoryTagProps {
 	onRemove: (categoryId: number) => void;
 }
 
-export default function CategoryTag({ category, onRemove }: CategoryTagProps) {
+export default function CategoryTags({ category, onRemove }: CategoryTagProps) {
 	return (
 		<span
 			key={category.id}

@@ -1,4 +1,5 @@
 import { deleteTodoAction } from '@/actions/todo-action';
+import { Button } from '@/components/ui/Button';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import useTodosStore from '@/context/TodosContext';
@@ -26,13 +27,9 @@ export default function TodoDetailsFooter({ creationDate, todoId }: RightSidebar
 			{creationDate && (
 				<p className="text-sm text-slate-600">Created at: {new Date(creationDate).toLocaleDateString()} </p>
 			)}
-			<button
-				className="p-1 rounded-md hover:bg-slate-200 active:bg-slate-200 text-slate-600"
-				onClick={handleDeleteClick}
-				aria-label="Delete Todo"
-			>
+			<Button onClick={handleDeleteClick} ariaLabel="Delete Todo">
 				<Trash2 />
-			</button>
+			</Button>
 		</div>
 	);
 }

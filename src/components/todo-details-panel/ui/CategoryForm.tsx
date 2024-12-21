@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/Button';
 import { SendHorizontal, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
@@ -32,12 +33,12 @@ export default function CategoryForm({ onSubmit, onCancel }: CategoryFormProps) 
 			/>
 
 			<div className="flex items-center gap-1">
-				<button className="hover:bg-slate-200 rounded-md p-1" aria-label="Add Category" type="submit">
+				<Button ariaLabel="Add Category" type="submit">
 					<SendHorizontal size={20} />
-				</button>
-				<button onClick={onCancel} className="hover:bg-slate-200 rounded-md p-1" aria-label="Cancel Adding Category">
+				</Button>
+				<Button onClick={onCancel} ariaLabel="Cancel Adding Category">
 					<X size={20} />
-				</button>
+				</Button>
 			</div>
 		</form>
 	);

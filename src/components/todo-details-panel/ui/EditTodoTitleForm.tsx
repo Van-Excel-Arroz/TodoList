@@ -35,7 +35,7 @@ export default function EditTodoTitleForm({
 			<input
 				{...register('title')}
 				type="text"
-				className="text-lg bg-transparent focus:outline-none border-b border-slate-950 w-11/12"
+				className="bg-transparent focus:outline-none border-b border-slate-950 w-11/12"
 				autoFocus
 				placeholder={title}
 				defaultValue={title}

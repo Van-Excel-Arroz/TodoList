@@ -8,6 +8,7 @@ import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 import CategoryForm from '../ui/CategoryForm';
 import CategoryTags from '../ui/CategoryTags';
+import { Button } from '@/components/ui/Button';
 
 interface TodoCategoriesProps {
 	categories: Category[];
@@ -72,13 +73,9 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 				{isAddingCategory ? (
 					<CategoryForm onSubmit={onSubmit} onCancel={() => handleAddCategory(false)} />
 				) : (
-					<button
-						className="block hover:bg-slate-200 rounded-md p-1"
-						aria-label="Add Category"
-						onClick={() => handleAddCategory(true)}
-					>
+					<Button ariaLabel="Add Category" onClick={() => handleAddCategory(true)}>
 						<Plus size={20} />
-					</button>
+					</Button>
 				)}
 			</div>
 			<div className={`flex flex-wrap items-center gap-2 ${categories.length === 0 ? 'py-0' : 'py-2'}`}>
