@@ -103,17 +103,20 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 						Clear
 					</button>
 				</div>
-				{showCustomDatePicker && (
-					<div className="absolute top-10 left-0 border border-gray-300 shadow-md rounded-md">
-						<DateTime
-							value={dueDate}
-							open={showCustomDatePicker}
-							onChange={handleDateTimeChange}
-							closeOnSelect={true}
-							input={false}
-						/>
-					</div>
-				)}
+
+				<div
+					className={`absolute top-10 left-0 border border-gray-300 shadow-md rounded-md ${
+						showCustomDatePicker ? 'block' : 'hidden'
+					}`}
+				>
+					<DateTime
+						value={dueDate}
+						open={showCustomDatePicker}
+						onChange={handleDateTimeChange}
+						closeOnSelect={true}
+						input={false}
+					/>
+				</div>
 			</div>
 		</>
 	);
