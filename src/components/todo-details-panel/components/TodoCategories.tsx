@@ -1,16 +1,22 @@
 'use client';
 
-import { Plus, SendHorizontal, Tag, X } from 'lucide-react';
+import { Plus, Tag } from 'lucide-react';
 import { Category } from '@/types';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { addTodoCategoryAction, deleteTodoCategoryAction } from '@/actions/category-action';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
+import CategoryForm from '../ui/CategoryForm';
+import CategoryTags from '../ui/CategoryTags';
 
 interface TodoCategoriesProps {
 	categories: Category[];
 	todoId: number;
+}
+
+interface CategoryFormInputs {
+	category_title: string;
+	hex_color: string;
 }
 
 export default function TodoCategories({ categories, todoId }: TodoCategoriesProps) {
@@ -77,82 +83,9 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 			</div>
 			<div className={`flex flex-wrap items-center gap-2 ${categories.length === 0 ? 'py-0' : 'py-2'}`}>
 				{categories.map(category => (
-					<CategoryTag key={category.id} category={category} onRemove={handleRemoveCategory} />
+					<CategoryTags key={category.id} category={category} onRemove={handleRemoveCategory} />
 				))}
 			</div>
 		</div>
-	);
-}
-
-// ------------------------------------------------------------------------------------------------ //
-// COMPONENTS
-// ------------------------------------------------------------------------------------------------ //
-
-interface CategoryFormProps {
-	onSubmit: (data: CategoryFormInputs) => void;
-	onCancel: () => void;
-}
-
-interface CategoryFormInputs {
-	category_title: string;
-	hex_color: string;
-}
-
-function CategoryForm({ onSubmit, onCancel }: CategoryFormProps) {
-	const { register, handleSubmit, reset } = useForm<CategoryFormInputs>();
-
-	const handleFormSubmit = (data: CategoryFormInputs) => {
-		if (data.category_title.length === 0) return;
-		onSubmit(data);
-		reset();
-	};
-
-	return (
-		<form onSubmit={handleSubmit(handleFormSubmit)} className="flex items-center gap-2 justify-between w-full">
-			<input type="color" className="w-10 h-7 cursor-pointer" defaultValue="#000000" {...register('hex_color')} />
-			<input
-				type="text"
-				className="border rounded-md w-full p-1 text-sm focus:outline-none focus:border-slate-400 hover:border-slate-400"
-				placeholder="Category Title"
-				autoComplete="off"
-				{...register('category_title', { maxLength: 20 })}
-			/>
-
-			<div className="flex items-center gap-1">
-				<button className="hover:bg-slate-200 rounded-md p-1" aria-label="Add Category" type="submit">
-					<SendHorizontal size={20} />
-				</button>
-				<button onClick={onCancel} className="hover:bg-slate-200 rounded-md p-1" aria-label="Cancel Adding Category">
-					<X size={20} />
-				</button>
-			</div>
-		</form>
-	);
-}
-
-interface CategoryTagProps {
-	category: Category;
-	onRemove: (categoryId: number) => void;
-}
-
-function CategoryTag({ category, onRemove }: CategoryTagProps) {
-	return (
-		<span
-			key={category.id}
-			className="rounded-md flex items-center gap-2 px-2 py-1"
-			style={{
-				color: category.hex_color,
-				backgroundColor: `${category.hex_color}20`,
-			}}
-		>
-			<p>{category.category_title}</p>
-			<button
-				className="rounded-md p-1 hover:bg-white hover:outline hover:outline-1 active:bg-white "
-				aria-label="Remove Category"
-				onClick={() => onRemove(category.id)}
-			>
-				<X size={16} />
-			</button>
-		</span>
 	);
 }

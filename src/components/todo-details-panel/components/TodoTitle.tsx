@@ -1,14 +1,14 @@
 'use client';
 
 import { updateTodoCompletionAction } from '@/actions/todo-action';
-import { updateTodoTitleAction } from '@/actions/todo-action';
 import { Button } from '@/components/ui/Button';
 import CheckBox from '@/components/ui/CheckBox';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
-import { Check, Pencil, X } from 'lucide-react';
+import { Pencil } from 'lucide-react';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+
+import EditTodoTitleForm from '../ui/EditTodoTitleForm';
 
 interface TodoTitleProps {
 	title: string;
@@ -46,7 +46,7 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 			<div className="flex items-center gap-4">
 				<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
 				{isEditing ? (
-					<EditTodoForm
+					<EditTodoTitleForm
 						title={title}
 						handleEditClick={handleEditClick}
 						todoId={selectedTodo!.id}
@@ -62,52 +62,5 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 				</Button>
 			)}
 		</div>
-	);
-}
-
-// ------------------------------------------------------------------------------------------------ //
-// COMPONENTS
-// ------------------------------------------------------------------------------------------------ //
-
-interface EditTodoFormProps {
-	title: string;
-	handleEditClick: (val: boolean) => void;
-	todoId: number;
-	updateSelectedTodoTitle: (newTitle: string) => void;
-}
-
-function EditTodoForm({ title, handleEditClick, todoId, updateSelectedTodoTitle }: EditTodoFormProps) {
-	const { register, handleSubmit, reset } = useForm<{ title: string }>();
-	const { updateTodoTitle } = useTodosStore();
-
-	const onSubmit = async (data: { title: string }) => {
-		if (title !== data.title) {
-			await updateTodoTitleAction(todoId, data.title);
-			updateSelectedTodoTitle(data.title);
-			updateTodoTitle(todoId, data.title);
-		}
-		reset();
-		handleEditClick(false);
-	};
-
-	return (
-		<form className="flex items-center gap-2" onSubmit={handleSubmit(onSubmit)}>
-			<input
-				{...register('title')}
-				type="text"
-				className="text-lg bg-transparent focus:outline-none border-b border-slate-950 w-11/12"
-				autoFocus
-				placeholder={title}
-				defaultValue={title}
-			/>
-			<div className="flex gap-2">
-				<Button type="submit" ariaLabel="Save New Todo Title">
-					<Check size={18} />
-				</Button>
-				<Button onClick={() => handleEditClick(false)} ariaLabel="Cancel Editing Todo Title">
-					<X size={18} />
-				</Button>
-			</div>
-		</form>
 	);
 }

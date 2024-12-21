@@ -1,10 +1,10 @@
 'use client';
 
-import TodoTitle from './content/TodoTitle';
-import TodoDueDate from './content/TodoDueDate';
-import TodoCategories from './content/TodoCategories';
-import TodoDetailsHeader from './content/TodoDetailsHeader';
-import TodoDetailsFooter from './content/TodoDetailsFooter';
+import TodoTitle from './components/TodoTitle';
+import TodoDueDate from './components/TodoDueDate';
+import TodoCategories from './components/TodoCategories';
+import TodoDetailsHeader from './components/TodoDetailsHeader';
+import TodoDetailsFooter from './components/TodoDetailsFooter';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 
