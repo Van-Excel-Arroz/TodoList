@@ -1,5 +1,5 @@
 import { updateTodoTitleAction } from '@/actions/todo-action';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui-shared/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Check, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
