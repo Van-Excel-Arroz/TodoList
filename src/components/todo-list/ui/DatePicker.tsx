@@ -44,7 +44,7 @@ export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [isSelectionMenuOpen, isCalendarOpen]);
+	}, [isSelectionMenuOpen, isCalendarOpen, isTimeOpen]);
 
 	const handleSetDueDate = (date?: 'today' | 'tomorrow' | 'next week') => {
 		if (!date) {
@@ -151,13 +151,6 @@ export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
 						dateFormat={true}
 						timeFormat={false}
 					/>
-					<button
-						aria-label="Close Custom Date Picker"
-						className="absolute -top-3 -right-3 bg-white p-1 border rounded-full border-gray-300 hover:bg-slate-200"
-						onClick={() => setIsCalendarOpen(false)}
-					>
-						<X size={18} />
-					</button>
 				</div>
 			</div>
 
@@ -177,13 +170,6 @@ export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
 						dateFormat={false}
 						timeFormat={true}
 					/>
-					<button
-						aria-label="Close Custom Date Picker"
-						className="absolute -top-3 -right-3 bg-white p-1 border rounded-full border-gray-300 hover:bg-slate-200"
-						onClick={() => setIsTimeOpen(false)}
-					>
-						<X size={18} />
-					</button>
 				</div>
 			</div>
 		</div>
