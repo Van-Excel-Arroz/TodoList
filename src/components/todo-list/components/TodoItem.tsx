@@ -69,12 +69,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 			</div>
 
 			<div className="ml-7 flex items-center gap-1 flex-wrap">
-				{todo.due_datetime && (
-					<>
-						<Calendar size={12} className="text-slate-800" />
-						<DueDate dueDatetime={todo.due_datetime} textSize="xs" />
-					</>
-				)}
+				{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} textSize="xs" />}
 				{todo.due_datetime && todo.categories!.length > 0 && <p>•</p>}
 				{todo.categories!.length > 0 && (
 					<>
