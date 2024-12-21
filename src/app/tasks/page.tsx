@@ -1,4 +1,4 @@
-import TodoListPage from '@/components/todos/TodoListPage';
+import TodoListPage from '@/components/todo-list/TodoListPage';
 import NoTodoListSelected from '@/components/ui/NoTodoListSelected';
 
 interface PageProps {
