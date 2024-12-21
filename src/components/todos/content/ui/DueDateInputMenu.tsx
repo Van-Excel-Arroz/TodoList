@@ -64,10 +64,10 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 			<div className="relative flex" onBlur={handleSelectMenuInputBlur} tabIndex={-1}>
 				<Button ariaLabel="Add Due Date" onClick={() => setIsOpen(prev => !prev)}>
 					{dueDate ? (
-						<p className="flex items-center py-0 gap-2">
+						<div className="flex items-center py-0 gap-2">
 							<Calendar size={18} />
-							{format(dueDate, 'MM/dd/yy hh:mm a')}
-						</p>
+							<p>{format(dueDate, 'MM/dd/yy hh:mm a')}</p>
+						</div>
 					) : (
 						<CalendarPlus size={18} />
 					)}
