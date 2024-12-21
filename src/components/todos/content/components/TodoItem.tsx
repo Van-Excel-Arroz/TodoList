@@ -2,7 +2,6 @@
 
 import { memo } from 'react';
 import { Calendar, Tag, Trash2 } from 'lucide-react';
-import { isToday, isTomorrow, format, isPast, isThisYear } from 'date-fns';
 import { Todo } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
@@ -11,6 +10,7 @@ import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 import CheckBox from '@/components/ui/CheckBox';
 import CategoryTags from '../ui/CategoryTags';
+import DueDate from '../ui/DueDate';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
@@ -87,25 +87,6 @@ function TodoItem({ todo }: { todo: Todo }) {
 }
 
 export default memo(TodoItem);
-
-interface DueDateProps {
-	dueDatetime: string;
-	textSize?: string;
-}
-
-export const DueDate = ({ dueDatetime, textSize = 'xs' }: DueDateProps) => (
-	<p className={`text-${textSize} ${dueDatetime && isPast(dueDatetime) ? 'text-red-500' : 'text-slate-800'}`}>
-		{dueDatetime
-			? isToday(dueDatetime)
-				? 'Today' + format(dueDatetime, ` \'at\' h:mm a`)
-				: isTomorrow(dueDatetime)
-				? 'Tomorrow' + format(dueDatetime, ` \'at\' h:mm a`)
-				: isThisYear(dueDatetime)
-				? format(dueDatetime, `EEE, MMMM d \'at\' h:mm a`)
-				: format(dueDatetime, `EEE, MMMM d yyyy \'at\' h:mm a`)
-			: '-'}
-	</p>
-);
 
 const DeleteButton = ({ handleDeleteClick }: { handleDeleteClick: () => void }) => (
 	<button
