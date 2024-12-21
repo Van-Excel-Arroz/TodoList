@@ -8,7 +8,7 @@ import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { deleteTodoAction, updateTodoCompletionAction } from '@/actions/todo-action';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
-import CheckBox from '@/components/ui/CheckBox';
+import CheckBox from '@/components/ui-shared/CheckBox';
 import CategoryTags from '../ui/CategoryTags';
 import DueDate from '../ui/DueDate';
 import DeleteTodoButton from '../ui/DeleteTodoButton';

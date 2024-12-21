@@ -7,7 +7,7 @@ import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import { ArrowDownUp } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui-shared/Button';
 import useTodoListStore from '@/context/TodoListContext';
 
 interface TodoListHeaderProps {

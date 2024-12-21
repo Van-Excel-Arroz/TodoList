@@ -1,5 +1,5 @@
 import { deleteTodoAction } from '@/actions/todo-action';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui-shared/Button';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import useTodosStore from '@/context/TodosContext';

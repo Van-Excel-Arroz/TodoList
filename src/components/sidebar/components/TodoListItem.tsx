@@ -10,7 +10,7 @@ import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodoListsStore from '@/context/TodoListsContext';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui-shared/Button';
 import EditTodoListForm from '../ui/EditTodoListForm';
 
 function TodoListItem({ todolist }: { todolist: TodoList }) {

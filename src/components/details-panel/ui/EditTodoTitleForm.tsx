@@ -31,7 +31,7 @@ export default function EditTodoTitleForm({
 	};
 
 	return (
-		<form className="flex items-center gap-2" onSubmit={handleSubmit(onSubmit)}>
+		<form className="flex items-center" onSubmit={handleSubmit(onSubmit)}>
 			<input
 				{...register('title')}
 				type="text"
@@ -40,7 +40,7 @@ export default function EditTodoTitleForm({
 				placeholder={title}
 				defaultValue={title}
 			/>
-			<div className="flex gap-2">
+			<div className="flex">
 				<Button type="submit" ariaLabel="Save New Todo Title">
 					<Check size={18} />
 				</Button>

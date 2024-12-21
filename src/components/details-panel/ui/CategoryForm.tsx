@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui-shared/Button';
 import { SendHorizontal, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 

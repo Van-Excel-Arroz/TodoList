@@ -1,5 +1,5 @@
 import { updateTodolistAction } from '@/actions/todolist-action';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui-shared/Button';
 import useTodoListStore from '@/context/TodoListContext';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { TodoList } from '@/types';

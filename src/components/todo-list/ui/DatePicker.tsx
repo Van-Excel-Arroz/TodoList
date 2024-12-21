@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui-shared/Button';
 import { add, format, setHours, setMinutes, setSeconds } from 'date-fns';
 import { Calendar, CalendarPlus, Trash2, X } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
