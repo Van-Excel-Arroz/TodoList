@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/Button';
-import { add, format, isToday, isTomorrow, setHours, setMinutes, setSeconds } from 'date-fns';
+import { add, format, setHours, setMinutes, setSeconds } from 'date-fns';
 import { Calendar, CalendarPlus, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import DateTime from 'react-datetime';
@@ -43,6 +43,14 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 		setDueDate(endOfDay);
 	};
 
+	const handleDateTimeChange = (value: string | moment.Moment) => {
+		if (typeof value === 'object' && value !== null) {
+			const date = value instanceof Date ? value : value.toDate();
+			setDueDate(date);
+			setIsOpen(false);
+		}
+	};
+
 	return (
 		<>
 			<div className="relative flex" onBlur={handleInputBlur} tabIndex={-1}>
@@ -59,10 +67,10 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 
 				<div
 					className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg 
-									flex flex-col w-44 border border-gray-300 shadow-lg
-									before:content-[''] before:absolute before:-top-2 before:left-5 before:w-4 before:h-4 
-									before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45
-									${isOpen ? 'block' : 'hidden'}`}
+                    flex flex-col w-44 border border-gray-300 shadow-lg
+                    before:content-[''] before:absolute before:-top-2 before:left-5 before:w-4 before:h-4 
+                    before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45
+                    ${isOpen ? 'block' : 'hidden'}`}
 				>
 					<p className="border-b border-gray-200 p-2 font-medium">
 						{dueDate ? format(dueDate, 'MM/dd/yy hh:mm:ss a') : 'Select Due Date'}
@@ -95,20 +103,18 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 						Clear
 					</button>
 				</div>
+				{showCustomDatePicker && (
+					<div className="absolute top-10 left-0 border border-gray-300 shadow-md rounded-md">
+						<DateTime
+							value={dueDate}
+							open={showCustomDatePicker}
+							onChange={handleDateTimeChange}
+							closeOnSelect={true}
+							input={false}
+						/>
+					</div>
+				)}
 			</div>
-
-			{showCustomDatePicker && (
-				<DateTime
-					value={dueDate}
-					open={showCustomDatePicker}
-					onChange={value => {
-						if (value instanceof Date) {
-							setDueDate(value);
-							setShowCustomDatePicker(false);
-						}
-					}}
-				/>
-			)}
 		</>
 	);
 }
