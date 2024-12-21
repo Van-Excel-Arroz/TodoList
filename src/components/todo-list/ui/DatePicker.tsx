@@ -79,7 +79,7 @@ export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
 	return (
 		<div className="relative flex">
 			{dueDate || isDatePickerOpen ? (
-				<div className="flex items-center py-0">
+				<div className="flex items-center py-0 gap-1">
 					<Button ariaLabel="Edit Due Date" onClick={() => setIsSelectionMenuOpen(prev => !prev)}>
 						<Calendar size={20} />
 					</Button>
