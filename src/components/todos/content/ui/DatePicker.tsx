@@ -10,7 +10,7 @@ interface DueDateInputProps {
 	setDueDate: (newDueDate: Date | undefined) => void;
 }
 
-export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputProps) {
+export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
 	const [isSelectionMenuOpen, setIsSelectionMenuOpen] = useState(false);
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 	const [isCalendarOpen, setIsCalendarOpen] = useState(false);
