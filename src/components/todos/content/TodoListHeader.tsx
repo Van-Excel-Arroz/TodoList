@@ -1,7 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import { Category, TodoList } from '@/types';
+import { TodoList } from '@/types';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import TodoListsSidebarToggle from '../../todolists-sidebar/content/TodoListsSidebarToggle';
 import TodoForm from './components/TodoForm';
@@ -11,10 +11,9 @@ import { Button } from '@/components/ui/Button';
 
 interface TodoListHeaderProps {
 	todolist: TodoList;
-	selectedCategories: Category[];
 }
 
-function TodoListHeader({ todolist, selectedCategories }: TodoListHeaderProps) {
+function TodoListHeader({ todolist }: TodoListHeaderProps) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 
 	return (
@@ -28,7 +27,7 @@ function TodoListHeader({ todolist, selectedCategories }: TodoListHeaderProps) {
 					<Button ariaLabel="Sort">
 						<ArrowDownUp size={20} />
 					</Button>
-					<TodoFilter selectedCategories={selectedCategories} todoListId={todolist.id} />
+					<TodoFilter />
 				</div>
 			</div>
 			<TodoForm todolistId={todolist.id} />
