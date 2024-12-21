@@ -10,7 +10,7 @@ import { deleteTodoAction, updateTodoCompletionAction } from '@/actions/todo-act
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 import CheckBox from '@/components/ui/CheckBox';
-import CategoryTags from './ui/CategoryTags';
+import CategoryTags from '../ui/CategoryTags';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
