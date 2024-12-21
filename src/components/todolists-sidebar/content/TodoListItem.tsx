@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodoListsStore from '@/context/TodoListsContext';
+import useTodoListStore from '@/context/TodoListContext';
 
 function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const router = useRouter();
@@ -124,12 +125,14 @@ const EditTodolistForm = ({ todolist, handleEditClick }: EditTodolistFormProps) 
 		title: string;
 	}>();
 	const { updateTodolistTitle } = useTodoListsStore();
+	const { updateTitle: updateSelectedTodolistTite } = useTodoListStore();
 
 	const onSubmit = async (data: { title: string }) => {
 		if (!data.title?.trim()) return;
 		if (todolist.title !== data.title) {
 			await updateTodolistAction(todolist.id, data.title);
 			updateTodolistTitle(todolist.id, data.title);
+			updateSelectedTodolistTite(todolist.id, data.title);
 		}
 		handleEditClick(false);
 		reset();
