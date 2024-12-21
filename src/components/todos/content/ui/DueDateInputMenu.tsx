@@ -11,8 +11,8 @@ interface DueDateInputProps {
 }
 
 export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputProps) {
-	const [isOpen, setIsOpen] = useState(false);
-	const [showCustomDatePicker, setShowCustomDatePicker] = useState(false);
+	const [isSelectionMenuOpen, setIsSelectionMenuOpen] = useState(false);
+	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 	const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 	const notch =
@@ -23,8 +23,8 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
-			if (isOpen && selectMenuRef.current && !selectMenuRef.current.contains(event.target as Node)) {
-				setIsOpen(false);
+			if (isSelectionMenuOpen && selectMenuRef.current && !selectMenuRef.current.contains(event.target as Node)) {
+				setIsSelectionMenuOpen(false);
 			}
 			if (
 				isCalendarOpen &&
@@ -39,7 +39,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [isOpen, isCalendarOpen]);
+	}, [isSelectionMenuOpen, isCalendarOpen]);
 
 	const handleSetDueDate = (date?: 'today' | 'tomorrow' | 'next week') => {
 		if (!date) {
@@ -67,18 +67,18 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 		if (typeof value === 'object' && value !== null) {
 			const date = value instanceof Date ? value : value.toDate();
 			setDueDate(date);
-			setIsOpen(false);
+			setIsSelectionMenuOpen(false);
 		}
 	};
 
 	return (
 		<div className="relative flex">
-			{dueDate || showCustomDatePicker ? (
+			{dueDate || isDatePickerOpen ? (
 				<div className="flex items-center py-0">
 					<Button
 						ariaLabel="Edit Due Date"
 						onClick={() => {
-							setIsOpen(prev => !prev);
+							setIsSelectionMenuOpen(prev => !prev);
 							setIsCalendarOpen(false);
 						}}
 					>
@@ -88,7 +88,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 						ariaLabel="Due Date"
 						onClick={() => {
 							setIsCalendarOpen(prev => !prev);
-							setIsOpen(false);
+							setIsSelectionMenuOpen(false);
 						}}
 					>
 						<p>{dueDate ? format(dueDate, 'MM/dd/yy hh:mm a') : 'MM/DD/YY HH:MM a'}</p>
@@ -98,7 +98,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 				<Button
 					ariaLabel="Add Due Date"
 					onClick={() => {
-						setIsOpen(prev => !prev);
+						setIsSelectionMenuOpen(prev => !prev);
 					}}
 				>
 					<CalendarPlus size={20} />
@@ -109,7 +109,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 				ref={selectMenuRef}
 				className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg
                   flex flex-col w-44 border border-gray-300 shadow-lg before:-top-2 before:left-5 ${notch}
-                  ${isOpen ? 'block' : 'hidden'}`}
+                  ${isSelectionMenuOpen ? 'block' : 'hidden'}`}
 			>
 				<p className="border-b border-gray-200 p-2 font-medium">
 					{dueDate ? format(dueDate, 'MM/dd/yy hh:mm:ss a') : 'Select Due Date'}
@@ -126,9 +126,9 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 				<p
 					className={menuItemStyle}
 					onClick={() => {
-						setShowCustomDatePicker(true);
+						setIsDatePickerOpen(true);
 						setIsCalendarOpen(true);
-						setIsOpen(false);
+						setIsSelectionMenuOpen(false);
 					}}
 				>
 					Custom
