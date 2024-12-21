@@ -14,6 +14,8 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 	const [isOpen, setIsOpen] = useState(false);
 	const [showCustomDatePicker, setShowCustomDatePicker] = useState(false);
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
+	const notch =
+		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
 
 	const handleSelectMenuInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
 		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
@@ -73,9 +75,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 
 				<div
 					className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg 
-                    flex flex-col w-44 border border-gray-300 shadow-lg
-                    before:content-[''] before:absolute before:-top-2 before:left-5 before:w-4 before:h-4 
-                    before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45
+                    flex flex-col w-44 border border-gray-300 shadow-lg  before:-top-2 before:left-5 ${notch}
                     ${isOpen ? 'block' : 'hidden'}`}
 				>
 					<p className="border-b border-gray-200 p-2 font-medium">
@@ -111,19 +111,21 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 				</div>
 
 				<div
-					className={`absolute top-10 left-0 border border-gray-300 shadow-md rounded-md ${
+					className={`absolute top-10 left-0 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 ${notch} ${
 						showCustomDatePicker ? 'block' : 'hidden'
 					}`}
 					onBlur={handleCustomeDatePickerInputBlur}
 					tabIndex={-1}
 				>
-					<DateTime
-						value={dueDate}
-						open={showCustomDatePicker}
-						onChange={handleDateTimeChange}
-						closeOnSelect={true}
-						input={false}
-					/>
+					<div className="relative">
+						<DateTime
+							value={dueDate}
+							open={showCustomDatePicker}
+							onChange={handleDateTimeChange}
+							closeOnSelect={true}
+							input={false}
+						/>
+					</div>
 				</div>
 			</div>
 		</>
