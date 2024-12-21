@@ -14,12 +14,14 @@ export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
 	const [isSelectionMenuOpen, setIsSelectionMenuOpen] = useState(false);
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 	const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+	const [isTimeOpen, setIsTimeOpen] = useState(false);
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 	const notch =
 		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
 
 	const selectMenuRef = useRef<HTMLDivElement>(null);
 	const customDatePickerRef = useRef<HTMLDivElement>(null);
+	const customTimePickerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -75,32 +77,18 @@ export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
 		<div className="relative flex">
 			{dueDate || isDatePickerOpen ? (
 				<div className="flex items-center py-0">
-					<Button
-						ariaLabel="Edit Due Date"
-						onClick={() => {
-							setIsSelectionMenuOpen(prev => !prev);
-							setIsCalendarOpen(false);
-						}}
-					>
+					<Button ariaLabel="Edit Due Date" onClick={() => setIsSelectionMenuOpen(prev => !prev)}>
 						<Calendar size={20} />
 					</Button>
-					<Button
-						ariaLabel="Due Date"
-						onClick={() => {
-							setIsCalendarOpen(prev => !prev);
-							setIsSelectionMenuOpen(false);
-						}}
-					>
-						<p>{dueDate ? format(dueDate, 'MM/dd/yy hh:mm a') : 'MM/DD/YY HH:MM a'}</p>
+					<Button ariaLabel="Due Date" onClick={() => setIsCalendarOpen(prev => !prev)}>
+						<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
+					</Button>
+					<Button ariaLabel="Due Date" onClick={() => setIsTimeOpen(prev => !prev)}>
+						<p>{dueDate ? format(dueDate, 'hh:mm a') : 'HH:MM a'}</p>
 					</Button>
 				</div>
 			) : (
-				<Button
-					ariaLabel="Add Due Date"
-					onClick={() => {
-						setIsSelectionMenuOpen(prev => !prev);
-					}}
-				>
+				<Button ariaLabel="Add Due Date" onClick={() => setIsSelectionMenuOpen(prev => !prev)}>
 					<CalendarPlus size={20} />
 				</Button>
 			)}
@@ -146,7 +134,7 @@ export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
 
 			<div
 				ref={customDatePickerRef}
-				className={`absolute top-10 left-0 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
+				className={`absolute top-10 -left-5 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
 					isCalendarOpen ? 'block' : 'hidden'
 				}`}
 			>
@@ -157,11 +145,39 @@ export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
 						onChange={handleDateTimeChange}
 						closeOnSelect={true}
 						input={false}
+						dateFormat={true}
+						timeFormat={false}
 					/>
 					<button
 						aria-label="Close Custom Date Picker"
 						className="absolute -top-3 -right-3 bg-white p-1 border rounded-full border-gray-300 hover:bg-slate-200"
 						onClick={() => setIsCalendarOpen(false)}
+					>
+						<X size={18} />
+					</button>
+				</div>
+			</div>
+
+			<div
+				ref={customTimePickerRef}
+				className={`absolute top-10 left-16 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
+					isCalendarOpen ? 'block' : 'hidden'
+				}`}
+			>
+				<div className="relative">
+					<DateTime
+						value={dueDate}
+						open={isTimeOpen}
+						onChange={handleDateTimeChange}
+						closeOnSelect={true}
+						input={false}
+						dateFormat={false}
+						timeFormat={true}
+					/>
+					<button
+						aria-label="Close Custom Date Picker"
+						className="absolute -top-3 -right-3 bg-white p-1 border rounded-full border-gray-300 hover:bg-slate-200"
+						onClick={() => setIsTimeOpen(false)}
 					>
 						<X size={18} />
 					</button>
