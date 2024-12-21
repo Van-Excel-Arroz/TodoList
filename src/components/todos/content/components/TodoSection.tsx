@@ -1,7 +1,7 @@
 'use client';
 
 import { Todo } from '@/types';
-import TodoItem from './components/TodoItem';
+import TodoItem from './TodoItem';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useState, useMemo } from 'react';

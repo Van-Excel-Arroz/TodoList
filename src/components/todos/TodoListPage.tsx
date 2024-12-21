@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import { getTodosWithCategories, sortTodosBySelectedCategory } from '@/lib/todo';
 import { getTodolist } from '@/lib/todolist';
-import TodoListHeader from './content/TodoListHeader';
+import TodoListHeader from './content/components/TodoListHeader';
 import { getSelectedCategories } from '@/lib/category';
 import { redirect } from 'next/navigation';
-import TodoListMain from './content/TodoListMain';
+import TodoListMain from './content/components/TodoListMain';
 
 export default async function TodoListPage({ todolistId }: { todolistId: number }) {
 	const todolist = await getTodolist(todolistId, 1);
