@@ -62,19 +62,35 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 	return (
 		<>
 			<div className="relative flex" onBlur={handleSelectMenuInputBlur} tabIndex={-1}>
-				<Button ariaLabel="Add Due Date" onClick={() => setIsOpen(prev => !prev)}>
-					{dueDate ? (
-						<div className="flex items-center py-0 gap-2">
+				{dueDate || showCustomDatePicker ? (
+					<div className="flex items-center py-0 gap-2">
+						<Button
+							ariaLabel="Edit Due Date"
+							onClick={() => {
+								setIsOpen(prev => !prev);
+								setShowCustomDatePicker(false);
+							}}
+						>
 							<Calendar size={20} />
-							<p>{format(dueDate, 'MM/dd/yy hh:mm a')}</p>
-						</div>
-					) : (
+						</Button>
+						<Button ariaLabel="Due Date" onClick={() => setShowCustomDatePicker(prev => !prev)}>
+							<p>{dueDate ? format(dueDate, 'MM/dd/yy hh:mm a') : 'MM/DD/YY HH:MM a'}</p>
+						</Button>
+					</div>
+				) : (
+					<Button
+						ariaLabel="Add Due Date"
+						onClick={() => {
+							setIsOpen(prev => !prev);
+							setShowCustomDatePicker(false);
+						}}
+					>
 						<CalendarPlus size={20} />
-					)}
-				</Button>
+					</Button>
+				)}
 
 				<div
-					className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg 
+					className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg
                     flex flex-col w-44 border border-gray-300 shadow-lg  before:-top-2 before:left-5 ${notch}
                     ${isOpen ? 'block' : 'hidden'}`}
 				>
@@ -111,7 +127,7 @@ export default function DueDateInputMenu({ dueDate, setDueDate }: DueDateInputPr
 				</div>
 
 				<div
-					className={`absolute top-10 left-0 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 ${notch} ${
+					className={`absolute top-10 left-0 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
 						showCustomDatePicker ? 'block' : 'hidden'
 					}`}
 					onBlur={handleCustomeDatePickerInputBlur}
