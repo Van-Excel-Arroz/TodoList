@@ -55,14 +55,16 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 						updateSelectedTodoTitle={updateSelectedTodoTitle}
 					/>
 				) : (
-					<p className="overflow-hidden text-wrap break-words">{title}</p>
+					<div className="flex flex-wrap overflow-hidden">
+						<span className="text-wrap break-words inline-block">{title}</span>
+						{isEditing ? null : (
+							<Button onClick={() => handleEditClick(true)} ariaLabel="Edit Todo Title">
+								<Pencil size={18} />
+							</Button>
+						)}
+					</div>
 				)}
 			</div>
-			{isEditing ? null : (
-				<Button onClick={() => handleEditClick(true)} ariaLabel="Edit Todo Title">
-					<Pencil size={18} />
-				</Button>
-			)}
 		</div>
 	);
 }
