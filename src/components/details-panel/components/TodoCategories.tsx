@@ -61,8 +61,20 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 		addCategory(todoId, newCategory);
 		handleAddCategory(false);
 	};
+
+	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+			setIsAddingCategory(false);
+		}
+	};
 	return (
-		<div className="flex flex-col items-start bg-slate-100 rounded-md px-4 py-2 border border-slate-300">
+		<div
+			className={`flex flex-col items-start bg-slate-100 rounded-md px-4 py-2 border ${
+				isAddingCategory ? 'border-slate-400' : 'border-slate-300'
+			}`}
+			onBlur={handleInputBlur}
+			tabIndex={-1}
+		>
 			<div className="flex justify-between items-center w-full text-slate-600">
 				{!isAddingCategory && (
 					<div className="flex items-center gap-2 pl-1">

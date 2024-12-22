@@ -26,6 +26,7 @@ export default function CategoryForm({ onSubmit, onCancel }: CategoryFormProps) 
 			<input type="color" className="w-10 h-7 cursor-pointer" defaultValue="#000000" {...register('hex_color')} />
 			<input
 				type="text"
+				autoFocus
 				className="border rounded-md w-full p-1 text-sm focus:outline-none focus:border-slate-400 hover:border-slate-400"
 				placeholder="Category Title"
 				autoComplete="off"
