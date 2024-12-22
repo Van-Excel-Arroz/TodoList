@@ -25,23 +25,20 @@ export default function TodoTitle({ title }: TodoTitleProps) {
 		reset();
 	};
 	return (
-		<div className="flex items-start gap-2 flex-col w-full">
+		<form className="flex items-start gap-2 flex-col w-full" onSubmit={handleSubmit(onSubmit)}>
 			<div className="flex items-center justify-between w-full">
 				<p className="text-slate-600">Title</p>
 				<Button type="submit" ariaLabel="Save New Todo Title">
 					<Save size={18} />
 				</Button>
 			</div>
-
-			<form className="flex items-center justify-between w-full" onSubmit={handleSubmit(onSubmit)}>
-				<textarea
-					{...register('title')}
-					className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
-					autoFocus
-					placeholder={title}
-					defaultValue={title}
-				/>
-			</form>
-		</div>
+			<textarea
+				{...register('title')}
+				className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
+				autoFocus
+				placeholder={title}
+				defaultValue={title}
+			/>
+		</form>
 	);
 }
