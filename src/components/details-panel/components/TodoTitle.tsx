@@ -39,7 +39,9 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 
 	return (
 		<div
-			className="flex justify-between bg-slate-100 rounded-md p-4 border border-slate-300"
+			className={`flex justify-between bg-slate-100 rounded-md p-4 border   ${
+				isEditing ? 'border-slate-400' : 'border-slate-300'
+			}`}
 			onBlur={handleInputBlur}
 			tabIndex={-1}
 		>
