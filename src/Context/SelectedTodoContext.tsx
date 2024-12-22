@@ -8,6 +8,7 @@ interface SelectedTodoContextState {
 	removeSelectedTodoCategory: (categoryId: number) => void;
 	updateSelectedTodoTitle: (newTitle: string) => void;
 	toggleSelectedTodoCompletion: (todoId: number) => void;
+	updateSelectedTodoDueDate: (newDate: string) => void;
 }
 
 const useSelectedTodoStore = create<SelectedTodoContextState>()((set: any) => ({
@@ -37,6 +38,10 @@ const useSelectedTodoStore = create<SelectedTodoContextState>()((set: any) => ({
 				state.selectedTodo && state.selectedTodo.id === todoId
 					? { ...state.selectedTodo, is_completed: !state.selectedTodo.is_completed }
 					: state.selectedTodo,
+		})),
+	updateSelectedTodoDueDate: (newDate: string) =>
+		set((state: SelectedTodoContextState) => ({
+			selectedTodo: { ...state.selectedTodo, due_datetime: newDate },
 		})),
 }));
 
