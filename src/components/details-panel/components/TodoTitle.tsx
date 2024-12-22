@@ -16,6 +16,7 @@ export default function TodoTitle() {
 
 	const onSubmit = async (data: { title: string }) => {
 		if (!selectedTodo) return;
+		if (!data.title.trim()) return;
 		if (selectedTodo.task_text !== data.title) {
 			await updateTodoTitleAction(selectedTodo.id, data.title);
 			updateSelectedTodoTitle(data.title);
