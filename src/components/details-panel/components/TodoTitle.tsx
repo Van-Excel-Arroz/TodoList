@@ -1,19 +1,14 @@
 'use client';
 
 import { updateTodoTitleAction } from '@/actions/todo-action';
+import { Button } from '@/components/ui-shared/Button';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
+import { Save } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
 interface TodoTitleProps {
 	title: string;
-}
-
-interface EditTodoFormProps {
-	title: string;
-
-	todoId: number;
-	updateSelectedTodoTitle: (newTitle: string) => void;
 }
 
 export default function TodoTitle({ title }: TodoTitleProps) {
@@ -32,6 +27,11 @@ export default function TodoTitle({ title }: TodoTitleProps) {
 	return (
 		<div className="flex items-start gap-2 flex-col w-full">
 			<p className="text-slate-600">Title</p>
+			<div className="flex gap-1">
+				<Button type="submit" ariaLabel="Save New Todo Title">
+					<Save size={18} />
+				</Button>
+			</div>
 			<form className="flex items-center justify-between w-full" onSubmit={handleSubmit(onSubmit)}>
 				<textarea
 					{...register('title')}
@@ -40,14 +40,6 @@ export default function TodoTitle({ title }: TodoTitleProps) {
 					placeholder={title}
 					defaultValue={title}
 				/>
-				{/* <div className="flex gap-1">
-				<Button type="submit" ariaLabel="Save New Todo Title">
-					<Check size={18} />
-				</Button>
-				<Button ariaLabel="Cancel Editing Todo Title">
-					<X size={18} />
-				</Button>
-			</div> */}
 			</form>
 		</div>
 	);
