@@ -6,14 +6,14 @@ import { useForm } from 'react-hook-form';
 
 interface EditTodoFormProps {
 	title: string;
-	handleEditClick: (val: boolean) => void;
+
 	todoId: number;
 	updateSelectedTodoTitle: (newTitle: string) => void;
 }
 
 export default function EditTodoTitleForm({
 	title,
-	handleEditClick,
+
 	todoId,
 	updateSelectedTodoTitle,
 }: EditTodoFormProps) {
@@ -27,26 +27,17 @@ export default function EditTodoTitleForm({
 			updateTodoTitle(todoId, data.title);
 		}
 		reset();
-		handleEditClick(false);
 	};
 
 	return (
 		<form className="flex items-center justify-between w-full" onSubmit={handleSubmit(onSubmit)}>
 			<textarea
 				{...register('title')}
-				className="bg-transparent focus:outline-none resize-y break-words"
+				className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
 				autoFocus
 				placeholder={title}
 				defaultValue={title}
 			/>
-			<div className="flex gap-1">
-				<Button type="submit" ariaLabel="Save New Todo Title">
-					<Check size={18} />
-				</Button>
-				<Button onClick={() => handleEditClick(false)} ariaLabel="Cancel Editing Todo Title">
-					<X size={18} />
-				</Button>
-			</div>
 		</form>
 	);
 }

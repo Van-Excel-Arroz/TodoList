@@ -18,7 +18,6 @@ interface TodoTitleProps {
 export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 	const { selectedTodo, toggleSelectedTodoCompletion, updateSelectedTodoTitle } = useSelectedTodoStore();
 	const { toggleTodoCompletion } = useTodosStore();
-	const [isEditing, setIsEditing] = useState(false);
 
 	const handleCheckboxChange = async () => {
 		if (!selectedTodo) return;
@@ -27,44 +26,14 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 		toggleSelectedTodoCompletion(selectedTodo.id);
 	};
 
-	const handleEditClick = (val: boolean) => {
-		setIsEditing(val);
-	};
-
-	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-			handleEditClick(false);
-		}
-	};
-
 	return (
-		<div
-			className={`flex justify-between bg-slate-100 rounded-md p-4 border   ${
-				isEditing ? 'border-slate-400' : 'border-slate-300'
-			}`}
-			onBlur={handleInputBlur}
-			tabIndex={-1}
-		>
-			<div className="flex items-center gap-4 w-full">
-				<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
-				{isEditing ? (
-					<EditTodoTitleForm
-						title={title}
-						handleEditClick={handleEditClick}
-						todoId={selectedTodo!.id}
-						updateSelectedTodoTitle={updateSelectedTodoTitle}
-					/>
-				) : (
-					<div className="flex items-center justify-between w-full overflow-hidden">
-						<span className="text-wrap break-all inline-block">{title}</span>
-						{isEditing ? null : (
-							<Button onClick={() => handleEditClick(true)} ariaLabel="Edit Todo Title">
-								<Pencil size={18} />
-							</Button>
-						)}
-					</div>
-				)}
-			</div>
+		<div className="flex items-center gap-4 w-full">
+			<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
+			<EditTodoTitleForm
+				title={title}
+				todoId={selectedTodo?.id ?? 0}
+				updateSelectedTodoTitle={updateSelectedTodoTitle}
+			/>
 		</div>
 	);
 }
