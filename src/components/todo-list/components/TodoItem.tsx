@@ -57,25 +57,27 @@ function TodoItem({ todo }: { todo: Todo }) {
 		>
 			<div className="flex items-center">
 				<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
-				<p
-					className={`pl-2 w-[95%] group-hover:w-11/12 text-nowrap text-ellipsis overflow-hidden ${
-						todo.is_completed && 'line-through text-slate-700'
-					}
+				<div className="flex flex-col ml-5 w-full">
+					<p
+						className={`w-[95%] group-hover:w-11/12 text-nowrap text-ellipsis overflow-hidden ${
+							todo.is_completed && 'line-through text-slate-700'
+						}
 			}`}
-				>
-					{todo.task_text}
-				</p>
-				<DeleteTodoButton handleDeleteClick={handleDeleteClick} />
-			</div>
+					>
+						{todo.task_text}
+					</p>
+					<div className="flex items-center gap-1 flex-wrap">
+						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} textSize="xs" />}
+						{todo.due_datetime && todo.categories!.length > 0 && <p>•</p>}
+						{todo.categories!.length > 0 && (
+							<>
+								<CategoryTags categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
+							</>
+						)}
+					</div>
+				</div>
 
-			<div className="ml-7 flex items-center gap-1 flex-wrap">
-				{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} textSize="xs" />}
-				{todo.due_datetime && todo.categories!.length > 0 && <p>•</p>}
-				{todo.categories!.length > 0 && (
-					<>
-						<CategoryTags categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
-					</>
-				)}
+				<DeleteTodoButton handleDeleteClick={handleDeleteClick} />
 			</div>
 		</div>
 	);
