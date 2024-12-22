@@ -10,7 +10,9 @@ import { useForm } from 'react-hook-form';
 
 export default function TodoTitle() {
 	const { selectedTodo, updateSelectedTodoTitle } = useSelectedTodoStore();
-	const { register, handleSubmit, reset, setValue, watch } = useForm<{ title: string }>();
+	const { register, handleSubmit, reset } = useForm<{ title: string }>({
+		defaultValues: { title: selectedTodo?.task_text || '' },
+	});
 	const { updateTodoTitle } = useTodosStore();
 	const [isEditing, setIsEditing] = useState(false);
 
@@ -22,25 +24,24 @@ export default function TodoTitle() {
 			updateSelectedTodoTitle(data.title);
 			updateTodoTitle(selectedTodo.id, data.title);
 		}
-		reset();
 		setIsEditing(false);
+	};
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		setIsEditing(e.target.value !== selectedTodo?.task_text);
 	};
 
 	const handleInputBlur = (e: React.FocusEvent<HTMLElement>) => {
 		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-			setValue('title', selectedTodo?.task_text || '');
+			reset(); // Resets the form to the initial value
 			setIsEditing(false);
 		}
 	};
 
-	const watchedTitle = watch('title');
 	useEffect(() => {
-		setIsEditing(watchedTitle !== selectedTodo?.task_text);
-	}, [watchedTitle, selectedTodo?.task_text]);
-
-	useEffect(() => {
-		setValue('title', selectedTodo?.task_text || '');
-	}, [selectedTodo?.task_text, setValue]);
+		reset({ title: selectedTodo?.task_text || '' }); // Update form value when selectedTodo changes
+		setIsEditing(false); // Reset editing state when a new todo is selected
+	}, [selectedTodo, reset]);
 
 	return (
 		<div onBlur={handleInputBlur} tabIndex={-1}>
@@ -58,7 +59,7 @@ export default function TodoTitle() {
 					className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
 					autoFocus
 					placeholder={selectedTodo?.task_text}
-					defaultValue={selectedTodo?.task_text}
+					onChange={handleInputChange}
 				/>
 			</form>
 		</div>
