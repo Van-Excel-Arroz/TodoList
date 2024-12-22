@@ -1,7 +1,6 @@
 'use client';
 
 import DatePicker from '@/components/todo-list/ui/DatePicker';
-import DueDate from '@/components/todo-list/ui/DueDate';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import { Calendar } from 'lucide-react';
 
