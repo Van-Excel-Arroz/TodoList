@@ -5,11 +5,12 @@ import { Button } from '@/components/ui-shared/Button';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 import { Save } from 'lucide-react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function TodoTitle() {
 	const { selectedTodo, updateSelectedTodoTitle } = useSelectedTodoStore();
-	const { register, handleSubmit, reset } = useForm<{ title: string }>();
+	const { register, handleSubmit, reset, setValue } = useForm<{ title: string }>();
 	const { updateTodoTitle } = useTodosStore();
 
 	const onSubmit = async (data: { title: string }) => {
@@ -21,6 +22,16 @@ export default function TodoTitle() {
 		}
 		reset();
 	};
+
+	const handleInputBlur = (e: React.FocusEvent<HTMLElement>) => {
+		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+			setValue('title', selectedTodo?.task_text || '');
+		}
+	};
+
+	useEffect(() => {
+		setValue('title', selectedTodo?.task_text || '');
+	}, [selectedTodo?.task_text]);
 
 	return (
 		<form className="flex items-start gap-2 flex-col w-full" onSubmit={handleSubmit(onSubmit)}>
@@ -34,6 +45,8 @@ export default function TodoTitle() {
 				{...register('title')}
 				className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
 				autoFocus
+				onBlur={handleInputBlur}
+				tabIndex={-1}
 				placeholder={selectedTodo?.task_text}
 				defaultValue={selectedTodo?.task_text}
 			/>
