@@ -11,7 +11,8 @@ export default function TodoTitle({ title }: TodoTitleProps) {
 	const { selectedTodo, updateSelectedTodoTitle } = useSelectedTodoStore();
 
 	return (
-		<div className="flex items-center gap-4 w-full">
+		<div className="flex items-start gap-2 flex-col w-full">
+			<p className="text-slate-600">Title</p>
 			<EditTodoTitleForm
 				title={title}
 				todoId={selectedTodo?.id ?? 0}
