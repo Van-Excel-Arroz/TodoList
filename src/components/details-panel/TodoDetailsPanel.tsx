@@ -29,11 +29,11 @@ export default function TodoDetailsPanel() {
 				}`}
 			>
 				<div className="flex flex-col gap-4 px-6">
-					<TodoDetailsHeader />
+					<TodoDetailsHeader todoId={selectedTodo?.id ?? 0} />
 					<TodoTitle title={selectedTodo?.task_text ?? ''} isCompleted={selectedTodo?.is_completed ?? false} />
 					<TodoDueDate dueDatetime={selectedTodo?.due_datetime ?? ''} todoId={selectedTodo?.id ?? 0} />
 					<TodoCategories categories={selectedTodo?.categories ?? []} todoId={selectedTodo?.id ?? 0} />
-					<TodoDetailsFooter creationDate={selectedTodo?.creation_date ?? ''} todoId={selectedTodo?.id ?? 0} />
+					<TodoDetailsFooter creationDate={selectedTodo?.creation_date ?? ''} />
 				</div>
 			</div>
 		</>

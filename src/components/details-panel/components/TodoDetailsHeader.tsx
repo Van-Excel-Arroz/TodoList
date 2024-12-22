@@ -1,24 +1,37 @@
 'use client';
 
+import { deleteTodoAction } from '@/actions/todo-action';
+import { Button } from '@/components/ui-shared/Button';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
-import { ArrowBigRightDashIcon } from 'lucide-react';
+import useTodosStore from '@/context/TodosContext';
+import { ArrowBigRightDashIcon, Trash2 } from 'lucide-react';
 
-export default function TodoDetailsHeader() {
+export default function TodoDetailsHeader({ todoId }: { todoId: number }) {
 	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { setSelectedTodo } = useSelectedTodoStore();
+	const { deleteTodo } = useTodosStore();
 
 	const handleCloseRightSidebar = () => {
 		closeTodoDetailsPanel();
 		setSelectedTodo(null);
 	};
+
+	const handleDeleteClick = async () => {
+		await deleteTodoAction(todoId);
+		deleteTodo(todoId);
+		closeTodoDetailsPanel();
+		setSelectedTodo(null);
+	};
 	return (
-		<div className="flex items-center py-6 border-b border-slate-300">
+		<div className="flex items-center justify-between py-6 border-b border-slate-300">
 			<button onClick={handleCloseRightSidebar} aria-label="Close Todo Menu">
 				<ArrowBigRightDashIcon />
 			</button>
 			<p className="flex-1 text-xl font-medium text-center px-6">Details</p>
-			<div className="flex-none w-[24px]"></div>
+			<Button onClick={handleDeleteClick} ariaLabel="Delete Todo">
+				<Trash2 size={18} />
+			</Button>
 		</div>
 	);
 }
