@@ -8,9 +8,10 @@ import 'react-datetime/css/react-datetime.css';
 interface DueDateInputProps {
 	dueDate: Date | undefined;
 	setDueDate: (newDueDate: Date | undefined) => void;
+	defaultEmptyText?: boolean;
 }
 
-export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
+export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = false }: DueDateInputProps) {
 	const [isSelectionMenuOpen, setIsSelectionMenuOpen] = useState(false);
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 	const [isCalendarOpen, setIsCalendarOpen] = useState(false);
@@ -91,9 +92,21 @@ export default function DatePicker({ dueDate, setDueDate }: DueDateInputProps) {
 					</Button>
 				</div>
 			) : (
-				<Button ariaLabel="Add Due Date" onClick={() => setIsSelectionMenuOpen(prev => !prev)}>
-					<CalendarPlus size={20} />
-				</Button>
+				<div className="flex items-center gap-1">
+					<Button ariaLabel="Add Due Date" onClick={() => setIsSelectionMenuOpen(prev => !prev)}>
+						<CalendarPlus size={20} />
+					</Button>
+					{defaultEmptyText && (
+						<>
+							<Button ariaLabel="Due Date" onClick={() => setIsCalendarOpen(prev => !prev)}>
+								<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
+							</Button>
+							<Button ariaLabel="Due Date" onClick={() => setIsTimeOpen(prev => !prev)}>
+								<p>{dueDate ? format(dueDate, 'hh:mm a') : 'HH:MM a'}</p>
+							</Button>
+						</>
+					)}
+				</div>
 			)}
 
 			<div
