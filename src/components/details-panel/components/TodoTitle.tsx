@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function TodoTitle() {
-	const { selectedTodo, updateSelectedTodoTitle } = useSelectedTodoStore();
+	const { selectedTodo } = useSelectedTodoStore();
 	const { register, handleSubmit, reset } = useForm<{ title: string }>({
 		defaultValues: { title: selectedTodo?.task_text || '' },
 	});
@@ -21,7 +21,6 @@ export default function TodoTitle() {
 		if (!data.title.trim()) return;
 		if (selectedTodo.task_text !== data.title) {
 			await updateTodoTitleAction(selectedTodo.id, data.title);
-			updateSelectedTodoTitle(data.title);
 			updateTodoTitle(selectedTodo.id, data.title);
 		}
 		setIsEditing(false);
