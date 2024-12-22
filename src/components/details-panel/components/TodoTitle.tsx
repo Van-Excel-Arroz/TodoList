@@ -7,18 +7,14 @@ import useTodosStore from '@/context/TodosContext';
 import { Save } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
-interface TodoTitleProps {
-	title: string;
-}
-
-export default function TodoTitle({ title }: TodoTitleProps) {
+export default function TodoTitle() {
 	const { selectedTodo, updateSelectedTodoTitle } = useSelectedTodoStore();
 	const { register, handleSubmit, reset } = useForm<{ title: string }>();
 	const { updateTodoTitle } = useTodosStore();
 
 	const onSubmit = async (data: { title: string }) => {
 		if (!selectedTodo) return;
-		if (title !== data.title) {
+		if (selectedTodo.task_text !== data.title) {
 			await updateTodoTitleAction(selectedTodo.id, data.title);
 			updateSelectedTodoTitle(data.title);
 			updateTodoTitle(selectedTodo.id, data.title);
@@ -38,7 +34,7 @@ export default function TodoTitle({ title }: TodoTitleProps) {
 				{...register('title')}
 				className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
 				autoFocus
-				placeholder={title}
+				placeholder={selectedTodo?.task_text}
 				defaultValue={selectedTodo?.task_text}
 			/>
 		</form>

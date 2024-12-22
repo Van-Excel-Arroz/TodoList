@@ -45,7 +45,7 @@ export default function TodoDetailsPanel() {
 						<CheckBox isChecked={selectedTodo?.is_completed ?? false} handleOnClick={handleCheckboxChange} />
 						<p>{selectedTodo?.is_completed ? 'Completed' : 'Mark as completed'}</p>
 					</div>
-					<TodoTitle title={selectedTodo?.task_text ?? ''} />
+					<TodoTitle />
 					<TodoDueDate dueDatetime={selectedTodo?.due_datetime ?? ''} todoId={selectedTodo?.id ?? 0} />
 					<TodoCategories categories={selectedTodo?.categories ?? []} todoId={selectedTodo?.id ?? 0} />
 					<TodoDetailsFooter creationDate={selectedTodo?.creation_date ?? ''} />
