@@ -34,14 +34,13 @@ export default function TodoTitle() {
 	};
 
 	const watchedTitle = watch('title');
+	useEffect(() => {
+		setIsEditing(watchedTitle !== selectedTodo?.task_text);
+	}, [watchedTitle, selectedTodo?.task_text]);
 
 	useEffect(() => {
 		setValue('title', selectedTodo?.task_text || '');
 	}, [selectedTodo?.task_text, setValue]);
-
-	useEffect(() => {
-		setIsEditing(watchedTitle !== selectedTodo?.task_text);
-	}, [watchedTitle, selectedTodo?.task_text]);
 
 	return (
 		<div onBlur={handleInputBlur} tabIndex={-1}>
