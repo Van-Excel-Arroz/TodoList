@@ -10,6 +10,7 @@ interface TodosContextState {
 	deleteCategory: (todoId: number, categoryId: number) => void;
 	toggleTodoCompletion: (todoId: number) => void;
 	updateTodoTitle: (todoId: number, newTitle: string) => void;
+	updateDueDate: (todoId: number, newDueDate: string) => void;
 }
 
 const useTodosStore = create<TodosContextState>()((set: any) => ({
@@ -44,6 +45,10 @@ const useTodosStore = create<TodosContextState>()((set: any) => ({
 	updateTodoTitle: (todoId: number, newTitle: string) =>
 		set((state: TodosContextState) => ({
 			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, task_text: newTitle } : todo)),
+		})),
+	updateDueDate: (todoId: number, newDueDate: string) =>
+		set((state: TodosContextState) => ({
+			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, due_datetime: newDueDate } : todo)),
 		})),
 }));
 
