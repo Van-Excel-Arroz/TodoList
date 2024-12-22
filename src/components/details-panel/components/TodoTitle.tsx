@@ -34,22 +34,22 @@ export default function TodoTitle() {
 	}, [selectedTodo?.task_text]);
 
 	return (
-		<form className="flex items-start gap-2 flex-col w-full" onSubmit={handleSubmit(onSubmit)}>
-			<div className="flex items-center justify-between w-full">
-				<p className="text-slate-600">Title</p>
-				<Button type="submit" ariaLabel="Save New Todo Title">
-					<Save size={18} />
-				</Button>
-			</div>
-			<textarea
-				{...register('title')}
-				className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
-				autoFocus
-				onBlur={handleInputBlur}
-				tabIndex={-1}
-				placeholder={selectedTodo?.task_text}
-				defaultValue={selectedTodo?.task_text}
-			/>
-		</form>
+		<div onBlur={handleInputBlur} tabIndex={-1}>
+			<form className="flex items-start gap-2 flex-col w-full" onSubmit={handleSubmit(onSubmit)}>
+				<div className="flex items-center justify-between w-full">
+					<p className="text-slate-600">Title</p>
+					<Button type="submit" ariaLabel="Save New Todo Title">
+						<Save size={18} />
+					</Button>
+				</div>
+				<textarea
+					{...register('title')}
+					className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
+					autoFocus
+					placeholder={selectedTodo?.task_text}
+					defaultValue={selectedTodo?.task_text}
+				/>
+			</form>
+		</div>
 	);
 }
