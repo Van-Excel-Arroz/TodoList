@@ -43,7 +43,7 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 			onBlur={handleInputBlur}
 			tabIndex={-1}
 		>
-			<div className="flex items-center gap-4">
+			<div className="flex items-center gap-4 w-full">
 				<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
 				{isEditing ? (
 					<EditTodoTitleForm

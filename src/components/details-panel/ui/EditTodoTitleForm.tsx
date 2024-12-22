@@ -31,16 +31,16 @@ export default function EditTodoTitleForm({
 	};
 
 	return (
-		<form className="flex items-center" onSubmit={handleSubmit(onSubmit)}>
-			<textarea
+		<form className="flex items-center justify-between w-full" onSubmit={handleSubmit(onSubmit)}>
+			<input
 				{...register('title')}
-				className="bg-transparent focus:outline-none w-11/12 resize-none break-words"
+				type="text"
+				className="bg-transparent focus:outline-none w-full resize-none break-words"
 				autoFocus
 				placeholder={title}
 				defaultValue={title}
-				rows={3} // Set default visible rows
 			/>
-			<div className="flex">
+			<div className="flex gap-1">
 				<Button type="submit" ariaLabel="Save New Todo Title">
 					<Check size={18} />
 				</Button>
