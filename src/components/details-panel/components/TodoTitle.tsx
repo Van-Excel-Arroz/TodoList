@@ -55,7 +55,7 @@ export default function TodoTitle({ title, isCompleted }: TodoTitleProps) {
 						updateSelectedTodoTitle={updateSelectedTodoTitle}
 					/>
 				) : (
-					<div className="flex flex-wrap overflow-hidden">
+					<div className="flex items-center overflow-hidden">
 						<span className="text-wrap break-words inline-block">{title}</span>
 						{isEditing ? null : (
 							<Button onClick={() => handleEditClick(true)} ariaLabel="Edit Todo Title">
