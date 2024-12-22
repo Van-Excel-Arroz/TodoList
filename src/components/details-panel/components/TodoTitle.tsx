@@ -26,12 +26,13 @@ export default function TodoTitle({ title }: TodoTitleProps) {
 	};
 	return (
 		<div className="flex items-start gap-2 flex-col w-full">
-			<p className="text-slate-600">Title</p>
-			<div className="flex gap-1">
+			<div className="flex items-center justify-between w-full">
+				<p className="text-slate-600">Title</p>
 				<Button type="submit" ariaLabel="Save New Todo Title">
 					<Save size={18} />
 				</Button>
 			</div>
+
 			<form className="flex items-center justify-between w-full" onSubmit={handleSubmit(onSubmit)}>
 				<textarea
 					{...register('title')}
