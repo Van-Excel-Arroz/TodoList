@@ -13,7 +13,7 @@ interface TodoDueDateProps {
 
 export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 	const { updateSelectedTodoDueDate } = useSelectedTodoStore();
-	const { updateDueDate } = useTodosStore();
+	const { updateDueDate, deleteDueDate } = useTodosStore();
 	const initialDate = dueDatetime ? new Date(dueDatetime) : undefined;
 
 	const handleOnSubmit = () => {
@@ -33,6 +33,7 @@ export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 					type="submit"
 					onClick={() => {
 						updateSelectedTodoDueDate(undefined);
+						deleteDueDate(todoId);
 					}}
 				>
 					<Trash2 size={18} />
