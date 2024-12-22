@@ -1,7 +1,7 @@
 'use client';
 
-import DatePicker from '@/components/todo-list/ui/DatePicker';
 import { Button } from '@/components/ui-shared/Button';
+import DatePicker from '@/components/ui-shared/DatePicker';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 import { Save, Trash2 } from 'lucide-react';

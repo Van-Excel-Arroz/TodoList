@@ -9,7 +9,7 @@ import { Button } from '@/components/ui-shared/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
 import TodoInput from '../ui/TodoInput';
-import DatePicker from '../ui/DatePicker';
+import DatePicker from '../../ui-shared/DatePicker';
 
 interface TodoFormData {
 	todo?: string;
