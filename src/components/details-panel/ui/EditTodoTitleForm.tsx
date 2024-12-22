@@ -32,10 +32,9 @@ export default function EditTodoTitleForm({
 
 	return (
 		<form className="flex items-center justify-between w-full" onSubmit={handleSubmit(onSubmit)}>
-			<input
+			<textarea
 				{...register('title')}
-				type="text"
-				className="bg-transparent focus:outline-none resize-none break-words"
+				className="bg-transparent focus:outline-none resize-y break-words"
 				autoFocus
 				placeholder={title}
 				defaultValue={title}
