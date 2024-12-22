@@ -19,7 +19,7 @@ export default function TodoListsHeader() {
 	}, []);
 
 	return (
-		<div className="flex justify-between py-4 border-b border-slate-300">
+		<div className="flex items-center justify-between py-4 border-b border-slate-300">
 			<div className="flex flex-col">
 				<div className="text-xl flex justify-start font-semibold">{format(currentTime, `h:mm a`)} </div>
 				<div className="text-sm">{format(currentTime, `EEEE, MMMM d`)}</div>

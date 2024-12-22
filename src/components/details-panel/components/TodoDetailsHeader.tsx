@@ -25,9 +25,9 @@ export default function TodoDetailsHeader({ todoId }: { todoId: number }) {
 	};
 	return (
 		<div className="flex items-center justify-between py-6 border-b border-slate-300">
-			<button onClick={handleCloseRightSidebar} aria-label="Close Todo Menu">
-				<ArrowBigRightDashIcon />
-			</button>
+			<Button onClick={handleCloseRightSidebar} ariaLabel="Close Todo Menu">
+				<ArrowBigRightDashIcon size={22} />
+			</Button>
 			<p className="flex-1 text-xl font-medium text-center px-6">Details</p>
 			<Button onClick={handleDeleteClick} ariaLabel="Delete Todo">
 				<Trash2 size={18} />
