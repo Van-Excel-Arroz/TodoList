@@ -38,6 +38,14 @@ export default function EditTodoTitleForm({
 				placeholder={title}
 				defaultValue={title}
 			/>
+			{/* <div className="flex gap-1">
+				<Button type="submit" ariaLabel="Save New Todo Title">
+					<Check size={18} />
+				</Button>
+				<Button ariaLabel="Cancel Editing Todo Title">
+					<X size={18} />
+				</Button>
+			</div> */}
 		</form>
 	);
 }
