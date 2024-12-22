@@ -24,7 +24,7 @@ export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 	return (
 		<div className="flex items-center justify-between gap-4 bg-slate-100 rounded-md px-4 py-2 border border-slate-300">
 			<DatePicker dueDate={initialDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
-			<Button ariaLabel="Save Due Date" type="submit">
+			<Button ariaLabel="Save Due Date" type="submit" onClick={() => handleOnSubmit()}>
 				<Save size={18} />
 			</Button>
 		</div>
