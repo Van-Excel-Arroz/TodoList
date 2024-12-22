@@ -15,6 +15,7 @@ export default function TodoTitle({ title }: TodoTitleProps) {
 	const { selectedTodo, updateSelectedTodoTitle } = useSelectedTodoStore();
 	const { register, handleSubmit, reset } = useForm<{ title: string }>();
 	const { updateTodoTitle } = useTodosStore();
+
 	const onSubmit = async (data: { title: string }) => {
 		if (!selectedTodo) return;
 		if (title !== data.title) {
@@ -24,6 +25,7 @@ export default function TodoTitle({ title }: TodoTitleProps) {
 		}
 		reset();
 	};
+
 	return (
 		<form className="flex items-start gap-2 flex-col w-full" onSubmit={handleSubmit(onSubmit)}>
 			<div className="flex items-center justify-between w-full">
@@ -37,7 +39,7 @@ export default function TodoTitle({ title }: TodoTitleProps) {
 				className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
 				autoFocus
 				placeholder={title}
-				defaultValue={title}
+				defaultValue={selectedTodo?.task_text}
 			/>
 		</form>
 	);
