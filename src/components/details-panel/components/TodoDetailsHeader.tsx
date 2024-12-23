@@ -28,7 +28,7 @@ export default function TodoDetailsHeader({ todoId }: { todoId: number }) {
 			<Button onClick={handleCloseRightSidebar} ariaLabel="Close Todo Menu">
 				<ArrowBigRightDashIcon size={22} />
 			</Button>
-			<p className="flex-1 text-xl font-medium text-center px-6">Details</p>
+			<p className="flex-1 text-xl font-medium text-center px-6">Task Details</p>
 			<Button onClick={handleDeleteClick} ariaLabel="Delete Todo">
 				<Trash2 size={18} />
 			</Button>
