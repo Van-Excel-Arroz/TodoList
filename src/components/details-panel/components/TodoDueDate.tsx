@@ -22,22 +22,27 @@ export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 	};
 
 	return (
-		<div className="flex items-center justify-between gap-4 bg-slate-100 rounded-md px-4 py-2 border border-slate-300">
-			<DatePicker dueDate={initialDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
-			<div className="flex items-center gap-1">
-				<Button ariaLabel="Save Due Date" type="submit" onClick={() => handleOnSubmit()}>
-					<Save size={18} />
-				</Button>
-				<Button
-					ariaLabel="Cancel Due Date Edit"
-					type="submit"
-					onClick={() => {
-						updateSelectedTodoDueDate(undefined);
-						deleteDueDate(todoId);
-					}}
-				>
-					<Trash2 size={18} />
-				</Button>
+		<div className="flex flex-col">
+			<div className="flex items-center justify-between">
+				<p className="py-2 text-slate-600">Due Date</p>
+				<div className="flex items-center gap-1">
+					<Button ariaLabel="Save Due Date" type="submit" onClick={() => handleOnSubmit()}>
+						<Save size={18} />
+					</Button>
+					<Button
+						ariaLabel="Cancel Due Date Edit"
+						type="submit"
+						onClick={() => {
+							updateSelectedTodoDueDate(undefined);
+							deleteDueDate(todoId);
+						}}
+					>
+						<Trash2 size={18} />
+					</Button>
+				</div>
+			</div>
+			<div className="flex items-center justify-between gap-4 rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-400">
+				<DatePicker dueDate={initialDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
 			</div>
 		</div>
 	);
