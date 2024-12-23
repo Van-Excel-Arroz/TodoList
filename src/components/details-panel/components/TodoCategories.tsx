@@ -1,14 +1,12 @@
 'use client';
 
-import { Plus, Tag } from 'lucide-react';
+import { Tag } from 'lucide-react';
 import { Category } from '@/types';
-import { useEffect, useState } from 'react';
 import { addTodoCategoryAction, deleteTodoCategoryAction } from '@/actions/category-action';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 import CategoryForm from '../ui/CategoryForm';
 import CategoryTags from '../ui/CategoryTags';
-import { Button } from '@/components/ui-shared/Button';
 
 interface TodoCategoriesProps {
 	categories: Category[];
