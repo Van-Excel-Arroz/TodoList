@@ -10,7 +10,7 @@ export default function CategoryTags({ category, onRemove }: CategoryTagProps) {
 	return (
 		<span
 			key={category.id}
-			className="rounded-md flex items-center gap-2 px-2 py-1"
+			className="rounded-md flex items-center gap-1 px-2 py-1 text-sm"
 			style={{
 				color: category.hex_color,
 				backgroundColor: `${category.hex_color}20`,
@@ -18,11 +18,14 @@ export default function CategoryTags({ category, onRemove }: CategoryTagProps) {
 		>
 			<p>{category.category_title}</p>
 			<button
-				className="rounded-md p-1 hover:bg-white hover:outline hover:outline-1 active:bg-white "
+				className="rounded-md hover:outline hover:outline-1 active:bg-white"
 				aria-label="Remove Category"
 				onClick={() => onRemove(category.id)}
+				style={{
+					padding: 2,
+				}}
 			>
-				<X size={16} />
+				<X size={12} />
 			</button>
 		</span>
 	);
