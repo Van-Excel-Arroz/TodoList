@@ -9,7 +9,7 @@ export default function TodoInput({ register }: { register: any }) {
 			placeholder="Add a task... #Category"
 			autoComplete="off"
 			autoFocus
-			className="pt-1 px-1 w-full focus:outline-none"
+			className="pt-1 px-1 w-full focus:outline-none "
 		/>
 	);
 }
