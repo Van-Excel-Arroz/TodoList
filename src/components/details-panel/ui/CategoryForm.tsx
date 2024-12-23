@@ -1,5 +1,7 @@
+'use client';
+
 import { Button } from '@/components/ui-shared/Button';
-import { Plus, SendHorizontal, X } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
 interface CategoryFormProps {
