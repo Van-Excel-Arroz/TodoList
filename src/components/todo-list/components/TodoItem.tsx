@@ -57,13 +57,15 @@ function TodoItem({ todo }: { todo: Todo }) {
 		>
 			<div className="flex items-center">
 				<div className="w-15 h-5 flex items-center">
-					<GripVertical className="cursor-all-scroll mr-3" strokeWidth={1} />
+					<GripVertical className="cursor-all-scroll mr-3" strokeWidth={1} size={20} />
 					<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 				</div>
 
-				<div className="flex flex-col ml-5 w-9/12 ">
+				<div className="flex flex-col ml-5 w-full ">
 					<p
-						className={` text-nowrap text-ellipsis overflow-hidden ${todo.is_completed && 'line-through text-slate-700'}
+						className={`w-[90%] text-nowrap text-ellipsis overflow-hidden ${
+							todo.is_completed && 'line-through text-slate-700'
+						}
 			}`}
 					>
 						{todo.task_text}
