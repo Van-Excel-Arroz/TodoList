@@ -83,7 +83,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 
 				{/* <DeleteTodoButton handleDeleteClick={handleDeleteClick} /> */}
 				<div className="absolute right-5">
-					<Star strokeWidth={1} />
+					<Star strokeWidth={1} size={20} />
 				</div>
 			</div>
 		</div>
