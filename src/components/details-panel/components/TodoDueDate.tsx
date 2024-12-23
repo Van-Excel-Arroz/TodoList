@@ -1,5 +1,6 @@
 'use client';
 
+import { updateTodoDueDateAction } from '@/actions/todo-action';
 import { Button } from '@/components/ui-shared/Button';
 import DatePicker from '@/components/ui-shared/DatePicker';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
@@ -22,6 +23,7 @@ export default function TodoDueDate({ todoId }: TodoDueDateProps) {
 	const handleOnSubmit = () => {
 		if (!initialDate) return;
 		updateDueDate(todoId, initialDate.toISOString());
+		updateTodoDueDateAction(todoId, initialDate.toISOString());
 		setIsChanged(false);
 	};
 
