@@ -35,13 +35,13 @@ export default function TodoDetailsPanel() {
 				}}
 			/>
 			<div
-				className={`fixed lg:relative right-0 top-0 bg-white pb-9 border-l border-slate-300 shadow-xl lg:h-[calc(100vh-2.5rem)]  h-screen transition-[width] duration-200 ease-in-out overflow-hidden z-50 backdrop-blur-sm bg-opacity-80 ${
+				className={`overflow-y-scroll fixed lg:relative right-0 top-0 bg-white border-l border-slate-300 lg:h-[calc(100vh-2.5rem)]  h-screen transition-[width] duration-200 ease-in-out overflow-hidden z-50 backdrop-blur-sm bg-opacity-80 ${
 					isTodoDetailsPanelOpen ? 'w-96' : 'w-0'
 				}`}
 			>
 				<div className="flex flex-col px-6 gap-4">
 					<TodoDetailsHeader todoId={selectedTodo?.id ?? 0} />
-					<div className="flex items-center gap-2">
+					<div className="flex items-center gap-2 mb-96">
 						<CheckBox isChecked={selectedTodo?.is_completed ?? false} handleOnClick={handleCheckboxChange} />
 						<p>{selectedTodo?.is_completed ? 'Completed' : 'Mark as completed'}</p>
 					</div>
