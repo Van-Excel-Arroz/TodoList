@@ -104,6 +104,9 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 							<Button ariaLabel="Due Date" onClick={() => setIsCalendarOpen(prev => !prev)}>
 								<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
 							</Button>
+							<Button ariaLabel="Edit Time">
+								<Clock3 size={20} />
+							</Button>
 							<Button ariaLabel="Due Date" onClick={() => setIsTimeOpen(prev => !prev)}>
 								<p>{dueDate ? format(dueDate, 'hh:mm a') : 'HH:MM a'}</p>
 							</Button>
