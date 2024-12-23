@@ -22,7 +22,12 @@ export default function CategoryForm({ onSubmit }: CategoryFormProps) {
 
 	return (
 		<form onSubmit={handleSubmit(handleFormSubmit)} className="flex items-center gap-2 justify-between w-full">
-			<input type="color" className="w-10 h-7 cursor-pointer" defaultValue="#000000" {...register('hex_color')} />
+			<input
+				type="color"
+				className="w-10 h-8 cursor-pointer rounded-full"
+				defaultValue="#000000"
+				{...register('hex_color')}
+			/>
 			<input
 				type="text"
 				autoFocus
