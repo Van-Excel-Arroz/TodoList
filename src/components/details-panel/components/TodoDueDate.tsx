@@ -54,7 +54,7 @@ export default function TodoDueDate({ todoId }: TodoDueDateProps) {
 	return (
 		<div className="flex flex-col">
 			<div className="flex items-center justify-between pb-1">
-				<p className="text-slate-600">Due Date</p>
+				<p className="text-slate-600 py-1">Due Date</p>
 				<div className="flex items-center gap-1">
 					{isChanged && (
 						<>
@@ -68,7 +68,7 @@ export default function TodoDueDate({ todoId }: TodoDueDateProps) {
 					)}
 					{selectedTodo?.due_datetime && !isChanged && (
 						<Button ariaLabel="Delete Due Date" type="submit" onClick={() => handleDeleteDueDate()}>
-							<Trash2 size={18} />
+							<p>Clear</p>
 						</Button>
 					)}
 				</div>
