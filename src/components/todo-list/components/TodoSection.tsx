@@ -38,7 +38,10 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 						<ChevronDown size={20} />
 					</div>
 				</Button>
-				<p className="font-semibold">{title}</p>
+				<div className="flex items-center w-full">
+					<p className="font-semibold mr-3 text-nowrap">{title}</p>
+					<hr className="border border-slate-200 w-full" />
+				</div>
 			</div>
 
 			<motion.div
