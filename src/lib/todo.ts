@@ -163,3 +163,13 @@ export async function updateTodoTitle(todoId: number, title: string): Promise<bo
 		return false;
 	}
 }
+
+export async function updateTodoDueDate(todoId: number, dueDate: string): Promise<boolean> {
+	try {
+		await query('UPDATE todos SET due_datetime = $1 WHERE id = $2', [dueDate, todoId]);
+		return true;
+	} catch (error) {
+		console.error('Error updating todo due date in the database', error);
+		return false;
+	}
+}

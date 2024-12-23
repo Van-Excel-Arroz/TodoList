@@ -4,7 +4,7 @@ import { Button } from '@/components/ui-shared/Button';
 import DatePicker from '@/components/ui-shared/DatePicker';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
-import { Save, Trash2, Undo } from 'lucide-react';
+import { Save, Undo } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 interface TodoDueDateProps {
