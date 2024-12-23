@@ -66,7 +66,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col items-start rounded-lg outline-2 outline-dashed outline-slate-300  hover:outline-slate-400 px-4"
+			className="bg-white flex flex-col items-start rounded-lg outline-2 outline-dashed outline-slate-300  hover:outline-slate-400 px-4"
 		>
 			<TodoInput register={register} />
 			<div className="flex items-center justify-between w-full pb-1">
