@@ -11,7 +11,7 @@ import CheckBox from '@/components/ui-shared/CheckBox';
 import CategoryTags from '../ui/CategoryTags';
 import DueDate from '../ui/DueDate';
 import DeleteTodoButton from '../ui/DeleteTodoButton';
-import { GripVertical } from 'lucide-react';
+import { GripVertical, Star } from 'lucide-react';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
@@ -78,7 +78,8 @@ function TodoItem({ todo }: { todo: Todo }) {
 					</div>
 				</div>
 
-				<DeleteTodoButton handleDeleteClick={handleDeleteClick} />
+				{/* <DeleteTodoButton handleDeleteClick={handleDeleteClick} /> */}
+				<Star strokeWidth={1} />
 			</div>
 		</div>
 	);
