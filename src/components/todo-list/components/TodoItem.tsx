@@ -56,7 +56,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 			onClick={handleTodoClick}
 		>
 			<div className="flex items-center">
-				<GripVertical className="mr-3 cursor-all-scroll" />
+				<GripVertical className="mr-3 cursor-all-scroll" strokeWidth={1} />
 				<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 				<div className="flex flex-col ml-5 w-full">
 					<p
