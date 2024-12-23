@@ -175,7 +175,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 
 			<div
 				ref={customTimePickerRef}
-				className={`absolute top-10 left-16 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
+				className={`absolute top-10 left-16 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-28 bg-white ${notch} ${
 					isTimeOpen ? 'block' : 'hidden'
 				}`}
 			>
