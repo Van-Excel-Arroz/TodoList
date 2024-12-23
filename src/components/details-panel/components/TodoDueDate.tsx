@@ -38,7 +38,7 @@ export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 	return (
 		<div className="flex flex-col">
 			<div className="flex items-center justify-between">
-				<p className="py-2 text-slate-600">Due Date</p>
+				<p className="pb-2 text-slate-600">Due Date</p>
 
 				<div className="flex items-center gap-1">
 					{isChanged && (

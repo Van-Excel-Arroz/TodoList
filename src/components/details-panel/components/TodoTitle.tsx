@@ -32,21 +32,21 @@ export default function TodoTitle() {
 
 	const handleInputBlur = (e: React.FocusEvent<HTMLElement>) => {
 		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-			reset(); // Resets the form to the initial value
+			reset();
 			setIsEditing(false);
 		}
 	};
 
 	useEffect(() => {
-		reset({ title: selectedTodo?.task_text || '' }); // Update form value when selectedTodo changes
-		setIsEditing(false); // Reset editing state when a new todo is selected
+		reset({ title: selectedTodo?.task_text || '' });
+		setIsEditing(false);
 	}, [selectedTodo, reset]);
 
 	return (
 		<div onBlur={handleInputBlur} tabIndex={-1}>
 			<form className="flex items-start flex-col w-full focus:outline-none" onSubmit={handleSubmit(onSubmit)}>
 				<div className="flex items-center justify-between w-full">
-					<p className="text-slate-600 py-2">Title</p>
+					<p className="text-slate-600 pb-2">Title</p>
 					{isEditing && (
 						<Button type="submit" ariaLabel="Save New Todo Title">
 							<Save size={18} />
