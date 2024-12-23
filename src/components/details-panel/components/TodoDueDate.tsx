@@ -33,7 +33,7 @@ export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 
 	const handleUndoDueDate = () => {
 		if (currentSavedDueDate) {
-			updateSelectedTodoDueDate(new Date(dueDatetime));
+			updateSelectedTodoDueDate(new Date(selectedTodo?.due_datetime ?? ''));
 		} else {
 			updateSelectedTodoDueDate(undefined);
 		}
