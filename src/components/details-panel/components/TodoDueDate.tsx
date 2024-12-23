@@ -13,7 +13,7 @@ interface TodoDueDateProps {
 }
 
 export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
-	const { updateSelectedTodoDueDate } = useSelectedTodoStore();
+	const { updateSelectedTodoDueDate, selectedTodo } = useSelectedTodoStore();
 	const { updateDueDate, deleteDueDate } = useTodosStore();
 	const [isChanged, setIsChanged] = useState(false);
 	const initialDate = dueDatetime ? new Date(dueDatetime) : undefined;
@@ -23,8 +23,10 @@ export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 		updateDueDate(todoId, initialDate.toISOString());
 	};
 	useEffect(() => {
-		setIsChanged(dueDatetime !== initialDate?.toString());
-	}, [initialDate]);
+		const selectedDate = selectedTodo?.due_datetime;
+		const hasChanged = selectedDate === dueDatetime;
+		setIsChanged(hasChanged);
+	}, [selectedTodo?.due_datetime, dueDatetime]);
 
 	return (
 		<div className="flex flex-col">
