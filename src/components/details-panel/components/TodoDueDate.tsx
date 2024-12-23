@@ -37,15 +37,12 @@ export default function TodoDueDate({ todoId }: TodoDueDateProps) {
 		} else {
 			updateSelectedTodoDueDate(undefined);
 		}
+		setIsChanged(false);
 	};
 
 	useEffect(() => {
-		if (!currentSavedDueDate) {
-			setIsChanged(false);
-		} else {
-			const hasChanged = dueDatetime !== currentSavedDueDate;
-			setIsChanged(hasChanged);
-		}
+		const hasChanged = dueDatetime !== currentSavedDueDate;
+		setIsChanged(hasChanged);
 	}, [selectedTodo?.due_datetime, dueDatetime]);
 
 	return (
