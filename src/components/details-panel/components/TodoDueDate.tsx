@@ -22,6 +22,11 @@ export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 		if (!initialDate) return;
 		updateDueDate(todoId, initialDate.toISOString());
 	};
+
+	const handleClearDueDate = () => {
+		updateSelectedTodoDueDate(undefined);
+		deleteDueDate(todoId);
+	};
 	useEffect(() => {
 		const selectedDate = selectedTodo?.due_datetime;
 		const hasChanged = selectedDate === dueDatetime;
@@ -32,23 +37,19 @@ export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 		<div className="flex flex-col">
 			<div className="flex items-center justify-between">
 				<p className="py-2 text-slate-600">Due Date</p>
-				{isChanged && (
-					<div className="flex items-center gap-1">
+
+				<div className="flex items-center gap-1">
+					{isChanged && (
 						<Button ariaLabel="Save Due Date" type="submit" onClick={() => handleOnSubmit()}>
 							<Save size={18} />
 						</Button>
-						<Button
-							ariaLabel="Cancel Due Date Edit"
-							type="submit"
-							onClick={() => {
-								updateSelectedTodoDueDate(undefined);
-								deleteDueDate(todoId);
-							}}
-						>
+					)}
+					{selectedTodo?.due_datetime && (
+						<Button ariaLabel="Cancel Due Date Edit" type="submit" onClick={() => handleClearDueDate()}>
 							<Trash2 size={18} />
 						</Button>
-					</div>
-				)}
+					)}
+				</div>
 			</div>
 			<div className="flex items-center justify-between gap-4 rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-400">
 				<DatePicker dueDate={initialDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
