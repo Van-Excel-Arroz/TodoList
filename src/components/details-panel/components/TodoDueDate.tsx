@@ -4,7 +4,7 @@ import { Button } from '@/components/ui-shared/Button';
 import DatePicker from '@/components/ui-shared/DatePicker';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
-import { Save, Trash2 } from 'lucide-react';
+import { Save, Trash2, Undo } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 interface TodoDueDateProps {
@@ -26,10 +26,19 @@ export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 		setIsChanged(false);
 	};
 
-	const handleClearDueDate = () => {
+	const handleDeleteDueDate = () => {
 		updateSelectedTodoDueDate(undefined);
 		deleteDueDate(todoId);
 	};
+
+	const handleUndoDueDate = () => {
+		if (currentSavedDueDate) {
+			updateSelectedTodoDueDate(new Date(dueDatetime));
+		} else {
+			updateSelectedTodoDueDate(undefined);
+		}
+	};
+
 	useEffect(() => {
 		if (currentSavedDueDate) {
 			const hasChanged = dueDatetime !== currentSavedDueDate;
@@ -44,12 +53,17 @@ export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 
 				<div className="flex items-center gap-1">
 					{isChanged && (
-						<Button ariaLabel="Save Due Date" type="submit" onClick={() => handleOnSubmit()}>
-							<Save size={18} />
-						</Button>
+						<>
+							<Button ariaLabel="Save Due Date" type="submit" onClick={() => handleOnSubmit()}>
+								<Save size={18} />
+							</Button>
+							<Button ariaLabel="Reset Due Date" type="submit" onClick={() => handleUndoDueDate()}>
+								<Undo size={18} />
+							</Button>
+						</>
 					)}
-					{selectedTodo?.due_datetime && (
-						<Button ariaLabel="Cancel Due Date Edit" type="submit" onClick={() => handleClearDueDate()}>
+					{selectedTodo?.due_datetime && !isChanged && (
+						<Button ariaLabel="Delete Due Date" type="submit" onClick={() => handleDeleteDueDate()}>
 							<Trash2 size={18} />
 						</Button>
 					)}
