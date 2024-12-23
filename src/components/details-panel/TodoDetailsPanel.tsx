@@ -46,7 +46,7 @@ export default function TodoDetailsPanel() {
 						<p>{selectedTodo?.is_completed ? 'Completed' : 'Mark as completed'}</p>
 					</div>
 					<TodoTitle />
-					<TodoDueDate dueDatetime={selectedTodo?.due_datetime ?? ''} todoId={selectedTodo?.id ?? 0} />
+					<TodoDueDate todoId={selectedTodo?.id ?? 0} />
 					<TodoCategories categories={selectedTodo?.categories ?? []} todoId={selectedTodo?.id ?? 0} />
 					<TodoDetailsFooter creationDate={selectedTodo?.creation_date ?? ''} />
 				</div>
