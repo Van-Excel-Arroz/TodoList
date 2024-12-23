@@ -14,13 +14,16 @@ interface TodoDueDateProps {
 
 export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 	const { updateSelectedTodoDueDate, selectedTodo } = useSelectedTodoStore();
-	const { updateDueDate, deleteDueDate } = useTodosStore();
+	const { updateDueDate, deleteDueDate, todos } = useTodosStore();
 	const [isChanged, setIsChanged] = useState(false);
 	const initialDate = dueDatetime ? new Date(dueDatetime) : undefined;
+
+	const currentSavedDueDate = todos.filter(todo => todo.id === todoId);
 
 	const handleOnSubmit = () => {
 		if (!initialDate) return;
 		updateDueDate(todoId, initialDate.toISOString());
+		setIsChanged(false);
 	};
 
 	const handleClearDueDate = () => {
@@ -28,8 +31,7 @@ export default function TodoDueDate({ dueDatetime, todoId }: TodoDueDateProps) {
 		deleteDueDate(todoId);
 	};
 	useEffect(() => {
-		const selectedDate = selectedTodo?.due_datetime;
-		const hasChanged = selectedDate === dueDatetime;
+		const hasChanged = dueDatetime !== currentSavedDueDate[0]?.due_datetime;
 		setIsChanged(hasChanged);
 	}, [selectedTodo?.due_datetime, dueDatetime]);
 
