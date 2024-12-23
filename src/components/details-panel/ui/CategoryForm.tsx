@@ -1,10 +1,9 @@
 import { Button } from '@/components/ui-shared/Button';
-import { SendHorizontal, X } from 'lucide-react';
+import { Plus, SendHorizontal, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
 interface CategoryFormProps {
 	onSubmit: (data: CategoryFormInputs) => void;
-	onCancel: () => void;
 }
 
 interface CategoryFormInputs {
@@ -12,7 +11,7 @@ interface CategoryFormInputs {
 	hex_color: string;
 }
 
-export default function CategoryForm({ onSubmit, onCancel }: CategoryFormProps) {
+export default function CategoryForm({ onSubmit }: CategoryFormProps) {
 	const { register, handleSubmit, reset } = useForm<CategoryFormInputs>();
 
 	const handleFormSubmit = (data: CategoryFormInputs) => {
@@ -32,15 +31,9 @@ export default function CategoryForm({ onSubmit, onCancel }: CategoryFormProps) 
 				autoComplete="off"
 				{...register('category_title', { maxLength: 20 })}
 			/>
-
-			<div className="flex items-center gap-1">
-				<Button ariaLabel="Add Category" type="submit">
-					<SendHorizontal size={20} />
-				</Button>
-				<Button onClick={onCancel} ariaLabel="Cancel Adding Category">
-					<X size={20} />
-				</Button>
-			</div>
+			<Button ariaLabel="Add Category" type="submit">
+				<Plus size={20} />
+			</Button>
 		</form>
 	);
 }
