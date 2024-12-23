@@ -11,6 +11,7 @@ import CheckBox from '@/components/ui-shared/CheckBox';
 import CategoryTags from '../ui/CategoryTags';
 import DueDate from '../ui/DueDate';
 import DeleteTodoButton from '../ui/DeleteTodoButton';
+import { GripVertical } from 'lucide-react';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
@@ -55,6 +56,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 			onClick={handleTodoClick}
 		>
 			<div className="flex items-center">
+				<GripVertical className="mr-3 cursor-all-scroll" />
 				<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 				<div className="flex flex-col ml-5 w-full">
 					<p
