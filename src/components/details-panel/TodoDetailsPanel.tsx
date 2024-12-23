@@ -39,15 +39,17 @@ export default function TodoDetailsPanel() {
 					isTodoDetailsPanelOpen ? 'w-96' : 'w-0'
 				}`}
 			>
-				<div className="flex flex-col px-6 gap-4 h-full">
-					<TodoDetailsHeader todoId={selectedTodo?.id ?? 0} />
-					<div className="flex items-center gap-2">
-						<CheckBox isChecked={selectedTodo?.is_completed ?? false} handleOnClick={handleCheckboxChange} />
-						<p>{selectedTodo?.is_completed ? 'Completed' : 'Mark as completed'}</p>
+				<div className="flex flex-col justify-between px-6 h-full">
+					<div className="flex flex-col gap-4">
+						<TodoDetailsHeader todoId={selectedTodo?.id ?? 0} />
+						<div className="flex items-center gap-2">
+							<CheckBox isChecked={selectedTodo?.is_completed ?? false} handleOnClick={handleCheckboxChange} />
+							<p>{selectedTodo?.is_completed ? 'Completed' : 'Mark as completed'}</p>
+						</div>
+						<TodoTitle />
+						<TodoDueDate todoId={selectedTodo?.id ?? 0} />
+						<TodoCategories categories={selectedTodo?.categories ?? []} todoId={selectedTodo?.id ?? 0} />
 					</div>
-					<TodoTitle />
-					<TodoDueDate todoId={selectedTodo?.id ?? 0} />
-					<TodoCategories categories={selectedTodo?.categories ?? []} todoId={selectedTodo?.id ?? 0} />
 					<TodoDetailsFooter creationDate={selectedTodo?.creation_date ?? ''} />
 				</div>
 			</div>
