@@ -66,7 +66,6 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 					{categories.map(category => (
 						<CategoryTags key={category.id} category={category} onRemove={handleRemoveCategory} />
 					))}
-					d
 				</div>
 			</div>
 		</div>
