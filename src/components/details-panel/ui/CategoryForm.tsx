@@ -32,7 +32,13 @@ export default function CategoryForm({ onSubmit }: CategoryFormProps) {
 	return (
 		<form onSubmit={handleSubmit(handleFormSubmit)} className="flex items-center gap-2 justify-between w-full">
 			{isClient && (
-				<input type="color" className="w-10 h-7 cursor-pointer" defaultValue="#000000" {...register('hex_color')} />
+				<input
+					type="color"
+					className="w-10 h-7 cursor-pointer"
+					defaultValue="#000000"
+					{...register('hex_color')}
+					aria-label="Color Picker"
+				/>
 			)}
 			<input
 				type="text"
