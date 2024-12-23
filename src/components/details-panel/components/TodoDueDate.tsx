@@ -53,9 +53,8 @@ export default function TodoDueDate({ todoId }: TodoDueDateProps) {
 
 	return (
 		<div className="flex flex-col">
-			<div className="flex items-center justify-between">
-				<p className="pb-2 text-slate-600">Due Date</p>
-
+			<div className="flex items-center justify-between pb-1">
+				<p className="text-slate-600">Due Date</p>
 				<div className="flex items-center gap-1">
 					{isChanged && (
 						<>
