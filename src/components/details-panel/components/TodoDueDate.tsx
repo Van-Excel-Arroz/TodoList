@@ -42,14 +42,15 @@ export default function TodoDueDate({ todoId }: TodoDueDateProps) {
 
 	useEffect(() => {
 		if (currentSavedDueDate) {
-			const hasChanged = dueDatetime !== currentSavedDueDate;
-			setIsChanged(hasChanged);
+			const currentDate = currentSavedDueDate ? new Date(currentSavedDueDate).toISOString() : '';
+			const selectedDate = dueDatetime ? new Date(dueDatetime).toISOString() : '';
+			setIsChanged(currentDate !== selectedDate);
 		} else if (dueDatetime) {
 			setIsChanged(true);
 		} else {
 			setIsChanged(false);
 		}
-	}, [selectedTodo?.due_datetime, dueDatetime]);
+	}, [currentSavedDueDate, dueDatetime]);
 
 	return (
 		<div className="flex flex-col">
