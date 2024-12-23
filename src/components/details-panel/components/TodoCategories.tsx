@@ -53,20 +53,18 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 	};
 
 	return (
-		<div className="flex flex-col">
-			<div className="flex items-center gap-2 pb-2 text-slate-600">
+		<div className="flex flex-col gap-4">
+			<div className="flex items-center gap-2 text-slate-600">
 				<Tag size={16} />
 				<p>Categories</p>
 			</div>
-			<div className="flex flex-col items-start rounded-md py-2">
-				<div className="flex justify-between items-center w-full text-slate-600">
-					<CategoryForm onSubmit={onSubmit} />
-				</div>
-				<div className={`flex flex-wrap items-center gap-2`}>
-					{categories.map(category => (
-						<CategoryTags key={category.id} category={category} onRemove={handleRemoveCategory} />
-					))}
-				</div>
+			<div className={`flex flex-wrap items-center gap-2`}>
+				{categories.map(category => (
+					<CategoryTags key={category.id} category={category} onRemove={handleRemoveCategory} />
+				))}
+			</div>
+			<div className="flex justify-between items-center w-full text-slate-600">
+				<CategoryForm onSubmit={onSubmit} />
 			</div>
 		</div>
 	);
