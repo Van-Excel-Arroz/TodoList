@@ -44,6 +44,9 @@ export default function TodoDueDate({ todoId }: TodoDueDateProps) {
 		if (currentSavedDueDate) {
 			const hasChanged = dueDatetime !== currentSavedDueDate;
 			setIsChanged(hasChanged);
+		} else if (dueDatetime) {
+			const hasChanged = dueDatetime !== currentSavedDueDate;
+			setIsChanged(hasChanged);
 		}
 	}, [selectedTodo?.due_datetime, dueDatetime]);
 
