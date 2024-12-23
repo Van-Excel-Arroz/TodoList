@@ -56,8 +56,8 @@ function TodoItem({ todo }: { todo: Todo }) {
 			onClick={handleTodoClick}
 		>
 			<div className="flex items-center">
-				<div className="w-15 h-5 flex items-center">
-					<GripVertical className="cursor-all-scroll mr-3" strokeWidth={1} size={20} />
+				<div className="w-15 h-5 flex items-center text-slate-500">
+					<GripVertical className="cursor-all-scroll mr-3 " strokeWidth={1} size={20} />
 					<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 				</div>
 
@@ -80,7 +80,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 				</div>
 
 				{/* <DeleteTodoButton handleDeleteClick={handleDeleteClick} /> */}
-				<div className="absolute right-5">
+				<div className="absolute right-5 text-slate-500">
 					<Star strokeWidth={1} size={20} />
 				</div>
 			</div>
