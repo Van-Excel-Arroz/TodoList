@@ -15,8 +15,8 @@ export default function TodoDueDate({ todoId }: TodoDueDateProps) {
 	const { updateSelectedTodoDueDate, selectedTodo } = useSelectedTodoStore();
 	const { updateDueDate, deleteDueDate, todos } = useTodosStore();
 	const [isChanged, setIsChanged] = useState(false);
-	const selectedDueDate = new Date(selectedTodo?.due_datetime ?? '').toISOString();
-	const currentSavedDueDate = new Date(todos.filter(todo => todo.id === todoId)[0]?.due_datetime ?? '').toISOString();
+	const selectedDueDate = selectedTodo?.due_datetime ?? '';
+	const currentSavedDueDate = todos.filter(todo => todo.id === todoId)[0]?.due_datetime;
 	const initialDate = selectedDueDate ? new Date(selectedDueDate) : undefined;
 
 	const handleOnSubmit = () => {
@@ -41,7 +41,9 @@ export default function TodoDueDate({ todoId }: TodoDueDateProps) {
 
 	useEffect(() => {
 		if (currentSavedDueDate) {
-			setIsChanged(currentSavedDueDate !== selectedDueDate);
+			const currentDate = currentSavedDueDate ? new Date(currentSavedDueDate).toISOString() : '';
+			const selectedDate = selectedDueDate ? new Date(selectedDueDate).toISOString() : '';
+			setIsChanged(currentDate !== selectedDate);
 		} else if (selectedDueDate) {
 			setIsChanged(true);
 		} else {
