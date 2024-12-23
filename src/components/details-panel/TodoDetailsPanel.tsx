@@ -39,9 +39,9 @@ export default function TodoDetailsPanel() {
 					isTodoDetailsPanelOpen ? 'w-96' : 'w-0'
 				}`}
 			>
-				<div className="flex flex-col px-6 gap-4">
+				<div className="flex flex-col px-6 gap-4 h-full">
 					<TodoDetailsHeader todoId={selectedTodo?.id ?? 0} />
-					<div className="flex items-center gap-2 mb-96">
+					<div className="flex items-center gap-2">
 						<CheckBox isChecked={selectedTodo?.is_completed ?? false} handleOnClick={handleCheckboxChange} />
 						<p>{selectedTodo?.is_completed ? 'Completed' : 'Mark as completed'}</p>
 					</div>
