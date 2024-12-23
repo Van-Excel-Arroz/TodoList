@@ -1,8 +1,10 @@
+// CategoryForm.tsx
 'use client';
 
 import { Button } from '@/components/ui-shared/Button';
 import { Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
 
 interface CategoryFormProps {
 	onSubmit: (data: CategoryFormInputs) => void;
@@ -15,6 +17,11 @@ interface CategoryFormInputs {
 
 export default function CategoryForm({ onSubmit }: CategoryFormProps) {
 	const { register, handleSubmit, reset } = useForm<CategoryFormInputs>();
+	const [isClient, setIsClient] = useState(false);
+
+	useEffect(() => {
+		setIsClient(true);
+	}, []);
 
 	const handleFormSubmit = (data: CategoryFormInputs) => {
 		if (data.category_title.length === 0) return;
@@ -24,7 +31,9 @@ export default function CategoryForm({ onSubmit }: CategoryFormProps) {
 
 	return (
 		<form onSubmit={handleSubmit(handleFormSubmit)} className="flex items-center gap-2 justify-between w-full">
-			<input type="color" className="w-10 h-7 cursor-pointer" defaultValue="#000000" {...register('hex_color')} />
+			{isClient && (
+				<input type="color" className="w-10 h-7 cursor-pointer" defaultValue="#000000" {...register('hex_color')} />
+			)}
 			<input
 				type="text"
 				autoFocus
