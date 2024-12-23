@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui-shared/Button';
 import { add, format, setHours, setMinutes, setSeconds } from 'date-fns';
-import { Calendar, CalendarPlus, Trash2 } from 'lucide-react';
+import { Calendar, CalendarPlus, Clock3, Trash2 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import DateTime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
@@ -86,6 +86,9 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 					</Button>
 					<Button ariaLabel="Due Date" onClick={() => setIsCalendarOpen(prev => !prev)}>
 						<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
+					</Button>
+					<Button ariaLabel="Edit Time">
+						<Clock3 size={20} />
 					</Button>
 					<Button ariaLabel="Due Date" onClick={() => setIsTimeOpen(prev => !prev)}>
 						<p>{dueDate ? format(dueDate, 'hh:mm a') : 'HH:MM a'}</p>
