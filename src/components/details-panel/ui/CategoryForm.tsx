@@ -34,7 +34,7 @@ export default function CategoryForm({ onSubmit }: CategoryFormProps) {
 			{isClient && (
 				<input
 					type="color"
-					className="w-10 h-7 cursor-pointer"
+					className="w-10 h-7 cursor-pointer rounded-full"
 					defaultValue="#000000"
 					{...register('hex_color')}
 					aria-label="Color Picker"
