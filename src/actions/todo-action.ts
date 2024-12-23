@@ -63,10 +63,10 @@ export async function updateTodoTitleAction(todoId: number, title: string) {
 
 export async function updateTodoDueDateAction(todoId: number, dueDate: string) {
 	const result = await updateTodoDueDate(todoId, dueDate);
-	if (!result) console.error('Failed to update todo title');
+	if (!result) console.error('Failed to update todo due date');
 }
 
 export async function deleteTodoDueDateAction(todoId: number) {
 	const result = await deleteTodoDueDate(todoId);
-	if (!result) console.error('Failed to update todo title');
+	if (!result) console.error('Failed to delete todo due date');
 }
