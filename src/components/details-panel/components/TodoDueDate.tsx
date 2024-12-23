@@ -1,6 +1,6 @@
 'use client';
 
-import { updateTodoDueDateAction } from '@/actions/todo-action';
+import { deleteTodoDueDateAction, updateTodoDueDateAction } from '@/actions/todo-action';
 import { Button } from '@/components/ui-shared/Button';
 import DatePicker from '@/components/ui-shared/DatePicker';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
@@ -20,14 +20,15 @@ export default function TodoDueDate({ todoId }: TodoDueDateProps) {
 	const currentSavedDueDate = todos.filter(todo => todo.id === todoId)[0]?.due_datetime;
 	const initialDate = selectedDueDate ? new Date(selectedDueDate) : undefined;
 
-	const handleOnSubmit = () => {
+	const handleOnSubmit = async () => {
 		if (!initialDate) return;
+		await updateTodoDueDateAction(todoId, initialDate.toISOString());
 		updateDueDate(todoId, initialDate.toISOString());
-		updateTodoDueDateAction(todoId, initialDate.toISOString());
 		setIsChanged(false);
 	};
 
-	const handleDeleteDueDate = () => {
+	const handleDeleteDueDate = async () => {
+		await deleteTodoDueDateAction(todoId);
 		updateSelectedTodoDueDate(undefined);
 		deleteDueDate(todoId);
 	};
