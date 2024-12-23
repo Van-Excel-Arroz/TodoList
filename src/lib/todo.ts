@@ -173,3 +173,13 @@ export async function updateTodoDueDate(todoId: number, dueDate: string): Promis
 		return false;
 	}
 }
+
+export async function deleteTodoDueDate(todoId: number): Promise<boolean> {
+	try {
+		await query('UPDATE todos SET due_datetime = null WHERE id = $1', [todoId]);
+		return true;
+	} catch (error) {
+		console.error('Error deleting todo due date in the database', error);
+		return false;
+	}
+}

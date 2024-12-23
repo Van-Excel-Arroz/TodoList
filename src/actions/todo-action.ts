@@ -1,7 +1,14 @@
 'use server';
 
 import { getCategoryColor, storeCategories, storeCategoriesColors } from '@/lib/category';
-import { deleteTodo, storeTodo, updateTodoCompletion, updateTodoDueDate, updateTodoTitle } from '@/lib/todo';
+import {
+	deleteTodo,
+	deleteTodoDueDate,
+	storeTodo,
+	updateTodoCompletion,
+	updateTodoDueDate,
+	updateTodoTitle,
+} from '@/lib/todo';
 import { Category } from '@/types';
 
 export async function createTodoAction(
@@ -56,5 +63,10 @@ export async function updateTodoTitleAction(todoId: number, title: string) {
 
 export async function updateTodoDueDateAction(todoId: number, dueDate: string) {
 	const result = await updateTodoDueDate(todoId, dueDate);
+	if (!result) console.error('Failed to update todo title');
+}
+
+export async function deleteTodoDueDateAction(todoId: number) {
+	const result = await deleteTodoDueDate(todoId);
 	if (!result) console.error('Failed to update todo title');
 }
