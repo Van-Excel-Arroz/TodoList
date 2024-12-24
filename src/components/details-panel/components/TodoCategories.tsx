@@ -32,7 +32,7 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 		const categoryId = await addTodoCategoryAction(
 			data.category_title,
 			data.hex_color,
-			selectedTodo!.todo_list_id,
+			selectedTodo?.todo_list_id ?? 0,
 			todoId
 		);
 
@@ -43,7 +43,7 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 			category_title: data.category_title,
 			hex_color: data.hex_color,
 			is_selected: false,
-			todo_list_id: selectedTodo!.todo_list_id,
+			todo_list_id: selectedTodo?.todo_list_id ?? 0,
 		};
 
 		updateSelectedTodoCategory(newCategory);
