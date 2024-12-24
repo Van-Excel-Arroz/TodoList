@@ -39,7 +39,7 @@ export default function TodoCategories({ categories, todoId }: TodoCategoriesPro
 		if (!categoryId) return;
 
 		const newCategory: Category = {
-			id: categoryId!,
+			id: categoryId,
 			category_title: data.category_title,
 			hex_color: data.hex_color,
 			is_selected: false,
