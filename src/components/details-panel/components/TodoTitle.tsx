@@ -10,14 +10,16 @@ import { useForm } from 'react-hook-form';
 
 export default function TodoTitle() {
 	const { selectedTodo } = useSelectedTodoStore();
+
+	if (!selectedTodo) return null;
+
 	const { register, handleSubmit, reset } = useForm<{ title: string }>({
-		defaultValues: { title: selectedTodo?.task_text || '' },
+		defaultValues: { title: selectedTodo.task_text },
 	});
 	const { updateTodoTitle } = useTodosStore();
 	const [isEditing, setIsEditing] = useState(false);
 
 	const onSubmit = async (data: { title: string }) => {
-		if (!selectedTodo) return;
 		if (!data.title.trim()) return;
 		if (selectedTodo.task_text !== data.title) {
 			await updateTodoTitleAction(selectedTodo.id, data.title);
@@ -27,7 +29,7 @@ export default function TodoTitle() {
 	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		setIsEditing(e.target.value !== selectedTodo?.task_text);
+		setIsEditing(e.target.value !== selectedTodo.task_text);
 	};
 
 	const handleInputBlur = (e: React.FocusEvent<HTMLElement>) => {
@@ -38,7 +40,7 @@ export default function TodoTitle() {
 	};
 
 	useEffect(() => {
-		reset({ title: selectedTodo?.task_text || '' });
+		reset({ title: selectedTodo.task_text });
 		setIsEditing(false);
 	}, [selectedTodo, reset]);
 
