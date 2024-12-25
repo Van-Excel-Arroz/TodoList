@@ -183,3 +183,13 @@ export async function deleteTodoDueDate(todoId: number): Promise<boolean> {
 		return false;
 	}
 }
+
+export async function updateTodoDescription(todoId: number, description: string): Promise<boolean> {
+	try {
+		await query('UPDATE todos SET description = $1 WHERE id = $2', [description, todoId]);
+		return true;
+	} catch (error) {
+		console.error('Error updating todo description in the database', error);
+		return false;
+	}
+}
