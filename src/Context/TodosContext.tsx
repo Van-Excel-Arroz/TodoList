@@ -11,6 +11,7 @@ interface TodosContextState {
 	toggleTodoCompletion: (todoId: number) => void;
 	updateTodoTitle: (todoId: number, newTitle: string) => void;
 	updateDueDate: (todoId: number, newDueDate: string) => void;
+	updateDescription: (todoId: number, newDescription: string | null) => void;
 	deleteDueDate: (todoId: number) => void;
 }
 
