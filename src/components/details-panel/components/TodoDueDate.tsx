@@ -8,14 +8,11 @@ import useTodosStore from '@/context/TodosContext';
 import { Save, Undo } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-interface TodoDueDateProps {
-	todoId: number;
-}
-
-export default function TodoDueDate({ todoId }: TodoDueDateProps) {
+export default function TodoDueDate() {
 	const { updateSelectedTodoDueDate, selectedTodo } = useSelectedTodoStore();
 	const { updateDueDate, deleteDueDate, todos } = useTodosStore();
 	const [isChanged, setIsChanged] = useState(false);
+	const todoId = selectedTodo?.id ?? 0;
 	const selectedDueDate = selectedTodo?.due_datetime ?? '';
 	const currentSavedDueDate = todos.filter(todo => todo.id === todoId)[0]?.due_datetime;
 	const initialDate = selectedDueDate ? new Date(selectedDueDate) : undefined;
