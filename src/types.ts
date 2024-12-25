@@ -3,6 +3,7 @@ export interface Todo {
 	order_index: number;
 	task_text: string;
 	due_datetime: string | null;
+	description: string | null;
 	creation_date: string;
 	todo_list_id: number;
 	categories: Category[] | null;
