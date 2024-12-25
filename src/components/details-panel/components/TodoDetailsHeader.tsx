@@ -7,10 +7,11 @@ import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import useTodosStore from '@/context/TodosContext';
 import { ArrowBigRightDashIcon, Trash2 } from 'lucide-react';
 
-export default function TodoDetailsHeader({ todoId }: { todoId: number }) {
+export default function TodoDetailsHeader() {
 	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
-	const { setSelectedTodo } = useSelectedTodoStore();
+	const { setSelectedTodo, selectedTodo } = useSelectedTodoStore();
 	const { deleteTodo } = useTodosStore();
+	const todoId = selectedTodo?.id ?? 0;
 
 	const handleCloseRightSidebar = () => {
 		closeTodoDetailsPanel();
