@@ -11,7 +11,7 @@ import TodoDescription from './components/TodoDescription';
 import TodoComplete from './components/TodoComplete';
 
 export default function TodoDetailsPanel() {
-	const { selectedTodo, setSelectedTodo } = useSelectedTodoStore();
+	const { setSelectedTodo } = useSelectedTodoStore();
 	const { isTodoDetailsPanelOpen, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 
 	return (
