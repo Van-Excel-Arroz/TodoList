@@ -3,8 +3,9 @@
 import { useForm } from 'react-hook-form';
 import { createTodolist } from '@/actions/todolist-action';
 import useTodoListsStore from '@/context/TodoListsContext';
-import AddTodoListButton from '../ui/AddTodoListButton';
 import TodoListTitleInput from '../ui/TodoListTitleInput';
+import { Button } from '@/components/ui-shared/Button';
+import { Plus } from 'lucide-react';
 
 export default function TodolistForm() {
 	const {
@@ -32,7 +33,9 @@ export default function TodolistForm() {
 				{errors.title?.message && <p>{errors.title.message as string}</p>}
 				<div className="flex flex-row justify-center ">
 					<TodoListTitleInput register={register} />
-					<AddTodoListButton />
+					<Button type="submit" ariaLabel="Submit new list">
+						<Plus size={20} />
+					</Button>
 				</div>
 			</form>
 		</>
