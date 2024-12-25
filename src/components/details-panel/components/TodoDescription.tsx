@@ -1,5 +1,6 @@
 'use client';
 
+import { updateTodoDescriptionAction } from '@/actions/todo-action';
 import { Button } from '@/components/ui-shared/Button';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
@@ -24,9 +25,11 @@ export default function TodoDescription() {
 
 	const onSubmit = async (data: { description: string }) => {
 		if (!data.description.trim()) {
+			await updateTodoDescriptionAction(selectedTodo.id, null);
 			updateDescription(selectedTodo.id, null);
 			updateSelectedTodoDescription(null);
 		} else if (selectedTodo.description !== data.description) {
+			await updateTodoDescriptionAction(selectedTodo.id, data.description);
 			updateDescription(selectedTodo.id, data.description);
 			updateSelectedTodoDescription(data.description);
 		}
