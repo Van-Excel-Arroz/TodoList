@@ -24,8 +24,9 @@ export default function TodoDescription() {
 
 	const onSubmit = async (data: { description: string }) => {
 		if (!data.description.trim()) {
-		}
-		if (selectedTodo.description !== data.description) {
+			updateDescription(selectedTodo.id, null);
+		} else if (selectedTodo.description !== data.description) {
+			updateDescription(selectedTodo.id, data.description);
 		}
 		setIsEditing(false);
 	};
