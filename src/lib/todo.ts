@@ -107,7 +107,8 @@ export async function sortTodosBySelectedCategory(selectedCategories: Category[]
         t.due_datetime,
         t.creation_date,
         t.todo_list_id,
-        t.is_completed
+        t.is_completed,
+				t.description
       FROM
         todos t
       LEFT JOIN
