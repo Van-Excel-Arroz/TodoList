@@ -7,22 +7,12 @@ import TodoDetailsHeader from './components/TodoDetailsHeader';
 import TodoDetailsFooter from './components/TodoDetailsFooter';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
-import CheckBox from '../ui-shared/CheckBox';
-import useTodosStore from '@/context/TodosContext';
-import { updateTodoCompletionAction } from '@/actions/todo-action';
 import TodoDescription from './components/TodoDescription';
+import TodoComplete from './components/TodoComplete';
 
 export default function TodoDetailsPanel() {
-	const { selectedTodo, setSelectedTodo, toggleSelectedTodoCompletion } = useSelectedTodoStore();
+	const { selectedTodo, setSelectedTodo } = useSelectedTodoStore();
 	const { isTodoDetailsPanelOpen, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
-	const { toggleTodoCompletion } = useTodosStore();
-
-	const handleCheckboxChange = async () => {
-		if (!selectedTodo) return;
-		await updateTodoCompletionAction(selectedTodo.id, !selectedTodo.is_completed);
-		toggleTodoCompletion(selectedTodo.id);
-		toggleSelectedTodoCompletion(selectedTodo.id);
-	};
 
 	return (
 		<>
@@ -43,10 +33,7 @@ export default function TodoDetailsPanel() {
 				<div className="flex flex-col justify-between px-6 h-full">
 					<div className="flex flex-col gap-4">
 						<TodoDetailsHeader />
-						<div className="flex items-center gap-2">
-							<CheckBox isChecked={selectedTodo?.is_completed ?? false} handleOnClick={handleCheckboxChange} />
-							<p>{selectedTodo?.is_completed ? 'Completed' : 'Mark as completed'}</p>
-						</div>
+						<TodoComplete />
 						<TodoTitle />
 						<TodoDueDate todoId={selectedTodo?.id ?? 0} />
 						<TodoCategories categories={selectedTodo?.categories ?? []} todoId={selectedTodo?.id ?? 0} />
