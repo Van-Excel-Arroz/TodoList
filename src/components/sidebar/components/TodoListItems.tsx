@@ -24,11 +24,10 @@ export default function TodolistItems({ initialTodoLists }: { initialTodoLists: 
 				</div>
 			) : (
 				<>
-					<div className="flex items-center pl-4 gap-2 mb-2">
-						<List size={20} className="text-slate-600" />
-						<p>Lists</p>
+					<div className="flex items-center gap-2 mb-2 w-10/12 mx-auto">
+						<List size={30} className="text-slate-600" />
+						<p>Lists</p> <hr className="border border-slate-200 w-full" />
 					</div>
-
 					<ul>
 						{todolists.map(todolist => (
 							<li key={todolist.id}>

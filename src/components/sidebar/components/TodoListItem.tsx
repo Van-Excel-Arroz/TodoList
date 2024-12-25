@@ -56,7 +56,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 
 	return (
 		<div
-			className={`flex items-center pr-5 ml-5 group relative w-11/12 pl-4  ${
+			className={`flex items-center pr-5 ml-5 group relative w-11/12 mx-auto pl-2  ${
 				isSelectedPath ? 'border-l-4  border-slate-400' : 'border-l-4  border-slate-200 hover:border-slate-300'
 			}`}
 			onBlur={handleInputBlur}
