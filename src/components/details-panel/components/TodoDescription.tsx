@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function TodoDescription() {
-	const { selectedTodo } = useSelectedTodoStore();
+	const { selectedTodo, updateSelectedTodoDescription } = useSelectedTodoStore();
 	const { updateDescription } = useTodosStore();
 	const [isEditing, setIsEditing] = useState(false);
 	const { register, handleSubmit, reset } = useForm<{ description: string }>({
@@ -25,8 +25,10 @@ export default function TodoDescription() {
 	const onSubmit = async (data: { description: string }) => {
 		if (!data.description.trim()) {
 			updateDescription(selectedTodo.id, null);
+			updateSelectedTodoDescription(null);
 		} else if (selectedTodo.description !== data.description) {
 			updateDescription(selectedTodo.id, data.description);
+			updateSelectedTodoDescription(data.description);
 		}
 		setIsEditing(false);
 	};

@@ -9,7 +9,7 @@ interface SelectedTodoContextState {
 	removeSelectedTodoCategory: (categoryId: number) => void;
 	toggleSelectedTodoCompletion: (todoId: number) => void;
 	updateSelectedTodoDueDate: (newDate: Date | undefined) => void;
-	updateSelectedTodoDescription: (newDescription: Date | null) => void;
+	updateSelectedTodoDescription: (newDescription: string | null) => void;
 }
 
 const useSelectedTodoStore = create<SelectedTodoContextState>()((set: any) => ({
@@ -44,7 +44,7 @@ const useSelectedTodoStore = create<SelectedTodoContextState>()((set: any) => ({
 		set((state: SelectedTodoContextState) => ({
 			selectedTodo: { ...state.selectedTodo, due_datetime: newDate },
 		})),
-	updateSelectedTodoDescription: (newDescription: Date | null) =>
+	updateSelectedTodoDescription: (newDescription: string | null) =>
 		set((state: SelectedTodoContextState) => ({
 			selectedTodo: { ...state.selectedTodo, description: newDescription },
 		})),
