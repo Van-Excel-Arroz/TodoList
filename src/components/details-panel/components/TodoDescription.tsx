@@ -42,9 +42,9 @@ export default function TodoDescription() {
 		<div onBlur={handleInputBlur} tabIndex={-1}>
 			<form className="flex items-start flex-col w-full focus:outline-none" onSubmit={handleSubmit(onSubmit)}>
 				<div className="flex items-center justify-between w-full">
-					<p className="text-slate-600 pb-2">Title</p>
+					<p className="text-slate-600 pb-2">Description</p>
 					{isEditing && (
-						<Button type="submit" ariaLabel="Save New Todo Title">
+						<Button type="submit" ariaLabel="Save New Todo Description">
 							<Save size={18} />
 						</Button>
 					)}
@@ -53,8 +53,8 @@ export default function TodoDescription() {
 					{...register('description')}
 					className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
 					autoFocus
-					aria-label="Todo Title Input"
-					placeholder={selectedTodo?.task_text}
+					aria-label="Todo Description Input"
+					placeholder="No description provided"
 					onChange={handleInputChange}
 				/>
 			</form>
