@@ -4,6 +4,7 @@ import { create } from 'zustand';
 interface SelectedTodoContextState {
 	selectedTodo: Todo | null;
 	setSelectedTodo: (todo: Todo | null) => void;
+	updateSelectedTodoTitle: (newTitle: string) => void;
 	updateSelectedTodoCategory: (newCategory: Category) => void;
 	removeSelectedTodoCategory: (categoryId: number) => void;
 	toggleSelectedTodoCompletion: (todoId: number) => void;
@@ -13,6 +14,10 @@ interface SelectedTodoContextState {
 const useSelectedTodoStore = create<SelectedTodoContextState>()((set: any) => ({
 	selectedTodo: null,
 	setSelectedTodo: (todo: Todo | null) => set({ selectedTodo: todo }),
+	updateSelectedTodoTitle: (newTitle: string) =>
+		set((state: SelectedTodoContextState) => ({
+			selectedTodo: { ...state.selectedTodo, task_text: newTitle },
+		})),
 	updateSelectedTodoCategory: (newCategory: Category) =>
 		set((state: SelectedTodoContextState) => ({
 			selectedTodo: {

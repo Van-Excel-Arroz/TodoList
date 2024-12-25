@@ -10,14 +10,18 @@ import { useForm } from 'react-hook-form';
 
 export default function TodoTitle() {
 	const { selectedTodo } = useSelectedTodoStore();
-
-	if (!selectedTodo) return null;
-
-	const { register, handleSubmit, reset } = useForm<{ title: string }>({
-		defaultValues: { title: selectedTodo.task_text },
-	});
 	const { updateTodoTitle } = useTodosStore();
 	const [isEditing, setIsEditing] = useState(false);
+	const { register, handleSubmit, reset } = useForm<{ title: string }>({
+		defaultValues: { title: selectedTodo?.task_text ?? '' },
+	});
+
+	useEffect(() => {
+		reset({ title: selectedTodo?.task_text ?? '' });
+		setIsEditing(false);
+	}, [selectedTodo, reset]);
+
+	if (!selectedTodo) return null;
 
 	const onSubmit = async (data: { title: string }) => {
 		if (!data.title.trim()) return;
@@ -38,11 +42,6 @@ export default function TodoTitle() {
 			setIsEditing(false);
 		}
 	};
-
-	useEffect(() => {
-		reset({ title: selectedTodo.task_text });
-		setIsEditing(false);
-	}, [selectedTodo, reset]);
 
 	return (
 		<div onBlur={handleInputBlur} tabIndex={-1}>
