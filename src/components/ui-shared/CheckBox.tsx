@@ -19,7 +19,7 @@ export default function CheckBox({ isChecked, handleOnClick }: CheckBoxProps) {
 				{isChecked ? (
 					<SquareCheckBig className="text-slate-800 active:text-slate-600" />
 				) : (
-					<div className="w-5 h-5 group text-slate-800 active:text-slate-600">
+					<div className="flex items-center  group text-slate-800 active:text-slate-600">
 						<Square className="group-hover:hidden" />
 						<SquareCheckBig className="hidden group-hover:block" />
 					</div>
