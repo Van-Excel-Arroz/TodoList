@@ -2,12 +2,14 @@
 
 import { Button } from '@/components/ui-shared/Button';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
+import useTodosStore from '@/context/TodosContext';
 import { Save } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function TodoDescription() {
 	const { selectedTodo } = useSelectedTodoStore();
+	const { updateDescription } = useTodosStore();
 	const [isEditing, setIsEditing] = useState(false);
 	const { register, handleSubmit, reset } = useForm<{ description: string }>({
 		defaultValues: { description: selectedTodo?.description ?? '' },
@@ -21,8 +23,9 @@ export default function TodoDescription() {
 	if (!selectedTodo) return null;
 
 	const onSubmit = async (data: { description: string }) => {
-		if (!data.description.trim()) return;
-		if (selectedTodo.task_text !== data.description) {
+		if (!data.description.trim()) {
+		}
+		if (selectedTodo.description !== data.description) {
 		}
 		setIsEditing(false);
 	};

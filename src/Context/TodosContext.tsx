@@ -51,6 +51,10 @@ const useTodosStore = create<TodosContextState>()((set: any) => ({
 		set((state: TodosContextState) => ({
 			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, due_datetime: newDueDate } : todo)),
 		})),
+	updateDescription: (todoId: number, newDescription: string | null) =>
+		set((state: TodosContextState) => ({
+			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, description: newDescription } : todo)),
+		})),
 	deleteDueDate: (todoId: number) =>
 		set((state: TodosContextState) => ({
 			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, due_datetime: null } : todo)),
