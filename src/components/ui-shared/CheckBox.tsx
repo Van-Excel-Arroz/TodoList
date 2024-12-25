@@ -1,4 +1,4 @@
-import { Check } from 'lucide-react';
+import { Check, Square, SquareCheckBig } from 'lucide-react';
 
 interface CheckBoxProps {
 	isChecked: boolean;
@@ -17,14 +17,11 @@ export default function CheckBox({ isChecked, handleOnClick }: CheckBoxProps) {
 				aria-label={isChecked ? 'Mark as incomplete' : 'Mark as complete'}
 			>
 				{isChecked ? (
-					<div className="bg-black p-1 w-5 h-5 flex justify-center items-center rounded-md hover:bg-slate-800 active:bg-slate-700">
-						<Check color="white" size={15} />
-					</div>
+					<SquareCheckBig className="text-slate-800 active:text-slate-600" />
 				) : (
-					<div className="border border-black w-5 h-5 rounded-md active:border-slate-700 ">
-						<div className="flex justify-center items-center h-full opacity-0 hover:opacity-80">
-							<Check color="black" size={15} />
-						</div>
+					<div className="w-5 h-5 group text-slate-800 active:text-slate-600">
+						<Square className="group-hover:hidden" />
+						<SquareCheckBig className="hidden group-hover:block" />
 					</div>
 				)}
 			</button>
