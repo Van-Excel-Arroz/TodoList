@@ -184,7 +184,7 @@ export async function deleteTodoDueDate(todoId: number): Promise<boolean> {
 	}
 }
 
-export async function updateTodoDescription(todoId: number, description: string): Promise<boolean> {
+export async function updateTodoDescription(todoId: number, description: string | null): Promise<boolean> {
 	try {
 		await query('UPDATE todos SET description = $1 WHERE id = $2', [description, todoId]);
 		return true;

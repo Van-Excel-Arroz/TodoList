@@ -70,3 +70,5 @@ export async function deleteTodoDueDateAction(todoId: number) {
 	const result = await deleteTodoDueDate(todoId);
 	if (!result) console.error('Failed to delete todo due date');
 }
+
+export async function updateTodoDescriptionAction(todoId: number, description: string | null);
