@@ -6,6 +6,7 @@ import {
 	deleteTodoDueDate,
 	storeTodo,
 	updateTodoCompletion,
+	updateTodoDescription,
 	updateTodoDueDate,
 	updateTodoTitle,
 } from '@/lib/todo';
@@ -71,4 +72,7 @@ export async function deleteTodoDueDateAction(todoId: number) {
 	if (!result) console.error('Failed to delete todo due date');
 }
 
-export async function updateTodoDescriptionAction(todoId: number, description: string | null);
+export async function updateTodoDescriptionAction(todoId: number, description: string | null) {
+	const result = await updateTodoDescription(todoId, description);
+	if (!result) console.error('Failed to update todo description');
+}
