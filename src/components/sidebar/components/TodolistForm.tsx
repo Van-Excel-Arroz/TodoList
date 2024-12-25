@@ -8,12 +8,7 @@ import { Button } from '@/components/ui-shared/Button';
 import { Plus } from 'lucide-react';
 
 export default function TodolistForm() {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		reset,
-	} = useForm();
+	const { register, handleSubmit, reset } = useForm();
 
 	const { addTodolist } = useTodoListsStore();
 
@@ -29,9 +24,8 @@ export default function TodolistForm() {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-2">
-				{errors.title?.message && <p>{errors.title.message as string}</p>}
-				<div className="flex flex-row justify-center ">
+			<form onSubmit={handleSubmit(onSubmit)} className="mt-2 mb-4 flex flex-col">
+				<div className="flex items-center gap-2">
 					<TodoListTitleInput register={register} />
 					<Button type="submit" ariaLabel="Submit new list">
 						<Plus size={20} />
