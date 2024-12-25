@@ -50,6 +50,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				id: todoId,
 				order_index: 0,
 				task_text: todoTask,
+				description: null,
 				due_datetime: finalDate,
 				creation_date: new Date().toISOString(),
 				todo_list_id: todolistId,
