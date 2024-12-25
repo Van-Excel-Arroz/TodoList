@@ -39,7 +39,7 @@ export default function TodoDetailsPanel() {
 						<TodoCategories />
 						<TodoDescription />
 					</div>
-					<TodoDetailsFooter creationDate={selectedTodo?.creation_date ?? ''} />
+					<TodoDetailsFooter />
 				</div>
 			</div>
 		</>
