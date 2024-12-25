@@ -4,6 +4,7 @@ import { TodoList } from '@/types';
 import TodoListItem from './TodoListItem';
 import { useEffect } from 'react';
 import useTodoListsStore from '@/context/TodoListsContext';
+import { List } from 'lucide-react';
 
 export default function TodolistItems({ initialTodoLists }: { initialTodoLists: TodoList[] }) {
 	const { todolists, setTodolists } = useTodoListsStore();
@@ -15,20 +16,27 @@ export default function TodolistItems({ initialTodoLists }: { initialTodoLists: 
 	const isEmpty = todolists.length === 0;
 
 	return (
-		<div className="h-[calc(100%-90px)] overflow-y-auto overflow-hidden">
+		<div className="h-[calc(100%-90px)] flex flex-col w-full overflow-y-auto overflow-hidden">
 			{isEmpty ? (
 				<div className="text-center mt-4">
 					<p className="text-xl font-semibold mb-2">No Tasks Available</p>
 					<p className="text-gray-600">Start by adding a new todolist!</p>
 				</div>
 			) : (
-				<ul className=" flex flex-col mb-4">
-					{todolists.map(todolist => (
-						<li key={todolist.id}>
-							<TodoListItem todolist={todolist} />
-						</li>
-					))}
-				</ul>
+				<>
+					<div className="flex items-center pl-4 gap-2 mb-2">
+						<List size={20} className="text-slate-600" />
+						<p>Lists</p>
+					</div>
+
+					<ul>
+						{todolists.map(todolist => (
+							<li key={todolist.id}>
+								<TodoListItem todolist={todolist} />
+							</li>
+						))}
+					</ul>
+				</>
 			)}
 		</div>
 	);
