@@ -58,7 +58,6 @@ export default function TodoTitle() {
 				<textarea
 					{...register('title')}
 					className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
-					autoFocus
 					aria-label="Todo Title Input"
 					placeholder={selectedTodo?.task_text}
 					onChange={handleInputChange}

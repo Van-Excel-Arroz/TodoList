@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 
 export default function TodoListMain({ initialTodos }: { initialTodos: Todo[] }) {
 	const { todos, setTodos } = useTodosStore();
+
 	useEffect(() => {
 		setTodos(initialTodos);
 	}, [initialTodos, setTodos]);

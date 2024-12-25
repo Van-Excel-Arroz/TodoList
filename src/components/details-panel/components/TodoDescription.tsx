@@ -37,7 +37,7 @@ export default function TodoDescription() {
 	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		setIsEditing(e.target.value !== selectedTodo.task_text);
+		setIsEditing(e.target.value !== selectedTodo.description);
 	};
 
 	const handleInputBlur = (e: React.FocusEvent<HTMLElement>) => {
@@ -61,9 +61,8 @@ export default function TodoDescription() {
 				<textarea
 					{...register('description')}
 					className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
-					autoFocus
 					aria-label="Todo Description Input"
-					placeholder="No description provided"
+					placeholder={selectedTodo?.description ?? 'No description provided'}
 					onChange={handleInputChange}
 				/>
 			</form>
