@@ -8,6 +8,7 @@ import {
 	updateTodoCompletion,
 	updateTodoDescription,
 	updateTodoDueDate,
+	updateTodoImportance,
 	updateTodoTitle,
 } from '@/lib/todo';
 import { Category } from '@/types';
@@ -50,6 +51,11 @@ export async function createTodoAction(
 export async function updateTodoCompletionAction(todoId: number, isCompleted: boolean) {
 	const result = await updateTodoCompletion(todoId, isCompleted);
 	if (!result) console.error('Failed to update is_completed in todo');
+}
+
+export async function updateTodoImportanceAction(todoId: number, isImportant: boolean) {
+	const result = await updateTodoImportance(todoId, isImportant);
+	if (!result) console.error('Failed to update is_important in todo');
 }
 
 export async function deleteTodoAction(todoId: number) {

@@ -4,7 +4,7 @@ import { memo } from 'react';
 import { Todo } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
-import { deleteTodoAction, updateTodoCompletionAction } from '@/actions/todo-action';
+import { deleteTodoAction, updateTodoCompletionAction, updateTodoImportanceAction } from '@/actions/todo-action';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 import CheckBox from '@/components/ui-shared/CheckBox';
@@ -37,6 +37,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	};
 
 	const handleImportanceChange = async () => {
+		await updateTodoImportanceAction(todo.id, !todo.is_important);
 		toggleTodoImportance(todo.id);
 	};
 
