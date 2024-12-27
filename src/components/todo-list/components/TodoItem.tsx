@@ -97,7 +97,6 @@ function TodoItem({ todo }: { todo: Todo }) {
 				>
 					<Star
 						strokeWidth={1}
-						size={20}
 						className="absolute right-5 text-slate-500 hover:text-black"
 						fill={`${todo.is_important ? 'black' : 'white'}`}
 					/>
