@@ -5,6 +5,24 @@ import TodoListItem from './TodoListItem';
 import { useEffect } from 'react';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { List } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+
+const itemVariants = {
+	initial: {
+		opacity: 0,
+		x: -20,
+		transition: { duration: 0.3, type: 'spring' },
+	},
+	exit: {
+		opacity: 0,
+		x: -20,
+		transition: { duration: 0.2 },
+	},
+	animate: {
+		opacity: 1,
+		x: 0,
+	},
+};
 
 export default function TodolistItems({ initialTodoLists }: { initialTodoLists: TodoList[] }) {
 	const { todolists, setTodolists } = useTodoListsStore();
@@ -29,11 +47,20 @@ export default function TodolistItems({ initialTodoLists }: { initialTodoLists: 
 						<p>Lists</p> <hr className="border border-slate-200 w-full" />
 					</div>
 					<ul>
-						{todolists.map(todolist => (
-							<li key={todolist.id}>
-								<TodoListItem todolist={todolist} />
-							</li>
-						))}
+						<AnimatePresence>
+							{todolists.map(todolist => (
+								<motion.li
+									key={todolist.id}
+									layout
+									variants={itemVariants}
+									initial="initial"
+									animate="animate"
+									exit="exit"
+								>
+									<TodoListItem todolist={todolist} />
+								</motion.li>
+							))}
+						</AnimatePresence>
 					</ul>
 				</>
 			)}
