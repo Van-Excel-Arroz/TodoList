@@ -17,6 +17,7 @@ export default function TodoImportance() {
 	return (
 		<div className="flex items-center">
 			<Importance isImportant={isImportant} handleOnClick={handleImportanceChange} />
+			<p>{isImportant ? 'Important' : 'Mark as important'}</p>
 		</div>
 	);
 }

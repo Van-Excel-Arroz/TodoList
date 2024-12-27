@@ -18,7 +18,7 @@ export default function TodoComplete() {
 	return (
 		<div className="flex items-center gap-2">
 			<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
-			<p>{selectedTodo?.is_completed ? 'Completed' : 'Mark as completed'}</p>
+			<p>{isCompleted ? 'Completed' : 'Mark as completed'}</p>
 		</div>
 	);
 }

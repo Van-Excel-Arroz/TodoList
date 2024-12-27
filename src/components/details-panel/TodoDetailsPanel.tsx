@@ -9,6 +9,7 @@ import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import TodoDescription from './components/TodoDescription';
 import TodoComplete from './components/TodoComplete';
+import TodoImportance from './components/TodoImportance';
 
 export default function TodoDetailsPanel() {
 	const { setSelectedTodo } = useSelectedTodoStore();
@@ -34,6 +35,7 @@ export default function TodoDetailsPanel() {
 					<div className="flex flex-col gap-4">
 						<TodoDetailsHeader />
 						<TodoComplete />
+						<TodoImportance />
 						<TodoTitle />
 						<TodoDueDate />
 						<TodoCategories />
