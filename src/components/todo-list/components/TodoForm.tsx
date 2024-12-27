@@ -56,6 +56,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				todo_list_id: todolistId,
 				categories: validCategories,
 				is_completed: false,
+				important: false,
 			};
 
 			addTodo(newTodo);
