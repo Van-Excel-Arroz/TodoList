@@ -7,12 +7,12 @@ export default function TodoImportance() {
 	const { selectedTodo, toggleSelectedTodoImportance } = useSelectedTodoStore();
 	const { toggleTodoImportance } = useTodosStore();
 	const isImportant = selectedTodo?.is_important ?? false;
+	const todoId = selectedTodo?.id ?? 0;
 
 	const handleImportanceChange = async () => {
-		if (!selectedTodo) return;
-		await updateTodoImportanceAction(selectedTodo.id, !isImportant);
-		toggleTodoImportance(selectedTodo.id);
-		toggleSelectedTodoImportance(selectedTodo.id);
+		await updateTodoImportanceAction(todoId, !isImportant);
+		toggleTodoImportance(todoId);
+		toggleSelectedTodoImportance(todoId);
 	};
 	return (
 		<div className="flex items-center">
