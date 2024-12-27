@@ -16,7 +16,7 @@ import { GripVertical, Star } from 'lucide-react';
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { selectedTodo, setSelectedTodo, toggleSelectedTodoCompletion } = useSelectedTodoStore();
-	const { deleteTodo, toggleTodoCompletion } = useTodosStore();
+	const { deleteTodo, toggleTodoCompletion, toggleTodoImportance } = useTodosStore();
 	const isSelected = selectedTodo?.id === todo.id;
 
 	const handleTodoClick = () => {
@@ -33,6 +33,10 @@ function TodoItem({ todo }: { todo: Todo }) {
 		await updateTodoCompletionAction(todo.id, !todo.is_completed);
 		toggleTodoCompletion(todo.id);
 		toggleSelectedTodoCompletion(todo.id);
+	};
+
+	const handleImportanceChange = async () => {
+		toggleTodoImportance(todo.id);
 	};
 
 	const handleCategoryClick = async (categoryTitle: string) => {
