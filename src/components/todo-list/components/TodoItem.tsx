@@ -19,7 +19,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const { selectedTodo, setSelectedTodo, toggleSelectedTodoCompletion } = useSelectedTodoStore();
 	const { deleteTodo, toggleTodoCompletion, toggleTodoImportance } = useTodosStore();
 	const isSelected = selectedTodo?.id === todo.id;
-	console.log(todo.is_important);
+
 	const handleTodoClick = () => {
 		if (isSelected) {
 			closeTodoDetailsPanel();

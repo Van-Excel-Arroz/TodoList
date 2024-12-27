@@ -34,7 +34,6 @@ export default function TodoDetailsPanel() {
 					<div className="flex flex-col gap-4">
 						<TodoDetailsHeader />
 						<TodoComplete />
-						<div></div>
 						<TodoTitle />
 						<TodoDueDate />
 						<TodoCategories />

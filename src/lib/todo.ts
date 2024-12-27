@@ -95,6 +95,21 @@ export async function updateTodoCompletion(todoId: number, isCompleted: boolean)
 	}
 }
 
+export async function updateTodoImportance(todoId: number, isImportant: boolean): Promise<boolean> {
+	try {
+		await query(
+			`
+				UPDATE todos SET is_important = $1 WHERE id = $2
+			`,
+			[isImportant, todoId]
+		);
+		return true;
+	} catch (error) {
+		console.error('Error updating isImportant in todo from the database', error);
+		return false;
+	}
+}
+
 export async function sortTodosBySelectedCategory(selectedCategories: Category[], todolistId: number): Promise<Todo[]> {
 	const extractedCategories = selectedCategories.map(category => category.category_title);
 
