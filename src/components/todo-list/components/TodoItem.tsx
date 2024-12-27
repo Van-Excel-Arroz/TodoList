@@ -12,6 +12,7 @@ import CategoryTags from '../ui/CategoryTags';
 import DueDate from '../ui/DueDate';
 import DeleteTodoButton from '../ui/DeleteTodoButton';
 import { GripVertical, Star } from 'lucide-react';
+import Importance from '@/components/ui-shared/Importance';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
@@ -88,19 +89,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 				</div>
 
 				{/* <DeleteTodoButton handleDeleteClick={handleDeleteClick} /> */}
-				<button
-					className="flex items-center"
-					onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-						event.stopPropagation();
-						handleImportanceChange();
-					}}
-				>
-					<Star
-						strokeWidth={1}
-						className="absolute right-5 text-slate-500 hover:text-black"
-						fill={`${todo.is_important ? 'black' : 'white'}`}
-					/>
-				</button>
+				<Importance isImportant={todo.is_important} handleOnClick={handleImportanceChange} />
 			</div>
 		</div>
 	);
