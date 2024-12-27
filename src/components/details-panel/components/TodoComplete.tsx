@@ -7,12 +7,12 @@ export default function TodoComplete() {
 	const { selectedTodo, toggleSelectedTodoCompletion } = useSelectedTodoStore();
 	const { toggleTodoCompletion } = useTodosStore();
 	const isCompleted = selectedTodo?.is_completed ?? false;
+	const todoId = selectedTodo?.id ?? 0;
 
 	const handleCheckboxChange = async () => {
-		if (!selectedTodo) return;
-		await updateTodoCompletionAction(selectedTodo.id, !selectedTodo.is_completed);
-		toggleTodoCompletion(selectedTodo.id);
-		toggleSelectedTodoCompletion(selectedTodo.id);
+		await updateTodoCompletionAction(todoId, !isCompleted);
+		toggleTodoCompletion(todoId);
+		toggleSelectedTodoCompletion(todoId);
 	};
 
 	return (
