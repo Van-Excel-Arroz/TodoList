@@ -18,7 +18,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const { selectedTodo, setSelectedTodo, toggleSelectedTodoCompletion } = useSelectedTodoStore();
 	const { deleteTodo, toggleTodoCompletion, toggleTodoImportance } = useTodosStore();
 	const isSelected = selectedTodo?.id === todo.id;
-
+	console.log(todo.is_important);
 	const handleTodoClick = () => {
 		if (isSelected) {
 			closeTodoDetailsPanel();
@@ -88,9 +88,20 @@ function TodoItem({ todo }: { todo: Todo }) {
 				</div>
 
 				{/* <DeleteTodoButton handleDeleteClick={handleDeleteClick} /> */}
-				<div className="absolute right-5 text-slate-500 hover:text-black">
-					<Star strokeWidth={1} size={20} />
-				</div>
+				<button
+					className="flex items-center"
+					onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+						event.stopPropagation();
+						handleImportanceChange();
+					}}
+				>
+					<Star
+						strokeWidth={1}
+						size={20}
+						className="absolute right-5 text-slate-500 hover:text-black"
+						fill={`${todo.is_important ? 'black' : 'white'}`}
+					/>
+				</button>
 			</div>
 		</div>
 	);
