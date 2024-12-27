@@ -15,7 +15,7 @@ export default function TodoImportance() {
 		toggleSelectedTodoImportance(todoId);
 	};
 	return (
-		<div className="flex items-center">
+		<div className="flex items-center gap-2">
 			<Importance isImportant={isImportant} handleOnClick={handleImportanceChange} />
 			<p>{isImportant ? 'Important' : 'Mark as important'}</p>
 		</div>
