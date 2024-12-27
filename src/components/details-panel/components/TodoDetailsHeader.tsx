@@ -25,7 +25,7 @@ export default function TodoDetailsHeader() {
 		setSelectedTodo(null);
 	};
 	return (
-		<div className="flex items-center justify-between py-6 border-b border-slate-300">
+		<div className="flex items-center justify-between py-6 border-b border-slate-300 sticky top-0 bg-[#F3F3F4] lg:bg-white">
 			<Button onClick={handleCloseRightSidebar} ariaLabel="Close Todo Menu">
 				<ArrowBigRightDashIcon size={22} />
 			</Button>
