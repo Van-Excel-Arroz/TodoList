@@ -9,6 +9,7 @@ interface TodosContextState {
 	deleteTodo: (todoId: number) => void;
 	deleteCategory: (todoId: number, categoryId: number) => void;
 	toggleTodoCompletion: (todoId: number) => void;
+	toggleTodoImportance: (todoId: number) => void;
 	updateTodoTitle: (todoId: number, newTitle: string) => void;
 	updateDueDate: (todoId: number, newDueDate: string) => void;
 	updateDescription: (todoId: number, newDescription: string | null) => void;
@@ -44,9 +45,9 @@ const useTodosStore = create<TodosContextState>()((set: any) => ({
 		set((state: TodosContextState) => ({
 			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, is_completed: !todo.is_completed } : todo)),
 		})),
-	toggleTodoImportance: (todoId: number) => 
+	toggleTodoImportance: (todoId: number) =>
 		set((state: TodosContextState) => ({
-			todos: state.todos.map(todo => todo.id === todoId ? {...todo, important: !state.is_important})
+			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, is_important: !todo.is_important } : todo)),
 		})),
 	updateTodoTitle: (todoId: number, newTitle: string) =>
 		set((state: TodosContextState) => ({
