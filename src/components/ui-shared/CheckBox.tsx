@@ -17,9 +17,9 @@ export default function CheckBox({ isChecked, handleOnClick }: CheckBoxProps) {
 				aria-label={isChecked ? 'Mark as incomplete' : 'Mark as complete'}
 			>
 				{isChecked ? (
-					<SquareCheckBig className="text-slate-800 active:text-slate-600" />
+					<SquareCheckBig className="text-slate-600 active:text-slate-600" />
 				) : (
-					<div className="flex items-center group text-slate-800 active:text-slate-600">
+					<div className="flex items-center group text-slate-600 active:text-slate-600">
 						<Square className="group-hover:hidden" />
 						<SquareCheckBig className="hidden group-hover:block" />
 					</div>
