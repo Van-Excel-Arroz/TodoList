@@ -109,7 +109,7 @@ export async function sortTodosBySelectedCategory(selectedCategories: Category[]
         t.todo_list_id,
         t.is_completed,
 				t.description,
-				t.important
+				t.is_important
       FROM
         todos t
       LEFT JOIN

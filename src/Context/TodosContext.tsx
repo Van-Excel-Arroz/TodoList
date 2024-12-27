@@ -44,6 +44,10 @@ const useTodosStore = create<TodosContextState>()((set: any) => ({
 		set((state: TodosContextState) => ({
 			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, is_completed: !todo.is_completed } : todo)),
 		})),
+	toggleTodoImportance: (todoId: number) => 
+		set((state: TodosContextState) => ({
+			todos: state.todos.map(todo => todo.id === todoId ? {...todo, important: !state.is_important})
+		})),
 	updateTodoTitle: (todoId: number, newTitle: string) =>
 		set((state: TodosContextState) => ({
 			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, task_text: newTitle } : todo)),
