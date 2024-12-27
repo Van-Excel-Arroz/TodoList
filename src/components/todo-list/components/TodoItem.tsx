@@ -16,7 +16,8 @@ import Importance from '@/components/ui-shared/Importance';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
-	const { selectedTodo, setSelectedTodo, toggleSelectedTodoCompletion } = useSelectedTodoStore();
+	const { selectedTodo, setSelectedTodo, toggleSelectedTodoCompletion, toggleSelectedTodoImportance } =
+		useSelectedTodoStore();
 	const { deleteTodo, toggleTodoCompletion, toggleTodoImportance } = useTodosStore();
 	const isSelected = selectedTodo?.id === todo.id;
 
@@ -39,6 +40,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const handleImportanceChange = async () => {
 		await updateTodoImportanceAction(todo.id, !todo.is_important);
 		toggleTodoImportance(todo.id);
+		toggleSelectedTodoImportance(todo.id);
 	};
 
 	const handleCategoryClick = async (categoryTitle: string) => {
