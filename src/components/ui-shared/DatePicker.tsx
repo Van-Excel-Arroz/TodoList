@@ -56,11 +56,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 		};
 	}, [isDateMenuOpen, isTimeMenuOpen, isCalendarOpen, isTimePickerOpen]);
 
-	const handleSetDate = (date?: 'today' | 'tomorrow' | 'next week') => {
-		if (!date) {
-			setDueDate(undefined);
-			return;
-		}
+	const handleSetDate = (date?: 'today' | 'tomorrow' | 'next week' | 'clear') => {
 		let baseDate = new Date();
 
 		switch (date) {
@@ -73,6 +69,9 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 			case 'next week':
 				baseDate = add(new Date(), { days: 7 });
 				break;
+			case 'clear':
+				setDueDate(undefined);
+				return;
 		}
 		const endOfDay = setSeconds(setMinutes(setHours(baseDate, 23), 59), 59);
 		setDueDate(endOfDay);
@@ -224,7 +223,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 				<button
 					aria-label="Clear Due Date"
 					type="button"
-					onClick={() => handleSetDate()}
+					onClick={() => handleSetDate('clear')}
 					className={`flex items-center justify-center gap-2 border-t border-slate-300 ${menuItemStyle}`}
 				>
 					<Trash2 size={16} />
