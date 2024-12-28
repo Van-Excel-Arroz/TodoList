@@ -170,7 +170,7 @@ function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDat
 	return (
 		<div
 			ref={customDatePickerRef}
-			className={`absolute top-10 -left-5 border border-gray-300 shadow-md rounded-md bg-white ${notch} ${
+			className={`absolute top-10 -left-14 border border-gray-300 shadow-md rounded-md bg-white ${notch} ${
 				isDatePickerOpen ? 'block' : 'hidden'
 			}`}
 		>
