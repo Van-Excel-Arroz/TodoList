@@ -18,29 +18,31 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	return (
 		<div className={`relative flex ${defaultEmptyText && 'py-2'}`}>
 			<div className="flex items-center h-4">
-				<Button ariaLabel="Add Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
-					{dueDate ? <Calendar size={20} /> : <CalendarPlus size={20} />}
-				</Button>
-				{(defaultEmptyText || dueDate) && (
-					<Button ariaLabel="Due Date" onClick={() => setIsDatePickerOpen(prev => !prev)}>
-						<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
+				<div className="relative">
+					<Button ariaLabel="Add Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
+						{dueDate ? <Calendar size={20} /> : <CalendarPlus size={20} />}
 					</Button>
+					<DateMenu
+						isDateMenuOpen={isDateMenuOpen}
+						setDueDate={setDueDate}
+						setIsDateMenuOpen={setIsDateMenuOpen}
+						setIsDatePickerOpen={setIsDatePickerOpen}
+					/>
+				</div>
+				{(defaultEmptyText || dueDate) && (
+					<div className="relative">
+						<Button ariaLabel="Due Date" onClick={() => setIsDatePickerOpen(prev => !prev)}>
+							<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
+						</Button>
+						<DatePickers
+							isDatePickerOpen={isDatePickerOpen}
+							setIsDatePickerOpen={setIsDatePickerOpen}
+							dueDate={dueDate}
+							setDueDate={setDueDate}
+						/>
+					</div>
 				)}
 			</div>
-
-			<DateMenu
-				isDateMenuOpen={isDateMenuOpen}
-				setDueDate={setDueDate}
-				setIsDateMenuOpen={setIsDateMenuOpen}
-				setIsDatePickerOpen={setIsDatePickerOpen}
-			/>
-
-			<DatePickers
-				isDatePickerOpen={isDatePickerOpen}
-				setIsDatePickerOpen={setIsDatePickerOpen}
-				dueDate={dueDate}
-				setDueDate={setDueDate}
-			/>
 		</div>
 	);
 }
@@ -139,7 +141,7 @@ interface DatePickersProps {
 
 function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate }: DatePickersProps) {
 	const notch =
-		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
+		"before:-top-2 before:left-20 before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
 	const customDatePickerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -168,7 +170,7 @@ function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDat
 	return (
 		<div
 			ref={customDatePickerRef}
-			className={`absolute top-10 -left-5 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
+			className={`absolute top-10 -left-5 border border-gray-300 shadow-md rounded-md  bg-white ${notch} ${
 				isDatePickerOpen ? 'block' : 'hidden'
 			}`}
 		>
