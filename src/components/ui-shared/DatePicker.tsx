@@ -15,35 +15,6 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	const [isDateMenuOpen, setIsDateMenuOpen] = useState(false);
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
-	const customDatePickerRef = useRef<HTMLDivElement>(null);
-
-	const notch =
-		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
-
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				isDatePickerOpen &&
-				customDatePickerRef.current &&
-				!customDatePickerRef.current.contains(event.target as Node)
-			) {
-				setIsDatePickerOpen(false);
-			}
-		};
-
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [isDateMenuOpen, isDatePickerOpen]);
-
-	const handleDateTimeChange = (value: string | moment.Moment) => {
-		if (typeof value === 'object' && value !== null) {
-			const date = value instanceof Date ? value : value.toDate();
-			setDueDate(date);
-		}
-	};
-
 	return (
 		<div className={`relative flex ${defaultEmptyText && 'py-2'}`}>
 			<div className="flex items-center h-4">
@@ -64,23 +35,12 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 				setIsDatePickerOpen={setIsDatePickerOpen}
 			/>
 
-			<div
-				ref={customDatePickerRef}
-				className={`absolute top-10 -left-5 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
-					isDatePickerOpen ? 'block' : 'hidden'
-				}`}
-			>
-				<div className="relative">
-					<DateTime
-						value={dueDate}
-						open={isDatePickerOpen}
-						onChange={handleDateTimeChange}
-						input={false}
-						dateFormat={true}
-						timeFormat={false}
-					/>
-				</div>
-			</div>
+			<DatePickers
+				isDatePickerOpen={isDatePickerOpen}
+				setIsDatePickerOpen={setIsDatePickerOpen}
+				dueDate={dueDate}
+				setDueDate={setDueDate}
+			/>
 		</div>
 	);
 }
@@ -166,6 +126,62 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 				<Trash2 size={16} />
 				Clear
 			</button>
+		</div>
+	);
+}
+
+interface DatePickersProps {
+	isDatePickerOpen: boolean;
+	setIsDatePickerOpen: (val: boolean) => void;
+	dueDate: Date | undefined;
+	setDueDate: (newDueDate: Date | undefined) => void;
+}
+
+function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate }: DatePickersProps) {
+	const notch =
+		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
+	const customDatePickerRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				isDatePickerOpen &&
+				customDatePickerRef.current &&
+				!customDatePickerRef.current.contains(event.target as Node)
+			) {
+				setIsDatePickerOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [isDatePickerOpen]);
+
+	const handleDateTimeChange = (value: string | moment.Moment) => {
+		if (typeof value === 'object' && value !== null) {
+			const date = value instanceof Date ? value : value.toDate();
+			setDueDate(date);
+		}
+	};
+	return (
+		<div
+			ref={customDatePickerRef}
+			className={`absolute top-10 -left-5 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
+				isDatePickerOpen ? 'block' : 'hidden'
+			}`}
+		>
+			<div className="relative">
+				<DateTime
+					value={dueDate}
+					open={isDatePickerOpen}
+					onChange={handleDateTimeChange}
+					input={false}
+					dateFormat={true}
+					timeFormat={false}
+				/>
+			</div>
 		</div>
 	);
 }
