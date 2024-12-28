@@ -61,6 +61,14 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 				)}
 			</div>
 
+			<DateMenu
+				DateMenuRef={DateMenuRef}
+				isDateMenuOpen={isDateMenuOpen}
+				setDueDate={setDueDate}
+				setIsDateMenuOpen={setIsDateMenuOpen}
+				setIsDatePickerOpen={setIsDatePickerOpen}
+			/>
+
 			<div
 				ref={customDatePickerRef}
 				className={`absolute top-10 -left-5 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
