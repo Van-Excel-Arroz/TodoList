@@ -128,7 +128,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 
 			<div
 				ref={TimeMenuRef}
-				className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg
+				className={`absolute top-10 left-28 bg-white text-center text-black text-sm rounded-lg
                   flex flex-col w-44 border border-gray-300 shadow-lg before:-top-2 before:left-5 ${notch}
                   ${isTimeMenuOpen ? 'block' : 'hidden'}`}
 			>
