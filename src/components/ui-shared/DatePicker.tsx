@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui-shared/Button';
-import { add, format, setHours, setMinutes, setSeconds } from 'date-fns';
+import { add, format, setHours, setMinutes, setSeconds, startOfDay, startOfToday } from 'date-fns';
 import { Calendar, CalendarPlus, Clock3, Trash2 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import DateTime from 'react-datetime';
@@ -78,7 +78,30 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 		setDueDate(endOfDay);
 	};
 
-	const handleSetTime = (time?: 'morning' | 'noon' | 'afternoon' | 'evening') => {};
+	const handleSetTime = (time?: 'morning' | 'noon' | 'afternoon' | 'evening' | 'night' | 'clear') => {
+		let now = startOfToday();
+
+		switch (time) {
+			case 'morning':
+				setDueDate(setHours(setMinutes(now, 0), 9));
+				break;
+			case 'noon':
+				setDueDate(setHours(setMinutes(now, 0), 12));
+				break;
+			case 'afternoon':
+				setDueDate(setHours(setMinutes(now, 0), 15));
+				break;
+			case 'evening':
+				setDueDate(setHours(setMinutes(now, 0), 18));
+				break;
+			case 'night':
+				setDueDate(setHours(setMinutes(now, 0), 21));
+				break;
+			case 'clear':
+				setDueDate(undefined);
+				break;
+		}
+	};
 
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {
@@ -142,9 +165,12 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 					Noon (12:00 p.m)
 				</p>
 				<p className={menuItemStyle} onClick={() => handleSetTime('afternoon')}>
-					Afternoon (02:00 p.m)
+					Afternoon (03:00 p.m)
 				</p>
 				<p className={menuItemStyle} onClick={() => handleSetTime('evening')}>
+					Evening (06:00 p.m)
+				</p>
+				<p className={menuItemStyle} onClick={() => handleSetTime('night')}>
 					Evening (09:00 p.m)
 				</p>
 				<p
@@ -159,7 +185,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 				<button
 					aria-label="Clear Due Date"
 					type="button"
-					onClick={() => handleSetTime()}
+					onClick={() => handleSetTime('clear')}
 					className={`flex items-center justify-center gap-2 border-t border-slate-300 ${menuItemStyle}`}
 				>
 					<Trash2 size={16} />
