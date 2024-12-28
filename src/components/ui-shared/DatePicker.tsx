@@ -12,7 +12,7 @@ interface DueDateInputProps {
 }
 
 export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = false }: DueDateInputProps) {
-	const [isSelectionMenuOpen, setIsSelectionMenuOpen] = useState(false);
+	const [isDateMenuOpen, setIsDateMenuOpen] = useState(false);
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 	const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 	const [isTimeOpen, setIsTimeOpen] = useState(false);
@@ -20,14 +20,14 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	const notch =
 		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
 
-	const selectMenuRef = useRef<HTMLDivElement>(null);
+	const DateMenuRef = useRef<HTMLDivElement>(null);
 	const customDatePickerRef = useRef<HTMLDivElement>(null);
 	const customTimePickerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
-			if (isSelectionMenuOpen && selectMenuRef.current && !selectMenuRef.current.contains(event.target as Node)) {
-				setIsSelectionMenuOpen(false);
+			if (isDateMenuOpen && DateMenuRef.current && !DateMenuRef.current.contains(event.target as Node)) {
+				setIsDateMenuOpen(false);
 			}
 			if (
 				isCalendarOpen &&
@@ -45,7 +45,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [isSelectionMenuOpen, isCalendarOpen, isTimeOpen]);
+	}, [isDateMenuOpen, isCalendarOpen, isTimeOpen]);
 
 	const handleSetDueDate = (date?: 'today' | 'tomorrow' | 'next week') => {
 		if (!date) {
@@ -73,7 +73,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 		if (typeof value === 'object' && value !== null) {
 			const date = value instanceof Date ? value : value.toDate();
 			setDueDate(date);
-			setIsSelectionMenuOpen(false);
+			setIsDateMenuOpen(false);
 		}
 	};
 
@@ -81,7 +81,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 		<div className="relative flex">
 			{dueDate || isDatePickerOpen ? (
 				<div className="flex items-center py-0 gap-1">
-					<Button ariaLabel="Edit Due Date" onClick={() => setIsSelectionMenuOpen(prev => !prev)}>
+					<Button ariaLabel="Edit Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
 						<Calendar size={20} />
 					</Button>
 					<Button ariaLabel="Due Date" onClick={() => setIsCalendarOpen(prev => !prev)}>
@@ -96,7 +96,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 				</div>
 			) : (
 				<div className="flex items-center gap-1">
-					<Button ariaLabel="Add Due Date" onClick={() => setIsSelectionMenuOpen(prev => !prev)}>
+					<Button ariaLabel="Add Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
 						<CalendarPlus size={20} />
 					</Button>
 					{defaultEmptyText && (
@@ -116,10 +116,10 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 			)}
 
 			<div
-				ref={selectMenuRef}
+				ref={DateMenuRef}
 				className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg
                   flex flex-col w-44 border border-gray-300 shadow-lg before:-top-2 before:left-5 ${notch}
-                  ${isSelectionMenuOpen ? 'block' : 'hidden'}`}
+                  ${isDateMenuOpen ? 'block' : 'hidden'}`}
 			>
 				<p className="border-b border-gray-200 p-2 font-medium">
 					{dueDate ? format(dueDate, 'MM/dd/yy hh:mm:ss a') : 'Select Due Date'}
@@ -138,7 +138,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 					onClick={() => {
 						setIsDatePickerOpen(true);
 						setIsCalendarOpen(true);
-						setIsSelectionMenuOpen(false);
+						setIsDateMenuOpen(false);
 					}}
 				>
 					Custom
