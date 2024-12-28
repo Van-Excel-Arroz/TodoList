@@ -79,7 +79,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 				<Button ariaLabel="Add Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
 					{dueDate ? <Calendar size={20} /> : <CalendarPlus size={20} />}
 				</Button>
-				{defaultEmptyText && (
+				{(defaultEmptyText || dueDate) && (
 					<Button ariaLabel="Due Date" onClick={() => setIsDatePickerOpen(prev => !prev)}>
 						<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
 					</Button>
