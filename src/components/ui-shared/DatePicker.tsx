@@ -15,7 +15,6 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	const [isDateMenuOpen, setIsDateMenuOpen] = useState(false);
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
-	const DateMenuRef = useRef<HTMLDivElement>(null);
 	const customDatePickerRef = useRef<HTMLDivElement>(null);
 
 	const notch =
@@ -23,9 +22,6 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
-			if (isDateMenuOpen && DateMenuRef.current && !DateMenuRef.current.contains(event.target as Node)) {
-				setIsDateMenuOpen(false);
-			}
 			if (
 				isDatePickerOpen &&
 				customDatePickerRef.current &&
@@ -62,7 +58,6 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 			</div>
 
 			<DateMenu
-				DateMenuRef={DateMenuRef}
 				isDateMenuOpen={isDateMenuOpen}
 				setDueDate={setDueDate}
 				setIsDateMenuOpen={setIsDateMenuOpen}
@@ -92,18 +87,31 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 }
 
 interface DateMenuProps {
-	DateMenuRef: RefObject<HTMLDivElement>;
 	isDateMenuOpen: boolean;
 	setDueDate: (newDueDate: Date | undefined) => void;
 	setIsDatePickerOpen: (vaL: boolean) => void;
 	setIsDateMenuOpen: (val: boolean) => void;
 }
 
-function DateMenu({ DateMenuRef, isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMenuOpen }: DateMenuProps) {
+function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMenuOpen }: DateMenuProps) {
+	const DateMenuRef = useRef<HTMLDivElement>(null);
+
 	const notch =
 		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (isDateMenuOpen && DateMenuRef.current && !DateMenuRef.current.contains(event.target as Node)) {
+				setIsDateMenuOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [isDateMenuOpen]);
 	const handleSetDate = (date: string) => {
 		let baseDate = new Date();
 
