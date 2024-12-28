@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui-shared/Button';
-import { add, format, setHours, setMinutes, setSeconds, startOfToday } from 'date-fns';
-import { Calendar, CalendarPlus, Clock3, Trash2 } from 'lucide-react';
+import { add, format, setHours, setMinutes, setSeconds } from 'date-fns';
+import { Calendar, CalendarPlus, Trash2 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import DateTime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
