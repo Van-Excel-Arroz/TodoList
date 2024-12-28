@@ -75,7 +75,6 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 						value={dueDate}
 						open={isDatePickerOpen}
 						onChange={handleDateTimeChange}
-						closeOnSelect={true}
 						input={false}
 						dateFormat={true}
 						timeFormat={false}
