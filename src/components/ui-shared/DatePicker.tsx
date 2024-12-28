@@ -58,7 +58,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 	const DateMenuRef = useRef<HTMLDivElement>(null);
 
 	const notch =
-		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
+		" before:-top-2 before:left-5 before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 
 	useEffect(() => {
@@ -97,7 +97,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 		<div
 			ref={DateMenuRef}
 			className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg
-                  flex flex-col w-44 border border-gray-300 shadow-lg before:-top-2 before:left-5 ${notch}
+                  flex flex-col w-44 border border-gray-300 shadow-lg ${notch}
                   ${isDateMenuOpen ? 'block' : 'hidden'}`}
 		>
 			<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
@@ -170,7 +170,7 @@ function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDat
 	return (
 		<div
 			ref={customDatePickerRef}
-			className={`absolute top-10 -left-5 border border-gray-300 shadow-md rounded-md  bg-white ${notch} ${
+			className={`absolute top-10 -left-5 border border-gray-300 shadow-md rounded-md bg-white ${notch} ${
 				isDatePickerOpen ? 'block' : 'hidden'
 			}`}
 		>
