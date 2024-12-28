@@ -78,7 +78,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	};
 
 	const handleSetTime = (time?: 'morning' | 'noon' | 'afternoon' | 'evening' | 'night' | 'clear') => {
-		let now = startOfToday();
+		const now = startOfToday();
 
 		switch (time) {
 			case 'morning':
@@ -154,9 +154,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
                   flex flex-col w-44 border border-gray-300 shadow-lg before:-top-2 before:left-5 ${notch}
                   ${isTimeMenuOpen ? 'block' : 'hidden'}`}
 			>
-				<p className="border-b border-gray-200 p-2 font-medium">
-					{dueDate ? format(dueDate, 'MM/dd/yy hh:mm:ss a') : 'Select Due Time'}
-				</p>
+				<p className="border-b border-gray-200 p-2 font-medium">Select Due Time</p>
 				<p className={menuItemStyle} onClick={() => handleSetTime('morning')}>
 					Morning (09:00 a.m)
 				</p>
@@ -198,9 +196,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
                   flex flex-col w-44 border border-gray-300 shadow-lg before:-top-2 before:left-5 ${notch}
                   ${isDateMenuOpen ? 'block' : 'hidden'}`}
 			>
-				<p className="border-b border-gray-200 p-2 font-medium">
-					{dueDate ? format(dueDate, 'MM/dd/yy hh:mm:ss a') : 'Select Due Date'}
-				</p>
+				<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
 				<p className={menuItemStyle} onClick={() => handleSetDate('today')}>
 					Today ({format(new Date(), 'EEE')})
 				</p>
