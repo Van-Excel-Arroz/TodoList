@@ -16,7 +16,6 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	const [isTimeMenuOpen, setIsTimeMenuOpen] = useState(false);
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 	const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
-	const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 	const notch =
 		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
@@ -35,11 +34,11 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 				setIsTimeMenuOpen(false);
 			}
 			if (
-				isCalendarOpen &&
+				isDatePickerOpen &&
 				customDatePickerRef.current &&
 				!customDatePickerRef.current.contains(event.target as Node)
 			) {
-				setIsCalendarOpen(false);
+				setIsDatePickerOpen(false);
 			}
 			if (
 				isTimePickerOpen &&
@@ -54,7 +53,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [isDateMenuOpen, isTimeMenuOpen, isCalendarOpen, isTimePickerOpen]);
+	}, [isDateMenuOpen, isTimeMenuOpen, isDatePickerOpen, isTimePickerOpen]);
 
 	const handleSetDate = (date?: 'today' | 'tomorrow' | 'next week' | 'clear') => {
 		let baseDate = new Date();
@@ -112,12 +111,12 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 
 	return (
 		<div className="relative flex">
-			{dueDate || isDatePickerOpen ? (
+			{dueDate ? (
 				<div className="flex items-center py-0 gap-1">
 					<Button ariaLabel="Edit Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
 						<Calendar size={20} />
 					</Button>
-					<Button ariaLabel="Due Date" onClick={() => setIsCalendarOpen(prev => !prev)}>
+					<Button ariaLabel="Due Date" onClick={() => setIsDatePickerOpen(prev => !prev)}>
 						<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
 					</Button>
 					<Button ariaLabel="Edit Time">
@@ -134,7 +133,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 					</Button>
 					{defaultEmptyText && (
 						<>
-							<Button ariaLabel="Due Date" onClick={() => setIsCalendarOpen(prev => !prev)}>
+							<Button ariaLabel="Due Date" onClick={() => setIsDatePickerOpen(prev => !prev)}>
 								<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
 							</Button>
 							<Button ariaLabel="Edit Time" onClick={() => setIsTimeMenuOpen(prev => !prev)}>
@@ -210,7 +209,6 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 					className={menuItemStyle}
 					onClick={() => {
 						setIsDatePickerOpen(true);
-						setIsCalendarOpen(true);
 						setIsDateMenuOpen(false);
 					}}
 				>
@@ -230,13 +228,13 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 			<div
 				ref={customDatePickerRef}
 				className={`absolute top-10 -left-5 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
-					isCalendarOpen ? 'block' : 'hidden'
+					isDatePickerOpen ? 'block' : 'hidden'
 				}`}
 			>
 				<div className="relative">
 					<DateTime
 						value={dueDate}
-						open={isCalendarOpen}
+						open={isDatePickerOpen}
 						onChange={handleDateTimeChange}
 						closeOnSelect={true}
 						input={false}
