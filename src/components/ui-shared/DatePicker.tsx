@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui-shared/Button';
 import { add, format, setHours, setMinutes, setSeconds } from 'date-fns';
 import { Calendar, CalendarPlus, Trash2 } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, RefObject } from 'react';
 import DateTime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 
@@ -15,12 +15,11 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	const [isDateMenuOpen, setIsDateMenuOpen] = useState(false);
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
-	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
-	const notch =
-		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
-
 	const DateMenuRef = useRef<HTMLDivElement>(null);
 	const customDatePickerRef = useRef<HTMLDivElement>(null);
+
+	const notch =
+		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -41,27 +40,6 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	}, [isDateMenuOpen, isDatePickerOpen]);
-
-	const handleSetDate = (date?: 'today' | 'tomorrow' | 'next week' | 'clear') => {
-		let baseDate = new Date();
-
-		switch (date) {
-			case 'today':
-				baseDate = new Date();
-				break;
-			case 'tomorrow':
-				baseDate = add(new Date(), { days: 1 });
-				break;
-			case 'next week':
-				baseDate = add(new Date(), { days: 7 });
-				break;
-			case 'clear':
-				setDueDate(undefined);
-				return;
-		}
-		const endOfDay = setSeconds(setMinutes(setHours(baseDate, 23), 59), 59);
-		setDueDate(endOfDay);
-	};
 
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {
@@ -84,42 +62,6 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 			</div>
 
 			<div
-				ref={DateMenuRef}
-				className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg
-                  flex flex-col w-44 border border-gray-300 shadow-lg before:-top-2 before:left-5 ${notch}
-                  ${isDateMenuOpen ? 'block' : 'hidden'}`}
-			>
-				<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
-				<p className={menuItemStyle} onClick={() => handleSetDate('today')}>
-					Today ({format(new Date(), 'EEE')})
-				</p>
-				<p className={menuItemStyle} onClick={() => handleSetDate('tomorrow')}>
-					Tomorrow ({format(add(new Date(), { days: 1 }), 'EEE')})
-				</p>
-				<p className={menuItemStyle} onClick={() => handleSetDate('next week')}>
-					Next {format(add(new Date(), { days: 7 }), 'EEEE')}
-				</p>
-				<p
-					className={menuItemStyle}
-					onClick={() => {
-						setIsDatePickerOpen(true);
-						setIsDateMenuOpen(false);
-					}}
-				>
-					Custom
-				</p>
-				<button
-					aria-label="Clear Due Date"
-					type="button"
-					onClick={() => handleSetDate('clear')}
-					className={`flex items-center justify-center gap-2 border-t border-slate-300 ${menuItemStyle}`}
-				>
-					<Trash2 size={16} />
-					Clear
-				</button>
-			</div>
-
-			<div
 				ref={customDatePickerRef}
 				className={`absolute top-10 -left-5 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-20 bg-white ${notch} ${
 					isDatePickerOpen ? 'block' : 'hidden'
@@ -137,6 +79,78 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 					/>
 				</div>
 			</div>
+		</div>
+	);
+}
+
+interface DateMenuProps {
+	DateMenuRef: RefObject<HTMLDivElement>;
+	isDateMenuOpen: boolean;
+	setDueDate: (newDueDate: Date | undefined) => void;
+	setIsDatePickerOpen: (vaL: boolean) => void;
+	setIsDateMenuOpen: (val: boolean) => void;
+}
+
+function DateMenu({ DateMenuRef, isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMenuOpen }: DateMenuProps) {
+	const notch =
+		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
+	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
+
+	const handleSetDate = (date: string) => {
+		let baseDate = new Date();
+
+		switch (date) {
+			case 'today':
+				baseDate = new Date();
+				break;
+			case 'tomorrow':
+				baseDate = add(new Date(), { days: 1 });
+				break;
+			case 'next week':
+				baseDate = add(new Date(), { days: 7 });
+				break;
+			case 'clear':
+				setDueDate(undefined);
+				return;
+		}
+		const endOfDay = setSeconds(setMinutes(setHours(baseDate, 23), 59), 59);
+		setDueDate(endOfDay);
+	};
+	return (
+		<div
+			ref={DateMenuRef}
+			className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg
+                  flex flex-col w-44 border border-gray-300 shadow-lg before:-top-2 before:left-5 ${notch}
+                  ${isDateMenuOpen ? 'block' : 'hidden'}`}
+		>
+			<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
+			<p className={menuItemStyle} onClick={() => handleSetDate('today')}>
+				Today ({format(new Date(), 'EEE')})
+			</p>
+			<p className={menuItemStyle} onClick={() => handleSetDate('tomorrow')}>
+				Tomorrow ({format(add(new Date(), { days: 1 }), 'EEE')})
+			</p>
+			<p className={menuItemStyle} onClick={() => handleSetDate('next week')}>
+				Next {format(add(new Date(), { days: 7 }), 'EEEE')}
+			</p>
+			<p
+				className={menuItemStyle}
+				onClick={() => {
+					setIsDatePickerOpen(true);
+					setIsDateMenuOpen(false);
+				}}
+			>
+				Custom
+			</p>
+			<button
+				aria-label="Clear Due Date"
+				type="button"
+				onClick={() => handleSetDate('clear')}
+				className={`flex items-center justify-center gap-2 border-t border-slate-300 ${menuItemStyle}`}
+			>
+				<Trash2 size={16} />
+				Clear
+			</button>
 		</div>
 	);
 }
