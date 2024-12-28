@@ -29,7 +29,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 						setIsDatePickerOpen={setIsDatePickerOpen}
 					/>
 				</div>
-				{(defaultEmptyText || dueDate) && (
+				{(defaultEmptyText || dueDate || isDatePickerOpen) && (
 					<div className="relative">
 						<Button ariaLabel="Due Date" onClick={() => setIsDatePickerOpen(prev => !prev)}>
 							<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
