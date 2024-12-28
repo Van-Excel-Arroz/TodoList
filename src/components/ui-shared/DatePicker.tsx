@@ -78,7 +78,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	};
 
 	const handleSetTime = (time?: 'morning' | 'noon' | 'afternoon' | 'evening' | 'night' | 'clear') => {
-		const baseDate = startOfToday();
+		const baseDate = dueDate ? new Date(dueDate) : startOfToday();
 
 		switch (time) {
 			case 'morning':
