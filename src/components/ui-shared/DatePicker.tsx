@@ -75,31 +75,16 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 
 	return (
 		<div className={`relative flex ${defaultEmptyText && 'py-2'}`}>
-			{dueDate ? (
-				<div className="flex items-center h-4">
-					<div className="flex w-32">
-						<Button ariaLabel="Edit Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
-							<Calendar size={20} />
-						</Button>
-						<Button ariaLabel="Due Date" onClick={() => setIsDatePickerOpen(prev => !prev)}>
-							<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
-						</Button>
-					</div>
-				</div>
-			) : (
-				<div className="flex items-center h-4">
-					<div className={`flex ${defaultEmptyText && 'w-32'}`}>
-						<Button ariaLabel="Add Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
-							<CalendarPlus size={20} />
-						</Button>
-						{defaultEmptyText && (
-							<Button ariaLabel="Due Date" onClick={() => setIsDatePickerOpen(prev => !prev)}>
-								<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
-							</Button>
-						)}
-					</div>
-				</div>
-			)}
+			<div className="flex items-center h-4">
+				<Button ariaLabel="Add Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
+					{dueDate ? <Calendar size={20} /> : <CalendarPlus size={20} />}
+				</Button>
+				{defaultEmptyText && (
+					<Button ariaLabel="Due Date" onClick={() => setIsDatePickerOpen(prev => !prev)}>
+						<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
+					</Button>
+				)}
+			</div>
 
 			<div
 				ref={DateMenuRef}
