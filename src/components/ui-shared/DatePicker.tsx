@@ -32,7 +32,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 				setIsDateMenuOpen(false);
 			}
 			if (isTimeMenuOpen && TimeMenuRef.current && !TimeMenuRef.current.contains(event.target as Node)) {
-				setIsDateMenuOpen(false);
+				setIsTimeMenuOpen(false);
 			}
 			if (
 				isCalendarOpen &&
