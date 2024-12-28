@@ -139,7 +139,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 					(09:00 a.m)
 				</p>
 				<p className={menuItemStyle} onClick={() => handleSetTime('noon')}>
-					Noon (12:00 p.,)
+					Noon (12:00 p.m)
 				</p>
 				<p className={menuItemStyle} onClick={() => handleSetTime('afternoon')}>
 					Afternoon (02:00 p.m)
