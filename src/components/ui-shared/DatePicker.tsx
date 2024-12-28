@@ -13,7 +13,6 @@ interface DueDateInputProps {
 
 export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = false }: DueDateInputProps) {
 	const [isDateMenuOpen, setIsDateMenuOpen] = useState(false);
-
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
@@ -21,7 +20,6 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
 
 	const DateMenuRef = useRef<HTMLDivElement>(null);
-
 	const customDatePickerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -29,7 +27,6 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 			if (isDateMenuOpen && DateMenuRef.current && !DateMenuRef.current.contains(event.target as Node)) {
 				setIsDateMenuOpen(false);
 			}
-
 			if (
 				isDatePickerOpen &&
 				customDatePickerRef.current &&
