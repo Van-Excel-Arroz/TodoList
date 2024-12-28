@@ -9,6 +9,7 @@ export default function Importance({ isImportant, handleOnClick }: ImportancePro
 	return (
 		<button
 			className="flex items-center"
+			aria-label="Toggle todo importance"
 			onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 				event.stopPropagation();
 				handleOnClick();
