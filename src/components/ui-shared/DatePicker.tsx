@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui-shared/Button';
-import { add, format, setHours, setMinutes, setSeconds, startOfDay, startOfToday } from 'date-fns';
+import { add, format, setHours, setMinutes, setSeconds, startOfToday } from 'date-fns';
 import { Calendar, CalendarPlus, Clock3, Trash2 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import DateTime from 'react-datetime';
@@ -78,23 +78,23 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	};
 
 	const handleSetTime = (time?: 'morning' | 'noon' | 'afternoon' | 'evening' | 'night' | 'clear') => {
-		const now = startOfToday();
+		const baseDate = startOfToday();
 
 		switch (time) {
 			case 'morning':
-				setDueDate(setHours(setMinutes(now, 0), 9));
+				setDueDate(setHours(setMinutes(baseDate, 0), 9));
 				break;
 			case 'noon':
-				setDueDate(setHours(setMinutes(now, 0), 12));
+				setDueDate(setHours(setMinutes(baseDate, 0), 12));
 				break;
 			case 'afternoon':
-				setDueDate(setHours(setMinutes(now, 0), 15));
+				setDueDate(setHours(setMinutes(baseDate, 0), 15));
 				break;
 			case 'evening':
-				setDueDate(setHours(setMinutes(now, 0), 18));
+				setDueDate(setHours(setMinutes(baseDate, 0), 18));
 				break;
 			case 'night':
-				setDueDate(setHours(setMinutes(now, 0), 21));
+				setDueDate(setHours(setMinutes(baseDate, 0), 21));
 				break;
 			case 'clear':
 				setDueDate(undefined);
