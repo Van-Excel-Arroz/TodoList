@@ -8,9 +8,15 @@ interface DueDateInputProps {
 	dueDate: Date | undefined;
 	setDueDate: (newDueDate: Date | undefined) => void;
 	defaultEmptyText?: boolean;
+	right?: boolean;
 }
 
-export default function TimePicker({ dueDate, setDueDate, defaultEmptyText = false }: DueDateInputProps) {
+export default function TimePicker({
+	dueDate,
+	setDueDate,
+	defaultEmptyText = false,
+	right = false,
+}: DueDateInputProps) {
 	const [isTimeMenuOpen, setIsTimeMenuOpen] = useState(false);
 	const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
@@ -51,9 +57,10 @@ interface TimeMenuProps {
 	setIsTimeMenuOpen: (val: boolean) => void;
 	dueDate: Date | undefined;
 	setDueDate: (newDueDate: Date | undefined) => void;
+	right?: boolean;
 }
 
-function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, dueDate, setDueDate }: TimeMenuProps) {
+function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, dueDate, setDueDate, right = false }: TimeMenuProps) {
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 	const notch =
 		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
@@ -145,9 +152,10 @@ interface TimePickerProps {
 	setIsTimePickerOpen: (val: boolean) => void;
 	dueDate: Date | undefined;
 	setDueDate: (newDueDate: Date | undefined) => void;
+	right?: boolean;
 }
 
-function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate }: TimePickerProps) {
+function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate, right = false }: TimePickerProps) {
 	const notch =
 		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
 
