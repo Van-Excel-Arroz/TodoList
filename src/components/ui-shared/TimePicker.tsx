@@ -14,35 +14,6 @@ export default function TimePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	const [isTimeMenuOpen, setIsTimeMenuOpen] = useState(false);
 	const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
-	const notch =
-		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
-
-	const customTimePickerRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				isTimePickerOpen &&
-				customTimePickerRef.current &&
-				!customTimePickerRef.current.contains(event.target as Node)
-			) {
-				setIsTimePickerOpen(false);
-			}
-		};
-
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [isTimePickerOpen]);
-
-	const handleDateTimeChange = (value: string | moment.Moment) => {
-		if (typeof value === 'object' && value !== null) {
-			const date = value instanceof Date ? value : value.toDate();
-			setDueDate(date);
-		}
-	};
-
 	return (
 		<div className={`relative flex ${defaultEmptyText && 'py-2'}`}>
 			<div className="flex items-center h-4">
@@ -63,24 +34,12 @@ export default function TimePicker({ dueDate, setDueDate, defaultEmptyText = fal
 				setDueDate={setDueDate}
 			/>
 
-			<div
-				ref={customTimePickerRef}
-				className={`absolute top-10 left-16 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-28 bg-white ${notch} ${
-					isTimePickerOpen ? 'block' : 'hidden'
-				}`}
-			>
-				<div className="relative">
-					<DateTime
-						value={dueDate}
-						open={isTimePickerOpen}
-						onChange={handleDateTimeChange}
-						closeOnSelect={true}
-						input={false}
-						dateFormat={false}
-						timeFormat={true}
-					/>
-				</div>
-			</div>
+			<TimePickers
+				isTimePickerOpen={isTimePickerOpen}
+				setIsTimePickerOpen={setIsTimePickerOpen}
+				dueDate={dueDate}
+				setDueDate={setDueDate}
+			/>
 		</div>
 	);
 }
@@ -175,6 +134,65 @@ function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, dueDate, setDueDate }: Ti
 				<Trash2 size={16} />
 				Clear
 			</button>
+		</div>
+	);
+}
+
+interface TimePickerProps {
+	isTimePickerOpen: boolean;
+	setIsTimePickerOpen: (val: boolean) => void;
+	dueDate: Date | undefined;
+	setDueDate: (newDueDate: Date | undefined) => void;
+}
+
+function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate }: TimePickerProps) {
+	const notch =
+		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
+
+	const customTimePickerRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				isTimePickerOpen &&
+				customTimePickerRef.current &&
+				!customTimePickerRef.current.contains(event.target as Node)
+			) {
+				setIsTimePickerOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [isTimePickerOpen]);
+
+	const handleDateTimeChange = (value: string | moment.Moment) => {
+		if (typeof value === 'object' && value !== null) {
+			const date = value instanceof Date ? value : value.toDate();
+			setDueDate(date);
+		}
+	};
+
+	return (
+		<div
+			ref={customTimePickerRef}
+			className={`absolute top-10 left-16 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-28 bg-white ${notch} ${
+				isTimePickerOpen ? 'block' : 'hidden'
+			}`}
+		>
+			<div className="relative">
+				<DateTime
+					value={dueDate}
+					open={isTimePickerOpen}
+					onChange={handleDateTimeChange}
+					closeOnSelect={true}
+					input={false}
+					dateFormat={false}
+					timeFormat={true}
+				/>
+			</div>
 		</div>
 	);
 }
