@@ -16,7 +16,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
 	return (
-		<div className={`relative flex ${defaultEmptyText && 'py-2'}`}>
+		<div className={`flex ${defaultEmptyText && 'py-2'}`}>
 			<div className="flex items-center h-4">
 				<div className="relative">
 					<Button ariaLabel="Add Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
