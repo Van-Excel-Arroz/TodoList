@@ -79,7 +79,12 @@ export default function TodoDueDate() {
 					<DatePicker dueDate={initialDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
 				</div>
 				<div className="w-1/2 flex justify-center rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-400">
-					<TimePicker dueDate={initialDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
+					<TimePicker
+						dueDate={initialDate}
+						setDueDate={updateSelectedTodoDueDate}
+						defaultEmptyText={true}
+						right={true}
+					/>
 				</div>
 			</div>
 		</div>

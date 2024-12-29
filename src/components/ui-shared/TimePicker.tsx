@@ -32,6 +32,7 @@ export default function TimePicker({
 						setIsTimeMenuOpen={setIsTimeMenuOpen}
 						dueDate={dueDate}
 						setDueDate={setDueDate}
+						right={right}
 					/>
 				</div>
 				{(defaultEmptyText || dueDate) && (
@@ -44,6 +45,7 @@ export default function TimePicker({
 							setIsTimePickerOpen={setIsTimePickerOpen}
 							dueDate={dueDate}
 							setDueDate={setDueDate}
+							right={right}
 						/>
 					</div>
 				)}
@@ -106,7 +108,9 @@ function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, dueDate, setDueDate, righ
 	return (
 		<div
 			ref={TimeMenuRef}
-			className={`absolute top-10 -right-5 before:-top-2 before:right-6 z-20 bg-white text-center text-black text-sm rounded-lg
+			className={`absolute top-10 ${
+				right ? '-right-5 before:right-6 ' : '-left-7 before:left-8'
+			} before:-top-2 z-20 bg-white text-center text-black text-sm rounded-lg
 							flex flex-col w-44 border border-gray-300 shadow-lg  ${notch}
 							${isTimeMenuOpen ? 'block' : 'hidden'}`}
 		>
@@ -188,7 +192,9 @@ function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDat
 	return (
 		<div
 			ref={customTimePickerRef}
-			className={`absolute top-10 -right-1 before:-top-2 before:right-10 z-20 border border-gray-300 shadow-md rounded-md  bg-white ${notch} ${
+			className={`absolute top-10 ${
+				right ? '-right-1 before:right-10' : '-left-5 before:left-10'
+			} before:-top-2  z-20 border border-gray-300 shadow-md rounded-md  bg-white ${notch} ${
 				isTimePickerOpen ? 'block' : 'hidden'
 			}`}
 		>
