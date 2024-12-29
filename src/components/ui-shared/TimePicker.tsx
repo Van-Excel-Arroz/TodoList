@@ -15,31 +15,33 @@ export default function TimePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
 	return (
-		<div className={`relative flex ${defaultEmptyText && 'py-2'}`}>
+		<div className={`flex ${defaultEmptyText && 'py-2'}`}>
 			<div className="flex items-center h-4">
-				<Button ariaLabel="Edit Time">
-					<Clock3 size={20} onClick={() => setIsTimeMenuOpen(prev => !prev)} />
-				</Button>
-				{defaultEmptyText && (
-					<Button ariaLabel="Due Date" onClick={() => setIsTimePickerOpen(prev => !prev)}>
-						<p>{dueDate ? format(dueDate, 'hh:mm a') : 'HH:MM a'}</p>
+				<div className="relative">
+					<Button ariaLabel="Edit Time">
+						<Clock3 size={20} onClick={() => setIsTimeMenuOpen(prev => !prev)} />
 					</Button>
+					<TimeMenu
+						isTimeMenuOpen={isTimeMenuOpen}
+						setIsTimeMenuOpen={setIsTimeMenuOpen}
+						dueDate={dueDate}
+						setDueDate={setDueDate}
+					/>
+				</div>
+				{defaultEmptyText && (
+					<div className="relative">
+						<Button ariaLabel="Due Date" onClick={() => setIsTimePickerOpen(prev => !prev)}>
+							<p>{dueDate ? format(dueDate, 'hh:mm a') : 'HH:MM a'}</p>
+						</Button>
+						<TimePickers
+							isTimePickerOpen={isTimePickerOpen}
+							setIsTimePickerOpen={setIsTimePickerOpen}
+							dueDate={dueDate}
+							setDueDate={setDueDate}
+						/>
+					</div>
 				)}
 			</div>
-
-			<TimeMenu
-				isTimeMenuOpen={isTimeMenuOpen}
-				setIsTimeMenuOpen={setIsTimeMenuOpen}
-				dueDate={dueDate}
-				setDueDate={setDueDate}
-			/>
-
-			<TimePickers
-				isTimePickerOpen={isTimePickerOpen}
-				setIsTimePickerOpen={setIsTimePickerOpen}
-				dueDate={dueDate}
-				setDueDate={setDueDate}
-			/>
 		</div>
 	);
 }
@@ -97,7 +99,7 @@ function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, dueDate, setDueDate }: Ti
 	return (
 		<div
 			ref={TimeMenuRef}
-			className={`absolute top-10 left-28 bg-white text-center text-black text-sm rounded-lg
+			className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg
 							flex flex-col w-44 border border-gray-300 shadow-lg before:-top-2 before:left-5 ${notch}
 							${isTimeMenuOpen ? 'block' : 'hidden'}`}
 		>
@@ -178,7 +180,7 @@ function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDat
 	return (
 		<div
 			ref={customTimePickerRef}
-			className={`absolute top-10 left-16 border border-gray-300 shadow-md rounded-md before:-top-2 before:left-28 bg-white ${notch} ${
+			className={`absolute top-10 -right-1 before:-top-2 before:right-10 border border-gray-300 shadow-md rounded-md  bg-white ${notch} ${
 				isTimePickerOpen ? 'block' : 'hidden'
 			}`}
 		>
