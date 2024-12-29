@@ -35,6 +35,11 @@ export default function TimePicker({ dueDate, setDueDate, defaultEmptyText = fal
 				setIsTimePickerOpen(false);
 			}
 		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
 	}, [isTimeMenuOpen, isTimePickerOpen]);
 
 	const handleSetTime = (time?: 'morning' | 'noon' | 'afternoon' | 'evening' | 'night' | 'clear') => {
