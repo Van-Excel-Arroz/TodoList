@@ -45,29 +45,16 @@ export default function TimePicker({ dueDate, setDueDate, defaultEmptyText = fal
 
 	return (
 		<div className={`relative flex ${defaultEmptyText && 'py-2'}`}>
-			{dueDate ? (
-				<div className="flex items-center h-4">
-					<Button ariaLabel="Edit Time">
-						<Clock3 size={20} onClick={() => setIsTimeMenuOpen(prev => !prev)} />
-					</Button>
+			<div className="flex items-center h-4">
+				<Button ariaLabel="Edit Time">
+					<Clock3 size={20} onClick={() => setIsTimeMenuOpen(prev => !prev)} />
+				</Button>
+				{defaultEmptyText && (
 					<Button ariaLabel="Due Date" onClick={() => setIsTimePickerOpen(prev => !prev)}>
 						<p>{dueDate ? format(dueDate, 'hh:mm a') : 'HH:MM a'}</p>
 					</Button>
-				</div>
-			) : (
-				<div className="flex items-center h-4">
-					{defaultEmptyText && (
-						<div className="flex">
-							<Button ariaLabel="Edit Time" onClick={() => setIsTimeMenuOpen(prev => !prev)}>
-								<Clock3 size={20} />
-							</Button>
-							<Button ariaLabel="Due Date" onClick={() => setIsTimePickerOpen(prev => !prev)}>
-								<p>{dueDate ? format(dueDate, 'hh:mm a') : 'HH:MM a'}</p>
-							</Button>
-						</div>
-					)}
-				</div>
-			)}
+				)}
+			</div>
 
 			<TimeMenu
 				isTimeMenuOpen={isTimeMenuOpen}
