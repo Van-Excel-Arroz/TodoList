@@ -20,7 +20,7 @@ export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = fal
 			<div className="flex items-center h-4">
 				<div className="relative">
 					<Button ariaLabel="Add Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
-						{dueDate ? <Calendar size={20} /> : <CalendarPlus size={20} />}
+						<Calendar size={20} />
 					</Button>
 					<DateMenu
 						isDateMenuOpen={isDateMenuOpen}
