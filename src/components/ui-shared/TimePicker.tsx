@@ -99,7 +99,7 @@ function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, dueDate, setDueDate }: Ti
 	return (
 		<div
 			ref={TimeMenuRef}
-			className={`absolute top-10 -left-4 before:-top-2 before:left-5 z-20 bg-white text-center text-black text-sm rounded-lg
+			className={`absolute top-10 -right-5 before:-top-2 before:right-6 z-20 bg-white text-center text-black text-sm rounded-lg
 							flex flex-col w-44 border border-gray-300 shadow-lg  ${notch}
 							${isTimeMenuOpen ? 'block' : 'hidden'}`}
 		>
