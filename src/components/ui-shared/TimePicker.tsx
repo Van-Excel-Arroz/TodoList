@@ -99,8 +99,8 @@ function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, dueDate, setDueDate }: Ti
 	return (
 		<div
 			ref={TimeMenuRef}
-			className={`absolute top-10 -left-4 bg-white text-center text-black text-sm rounded-lg
-							flex flex-col w-44 border border-gray-300 shadow-lg before:-top-2 before:left-5 ${notch}
+			className={`absolute top-10 -left-4 before:-top-2 before:left-5 z-20 bg-white text-center text-black text-sm rounded-lg
+							flex flex-col w-44 border border-gray-300 shadow-lg  ${notch}
 							${isTimeMenuOpen ? 'block' : 'hidden'}`}
 		>
 			<p className="border-b border-gray-200 p-2 font-medium">Select Due Time</p>
@@ -180,7 +180,7 @@ function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDat
 	return (
 		<div
 			ref={customTimePickerRef}
-			className={`absolute top-10 -right-1 before:-top-2 before:right-10 border border-gray-300 shadow-md rounded-md  bg-white ${notch} ${
+			className={`absolute top-10 -right-1 before:-top-2 before:right-10 z-20 border border-gray-300 shadow-md rounded-md  bg-white ${notch} ${
 				isTimePickerOpen ? 'block' : 'hidden'
 			}`}
 		>
