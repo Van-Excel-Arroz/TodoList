@@ -14,19 +14,13 @@ export default function TimePicker({ dueDate, setDueDate, defaultEmptyText = fal
 	const [isTimeMenuOpen, setIsTimeMenuOpen] = useState(false);
 	const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
-	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 	const notch =
 		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
 
-	const TimeMenuRef = useRef<HTMLDivElement>(null);
 	const customTimePickerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
-			if (isTimeMenuOpen && TimeMenuRef.current && !TimeMenuRef.current.contains(event.target as Node)) {
-				setIsTimeMenuOpen(false);
-			}
-
 			if (
 				isTimePickerOpen &&
 				customTimePickerRef.current &&
@@ -40,32 +34,7 @@ export default function TimePicker({ dueDate, setDueDate, defaultEmptyText = fal
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [isTimeMenuOpen, isTimePickerOpen]);
-
-	const handleSetTime = (time: string) => {
-		const baseDate = dueDate ? new Date(dueDate) : startOfToday();
-
-		switch (time) {
-			case 'morning':
-				setDueDate(setHours(setMinutes(baseDate, 0), 9));
-				break;
-			case 'noon':
-				setDueDate(setHours(setMinutes(baseDate, 0), 12));
-				break;
-			case 'afternoon':
-				setDueDate(setHours(setMinutes(baseDate, 0), 15));
-				break;
-			case 'evening':
-				setDueDate(setHours(setMinutes(baseDate, 0), 18));
-				break;
-			case 'night':
-				setDueDate(setHours(setMinutes(baseDate, 0), 21));
-				break;
-			case 'clear':
-				setDueDate(undefined);
-				break;
-		}
-	};
+	}, [isTimePickerOpen]);
 
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {
@@ -100,47 +69,12 @@ export default function TimePicker({ dueDate, setDueDate, defaultEmptyText = fal
 				</div>
 			)}
 
-			<div
-				ref={TimeMenuRef}
-				className={`absolute top-10 left-28 bg-white text-center text-black text-sm rounded-lg
-                  flex flex-col w-44 border border-gray-300 shadow-lg before:-top-2 before:left-5 ${notch}
-                  ${isTimeMenuOpen ? 'block' : 'hidden'}`}
-			>
-				<p className="border-b border-gray-200 p-2 font-medium">Select Due Time</p>
-				<p className={menuItemStyle} onClick={() => handleSetTime('morning')}>
-					Morning (09:00 a.m)
-				</p>
-				<p className={menuItemStyle} onClick={() => handleSetTime('noon')}>
-					Noon (12:00 p.m)
-				</p>
-				<p className={menuItemStyle} onClick={() => handleSetTime('afternoon')}>
-					Afternoon (03:00 p.m)
-				</p>
-				<p className={menuItemStyle} onClick={() => handleSetTime('evening')}>
-					Evening (06:00 p.m)
-				</p>
-				<p className={menuItemStyle} onClick={() => handleSetTime('night')}>
-					Evening (09:00 p.m)
-				</p>
-				<p
-					className={menuItemStyle}
-					onClick={() => {
-						setIsTimePickerOpen(true);
-						setIsTimeMenuOpen(false);
-					}}
-				>
-					Custom
-				</p>
-				<button
-					aria-label="Clear Due Date"
-					type="button"
-					onClick={() => handleSetTime('clear')}
-					className={`flex items-center justify-center gap-2 border-t border-slate-300 ${menuItemStyle}`}
-				>
-					<Trash2 size={16} />
-					Clear
-				</button>
-			</div>
+			<TimeMenu
+				isTimeMenuOpen={isTimeMenuOpen}
+				setIsTimeMenuOpen={setIsTimeMenuOpen}
+				dueDate={dueDate}
+				setDueDate={setDueDate}
+			/>
 
 			<div
 				ref={customTimePickerRef}
@@ -160,6 +94,100 @@ export default function TimePicker({ dueDate, setDueDate, defaultEmptyText = fal
 					/>
 				</div>
 			</div>
+		</div>
+	);
+}
+
+interface TimeMenuProps {
+	isTimeMenuOpen: boolean;
+	setIsTimeMenuOpen: (val: boolean) => void;
+	dueDate: Date | undefined;
+	setDueDate: (newDueDate: Date | undefined) => void;
+}
+
+function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, dueDate, setDueDate }: TimeMenuProps) {
+	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
+	const notch =
+		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
+	const TimeMenuRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (isTimeMenuOpen && TimeMenuRef.current && !TimeMenuRef.current.contains(event.target as Node)) {
+				setIsTimeMenuOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [isTimeMenuOpen]);
+
+	const handleSetTime = (time: string) => {
+		const baseDate = dueDate ? new Date(dueDate) : startOfToday();
+
+		switch (time) {
+			case 'morning':
+				setDueDate(setHours(setMinutes(baseDate, 0), 9));
+				break;
+			case 'noon':
+				setDueDate(setHours(setMinutes(baseDate, 0), 12));
+				break;
+			case 'afternoon':
+				setDueDate(setHours(setMinutes(baseDate, 0), 15));
+				break;
+			case 'evening':
+				setDueDate(setHours(setMinutes(baseDate, 0), 18));
+				break;
+			case 'night':
+				setDueDate(setHours(setMinutes(baseDate, 0), 21));
+				break;
+			case 'clear':
+				setDueDate(undefined);
+				break;
+		}
+	};
+	return (
+		<div
+			ref={TimeMenuRef}
+			className={`absolute top-10 left-28 bg-white text-center text-black text-sm rounded-lg
+							flex flex-col w-44 border border-gray-300 shadow-lg before:-top-2 before:left-5 ${notch}
+							${isTimeMenuOpen ? 'block' : 'hidden'}`}
+		>
+			<p className="border-b border-gray-200 p-2 font-medium">Select Due Time</p>
+			<p className={menuItemStyle} onClick={() => handleSetTime('morning')}>
+				Morning (09:00 a.m)
+			</p>
+			<p className={menuItemStyle} onClick={() => handleSetTime('noon')}>
+				Noon (12:00 p.m)
+			</p>
+			<p className={menuItemStyle} onClick={() => handleSetTime('afternoon')}>
+				Afternoon (03:00 p.m)
+			</p>
+			<p className={menuItemStyle} onClick={() => handleSetTime('evening')}>
+				Evening (06:00 p.m)
+			</p>
+			<p className={menuItemStyle} onClick={() => handleSetTime('night')}>
+				Evening (09:00 p.m)
+			</p>
+			<p
+				className={menuItemStyle}
+				onClick={() => {
+					setIsTimeMenuOpen(false);
+				}}
+			>
+				Custom
+			</p>
+			<button
+				aria-label="Clear Due Date"
+				type="button"
+				onClick={() => handleSetTime('clear')}
+				className={`flex items-center justify-center gap-2 border-t border-slate-300 ${menuItemStyle}`}
+			>
+				<Trash2 size={16} />
+				Clear
+			</button>
 		</div>
 	);
 }
