@@ -49,7 +49,7 @@ export default function TodoDescription() {
 
 	return (
 		<div onBlur={handleInputBlur} tabIndex={-1}>
-			<form className="flex items-start flex-col w-full focus:outline-none" onSubmit={handleSubmit(onSubmit)}>
+			<form className="flex items-start flex-col w-full focus:outline-none mb-5" onSubmit={handleSubmit(onSubmit)}>
 				<div className="flex items-center justify-between w-full">
 					<p className="text-slate-600 pb-2">Description</p>
 					{isEditing && (
