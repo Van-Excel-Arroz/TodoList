@@ -42,7 +42,7 @@ export default function TimePicker({ dueDate, setDueDate, defaultEmptyText = fal
 		};
 	}, [isTimeMenuOpen, isTimePickerOpen]);
 
-	const handleSetTime = (time?: 'morning' | 'noon' | 'afternoon' | 'evening' | 'night' | 'clear') => {
+	const handleSetTime = (time: string) => {
 		const baseDate = dueDate ? new Date(dueDate) : startOfToday();
 
 		switch (time) {
