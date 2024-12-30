@@ -1,8 +1,7 @@
 import { Suspense } from 'react';
-import { getTodosWithCategories, sortTodosBySelectedCategory } from '@/lib/todo';
+import { getTodosWithCategories } from '@/lib/todo';
 import { getTodolist } from '@/lib/todolist';
 import TodoListHeader from './components/TodoListHeader';
-import { getSelectedCategories } from '@/lib/category';
 import { redirect } from 'next/navigation';
 import TodoListMain from './components/TodoListMain';
 
@@ -13,11 +12,7 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 		redirect('/tasks/');
 	}
 
-	const selectedCategories = await getSelectedCategories(todolistId);
-	const todos =
-		selectedCategories.length > 0
-			? await sortTodosBySelectedCategory(selectedCategories, todolistId)
-			: await getTodosWithCategories(todolistId);
+	const todos = await getTodosWithCategories(todolistId);
 
 	return (
 		<Suspense fallback={<LoadingAnimation />}>
