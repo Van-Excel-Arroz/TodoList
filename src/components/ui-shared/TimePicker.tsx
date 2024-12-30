@@ -30,6 +30,7 @@ export default function TimePicker({
 					<TimeMenu
 						isTimeMenuOpen={isTimeMenuOpen}
 						setIsTimeMenuOpen={setIsTimeMenuOpen}
+						setIsTimePickerOpen={setIsTimePickerOpen}
 						dueDate={dueDate}
 						setDueDate={setDueDate}
 						right={right}
@@ -57,12 +58,20 @@ export default function TimePicker({
 interface TimeMenuProps {
 	isTimeMenuOpen: boolean;
 	setIsTimeMenuOpen: (val: boolean) => void;
+	setIsTimePickerOpen: (val: boolean) => void;
 	dueDate: Date | undefined;
 	setDueDate: (newDueDate: Date | undefined) => void;
 	right?: boolean;
 }
 
-function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, dueDate, setDueDate, right = false }: TimeMenuProps) {
+function TimeMenu({
+	isTimeMenuOpen,
+	setIsTimeMenuOpen,
+	setIsTimePickerOpen,
+	dueDate,
+	setDueDate,
+	right = false,
+}: TimeMenuProps) {
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 	const notch =
 		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
@@ -133,6 +142,7 @@ function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, dueDate, setDueDate, righ
 			<p
 				className={menuItemStyle}
 				onClick={() => {
+					setIsTimePickerOpen(true);
 					setIsTimeMenuOpen(false);
 				}}
 			>
