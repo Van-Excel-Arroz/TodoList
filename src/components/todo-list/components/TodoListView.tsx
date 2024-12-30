@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Todo } from '@/types';
 import TodoSection from './TodoSection';
+import { compareAsc, compareDesc } from 'date-fns';
 
 interface TodoListViewProps {
 	todos: Todo[];
@@ -20,10 +21,13 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 		}
 	});
 
+	const sortByDueDate = [...incompletedTodos].sort((a, b) => {
+		return compareAsc(new Date(a.due_datetime!), new Date(b.due_datetime!));
+	});
 
 	return (
 		<div>
-			<TodoSection title="Todos" todos={sortByImportance} />
+			<TodoSection title="Todos" todos={sortByDueDate} />
 
 			<motion.div layout transition={{ duration: 0.15 }}>
 				<TodoSection title="Completed Todos" todos={completedTodos} />
