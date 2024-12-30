@@ -36,7 +36,7 @@ export default function TimePicker({
 						right={right}
 					/>
 				</div>
-				{(defaultEmptyText || dueDate) && (
+				{(defaultEmptyText || dueDate || isTimePickerOpen) && (
 					<div className="relative">
 						<Button ariaLabel="Due Date" onClick={() => setIsTimePickerOpen(prev => !prev)}>
 							<p>{dueDate ? format(dueDate, 'hh:mm a') : 'HH:MM a'}</p>
