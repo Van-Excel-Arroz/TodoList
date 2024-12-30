@@ -26,9 +26,7 @@ function TodoListHeader({ todolist }: TodoListHeaderProps) {
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					<p className="text-lg font-bold py-2">{currentTodolist?.title}</p>
 				</div>
-				<div className="flex items-center gap-2">
-					<TodoFilter />
-				</div>
+				<TodoFilter />
 			</div>
 			<TodoForm todolistId={todolist.id} />
 		</div>
