@@ -8,17 +8,11 @@ interface TodoListViewProps {
 }
 
 export default function TodoListView({ todos }: TodoListViewProps) {
-	const sortByImportance = [...todos].sort((a, b) => {
-		if (a.is_important && !b.is_important) {
-			return -1;
-		} else if (!a.is_important && b.is_important) {
-			return 1;
-		} else {
-			return 0;
-		}
-	});
+	const sortedById = [...todos].sort((a, b) => b.id - a.id);
 
-	const sortByDueDate = [...todos].sort((a, b) => {
+	const sortByImportance = [...todos].sort((a, b) => (b.is_important ? 1 : a.is_important ? -1 : 0));
+
+	const sortByDueDate = [...sortedById].sort((a, b) => {
 		return compareAsc(new Date(a.due_datetime!), new Date(b.due_datetime!));
 	});
 
