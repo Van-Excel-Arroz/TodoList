@@ -110,57 +110,6 @@ export async function updateTodoImportance(todoId: number, isImportant: boolean)
 	}
 }
 
-export async function sortTodosBySelectedCategory(selectedCategories: Category[], todolistId: number): Promise<Todo[]> {
-	const extractedCategories = selectedCategories.map(category => category.category_title);
-
-	try {
-		const result = await query(
-			`
-      SELECT
-        t.id AS id,
-        t.task_text,
-        t.due_datetime,
-        t.creation_date,
-        t.todo_list_id,
-        t.is_completed,
-				t.description,
-				t.is_important
-      FROM
-        todos t
-      LEFT JOIN
-        categories c ON t.id = c.todo_id
-      LEFT JOIN
-        category_colors cc ON c.category_color_id = cc.id
-      WHERE t.todo_list_id = $2
-      GROUP BY
-        t.id
-      ORDER BY
-        -- First order by number of matching categories (descending)
-        COUNT(CASE WHEN cc.category_title = ANY($1) THEN 1 END) DESC,
-        -- Then by total number of categories (ascending) for ties
-        COUNT(c.category_color_id) ASC,
-        -- Finally by creation date
-        t.creation_date ASC
-      `,
-			[extractedCategories, todolistId]
-		);
-
-		const todosWithCategories: Todo[] = await Promise.all(
-			result.rows.map(async todo => {
-				const categories = await getTodoWithCategories(todo.id);
-				return {
-					...todo,
-					categories,
-				};
-			})
-		);
-		return todosWithCategories;
-	} catch (error) {
-		console.error('Error sorting todos by selected category in the database', error);
-		return [];
-	}
-}
-
 export async function deleteTodo(todoId: number): Promise<boolean> {
 	try {
 		await query('DELETE FROM todos WHERE id = $1', [todoId]);
