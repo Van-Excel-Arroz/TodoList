@@ -6,7 +6,7 @@ import DatePicker from '@/components/ui-shared/DatePicker';
 import TimePicker from '@/components/ui-shared/TimePicker';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
-import { Save, Undo } from 'lucide-react';
+import { CalendarDays, Save, Undo } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function TodoDueDate() {
@@ -55,7 +55,10 @@ export default function TodoDueDate() {
 	return (
 		<div className="flex flex-col">
 			<div className="flex items-center justify-between pb-1">
-				<p className="text-slate-600 py-1">Due Date</p>
+				<div className="flex items-center text-slate-600 gap-2">
+					<CalendarDays size={18} />
+					<p className="text-slate-600 py-1">Due Date</p>
+				</div>
 				<div className="flex items-center gap-1">
 					{isChanged && (
 						<>
