@@ -10,7 +10,7 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 	const incompletedTodos = todos.filter(todo => !todo.is_completed);
 	const completedTodos = todos.filter(todo => todo.is_completed);
 
-	const sortedIncompletedTodos = [...incompletedTodos].sort((a, b) => {
+	const sortByImportance = [...incompletedTodos].sort((a, b) => {
 		if (a.is_important && !b.is_important) {
 			return -1;
 		} else if (!a.is_important && b.is_important) {
@@ -20,9 +20,10 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 		}
 	});
 
+
 	return (
 		<div>
-			<TodoSection title="Todos" todos={sortedIncompletedTodos} />
+			<TodoSection title="Todos" todos={sortByImportance} />
 
 			<motion.div layout transition={{ duration: 0.15 }}>
 				<TodoSection title="Completed Todos" todos={completedTodos} />
