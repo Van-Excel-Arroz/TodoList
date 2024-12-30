@@ -6,8 +6,6 @@ import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
-import { ArrowDownUp } from 'lucide-react';
-import { Button } from '@/components/ui-shared/Button';
 import useTodoListStore from '@/context/TodoListContext';
 
 interface TodoListHeaderProps {
@@ -29,9 +27,6 @@ function TodoListHeader({ todolist }: TodoListHeaderProps) {
 					<p className="text-lg font-bold py-2">{currentTodolist?.title}</p>
 				</div>
 				<div className="flex items-center gap-2">
-					<Button ariaLabel="Sort">
-						<ArrowDownUp size={20} />
-					</Button>
 					<TodoFilter />
 				</div>
 			</div>
