@@ -12,9 +12,9 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 
 	const sortByImportance = [...todos].sort((a, b) => (b.is_important ? 1 : a.is_important ? -1 : 0));
 
-	const sortByDueDate = [...sortedById].sort((a, b) => {
-		return compareAsc(new Date(a.due_datetime!), new Date(b.due_datetime!));
-	});
+	const sortByDueDate = [...sortedById].sort((a, b) =>
+		compareAsc(new Date(a.due_datetime!), new Date(b.due_datetime!))
+	);
 
 	const incompletedTodos = sortByImportance.filter(todo => !todo.is_completed);
 	const completedTodos = sortByImportance.filter(todo => todo.is_completed);
