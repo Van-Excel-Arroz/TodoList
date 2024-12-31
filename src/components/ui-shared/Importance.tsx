@@ -17,7 +17,7 @@ export default function Importance({ isImportant, handleOnClick }: ImportancePro
 		>
 			<Star
 				strokeWidth={2}
-				className={`${isImportant && 'hover:opacity-80 active:opacity-60'} text-slate-600`}
+				className="hover:opacity-80 active:opacity-60 text-slate-600"
 				fill={`${isImportant ? '#475569' : 'white'}`}
 			/>
 		</button>
