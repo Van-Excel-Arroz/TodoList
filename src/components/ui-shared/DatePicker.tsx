@@ -72,7 +72,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [isDateMenuOpen]);
+	}, [isDateMenuOpen, setIsDateMenuOpen]);
 	const handleSetDate = (date: string) => {
 		let baseDate = new Date();
 
@@ -159,7 +159,7 @@ function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDat
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [isDatePickerOpen]);
+	}, [isDatePickerOpen, setIsDatePickerOpen]);
 
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {

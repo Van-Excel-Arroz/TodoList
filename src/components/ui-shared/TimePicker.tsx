@@ -88,7 +88,7 @@ function TimeMenu({
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [isTimeMenuOpen]);
+	}, [isTimeMenuOpen, setIsTimeMenuOpen]);
 
 	const handleSetTime = (time: string) => {
 		const baseDate = dueDate ? new Date(dueDate) : startOfToday();
@@ -190,7 +190,7 @@ function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDat
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [isTimePickerOpen]);
+	}, [isTimePickerOpen, setIsTimePickerOpen]);
 
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {
