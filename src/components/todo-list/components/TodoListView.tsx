@@ -16,17 +16,16 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 		compareAsc(new Date(a.due_datetime!), new Date(b.due_datetime!))
 	);
 
-	const selectedCategories = new Set(['coding', 'UI/UX']);
+	const selectedCategories = new Set(['coding', 'UI/UX', 'try']);
 
-	const withCategoryIndex = sortedById.map(todo => {
-		const hasSelectedCategory = todo.categories?.some(cat => selectedCategories.has(cat.category_title));
-		return {
-			...todo,
-			order_index: hasSelectedCategory ? 1 : 0,
-		};
+	const sortedByCategories = [...sortedById].sort((a, b) => {
+		const a_categories = a.categories?.filter(cat => selectedCategories.has(cat.category_title));
+		const b_categories = b.categories?.filter(cat => selectedCategories.has(cat.category_title));
+
+		if (a_categories.length < b_categories.length) return 1;
+		if (a_categories.length > b_categories.length) return -1;
+		return 0;
 	});
-
-	const sortedByCategories = [...withCategoryIndex].sort((a, b) => b.order_index - a.order_index);
 
 	const incompletedTodos = sortedByCategories.filter(todo => !todo.is_completed);
 	const completedTodos = sortedByCategories.filter(todo => todo.is_completed);
