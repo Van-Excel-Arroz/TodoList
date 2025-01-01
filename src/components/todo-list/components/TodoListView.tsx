@@ -8,47 +8,35 @@ interface TodoListViewProps {
 }
 
 export default function TodoListView({ todos }: TodoListViewProps) {
-	const sortedById = [...todos].sort((a, b) => b.id - a.id);
-
-	const sortByImportance = [...sortedById].sort((a, b) => (b.is_important ? 1 : a.is_important ? -1 : 0));
-
-	const sortByDueDate = [...sortedById].sort((a, b) =>
-		compareAsc(new Date(a.due_datetime!), new Date(b.due_datetime!))
-	);
-
 	const selectedCategories = new Set(['coding', 'UI/UX', 'try']);
 
-	const sortedByCategories = [...sortedById].sort((a, b) => {
-		const a_categories = (a.categories ?? []).filter(cat => selectedCategories.has(cat.category_title));
-		const b_categories = (b.categories ?? []).filter(cat => selectedCategories.has(cat.category_title));
-
-		if (a_categories.length < b_categories.length) return 1;
-		if (a_categories.length > b_categories.length) return -1;
-		return 0;
-	});
-
-	const sortedTodos = [...sortedById].sort((a, b) => {
-		const a_categories = (a.categories ?? []).filter(cat => selectedCategories.has(cat.category_title));
-		const b_categories = (b.categories ?? []).filter(cat => selectedCategories.has(cat.category_title));
-
-		if (a_categories.length < b_categories.length) return 1;
-		if (a_categories.length > b_categories.length) return -1;
-
+	const sortedTodos = [...todos].sort((a, b) => {
 		if (a.is_important !== b.is_important) {
 			return a.is_important ? -1 : 1;
 		}
+
+		const a_categories = (a.categories ?? []).filter(cat => selectedCategories.has(cat.category_title));
+		const b_categories = (b.categories ?? []).filter(cat => selectedCategories.has(cat.category_title));
+
+		if (a_categories.length < b_categories.length) return 1;
+		if (a_categories.length > b_categories.length) return -1;
 
 		if (a.due_datetime && b.due_datetime) {
 			return compareAsc(new Date(a.due_datetime), new Date(b.due_datetime));
 		}
 
+		if (a.creation_date && b.creation_date) {
+			return compareDesc(new Date(a.creation_date), new Date(b.creation_date));
+		}
+
 		if (a.due_datetime) return -1;
 		if (b.due_datetime) return 1;
+
 		return 0;
 	});
 
-	const incompletedTodos = sortedByCategories.filter(todo => !todo.is_completed);
-	const completedTodos = sortedByCategories.filter(todo => todo.is_completed);
+	const incompletedTodos = sortedTodos.filter(todo => !todo.is_completed);
+	const completedTodos = sortedTodos.filter(todo => todo.is_completed);
 
 	return (
 		<div>
