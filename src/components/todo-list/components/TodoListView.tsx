@@ -19,8 +19,8 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 	const selectedCategories = new Set(['coding', 'UI/UX', 'try']);
 
 	const sortedByCategories = [...sortedById].sort((a, b) => {
-		const a_categories = a.categories?.filter(cat => selectedCategories.has(cat.category_title));
-		const b_categories = b.categories?.filter(cat => selectedCategories.has(cat.category_title));
+		const a_categories = (a.categories ?? []).filter(cat => selectedCategories.has(cat.category_title));
+		const b_categories = (b.categories ?? []).filter(cat => selectedCategories.has(cat.category_title));
 
 		if (a_categories.length < b_categories.length) return 1;
 		if (a_categories.length > b_categories.length) return -1;
