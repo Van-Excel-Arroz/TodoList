@@ -12,7 +12,7 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
 			<header className="sticky top-0 left-0 z-50 w-full">
 				<Navbar />
 			</header>
-			<div className="flex h-screen">
+			<div className="flex flex-1 overflow-hidden">
 				<aside className="absolute lg:sticky top-0 left-0 z-30">
 					<TodoListsSidebar />
 				</aside>
