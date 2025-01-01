@@ -45,7 +45,9 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 
 	return (
 		<div>
-			<TodoSection title="Todos" todos={incompletedTodos} />
+			<motion.div layout transition={{ duration: 0.15 }}>
+				<TodoSection title="Todos" todos={incompletedTodos} />
+			</motion.div>
 			<motion.div layout transition={{ duration: 0.15 }}>
 				<TodoSection title="Completed Todos" todos={completedTodos} />
 			</motion.div>
