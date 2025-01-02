@@ -175,15 +175,11 @@ function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDat
 	const notch =
 		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
 
-	const customTimePickerRef = useRef<HTMLDivElement>(null);
+	const TimePickerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				isTimePickerOpen &&
-				customTimePickerRef.current &&
-				!customTimePickerRef.current.contains(event.target as Node)
-			) {
+			if (isTimePickerOpen && TimePickerRef.current && !TimePickerRef.current.contains(event.target as Node)) {
 				setIsTimePickerOpen(false);
 			}
 		};
@@ -201,9 +197,15 @@ function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDat
 		}
 	};
 
-	//right ? '-right-1 before:right-10' : '-left-5 before:left-10'
 	return (
-		<Menu ref={customTimePickerRef} open={isTimePickerOpen}>
+		<Menu
+			ref={TimePickerRef}
+			open={isTimePickerOpen}
+			leftNotch={!right ? 10 : 0}
+			posLeft={!right ? 5 : 0}
+			rightNotch={right ? 10 : 0}
+			posRight={right ? 1 : 0}
+		>
 			<div className="relative">
 				<DateTime
 					value={dueDate}
