@@ -7,6 +7,7 @@ import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import useTodoListStore from '@/context/TodoListContext';
+import TodoSort from './TodoSort';
 
 function TodoListHeader({ todolist }: { todolist: TodoList }) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
@@ -22,7 +23,10 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					<p className="text-lg font-bold py-2">{currentTodolist?.title}</p>
 				</div>
-				<TodoFilter />
+				<div className="flex items-center gap-2">
+					<TodoSort />
+					<TodoFilter />
+				</div>
 			</div>
 			<TodoForm todolistId={todolist.id} />
 		</div>
