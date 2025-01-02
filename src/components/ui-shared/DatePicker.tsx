@@ -126,20 +126,10 @@ interface DatePickersProps {
 }
 
 function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate }: DatePickersProps) {
-	const DatePickerRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (isDatePickerOpen && DatePickerRef.current && !DatePickerRef.current.contains(event.target as Node)) {
-				setIsDatePickerOpen(false);
-			}
-		};
-
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [isDatePickerOpen, setIsDatePickerOpen]);
+	const ref = useOutsideClickHandler({
+		isOpen: isDatePickerOpen,
+		onClose: () => setIsDatePickerOpen(false),
+	});
 
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {
@@ -149,7 +139,7 @@ function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDat
 	};
 
 	return (
-		<Menu ref={DatePickerRef} open={isDatePickerOpen} posX="-left-10" posXNotch="before:left-20" width="w-fit">
+		<Menu ref={ref} open={isDatePickerOpen} posX="-left-10" posXNotch="before:left-20" width="w-fit">
 			<div className="relative">
 				<DateTime
 					value={dueDate}
