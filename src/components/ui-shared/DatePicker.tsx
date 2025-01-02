@@ -57,9 +57,6 @@ interface DateMenuProps {
 
 function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMenuOpen }: DateMenuProps) {
 	const DateMenuRef = useRef<HTMLDivElement>(null);
-
-	const notch =
-		"before:-top-2 before:left-5 before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 
 	useEffect(() => {
@@ -74,6 +71,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	}, [isDateMenuOpen, setIsDateMenuOpen]);
+
 	const handleSetDate = (date: string) => {
 		let baseDate = new Date();
 
@@ -94,6 +92,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 		const endOfDay = setSeconds(setMinutes(setHours(baseDate, 23), 59), 59);
 		setDueDate(endOfDay);
 	};
+
 	return (
 		<Menu ref={DateMenuRef} open={isDateMenuOpen}>
 			<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
