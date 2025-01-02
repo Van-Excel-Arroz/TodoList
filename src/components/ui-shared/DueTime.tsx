@@ -4,6 +4,7 @@ import { Button } from './Button';
 import { Clock3, Trash2 } from 'lucide-react';
 import DateTime from 'react-datetime';
 import Menu from './Menu';
+import MenuItem from './MenuItem';
 
 interface DueDateInputProps {
 	dueDate: Date | undefined;
@@ -103,7 +104,9 @@ function TimeMenu({
 			posXNotch={`${right ? 'before:right-6' : 'before:left-6'}`}
 			width="w-44"
 		>
-			<p className="border-b border-gray-200 p-2 font-medium">Select Due Time</p>
+			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
+				<p>Select Due Time</p>
+			</MenuItem>
 			<p className={menuItemStyle} onClick={() => handleSetTime('morning')}>
 				Morning (09:00 a.m)
 			</p>
