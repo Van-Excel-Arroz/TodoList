@@ -119,11 +119,9 @@ function TimeMenu({
 		<Menu
 			ref={TimeMenuRef}
 			open={isTimeMenuOpen}
-			width={44}
-			leftNotch={!right ? 8 : 0}
-			posLeft={!right ? 7 : 0}
-			rightNotch={right ? 6 : 0}
-			posRight={right ? 5 : 0}
+			posX={`${right ? '-right-5' : '-left-5'}`}
+			posXNotch={`${right ? 'before:right-6' : 'before:left-6'}`}
+			width="w-44"
 		>
 			<p className="border-b border-gray-200 p-2 font-medium">Select Due Time</p>
 			<p className={menuItemStyle} onClick={() => handleSetTime('morning')}>
