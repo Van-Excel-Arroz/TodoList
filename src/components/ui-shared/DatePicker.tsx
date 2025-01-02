@@ -3,6 +3,7 @@ import { add, format, setHours, setMinutes, setSeconds } from 'date-fns';
 import { Calendar, Trash2 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import DateTime from 'react-datetime';
+import 'react-datetime/css/react-datetime.css';
 import Menu from './Menu';
 import useOutsideClickHandler from '@/custom-hooks/useOutsideClickHandler';
 
@@ -60,7 +61,6 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 		isOpen: isDateMenuOpen,
 		onClose: () => setIsDateMenuOpen(false),
 	});
-
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 
 	const handleSetDate = (date: string) => {
