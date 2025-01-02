@@ -157,7 +157,7 @@ function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDat
 		}
 	};
 	return (
-		<Menu ref={DatePickerRef} open={isDatePickerOpen} leftNotch={20} posLeft={14}>
+		<Menu ref={DatePickerRef} open={isDatePickerOpen} leftNotch={20} posLeft={10}>
 			<div className="relative">
 				<DateTime
 					value={dueDate}
