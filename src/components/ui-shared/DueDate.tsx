@@ -12,7 +12,7 @@ interface DueDateInputProps {
 	defaultEmptyText?: boolean;
 }
 
-export default function DatePicker({ dueDate, setDueDate, defaultEmptyText = false }: DueDateInputProps) {
+export default function DueDate({ dueDate, setDueDate, defaultEmptyText = false }: DueDateInputProps) {
 	const [isDateMenuOpen, setIsDateMenuOpen] = useState(false);
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 

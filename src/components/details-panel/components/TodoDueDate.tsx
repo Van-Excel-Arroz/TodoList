@@ -2,7 +2,7 @@
 
 import { deleteTodoDueDateAction, updateTodoDueDateAction } from '@/actions/todo-action';
 import { Button } from '@/components/ui-shared/Button';
-import DatePicker from '@/components/ui-shared/DatePicker';
+import DueDate from '@/components/ui-shared/DueDate';
 import TimePicker from '@/components/ui-shared/TimePicker';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
@@ -79,7 +79,7 @@ export default function TodoDueDate() {
 			</div>
 			<div className="flex items-center gap-2 w-full">
 				<div className="w-1/2 flex justify-center rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-400">
-					<DatePicker dueDate={initialDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
+					<DueDate dueDate={initialDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
 				</div>
 				<div className="w-1/2 flex justify-center rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-400">
 					<TimePicker
