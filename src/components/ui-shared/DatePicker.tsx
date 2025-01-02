@@ -3,7 +3,6 @@ import { add, format, setHours, setMinutes, setSeconds } from 'date-fns';
 import { Calendar, Trash2 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import DateTime from 'react-datetime';
-import 'react-datetime/css/react-datetime.css';
 import Menu from './Menu';
 
 interface DueDateInputProps {
@@ -93,7 +92,6 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 		setDueDate(endOfDay);
 	};
 
-	//leftNotch={5} posLeft={5} width={44}
 	return (
 		<Menu ref={DateMenuRef} open={isDateMenuOpen} posX="-left-5" posXNotch="before:left-6" width="w-44">
 			<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>

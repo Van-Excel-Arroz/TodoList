@@ -25,10 +25,3 @@ export default function Menu({ open, ref, children, posX, posXNotch, width }: Me
 		</div>
 	);
 }
-
-// ${width ? `w-${width}` : 'w-fit'}
-// ${leftNotch && `before:left-${leftNotch}`}
-// ${rightNotch && `before:right-${rightNotch}`}
-// ${posLeft && `-left-${posLeft}`}
-// ${posRight && `-right-${posRight}`}
-// ${open ? 'block' : 'hidden'}`}
