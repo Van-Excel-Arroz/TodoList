@@ -9,7 +9,7 @@ interface TodoListViewProps {
 }
 
 export default function TodoListView({ todos }: TodoListViewProps) {
-	const selectedCategories = new Set(['coding', 'UI/UX', 'try']);
+	const selectedCategories: Set<string> = new Set([]);
 
 	const { incompleteTodos, completeTodos } = useMemo(() => {
 		const incomplete: any[] = [];
