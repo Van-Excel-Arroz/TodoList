@@ -9,7 +9,7 @@ export default function MenuItem({ children, className, onClick, clickable = tru
 	return (
 		<div
 			className={`${className || ''} ${clickable && 'hover:bg-slate-200 active:bg-slate-300 cursor-pointer'} p-2`}
-			onClick={() => onClick()}
+			onClick={() => onClick && onClick()}
 		>
 			{children}
 		</div>
