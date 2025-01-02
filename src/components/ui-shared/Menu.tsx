@@ -4,8 +4,8 @@ interface MenuProps {
 	open: boolean;
 	ref: LegacyRef<HTMLDivElement> | undefined;
 	children: React.ReactNode;
-	leftNotch?: string | number;
-	right?: string | number;
+	leftNotch?: number;
+	right?: number;
 }
 
 export default function Menu({ open, ref, children, leftNotch, right }: MenuProps) {
