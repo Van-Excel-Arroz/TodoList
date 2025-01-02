@@ -4,7 +4,6 @@ import { Button } from './Button';
 import { Clock3, Trash2 } from 'lucide-react';
 import DateTime from 'react-datetime';
 import Menu from './Menu';
-import useOutsideClickHandler from '@/custom-hooks/useOutsideClickHandler';
 
 interface DueDateInputProps {
 	dueDate: Date | undefined;
