@@ -201,15 +201,9 @@ function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDat
 		}
 	};
 
+	//right ? '-right-1 before:right-10' : '-left-5 before:left-10'
 	return (
-		<div
-			ref={customTimePickerRef}
-			className={`absolute top-10 ${
-				right ? '-right-1 before:right-10' : '-left-5 before:left-10'
-			} before:-top-2  z-20 border border-gray-300 shadow-md rounded-md  bg-white ${notch} ${
-				isTimePickerOpen ? 'block' : 'hidden'
-			}`}
-		>
+		<Menu ref={customTimePickerRef} open={isTimePickerOpen}>
 			<div className="relative">
 				<DateTime
 					value={dueDate}
@@ -221,6 +215,6 @@ function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDat
 					timeFormat={true}
 				/>
 			</div>
-		</div>
+		</Menu>
 	);
 }
