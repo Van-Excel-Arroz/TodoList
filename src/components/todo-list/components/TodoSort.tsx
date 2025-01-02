@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
-import { ArrowUpDown, CalendarDays, Tag } from 'lucide-react';
+import { ArrowUpDown, CalendarDays, CalendarPlus, Star } from 'lucide-react';
 import { useState } from 'react';
 
 export default function TodoSort() {
@@ -25,12 +25,16 @@ export default function TodoSort() {
 					<p>Sort by</p>
 				</MenuItem>
 				<MenuItem>
-					<Tag className="text-slate-600" size={18} />
-					<p>Categories</p>
-				</MenuItem>
-				<MenuItem>
 					<CalendarDays className="text-slate-600" size={18} />
 					<p>Due Date</p>
+				</MenuItem>
+				<MenuItem>
+					<CalendarPlus className="text-slate-600" size={18} />
+					<p>Creation Date</p>
+				</MenuItem>
+				<MenuItem>
+					<Star className="text-slate-600" size={18} />
+					<p>Importance</p>
 				</MenuItem>
 			</Menu>
 		</div>

@@ -8,6 +8,8 @@ import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import useTodoListStore from '@/context/TodoListContext';
 import TodoSort from './TodoSort';
+import { Search } from 'lucide-react';
+import { Button } from '@/components/ui-shared/Button';
 
 function TodoListHeader({ todolist }: { todolist: TodoList }) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
@@ -24,6 +26,9 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 					<p className="text-lg font-bold py-2">{currentTodolist?.title}</p>
 				</div>
 				<div className="flex items-center gap-2">
+					<Button ariaLabel="Search">
+						<Search />
+					</Button>
 					<TodoSort />
 					<TodoFilter />
 				</div>
