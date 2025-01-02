@@ -37,7 +37,7 @@ export default function DueTime({ dueDate, setDueDate, defaultEmptyText = false,
 						<Button ariaLabel="Due Date" onClick={() => setIsTimePickerOpen(prev => !prev)}>
 							<p>{dueDate ? format(dueDate, 'hh:mm a') : 'HH:MM a'}</p>
 						</Button>
-						<TimePickers
+						<TimePicker
 							isTimePickerOpen={isTimePickerOpen}
 							setIsTimePickerOpen={setIsTimePickerOpen}
 							dueDate={dueDate}
@@ -149,7 +149,7 @@ interface TimePickerProps {
 	right?: boolean;
 }
 
-function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate, right = false }: TimePickerProps) {
+function TimePicker({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate, right = false }: TimePickerProps) {
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {
 			const date = value instanceof Date ? value : value.toDate();
