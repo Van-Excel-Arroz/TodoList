@@ -8,11 +8,7 @@ import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import useTodoListStore from '@/context/TodoListContext';
 
-interface TodoListHeaderProps {
-	todolist: TodoList;
-}
-
-function TodoListHeader({ todolist }: TodoListHeaderProps) {
+function TodoListHeader({ todolist }: { todolist: TodoList }) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 	const { setTodoList, todolist: currentTodolist } = useTodoListStore();
 	useEffect(() => {
