@@ -69,8 +69,6 @@ function TimeMenu({
 	setDueDate,
 	right = false,
 }: TimeMenuProps) {
-	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
-
 	const handleSetTime = (time: string) => {
 		const baseDate = dueDate ? new Date(dueDate) : startOfToday();
 
