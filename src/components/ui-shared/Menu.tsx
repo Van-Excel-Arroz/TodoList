@@ -1,15 +1,30 @@
-import { LegacyRef } from 'react';
+import { LegacyRef, useEffect, useRef } from 'react';
 
 interface MenuProps {
 	open: boolean;
-	ref: LegacyRef<HTMLDivElement> | undefined;
+	onClose: () => void;
 	children: React.ReactNode;
 	posX: string;
 	posXNotch: string;
 	width: string;
 }
 
-export default function Menu({ open, ref, children, posX, posXNotch, width }: MenuProps) {
+export default function Menu({ open, onClose, children, posX, posXNotch, width }: MenuProps) {
+	const ref = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (open && ref.current && !ref.current.contains(event.target as Node)) {
+				onClose();
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [open, onClose]);
+
 	return (
 		<div
 			ref={ref}

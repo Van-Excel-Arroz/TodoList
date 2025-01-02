@@ -76,11 +76,6 @@ function TimeMenu({
 }: TimeMenuProps) {
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 
-	const ref = useOutsideClickHandler({
-		isOpen: isTimeMenuOpen,
-		onClose: () => setIsTimeMenuOpen(false),
-	});
-
 	const handleSetTime = (time: string) => {
 		const baseDate = dueDate ? new Date(dueDate) : startOfToday();
 
@@ -108,8 +103,8 @@ function TimeMenu({
 
 	return (
 		<Menu
-			ref={ref}
 			open={isTimeMenuOpen}
+			onClose={() => setIsTimeMenuOpen(false)}
 			posX={`${right ? '-right-5' : '-left-5'}`}
 			posXNotch={`${right ? 'before:right-6' : 'before:left-6'}`}
 			width="w-44"
@@ -161,11 +156,6 @@ interface TimePickerProps {
 }
 
 function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate, right = false }: TimePickerProps) {
-	const ref = useOutsideClickHandler({
-		isOpen: isTimePickerOpen,
-		onClose: () => setIsTimePickerOpen(false),
-	});
-
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {
 			const date = value instanceof Date ? value : value.toDate();
@@ -175,8 +165,8 @@ function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDat
 
 	return (
 		<Menu
-			ref={ref}
 			open={isTimePickerOpen}
+			onClose={() => setIsTimePickerOpen(false)}
 			posX={`${right ? '-right-5' : '-left-5'}`}
 			posXNotch={`${right ? 'before:right-14' : 'before:left-10'}`}
 			width="w-fit"

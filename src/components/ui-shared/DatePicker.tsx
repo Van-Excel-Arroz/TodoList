@@ -5,7 +5,6 @@ import { useState } from 'react';
 import DateTime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import Menu from './Menu';
-import useOutsideClickHandler from '@/custom-hooks/useOutsideClickHandler';
 
 interface DueDateInputProps {
 	dueDate: Date | undefined;
@@ -57,11 +56,6 @@ interface DateMenuProps {
 }
 
 function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMenuOpen }: DateMenuProps) {
-	const ref = useOutsideClickHandler({
-		isOpen: isDateMenuOpen,
-		onClose: () => setIsDateMenuOpen(false),
-	});
-
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 
 	const handleSetDate = (date: string) => {
@@ -86,7 +80,13 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 	};
 
 	return (
-		<Menu ref={ref} open={isDateMenuOpen} posX="-left-5" posXNotch="before:left-6" width="w-44">
+		<Menu
+			open={isDateMenuOpen}
+			onClose={() => setIsDateMenuOpen(false)}
+			posX="-left-5"
+			posXNotch="before:left-6"
+			width="w-44"
+		>
 			<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
 			<p className={menuItemStyle} onClick={() => handleSetDate('today')}>
 				Today ({format(new Date(), 'EEE')})
@@ -127,11 +127,6 @@ interface DatePickersProps {
 }
 
 function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate }: DatePickersProps) {
-	const ref = useOutsideClickHandler({
-		isOpen: isDatePickerOpen,
-		onClose: () => setIsDatePickerOpen(false),
-	});
-
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {
 			const date = value instanceof Date ? value : value.toDate();
@@ -140,7 +135,13 @@ function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDat
 	};
 
 	return (
-		<Menu ref={ref} open={isDatePickerOpen} posX="-left-10" posXNotch="before:left-20" width="w-fit">
+		<Menu
+			open={isDatePickerOpen}
+			onClose={() => setIsDatePickerOpen(false)}
+			posX="-left-10"
+			posXNotch="before:left-20"
+			width="w-fit"
+		>
 			<div className="relative">
 				<DateTime
 					value={dueDate}
