@@ -4,6 +4,7 @@ import { Calendar, Trash2 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import DateTime from 'react-datetime';
 import Menu from './Menu';
+import useOutsideClickHandler from '@/custom-hooks/useOutsideClickHandler';
 
 interface DueDateInputProps {
 	dueDate: Date | undefined;
@@ -55,21 +56,12 @@ interface DateMenuProps {
 }
 
 function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMenuOpen }: DateMenuProps) {
-	const DateMenuRef = useRef<HTMLDivElement>(null);
+	const ref = useOutsideClickHandler({
+		isOpen: isDateMenuOpen,
+		onClose: () => setIsDateMenuOpen(false),
+	});
+
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
-
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (isDateMenuOpen && DateMenuRef.current && !DateMenuRef.current.contains(event.target as Node)) {
-				setIsDateMenuOpen(false);
-			}
-		};
-
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [isDateMenuOpen, setIsDateMenuOpen]);
 
 	const handleSetDate = (date: string) => {
 		let baseDate = new Date();
@@ -93,7 +85,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 	};
 
 	return (
-		<Menu ref={DateMenuRef} open={isDateMenuOpen} posX="-left-5" posXNotch="before:left-6" width="w-44">
+		<Menu ref={ref} open={isDateMenuOpen} posX="-left-5" posXNotch="before:left-6" width="w-44">
 			<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
 			<p className={menuItemStyle} onClick={() => handleSetDate('today')}>
 				Today ({format(new Date(), 'EEE')})
