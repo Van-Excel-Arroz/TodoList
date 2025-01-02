@@ -172,9 +172,6 @@ interface TimePickerProps {
 }
 
 function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate, right = false }: TimePickerProps) {
-	const notch =
-		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
-
 	const TimePickerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
