@@ -57,8 +57,6 @@ interface DateMenuProps {
 }
 
 function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMenuOpen }: DateMenuProps) {
-	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
-
 	const handleSetDate = (date: string) => {
 		let baseDate = new Date();
 
