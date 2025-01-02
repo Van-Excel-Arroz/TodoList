@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Button } from './Button';
 import { Clock3, Trash2 } from 'lucide-react';
 import DateTime from 'react-datetime';
+import Menu from './Menu';
 
 interface DueDateInputProps {
 	dueDate: Date | undefined;
@@ -114,15 +115,11 @@ function TimeMenu({
 				break;
 		}
 	};
+
+	// right ? '-right-5 before:right-6 ' : '-left-7 before:left-8';
+
 	return (
-		<div
-			ref={TimeMenuRef}
-			className={`absolute top-10 ${
-				right ? '-right-5 before:right-6 ' : '-left-7 before:left-8'
-			} before:-top-2 z-20 bg-white text-center text-black text-sm rounded-lg
-							flex flex-col w-44 border border-gray-300 shadow-lg  ${notch}
-							${isTimeMenuOpen ? 'block' : 'hidden'}`}
-		>
+		<Menu ref={TimeMenuRef} open={isTimeMenuOpen} width={44} rightNotch={}>
 			<p className="border-b border-gray-200 p-2 font-medium">Select Due Time</p>
 			<p className={menuItemStyle} onClick={() => handleSetTime('morning')}>
 				Morning (09:00 a.m)
@@ -157,7 +154,7 @@ function TimeMenu({
 				<Trash2 size={16} />
 				Clear
 			</button>
-		</div>
+		</Menu>
 	);
 }
 
