@@ -196,10 +196,9 @@ function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDat
 		<Menu
 			ref={TimePickerRef}
 			open={isTimePickerOpen}
-			leftNotch={!right ? 10 : 0}
-			posLeft={!right ? 5 : 0}
-			rightNotch={right ? 10 : 0}
-			posRight={right ? 1 : 0}
+			posX={`${right ? '-right-5' : '-left-5'}`}
+			posXNotch={`${right ? 'before:right-14' : 'before:left-10'}`}
+			width="w-fit"
 		>
 			<div className="relative">
 				<DateTime
