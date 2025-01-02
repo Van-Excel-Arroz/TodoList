@@ -131,7 +131,7 @@ function TimeMenu({
 			<MenuItem className="border-t border-slate-300" onClick={() => handleSetTime('clear')}>
 				<button aria-label="Clear Due Date" type="button" className="w-full flex justify-center gap-1">
 					<Trash2 size={16} />
-					Clear
+					<p>Clear</p>
 				</button>
 			</MenuItem>
 		</Menu>

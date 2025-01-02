@@ -5,6 +5,7 @@ import { useState } from 'react';
 import DateTime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import Menu from './Menu';
+import MenuItem from './MenuItem';
 
 interface DueDateInputProps {
 	dueDate: Date | undefined;
@@ -87,34 +88,32 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 			posXNotch="before:left-6"
 			width="w-44"
 		>
-			<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
-			<p className={menuItemStyle} onClick={() => handleSetDate('today')}>
-				Today ({format(new Date(), 'EEE')})
-			</p>
-			<p className={menuItemStyle} onClick={() => handleSetDate('tomorrow')}>
-				Tomorrow ({format(add(new Date(), { days: 1 }), 'EEE')})
-			</p>
-			<p className={menuItemStyle} onClick={() => handleSetDate('next week')}>
-				Next {format(add(new Date(), { days: 7 }), 'EEEE')}
-			</p>
-			<p
-				className={menuItemStyle}
+			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
+				<p>Select Due Date</p>
+			</MenuItem>
+			<MenuItem onClick={() => handleSetDate('today')}>
+				<p>Today ({format(new Date(), 'EEE')})</p>
+			</MenuItem>
+			<MenuItem onClick={() => handleSetDate('tomorrow')}>
+				<p>Tomorrow ({format(add(new Date(), { days: 1 }), 'EEE')})</p>
+			</MenuItem>
+			<MenuItem onClick={() => handleSetDate('next week')}>
+				<p>Next {format(add(new Date(), { days: 7 }), 'EEEE')}</p>
+			</MenuItem>
+			<MenuItem
 				onClick={() => {
 					setIsDatePickerOpen(true);
 					setIsDateMenuOpen(false);
 				}}
 			>
-				Custom
-			</p>
-			<button
-				aria-label="Clear Due Date"
-				type="button"
-				onClick={() => handleSetDate('clear')}
-				className={`flex items-center justify-center gap-2 border-t border-slate-300 ${menuItemStyle}`}
-			>
-				<Trash2 size={16} />
-				Clear
-			</button>
+				<p>Custom</p>
+			</MenuItem>
+			<MenuItem className="border-t border-slate-300" onClick={() => handleSetDate('clear')}>
+				<button aria-label="Clear Due Date" type="button" className="w-full flex justify-center gap-2">
+					<Trash2 size={16} />
+					<p>Clear</p>
+				</button>
+			</MenuItem>
 		</Menu>
 	);
 }
