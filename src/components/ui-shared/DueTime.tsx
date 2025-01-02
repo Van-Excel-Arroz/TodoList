@@ -107,30 +107,30 @@ function TimeMenu({
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Select Due Time</p>
 			</MenuItem>
-			<p className={menuItemStyle} onClick={() => handleSetTime('morning')}>
-				Morning (09:00 a.m)
-			</p>
-			<p className={menuItemStyle} onClick={() => handleSetTime('noon')}>
-				Noon (12:00 p.m)
-			</p>
-			<p className={menuItemStyle} onClick={() => handleSetTime('afternoon')}>
-				Afternoon (03:00 p.m)
-			</p>
-			<p className={menuItemStyle} onClick={() => handleSetTime('evening')}>
-				Evening (06:00 p.m)
-			</p>
-			<p className={menuItemStyle} onClick={() => handleSetTime('night')}>
-				Evening (09:00 p.m)
-			</p>
-			<p
-				className={menuItemStyle}
+			<MenuItem onClick={() => handleSetTime('morning')}>
+				<p>Morning (09:00 a.m)</p>
+			</MenuItem>
+			<MenuItem onClick={() => handleSetTime('noon')}>
+				<p>Noon (12:00 p.m)</p>
+			</MenuItem>
+			<MenuItem onClick={() => handleSetTime('afternoon')}>
+				<p>Afternoon (03:00 p.m)</p>
+			</MenuItem>
+			<MenuItem onClick={() => handleSetTime('evening')}>
+				<p>Evening (06:00 p.m)</p>
+			</MenuItem>
+			<MenuItem onClick={() => handleSetTime('night')}>
+				<p>Evening (09:00 p.m)</p>
+			</MenuItem>
+			<MenuItem
 				onClick={() => {
 					setIsTimePickerOpen(true);
 					setIsTimeMenuOpen(false);
 				}}
 			>
-				Custom
-			</p>
+				<p>Custom</p>
+			</MenuItem>
+
 			<button
 				aria-label="Clear Due Date"
 				type="button"
