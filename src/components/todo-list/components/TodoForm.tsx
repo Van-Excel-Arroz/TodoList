@@ -10,7 +10,7 @@ import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
 import TodoInput from '../ui/TodoInput';
 import DueDate from '../../ui-shared/DueDate';
-import TimePicker from '@/components/ui-shared/TimePicker';
+import DueTime from '@/components/ui-shared/DueTime';
 
 interface TodoFormData {
 	todo?: string;
@@ -75,7 +75,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			<div className="flex items-center justify-between w-full pb-1">
 				<div className="flex items-center gap-1 text-slate-600">
 					<DueDate dueDate={dueDate} setDueDate={setDueDate} />
-					<TimePicker dueDate={dueDate} setDueDate={setDueDate} />
+					<DueTime dueDate={dueDate} setDueDate={setDueDate} />
 					<Button ariaLabel="Repeat">
 						<Repeat size={18} />
 					</Button>

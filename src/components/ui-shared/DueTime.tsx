@@ -12,12 +12,7 @@ interface DueDateInputProps {
 	right?: boolean;
 }
 
-export default function TimePicker({
-	dueDate,
-	setDueDate,
-	defaultEmptyText = false,
-	right = false,
-}: DueDateInputProps) {
+export default function DueTime({ dueDate, setDueDate, defaultEmptyText = false, right = false }: DueDateInputProps) {
 	const [isTimeMenuOpen, setIsTimeMenuOpen] = useState(false);
 	const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
