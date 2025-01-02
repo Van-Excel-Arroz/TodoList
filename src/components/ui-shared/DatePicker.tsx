@@ -61,6 +61,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 		isOpen: isDateMenuOpen,
 		onClose: () => setIsDateMenuOpen(false),
 	});
+
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 
 	const handleSetDate = (date: string) => {

@@ -4,6 +4,7 @@ import { Button } from './Button';
 import { Clock3, Trash2 } from 'lucide-react';
 import DateTime from 'react-datetime';
 import Menu from './Menu';
+import useOutsideClickHandler from '@/custom-hooks/useOutsideClickHandler';
 
 interface DueDateInputProps {
 	dueDate: Date | undefined;
@@ -75,20 +76,10 @@ function TimeMenu({
 }: TimeMenuProps) {
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
 
-	const TimeMenuRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (isTimeMenuOpen && TimeMenuRef.current && !TimeMenuRef.current.contains(event.target as Node)) {
-				setIsTimeMenuOpen(false);
-			}
-		};
-
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [isTimeMenuOpen, setIsTimeMenuOpen]);
+	const ref = useOutsideClickHandler({
+		isOpen: isTimeMenuOpen,
+		onClose: () => setIsTimeMenuOpen(false),
+	});
 
 	const handleSetTime = (time: string) => {
 		const baseDate = dueDate ? new Date(dueDate) : startOfToday();
@@ -117,7 +108,7 @@ function TimeMenu({
 
 	return (
 		<Menu
-			ref={TimeMenuRef}
+			ref={ref}
 			open={isTimeMenuOpen}
 			posX={`${right ? '-right-5' : '-left-5'}`}
 			posXNotch={`${right ? 'before:right-6' : 'before:left-6'}`}
@@ -170,20 +161,10 @@ interface TimePickerProps {
 }
 
 function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate, right = false }: TimePickerProps) {
-	const TimePickerRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (isTimePickerOpen && TimePickerRef.current && !TimePickerRef.current.contains(event.target as Node)) {
-				setIsTimePickerOpen(false);
-			}
-		};
-
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [isTimePickerOpen, setIsTimePickerOpen]);
+	const ref = useOutsideClickHandler({
+		isOpen: isTimePickerOpen,
+		onClose: () => setIsTimePickerOpen(false),
+	});
 
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {
@@ -194,7 +175,7 @@ function TimePickers({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDat
 
 	return (
 		<Menu
-			ref={TimePickerRef}
+			ref={ref}
 			open={isTimePickerOpen}
 			posX={`${right ? '-right-5' : '-left-5'}`}
 			posXNotch={`${right ? 'before:right-14' : 'before:left-10'}`}
