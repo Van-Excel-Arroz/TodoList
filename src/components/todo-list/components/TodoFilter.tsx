@@ -2,17 +2,36 @@
 
 import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
-import { Filter } from 'lucide-react';
-import { useRef } from 'react';
+import MenuItem from '@/components/ui-shared/MenuItem';
+import { CalendarDays, Filter, Tag } from 'lucide-react';
+import { useState } from 'react';
 
 export default function TodoFilter() {
+	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+
 	return (
 		<div className="relative">
-			<Button ariaLabel="Filter">
+			<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
 				<Filter size={20} className="text-slate-600" />
 			</Button>
-			<Menu open={true} onClose={() => console.log('lol')} posX="-right-5" posXNotch="before:right-6" width="w-44">
-				HELLO WORLD
+			<Menu
+				open={isFilterMenuOpen}
+				onClose={() => setIsFilterMenuOpen(false)}
+				posX="-right-5"
+				posXNotch="before:right-6"
+				width="w-44"
+			>
+				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
+					<p>Add Filter</p>
+				</MenuItem>
+				<MenuItem>
+					<Tag className="text-slate-600" size={18} />
+					<p>Categories</p>
+				</MenuItem>
+				<MenuItem>
+					<CalendarDays className="text-slate-600" size={18} />
+					<p>Due Date</p>
+				</MenuItem>
 			</Menu>
 		</div>
 	);
