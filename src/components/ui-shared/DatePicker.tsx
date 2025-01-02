@@ -94,7 +94,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 	};
 
 	return (
-		<Menu ref={DateMenuRef} open={isDateMenuOpen} left={5}>
+		<Menu ref={DateMenuRef} open={isDateMenuOpen} leftNotch={5}>
 			<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
 			<p className={menuItemStyle} onClick={() => handleSetDate('today')}>
 				Today ({format(new Date(), 'EEE')})
@@ -135,17 +135,11 @@ interface DatePickersProps {
 }
 
 function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate }: DatePickersProps) {
-	const notch =
-		"before:-top-2 before:left-20 before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
-	const customDatePickerRef = useRef<HTMLDivElement>(null);
+	const DatePickerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				isDatePickerOpen &&
-				customDatePickerRef.current &&
-				!customDatePickerRef.current.contains(event.target as Node)
-			) {
+			if (isDatePickerOpen && DatePickerRef.current && !DatePickerRef.current.contains(event.target as Node)) {
 				setIsDatePickerOpen(false);
 			}
 		};
@@ -163,12 +157,7 @@ function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDat
 		}
 	};
 	return (
-		<div
-			ref={customDatePickerRef}
-			className={`absolute top-10 -left-14 z-20 border border-gray-300 shadow-md rounded-md bg-white ${notch} ${
-				isDatePickerOpen ? 'block' : 'hidden'
-			}`}
-		>
+		<Menu ref={DatePickerRef} open={isDatePickerOpen} leftNotch={20}>
 			<div className="relative">
 				<DateTime
 					value={dueDate}
@@ -179,6 +168,6 @@ function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDat
 					timeFormat={false}
 				/>
 			</div>
-		</div>
+		</Menu>
 	);
 }
