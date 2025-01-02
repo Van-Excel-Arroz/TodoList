@@ -13,7 +13,7 @@ export default function TodoFilter() {
 			<Button ariaLabel="Filter">
 				<Filter size={20} className="text-slate-600" />
 			</Button>
-			<Menu ref={FilterMenuRef} open={true} width={44} rightNotch={6} posRight={5}>
+			<Menu ref={FilterMenuRef} open={true} posX="-right-5" posXNotch="before:right-6" width="w-44">
 				HELLO WORLD
 			</Menu>
 		</div>
