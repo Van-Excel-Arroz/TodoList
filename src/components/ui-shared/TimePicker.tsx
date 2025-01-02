@@ -1,5 +1,5 @@
 import { format, setHours, setMinutes, startOfToday } from 'date-fns';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Button } from './Button';
 import { Clock3, Trash2 } from 'lucide-react';
 import DateTime from 'react-datetime';
