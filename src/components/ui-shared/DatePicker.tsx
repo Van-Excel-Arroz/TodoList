@@ -4,6 +4,7 @@ import { Calendar, CalendarPlus, Trash2 } from 'lucide-react';
 import { useState, useEffect, useRef, RefObject } from 'react';
 import DateTime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
+import Menu from './Menu';
 
 interface DueDateInputProps {
 	dueDate: Date | undefined;
@@ -94,12 +95,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 		setDueDate(endOfDay);
 	};
 	return (
-		<div
-			ref={DateMenuRef}
-			className={`absolute top-10 -left-4 z-20 bg-white text-center text-black text-sm rounded-lg
-                  flex flex-col w-44 border border-gray-300 shadow-lg ${notch}
-                  ${isDateMenuOpen ? 'block' : 'hidden'}`}
-		>
+		<Menu ref={DateMenuRef} open={isDateMenuOpen}>
 			<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
 			<p className={menuItemStyle} onClick={() => handleSetDate('today')}>
 				Today ({format(new Date(), 'EEE')})
@@ -128,7 +124,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 				<Trash2 size={16} />
 				Clear
 			</button>
-		</div>
+		</Menu>
 	);
 }
 
