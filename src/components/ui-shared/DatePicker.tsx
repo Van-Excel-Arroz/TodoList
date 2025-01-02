@@ -94,7 +94,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 	};
 
 	return (
-		<Menu ref={DateMenuRef} open={isDateMenuOpen} leftNotch={5} posLeft={5}>
+		<Menu ref={DateMenuRef} open={isDateMenuOpen} leftNotch={5} posLeft={5} width={44}>
 			<p className="border-b border-gray-200 p-2 font-medium">Select Due Date</p>
 			<p className={menuItemStyle} onClick={() => handleSetDate('today')}>
 				Today ({format(new Date(), 'EEE')})
