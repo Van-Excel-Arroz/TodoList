@@ -74,8 +74,7 @@ function TimeMenu({
 	right = false,
 }: TimeMenuProps) {
 	const menuItemStyle = 'hover:bg-slate-200 active:bg-slate-300 p-2 cursor-pointer';
-	const notch =
-		"before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45";
+
 	const TimeMenuRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -115,8 +114,6 @@ function TimeMenu({
 				break;
 		}
 	};
-
-	// right ? '-right-5 before:right-6 ' : '-left-7 before:left-8';
 
 	return (
 		<Menu
