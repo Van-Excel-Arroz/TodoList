@@ -9,7 +9,7 @@ export default function TodoFilter() {
 	const FilterMenuRef = useRef<HTMLDivElement>(null);
 
 	return (
-		<div className="relative flex items-center mr-4">
+		<div className="relative">
 			<Button ariaLabel="Filter">
 				<Filter size={20} className="text-slate-600" />
 			</Button>

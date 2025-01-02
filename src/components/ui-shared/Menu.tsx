@@ -13,7 +13,8 @@ export default function Menu({ open, ref, children, posX, posXNotch, width }: Me
 	return (
 		<div
 			ref={ref}
-			className={`absolute top-10 z-20 bg-white text-center text-black text-sm rounded-lg flex flex-col border border-gray-300 shadow-lg before:-top-2 before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45
+			className={`absolute top-10 z-20 bg-white text-center text-black text-sm rounded-lg flex flex-col border border-gray-300 shadow-lg 
+									before:-top-2 before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45
                   ${width}
 									${posX}
 									${posXNotch}
