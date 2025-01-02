@@ -35,7 +35,7 @@ export default function DueDate({ dueDate, setDueDate, defaultEmptyText = false 
 						<Button ariaLabel="Due Date" onClick={() => setIsDatePickerOpen(prev => !prev)}>
 							<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
 						</Button>
-						<DatePickers
+						<DatePicker
 							isDatePickerOpen={isDatePickerOpen}
 							setIsDatePickerOpen={setIsDatePickerOpen}
 							dueDate={dueDate}
@@ -119,14 +119,14 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 	);
 }
 
-interface DatePickersProps {
+interface DatePickerProps {
 	isDatePickerOpen: boolean;
 	setIsDatePickerOpen: (val: boolean) => void;
 	dueDate: Date | undefined;
 	setDueDate: (newDueDate: Date | undefined) => void;
 }
 
-function DatePickers({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate }: DatePickersProps) {
+function DatePicker({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate }: DatePickerProps) {
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {
 			const date = value instanceof Date ? value : value.toDate();
