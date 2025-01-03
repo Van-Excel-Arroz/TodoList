@@ -36,6 +36,9 @@ export default function TodoSort() {
 					<Star className="text-slate-600" size={18} />
 					<p>Importance</p>
 				</MenuItem>
+				<MenuItem>
+					<p>Alphabetical</p>
+				</MenuItem>
 			</Menu>
 		</div>
 	);
