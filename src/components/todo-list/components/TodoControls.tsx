@@ -20,6 +20,7 @@ export default function TodoControls() {
 		params.delete('sort');
 		router.push(`/tasks/?${params.toString()}`);
 	};
+
 	return (
 		<div className={`${field ? 'inline-block' : 'hidden'} mb-3 p-1 bg-slate-200 text-slate-700 rounded-lg`}>
 			<div className="flex items-center gap-1">
@@ -27,7 +28,9 @@ export default function TodoControls() {
 					<ArrowUpDown size={14} />
 				</Button>
 				{field === 'dueDate' && <p className="text-xs">Due Date ({order === 'desc' ? 'Latest' : 'Earlier'} first)</p>}
-				{field === 'creationDate' && <p className="text-xs">Creation Date</p>}
+				{field === 'creationDate' && (
+					<p className="text-xs">Creation Date ({order === 'desc' ? 'Latest' : 'Earlier'} first)</p>
+				)}
 				<Button ariaLabel="Remove Sort" onClick={handleRemoveSort}>
 					<X size={12} />
 				</Button>
