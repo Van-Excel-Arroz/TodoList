@@ -26,7 +26,7 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 					<p>Sort by</p>
 				</MenuItem>
 				<MenuItem>
-					<Link href={`/tasks/?id=${todolistId}/due-date=asc`}>
+					<Link href={`/tasks/?id=${todolistId}&?due-date=asc`}>
 						<CalendarDays className="text-slate-600" size={18} />
 						<p>Due Date</p>
 					</Link>

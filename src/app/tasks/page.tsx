@@ -9,11 +9,11 @@ interface PageProps {
 
 export default async function TasksPage({ searchParams }: PageProps) {
 	const { id = '' } = await searchParams;
+	const todolistId = Number(id);
 
 	if (!id) {
 		return <NoTodoListSelected />;
 	}
 
-	const todolistId = Number(id);
 	return <TodoListPage todolistId={todolistId} />;
 }
