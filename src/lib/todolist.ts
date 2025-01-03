@@ -41,7 +41,7 @@ export async function getTodolist(todolistId: number, user_id: number) {
 		);
 		return result.rows[0];
 	} catch (error) {
-		console.error('Error fetching todolist from the database');
+		console.error('Error fetching todolist from the database', error);
 		return;
 	}
 }
