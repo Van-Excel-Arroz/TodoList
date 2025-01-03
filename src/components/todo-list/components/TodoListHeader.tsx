@@ -10,10 +10,15 @@ import useTodoListStore from '@/context/TodoListContext';
 import TodoSort from './TodoSort';
 import { Search } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
+import { useSearchParams } from 'next/navigation';
 
 function TodoListHeader({ todolist }: { todolist: TodoList }) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 	const { setTodoList, todolist: currentTodolist } = useTodoListStore();
+
+	const searchParams = useSearchParams();
+	const dueDate = searchParams.get('due-date');
+
 	useEffect(() => {
 		if (todolist) setTodoList(todolist);
 	}, [todolist, setTodoList]);
@@ -33,6 +38,7 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 					<TodoFilter todolistId={todolist.id} />
 				</div>
 			</div>
+
 			<TodoForm todolistId={todolist.id} />
 		</div>
 	);
