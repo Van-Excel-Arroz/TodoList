@@ -44,12 +44,14 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 			{dueDate && (
 				<div className="inline-block mb-3 p-1 bg-slate-200 text-slate-700 rounded-lg">
 					<div className=" flex items-center gap-1">
-						<Link
-							href={`/tasks/?id=${todolist.id}&due-date=${order ? 'asc' : 'desc'}`}
-							onClick={() => setOrder(prev => !prev)}
-						>
-							<ArrowUpDown size={14} />
-						</Link>
+						<Button ariaLabel="Reverse Sort Order">
+							<Link
+								href={`/tasks/?id=${todolist.id}&due-date=${order ? 'asc' : 'desc'}`}
+								onClick={() => setOrder(prev => !prev)}
+							>
+								<ArrowUpDown size={14} />
+							</Link>
+						</Button>
 						<p className="text-xs">Due Date ({order ? 'Earlier' : 'Latest'} first)</p>
 						<Button ariaLabel="Remove Due Date Sort" onClick={() => router.push(`/tasks/?id=${todolist.id}`)}>
 							<X size={12} />
