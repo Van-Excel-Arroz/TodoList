@@ -26,13 +26,19 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 					<p>Sort by</p>
 				</MenuItem>
 				<MenuItem>
-					<Link href={`/tasks/?id=${todolistId}&sort=dueDate%3Aasc`} className="flex items-center gap-2">
+					<Link
+						href={`/tasks/?id=${todolistId}&sort=dueDate%3Aasc`}
+						className="flex items-center justify-center gap-2 w-full"
+					>
 						<CalendarDays className="text-slate-600" size={18} />
 						<p>Due Date</p>
 					</Link>
 				</MenuItem>
 				<MenuItem>
-					<Link href={`/tasks/?id=${todolistId}&sort=creationDate%3Aasc`} className="flex items-center gap-2">
+					<Link
+						href={`/tasks/?id=${todolistId}&sort=creationDate%3Aasc`}
+						className="flex items-center justify-center gap-2 w-full"
+					>
 						<CalendarPlus className="text-slate-600" size={18} />
 						<p>Creation Date</p>
 					</Link>
