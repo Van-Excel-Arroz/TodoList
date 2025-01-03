@@ -37,9 +37,9 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 
 			if (field === 'alphabetical') {
 				if (order === 'asc') {
-					return b.task_text[0] > a.task_text[0] ? -1 : 1;
+					return b.task_text[0].toLowerCase() > a.task_text[0].toLowerCase() ? -1 : 1;
 				} else {
-					return a.task_text[0] - b.task_text[0] ? 1 : -1;
+					return a.task_text[0].toLowerCase() > b.task_text[0].toLowerCase() ? -1 : 1;
 				}
 			}
 
