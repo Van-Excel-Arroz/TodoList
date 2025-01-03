@@ -21,6 +21,7 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 	const searchParams = useSearchParams();
 	const dueDate = searchParams.get('due-date');
 	const [order, setOrder] = useState(false);
+	console.log(order);
 
 	useEffect(() => {
 		if (todolist) setTodoList(todolist);
@@ -44,11 +45,8 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 			{dueDate && (
 				<div className="inline-block mb-3 p-1 bg-slate-200 text-slate-700 rounded-lg">
 					<div className=" flex items-center gap-1">
-						<Button ariaLabel="Reverse Sort Order">
-							<Link
-								href={`/tasks/?id=${todolist.id}&due-date=${order ? 'asc' : 'desc'}`}
-								onClick={() => setOrder(prev => !prev)}
-							>
+						<Button ariaLabel="Reverse Sort Order" onClick={() => setOrder(prev => !prev)}>
+							<Link href={`/tasks/?id=${todolist.id}&due-date=${order ? 'asc' : 'desc'}`}>
 								<ArrowUpDown size={14} />
 							</Link>
 						</Button>
