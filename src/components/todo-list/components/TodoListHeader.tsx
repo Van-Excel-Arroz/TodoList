@@ -18,16 +18,16 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
-	const dueDate = searchParams.get('sort')?.split(':')[0];
+	const [field, order] = searchParams.get('sort')?.split(':') || [];
 
 	useEffect(() => {
 		if (todolist) setTodoList(todolist);
 	}, [todolist, setTodoList]);
 
 	const handleSortToggle = () => {
-		const newOrder = dueDate === 'desc' ? 'asc' : 'desc';
+		const newOrder = order === 'desc' ? 'asc' : 'desc';
 		const params = new URLSearchParams(searchParams.toString());
-		params.set('sort', `dueDate:${newOrder}`);
+		params.set('sort', `${field}:${newOrder}`);
 		router.push(`/tasks/?${params.toString()}`);
 	};
 
@@ -52,13 +52,13 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 					<TodoFilter todolistId={todolist.id} />
 				</div>
 			</div>
-			{dueDate && (
+			{field && (
 				<div className="inline-block mb-3 p-1 bg-slate-200 text-slate-700 rounded-lg">
 					<div className="flex items-center gap-1">
 						<Button ariaLabel="Reverse Sort Order" onClick={handleSortToggle}>
 							<ArrowUpDown size={14} />
 						</Button>
-						<p className="text-xs">Due Date ({dueDate === 'desc' ? 'Latest' : 'Earlier'} first)</p>
+						<p className="text-xs">Due Date ({order === 'desc' ? 'Latest' : 'Earlier'} first)</p>
 						<Button ariaLabel="Remove Due Date Sort" onClick={handleRemoveSort}>
 							<X size={12} />
 						</Button>
