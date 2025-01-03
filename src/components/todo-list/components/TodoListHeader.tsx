@@ -8,7 +8,7 @@ import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import useTodoListStore from '@/context/TodoListContext';
 import TodoSort from './TodoSort';
-import { ChevronDown, ChevronUp, Search, X } from 'lucide-react';
+import { ArrowUpDown, Search, X } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
@@ -48,7 +48,7 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 							href={`/tasks/?id=${todolist.id}&due-date=${order ? 'asc' : 'desc'}`}
 							onClick={() => setOrder(prev => !prev)}
 						>
-							{order ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+							<ArrowUpDown size={14} />
 						</Link>
 						<p className="text-xs">Due Date ({order ? 'Earlier' : 'Latest'} first)</p>
 						<Button ariaLabel="Remove Due Date Sort" onClick={() => router.push(`/tasks/?id=${todolist.id}`)}>
