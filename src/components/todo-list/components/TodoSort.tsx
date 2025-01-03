@@ -32,8 +32,10 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 					</Link>
 				</MenuItem>
 				<MenuItem>
-					<CalendarPlus className="text-slate-600" size={18} />
-					<p>Creation Date</p>
+					<Link href={`/tasks/?id=${todolistId}&sort=creationDate:asc`} className="flex items-center gap-2">
+						<CalendarPlus className="text-slate-600" size={18} />
+						<p>Creation Date</p>
+					</Link>
 				</MenuItem>
 				<MenuItem>
 					<Star className="text-slate-600" size={18} />
