@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { TodoList } from '@/types';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
@@ -8,10 +8,11 @@ import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import useTodoListStore from '@/context/TodoListContext';
 import TodoSort from './TodoSort';
-import { ChevronUp, Search, X } from 'lucide-react';
+import { ChevronDown, ChevronUp, Search, X } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 function TodoListHeader({ todolist }: { todolist: TodoList }) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
@@ -19,6 +20,7 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const dueDate = searchParams.get('due-date');
+	const [order, setOrder] = useState(false);
 
 	useEffect(() => {
 		if (todolist) setTodoList(todolist);
@@ -42,10 +44,13 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 			{dueDate && (
 				<div className="inline-block mb-3 p-1 bg-slate-200 text-slate-700 rounded-lg">
 					<div className=" flex items-center gap-1">
-						<Button ariaLabel="Reverse Sort Order">
-							<ChevronUp size={14} />
-						</Button>
-						<p className="text-xs">Due Date (Latest first)</p>
+						<Link
+							href={`/tasks/?id=${todolist.id}&due-date=${order ? 'asc' : 'desc'}`}
+							onClick={() => setOrder(prev => !prev)}
+						>
+							{order ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+						</Link>
+						<p className="text-xs">Due Date ({order ? 'Earlier' : 'Latest'} first)</p>
 						<Button ariaLabel="Remove Due Date Sort" onClick={() => router.push(`/tasks/?id=${todolist.id}`)}>
 							<X size={12} />
 						</Button>
