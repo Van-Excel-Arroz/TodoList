@@ -3,6 +3,7 @@ import { Todo } from '@/types';
 import TodoSection from './TodoSection';
 import { compareAsc, compareDesc } from 'date-fns';
 import { useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 interface TodoListViewProps {
 	todos: Todo[];
@@ -10,6 +11,7 @@ interface TodoListViewProps {
 
 export default function TodoListView({ todos }: TodoListViewProps) {
 	const selectedCategories: Set<string> = new Set([]);
+	const [field, order] = useSearchParams().get('sort')?.split(':') || [];
 
 	const { incompleteTodos, completeTodos } = useMemo(() => {
 		const incomplete: any[] = [];
@@ -35,8 +37,12 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			}
 
 			// if both have due dates, compare them which has shorter due date
-			if (a.due_datetime && b.due_datetime) {
-				return compareAsc(new Date(a.due_datetime), new Date(b.due_datetime));
+			if (a.due_datetime && b.due_datetime && field === 'dueDate') {
+				if (order === 'desc') {
+					return compareDesc(new Date(a.due_datetime), new Date(b.due_datetime));
+				} else {
+					return compareAsc(new Date(a.due_datetime), new Date(b.due_datetime));
+				}
 			}
 
 			// if one of them have due date, ranked it above the other that doesnt have it
