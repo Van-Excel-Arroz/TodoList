@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui-shared/Button';
-import { ArrowUpDown, X } from 'lucide-react';
+import { CalendarArrowDown, CalendarArrowUp, X } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 
@@ -25,7 +25,7 @@ export default function TodoControls() {
 		<div className={`${field ? 'inline-block' : 'hidden'} mb-3 p-1 bg-slate-200 text-slate-700 rounded-lg`}>
 			<div className="flex items-center gap-1">
 				<Button ariaLabel="Reverse Sort Order" onClick={handleSortToggle}>
-					<ArrowUpDown size={14} />
+					{order === 'desc' ? <CalendarArrowDown size={14} /> : <CalendarArrowUp size={14} />}
 				</Button>
 				{field === 'dueDate' && <p className="text-xs">Due Date ({order === 'desc' ? 'Latest' : 'Earlier'} first)</p>}
 				{field === 'creationDate' && (
