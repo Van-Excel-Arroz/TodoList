@@ -58,7 +58,10 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 						<Button ariaLabel="Reverse Sort Order" onClick={handleSortToggle}>
 							<ArrowUpDown size={14} />
 						</Button>
-						<p className="text-xs">Due Date ({order === 'desc' ? 'Latest' : 'Earlier'} first)</p>
+						{field === 'dueDate' && (
+							<p className="text-xs">Due Date ({order === 'desc' ? 'Latest' : 'Earlier'} first)</p>
+						)}
+						{field === 'creationDate' && <p className="text-xs">Creation Date</p>}
 						<Button ariaLabel="Remove Due Date Sort" onClick={handleRemoveSort}>
 							<X size={12} />
 						</Button>
