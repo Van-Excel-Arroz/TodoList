@@ -53,7 +53,12 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 					</Link>
 				</MenuItem>
 				<MenuItem>
-					<p>Alphabetical</p>
+					<Link
+						href={`/tasks/?id=${todolistId}&sort=alphabetical%3Aasc`}
+						className="flex items-center justify-center gap-2 w-full"
+					>
+						<p>Alphabetical</p>
+					</Link>
 				</MenuItem>
 			</Menu>
 		</div>
