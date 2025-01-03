@@ -4,9 +4,10 @@ import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { ArrowUpDown, CalendarDays, CalendarPlus, Star } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
-export default function TodoSort() {
+export default function TodoSort({ todolistId }: { todolistId: number }) {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 
 	return (
@@ -25,8 +26,10 @@ export default function TodoSort() {
 					<p>Sort by</p>
 				</MenuItem>
 				<MenuItem>
-					<CalendarDays className="text-slate-600" size={18} />
-					<p>Due Date</p>
+					<Link href={}>
+						<CalendarDays className="text-slate-600" size={18} />
+						<p>Due Date</p>
+					</Link>
 				</MenuItem>
 				<MenuItem>
 					<CalendarPlus className="text-slate-600" size={18} />

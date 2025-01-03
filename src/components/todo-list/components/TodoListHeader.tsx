@@ -29,8 +29,8 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 					<Button ariaLabel="Search">
 						<Search />
 					</Button>
-					<TodoSort />
-					<TodoFilter />
+					<TodoSort todolistId={todolist.id} />
+					<TodoFilter todolistId={todolist.id} />
 				</div>
 			</div>
 			<TodoForm todolistId={todolist.id} />

@@ -6,7 +6,7 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import { CalendarDays, Filter, Tag } from 'lucide-react';
 import { useState } from 'react';
 
-export default function TodoFilter() {
+export default function TodoFilter({ todolistId }: { todolistId: number }) {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
 	return (
