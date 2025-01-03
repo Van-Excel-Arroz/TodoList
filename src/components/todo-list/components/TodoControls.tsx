@@ -32,7 +32,7 @@ export default function TodoControls() {
 							<p className="text-xs">Due Date ({order === 'desc' ? 'Latest' : 'Earlier'} first)</p>
 						)}
 						{field === 'creationDate' && <p className="text-xs">Creation Date</p>}
-						<Button ariaLabel="Remove Due Date Sort" onClick={handleRemoveSort}>
+						<Button ariaLabel="Remove Sort" onClick={handleRemoveSort}>
 							<X size={12} />
 						</Button>
 					</div>
