@@ -28,7 +28,11 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 		const sortTodos = (a: any, b: any) => {
 			// if there is an important todo, ranked it first
 			if (a.is_important !== b.is_important) {
-				return a.is_important ? -1 : 1;
+				if (field === 'importance' && order === 'asc') {
+					return a.is_important ? 1 : -1;
+				} else {
+					return a.is_important ? -1 : 1;
+				}
 			}
 
 			// if both have categories, ranked them by how many categories matches in the selected categories
