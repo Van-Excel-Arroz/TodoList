@@ -18,7 +18,7 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
-	const dueDate = searchParams.get('due-date');
+	const dueDate = searchParams.get('sort')?.split(':')[0];
 
 	useEffect(() => {
 		if (todolist) setTodoList(todolist);
@@ -27,13 +27,13 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 	const handleSortToggle = () => {
 		const newOrder = dueDate === 'desc' ? 'asc' : 'desc';
 		const params = new URLSearchParams(searchParams.toString());
-		params.set('due-date', newOrder);
+		params.set('sort', `dueDate:${newOrder}`);
 		router.push(`/tasks/?${params.toString()}`);
 	};
 
 	const handleRemoveSort = () => {
 		const params = new URLSearchParams(searchParams.toString());
-		params.delete('due-date');
+		params.delete('sort');
 		router.push(`/tasks/?${params.toString()}`);
 	};
 
