@@ -44,8 +44,13 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 					</Link>
 				</MenuItem>
 				<MenuItem>
-					<Star className="text-slate-600" size={18} />
-					<p>Importance</p>
+					<Link
+						href={`/tasks/?id=${todolistId}&sort=importance%3Aasc`}
+						className="flex items-center justify-center gap-2 w-full"
+					>
+						<Star className="text-slate-600" size={18} />
+						<p>Importance</p>
+					</Link>
 				</MenuItem>
 				<MenuItem>
 					<p>Alphabetical</p>
