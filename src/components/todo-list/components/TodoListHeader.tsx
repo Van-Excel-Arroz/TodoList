@@ -39,13 +39,13 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 				</div>
 			</div>
 			<div className="inline-block mb-3 p-1 bg-slate-200 text-slate-700 rounded-lg">
-				<div className=" flex items-center gap-2">
+				<div className=" flex items-center gap-1">
 					<Button ariaLabel="Reverse Sort Order">
-						<ArrowUpDown size={16} />
+						<ArrowUpDown size={14} />
 					</Button>
-					<p className="text-sm">Due Date</p>
+					<p className="text-xs">Due Date (Latest first)</p>
 					<Button ariaLabel="Remove Due Date Sort">
-						<X size={14} />
+						<X size={12} />
 					</Button>
 				</div>
 			</div>
