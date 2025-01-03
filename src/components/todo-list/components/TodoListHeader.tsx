@@ -8,7 +8,7 @@ import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import useTodoListStore from '@/context/TodoListContext';
 import TodoSort from './TodoSort';
-import { Search } from 'lucide-react';
+import { ArrowUpDown, Search, X } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import { useSearchParams } from 'next/navigation';
 
@@ -25,10 +25,10 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 
 	return (
 		<div className="sticky top-0 bg-slate-100  z-50 px-6">
-			<div className="flex justify-between items-center pt-3 py-2">
+			<div className="flex justify-between items-center pt-2">
 				<div className="flex items-center gap-2">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
-					<p className="text-lg font-bold py-2">{currentTodolist?.title}</p>
+					<p className="text-lg font-bold">{currentTodolist?.title}</p>
 				</div>
 				<div className="flex items-center gap-2">
 					<Button ariaLabel="Search">
@@ -36,6 +36,17 @@ function TodoListHeader({ todolist }: { todolist: TodoList }) {
 					</Button>
 					<TodoSort todolistId={todolist.id} />
 					<TodoFilter todolistId={todolist.id} />
+				</div>
+			</div>
+			<div className="inline-block mb-3 p-1 bg-slate-200 text-slate-700 rounded-lg">
+				<div className=" flex items-center gap-2">
+					<Button ariaLabel="Reverse Sort Order">
+						<ArrowUpDown size={16} />
+					</Button>
+					<p className="text-sm">Due Date</p>
+					<Button ariaLabel="Remove Due Date Sort">
+						<X size={14} />
+					</Button>
 				</div>
 			</div>
 
