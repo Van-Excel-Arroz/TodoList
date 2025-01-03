@@ -29,7 +29,7 @@ export default function TodoControls() {
 				</Button>
 				{field === 'dueDate' && <p className="text-xs">Due Date ({order === 'desc' ? 'Latest' : 'Earlier'} first)</p>}
 				{field === 'creationDate' && (
-					<p className="text-xs">Creation Date ({order === 'desc' ? 'Latest' : 'Earlier'} first)</p>
+					<p className="text-xs">Creation Date ({order === 'desc' ? 'Newest' : 'Oldest'} first)</p>
 				)}
 				<Button ariaLabel="Remove Sort" onClick={handleRemoveSort}>
 					<X size={12} />
