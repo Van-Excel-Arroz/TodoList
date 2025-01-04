@@ -66,11 +66,11 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 				{categories.map(category => (
 					<div
 						key={category.id}
-						className="flex items-center justify-between gap-2 py-1 px-2 hover:bg-slate-200 cursor-pointer"
+						className="flex items-center justify-between gap-4 py-1 px-2 hover:bg-slate-200 cursor-pointer"
 					>
 						<div className="flex items-center gap-2">
 							<p style={{ color: category.hex_color }}>●</p>
-							<p>{category.category_title}</p>
+							<p className="text-base">{category.category_title}</p>
 						</div>
 						<CheckIcon size={14} />
 					</div>
@@ -88,7 +88,7 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 				</MenuItem>
 				{DateFilterItems.map(item => (
 					<div className="flex items-center justify-between py-1 px-2 hover:bg-slate-200 cursor-pointer">
-						<p>{item}</p>
+						<p className="text-base">{item}</p>
 						<CheckIcon size={14} />
 					</div>
 				))}
