@@ -3,10 +3,16 @@
 import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
+import { Category } from '@/types';
 import { CalendarDays, Filter, Tag } from 'lucide-react';
 import { useState } from 'react';
 
-export default function TodoFilter({ todolistId }: { todolistId: number }) {
+interface TodoFilterProps {
+	todolistId: number;
+	categories: Category[];
+}
+
+export default function TodoFilter({ todolistId, categories }: TodoFilterProps) {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
 
