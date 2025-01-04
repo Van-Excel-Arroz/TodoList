@@ -25,24 +25,29 @@ export default function TodoFilter({ todolistId }: { todolistId: number }) {
 				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 					<p>Filter by</p>
 				</MenuItem>
-				<MenuItem>
+				<MenuItem
+					onClick={() => {
+						setIsCategoryMenuOpen(true);
+						setIsFilterMenuOpen(false);
+					}}
+				>
 					<Tag className="text-slate-600" size={18} />
 					<p>Categories</p>
-					<Menu
-						open={isCategoryMenuOpen}
-						onClose={() => setIsCategoryMenuOpen(false)}
-						posX="-right-5"
-						posXNotch="before:right-6"
-						width="w-44"
-					>
-						<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
-							<p>Filter by Category</p>
-						</MenuItem>
-					</Menu>
 				</MenuItem>
 				<MenuItem>
 					<CalendarDays className="text-slate-600" size={18} />
 					<p>Due Date</p>
+				</MenuItem>
+			</Menu>
+			<Menu
+				open={isCategoryMenuOpen}
+				onClose={() => setIsCategoryMenuOpen(false)}
+				posX="-right-5"
+				posXNotch="before:right-6"
+				width="w-44"
+			>
+				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
+					<p>Filter by Category</p>
 				</MenuItem>
 			</Menu>
 		</div>
