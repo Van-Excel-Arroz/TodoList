@@ -12,7 +12,7 @@ interface TodoFilterProps {
 	categories: Category[];
 }
 
-const DateFilterItems = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Date'];
+const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Date'];
 
 export default function TodoFilter({ todolistId, categories }: TodoFilterProps) {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
@@ -86,9 +86,9 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 					<p>Filter by Date</p>
 				</MenuItem>
-				{DateFilterItems.map(item => (
-					<div key={item} className="flex items-center justify-between py-1 px-2 hover:bg-slate-200 cursor-pointer">
-						<p className="text-base">{item}</p>
+				{DateFilters.map(filter => (
+					<div key={filter} className="flex items-center justify-between py-1 px-2 hover:bg-slate-200 cursor-pointer">
+						<p className="text-base">{filter}</p>
 						<CheckIcon size={14} />
 					</div>
 				))}
