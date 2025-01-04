@@ -58,8 +58,10 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			}
 
 			// if one of them have due date, ranked it above the other that doesnt have it
-			// if (a.due_datetime) return -1;
-			// if (b.due_datetime) return 1;
+			if (field === 'dueDate') {
+				if (a.due_datetime) return -1;
+				if (b.due_datetime) return 1;
+			}
 
 			// if it just a plain todo, ranked it by creation date
 			if (a.creation_date && b.creation_date) {
