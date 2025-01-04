@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 export default function TodoFilter({ todolistId }: { todolistId: number }) {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
-	const [isCategoryMenyOpen, setIsCategoryMenuOpen] = useState(false);
+	const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
 
 	return (
 		<div className="relative">
@@ -23,11 +23,22 @@ export default function TodoFilter({ todolistId }: { todolistId: number }) {
 				width="w-44"
 			>
 				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
-					<p>Add Filter</p>
+					<p>Filter by</p>
 				</MenuItem>
 				<MenuItem>
 					<Tag className="text-slate-600" size={18} />
 					<p>Categories</p>
+					<Menu
+						open={isCategoryMenuOpen}
+						onClose={() => setIsCategoryMenuOpen(false)}
+						posX="-right-5"
+						posXNotch="before:right-6"
+						width="w-44"
+					>
+						<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
+							<p>Filter by Category</p>
+						</MenuItem>
+					</Menu>
 				</MenuItem>
 				<MenuItem>
 					<CalendarDays className="text-slate-600" size={18} />
