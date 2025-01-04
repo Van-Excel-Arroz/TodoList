@@ -15,6 +15,7 @@ interface TodoFilterProps {
 export default function TodoFilter({ todolistId, categories }: TodoFilterProps) {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
+	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 
 	return (
 		<div className="relative">
@@ -40,7 +41,12 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 					<Tag className="text-slate-600" size={18} />
 					<p>Categories</p>
 				</MenuItem>
-				<MenuItem>
+				<MenuItem
+					onClick={() => {
+						setIsDateFilterOpen(true);
+						setIsFilterMenuOpen(false);
+					}}
+				>
 					<CalendarDays className="text-slate-600" size={18} />
 					<p>Due Date</p>
 				</MenuItem>
@@ -67,6 +73,32 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 						<CheckIcon size={14} />
 					</div>
 				))}
+			</Menu>
+			<Menu
+				open={isDateFilterOpen}
+				onClose={() => setIsDateFilterOpen(false)}
+				posX="-right-5"
+				posXNotch="before:right-6"
+				width="w-44"
+			>
+				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
+					<p>Filter by Date</p>
+				</MenuItem>
+				<MenuItem>
+					<p>Today</p>
+				</MenuItem>
+				<MenuItem>
+					<p>Tomorrow</p>
+				</MenuItem>
+				<MenuItem>
+					<p>Next Week</p>
+				</MenuItem>
+				<MenuItem>
+					<p>Next Month</p>
+				</MenuItem>
+				<MenuItem>
+					<p>No Due Date</p>
+				</MenuItem>
 			</Menu>
 		</div>
 	);
