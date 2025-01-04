@@ -46,14 +46,10 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 				</MenuItem>
 
 				{Object.entries(MenuItems).map(([label, menuItem]) => (
-					<Link
-						key={label}
-						href={`/tasks/?id=${todolistId}&sort=${menuItem.param}`}
-						className="flex items-center justify-center gap-2 hover:bg-slate-200 active:bg-slate-300 cursor-pointer p-2"
-					>
+					<MenuItem href={`/tasks/?id=${todolistId}&sort=${menuItem.param}`}>
 						<menuItem.icon className="text-slate-600" size={18} />
 						<p>{label}</p>
-					</Link>
+					</MenuItem>
 				))}
 			</Menu>
 		</div>
