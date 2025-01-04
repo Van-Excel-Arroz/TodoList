@@ -56,9 +56,14 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 					<p>Filter by Category</p>
 				</MenuItem>
 				{categories.map(category => (
-					<div key={category.id} className="flex items-center justify-between">
+					<div
+						key={category.id}
+						className="flex items-center justify-between py-1 px-2 hover:bg-slate-200 cursor-pointer"
+					>
 						<div className="flex items-center gap-2">
-							<p>•</p>
+							<p style={{ color: category.hex_color }} className="scale-x-150">
+								•
+							</p>
 							<p>{category.category_title}</p>
 						</div>
 						<CheckIcon size={14} />
