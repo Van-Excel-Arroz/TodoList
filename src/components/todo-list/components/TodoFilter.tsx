@@ -58,7 +58,7 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 				onClose={() => setIsCategoryFilterOpen(false)}
 				posX="-right-5"
 				posXNotch="before:right-6"
-				width="w-44"
+				width="w-fit"
 			>
 				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 					<p>Filter by Category</p>
@@ -66,7 +66,7 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 				{categories.map(category => (
 					<div
 						key={category.id}
-						className="flex items-center justify-between py-1 px-2 hover:bg-slate-200 cursor-pointer"
+						className="flex items-center justify-between gap-2 py-1 px-2 hover:bg-slate-200 cursor-pointer"
 					>
 						<div className="flex items-center gap-2">
 							<p style={{ color: category.hex_color }}>●</p>
