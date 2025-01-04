@@ -87,7 +87,7 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 					<p>Filter by Date</p>
 				</MenuItem>
 				{DateFilterItems.map(item => (
-					<div className="flex items-center justify-between py-1 px-2 hover:bg-slate-200 cursor-pointer">
+					<div key={item} className="flex items-center justify-between py-1 px-2 hover:bg-slate-200 cursor-pointer">
 						<p className="text-base">{item}</p>
 						<CheckIcon size={14} />
 					</div>
