@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
-import { ArrowUpDown, CalendarDays, CalendarPlus, Star } from 'lucide-react';
+import { ArrowUpDown, CalendarDays, CalendarPlus, CaseSensitive, Star } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -22,7 +22,7 @@ const MenuItems = {
 	},
 	Alphabetical: {
 		param: 'alphabetical%3Aasc',
-		icon: null,
+		icon: CaseSensitive,
 	},
 };
 
@@ -46,15 +46,14 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 				</MenuItem>
 
 				{Object.entries(MenuItems).map(([label, menuItem]) => (
-					<MenuItem key={label}>
-						<Link
-							href={`/tasks/?id=${todolistId}&sort=${menuItem.param}`}
-							className="flex items-center justify-center gap-2 w-full"
-						>
-							{menuItem.icon ? <menuItem.icon className="text-slate-600" size={18} /> : null}
-							<p>{label}</p>
-						</Link>
-					</MenuItem>
+					<Link
+						key={label}
+						href={`/tasks/?id=${todolistId}&sort=${menuItem.param}`}
+						className="flex items-center justify-center gap-2 hover:bg-slate-200 active:bg-slate-300 cursor-pointer p-2"
+					>
+						<menuItem.icon className="text-slate-600" size={18} />
+						<p>{label}</p>
+					</Link>
 				))}
 			</Menu>
 		</div>
