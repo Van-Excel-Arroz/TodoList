@@ -1,4 +1,4 @@
-import { LegacyRef, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface MenuProps {
 	open: boolean;
@@ -7,9 +7,10 @@ interface MenuProps {
 	posX: string;
 	posXNotch: string;
 	width: string;
+	className?: string;
 }
 
-export default function Menu({ open, onClose, children, posX, posXNotch, width }: MenuProps) {
+export default function Menu({ open, onClose, children, posX, posXNotch, width, className }: MenuProps) {
 	const ref = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -34,6 +35,7 @@ export default function Menu({ open, onClose, children, posX, posXNotch, width }
 									${posX}
 									${posXNotch}
 									${open ? 'block' : 'hidden'}
+									${className}
 									`}
 		>
 			{children}
