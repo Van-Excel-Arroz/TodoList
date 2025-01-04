@@ -46,7 +46,7 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 				</MenuItem>
 
 				{Object.entries(MenuItems).map(([label, menuItem]) => (
-					<MenuItem href={`/tasks/?id=${todolistId}&sort=${menuItem.param}`}>
+					<MenuItem href={`/tasks/?id=${todolistId}&sort=${menuItem.param}`} key={label}>
 						<menuItem.icon className="text-slate-600" size={18} />
 						<p>{label}</p>
 					</MenuItem>
