@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 export default function TodoFilter({ todolistId }: { todolistId: number }) {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+	const [isCategoryMenyOpen, setIsCategoryMenuOpen] = useState(false);
 
 	return (
 		<div className="relative">
