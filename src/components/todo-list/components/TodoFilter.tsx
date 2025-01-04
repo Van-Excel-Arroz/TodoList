@@ -4,7 +4,7 @@ import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { Category } from '@/types';
-import { CalendarDays, Filter, Tag } from 'lucide-react';
+import { CalendarDays, CheckIcon, Filter, Tag } from 'lucide-react';
 import { useState } from 'react';
 
 interface TodoFilterProps {
@@ -55,6 +55,15 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 					<p>Filter by Category</p>
 				</MenuItem>
+				{categories.map(category => (
+					<div key={category.id} className="flex items-center justify-between">
+						<div className="flex items-center gap-2">
+							<p>•</p>
+							<p>{category.category_title}</p>
+						</div>
+						<CheckIcon size={14} />
+					</div>
+				))}
 			</Menu>
 		</div>
 	);
