@@ -7,6 +7,25 @@ import { ArrowUpDown, CalendarDays, CalendarPlus, Star } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
+const MenuItems = {
+	'Due Date': {
+		param: 'dueDate%3Adasc',
+		icon: CalendarDays,
+	},
+	'Creation Date': {
+		param: 'creationDate%3Adesc',
+		icon: CalendarPlus,
+	},
+	Importance: {
+		param: 'importance%3Aasc',
+		icon: Star,
+	},
+	Alphabetical: {
+		param: 'alphabetical%3Aasc',
+		icon: null,
+	},
+};
+
 export default function TodoSort({ todolistId }: { todolistId: number }) {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 
@@ -25,41 +44,18 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 					<p>Sort by</p>
 				</MenuItem>
-				<MenuItem>
-					<Link
-						href={`/tasks/?id=${todolistId}&sort=dueDate%3Adasc`}
-						className="flex items-center justify-center gap-2 w-full"
-					>
-						<CalendarDays className="text-slate-600" size={18} />
-						<p>Due Date</p>
-					</Link>
-				</MenuItem>
-				<MenuItem>
-					<Link
-						href={`/tasks/?id=${todolistId}&sort=creationDate%3Adesc`}
-						className="flex items-center justify-center gap-2 w-full"
-					>
-						<CalendarPlus className="text-slate-600" size={18} />
-						<p>Creation Date</p>
-					</Link>
-				</MenuItem>
-				<MenuItem>
-					<Link
-						href={`/tasks/?id=${todolistId}&sort=importance%3Aasc`}
-						className="flex items-center justify-center gap-2 w-full"
-					>
-						<Star className="text-slate-600" size={18} />
-						<p>Importance</p>
-					</Link>
-				</MenuItem>
-				<MenuItem>
-					<Link
-						href={`/tasks/?id=${todolistId}&sort=alphabetical%3Aasc`}
-						className="flex items-center justify-center gap-2 w-full"
-					>
-						<p>Alphabetical</p>
-					</Link>
-				</MenuItem>
+
+				{Object.entries(MenuItems).map(([label, menuItem]) => (
+					<MenuItem key={label}>
+						<Link
+							href={`/tasks/?id=${todolistId}&sort=${menuItem.param}`}
+							className="flex items-center justify-center gap-2 w-full"
+						>
+							{menuItem.icon ? <menuItem.icon className="text-slate-600" size={18} /> : null}
+							<p>{label}</p>
+						</Link>
+					</MenuItem>
+				))}
 			</Menu>
 		</div>
 	);
