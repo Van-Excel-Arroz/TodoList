@@ -14,7 +14,7 @@ interface TodoFilterProps {
 
 export default function TodoFilter({ todolistId, categories }: TodoFilterProps) {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
-	const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
+	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 
 	return (
 		<div className="relative">
@@ -33,7 +33,7 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 				</MenuItem>
 				<MenuItem
 					onClick={() => {
-						setIsCategoryMenuOpen(true);
+						setIsCategoryFilterOpen(true);
 						setIsFilterMenuOpen(false);
 					}}
 				>
@@ -46,8 +46,8 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 				</MenuItem>
 			</Menu>
 			<Menu
-				open={isCategoryMenuOpen}
-				onClose={() => setIsCategoryMenuOpen(false)}
+				open={isCategoryFilterOpen}
+				onClose={() => setIsCategoryFilterOpen(false)}
 				posX="-right-5"
 				posXNotch="before:right-6"
 				width="w-44"
