@@ -1,7 +1,7 @@
 'use client';
 
 import { memo, useEffect } from 'react';
-import { TodoList } from '@/types';
+import { Category, TodoList } from '@/types';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
@@ -12,7 +12,12 @@ import { Search } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import TodoControls from './TodoControls';
 
-function TodoListHeader({ todolist }: { todolist: TodoList }) {
+interface TodoListHeaderProps {
+	todolist: TodoList;
+	categories: Category[];
+}
+
+function TodoListHeader({ todolist, categories }: TodoListHeaderProps) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 	const { setTodoList, todolist: currentTodolist } = useTodoListStore();
 

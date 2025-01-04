@@ -178,11 +178,12 @@ export async function deleteCategory(categoryId: number): Promise<boolean> {
 	}
 }
 
-export async function getCategories(todolistId: number): Promise<boolean> {
+export async function getCategories(todolistId: number): Promise<Category[]> {
 	try {
-		await query(`SELECT * FROM category_colors WHERE todo_list_id = ${todolistId}`);
-		return true;
+		const result = await query(`SELECT * FROM category_colors WHERE todo_list_id = ${todolistId}`);
+		return result.rows;
 	} catch (error) {
-		return false;
+		console.error('Error fetching categories from the database.');
+		return [];
 	}
 }
