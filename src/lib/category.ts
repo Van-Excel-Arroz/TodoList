@@ -178,9 +178,9 @@ export async function deleteCategory(categoryId: number): Promise<boolean> {
 	}
 }
 
-export async function getCategories(): Promise<boolean> {
+export async function getCategories(todolistId: number): Promise<boolean> {
 	try {
-		await query('SELECT * FROM categories');
+		await query(`SELECT * FROM category_colors WHERE todo_list_id = ${todolistId}`);
 		return true;
 	} catch (error) {
 		return false;

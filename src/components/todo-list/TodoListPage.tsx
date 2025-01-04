@@ -4,9 +4,11 @@ import { getTodolist } from '@/lib/todolist';
 import TodoListHeader from './components/TodoListHeader';
 import { redirect } from 'next/navigation';
 import TodoListMain from './components/TodoListMain';
+import { getCategories } from '@/lib/category';
 
 export default async function TodoListPage({ todolistId }: { todolistId: number }) {
 	const todolist = await getTodolist(todolistId, 1);
+	const categories = await getCategories(todolistId);
 
 	if (!todolist) {
 		redirect('/tasks/');
