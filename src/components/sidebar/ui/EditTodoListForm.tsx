@@ -1,6 +1,5 @@
 import { updateTodolistAction } from '@/actions/todolist-action';
 import { Button } from '@/components/ui-shared/Button';
-import useTodoListStore from '@/context/TodoListContext';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { TodoList } from '@/types';
 import { Check, X } from 'lucide-react';
@@ -16,14 +15,12 @@ export default function EditTodoListForm({ todolist, handleEditClick }: EditTodo
 		title: string;
 	}>();
 	const { updateTodolistTitle } = useTodoListsStore();
-	const { updateTitle: updateSelectedTodolistTite } = useTodoListStore();
 
 	const onSubmit = async (data: { title: string }) => {
 		if (!data.title?.trim()) return;
 		if (todolist.title !== data.title) {
 			await updateTodolistAction(todolist.id, data.title);
 			updateTodolistTitle(todolist.id, data.title);
-			updateSelectedTodolistTite(todolist.id, data.title);
 		}
 		handleEditClick(false);
 		reset();

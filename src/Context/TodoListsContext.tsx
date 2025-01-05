@@ -28,7 +28,7 @@ const useTodoListsStore = create<TodoListContextState>()((set: any, get: any) =>
 			todolists: state.todolists.filter(todolist => todolist.id !== todolistId),
 		})),
 	getTodoListById: (todolistId: number) => {
-		return get().todolist.find((todolist: TodoList) => todolist.id === todolistId);
+		return get().todolists.find((todolist: TodoList) => todolist.id === todolistId);
 	},
 }));
 

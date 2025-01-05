@@ -1,12 +1,11 @@
 'use client';
 
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import { Category, TodoList } from '@/types';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
-
 import TodoSort from './TodoSort';
 import { Search } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
