@@ -69,7 +69,9 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 							<p style={{ color: category.hex_color }}>●</p>
 							<p className="text-base">{category.category_title}</p>
 						</div>
-						<CheckIcon size={14} />
+						<div className="h-5 w-5">
+							<CheckIcon size={14} className={`${category.is_selected ? 'block' : 'hidden'} `} />
+						</div>
 					</MenuItem>
 				))}
 			</Menu>
