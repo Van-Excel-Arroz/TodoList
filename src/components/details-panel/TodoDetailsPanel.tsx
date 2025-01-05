@@ -18,9 +18,6 @@ export default function TodoDetailsPanel() {
 	const todo = getTodoById(selectedTodo?.id ?? 0);
 	const { isTodoDetailsPanelOpen, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 
-	if (!selectedTodo) {
-		return null;
-	}
 	return (
 		<>
 			<div
@@ -40,8 +37,8 @@ export default function TodoDetailsPanel() {
 				<div className="flex flex-col justify-between px-6 h-full">
 					<div className="flex flex-col gap-4">
 						<TodoDetailsHeader />
-						<TodoComplete isCompleted={todo.is_completed} />
-						<TodoImportance isImportant={todo.is_important} />
+						<TodoComplete isCompleted={todo?.is_completed ?? false} />
+						<TodoImportance isImportant={todo?.is_important ?? false} />
 						<TodoTitle />
 						<TodoDueDate />
 						<TodoCategories />
