@@ -27,7 +27,7 @@ export default function TodoDescription({ description }: { description: string }
 		if (!data.description.trim()) {
 			await updateTodoDescriptionAction(selectedTodo.id, null);
 			updateDescription(selectedTodo.id, null);
-		} else if (selectedTodo.description !== data.description) {
+		} else if (description !== data.description) {
 			await updateTodoDescriptionAction(selectedTodo.id, data.description);
 			updateDescription(selectedTodo.id, data.description);
 		}
@@ -35,7 +35,7 @@ export default function TodoDescription({ description }: { description: string }
 	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		setIsEditing(e.target.value !== selectedTodo.description);
+		setIsEditing(e.target.value !== description);
 	};
 
 	const handleInputBlur = (e: React.FocusEvent<HTMLElement>) => {
@@ -60,7 +60,7 @@ export default function TodoDescription({ description }: { description: string }
 					{...register('description')}
 					className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
 					aria-label="Todo Description Input"
-					placeholder={description ?? 'No description provided'}
+					placeholder={description || 'No description provided'}
 					onChange={handleInputChange}
 				/>
 			</form>
