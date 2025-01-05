@@ -4,14 +4,13 @@ import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 
 export default function TodoComplete({ isCompleted }: { isCompleted: boolean }) {
-	const { selectedTodo, toggleSelectedTodoCompletion } = useSelectedTodoStore();
+	const { selectedTodo } = useSelectedTodoStore();
 	const { toggleTodoCompletion } = useTodosStore();
 	const todoId = selectedTodo?.id ?? 0;
 
 	const handleCheckboxChange = async () => {
 		await updateTodoCompletionAction(todoId, !isCompleted);
 		toggleTodoCompletion(todoId);
-		toggleSelectedTodoCompletion(todoId);
 	};
 
 	return (
