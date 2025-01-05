@@ -20,7 +20,8 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 
-	const [field, order] = useSearchParams().get('filter')?.split(':') || [];
+	const [filter] = useSearchParams().get('filter')?.split(':') || [];
+	const [sort] = useSearchParams().get('sort')?.split(':') || [];
 
 	return (
 		<div className="relative">
@@ -88,15 +89,15 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 					<p>Filter by Date</p>
 				</MenuItem>
-				{DateFilters.map(filter => (
+				{DateFilters.map(label => (
 					<MenuItem
-						key={filter}
+						key={label}
 						className="flex items-center justify-between w-full"
-						href={`/tasks/?id=${todolistId}&filter=${filter}`}
+						href={`/tasks/?id=${todolistId}&filter=${label}`}
 					>
-						<p className="text-base text-left w-full">{filter}</p>
+						<p className="text-base text-left w-full">{label}</p>
 						<div className="h-3 w-3">
-							<CheckIcon size={14} className={`${filter === field ? 'block' : 'hidden'}`} />
+							<CheckIcon size={14} className={`${label === filter ? 'block' : 'hidden'}`} />
 						</div>
 					</MenuItem>
 				))}
