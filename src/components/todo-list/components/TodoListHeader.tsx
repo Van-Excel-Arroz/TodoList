@@ -20,18 +20,16 @@ interface TodoListHeaderProps {
 
 function TodoListHeader({ todolist, categories }: TodoListHeaderProps) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
-	const { getTodolist } = useTodoListsStore();
+	const { getTodoListById } = useTodoListsStore();
 
-	useEffect(() => {
-		if (todolist) getTodolist(todolist.id);
-	}, [todolist, getTodolist]);
+	const todo = getTodoListById(todolist.id);
 
 	return (
 		<div className="sticky top-0 bg-slate-100 z-50 px-6">
 			<div className="flex justify-between items-center py-2">
 				<div className="flex items-center gap-2">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
-					<p className="text-lg font-bold">{currentTodolist?.title}</p>
+					<p className="text-lg font-bold">{todo.title}</p>
 				</div>
 				<div className="flex items-center gap-2">
 					<Button ariaLabel="Search">

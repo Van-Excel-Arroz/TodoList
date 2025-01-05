@@ -7,7 +7,7 @@ interface TodoListContextState {
 	addTodolist: (newTodolist: TodoList) => void;
 	updateTodolistTitle: (todolistId: number, newTitle: string) => void;
 	deleteTodolist: (todolistId: number) => void;
-	getTodoListById: (todolistId: number) => void;
+	getTodoListById: (todolistId: number) => TodoList;
 }
 
 const useTodoListsStore = create<TodoListContextState>()((set: any, get: any) => ({
