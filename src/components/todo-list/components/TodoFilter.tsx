@@ -20,7 +20,7 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 
-	const [field, order] = useSearchParams().get('sort')?.split(':') || [];
+	const [field, order] = useSearchParams().get('filter')?.split(':') || [];
 
 	return (
 		<div className="relative">
@@ -67,12 +67,12 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 					<p>Filter by Category</p>
 				</MenuItem>
 				{categories.map(category => (
-					<MenuItem key={category.id} className="flex items-center justify-between gap-4">
+					<MenuItem key={category.id} className="flex items-center justify-between">
 						<div className="flex items-center gap-2">
 							<p style={{ color: category.hex_color }}>●</p>
 							<p className="text-base">{category.category_title}</p>
 						</div>
-						<div className="h-5 w-5">
+						<div className="h-3 w-3">
 							<CheckIcon size={14} className={`${category.is_selected ? 'block' : 'hidden'} `} />
 						</div>
 					</MenuItem>
@@ -89,10 +89,14 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 					<p>Filter by Date</p>
 				</MenuItem>
 				{DateFilters.map(filter => (
-					<MenuItem key={filter} className="flex items-center justify-between">
-						<p className="text-base">{filter}</p>
-						<div className="h-5 w-5">
-							<CheckIcon size={14} />
+					<MenuItem
+						key={filter}
+						className="flex items-center justify-between w-full"
+						href={`/tasks/?id=${todolistId}&filter=${filter}`}
+					>
+						<p className="text-base text-left w-full">{filter}</p>
+						<div className="h-3 w-3">
+							<CheckIcon size={14} className={`${filter === field ? 'block' : 'hidden'}`} />
 						</div>
 					</MenuItem>
 				))}
