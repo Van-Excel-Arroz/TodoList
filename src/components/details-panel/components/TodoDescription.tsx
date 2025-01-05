@@ -8,16 +8,16 @@ import { Save } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-export default function TodoDescription() {
-	const { selectedTodo, updateSelectedTodoDescription } = useSelectedTodoStore();
+export default function TodoDescription({ description }: { description: string }) {
+	const { selectedTodo } = useSelectedTodoStore();
 	const { updateDescription } = useTodosStore();
 	const [isEditing, setIsEditing] = useState(false);
 	const { register, handleSubmit, reset } = useForm<{ description: string }>({
-		defaultValues: { description: selectedTodo?.description ?? '' },
+		defaultValues: { description: description },
 	});
 
 	useEffect(() => {
-		reset({ description: selectedTodo?.description ?? '' });
+		reset({ description: description });
 		setIsEditing(false);
 	}, [selectedTodo, reset]);
 
@@ -27,11 +27,9 @@ export default function TodoDescription() {
 		if (!data.description.trim()) {
 			await updateTodoDescriptionAction(selectedTodo.id, null);
 			updateDescription(selectedTodo.id, null);
-			updateSelectedTodoDescription(null);
 		} else if (selectedTodo.description !== data.description) {
 			await updateTodoDescriptionAction(selectedTodo.id, data.description);
 			updateDescription(selectedTodo.id, data.description);
-			updateSelectedTodoDescription(data.description);
 		}
 		setIsEditing(false);
 	};
@@ -62,7 +60,7 @@ export default function TodoDescription() {
 					{...register('description')}
 					className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
 					aria-label="Todo Description Input"
-					placeholder={selectedTodo?.description ?? 'No description provided'}
+					placeholder={description ?? 'No description provided'}
 					onChange={handleInputChange}
 				/>
 			</form>
