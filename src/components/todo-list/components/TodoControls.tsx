@@ -47,11 +47,16 @@ export default function TodoControls() {
 				<Button
 					ariaLabel="Reverse Sort Order"
 					onClick={() => updateSort(`${field}:${order === 'desc' ? 'asc' : 'desc'}`)}
+					className="hover:bg-slate-300 active:bg-slate-400"
 				>
 					<SortIcon size={14} />
 				</Button>
 				<p className="text-xs">{sortLabels[field]?.(order) ?? field}</p>
-				<Button ariaLabel="Remove Sort" onClick={() => updateSort(null)}>
+				<Button
+					ariaLabel="Remove Sort"
+					onClick={() => updateSort(null)}
+					className="hover:bg-slate-300 active:bg-slate-400"
+				>
 					<XIcon size={12} />
 				</Button>
 			</div>
