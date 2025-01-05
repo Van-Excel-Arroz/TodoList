@@ -13,10 +13,9 @@ interface CategoryFormInputs {
 	hex_color: string;
 }
 
-export default function TodoCategories() {
+export default function TodoCategories({ categories }: { categories: Category[] }) {
 	const { selectedTodo, updateSelectedTodoCategory, removeSelectedTodoCategory } = useSelectedTodoStore();
 	const { addCategory, deleteCategory } = useTodosStore();
-	const categories = selectedTodo?.categories ?? [];
 	const todoId = selectedTodo?.id ?? 0;
 
 	const handleRemoveCategory = async (categoryId: number) => {
