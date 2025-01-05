@@ -39,7 +39,7 @@ export default function TodoDetailsPanel() {
 						<TodoDetailsHeader />
 						<TodoComplete isCompleted={todo?.is_completed ?? false} />
 						<TodoImportance isImportant={todo?.is_important ?? false} />
-						<TodoTitle />
+						<TodoTitle title={todo?.task_text ?? ''} />
 						<TodoDueDate />
 						<TodoCategories />
 						<TodoDescription />

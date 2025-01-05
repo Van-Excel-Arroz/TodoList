@@ -8,7 +8,7 @@ import { Save } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-export default function TodoTitle() {
+export default function TodoTitle({ title }: { title: string }) {
 	const { selectedTodo, updateSelectedTodoTitle } = useSelectedTodoStore();
 	const { updateTodoTitle } = useTodosStore();
 	const [isEditing, setIsEditing] = useState(false);
