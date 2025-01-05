@@ -14,13 +14,12 @@ interface CategoryFormInputs {
 }
 
 export default function TodoCategories({ categories }: { categories: Category[] }) {
-	const { selectedTodo, updateSelectedTodoCategory, removeSelectedTodoCategory } = useSelectedTodoStore();
+	const { selectedTodo } = useSelectedTodoStore();
 	const { addCategory, deleteCategory } = useTodosStore();
 	const todoId = selectedTodo?.id ?? 0;
 
 	const handleRemoveCategory = async (categoryId: number) => {
 		await deleteTodoCategoryAction(categoryId);
-		removeSelectedTodoCategory(categoryId);
 		deleteCategory(todoId, categoryId);
 	};
 
@@ -42,7 +41,6 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 			todo_list_id: selectedTodo?.todo_list_id ?? 0,
 		};
 
-		updateSelectedTodoCategory(newCategory);
 		addCategory(todoId, newCategory);
 	};
 
