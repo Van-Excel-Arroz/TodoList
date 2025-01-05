@@ -10,11 +10,17 @@ import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import TodoDescription from './components/TodoDescription';
 import TodoComplete from './components/TodoComplete';
 import TodoImportance from './components/TodoImportance';
+import useTodosStore from '@/context/TodosContext';
 
 export default function TodoDetailsPanel() {
-	const { setSelectedTodo } = useSelectedTodoStore();
+	const { setSelectedTodo, selectedTodo } = useSelectedTodoStore();
+	const { getTodoById } = useTodosStore();
+	const todo = getTodoById(selectedTodo?.id ?? 0);
 	const { isTodoDetailsPanelOpen, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 
+	if (!selectedTodo) {
+		return null;
+	}
 	return (
 		<>
 			<div
@@ -34,7 +40,7 @@ export default function TodoDetailsPanel() {
 				<div className="flex flex-col justify-between px-6 h-full">
 					<div className="flex flex-col gap-4">
 						<TodoDetailsHeader />
-						<TodoComplete />
+						<TodoComplete isCompleted={todo.is_completed} />
 						<TodoImportance />
 						<TodoTitle />
 						<TodoDueDate />

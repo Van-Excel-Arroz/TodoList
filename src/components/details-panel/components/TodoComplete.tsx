@@ -3,10 +3,9 @@ import CheckBox from '@/components/ui-shared/CheckBox';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 
-export default function TodoComplete() {
+export default function TodoComplete({ isCompleted }: { isCompleted: boolean }) {
 	const { selectedTodo, toggleSelectedTodoCompletion } = useSelectedTodoStore();
 	const { toggleTodoCompletion } = useTodosStore();
-	const isCompleted = selectedTodo?.is_completed ?? false;
 	const todoId = selectedTodo?.id ?? 0;
 
 	const handleCheckboxChange = async () => {
