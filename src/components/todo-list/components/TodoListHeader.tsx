@@ -6,11 +6,12 @@ import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
-import useTodoListStore from '@/context/TodoListContext';
+
 import TodoSort from './TodoSort';
 import { Search } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import TodoControls from './TodoControls';
+import useTodoListsStore from '@/context/TodoListsContext';
 
 interface TodoListHeaderProps {
 	todolist: TodoList;
@@ -19,11 +20,11 @@ interface TodoListHeaderProps {
 
 function TodoListHeader({ todolist, categories }: TodoListHeaderProps) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
-	const { setTodoList, todolist: currentTodolist } = useTodoListStore();
+	const { getTodolist } = useTodoListsStore();
 
 	useEffect(() => {
-		if (todolist) setTodoList(todolist);
-	}, [todolist, setTodoList]);
+		if (todolist) getTodolist(todolist.id);
+	}, [todolist, getTodolist]);
 
 	return (
 		<div className="sticky top-0 bg-slate-100 z-50 px-6">

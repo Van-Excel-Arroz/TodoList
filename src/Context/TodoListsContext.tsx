@@ -7,9 +7,10 @@ interface TodoListContextState {
 	addTodolist: (newTodolist: TodoList) => void;
 	updateTodolistTitle: (todolistId: number, newTitle: string) => void;
 	deleteTodolist: (todolistId: number) => void;
+	getTodoListById: (todolistId: number) => void;
 }
 
-const useTodoListsStore = create<TodoListContextState>()((set: any) => ({
+const useTodoListsStore = create<TodoListContextState>()((set: any, get: any) => ({
 	todolists: [],
 	setTodolists: (todolists: TodoList[]) => set({ todolists: todolists }),
 	addTodolist: (newTodolist: TodoList) =>
@@ -26,6 +27,9 @@ const useTodoListsStore = create<TodoListContextState>()((set: any) => ({
 		set((state: TodoListContextState) => ({
 			todolists: state.todolists.filter(todolist => todolist.id !== todolistId),
 		})),
+	getTodoListById: (todolistId: number) => {
+		return get().todolist.find((todolist: TodoList) => todolist.id === todolistId);
+	},
 }));
 
 export default useTodoListsStore;
