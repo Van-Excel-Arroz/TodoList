@@ -41,7 +41,7 @@ export default function TodoDetailsPanel() {
 					<div className="flex flex-col gap-4">
 						<TodoDetailsHeader />
 						<TodoComplete isCompleted={todo.is_completed} />
-						<TodoImportance />
+						<TodoImportance isImportant={todo.is_important} />
 						<TodoTitle />
 						<TodoDueDate />
 						<TodoCategories />

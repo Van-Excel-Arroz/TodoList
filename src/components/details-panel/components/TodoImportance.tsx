@@ -3,17 +3,16 @@ import Importance from '@/components/ui-shared/Importance';
 import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 
-export default function TodoImportance() {
-	const { selectedTodo, toggleSelectedTodoImportance } = useSelectedTodoStore();
+export default function TodoImportance({ isImportant }: { isImportant: boolean }) {
+	const { selectedTodo } = useSelectedTodoStore();
 	const { toggleTodoImportance } = useTodosStore();
-	const isImportant = selectedTodo?.is_important ?? false;
 	const todoId = selectedTodo?.id ?? 0;
 
 	const handleImportanceChange = async () => {
 		await updateTodoImportanceAction(todoId, !isImportant);
 		toggleTodoImportance(todoId);
-		toggleSelectedTodoImportance(todoId);
 	};
+
 	return (
 		<div className="flex items-center gap-2">
 			<Importance isImportant={isImportant} handleOnClick={handleImportanceChange} />
