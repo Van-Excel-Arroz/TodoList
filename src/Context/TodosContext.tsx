@@ -14,9 +14,10 @@ interface TodosContextState {
 	updateDueDate: (todoId: number, newDueDate: string) => void;
 	updateDescription: (todoId: number, newDescription: string | null) => void;
 	deleteDueDate: (todoId: number) => void;
+	getTodoById: (todoId: number) => Todo;
 }
 
-const useTodosStore = create<TodosContextState>()((set: any) => ({
+const useTodosStore = create<TodosContextState>()((set: any, get: any) => ({
 	todos: [],
 	setTodos: (todos: Todo[]) => set({ todos: todos }),
 	addTodo: (newTodo: Todo) =>
@@ -65,6 +66,9 @@ const useTodosStore = create<TodosContextState>()((set: any) => ({
 		set((state: TodosContextState) => ({
 			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, due_datetime: null } : todo)),
 		})),
+	getTodoById: (todoId: number) => {
+		return get().todos.find((todo: Todo) => todo.id === todoId);
+	},
 }));
 
 export default useTodosStore;
