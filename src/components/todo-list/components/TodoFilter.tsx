@@ -5,6 +5,7 @@ import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { Category } from '@/types';
 import { CalendarDays, CheckIcon, Filter, Tag } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 interface TodoFilterProps {
@@ -18,6 +19,8 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
+
+	const [field, order] = useSearchParams().get('sort')?.split(':') || [];
 
 	return (
 		<div className="relative">
@@ -86,10 +89,12 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 					<p>Filter by Date</p>
 				</MenuItem>
 				{DateFilters.map(filter => (
-					<div key={filter} className="flex items-center justify-between py-1 px-2 hover:bg-slate-200 cursor-pointer">
+					<MenuItem key={filter} className="flex items-center justify-between">
 						<p className="text-base">{filter}</p>
-						<CheckIcon size={14} />
-					</div>
+						<div className="h-5 w-5">
+							<CheckIcon size={14} />
+						</div>
+					</MenuItem>
 				))}
 			</Menu>
 		</div>
