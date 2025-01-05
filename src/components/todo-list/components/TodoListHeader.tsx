@@ -13,33 +13,33 @@ import TodoControls from './TodoControls';
 import useTodoListsStore from '@/context/TodoListsContext';
 
 interface TodoListHeaderProps {
-	todolistId: number;
+	initialTodolist: TodoList;
 	categories: Category[];
 }
 
-function TodoListHeader({ todolistId, categories }: TodoListHeaderProps) {
+function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 	const { getTodoListById } = useTodoListsStore();
-
-	const todolist = getTodoListById(todolistId);
+	const todolistFromStore = getTodoListById(initialTodolist.id);
+	const currentTodolist = todolistFromStore || initialTodolist;
 
 	return (
 		<div className="sticky top-0 bg-slate-100 z-50 px-6">
 			<div className="flex justify-between items-center py-2">
 				<div className="flex items-center gap-2">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
-					<p className="text-lg font-bold">{todolist.title}</p>
+					<p className="text-lg font-bold">{currentTodolist.title}</p>
 				</div>
 				<div className="flex items-center gap-2">
 					<Button ariaLabel="Search">
 						<Search />
 					</Button>
-					<TodoSort todolistId={todolistId} />
-					<TodoFilter todolistId={todolistId} categories={categories} />
+					<TodoSort todolistId={initialTodolist.id} />
+					<TodoFilter todolistId={initialTodolist.id} categories={categories} />
 				</div>
 			</div>
 			<TodoControls />
-			<TodoForm todolistId={todolistId} />
+			<TodoForm todolistId={initialTodolist.id} />
 		</div>
 	);
 }
