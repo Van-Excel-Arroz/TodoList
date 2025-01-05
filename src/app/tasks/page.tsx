@@ -9,9 +9,9 @@ interface PageProps {
 
 export default async function TasksPage({ searchParams }: PageProps) {
 	const { id = '' } = await searchParams;
-	const todolistId = Number(id);
+	const todolistId = id ? Number(id) : null;
 
-	if (!id) {
+	if (todolistId === null || isNaN(todolistId)) {
 		return <NoTodoListSelected />;
 	}
 
