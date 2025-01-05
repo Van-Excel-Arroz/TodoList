@@ -21,7 +21,7 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 
 	const [filter] = useSearchParams().get('filter')?.split(':') || [];
-	const [sort] = useSearchParams().get('sort')?.split(':') || [];
+	const [sort, order] = useSearchParams().get('sort')?.split(':') || [];
 
 	return (
 		<div className="relative">
@@ -93,7 +93,7 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 					<MenuItem
 						key={label}
 						className="flex items-center justify-between w-full"
-						href={`/tasks/?id=${todolistId}&filter=${label}`}
+						href={`/tasks/?id=${todolistId}${sort && `&sort=${sort}:${order}`}&filter=${label}`}
 					>
 						<p className="text-base text-left w-full">{label}</p>
 						<div className="h-3 w-3">
