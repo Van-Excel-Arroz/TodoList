@@ -9,15 +9,15 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function TodoTitle({ title }: { title: string }) {
-	const { selectedTodo, updateSelectedTodoTitle } = useSelectedTodoStore();
+	const { selectedTodo } = useSelectedTodoStore();
 	const { updateTodoTitle } = useTodosStore();
 	const [isEditing, setIsEditing] = useState(false);
 	const { register, handleSubmit, reset } = useForm<{ title: string }>({
-		defaultValues: { title: selectedTodo?.task_text ?? '' },
+		defaultValues: { title: title },
 	});
 
 	useEffect(() => {
-		reset({ title: selectedTodo?.task_text ?? '' });
+		reset({ title: title });
 		setIsEditing(false);
 	}, [selectedTodo, reset]);
 
@@ -25,16 +25,15 @@ export default function TodoTitle({ title }: { title: string }) {
 
 	const onSubmit = async (data: { title: string }) => {
 		if (!data.title.trim()) return;
-		if (selectedTodo.task_text !== data.title) {
+		if (title !== data.title) {
 			await updateTodoTitleAction(selectedTodo.id, data.title);
 			updateTodoTitle(selectedTodo.id, data.title);
-			updateSelectedTodoTitle(data.title);
 		}
 		setIsEditing(false);
 	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		setIsEditing(e.target.value !== selectedTodo.task_text);
+		setIsEditing(e.target.value !== title);
 	};
 
 	const handleInputBlur = (e: React.FocusEvent<HTMLElement>) => {
@@ -59,7 +58,7 @@ export default function TodoTitle({ title }: { title: string }) {
 					{...register('title')}
 					className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-400 focus:border-slate-400 focus:outline-none"
 					aria-label="Todo Title Input"
-					placeholder={selectedTodo?.task_text}
+					placeholder={title}
 					onChange={handleInputChange}
 				/>
 			</form>
