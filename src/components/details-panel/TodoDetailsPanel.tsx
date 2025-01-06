@@ -16,22 +16,20 @@ export default function TodoDetailsPanel() {
 	const { setSelectedTodoId, selectedTodoId } = useSelectedTodoIdStore();
 	const { getTodoById } = useTodosStore();
 	const todo = getTodoById(selectedTodoId);
-	const { isTodoDetailsPanelOpen, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 
 	return (
 		<>
 			<div
 				className={`fixed inset-0 bg-black/20 transition-opacity duration-300 lg:hidden cursor-pointer z-40 ${
-					isTodoDetailsPanelOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+					selectedTodoId ? 'opacity-100' : 'opacity-0 pointer-events-none'
 				}`}
 				onClick={() => {
-					closeTodoDetailsPanel();
 					setSelectedTodoId(0);
 				}}
 			/>
 			<div
 				className={`overflow-y-scroll fixed lg:relative right-0 top-0 bg-white border-l border-slate-300 lg:h-[calc(100vh-2.5rem)]  h-screen transition-[width] duration-200 ease-in-out overflow-hidden z-50 backdrop-blur-sm bg-opacity-80 ${
-					isTodoDetailsPanelOpen ? 'w-96' : 'w-0'
+					selectedTodoId ? 'w-96' : 'w-0'
 				}`}
 			>
 				<div className="flex flex-col justify-between px-6 h-full">
