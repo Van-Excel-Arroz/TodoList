@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 
 export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 	const { selectedTodo } = useSelectedTodoStore();
-	const { updateDueDate, deleteDueDate, todos } = useTodosStore();
+	const { updateDueDate, deleteDueDate } = useTodosStore();
 	const [isChanged, setIsChanged] = useState(false);
 	const todoId = selectedTodo?.id ?? 0;
 	const [selectedDueDate, updateSelectedTodoDueDate] = useState<string | undefined>(dueDate);
