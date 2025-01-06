@@ -1,5 +1,5 @@
 'use client';
-
+import React, { ComponentType } from 'react'; // Import ComponentType
 import { Button } from '@/components/ui-shared/Button';
 import {
 	ArrowDownAZIcon,
@@ -36,10 +36,6 @@ export default function TodoControls() {
 		newSort ? params.set('sort', newSort) : params.delete('sort');
 		router.push(`/tasks/?${params.toString()}`);
 	};
-
-	if (!field) {
-		return null;
-	}
 
 	const SortIcon = sortIcons[field]?.[order] ?? ArrowDownWideNarrowIcon;
 

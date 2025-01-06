@@ -10,10 +10,10 @@ interface TodoListViewProps {
 }
 
 export default function TodoListView({ todos }: TodoListViewProps) {
-	const selectedCategories: Set<string> = new Set([]);
 	const [field, order] = useSearchParams().get('sort')?.split(':') || [];
 
 	const { incompleteTodos, completeTodos } = useMemo(() => {
+		const selectedCategories: Set<string> = new Set([]);
 		const incomplete: any[] = [];
 		const complete: any[] = [];
 
@@ -82,7 +82,7 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			incompleteTodos: incomplete,
 			completeTodos: complete,
 		};
-	}, [todos, selectedCategories, field, order]);
+	}, [todos, field, order]);
 
 	return (
 		<div>
