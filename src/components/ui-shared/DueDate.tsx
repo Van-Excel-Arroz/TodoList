@@ -141,7 +141,7 @@ function DatePicker({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate
 		>
 			<div className="relative">
 				<DateTime
-					value={dueDate}
+					value={dueDate ? new Date(dueDate) : undefined}
 					open={isDatePickerOpen}
 					onChange={handleDateTimeChange}
 					input={false}

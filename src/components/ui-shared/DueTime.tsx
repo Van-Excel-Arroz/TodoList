@@ -165,7 +165,7 @@ function TimePicker({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate
 		>
 			<div className="relative">
 				<DateTime
-					value={dueDate}
+					value={dueDate ? new Date(dueDate) : undefined}
 					open={isTimePickerOpen}
 					onChange={handleDateTimeChange}
 					closeOnSelect={true}
