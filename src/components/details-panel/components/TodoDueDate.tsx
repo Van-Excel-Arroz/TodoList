@@ -39,6 +39,8 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 	};
 
 	useEffect(() => {
+		console.log(`dueDate: ${dueDate}`);
+		console.log(`selectedDueDate: ${selectedDueDate}`);
 		if (dueDate) {
 			setIsChanged(dueDate !== selectedDueDate);
 		} else {
