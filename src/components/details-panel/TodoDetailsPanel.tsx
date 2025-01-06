@@ -44,7 +44,7 @@ export default function TodoDetailsPanel() {
 						<TodoCategories categories={todo?.categories ?? []} todolistId={todo?.todo_list_id ?? 0} />
 						<TodoDescription description={todo?.description ?? ''} />
 					</div>
-					<TodoDetailsFooter />
+					<TodoDetailsFooter creationDate={todo?.creation_date ?? ''} />
 				</div>
 			</div>
 		</>

@@ -1,9 +1,8 @@
-import useSelectedTodoStore from '@/context/SelectedTodoContext';
+import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import { format } from 'date-fns';
 
-export default function TodoDetailsFooter() {
-	const { selectedTodo } = useSelectedTodoStore();
-	const creationDate = selectedTodo?.creation_date ?? '';
+export default function TodoDetailsFooter({ creationDate }: { creationDate: string }) {
+	const { selectedTodoId } = useSelectedTodoIdStore();
 
 	if (!creationDate) return null;
 
