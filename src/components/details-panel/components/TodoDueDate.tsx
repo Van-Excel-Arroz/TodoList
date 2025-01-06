@@ -68,7 +68,7 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 							</Button>
 						</>
 					)}
-					{selectedTodo?.due_datetime && !isChanged && (
+					{selectedDueDate && !isChanged && (
 						<Button ariaLabel="Delete Due Date" type="submit" onClick={() => handleDeleteDueDate()}>
 							<p>Clear</p>
 						</Button>
