@@ -41,7 +41,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	};
 
 	const handleCategoryClick = async (categoryTitle: string) => {
-		await updateIsSelectedCategoryColorsAction(true, categoryTitle, todo.todo_list_id);
+		// await updateIsSelectedCategoryColorsAction(true, categoryTitle, todo.todo_list_id);
 	};
 
 	const handleDeleteClick = async () => {
