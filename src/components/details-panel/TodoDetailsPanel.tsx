@@ -6,16 +6,16 @@ import TodoCategories from './components/TodoCategories';
 import TodoDetailsHeader from './components/TodoDetailsHeader';
 import TodoDetailsFooter from './components/TodoDetailsFooter';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
-import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import TodoDescription from './components/TodoDescription';
 import TodoComplete from './components/TodoComplete';
 import TodoImportance from './components/TodoImportance';
 import useTodosStore from '@/context/TodosContext';
+import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 
 export default function TodoDetailsPanel() {
-	const { setSelectedTodo, selectedTodo } = useSelectedTodoStore();
+	const { setSelectedTodoId, selectedTodoId } = useSelectedTodoIdStore();
 	const { getTodoById } = useTodosStore();
-	const todo = getTodoById(selectedTodo?.id ?? 0);
+	const todo = getTodoById(selectedTodoId);
 	const { isTodoDetailsPanelOpen, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 
 	return (
@@ -26,7 +26,7 @@ export default function TodoDetailsPanel() {
 				}`}
 				onClick={() => {
 					closeTodoDetailsPanel();
-					setSelectedTodo(null);
+					setSelectedTodoId(0);
 				}}
 			/>
 			<div
