@@ -6,6 +6,7 @@ import DateTime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import Menu from './Menu';
 import MenuItem from './MenuItem';
+import moment from 'moment';
 
 interface DueDateInputProps {
 	dueDate: string | undefined;
@@ -34,7 +35,7 @@ export default function DueDate({ dueDate, setDueDate, defaultEmptyText = false 
 				{(defaultEmptyText || dueDate || isDatePickerOpen) && (
 					<div className="relative">
 						<Button ariaLabel="Due Date" onClick={() => setIsDatePickerOpen(prev => !prev)}>
-							<p>{dueDate ? format(dueDate, 'MM/dd/yy') : 'MM/DD/YY'}</p>
+							<p>{dueDate ? format(new Date(dueDate), 'MM/dd/yy') : 'MM/DD/YY'}</p>
 						</Button>
 						<DatePicker
 							isDatePickerOpen={isDatePickerOpen}
@@ -125,9 +126,8 @@ interface DatePickerProps {
 
 function DatePicker({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate }: DatePickerProps) {
 	const handleDateTimeChange = (value: string | moment.Moment) => {
-		if (typeof value === 'object' && value !== null) {
-			const date = value instanceof Date ? value : value.toDate();
-			setDueDate(date.toISOString());
+		if (value && moment.isMoment(value)) {
+			setDueDate(value.toDate().toISOString());
 		}
 	};
 

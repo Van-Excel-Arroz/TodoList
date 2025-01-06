@@ -5,6 +5,7 @@ import { Clock3, Trash2 } from 'lucide-react';
 import DateTime from 'react-datetime';
 import Menu from './Menu';
 import MenuItem from './MenuItem';
+import moment from 'moment';
 
 interface DueDateInputProps {
 	dueDate: string | undefined;
@@ -36,7 +37,7 @@ export default function DueTime({ dueDate, setDueDate, defaultEmptyText = false,
 				{(defaultEmptyText || dueDate || isTimePickerOpen) && (
 					<div className="relative">
 						<Button ariaLabel="Due Date" onClick={() => setIsTimePickerOpen(prev => !prev)}>
-							<p>{dueDate ? format(dueDate, 'hh:mm a') : 'HH:MM a'}</p>
+							<p>{dueDate ? format(new Date(dueDate), 'hh:mm a') : 'HH:MM a'}</p>
 						</Button>
 						<TimePicker
 							isTimePickerOpen={isTimePickerOpen}
@@ -149,9 +150,8 @@ interface TimePickerProps {
 
 function TimePicker({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate, right = false }: TimePickerProps) {
 	const handleDateTimeChange = (value: string | moment.Moment) => {
-		if (typeof value === 'object' && value !== null) {
-			const date = value instanceof Date ? value : value.toDate();
-			setDueDate(date.toISOString());
+		if (value && moment.isMoment(value)) {
+			setDueDate(value.toDate().toISOString());
 		}
 	};
 
