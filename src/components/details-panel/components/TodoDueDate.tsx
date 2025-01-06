@@ -39,7 +39,7 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 	};
 
 	useEffect(() => {
-		if (dueDate) {
+		if (dueDate || selectedDueDate) {
 			setIsChanged(dueDate !== selectedDueDate);
 		} else {
 			setIsChanged(false);
