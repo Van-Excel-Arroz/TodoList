@@ -75,7 +75,7 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 								<p className="text-base">{category.category_title}</p>
 							</div>
 
-							<Button ariaLabel="Unselect category" className="hover:bg-slate-300 active:bg-slate-400">
+							<Button ariaLabel="Unselect category" className="hover:bg-slate-300">
 								<X size={16} strokeWidth={2} className={`${category.is_selected ? 'block' : 'hidden'} `} />
 							</Button>
 						</MenuItem>
