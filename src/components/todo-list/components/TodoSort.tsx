@@ -4,7 +4,6 @@ import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { ArrowUpDown, CalendarDays, CalendarPlus, CaseSensitive, Star } from 'lucide-react';
-import Link from 'next/link';
 import { useState } from 'react';
 
 const MenuItems = {
