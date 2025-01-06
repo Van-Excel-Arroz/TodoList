@@ -57,6 +57,12 @@ interface DateMenuProps {
 	setIsDateMenuOpen: (val: boolean) => void;
 }
 
+const dateLabels = {
+	today: `Today (${format(new Date(), 'EEE')})`,
+	tomorrow: `Tomorrow (${format(add(new Date(), { days: 1 }), 'EEE')})`,
+	'next week': `Next ${format(add(new Date(), { days: 7 }), 'EEEE')}`,
+};
+
 function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMenuOpen }: DateMenuProps) {
 	const handleSetDate = (date: string) => {
 		let baseDate = new Date();
@@ -90,15 +96,11 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Select Due Date</p>
 			</MenuItem>
-			<MenuItem onClick={() => handleSetDate('today')}>
-				<p>Today ({format(new Date(), 'EEE')})</p>
-			</MenuItem>
-			<MenuItem onClick={() => handleSetDate('tomorrow')}>
-				<p>Tomorrow ({format(add(new Date(), { days: 1 }), 'EEE')})</p>
-			</MenuItem>
-			<MenuItem onClick={() => handleSetDate('next week')}>
-				<p>Next {format(add(new Date(), { days: 7 }), 'EEEE')}</p>
-			</MenuItem>
+			{Object.entries(dateLabels).map(([label, text]) => (
+				<MenuItem onClick={() => handleSetDate(label)}>
+					<p>{text}</p>
+				</MenuItem>
+			))}
 			<MenuItem
 				onClick={() => {
 					setIsDatePickerOpen(true);
