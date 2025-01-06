@@ -1,5 +1,5 @@
 'use client';
-import React, { ComponentType } from 'react'; // Import ComponentType
+
 import { Button } from '@/components/ui-shared/Button';
 import {
 	ArrowDownAZIcon,
