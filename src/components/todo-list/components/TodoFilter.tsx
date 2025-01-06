@@ -4,7 +4,7 @@ import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { Category } from '@/types';
-import { CalendarDays, CheckIcon, Filter, Tag } from 'lucide-react';
+import { CalendarDays, CheckIcon, Filter, Tag, X } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
@@ -67,17 +67,20 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 					<p>Filter by Category</p>
 				</MenuItem>
-				{categories.map(category => (
-					<MenuItem key={category.id} className="flex items-center justify-between">
-						<div className="flex items-center gap-2">
-							<p style={{ color: category.hex_color }}>●</p>
-							<p className="text-base">{category.category_title}</p>
-						</div>
-						<div className="h-3 w-3">
-							<CheckIcon size={14} className={`${category.is_selected ? 'block' : 'hidden'} `} />
-						</div>
-					</MenuItem>
-				))}
+				<div className="h-[70vh] overflow-hidden overflow-y-auto">
+					{categories.map(category => (
+						<MenuItem key={category.id} className="flex items-center justify-between">
+							<div className="flex items-center gap-2">
+								<p style={{ color: category.hex_color }}>●</p>
+								<p className="text-base">{category.category_title}</p>
+							</div>
+
+							<Button ariaLabel="Unselect category" className="hover:bg-slate-300 active:bg-slate-400">
+								<X size={16} strokeWidth={2} className={`${category.is_selected ? 'block' : 'hidden'} `} />
+							</Button>
+						</MenuItem>
+					))}
+				</div>
 			</Menu>
 			<Menu
 				open={isDateFilterOpen}
