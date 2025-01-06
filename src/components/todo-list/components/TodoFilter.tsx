@@ -67,7 +67,7 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 					<p>Filter by Category</p>
 				</MenuItem>
-				<div className="h-[70vh] overflow-hidden overflow-y-auto">
+				<div className="max-h-[70vh] overflow-hidden overflow-y-auto">
 					{categories.map(category => (
 						<MenuItem key={category.id} className="flex items-center justify-between">
 							<div className="flex items-center gap-2">
