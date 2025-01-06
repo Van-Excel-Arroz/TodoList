@@ -39,14 +39,13 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 	};
 
 	useEffect(() => {
-		console.log(`dueDate: ${dueDate}`);
-		console.log(`selectedDueDate: ${selectedDueDate}`);
+		updateSelectedTodoDueDate(dueDate);
 		if (dueDate) {
 			setIsChanged(dueDate !== selectedDueDate);
 		} else {
 			setIsChanged(false);
 		}
-	}, [dueDate, selectedDueDate]);
+	}, [dueDate, selectedDueDate, todoId]);
 
 	return (
 		<div className="flex flex-col">
