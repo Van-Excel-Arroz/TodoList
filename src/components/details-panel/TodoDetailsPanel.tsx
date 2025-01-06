@@ -5,12 +5,12 @@ import TodoDueDate from './components/TodoDueDate';
 import TodoCategories from './components/TodoCategories';
 import TodoDetailsHeader from './components/TodoDetailsHeader';
 import TodoDetailsFooter from './components/TodoDetailsFooter';
-import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import TodoDescription from './components/TodoDescription';
 import TodoComplete from './components/TodoComplete';
 import TodoImportance from './components/TodoImportance';
 import useTodosStore from '@/context/TodosContext';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
+import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 
 export default function TodoDetailsPanel() {
 	const { setSelectedTodoId, selectedTodoId } = useSelectedTodoIdStore();
