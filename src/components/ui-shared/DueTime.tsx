@@ -62,6 +62,14 @@ interface TimeMenuProps {
 	right?: boolean;
 }
 
+const timeLabels = {
+	morning: 'Morning (09:00 a.m)',
+	noon: 'Noon (12:00 p.m)',
+	afternoon: 'Afternoon (03:00 p.m)',
+	evening: 'Evening (06:00 p.m)',
+	night: 'Night (09:00 p.m)',
+};
+
 function TimeMenu({
 	isTimeMenuOpen,
 	setIsTimeMenuOpen,
@@ -70,7 +78,7 @@ function TimeMenu({
 	setDueDate,
 	right = false,
 }: TimeMenuProps) {
-	const handleSetTime = (time: string) => {
+	const handleSetTime = (time: string): void => {
 		let baseDate = dueDate ? new Date(dueDate) : startOfToday();
 
 		switch (time) {
@@ -96,14 +104,6 @@ function TimeMenu({
 		setDueDate(baseDate.toISOString());
 	};
 
-	// const obj = {
-	// 	morning: "Morning (09:00 a.m)",
-	// 	noon:
-	// 	afternoon:
-	// 	evening:
-	// 	night:
-	// }
-
 	return (
 		<Menu
 			open={isTimeMenuOpen}
@@ -115,21 +115,12 @@ function TimeMenu({
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Select Due Time</p>
 			</MenuItem>
-			<MenuItem onClick={() => handleSetTime('morning')}>
-				<p>Morning (09:00 a.m)</p>
-			</MenuItem>
-			<MenuItem onClick={() => handleSetTime('noon')}>
-				<p>Noon (12:00 p.m)</p>
-			</MenuItem>
-			<MenuItem onClick={() => handleSetTime('afternoon')}>
-				<p>Afternoon (03:00 p.m)</p>
-			</MenuItem>
-			<MenuItem onClick={() => handleSetTime('evening')}>
-				<p>Evening (06:00 p.m)</p>
-			</MenuItem>
-			<MenuItem onClick={() => handleSetTime('night')}>
-				<p>Evening (09:00 p.m)</p>
-			</MenuItem>
+
+			{Object.entries(timeLabels).map(([label, text]) => (
+				<MenuItem onClick={() => handleSetTime(label)}>
+					<p>{text}</p>
+				</MenuItem>
+			))}
 			<MenuItem
 				onClick={() => {
 					setIsTimePickerOpen(true);
