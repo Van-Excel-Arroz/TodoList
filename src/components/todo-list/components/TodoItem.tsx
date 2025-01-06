@@ -5,7 +5,7 @@ import { Todo } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { deleteTodoAction, updateTodoCompletionAction, updateTodoImportanceAction } from '@/actions/todo-action';
-import useSelectedTodoStore from '@/context/SelectedTodoContext';
+import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 import CheckBox from '@/components/ui-shared/CheckBox';
 import CategoryTags from '../ui/CategoryTags';
@@ -16,31 +16,28 @@ import Importance from '@/components/ui-shared/Importance';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
-	const { selectedTodo, setSelectedTodo, toggleSelectedTodoCompletion, toggleSelectedTodoImportance } =
-		useSelectedTodoStore();
+	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
 	const { deleteTodo, toggleTodoCompletion, toggleTodoImportance } = useTodosStore();
-	const isSelected = selectedTodo?.id === todo.id;
+	const isSelected = selectedTodoId === todo.id;
 
 	const handleTodoClick = () => {
 		if (isSelected) {
 			closeTodoDetailsPanel();
-			setSelectedTodo(null);
+			setSelectedTodoId(0);
 		} else {
 			openTodoDetailsPanel();
-			setSelectedTodo(todo);
+			setSelectedTodoId(todo.id);
 		}
 	};
 
 	const handleCheckboxChange = async () => {
 		await updateTodoCompletionAction(todo.id, !todo.is_completed);
 		toggleTodoCompletion(todo.id);
-		toggleSelectedTodoCompletion(todo.id);
 	};
 
 	const handleImportanceChange = async () => {
 		await updateTodoImportanceAction(todo.id, !todo.is_important);
 		toggleTodoImportance(todo.id);
-		toggleSelectedTodoImportance(todo.id);
 	};
 
 	const handleCategoryClick = async (categoryTitle: string) => {
@@ -52,7 +49,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 		deleteTodo(todo.id);
 		if (isSelected) {
 			closeTodoDetailsPanel();
-			setSelectedTodo(null);
+			setSelectedTodoId(0);
 		}
 	};
 	return (
