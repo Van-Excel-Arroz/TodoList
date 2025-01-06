@@ -8,7 +8,7 @@ import { TodoList } from '@/types';
 import { Pencil, Trash2 } from 'lucide-react';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
-import useSelectedTodoStore from '@/context/SelectedTodoContext';
+import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { Button } from '@/components/ui-shared/Button';
 import EditTodoListForm from '../ui/EditTodoListForm';
@@ -20,7 +20,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const currentId = searchParams.get('id');
 	const [isEditing, setIsEditing] = useState(false);
 	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
-	const { selectedTodo, setSelectedTodo } = useSelectedTodoStore();
+	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
 	const { deleteTodolist } = useTodoListsStore();
 
@@ -30,9 +30,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 		if (mediaQuery.matches) {
 			toggleTodoListsSidebar();
 		}
-		if (selectedTodo?.todo_list_id === todolist.id) {
-			setSelectedTodo(null);
-		}
+		setSelectedTodoId(0);
 	};
 
 	const handleEditClick = (val: boolean) => {
