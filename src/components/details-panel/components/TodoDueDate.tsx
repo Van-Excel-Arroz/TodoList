@@ -13,8 +13,8 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 	const { selectedTodo } = useSelectedTodoStore();
 	const { updateDueDate, deleteDueDate } = useTodosStore();
 	const [isChanged, setIsChanged] = useState(false);
-	const todoId = selectedTodo?.id ?? 0;
 	const [selectedDueDate, updateSelectedTodoDueDate] = useState<string | undefined>(dueDate);
+	const todoId = selectedTodo?.id ?? 0;
 
 	const handleOnSubmit = async () => {
 		if (!selectedDueDate) return;
@@ -40,9 +40,7 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 
 	useEffect(() => {
 		if (dueDate) {
-			const currentDate = dueDate ? dueDate : '';
-			const selectedDate = selectedDueDate ? selectedDueDate : '';
-			setIsChanged(currentDate !== selectedDate);
+			setIsChanged(dueDate !== selectedDueDate);
 		} else if (selectedDueDate) {
 			setIsChanged(true);
 		} else {
