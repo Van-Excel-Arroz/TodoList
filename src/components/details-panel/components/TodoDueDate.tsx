@@ -15,7 +15,6 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 	const [isChanged, setIsChanged] = useState(false);
 	const todoId = selectedTodo?.id ?? 0;
 	const [selectedDueDate, updateSelectedTodoDueDate] = useState<string | undefined>(dueDate);
-	const currentSavedDueDate = todos.filter(todo => todo.id === todoId)[0]?.due_datetime;
 
 	const handleOnSubmit = async () => {
 		if (!selectedDueDate) return;
@@ -31,8 +30,8 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 	};
 
 	const handleUndoDueDate = () => {
-		if (currentSavedDueDate) {
-			updateSelectedTodoDueDate(currentSavedDueDate);
+		if (dueDate) {
+			updateSelectedTodoDueDate(dueDate);
 		} else {
 			updateSelectedTodoDueDate(undefined);
 		}
@@ -40,8 +39,8 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 	};
 
 	useEffect(() => {
-		if (currentSavedDueDate) {
-			const currentDate = currentSavedDueDate ? currentSavedDueDate : '';
+		if (dueDate) {
+			const currentDate = dueDate ? dueDate : '';
 			const selectedDate = selectedDueDate ? selectedDueDate : '';
 			setIsChanged(currentDate !== selectedDate);
 		} else if (selectedDueDate) {
@@ -49,7 +48,7 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 		} else {
 			setIsChanged(false);
 		}
-	}, [currentSavedDueDate, selectedDueDate]);
+	}, [dueDate, selectedDueDate]);
 
 	return (
 		<div className="flex flex-col">
