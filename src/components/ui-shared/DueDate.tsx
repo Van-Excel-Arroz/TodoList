@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui-shared/Button';
-import { add, format, setHours, setMinutes, setSeconds } from 'date-fns';
+import { add, format, setHours, setMinutes, setSeconds, startOfDay, startOfToday } from 'date-fns';
 import { Calendar, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import DateTime from 'react-datetime';
@@ -65,12 +65,9 @@ const dateLabels = {
 
 function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMenuOpen }: DateMenuProps) {
 	const handleSetDate = (date: string) => {
-		let baseDate = new Date();
+		let baseDate = startOfToday();
 
 		switch (date) {
-			case 'today':
-				baseDate = new Date();
-				break;
 			case 'tomorrow':
 				baseDate = add(new Date(), { days: 1 });
 				break;
