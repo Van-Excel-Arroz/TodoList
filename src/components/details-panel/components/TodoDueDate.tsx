@@ -4,29 +4,28 @@ import { deleteTodoDueDateAction, updateTodoDueDateAction } from '@/actions/todo
 import { Button } from '@/components/ui-shared/Button';
 import DueDate from '@/components/ui-shared/DueDate';
 import DueTime from '@/components/ui-shared/DueTime';
-import useSelectedTodoStore from '@/context/SelectedTodoContext';
+import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 import { CalendarDays, Save, Undo } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function TodoDueDate({ dueDate }: { dueDate: string }) {
-	const { selectedTodo } = useSelectedTodoStore();
+	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { updateDueDate, deleteDueDate } = useTodosStore();
 	const [isChanged, setIsChanged] = useState(false);
 	const [selectedDueDate, updateSelectedTodoDueDate] = useState<string | undefined>(dueDate);
-	const todoId = selectedTodo?.id ?? 0;
 
 	const handleOnSubmit = async () => {
 		if (!selectedDueDate) return;
-		await updateTodoDueDateAction(todoId, selectedDueDate);
-		updateDueDate(todoId, selectedDueDate);
+		await updateTodoDueDateAction(selectedTodoId, selectedDueDate);
+		updateDueDate(selectedTodoId, selectedDueDate);
 		setIsChanged(false);
 	};
 
 	const handleDeleteDueDate = async () => {
-		await deleteTodoDueDateAction(todoId);
+		await deleteTodoDueDateAction(selectedTodoId);
 		updateSelectedTodoDueDate(undefined);
-		deleteDueDate(todoId);
+		deleteDueDate(selectedTodoId);
 	};
 
 	const handleUndoDueDate = () => {
@@ -48,7 +47,7 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 
 	useEffect(() => {
 		updateSelectedTodoDueDate(dueDate);
-	}, [todoId]);
+	}, [selectedTodoId]);
 
 	return (
 		<div className="flex flex-col">
