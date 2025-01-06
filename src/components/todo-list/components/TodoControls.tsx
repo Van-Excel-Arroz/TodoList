@@ -37,7 +37,9 @@ export default function TodoControls() {
 		router.push(`/tasks/?${params.toString()}`);
 	};
 
-	if (!field) return null;
+	if (!field) {
+		return null;
+	}
 
 	const SortIcon = sortIcons[field]?.[order] ?? ArrowDownWideNarrowIcon;
 
