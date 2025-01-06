@@ -2,27 +2,26 @@
 
 import { deleteTodoAction } from '@/actions/todo-action';
 import { Button } from '@/components/ui-shared/Button';
-import useSelectedTodoStore from '@/context/SelectedTodoContext';
+import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import useTodosStore from '@/context/TodosContext';
 import { ArrowBigRightDashIcon, Trash2 } from 'lucide-react';
 
 export default function TodoDetailsHeader() {
 	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
-	const { setSelectedTodo, selectedTodo } = useSelectedTodoStore();
+	const { setSelectedTodoId, selectedTodoId } = useSelectedTodoIdStore();
 	const { deleteTodo } = useTodosStore();
-	const todoId = selectedTodo?.id ?? 0;
 
 	const handleCloseRightSidebar = () => {
 		closeTodoDetailsPanel();
-		setSelectedTodo(null);
+		setSelectedTodoId(0);
 	};
 
 	const handleDeleteClick = async () => {
-		await deleteTodoAction(todoId);
-		deleteTodo(todoId);
+		await deleteTodoAction(selectedTodoId);
+		deleteTodo(selectedTodoId);
 		closeTodoDetailsPanel();
-		setSelectedTodo(null);
+		setSelectedTodoId(0);
 	};
 	return (
 		<div className="flex items-center justify-between py-6 border-b border-slate-300 sticky top-0 bg-[#F3F3F4] lg:bg-white">
