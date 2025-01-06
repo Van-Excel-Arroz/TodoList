@@ -19,7 +19,7 @@ export default function TodoDescription({ description }: { description: string }
 	useEffect(() => {
 		reset({ description: description });
 		setIsEditing(false);
-	}, [selectedTodoId, reset]);
+	}, [selectedTodoId, reset, description]);
 
 	if (!selectedTodoId) return null;
 
