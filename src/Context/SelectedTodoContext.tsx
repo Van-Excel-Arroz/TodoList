@@ -1,14 +1,13 @@
-import { Todo } from '@/types';
 import { create } from 'zustand';
 
-interface SelectedTodoContextState {
-	selectedTodo: Todo | null;
-	setSelectedTodo: (todo: Todo | null) => void;
+interface SelectedTodoIdContextState {
+	selectedTodo: number;
+	setSelectedTodo: (todoId: number) => void;
 }
 
-const useSelectedTodoStore = create<SelectedTodoContextState>()((set: any) => ({
-	selectedTodo: null,
-	setSelectedTodo: (todo: Todo | null) => set({ selectedTodo: todo }),
+const useSelectedTodoIdStore = create<SelectedTodoIdContextState>()((set: any) => ({
+	selectedTodo: 0,
+	setSelectedTodo: (todoId: number) => set({ selectedTodo: todoId }),
 }));
 
-export default useSelectedTodoStore;
+export default useSelectedTodoIdStore;
