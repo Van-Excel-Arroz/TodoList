@@ -7,8 +7,8 @@ import Menu from './Menu';
 import MenuItem from './MenuItem';
 
 interface DueDateInputProps {
-	dueDate: Date | undefined;
-	setDueDate: (newDueDate: Date | undefined) => void;
+	dueDate: string | undefined;
+	setDueDate: (newDueDate: string | undefined) => void;
 	defaultEmptyText?: boolean;
 	right?: boolean;
 }
@@ -56,8 +56,8 @@ interface TimeMenuProps {
 	isTimeMenuOpen: boolean;
 	setIsTimeMenuOpen: (val: boolean) => void;
 	setIsTimePickerOpen: (val: boolean) => void;
-	dueDate: Date | undefined;
-	setDueDate: (newDueDate: Date | undefined) => void;
+	dueDate: string | undefined;
+	setDueDate: (newDueDate: string | undefined) => void;
 	right?: boolean;
 }
 
@@ -70,28 +70,29 @@ function TimeMenu({
 	right = false,
 }: TimeMenuProps) {
 	const handleSetTime = (time: string) => {
-		const baseDate = dueDate ? new Date(dueDate) : startOfToday();
+		let baseDate = dueDate ? new Date(dueDate) : startOfToday();
 
 		switch (time) {
 			case 'morning':
-				setDueDate(setHours(setMinutes(baseDate, 0), 9));
+				baseDate = setHours(setMinutes(baseDate, 0), 9);
 				break;
 			case 'noon':
-				setDueDate(setHours(setMinutes(baseDate, 0), 12));
+				baseDate = setHours(setMinutes(baseDate, 0), 12);
 				break;
 			case 'afternoon':
-				setDueDate(setHours(setMinutes(baseDate, 0), 15));
+				baseDate = setHours(setMinutes(baseDate, 0), 15);
 				break;
 			case 'evening':
-				setDueDate(setHours(setMinutes(baseDate, 0), 18));
+				baseDate = setHours(setMinutes(baseDate, 0), 18);
 				break;
 			case 'night':
-				setDueDate(setHours(setMinutes(baseDate, 0), 21));
+				baseDate = setHours(setMinutes(baseDate, 0), 21);
 				break;
 			case 'clear':
 				setDueDate(undefined);
 				break;
 		}
+		setDueDate(baseDate.toISOString());
 	};
 
 	return (
@@ -141,8 +142,8 @@ function TimeMenu({
 interface TimePickerProps {
 	isTimePickerOpen: boolean;
 	setIsTimePickerOpen: (val: boolean) => void;
-	dueDate: Date | undefined;
-	setDueDate: (newDueDate: Date | undefined) => void;
+	dueDate: string | undefined;
+	setDueDate: (newDueDate: string | undefined) => void;
 	right?: boolean;
 }
 
@@ -150,7 +151,7 @@ function TimePicker({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {
 			const date = value instanceof Date ? value : value.toDate();
-			setDueDate(date);
+			setDueDate(date.toISOString());
 		}
 	};
 

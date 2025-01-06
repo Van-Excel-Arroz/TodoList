@@ -9,19 +9,18 @@ import useTodosStore from '@/context/TodosContext';
 import { CalendarDays, Save, Undo } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-export default function TodoDueDate() {
-	const { updateSelectedTodoDueDate, selectedTodo } = useSelectedTodoStore();
+export default function TodoDueDate({ dueDate }: { dueDate: string }) {
+	const { selectedTodo } = useSelectedTodoStore();
 	const { updateDueDate, deleteDueDate, todos } = useTodosStore();
 	const [isChanged, setIsChanged] = useState(false);
 	const todoId = selectedTodo?.id ?? 0;
-	const selectedDueDate = selectedTodo?.due_datetime ?? '';
+	const [selectedDueDate, updateSelectedTodoDueDate] = useState<string | undefined>(dueDate);
 	const currentSavedDueDate = todos.filter(todo => todo.id === todoId)[0]?.due_datetime;
-	const initialDate = selectedDueDate ? new Date(selectedDueDate) : undefined;
 
 	const handleOnSubmit = async () => {
-		if (!initialDate) return;
-		await updateTodoDueDateAction(todoId, initialDate.toISOString());
-		updateDueDate(todoId, initialDate.toISOString());
+		if (!selectedDueDate) return;
+		await updateTodoDueDateAction(todoId, selectedDueDate);
+		updateDueDate(todoId, selectedDueDate);
 		setIsChanged(false);
 	};
 
@@ -33,7 +32,7 @@ export default function TodoDueDate() {
 
 	const handleUndoDueDate = () => {
 		if (currentSavedDueDate) {
-			updateSelectedTodoDueDate(new Date(currentSavedDueDate));
+			updateSelectedTodoDueDate(currentSavedDueDate);
 		} else {
 			updateSelectedTodoDueDate(undefined);
 		}
@@ -42,8 +41,8 @@ export default function TodoDueDate() {
 
 	useEffect(() => {
 		if (currentSavedDueDate) {
-			const currentDate = currentSavedDueDate ? new Date(currentSavedDueDate).toISOString() : '';
-			const selectedDate = selectedDueDate ? new Date(selectedDueDate).toISOString() : '';
+			const currentDate = currentSavedDueDate ? currentSavedDueDate : '';
+			const selectedDate = selectedDueDate ? selectedDueDate : '';
 			setIsChanged(currentDate !== selectedDate);
 		} else if (selectedDueDate) {
 			setIsChanged(true);
@@ -79,10 +78,15 @@ export default function TodoDueDate() {
 			</div>
 			<div className="flex items-center gap-2 w-full">
 				<div className="w-1/2 flex justify-center rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-400">
-					<DueDate dueDate={initialDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
+					<DueDate dueDate={selectedDueDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
 				</div>
 				<div className="w-1/2 flex justify-center rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-400">
-					<DueTime dueDate={initialDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} right={true} />
+					<DueTime
+						dueDate={selectedDueDate}
+						setDueDate={updateSelectedTodoDueDate}
+						defaultEmptyText={true}
+						right={true}
+					/>
 				</div>
 			</div>
 		</div>

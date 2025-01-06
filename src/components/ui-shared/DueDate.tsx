@@ -8,8 +8,8 @@ import Menu from './Menu';
 import MenuItem from './MenuItem';
 
 interface DueDateInputProps {
-	dueDate: Date | undefined;
-	setDueDate: (newDueDate: Date | undefined) => void;
+	dueDate: string | undefined;
+	setDueDate: (newDueDate: string | undefined) => void;
 	defaultEmptyText?: boolean;
 }
 
@@ -51,7 +51,7 @@ export default function DueDate({ dueDate, setDueDate, defaultEmptyText = false 
 
 interface DateMenuProps {
 	isDateMenuOpen: boolean;
-	setDueDate: (newDueDate: Date | undefined) => void;
+	setDueDate: (newDueDate: string | undefined) => void;
 	setIsDatePickerOpen: (vaL: boolean) => void;
 	setIsDateMenuOpen: (val: boolean) => void;
 }
@@ -75,7 +75,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 				return;
 		}
 		const endOfDay = setSeconds(setMinutes(setHours(baseDate, 23), 59), 59);
-		setDueDate(endOfDay);
+		setDueDate(endOfDay.toISOString());
 	};
 
 	return (
@@ -119,15 +119,15 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 interface DatePickerProps {
 	isDatePickerOpen: boolean;
 	setIsDatePickerOpen: (val: boolean) => void;
-	dueDate: Date | undefined;
-	setDueDate: (newDueDate: Date | undefined) => void;
+	dueDate: string | undefined;
+	setDueDate: (newDueDate: string | undefined) => void;
 }
 
 function DatePicker({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate }: DatePickerProps) {
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (typeof value === 'object' && value !== null) {
 			const date = value instanceof Date ? value : value.toDate();
-			setDueDate(date);
+			setDueDate(date.toISOString());
 		}
 	};
 

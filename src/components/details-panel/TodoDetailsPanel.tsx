@@ -40,7 +40,7 @@ export default function TodoDetailsPanel() {
 						<TodoComplete isCompleted={todo?.is_completed ?? false} />
 						<TodoImportance isImportant={todo?.is_important ?? false} />
 						<TodoTitle title={todo?.task_text ?? ''} />
-						<TodoDueDate />
+						<TodoDueDate dueDate={todo?.due_datetime ?? ''} />
 						<TodoCategories categories={todo?.categories ?? []} />
 						<TodoDescription description={todo?.description ?? ''} />
 					</div>
