@@ -1,16 +1,15 @@
 import { updateTodoImportanceAction } from '@/actions/todo-action';
 import Importance from '@/components/ui-shared/Importance';
-import useSelectedTodoStore from '@/context/SelectedTodoContext';
+import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 
 export default function TodoImportance({ isImportant }: { isImportant: boolean }) {
-	const { selectedTodo } = useSelectedTodoStore();
+	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoImportance } = useTodosStore();
-	const todoId = selectedTodo?.id ?? 0;
 
 	const handleImportanceChange = async () => {
-		await updateTodoImportanceAction(todoId, !isImportant);
-		toggleTodoImportance(todoId);
+		await updateTodoImportanceAction(selectedTodoId, !isImportant);
+		toggleTodoImportance(selectedTodoId);
 	};
 
 	return (
