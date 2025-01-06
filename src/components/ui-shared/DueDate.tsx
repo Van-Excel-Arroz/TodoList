@@ -94,7 +94,7 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 				<p>Select Due Date</p>
 			</MenuItem>
 			{Object.entries(dateLabels).map(([label, text]) => (
-				<MenuItem onClick={() => handleSetDate(label)}>
+				<MenuItem key={label} onClick={() => handleSetDate(label)}>
 					<p>{text}</p>
 				</MenuItem>
 			))}

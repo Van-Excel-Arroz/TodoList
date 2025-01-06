@@ -117,7 +117,7 @@ function TimeMenu({
 			</MenuItem>
 
 			{Object.entries(timeLabels).map(([label, text]) => (
-				<MenuItem onClick={() => handleSetTime(label)}>
+				<MenuItem key={label} onClick={() => handleSetTime(label)}>
 					<p>{text}</p>
 				</MenuItem>
 			))}

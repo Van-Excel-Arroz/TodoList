@@ -19,7 +19,7 @@ export default function TodoTitle({ title }: { title: string }) {
 	useEffect(() => {
 		reset({ title: title });
 		setIsEditing(false);
-	}, [selectedTodoId, reset]);
+	}, [selectedTodoId, reset, title]);
 
 	if (!selectedTodoId) return null;
 

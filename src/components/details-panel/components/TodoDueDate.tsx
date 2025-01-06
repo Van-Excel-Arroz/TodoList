@@ -47,7 +47,7 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 
 	useEffect(() => {
 		updateSelectedTodoDueDate(dueDate);
-	}, [selectedTodoId]);
+	}, [selectedTodoId, dueDate]);
 
 	return (
 		<div className="flex flex-col">

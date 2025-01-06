@@ -82,7 +82,7 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			incompleteTodos: incomplete,
 			completeTodos: complete,
 		};
-	}, [todos, selectedCategories]);
+	}, [todos, selectedCategories, field, order]);
 
 	return (
 		<div>
