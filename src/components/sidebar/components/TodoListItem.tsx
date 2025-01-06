@@ -6,7 +6,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { deleteTodolistAction } from '@/actions/todolist-action';
 import { TodoList } from '@/types';
 import { Pencil, Trash2 } from 'lucide-react';
-import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodoListsStore from '@/context/TodoListsContext';
@@ -19,13 +18,11 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const isSelectedPath = searchParams.get('id') === todolist.id.toString();
 	const currentId = searchParams.get('id');
 	const [isEditing, setIsEditing] = useState(false);
-	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
-	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
+	const { setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
 	const { deleteTodolist } = useTodoListsStore();
 
 	const handleTodoListClick = () => {
-		closeTodoDetailsPanel();
 		const mediaQuery = window.matchMedia('(max-width: 1024px)');
 		if (mediaQuery.matches) {
 			toggleTodoListsSidebar();
@@ -41,7 +38,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 		await deleteTodolistAction(todolist.id);
 		deleteTodolist(todolist.id);
 		if (currentId === todolist.id.toString()) {
-			closeTodoDetailsPanel();
+			setSelectedTodoId(0);
 			router.push('/tasks/');
 		}
 	};

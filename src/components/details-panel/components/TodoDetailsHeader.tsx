@@ -3,24 +3,20 @@
 import { deleteTodoAction } from '@/actions/todo-action';
 import { Button } from '@/components/ui-shared/Button';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
-import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import useTodosStore from '@/context/TodosContext';
 import { ArrowBigRightDashIcon, Trash2 } from 'lucide-react';
 
 export default function TodoDetailsHeader() {
-	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { setSelectedTodoId, selectedTodoId } = useSelectedTodoIdStore();
 	const { deleteTodo } = useTodosStore();
 
 	const handleCloseRightSidebar = () => {
-		closeTodoDetailsPanel();
 		setSelectedTodoId(0);
 	};
 
 	const handleDeleteClick = async () => {
 		await deleteTodoAction(selectedTodoId);
 		deleteTodo(selectedTodoId);
-		closeTodoDetailsPanel();
 		setSelectedTodoId(0);
 	};
 	return (

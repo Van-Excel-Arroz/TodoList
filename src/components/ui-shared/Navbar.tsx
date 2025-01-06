@@ -1,11 +1,12 @@
 'use client';
 
-import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
+import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import { House } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Navbar() {
-	const { closeTodoDetailsPanel } = useTodoDetailsPanelStore();
+	const { setSelectedTodoId } = useSelectedTodoIdStore();
+
 	return (
 		<nav className="bg-white border-b border-b-slate-300 h-10 px-6 flex items-center gap-4">
 			<Link
@@ -13,7 +14,7 @@ export default function Navbar() {
 				className="text-lg font-bold"
 				aria-label="home"
 				onClick={() => {
-					closeTodoDetailsPanel();
+					setSelectedTodoId(0);
 				}}
 			>
 				<House />
