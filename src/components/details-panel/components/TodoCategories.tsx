@@ -3,33 +3,27 @@
 import { Tag } from 'lucide-react';
 import { Category } from '@/types';
 import { addTodoCategoryAction, deleteTodoCategoryAction } from '@/actions/category-action';
-import useSelectedTodoStore from '@/context/SelectedTodoContext';
 import useTodosStore from '@/context/TodosContext';
 import CategoryForm from '../ui/CategoryForm';
 import CategoryTags from '../ui/CategoryTags';
+import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 
 interface CategoryFormInputs {
 	category_title: string;
 	hex_color: string;
 }
 
-export default function TodoCategories({ categories }: { categories: Category[] }) {
-	const { selectedTodo } = useSelectedTodoStore();
+export default function TodoCategories({ categories, todolistId }: { categories: Category[]; todolistId: number }) {
+	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { addCategory, deleteCategory } = useTodosStore();
-	const todoId = selectedTodo?.id ?? 0;
 
 	const handleRemoveCategory = async (categoryId: number) => {
 		await deleteTodoCategoryAction(categoryId);
-		deleteCategory(todoId, categoryId);
+		deleteCategory(selectedTodoId, categoryId);
 	};
 
 	const onSubmit = async (data: CategoryFormInputs) => {
-		const categoryId = await addTodoCategoryAction(
-			data.category_title,
-			data.hex_color,
-			selectedTodo?.todo_list_id ?? 0,
-			todoId
-		);
+		const categoryId = await addTodoCategoryAction(data.category_title, data.hex_color, todolistId, selectedTodoId);
 
 		if (!categoryId) return;
 
@@ -38,10 +32,10 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 			category_title: data.category_title,
 			hex_color: data.hex_color,
 			is_selected: false,
-			todo_list_id: selectedTodo?.todo_list_id ?? 0,
+			todo_list_id: todolistId,
 		};
 
-		addCategory(todoId, newCategory);
+		addCategory(selectedTodoId, newCategory);
 	};
 
 	return (
