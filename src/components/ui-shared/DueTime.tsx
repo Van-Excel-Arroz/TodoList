@@ -96,6 +96,14 @@ function TimeMenu({
 		setDueDate(baseDate.toISOString());
 	};
 
+	// const obj = {
+	// 	morning: "Morning (09:00 a.m)",
+	// 	noon:
+	// 	afternoon:
+	// 	evening:
+	// 	night:
+	// }
+
 	return (
 		<Menu
 			open={isTimeMenuOpen}
@@ -131,10 +139,8 @@ function TimeMenu({
 				<p>Custom</p>
 			</MenuItem>
 			<MenuItem className="border-t border-slate-300" onClick={() => handleSetTime('clear')}>
-				<button aria-label="Clear Due Date" type="button" className="w-full flex justify-center gap-1">
-					<Trash2 size={16} />
-					<p>Clear</p>
-				</button>
+				<Trash2 size={16} />
+				<p>Clear</p>
 			</MenuItem>
 		</Menu>
 	);
