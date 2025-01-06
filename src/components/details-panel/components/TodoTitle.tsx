@@ -2,14 +2,14 @@
 
 import { updateTodoTitleAction } from '@/actions/todo-action';
 import { Button } from '@/components/ui-shared/Button';
-import useSelectedTodoStore from '@/context/SelectedTodoContext';
+import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 import { Save } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function TodoTitle({ title }: { title: string }) {
-	const { selectedTodo } = useSelectedTodoStore();
+	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { updateTodoTitle } = useTodosStore();
 	const [isEditing, setIsEditing] = useState(false);
 	const { register, handleSubmit, reset } = useForm<{ title: string }>({
@@ -19,15 +19,15 @@ export default function TodoTitle({ title }: { title: string }) {
 	useEffect(() => {
 		reset({ title: title });
 		setIsEditing(false);
-	}, [selectedTodo, reset]);
+	}, [selectedTodoId, reset]);
 
-	if (!selectedTodo) return null;
+	if (!selectedTodoId) return null;
 
 	const onSubmit = async (data: { title: string }) => {
 		if (!data.title.trim()) return;
 		if (title !== data.title) {
-			await updateTodoTitleAction(selectedTodo.id, data.title);
-			updateTodoTitle(selectedTodo.id, data.title);
+			await updateTodoTitleAction(selectedTodoId, data.title);
+			updateTodoTitle(selectedTodoId, data.title);
 		}
 		setIsEditing(false);
 	};
