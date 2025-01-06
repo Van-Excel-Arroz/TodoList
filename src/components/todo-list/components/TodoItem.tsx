@@ -3,7 +3,6 @@
 import { memo } from 'react';
 import { Todo } from '@/types';
 import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
-import useTodoDetailsPanelStore from '@/context/TodoDetailsPanelContext';
 import { deleteTodoAction, updateTodoCompletionAction, updateTodoImportanceAction } from '@/actions/todo-action';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
@@ -15,17 +14,14 @@ import { GripVertical, Star } from 'lucide-react';
 import Importance from '@/components/ui-shared/Importance';
 
 function TodoItem({ todo }: { todo: Todo }) {
-	const { openTodoDetailsPanel, closeTodoDetailsPanel } = useTodoDetailsPanelStore();
 	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
 	const { deleteTodo, toggleTodoCompletion, toggleTodoImportance } = useTodosStore();
 	const isSelected = selectedTodoId === todo.id;
 
 	const handleTodoClick = () => {
 		if (isSelected) {
-			closeTodoDetailsPanel();
 			setSelectedTodoId(0);
 		} else {
-			openTodoDetailsPanel();
 			setSelectedTodoId(todo.id);
 		}
 	};
@@ -48,7 +44,6 @@ function TodoItem({ todo }: { todo: Todo }) {
 		await deleteTodoAction(todo.id);
 		deleteTodo(todo.id);
 		if (isSelected) {
-			closeTodoDetailsPanel();
 			setSelectedTodoId(0);
 		}
 	};
