@@ -11,6 +11,7 @@ interface TodoListViewProps {
 
 export default function TodoListView({ todos }: TodoListViewProps) {
 	const [sortField, sortOrder] = useSearchParams().get('sort')?.split(':') || [];
+	const [filterField, filterValue] = useSearchParams().get('filter')?.split(':') || [];
 
 	const { incompleteTodos, completeTodos } = useMemo(() => {
 		const selectedCategories: Set<string> = new Set([]);
