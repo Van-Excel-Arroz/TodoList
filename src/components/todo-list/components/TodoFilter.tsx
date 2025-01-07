@@ -4,7 +4,7 @@ import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { Category } from '@/types';
-import { CalendarDays, CheckIcon, Filter, Tag, X } from 'lucide-react';
+import { CalendarDays, CheckIcon, Filter, Tag } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
@@ -76,7 +76,7 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 							</div>
 
 							<Button ariaLabel="Unselect category" className="hover:bg-slate-300">
-								<X size={16} strokeWidth={2} className={`${category.is_selected ? 'block' : 'hidden'} `} />
+								<CheckIcon size={16} strokeWidth={2} className={`${category.is_selected ? 'block' : 'hidden'} `} />
 							</Button>
 						</MenuItem>
 					))}
