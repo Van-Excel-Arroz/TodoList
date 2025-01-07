@@ -10,7 +10,7 @@ interface TodoListViewProps {
 }
 
 export default function TodoListView({ todos }: TodoListViewProps) {
-	const [field, order] = useSearchParams().get('sort')?.split(':') || [];
+	const [sortField, sortOrder] = useSearchParams().get('sort')?.split(':') || [];
 
 	const { incompleteTodos, completeTodos } = useMemo(() => {
 		const selectedCategories: Set<string> = new Set([]);
@@ -28,15 +28,15 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 		const sortTodos = (a: any, b: any) => {
 			// if there is an important todo, ranked it first
 			if (a.is_important !== b.is_important) {
-				if (field === 'importance' && order === 'asc') {
+				if (sortField === 'importance' && sortOrder === 'asc') {
 					return a.is_important ? 1 : -1;
 				} else {
 					return a.is_important ? -1 : 1;
 				}
 			}
 
-			if (field === 'alphabetical') {
-				if (order === 'asc') {
+			if (sortField === 'alphabetical') {
+				if (sortOrder === 'asc') {
 					return b.task_text[0].toLowerCase() > a.task_text[0].toLowerCase() ? -1 : 1;
 				} else {
 					return a.task_text[0].toLowerCase() > b.task_text[0].toLowerCase() ? -1 : 1;
@@ -49,8 +49,8 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			}
 
 			// if both have due dates, compare them which has shorter due date
-			if (a.due_datetime && b.due_datetime && field === 'dueDate') {
-				if (order === 'desc') {
+			if (a.due_datetime && b.due_datetime && sortField === 'dueDate') {
+				if (sortOrder === 'desc') {
 					return compareDesc(new Date(a.due_datetime), new Date(b.due_datetime));
 				} else {
 					return compareAsc(new Date(a.due_datetime), new Date(b.due_datetime));
@@ -58,14 +58,14 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			}
 
 			// if one of them have due date, ranked it above the other that doesnt have it
-			if (field === 'dueDate') {
+			if (sortField === 'dueDate') {
 				if (a.due_datetime) return -1;
 				if (b.due_datetime) return 1;
 			}
 
 			// if it just a plain todo, ranked it by creation date
 			if (a.creation_date && b.creation_date) {
-				if (order === 'asc' && field === 'creationDate') {
+				if (sortOrder === 'asc' && sortField === 'creationDate') {
 					return compareAsc(new Date(a.creation_date), new Date(b.creation_date));
 				} else {
 					return compareDesc(new Date(a.creation_date), new Date(b.creation_date));
@@ -82,7 +82,7 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			incompleteTodos: incomplete,
 			completeTodos: complete,
 		};
-	}, [todos, field, order]);
+	}, [todos, sortField, sortOrder]);
 
 	return (
 		<div>
