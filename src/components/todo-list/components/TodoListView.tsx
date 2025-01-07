@@ -36,14 +36,6 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				}
 			}
 
-			if (filterValue === 'Today') {
-				return isToday(b.due_datetime) ? 1 : -1;
-			} else if (filterValue === 'Tomorrow') {
-				return isTomorrow(b.due_datetime) ? 1 : -1;
-			} else if (filterValue === 'This Week') {
-				return isThisWeek(b.due_datetime) ? 1 : -1;
-			}
-
 			if (sortField === 'alphabetical') {
 				if (sortOrder === 'asc') {
 					return b.task_text[0].toLowerCase() > a.task_text[0].toLowerCase() ? -1 : 1;
@@ -64,6 +56,14 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				} else {
 					return compareAsc(new Date(a.due_datetime), new Date(b.due_datetime));
 				}
+			}
+
+			if (filterValue === 'Today') {
+				return isToday(b.due_datetime) ? 1 : -1;
+			} else if (filterValue === 'Tomorrow') {
+				return isTomorrow(b.due_datetime) ? 1 : -1;
+			} else if (filterValue === 'This Week') {
+				return isThisWeek(b.due_datetime) ? 1 : -1;
 			}
 
 			// if one of them have due date, ranked it above the other that doesnt have it
