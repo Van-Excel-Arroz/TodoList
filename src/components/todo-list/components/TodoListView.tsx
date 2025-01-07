@@ -36,7 +36,7 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				}
 			}
 
-			if (filterValue === 'This Week') {
+			if (filterValue === 'Today') {
 				return isToday(b.due_datetime) ? 1 : -1;
 			}
 
