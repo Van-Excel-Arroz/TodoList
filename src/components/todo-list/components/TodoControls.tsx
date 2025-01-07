@@ -40,7 +40,7 @@ export default function TodoControls() {
 	const SortIcon = sortIcons[field]?.[order] ?? ArrowDownWideNarrowIcon;
 
 	return (
-		<div className="mb-3 p-1 bg-slate-200 text-slate-700 rounded-lg inline-block">
+		<div className={`${field ? 'inline-block' : 'hidden'}mb-3 p-1 bg-slate-200 text-slate-700 rounded-lg`}>
 			<div className="flex items-center gap-1">
 				<Button
 					ariaLabel="Reverse Sort Order"
