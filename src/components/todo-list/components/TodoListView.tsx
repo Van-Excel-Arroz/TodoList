@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Todo } from '@/types';
 import TodoSection from './TodoSection';
-import { compareAsc, compareDesc } from 'date-fns';
+import { compareAsc, compareDesc, isToday } from 'date-fns';
 import { useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 
@@ -11,7 +11,7 @@ interface TodoListViewProps {
 
 export default function TodoListView({ todos }: TodoListViewProps) {
 	const [sortField, sortOrder] = useSearchParams().get('sort')?.split(':') || [];
-	const [filterField, filterValue] = useSearchParams().get('filter')?.split(':') || [];
+	const [filterValue] = useSearchParams().get('filter')?.split(':') || [];
 
 	const { incompleteTodos, completeTodos } = useMemo(() => {
 		const selectedCategories: Set<string> = new Set([]);
@@ -34,6 +34,10 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				} else {
 					return a.is_important ? -1 : 1;
 				}
+			}
+
+			if (filterValue === 'This Week') {
+				return isToday(b.due_datetime) ? 1 : -1;
 			}
 
 			if (sortField === 'alphabetical') {
