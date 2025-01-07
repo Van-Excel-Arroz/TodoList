@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Todo } from '@/types';
 import TodoSection from './TodoSection';
-import { compareAsc, compareDesc, isThisWeek, isToday, isTomorrow } from 'date-fns';
+import { compareAsc, compareDesc, isThisMonth, isThisWeek, isToday, isTomorrow } from 'date-fns';
 import { useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 
@@ -64,6 +64,8 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				return isTomorrow(b.due_datetime) ? 1 : -1;
 			} else if (filterValue === 'This Week') {
 				return isThisWeek(b.due_datetime) ? 1 : -1;
+			} else if (filterValue === 'This Month') {
+				return isThisMonth(b.due_datetime) ? 1 : -1;
 			}
 
 			// if one of them have due date, ranked it above the other that doesnt have it
