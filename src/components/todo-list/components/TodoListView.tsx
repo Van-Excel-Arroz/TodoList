@@ -66,6 +66,8 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				return isThisWeek(b.due_datetime) ? 1 : -1;
 			} else if (filterValue === 'This Month') {
 				return isThisMonth(b.due_datetime) ? 1 : -1;
+			} else if (filterValue === 'No Due Date') {
+				return b.due_datetime === null ? 1 : -1;
 			}
 
 			// if one of them have due date, ranked it above the other that doesnt have it
