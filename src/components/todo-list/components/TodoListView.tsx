@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Todo } from '@/types';
 import TodoSection from './TodoSection';
-import { compareAsc, compareDesc, isToday } from 'date-fns';
+import { compareAsc, compareDesc, isThisWeek, isToday, isTomorrow } from 'date-fns';
 import { useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 
@@ -38,6 +38,10 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 
 			if (filterValue === 'Today') {
 				return isToday(b.due_datetime) ? 1 : -1;
+			} else if (filterValue === 'Tomorrow') {
+				return isTomorrow(b.due_datetime) ? 1 : -1;
+			} else if (filterValue === 'This Week') {
+				return isThisWeek(b.due_datetime) ? 1 : -1;
 			}
 
 			if (sortField === 'alphabetical') {
