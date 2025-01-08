@@ -23,6 +23,12 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 	const [filter] = useSearchParams().get('filter')?.split(':') || [];
 	const [sort, order] = useSearchParams().get('sort')?.split(':') || [];
 
+	const [cats, setCats] = useState<Category[]>(categories);
+
+	const updateSelect = (id: number) => {
+		setCats(cats.map(cat => (cat.id === id ? { ...cat, is_selected: !cat.is_selected } : cat)));
+	};
+
 	return (
 		<div className="relative">
 			<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
@@ -68,8 +74,12 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 					<p>Filter by Category</p>
 				</MenuItem>
 				<div className="max-h-[70vh] overflow-hidden overflow-y-auto">
-					{categories.map(category => (
-						<MenuItem key={category.id} className="flex items-center justify-between">
+					{cats.map(category => (
+						<MenuItem
+							key={category.id}
+							className="flex items-center justify-between"
+							onClick={() => updateSelect(category.id)}
+						>
 							<div className="flex items-center gap-2">
 								<p style={{ color: category.hex_color }}>●</p>
 								<p className="text-base">{category.category_title}</p>
