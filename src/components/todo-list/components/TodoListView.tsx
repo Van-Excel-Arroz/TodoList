@@ -64,6 +64,14 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				if (b.due_datetime) return 1;
 			}
 
+			if (sortField === 'creationDate') {
+				if (sortOrder === 'asc') {
+					return compareAsc(new Date(a.creation_date), new Date(b.creation_date));
+				} else {
+					return compareDesc(new Date(a.creation_date), new Date(b.creation_date));
+				}
+			}
+
 			if (filterValue === 'Today') {
 				return isToday(b.due_datetime) ? 1 : -1;
 			} else if (filterValue === 'Tomorrow') {
