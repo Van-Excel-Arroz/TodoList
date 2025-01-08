@@ -64,15 +64,6 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				if (b.due_datetime) return 1;
 			}
 
-			// if it just a plain todo, ranked it by creation date
-			if (a.creation_date && b.creation_date) {
-				if (sortOrder === 'asc' && sortField === 'creationDate') {
-					return compareAsc(new Date(a.creation_date), new Date(b.creation_date));
-				} else {
-					return compareDesc(new Date(a.creation_date), new Date(b.creation_date));
-				}
-			}
-
 			if (filterValue === 'Today') {
 				return isToday(b.due_datetime) ? 1 : -1;
 			} else if (filterValue === 'Tomorrow') {
@@ -83,6 +74,15 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				return isThisMonth(b.due_datetime) ? 1 : -1;
 			} else if (filterValue === 'No Due Date') {
 				return b.due_datetime === null ? 1 : -1;
+			}
+
+			// if it just a plain todo, ranked it by creation date
+			if (a.creation_date && b.creation_date) {
+				if (sortOrder === 'asc' && sortField === 'creationDate') {
+					return compareAsc(new Date(a.creation_date), new Date(b.creation_date));
+				} else {
+					return compareDesc(new Date(a.creation_date), new Date(b.creation_date));
+				}
 			}
 
 			return 0;
