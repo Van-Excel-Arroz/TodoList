@@ -72,6 +72,9 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 			>
 				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 					<p>Filter by Category</p>
+					<Button ariaLabel="Apply Filter" className="text-xs border border-slate-300">
+						<p>Apply</p>
+					</Button>
 				</MenuItem>
 				<div className="max-h-[70vh] overflow-hidden overflow-y-auto">
 					{cats.map(category => (
