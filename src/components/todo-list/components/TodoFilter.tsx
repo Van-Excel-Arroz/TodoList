@@ -28,12 +28,18 @@ export default function TodoFilter({ todolistId, initialCategories }: TodoFilter
 
 	const router = useRouter();
 
+	const updateFilter = (newFilter: string | null) => {
+		const params = new URLSearchParams(useSearchParams().toString());
+		newFilter ? params.set('sort', newFilter) : params.delete('sort');
+		router.push(`/tasks/?${params.toString()}`);
+	};
+
 	const updateSelect = (id: number) => {
 		setCategories(categories.map(cat => (cat.id === id ? { ...cat, is_selected: !cat.is_selected } : cat)));
 	};
 
 	const applyCategoriesFilter = () => {
-		let url = new String(getURL());
+		let url = new String(getURL()) + 'cat';
 		categories.map(cat => {
 			if (cat.is_selected) {
 				url = url + `${cat.category_title},`;
