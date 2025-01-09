@@ -30,7 +30,7 @@ export default function TodoFilter({ todolistId, initialCategories }: TodoFilter
 
 	const updateFilter = (newFilter: string | null) => {
 		const params = new URLSearchParams(useSearchParams().toString());
-		newFilter ? params.set('sort', newFilter) : params.delete('sort');
+		newFilter ? params.set('filter', newFilter) : params.delete('filter');
 		router.push(`/tasks/?${params.toString()}`);
 	};
 
