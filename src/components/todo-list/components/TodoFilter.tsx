@@ -85,7 +85,11 @@ export default function TodoFilter({ todolistId, initialCategories }: TodoFilter
 			>
 				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 					<p>Filter by Category</p>
-					<Button ariaLabel="Apply Filter" className="text-xs border border-slate-300">
+					<Button
+						ariaLabel="Apply Filter"
+						className="text-xs border border-slate-300"
+						onClick={() => applyCategoriesFilter()}
+					>
 						<p>Apply</p>
 					</Button>
 				</MenuItem>
