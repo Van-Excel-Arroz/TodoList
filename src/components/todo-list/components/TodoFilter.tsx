@@ -19,7 +19,6 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 
 	const [filter] = searchParams.get('filter')?.split(':') || [];
-	const [sort, order] = searchParams.get('sort')?.split(':') || [];
 	const [categories, setCategories] = useState<Category[]>(initialCategories);
 
 	const updateFilter = (newFilter: string | null) => {
