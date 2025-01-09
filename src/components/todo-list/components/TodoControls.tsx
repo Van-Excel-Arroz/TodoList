@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui-shared/Button';
-import updateSearchParams from '@/utils/updateSearchParams';
+import useUpdateSearchParams from '@/utils/useUpdateSearchParams';
 import {
 	ArrowDownAZIcon,
 	ArrowUpZAIcon,
@@ -29,6 +29,7 @@ const sortLabels: any = {
 
 export default function TodoControls() {
 	const searchParams = useSearchParams();
+	const updateSearchParams = useUpdateSearchParams();
 	const [field, order]: string[] = searchParams.get('sort')?.split(':') ?? [];
 
 	const SortIcon = sortIcons[field]?.[order] ?? ArrowDownWideNarrowIcon;
