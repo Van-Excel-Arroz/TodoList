@@ -35,7 +35,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 						<Search />
 					</Button>
 					<TodoSort todolistId={initialTodolist.id} />
-					<TodoFilter todolistId={initialTodolist.id} initialCategories={categories} />
+					<TodoFilter initialCategories={categories} />
 				</div>
 			</div>
 			<TodoControls />

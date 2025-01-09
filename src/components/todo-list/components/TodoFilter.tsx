@@ -5,18 +5,12 @@ import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { Category } from '@/types';
 import { CalendarDays, CheckIcon, Filter, Tag } from 'lucide-react';
-import { getURL } from 'next/dist/shared/lib/utils';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
-interface TodoFilterProps {
-	todolistId: number;
-	initialCategories: Category[];
-}
-
 const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Date'];
 
-export default function TodoFilter({ todolistId, initialCategories }: TodoFilterProps) {
+export default function TodoFilter({ initialCategories }: { initialCategories: Category[] }) {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
