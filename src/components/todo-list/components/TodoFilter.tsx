@@ -20,14 +20,22 @@ export default function TodoFilter({ todolistId, initialCategories }: TodoFilter
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 
+	const [id] = useSearchParams().get('id')?.split(':') || [];
 	const [filter] = useSearchParams().get('filter')?.split(':') || [];
 	const [sort, order] = useSearchParams().get('sort')?.split(':') || [];
-
 	const [categories, setCategories] = useState<Category[]>(initialCategories);
 
 	const updateSelect = (id: number) => {
 		setCategories(categories.map(cat => (cat.id === id ? { ...cat, is_selected: !cat.is_selected } : cat)));
 	};
+
+	// const applyCategoriesFilter = () => {
+	// 	let url = `/tasks/?id{}`
+	// 	categories.map(cat => {
+	// 		if (cat.is_selected) {
+	// 		}
+	// 	});
+	// };
 
 	return (
 		<div className="relative">

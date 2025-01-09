@@ -4,6 +4,7 @@ import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { ArrowUpDown, CalendarDays, CalendarPlus, CaseSensitive, Star } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 const MenuItems = {
@@ -27,6 +28,7 @@ const MenuItems = {
 
 export default function TodoSort({ todolistId }: { todolistId: number }) {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
+	const [filter] = useSearchParams().get('filter')?.split(':') || [];
 
 	return (
 		<div className="relative">
@@ -45,7 +47,10 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 				</MenuItem>
 
 				{Object.entries(MenuItems).map(([label, menuItem]) => (
-					<MenuItem href={`/tasks/?id=${todolistId}&sort=${menuItem.param}`} key={label}>
+					<MenuItem
+						href={`/tasks/?id=${todolistId}&sort=${menuItem.param}${filter ? `&filter=${filter}` : ''}`}
+						key={label}
+					>
 						<menuItem.icon className="text-slate-600" size={18} />
 						<p>{label}</p>
 					</MenuItem>
