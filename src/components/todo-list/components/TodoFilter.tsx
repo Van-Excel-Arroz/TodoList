@@ -23,10 +23,10 @@ export default function TodoFilter({ todolistId, initialCategories }: TodoFilter
 	const [filter] = useSearchParams().get('filter')?.split(':') || [];
 	const [sort, order] = useSearchParams().get('sort')?.split(':') || [];
 
-	const [cats, setCats] = useState<Category[]>(initialCategories);
+	const [categories, setCategories] = useState<Category[]>(initialCategories);
 
 	const updateSelect = (id: number) => {
-		setCats(cats.map(cat => (cat.id === id ? { ...cat, is_selected: !cat.is_selected } : cat)));
+		setCategories(categories.map(cat => (cat.id === id ? { ...cat, is_selected: !cat.is_selected } : cat)));
 	};
 
 	return (
@@ -77,7 +77,7 @@ export default function TodoFilter({ todolistId, initialCategories }: TodoFilter
 					</Button>
 				</MenuItem>
 				<div className="max-h-[70vh] overflow-hidden overflow-y-auto">
-					{cats.map(category => (
+					{categories.map(category => (
 						<MenuItem
 							key={category.id}
 							className="flex items-center justify-between"
