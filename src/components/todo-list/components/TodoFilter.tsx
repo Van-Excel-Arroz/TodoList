@@ -5,7 +5,8 @@ import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { Category } from '@/types';
 import { CalendarDays, CheckIcon, Filter, Tag } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
+import { getURL } from 'next/dist/shared/lib/utils';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 interface TodoFilterProps {
@@ -25,17 +26,21 @@ export default function TodoFilter({ todolistId, initialCategories }: TodoFilter
 	const [sort, order] = useSearchParams().get('sort')?.split(':') || [];
 	const [categories, setCategories] = useState<Category[]>(initialCategories);
 
+	const router = useRouter();
+
 	const updateSelect = (id: number) => {
 		setCategories(categories.map(cat => (cat.id === id ? { ...cat, is_selected: !cat.is_selected } : cat)));
 	};
 
-	// const applyCategoriesFilter = () => {
-	// 	let url = `/tasks/?id{}`
-	// 	categories.map(cat => {
-	// 		if (cat.is_selected) {
-	// 		}
-	// 	});
-	// };
+	const applyCategoriesFilter = () => {
+		let url = new String(getURL());
+		categories.map(cat => {
+			if (cat.is_selected) {
+				url = url + `${cat.category_title},`;
+			}
+		});
+		router.push(url as string);
+	};
 
 	return (
 		<div className="relative">
