@@ -47,7 +47,7 @@ export default function TodoControls() {
 				<p className="text-xs">{sortLabels[field]?.(order) ?? field}</p>
 				<Button
 					ariaLabel="Remove Sort"
-					onClick={() => updateSearchParams(null)}
+					onClick={() => updateSearchParams('sort', null)}
 					className="hover:bg-slate-300 active:bg-slate-400"
 				>
 					<XIcon size={12} />

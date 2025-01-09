@@ -4,9 +4,9 @@ export default function useUpdateSearchParams() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
-	const updateSearchParams = (field: string | null, value: string = '') => {
+	const updateSearchParams = (field: string, value: string | null) => {
 		const params = new URLSearchParams(searchParams.toString());
-		field ? params.set(`${field}`, value) : params.delete(`${field}`);
+		value ? params.set(`${field}`, value) : params.delete(`${field}`);
 		router.push(`/tasks/?${params.toString()}`);
 	};
 
