@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui-shared/Button';
+import updateSearchParams from '@/utils/updateSearchParams';
 import {
 	ArrowDownAZIcon,
 	ArrowUpZAIcon,
@@ -31,12 +32,6 @@ export default function TodoControls() {
 	const searchParams = useSearchParams();
 	const [field, order]: string[] = searchParams.get('sort')?.split(':') ?? [];
 
-	const updateSort = (newSort: string | null) => {
-		const params = new URLSearchParams(searchParams.toString());
-		newSort ? params.set('sort', newSort) : params.delete('sort');
-		router.push(`/tasks/?${params.toString()}`);
-	};
-
 	const SortIcon = sortIcons[field]?.[order] ?? ArrowDownWideNarrowIcon;
 
 	return (
@@ -44,7 +39,7 @@ export default function TodoControls() {
 			<div className="flex items-center gap-1">
 				<Button
 					ariaLabel="Reverse Sort Order"
-					onClick={() => updateSort(`${field}:${order === 'desc' ? 'asc' : 'desc'}`)}
+					onClick={() => updateSearchParams(field, order)}
 					className="hover:bg-slate-300 active:bg-slate-400"
 				>
 					<SortIcon size={14} />
@@ -52,7 +47,7 @@ export default function TodoControls() {
 				<p className="text-xs">{sortLabels[field]?.(order) ?? field}</p>
 				<Button
 					ariaLabel="Remove Sort"
-					onClick={() => updateSort(null)}
+					onClick={() => updateSearchParams(null)}
 					className="hover:bg-slate-300 active:bg-slate-400"
 				>
 					<XIcon size={12} />
