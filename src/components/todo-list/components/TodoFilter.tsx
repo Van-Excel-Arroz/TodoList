@@ -17,19 +17,20 @@ interface TodoFilterProps {
 const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Date'];
 
 export default function TodoFilter({ todolistId, initialCategories }: TodoFilterProps) {
+	const router = useRouter();
+	const searchParams = useSearchParams();
+
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 
-	const [id] = useSearchParams().get('id')?.split(':') || [];
-	const [filter] = useSearchParams().get('filter')?.split(':') || [];
-	const [sort, order] = useSearchParams().get('sort')?.split(':') || [];
+	const [id] = searchParams.get('id')?.split(':') || [];
+	const [filter] = searchParams.get('filter')?.split(':') || [];
+	const [sort, order] = searchParams.get('sort')?.split(':') || [];
 	const [categories, setCategories] = useState<Category[]>(initialCategories);
 
-	const router = useRouter();
-
 	const updateFilter = (newFilter: string | null) => {
-		const params = new URLSearchParams(useSearchParams().toString());
+		const params = new URLSearchParams(searchParams.toString());
 		newFilter ? params.set('filter', newFilter) : params.delete('filter');
 		router.push(`/tasks/?${params.toString()}`);
 	};
