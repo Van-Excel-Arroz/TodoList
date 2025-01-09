@@ -34,18 +34,18 @@ export default function TodoFilter({ todolistId, initialCategories }: TodoFilter
 		router.push(`/tasks/?${params.toString()}`);
 	};
 
-	const updateSelect = (id: number) => {
-		setCategories(categories.map(cat => (cat.id === id ? { ...cat, is_selected: !cat.is_selected } : cat)));
-	};
-
 	const applyCategoriesFilter = () => {
-		let url = new String(getURL()) + 'cat';
+		let url = '';
 		categories.map(cat => {
 			if (cat.is_selected) {
 				url = url + `${cat.category_title},`;
 			}
 		});
-		updateFilter(url as string);
+		updateFilter(url);
+	};
+
+	const updateSelect = (id: number) => {
+		setCategories(categories.map(cat => (cat.id === id ? { ...cat, is_selected: !cat.is_selected } : cat)));
 	};
 
 	return (
