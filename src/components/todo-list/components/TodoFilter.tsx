@@ -24,7 +24,6 @@ export default function TodoFilter({ todolistId, initialCategories }: TodoFilter
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 
-	const [id] = searchParams.get('id')?.split(':') || [];
 	const [filter] = searchParams.get('filter')?.split(':') || [];
 	const [sort, order] = searchParams.get('sort')?.split(':') || [];
 	const [categories, setCategories] = useState<Category[]>(initialCategories);
