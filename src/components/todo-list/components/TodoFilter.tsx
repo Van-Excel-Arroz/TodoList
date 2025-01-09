@@ -45,7 +45,7 @@ export default function TodoFilter({ todolistId, initialCategories }: TodoFilter
 				url = url + `${cat.category_title},`;
 			}
 		});
-		router.push(url as string);
+		updateFilter(url as string);
 	};
 
 	return (
