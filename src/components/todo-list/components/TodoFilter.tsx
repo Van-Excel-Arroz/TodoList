@@ -10,12 +10,12 @@ import { useState } from 'react';
 
 interface TodoFilterProps {
 	todolistId: number;
-	categories: Category[];
+	initialCategories: Category[];
 }
 
 const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Date'];
 
-export default function TodoFilter({ todolistId, categories }: TodoFilterProps) {
+export default function TodoFilter({ todolistId, initialCategories }: TodoFilterProps) {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
@@ -23,7 +23,7 @@ export default function TodoFilter({ todolistId, categories }: TodoFilterProps) 
 	const [filter] = useSearchParams().get('filter')?.split(':') || [];
 	const [sort, order] = useSearchParams().get('sort')?.split(':') || [];
 
-	const [cats, setCats] = useState<Category[]>(categories);
+	const [cats, setCats] = useState<Category[]>(initialCategories);
 
 	const updateSelect = (id: number) => {
 		setCats(cats.map(cat => (cat.id === id ? { ...cat, is_selected: !cat.is_selected } : cat)));
