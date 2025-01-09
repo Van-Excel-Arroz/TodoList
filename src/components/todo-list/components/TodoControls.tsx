@@ -39,7 +39,7 @@ export default function TodoControls() {
 			<div className="flex items-center gap-1">
 				<Button
 					ariaLabel="Reverse Sort Order"
-					onClick={() => updateSearchParams('sort', order === 'asc' ? `${field}:asc` : `${field}:desc`)}
+					onClick={() => updateSearchParams('sort', order === 'asc' ? `${field}:desc` : `${field}:asc`)}
 					className="hover:bg-slate-300 active:bg-slate-400"
 				>
 					<SortIcon size={14} />
