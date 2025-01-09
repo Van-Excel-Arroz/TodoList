@@ -132,7 +132,7 @@ export default function TodoFilter({ todolistId, initialCategories }: TodoFilter
 					<MenuItem
 						key={label}
 						className="flex items-center justify-between w-full"
-						href={`/tasks/?id=${todolistId}${sort ? `&sort=${sort}%3A${order}` : ''}&filter=${label}`}
+						onClick={() => updateFilter(label)}
 					>
 						<p className="text-base text-left w-full">{label}</p>
 						<div className="h-3 w-3">
