@@ -11,7 +11,7 @@ import {
 	ArrowUpWideNarrowIcon,
 	XIcon,
 } from 'lucide-react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 const sortIcons: any = {
 	dueDate: { asc: CalendarArrowUpIcon, desc: CalendarArrowDownIcon },
@@ -28,7 +28,6 @@ const sortLabels: any = {
 };
 
 export default function TodoControls() {
-	const router = useRouter();
 	const searchParams = useSearchParams();
 	const [field, order]: string[] = searchParams.get('sort')?.split(':') ?? [];
 
