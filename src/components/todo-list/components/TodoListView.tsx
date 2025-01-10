@@ -16,7 +16,7 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 	const [filterField, filterValue] = searchParams.get('filter')?.split(':') || [];
 
 	const { incompleteTodos, completeTodos } = useMemo(() => {
-		const selectedCategories: Set<string> = new Set([]);
+		const selectedCategories: Set<string> = new Set(filterValue?.split(',') ?? []);
 		const incomplete: any[] = [];
 		const complete: any[] = [];
 
@@ -72,6 +72,10 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				} else {
 					return compareDesc(new Date(a.creation_date), new Date(b.creation_date));
 				}
+			}
+
+			if (filterField === 'categories') {
+				return b.matchingCategories < a.matchingCategories ? 1 : -1;
 			}
 
 			if (filterField === 'dueDate') {
