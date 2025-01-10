@@ -72,16 +72,18 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				}
 			}
 
-			if (filterValue === 'Today') {
-				return isToday(b.due_datetime) ? 1 : -1;
-			} else if (filterValue === 'Tomorrow') {
-				return isTomorrow(b.due_datetime) ? 1 : -1;
-			} else if (filterValue === 'This Week') {
-				return isThisWeek(b.due_datetime) ? 1 : -1;
-			} else if (filterValue === 'This Month') {
-				return isThisMonth(b.due_datetime) ? 1 : -1;
-			} else if (filterValue === 'No Due Date') {
-				return b.due_datetime === null ? 1 : -1;
+			if (filterField === 'dueDate') {
+				if (filterValue === 'Today') {
+					return isToday(b.due_datetime) ? 1 : -1;
+				} else if (filterValue === 'Tomorrow') {
+					return isTomorrow(b.due_datetime) ? 1 : -1;
+				} else if (filterValue === 'This Week') {
+					return isThisWeek(b.due_datetime) ? 1 : -1;
+				} else if (filterValue === 'This Month') {
+					return isThisMonth(b.due_datetime) ? 1 : -1;
+				} else if (filterValue === 'No Due Date') {
+					return b.due_datetime === null ? 1 : -1;
+				}
 			}
 
 			// if it just a plain todo, ranked it by creation date
