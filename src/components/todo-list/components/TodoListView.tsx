@@ -111,7 +111,7 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			incompleteTodos: incomplete,
 			completeTodos: complete,
 		};
-	}, [todos, sortField, sortOrder]);
+	}, [todos, sortField, sortOrder, filterField, filterValue]);
 
 	return (
 		<div>
