@@ -6,13 +6,12 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 import { Category } from '@/types';
 import { CalendarDays, CheckIcon, Filter, Tag } from 'lucide-react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Date'];
 
 export default function TodoFilter({ initialCategories }: { initialCategories: Category[] }) {
-	const router = useRouter();
 	const searchParams = useSearchParams();
 	const updateSearchParams = useUpdateSearchParams();
 
@@ -23,12 +22,6 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 	const [filter] = searchParams.get('filter')?.split(':') || [];
 	const [categories, setCategories] = useState<Category[]>(initialCategories);
 
-	const updateFilter = (newFilter: string | null) => {
-		const params = new URLSearchParams(searchParams.toString());
-		newFilter ? params.set('filter', newFilter) : params.delete('filter');
-		router.push(`/tasks/?${params.toString()}`);
-	};
-
 	const applyCategoriesFilter = () => {
 		let url = '';
 		categories.map(cat => {
@@ -36,7 +29,7 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 				url = url + `${cat.category_title},`;
 			}
 		});
-		updateFilter(url);
+		updateSearchParams('filter', url);
 	};
 
 	const updateSelect = (id: number) => {
