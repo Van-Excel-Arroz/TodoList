@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
+import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 import { Category } from '@/types';
 import { CalendarDays, CheckIcon, Filter, Tag } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -13,6 +14,7 @@ const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Dat
 export default function TodoFilter({ initialCategories }: { initialCategories: Category[] }) {
 	const router = useRouter();
 	const searchParams = useSearchParams();
+	const updateSearchParams = useUpdateSearchParams();
 
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
@@ -125,7 +127,7 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 					<MenuItem
 						key={label}
 						className="flex items-center justify-between w-full"
-						onClick={() => updateFilter(label)}
+						onClick={() => updateSearchParams('filter', label)}
 					>
 						<p className="text-base text-left w-full">{label}</p>
 						<div className="h-3 w-3">
