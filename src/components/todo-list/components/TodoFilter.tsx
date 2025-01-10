@@ -120,7 +120,7 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 					<MenuItem
 						key={label}
 						className="flex items-center justify-between w-full"
-						onClick={() => updateSearchParams('filter', label)}
+						onClick={() => updateSearchParams('filter', `dueDate:${label}`)}
 					>
 						<p className="text-base text-left w-full">{label}</p>
 						<div className="h-3 w-3">
