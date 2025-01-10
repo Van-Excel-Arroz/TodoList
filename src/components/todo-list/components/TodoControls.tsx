@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui-shared/Button';
-import useUpdateSearchParams from '@/utils/useUpdateSearchParams';
+import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 import {
 	ArrowDownAZIcon,
 	ArrowUpZAIcon,
