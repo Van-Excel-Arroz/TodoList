@@ -29,7 +29,7 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 				url = url + `${cat.category_title},`;
 			}
 		});
-		updateSearchParams('filter', url);
+		updateSearchParams('filter', `categories:${url}`);
 	};
 
 	const updateSelect = (id: number) => {
