@@ -28,7 +28,7 @@ const MenuItems = {
 
 export default function TodoSort({ todolistId }: { todolistId: number }) {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
-	const [filter] = useSearchParams().get('filter')?.split(':') || [];
+	const [filterField, filterValue] = useSearchParams().get('filter')?.split(':') || [];
 
 	return (
 		<div className="relative">
@@ -48,7 +48,9 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 
 				{Object.entries(MenuItems).map(([label, menuItem]) => (
 					<MenuItem
-						href={`/tasks/?id=${todolistId}&sort=${menuItem.param}${filter ? `&filter=${filter}` : ''}`}
+						href={`/tasks/?id=${todolistId}&sort=${menuItem.param}${
+							filterField ? `&filter=${filterField}:${filterValue}` : ''
+						}`}
 						key={label}
 					>
 						<menuItem.icon className="text-slate-600" size={18} />
