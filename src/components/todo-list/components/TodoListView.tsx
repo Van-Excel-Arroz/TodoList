@@ -4,6 +4,7 @@ import TodoSection from './TodoSection';
 import { compareAsc, compareDesc, isThisMonth, isThisWeek, isToday, isTomorrow } from 'date-fns';
 import { useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { todo } from 'node:test';
 
 type SortFn = (a: Todo, b: Todo) => number;
 type FilterFn = (todo: Todo) => boolean;
@@ -11,6 +12,14 @@ type FilterFn = (todo: Todo) => boolean;
 interface TodoListViewProps {
 	todos: Todo[];
 }
+
+const DATE_FILTERS = {
+	Today: isToday,
+	Tomorrow: isTomorrow,
+	'This Week': isThisWeek,
+	'This Month': isThisMonth,
+	'No Due Date': (date: string | null) => date === null,
+} as const;
 
 export default function TodoListView({ todos }: TodoListViewProps) {
 	const searchParams = useSearchParams();
@@ -50,57 +59,42 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 		};
 	}, [sortField, sortOrder]);
 
-	const filterTodos = useMemo((): FilterFn => {
-		return (todo: any) => {
-			if (filterField === 'categories') {
-				return todo.matchingCategories > 0;
-			}
+	const getFilterFn = useMemo((): FilterFn => {
+		if (!filterField || !filterValue) return () => true;
 
-			if (filterField === 'dueDate') {
-				if (filterValue === 'Today') {
-					return isToday(todo.due_datetime);
-				} else if (filterValue === 'Tomorrow') {
-					return isTomorrow(todo.due_datetime);
-				} else if (filterValue === 'This Week') {
-					return isThisWeek(todo.due_datetime);
-				} else if (filterValue === 'This Month') {
-					return isThisMonth(todo.due_datetime);
-				} else if (filterValue === 'No Due Date') {
-					return todo.due_datetime === null;
-				}
-			}
-			return true;
-		};
+		if (filterField === 'categories') {
+			const selectedCategories = new Set(filterValue?.split(',') ?? []);
+			return todo => todo.categories?.some(cat => selectedCategories.has(cat.category_title)) ?? false;
+		}
+
+		if (filterField === 'dueDate' && filterValue in DATE_FILTERS) {
+			const filterFn = DATE_FILTERS[filterValue as keyof typeof DATE_FILTERS];
+			return todo => filterFn(todo.due_datetime!);
+		}
+
+		return () => true;
 	}, [filterField, filterValue]);
 
 	const { incompleteTodos, completeTodos } = useMemo(() => {
-		const selectedCategories: Set<string> = new Set(filterValue?.split(',') ?? []);
-		let incomplete: any[] = [];
-		let complete: any[] = [];
-
-		for (const todo of todos) {
-			(todo.is_completed ? complete : incomplete).push({
-				...todo,
-				matchingCategories:
-					todo.categories?.filter(category => selectedCategories.has(category.category_title)).length ?? 0,
-			});
-		}
-
+		const filterFn = getFilterFn;
 		const sortFn = getSortFn;
 
-		if (filterField) {
-			incomplete = incomplete.filter(filterTodos);
-			complete = complete.filter(filterTodos);
-		}
+		const filtered = todos.reduce(
+			(acc, todo) => {
+				if (!filterFn(todo)) return acc;
 
-		incomplete.sort(sortFn);
-		complete.sort();
+				const list = todo.is_completed ? acc.complete : acc.incomplete;
+				list.push(todo);
+				return acc;
+			},
+			{ incomplete: [] as Todo[], complete: [] as Todo[] }
+		);
 
 		return {
-			incompleteTodos: incomplete,
-			completeTodos: complete,
+			incompleteTodos: filtered.incomplete.sort(sortFn),
+			completeTodos: filtered.complete.sort(sortFn),
 		};
-	}, [todos, sortField, sortOrder, filterField, filterValue]);
+	}, [todos, getFilterFn, getSortFn]);
 
 	return (
 		<div>
