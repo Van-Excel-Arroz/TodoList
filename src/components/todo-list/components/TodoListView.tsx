@@ -66,9 +66,6 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 						? compareDesc(new Date(a.due_datetime), new Date(b.due_datetime))
 						: compareAsc(new Date(a.due_datetime), new Date(b.due_datetime));
 				}
-			}
-
-			if (sortField === 'dueDate') {
 				if (a.due_datetime) return -1;
 				if (b.due_datetime) return 1;
 			}
