@@ -60,11 +60,11 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				return sortOrder === 'asc' ? (bText > aText ? -1 : 1) : aText > bText ? -1 : 1;
 			}
 
-			if (a.due_datetime && b.due_datetime && sortField === 'dueDate') {
-				if (sortOrder === 'desc') {
-					return compareDesc(new Date(a.due_datetime), new Date(b.due_datetime));
-				} else {
-					return compareAsc(new Date(a.due_datetime), new Date(b.due_datetime));
+			if (sortField === 'dueDate') {
+				if (a.due_datetime && b.due_datetime) {
+					return sortOrder === 'desc'
+						? compareDesc(new Date(a.due_datetime), new Date(b.due_datetime))
+						: compareAsc(new Date(a.due_datetime), new Date(b.due_datetime));
 				}
 			}
 
