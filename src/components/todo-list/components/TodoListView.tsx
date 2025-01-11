@@ -17,8 +17,8 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 
 	const { incompleteTodos, completeTodos } = useMemo(() => {
 		const selectedCategories: Set<string> = new Set(filterValue?.split(',') ?? []);
-		const incomplete: any[] = [];
-		const complete: any[] = [];
+		let incomplete: any[] = [];
+		let complete: any[] = [];
 
 		for (const todo of todos) {
 			(todo.is_completed ? complete : incomplete).push({
@@ -28,22 +28,22 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			});
 		}
 
-		const filterTodos = (a: any, b: any) => {
+		const filterTodos = (category: any) => {
 			if (filterField === 'categories') {
-				return b.matchingCategories < a.mfilteringCategories ? 1 : -1;
+				return category.matchingCategories > 0;
 			}
 
 			if (filterField === 'dueDate') {
 				if (filterValue === 'Today') {
-					return isToday(b.due_datetime) ? 1 : -1;
+					return isToday(category.due_datetime);
 				} else if (filterValue === 'Tomorrow') {
-					return isTomorrow(b.due_datetime) ? 1 : -1;
+					return isTomorrow(category.due_datetime);
 				} else if (filterValue === 'This Week') {
-					return isThisWeek(b.due_datetime) ? 1 : -1;
+					return isThisWeek(category.due_datetime);
 				} else if (filterValue === 'This Month') {
-					return isThisMonth(b.due_datetime) ? 1 : -1;
+					return isThisMonth(category.due_datetime);
 				} else if (filterValue === 'No Due Date') {
-					return b.due_datetime === null ? 1 : -1;
+					return category.due_datetime === null;
 				}
 			}
 			return 0;
@@ -108,8 +108,8 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 		};
 
 		if (filterField) {
-			incomplete.sort(filterTodos);
-			complete.sort(filterTodos);
+			incomplete = incomplete.filter(filterTodos);
+			complete = complete.filter(filterTodos);
 		}
 
 		incomplete.sort(sortTodos);
