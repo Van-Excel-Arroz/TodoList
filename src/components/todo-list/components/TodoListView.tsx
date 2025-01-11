@@ -52,11 +52,7 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 		const sortTodos = (a: any, b: any) => {
 			// if there is an important todo, ranked it first
 			if (a.is_important !== b.is_important) {
-				if (sortField === 'importance' && sortOrder === 'asc') {
-					return a.is_important ? 1 : -1;
-				} else {
-					return a.is_important ? -1 : 1;
-				}
+				return sortField === 'importance' && sortOrder === 'asc' ? (a.is_important ? 1 : -1) : a.is_important ? -1 : 1;
 			}
 
 			if (sortField === 'alphabetical') {
