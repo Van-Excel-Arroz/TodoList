@@ -4,7 +4,6 @@ import TodoSection from './TodoSection';
 import { compareAsc, compareDesc, isThisMonth, isThisWeek, isToday, isTomorrow } from 'date-fns';
 import { useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { todo } from 'node:test';
 
 type SortFn = (a: Todo, b: Todo) => number;
 type FilterFn = (todo: Todo) => boolean;
