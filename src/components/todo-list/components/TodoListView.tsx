@@ -61,11 +61,6 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				return sortOrder === 'asc' ? (bText > aText ? -1 : 1) : aText > bText ? -1 : 1;
 			}
 
-			// if both have categories, ranked them by how many categories matches in the selected categories
-			if (a.matchingCategories !== b.matchingCategories) {
-				return b.matchingCategories - a.matchingCategories;
-			}
-
 			// if both have due dates, compare them which has shorter due date
 			if (a.due_datetime && b.due_datetime && sortField === 'dueDate') {
 				if (sortOrder === 'desc') {
