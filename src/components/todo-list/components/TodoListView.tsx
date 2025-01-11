@@ -18,7 +18,7 @@ const DATE_FILTERS = {
 	Tomorrow: isTomorrow,
 	'This Week': isThisWeek,
 	'This Month': isThisMonth,
-	'No Due Date': (date: string | null) => date === null,
+	'No Due Date': (date: string) => date === '',
 } as const;
 
 export default function TodoListView({ todos }: TodoListViewProps) {
