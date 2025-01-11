@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 type SortFn = (a: Todo, b: Todo) => number;
+type FilterFn = (todo: Todo) => boolean;
 
 interface TodoListViewProps {
 	todos: Todo[];
@@ -49,20 +50,8 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 		};
 	}, [sortField, sortOrder]);
 
-	const { incompleteTodos, completeTodos } = useMemo(() => {
-		const selectedCategories: Set<string> = new Set(filterValue?.split(',') ?? []);
-		let incomplete: any[] = [];
-		let complete: any[] = [];
-
-		for (const todo of todos) {
-			(todo.is_completed ? complete : incomplete).push({
-				...todo,
-				matchingCategories:
-					todo.categories?.filter(category => selectedCategories.has(category.category_title)).length ?? 0,
-			});
-		}
-
-		const filterTodos = (todo: any) => {
+	const filterTodos = useMemo((): FilterFn => {
+		return (todo: any) => {
 			if (filterField === 'categories') {
 				return todo.matchingCategories > 0;
 			}
@@ -80,8 +69,22 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 					return todo.due_datetime === null;
 				}
 			}
-			return 0;
+			return true;
 		};
+	}, [filterField, filterValue]);
+
+	const { incompleteTodos, completeTodos } = useMemo(() => {
+		const selectedCategories: Set<string> = new Set(filterValue?.split(',') ?? []);
+		let incomplete: any[] = [];
+		let complete: any[] = [];
+
+		for (const todo of todos) {
+			(todo.is_completed ? complete : incomplete).push({
+				...todo,
+				matchingCategories:
+					todo.categories?.filter(category => selectedCategories.has(category.category_title)).length ?? 0,
+			});
+		}
 
 		const sortFn = getSortFn;
 
