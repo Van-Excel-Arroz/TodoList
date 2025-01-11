@@ -69,7 +69,7 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 
 		if (filterField === 'dueDate' && filterValue in DATE_FILTERS) {
 			const filterFn = DATE_FILTERS[filterValue as keyof typeof DATE_FILTERS];
-			return todo => filterFn(todo.due_datetime!);
+			return todo => filterFn(todo.due_datetime ?? '');
 		}
 
 		return () => true;
