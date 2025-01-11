@@ -50,7 +50,6 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 		};
 
 		const sortTodos = (a: any, b: any) => {
-			// if there is an important todo, ranked it first
 			if (a.is_important !== b.is_important) {
 				return sortField === 'importance' && sortOrder === 'asc' ? (a.is_important ? 1 : -1) : a.is_important ? -1 : 1;
 			}
@@ -61,7 +60,6 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				return sortOrder === 'asc' ? (bText > aText ? -1 : 1) : aText > bText ? -1 : 1;
 			}
 
-			// if both have due dates, compare them which has shorter due date
 			if (a.due_datetime && b.due_datetime && sortField === 'dueDate') {
 				if (sortOrder === 'desc') {
 					return compareDesc(new Date(a.due_datetime), new Date(b.due_datetime));
@@ -70,7 +68,6 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				}
 			}
 
-			// if one of them have due date, ranked it above the other that doesnt have it
 			if (sortField === 'dueDate') {
 				if (a.due_datetime) return -1;
 				if (b.due_datetime) return 1;
@@ -84,7 +81,6 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				}
 			}
 
-			// if it just a plain todo, ranked it by creation date
 			if (a.creation_date && b.creation_date) {
 				if (sortOrder === 'asc' && sortField === 'creationDate') {
 					return compareAsc(new Date(a.creation_date), new Date(b.creation_date));
