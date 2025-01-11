@@ -28,22 +28,22 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			});
 		}
 
-		const filterTodos = (category: any) => {
+		const filterTodos = (todo: any) => {
 			if (filterField === 'categories') {
-				return category.matchingCategories > 0;
+				return todo.matchingCategories > 0;
 			}
 
 			if (filterField === 'dueDate') {
 				if (filterValue === 'Today') {
-					return isToday(category.due_datetime);
+					return isToday(todo.due_datetime);
 				} else if (filterValue === 'Tomorrow') {
-					return isTomorrow(category.due_datetime);
+					return isTomorrow(todo.due_datetime);
 				} else if (filterValue === 'This Week') {
-					return isThisWeek(category.due_datetime);
+					return isThisWeek(todo.due_datetime);
 				} else if (filterValue === 'This Month') {
-					return isThisMonth(category.due_datetime);
+					return isThisMonth(todo.due_datetime);
 				} else if (filterValue === 'No Due Date') {
-					return category.due_datetime === null;
+					return todo.due_datetime === null;
 				}
 			}
 			return 0;
