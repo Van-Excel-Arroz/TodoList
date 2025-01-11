@@ -28,6 +28,27 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			});
 		}
 
+		const filterTodos = (a: any, b: any) => {
+			if (filterField === 'categories') {
+				return b.matchingCategories < a.mfilteringCategories ? 1 : -1;
+			}
+
+			if (filterField === 'dueDate') {
+				if (filterValue === 'Today') {
+					return isToday(b.due_datetime) ? 1 : -1;
+				} else if (filterValue === 'Tomorrow') {
+					return isTomorrow(b.due_datetime) ? 1 : -1;
+				} else if (filterValue === 'This Week') {
+					return isThisWeek(b.due_datetime) ? 1 : -1;
+				} else if (filterValue === 'This Month') {
+					return isThisMonth(b.due_datetime) ? 1 : -1;
+				} else if (filterValue === 'No Due Date') {
+					return b.due_datetime === null ? 1 : -1;
+				}
+			}
+			return 0;
+		};
+
 		const sortTodos = (a: any, b: any) => {
 			// if there is an important todo, ranked it first
 			if (a.is_important !== b.is_important) {
@@ -74,24 +95,6 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 				}
 			}
 
-			if (filterField === 'categories') {
-				return b.matchingCategories < a.matchingCategories ? 1 : -1;
-			}
-
-			if (filterField === 'dueDate') {
-				if (filterValue === 'Today') {
-					return isToday(b.due_datetime) ? 1 : -1;
-				} else if (filterValue === 'Tomorrow') {
-					return isTomorrow(b.due_datetime) ? 1 : -1;
-				} else if (filterValue === 'This Week') {
-					return isThisWeek(b.due_datetime) ? 1 : -1;
-				} else if (filterValue === 'This Month') {
-					return isThisMonth(b.due_datetime) ? 1 : -1;
-				} else if (filterValue === 'No Due Date') {
-					return b.due_datetime === null ? 1 : -1;
-				}
-			}
-
 			// if it just a plain todo, ranked it by creation date
 			if (a.creation_date && b.creation_date) {
 				if (sortOrder === 'asc' && sortField === 'creationDate') {
@@ -103,6 +106,11 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 
 			return 0;
 		};
+
+		if (filterField) {
+			incomplete.sort(filterTodos);
+			complete.sort(filterTodos);
+		}
 
 		incomplete.sort(sortTodos);
 		complete.sort(sortTodos);
