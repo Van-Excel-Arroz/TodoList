@@ -56,11 +56,9 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			}
 
 			if (sortField === 'alphabetical') {
-				if (sortOrder === 'asc') {
-					return b.task_text[0].toLowerCase() > a.task_text[0].toLowerCase() ? -1 : 1;
-				} else {
-					return a.task_text[0].toLowerCase() > b.task_text[0].toLowerCase() ? -1 : 1;
-				}
+				const aText = a.task_text[0].toLowerCase();
+				const bText = b.task_text[0].toLowerCase();
+				return sortOrder === 'asc' ? (bText > aText ? -1 : 1) : aText > bText ? -1 : 1;
 			}
 
 			// if both have categories, ranked them by how many categories matches in the selected categories
