@@ -71,22 +71,12 @@ export default function TodoListView({ todos }: TodoListViewProps) {
 			}
 
 			if (sortField === 'creationDate') {
-				if (sortOrder === 'asc') {
-					return compareAsc(new Date(a.creation_date), new Date(b.creation_date));
-				} else {
-					return compareDesc(new Date(a.creation_date), new Date(b.creation_date));
-				}
+				return sortOrder === 'asc'
+					? compareAsc(new Date(a.creation_date), new Date(b.creation_date))
+					: compareDesc(new Date(a.creation_date), new Date(b.creation_date));
 			}
 
-			if (a.creation_date && b.creation_date) {
-				if (sortOrder === 'asc' && sortField === 'creationDate') {
-					return compareAsc(new Date(a.creation_date), new Date(b.creation_date));
-				} else {
-					return compareDesc(new Date(a.creation_date), new Date(b.creation_date));
-				}
-			}
-
-			return 0;
+			return compareDesc(new Date(a.creation_date), new Date(b.creation_date));
 		};
 
 		if (filterField) {
