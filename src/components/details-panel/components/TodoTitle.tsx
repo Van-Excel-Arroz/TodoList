@@ -47,7 +47,7 @@ export default function TodoTitle({ title }: { title: string }) {
 		<div onBlur={handleInputBlur} tabIndex={-1}>
 			<form className="flex items-start flex-col w-full focus:outline-none" onSubmit={handleSubmit(onSubmit)}>
 				<div className="flex items-center justify-between w-full">
-					<p className="text-slate-600 pb-2">Title</p>
+					<p className="pb-2">Title</p>
 					{isEditing && (
 						<Button type="submit" ariaLabel="Save New Todo Title">
 							<Save size={18} />

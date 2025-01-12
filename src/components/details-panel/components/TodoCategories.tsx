@@ -40,8 +40,8 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 
 	return (
 		<div className="flex flex-col gap-2">
-			<div className="flex items-center gap-2 text-slate-600">
-				<Tag size={16} />
+			<div className="flex items-center gap-2">
+				<Tag size={16} className="text-slate-600" />
 				<p>Categories</p>
 			</div>
 			<div className={`flex flex-wrap items-center gap-2`}>

@@ -52,9 +52,9 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 	return (
 		<div className="flex flex-col">
 			<div className="flex items-center justify-between pb-1">
-				<div className="flex items-center text-slate-600 gap-2">
-					<CalendarDays size={18} />
-					<p className="text-slate-600 py-1">Due Date</p>
+				<div className="flex items-center gap-2">
+					<CalendarDays size={18} className="text-slate-600" />
+					<p className="py-1">Due Date</p>
 				</div>
 				<div className="flex items-center gap-1">
 					{isChanged && (
