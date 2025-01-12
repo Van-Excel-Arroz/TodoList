@@ -1,4 +1,4 @@
-import { format, isPast, isThisYear, isToday, isTomorrow } from 'date-fns';
+import { format, formatDistanceToNow, isPast, isThisYear, isToday, isTomorrow } from 'date-fns';
 import { Calendar, Clock3 } from 'lucide-react';
 
 interface DueDateProps {
@@ -11,7 +11,7 @@ export default function DueDate({ dueDatetime, textSize = 'xs' }: DueDateProps) 
 
 	return (
 		<div className="flex items-center gap-1">
-			<Calendar size={12} className="text-slate-800" />
+			{/* <Calendar size={12} className="text-slate-800" />
 			<p className={textStyle}>
 				{dueDatetime
 					? isToday(dueDatetime)
@@ -22,9 +22,10 @@ export default function DueDate({ dueDatetime, textSize = 'xs' }: DueDateProps) 
 						? format(dueDatetime, `EEE, MMMM d \'at\'`)
 						: format(dueDatetime, `EEE, MMMM d yyyy \'at\'`)
 					: '-'}
-			</p>
+			</p> */}
 			<Clock3 size={12} className="text-slate-800" />
-			<p className={textStyle}>{dueDatetime ? format(dueDatetime, 'h:mm a') : ''}</p>
+			{/* <p className={textStyle}>{dueDatetime ? format(dueDatetime, 'h:mm a') : ''}</p> */}
+			<p className={textStyle}>{!isPast(dueDatetime) ? `${formatDistanceToNow(dueDatetime)} Left` : 'Past Due'} </p>
 		</div>
 	);
 }
