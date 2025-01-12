@@ -9,11 +9,11 @@ import { useState } from 'react';
 
 const MenuItems = {
 	'Due Date': {
-		param: 'dueDate%3Adasc',
+		param: 'dueDate%3Aasc',
 		icon: CalendarDays,
 	},
 	'Creation Date': {
-		param: 'creationDate%3Adesc',
+		param: 'creationDate%3Aasc',
 		icon: CalendarPlus,
 	},
 	Importance: {
