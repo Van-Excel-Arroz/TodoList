@@ -23,7 +23,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	const currentTodolist = todolistFromStore || initialTodolist;
 
 	return (
-		<div className="sticky top-0 bg-slate-100 z-50 px-6">
+		<div className="sticky top-0 bg-slate-100 z-50 px-6 pb-5">
 			<div className="flex justify-between items-center py-2">
 				<div className="flex items-center gap-2">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
