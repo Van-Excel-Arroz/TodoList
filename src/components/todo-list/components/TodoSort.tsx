@@ -32,7 +32,7 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 	const [filterField, filterValue] = useSearchParams().get('filter')?.split(':') || [];
 
 	return (
-		<div className="flex items-center">
+		<div className="flex items-center gap-2">
 			<div className="relative">
 				<Button ariaLabel="Filter" onClick={() => setIsSortMenuOpen(prev => !prev)}>
 					<ArrowUpDown size={20} className="text-slate-600" />
