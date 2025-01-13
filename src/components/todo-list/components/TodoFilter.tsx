@@ -8,6 +8,7 @@ import { Category } from '@/types';
 import { CalendarDays, CheckIcon, Filter, Tag } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
+import CategoryFilterMenu from '../ui/CategoryFilterMenu';
 
 const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Date'];
 
@@ -19,21 +20,6 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 	const searchParams = useSearchParams();
 	const updateSearchParams = useUpdateSearchParams();
 	const [filter] = searchParams.get('filter')?.split(':') || [];
-	const [categories, setCategories] = useState<Category[]>(initialCategories);
-
-	const applyCategoriesFilter = () => {
-		let url = '';
-		categories.map(cat => {
-			if (cat.is_selected) {
-				url = url + `${cat.category_title},`;
-			}
-		});
-		updateSearchParams('filter', `categories:${url}`);
-	};
-
-	const updateSelect = (id: number) => {
-		setCategories(categories.map(cat => (cat.id === id ? { ...cat, is_selected: !cat.is_selected } : cat)));
-	};
 
 	return (
 		<div className="relative">
@@ -69,42 +55,12 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 					<p>Due Date</p>
 				</MenuItem>
 			</Menu>
-			<Menu
-				open={isCategoryFilterOpen}
-				onClose={() => setIsCategoryFilterOpen(false)}
-				posX="-right-5"
-				posXNotch="before:right-6"
-				width="w-fit"
-			>
-				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
-					<p>Filter by Category</p>
-					<Button
-						ariaLabel="Apply Filter"
-						className="text-xs border border-slate-300"
-						onClick={() => applyCategoriesFilter()}
-					>
-						<p>Apply</p>
-					</Button>
-				</MenuItem>
-				<div className="max-h-[70vh] overflow-hidden overflow-y-auto">
-					{categories.map(category => (
-						<MenuItem
-							key={category.id}
-							className="flex items-center justify-between"
-							onClick={() => updateSelect(category.id)}
-						>
-							<div className="flex items-center gap-2">
-								<p style={{ color: category.hex_color }}>●</p>
-								<p className="text-base">{category.category_title}</p>
-							</div>
+			<CategoryFilterMenu
+				initialCategories={initialCategories}
+				isCategoryFilterOpen={isCategoryFilterOpen}
+				setIsCategoryFilterOpen={setIsCategoryFilterOpen}
+			/>
 
-							<Button ariaLabel="Unselect category" className="hover:bg-slate-300 w-5 h-5">
-								<CheckIcon size={16} strokeWidth={2} className={`${category.is_selected ? 'block' : 'hidden'} `} />
-							</Button>
-						</MenuItem>
-					))}
-				</div>
-			</Menu>
 			<Menu
 				open={isDateFilterOpen}
 				onClose={() => setIsDateFilterOpen(false)}
