@@ -37,7 +37,7 @@ export default function TodoControls() {
 	return (
 		<div className={`${field ? 'inline-block' : 'hidden'} p-1 bg-slate-200 text-slate-700 rounded-lg`}>
 			<div className="flex items-center gap-1">
-				<p className="text-xs">Sort by: </p>
+				<p className="text-xs pl-1">Sort by: </p>
 				<Button
 					ariaLabel="Reverse Sort Order"
 					onClick={() => updateSearchParams('sort', order === 'asc' ? `${field}:desc` : `${field}:asc`)}
