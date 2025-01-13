@@ -46,7 +46,7 @@ export default function TodoControls() {
 					<SortIcon size={14} />
 				</Button>
 				<Button ariaLabel="Select Filter" className="text-xs">
-					{sortLabels[field]?.(order) ?? field}
+					{sortLabels[field]?.() ?? field}
 				</Button>
 				<Button
 					ariaLabel="Remove Sort"
