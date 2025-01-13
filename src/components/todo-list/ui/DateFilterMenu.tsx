@@ -10,7 +10,7 @@ const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Dat
 export default function DateFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 	const searchParams = useSearchParams();
 	const updateSearchParams = useUpdateSearchParams();
-	const [filter] = searchParams.get('filter')?.split(':') || [];
+	const [filterField, filterValue] = searchParams.get('filter')?.split(':') || [];
 
 	return (
 		<Menu open={isOpen} onClose={() => setIsOpen(false)} posX="-right-5" posXNotch="before:right-6" width="w-44">
@@ -25,8 +25,9 @@ export default function DateFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 				>
 					<p className="text-base text-left w-full">{label}</p>
 					<div className="h-3 w-3">
-						<CheckIcon size={14} className={`${label === filter ? 'block' : 'hidden'}`} />
+						<CheckIcon size={14} className={`${label === filterValue ? 'block' : 'hidden'}`} />
 					</div>
+					<p>{label === filterValue}</p>
 				</MenuItem>
 			))}
 		</Menu>
