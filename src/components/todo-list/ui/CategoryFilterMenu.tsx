@@ -4,6 +4,7 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 import { Category, MenuOpenProps } from '@/types';
 import { CheckIcon } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 interface CategoryFilterMenuProps extends MenuOpenProps {
@@ -13,6 +14,8 @@ interface CategoryFilterMenuProps extends MenuOpenProps {
 export default function CategoryFilterMenu({ initialCategories, isOpen, setIsOpen }: CategoryFilterMenuProps) {
 	const updateSearchParams = useUpdateSearchParams();
 	const [categories, setCategories] = useState<Category[]>(initialCategories);
+	const searchParams = useSearchParams();
+	const [filterField] = searchParams.get('filter')?.split(':') || [];
 
 	const applyCategoriesFilter = () => {
 		let url = '';
@@ -29,7 +32,13 @@ export default function CategoryFilterMenu({ initialCategories, isOpen, setIsOpe
 	};
 
 	return (
-		<Menu open={isOpen} onClose={() => setIsOpen(false)} posX="-right-5" posXNotch="before:right-6" width="w-fit">
+		<Menu
+			open={isOpen}
+			onClose={() => setIsOpen(false)}
+			posX={`${filterField ? 'right-6' : '-right-5'}`}
+			posXNotch="before:right-6"
+			width="w-fit"
+		>
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Filter by Category</p>
 				<Button
