@@ -1,12 +1,12 @@
 'use client';
 
 import { Button } from '@/components/ui-shared/Button';
-import { ArrowUpDown, CalendarDays, CalendarPlus, CaseSensitive, Star } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
+import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
 import TodoControls from './TodoControls';
+import SortMenu from '../ui/SortMenu';
 
-export default function TodoSort() {
+export default function TodoSort({ todolistId }: { todolistId: number }) {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 
 	return (
@@ -14,6 +14,7 @@ export default function TodoSort() {
 			<div className="relative">
 				<Button ariaLabel="Filter" onClick={() => setIsSortMenuOpen(prev => !prev)}>
 					<ArrowUpDown size={20} className="text-slate-600" />
+					<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} todolistId={todolistId} />
 				</Button>
 			</div>
 			<TodoControls />

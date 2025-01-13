@@ -34,7 +34,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					<Button ariaLabel="Search">
 						<Search />
 					</Button>
-					<TodoSort />
+					<TodoSort todolistId={initialTodolist.id} />
 					<TodoFilter initialCategories={categories} />
 				</div>
 			</div>
