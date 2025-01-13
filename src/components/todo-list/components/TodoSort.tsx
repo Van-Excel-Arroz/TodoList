@@ -53,6 +53,7 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 						</Button>
 						<Button ariaLabel="Select Filter" className="text-xs" onClick={() => setIsSortMenuOpen(prev => !prev)}>
 							{sortLabels[field]?.() ?? field}
+							<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} todolistId={todolistId} />
 						</Button>
 						<Button
 							ariaLabel="Remove Sort"
