@@ -23,3 +23,8 @@ export interface TodoList {
 	id: number;
 	title: string;
 }
+
+export interface MenuOpenProps {
+	isOpen: boolean;
+	setIsOpen: (val: boolean) => void;
+}
