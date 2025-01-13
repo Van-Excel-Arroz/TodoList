@@ -34,33 +34,33 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 	const searchParams = useSearchParams();
 	const updateSearchParams = useUpdateSearchParams();
-	const [field, order]: string[] = searchParams.get('sort')?.split(':') ?? [];
+	const [sortField, sortValue]: string[] = searchParams.get('sort')?.split(':') ?? [];
 
-	const SortIcon = sortIcons[field] ?? ArrowDownWideNarrowIcon;
+	const SortIcon = sortIcons[sortField] ?? ArrowDownWideNarrowIcon;
 
 	return (
 		<div className="flex items-center gap-2">
-			{field ? (
+			{sortField ? (
 				<div
 					className={`${
-						field ? 'inline-block' : 'hidden'
+						sortField ? 'inline-block' : 'hidden'
 					} p-1 bg-slate-200 text-slate-700 rounded-lg border border-slate-300 hover:border-slate-400`}
 				>
 					<div className="flex items-center gap-1">
 						<p className="text-xs pl-1">Sort by: </p>
 						<Button
 							ariaLabel="Reverse Sort Order"
-							onClick={() => updateSearchParams('sort', order === 'asc' ? `${field}:desc` : `${field}:asc`)}
+							onClick={() => updateSearchParams('sort', sortValue === 'asc' ? `${sortField}:desc` : `${sortField}:asc`)}
 							className="hover:bg-slate-300 active:bg-slate-400"
 						>
-							{order === 'asc' ? <SortIcon.asc size={14} /> : <SortIcon.desc size={14} />}
+							{sortValue === 'asc' ? <SortIcon.asc size={14} /> : <SortIcon.desc size={14} />}
 						</Button>
 						<Button
 							ariaLabel="Change Filter"
 							onClick={() => setIsSortMenuOpen(prev => !prev)}
 							className="text-xs hover:bg-slate-300 active:bg-slate-400"
 						>
-							<p>{sortLabels[field]?.() ?? field}</p>
+							<p>{sortLabels[sortField]?.() ?? sortField}</p>
 							<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} todolistId={todolistId} />
 						</Button>
 						<Button
