@@ -30,12 +30,13 @@ const MenuItems = {
 
 export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen, todolistId }: SortMenuProps) {
 	const [filterField, filterValue] = useSearchParams().get('filter')?.split(':') || [];
+	const [sortField] = useSearchParams().get('sort')?.split(':') || [];
 
 	return (
 		<Menu
 			open={isSortMenuOpen}
 			onClose={() => setIsSortMenuOpen(false)}
-			posX="-right-5"
+			posX={`${sortField ? 'right-8' : '-right-5'}`}
 			posXNotch="before:right-6"
 			width="w-44"
 		>
