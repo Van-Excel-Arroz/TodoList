@@ -36,7 +36,7 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 	const updateSearchParams = useUpdateSearchParams();
 	const [field, order]: string[] = searchParams.get('sort')?.split(':') ?? [];
 
-	const SortIcon = sortIcons[field]?.[order] ?? ArrowDownWideNarrowIcon;
+	const SortIcon = sortIcons[field] ?? ArrowDownWideNarrowIcon;
 
 	return (
 		<div className="flex items-center gap-2">
@@ -53,7 +53,7 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 							onClick={() => updateSearchParams('sort', order === 'asc' ? `${field}:desc` : `${field}:asc`)}
 							className="hover:bg-slate-300 active:bg-slate-400"
 						>
-							<SortIcon size={14} />
+							{order === 'asc' ? <SortIcon.asc size={14} /> : <SortIcon.desc size={14} />}
 						</Button>
 						<Button
 							ariaLabel="Change Filter"
