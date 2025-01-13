@@ -7,24 +7,28 @@ import { useState } from 'react';
 import CategoryFilterMenu from '../ui/CategoryFilterMenu';
 import DateFilterMenu from '../ui/DateFilterMenu';
 import FilterMenu from '../ui/FilterMenu';
+import { useSearchParams } from 'next/navigation';
 
 export default function TodoFilter({ initialCategories }: { initialCategories: Category[] }) {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 
+	const searchParams = useSearchParams();
+	const [filterField, filterValue] = searchParams.get('filter')?.split(':') || [];
+
 	return (
 		<div className="relative">
 			<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
 				<Filter size={20} className="text-slate-600" />
 			</Button>
+
 			<FilterMenu
 				isOpen={isFilterMenuOpen}
 				setIsOpen={setIsFilterMenuOpen}
 				setIsCategoryFilterOpen={setIsCategoryFilterOpen}
 				setIsDateFilterOpen={setIsDateFilterOpen}
 			/>
-
 			<CategoryFilterMenu
 				initialCategories={initialCategories}
 				isOpen={isCategoryFilterOpen}
