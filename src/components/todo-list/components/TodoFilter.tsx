@@ -64,20 +64,20 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 					<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
 						<Filter size={20} className="text-slate-600" />
 					</Button>
-					<FilterMenu
-						isOpen={isFilterMenuOpen}
-						setIsOpen={setIsFilterMenuOpen}
-						setIsCategoryFilterOpen={setIsCategoryFilterOpen}
-						setIsDateFilterOpen={setIsDateFilterOpen}
-					/>
-					<CategoryFilterMenu
-						initialCategories={initialCategories}
-						isOpen={isCategoryFilterOpen}
-						setIsOpen={setIsCategoryFilterOpen}
-					/>
-					<DateFilterMenu isOpen={isDateFilterOpen} setIsOpen={setIsDateFilterOpen} />
 				</>
 			)}
+			<FilterMenu
+				isOpen={isFilterMenuOpen}
+				setIsOpen={setIsFilterMenuOpen}
+				setIsCategoryFilterOpen={setIsCategoryFilterOpen}
+				setIsDateFilterOpen={setIsDateFilterOpen}
+			/>
+			<CategoryFilterMenu
+				initialCategories={initialCategories}
+				isOpen={isCategoryFilterOpen}
+				setIsOpen={setIsCategoryFilterOpen}
+			/>
+			<DateFilterMenu isOpen={isDateFilterOpen} setIsOpen={setIsDateFilterOpen} />
 		</div>
 	);
 }
