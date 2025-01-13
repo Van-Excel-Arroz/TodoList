@@ -12,13 +12,12 @@ import { useState } from 'react';
 const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Date'];
 
 export default function TodoFilter({ initialCategories }: { initialCategories: Category[] }) {
-	const searchParams = useSearchParams();
-	const updateSearchParams = useUpdateSearchParams();
-
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 
+	const searchParams = useSearchParams();
+	const updateSearchParams = useUpdateSearchParams();
 	const [filter] = searchParams.get('filter')?.split(':') || [];
 	const [categories, setCategories] = useState<Category[]>(initialCategories);
 
