@@ -2,12 +2,17 @@
 
 import { Button } from '@/components/ui-shared/Button';
 import { Category } from '@/types';
-import { Filter } from 'lucide-react';
+import { CalendarDays, Filter, Tag } from 'lucide-react';
 import { useState } from 'react';
 import CategoryFilterMenu from '../ui/CategoryFilterMenu';
 import DateFilterMenu from '../ui/DateFilterMenu';
 import FilterMenu from '../ui/FilterMenu';
 import { useSearchParams } from 'next/navigation';
+
+const filterIcons: any = {
+	dueDate: CalendarDays,
+	categories: Tag,
+};
 
 export default function TodoFilter({ initialCategories }: { initialCategories: Category[] }) {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
@@ -16,25 +21,35 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 
 	const searchParams = useSearchParams();
 	const [filterField, filterValue] = searchParams.get('filter')?.split(':') || [];
+	const Icon = filterIcons[filterField] ?? Filter;
 
 	return (
 		<div className="relative">
-			<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
-				<Filter size={20} className="text-slate-600" />
-			</Button>
-
-			<FilterMenu
-				isOpen={isFilterMenuOpen}
-				setIsOpen={setIsFilterMenuOpen}
-				setIsCategoryFilterOpen={setIsCategoryFilterOpen}
-				setIsDateFilterOpen={setIsDateFilterOpen}
-			/>
-			<CategoryFilterMenu
-				initialCategories={initialCategories}
-				isOpen={isCategoryFilterOpen}
-				setIsOpen={setIsCategoryFilterOpen}
-			/>
-			<DateFilterMenu isOpen={isDateFilterOpen} setIsOpen={setIsDateFilterOpen} />
+			{filterField ? (
+				<div className="flex items-center text-xs gap-1 p-1 bg-slate-200 text-slate-700 rounded-lg border border-slate-300 hover:border-slate-400">
+					<p className=" pl-1">Filter by:</p>
+					<Icon size={12} />
+					<p>{filterField === 'categories' ? 'Category' : filterValue}</p>
+				</div>
+			) : (
+				<>
+					<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
+						<Filter size={20} className="text-slate-600" />
+					</Button>
+					<FilterMenu
+						isOpen={isFilterMenuOpen}
+						setIsOpen={setIsFilterMenuOpen}
+						setIsCategoryFilterOpen={setIsCategoryFilterOpen}
+						setIsDateFilterOpen={setIsDateFilterOpen}
+					/>
+					<CategoryFilterMenu
+						initialCategories={initialCategories}
+						isOpen={isCategoryFilterOpen}
+						setIsOpen={setIsCategoryFilterOpen}
+					/>
+					<DateFilterMenu isOpen={isDateFilterOpen} setIsOpen={setIsDateFilterOpen} />
+				</>
+			)}
 		</div>
 	);
 }
