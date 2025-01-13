@@ -50,8 +50,8 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 			</Menu>
 			<CategoryFilterMenu
 				initialCategories={initialCategories}
-				isCategoryFilterOpen={isCategoryFilterOpen}
-				setIsCategoryFilterOpen={setIsCategoryFilterOpen}
+				isOpen={isCategoryFilterOpen}
+				setIsOpen={setIsCategoryFilterOpen}
 			/>
 			<DateFilterMenu isOpen={isDateFilterOpen} setIsOpen={setIsDateFilterOpen} />
 		</div>

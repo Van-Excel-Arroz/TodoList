@@ -2,21 +2,15 @@ import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
-import { Category } from '@/types';
+import { Category, MenuOpenProps } from '@/types';
 import { CheckIcon } from 'lucide-react';
 import { useState } from 'react';
 
-interface CategoryFilterMenuProps {
+interface CategoryFilterMenuProps extends MenuOpenProps {
 	initialCategories: Category[];
-	isCategoryFilterOpen: boolean;
-	setIsCategoryFilterOpen: (val: boolean) => void;
 }
 
-export default function CategoryFilterMenu({
-	initialCategories,
-	isCategoryFilterOpen,
-	setIsCategoryFilterOpen,
-}: CategoryFilterMenuProps) {
+export default function CategoryFilterMenu({ initialCategories, isOpen, setIsOpen }: CategoryFilterMenuProps) {
 	const updateSearchParams = useUpdateSearchParams();
 	const [categories, setCategories] = useState<Category[]>(initialCategories);
 
@@ -35,13 +29,7 @@ export default function CategoryFilterMenu({
 	};
 
 	return (
-		<Menu
-			open={isCategoryFilterOpen}
-			onClose={() => setIsCategoryFilterOpen(false)}
-			posX="-right-5"
-			posXNotch="before:right-6"
-			width="w-fit"
-		>
+		<Menu open={isOpen} onClose={() => setIsOpen(false)} posX="-right-5" posXNotch="before:right-6" width="w-fit">
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Filter by Category</p>
 				<Button
