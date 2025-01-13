@@ -10,6 +10,7 @@ import {
 	ArrowUpWideNarrowIcon,
 	XIcon,
 } from 'lucide-react';
+import { Dispatch, SetStateAction } from 'react';
 
 const sortIcons: any = {
 	dueDate: { asc: CalendarArrowUpIcon, desc: CalendarArrowDownIcon },
@@ -25,7 +26,7 @@ const sortLabels: any = {
 	alphabetical: () => 'Alphabetical',
 };
 
-export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: (prev: boolean) => void }) {
+export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: Dispatch<SetStateAction<boolean>> }) {
 	const updateSearchParams = useUpdateSearchParams();
 	const searchParams = useSearchParams();
 	const [sortField, sortValue]: string[] = searchParams.get('sort')?.split(':') ?? [];
@@ -43,7 +44,7 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 			</Button>
 			<Button
 				ariaLabel="Change Filter"
-				onClick={() => setIsSortMenuOpen}
+				onClick={() => setIsSortMenuOpen(prev => !prev)}
 				className="text-xs hover:bg-slate-300 active:bg-slate-400"
 			>
 				<p>{sortLabels[sortField]?.() ?? sortField}</p>
