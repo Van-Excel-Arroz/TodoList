@@ -3,6 +3,7 @@ import { CalendarDays, Filter, Tag, XIcon } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import { useSearchParams } from 'next/navigation';
 import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
+import { Dispatch, SetStateAction } from 'react';
 
 const filterIcons: any = {
 	dueDate: CalendarDays,
@@ -10,8 +11,8 @@ const filterIcons: any = {
 };
 
 interface FilterControlProps {
-	setIsDateFilterOpen: (val: boolean | ((prev: boolean) => boolean)) => void;
-	setIsCategoryFilterOpen: (val: boolean | ((prev: boolean) => boolean)) => void;
+	setIsDateFilterOpen: Dispatch<SetStateAction<boolean>>;
+	setIsCategoryFilterOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilterOpen }: FilterControlProps) {
