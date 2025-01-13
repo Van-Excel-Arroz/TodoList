@@ -21,8 +21,8 @@ const sortIcons: any = {
 };
 
 const sortLabels: any = {
-	dueDate: (order: string) => `Due Date (${order === 'desc' ? 'Latest' : 'Earlier'} first)`,
-	creationDate: (order: string) => `Creation Date (${order === 'desc' ? 'Newest' : 'Oldest'} first)`,
+	dueDate: () => `Due Date`,
+	creationDate: () => `Creation Date`,
 	importance: () => 'Importance',
 	alphabetical: () => 'Alphabetical',
 };
