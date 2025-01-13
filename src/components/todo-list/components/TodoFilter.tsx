@@ -23,11 +23,9 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 			{filterField ? (
 				<FilterControl setIsCategoryFilterOpen={setIsCategoryFilterOpen} setIsDateFilterOpen={setIsDateFilterOpen} />
 			) : (
-				<>
-					<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
-						<Filter size={20} className="text-slate-600" />
-					</Button>
-				</>
+				<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
+					<Filter size={20} className="text-slate-600" />
+				</Button>
 			)}
 			<FilterMenu
 				isOpen={isFilterMenuOpen}
