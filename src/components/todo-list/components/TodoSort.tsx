@@ -41,7 +41,11 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 	return (
 		<div className="flex items-center gap-2">
 			{field ? (
-				<div className={`${field ? 'inline-block' : 'hidden'} p-1 bg-slate-200 text-slate-700 rounded-lg`}>
+				<div
+					className={`${
+						field ? 'inline-block' : 'hidden'
+					} p-1 bg-slate-200 text-slate-700 rounded-lg border border-slate-300 hover:border-slate-400`}
+				>
 					<div className="flex items-center gap-1">
 						<p className="text-xs pl-1">Sort by: </p>
 						<Button
@@ -52,7 +56,7 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 							<SortIcon size={14} />
 						</Button>
 						<Button ariaLabel="Change Filter" className="text-xs" onClick={() => setIsSortMenuOpen(prev => !prev)}>
-							{sortLabels[field]?.() ?? field}
+							<p>{sortLabels[field]?.() ?? field}</p>
 							<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} todolistId={todolistId} />
 						</Button>
 						<Button
