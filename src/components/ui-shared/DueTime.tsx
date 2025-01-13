@@ -99,7 +99,7 @@ function TimeMenu({
 				break;
 			case 'clear':
 				setDueDate(undefined);
-				break;
+				return;
 		}
 		setDueDate(baseDate.toISOString());
 	};
