@@ -40,34 +40,37 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 
 	return (
 		<div className="flex items-center gap-2">
-			<div className="relative">
-				<Button ariaLabel="Filter" onClick={() => setIsSortMenuOpen(prev => !prev)}>
-					<ArrowUpDown size={20} className="text-slate-600" />
-					<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} todolistId={todolistId} />
-				</Button>
-			</div>
-			<div className={`${field ? 'inline-block' : 'hidden'} p-1 bg-slate-200 text-slate-700 rounded-lg`}>
-				<div className="flex items-center gap-1">
-					<p className="text-xs pl-1">Sort by: </p>
-					<Button
-						ariaLabel="Reverse Sort Order"
-						onClick={() => updateSearchParams('sort', order === 'asc' ? `${field}:desc` : `${field}:asc`)}
-						className="hover:bg-slate-300 active:bg-slate-400"
-					>
-						<SortIcon size={14} />
-					</Button>
-					<Button ariaLabel="Select Filter" className="text-xs">
-						{sortLabels[field]?.() ?? field}
-					</Button>
-					<Button
-						ariaLabel="Remove Sort"
-						onClick={() => updateSearchParams('sort', null)}
-						className="hover:bg-slate-300 active:bg-slate-400"
-					>
-						<XIcon size={12} />
+			{field ? (
+				<div className={`${field ? 'inline-block' : 'hidden'} p-1 bg-slate-200 text-slate-700 rounded-lg`}>
+					<div className="flex items-center gap-1">
+						<p className="text-xs pl-1">Sort by: </p>
+						<Button
+							ariaLabel="Reverse Sort Order"
+							onClick={() => updateSearchParams('sort', order === 'asc' ? `${field}:desc` : `${field}:asc`)}
+							className="hover:bg-slate-300 active:bg-slate-400"
+						>
+							<SortIcon size={14} />
+						</Button>
+						<Button ariaLabel="Select Filter" className="text-xs" onClick={() => setIsSortMenuOpen(prev => !prev)}>
+							{sortLabels[field]?.() ?? field}
+						</Button>
+						<Button
+							ariaLabel="Remove Sort"
+							onClick={() => updateSearchParams('sort', null)}
+							className="hover:bg-slate-300 active:bg-slate-400"
+						>
+							<XIcon size={12} />
+						</Button>
+					</div>
+				</div>
+			) : (
+				<div className="relative">
+					<Button ariaLabel="Filter" onClick={() => setIsSortMenuOpen(prev => !prev)}>
+						<ArrowUpDown size={20} className="text-slate-600" />
+						<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} todolistId={todolistId} />
 					</Button>
 				</div>
-			</div>
+			)}
 		</div>
 	);
 }
