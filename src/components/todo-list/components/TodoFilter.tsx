@@ -2,13 +2,12 @@
 
 import { Button } from '@/components/ui-shared/Button';
 import { Category } from '@/types';
-import { CalendarDays, Filter, Tag, XIcon } from 'lucide-react';
+import { Filter } from 'lucide-react';
 import { useState } from 'react';
 import CategoryFilterMenu from '../ui/CategoryFilterMenu';
 import DateFilterMenu from '../ui/DateFilterMenu';
 import FilterMenu from '../ui/FilterMenu';
 import { useSearchParams } from 'next/navigation';
-import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 import FilterControl from '../ui/FilterControl';
 
 export default function TodoFilter({ initialCategories }: { initialCategories: Category[] }) {
@@ -17,7 +16,7 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 
 	const searchParams = useSearchParams();
-	const [filterField, filterValue] = searchParams.get('filter')?.split(':') || [];
+	const [filterField] = searchParams.get('filter')?.split(':') || [];
 
 	return (
 		<div className="relative">
