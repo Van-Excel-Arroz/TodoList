@@ -2,12 +2,13 @@
 
 import { Button } from '@/components/ui-shared/Button';
 import { Category } from '@/types';
-import { CalendarDays, Filter, Tag } from 'lucide-react';
+import { CalendarDays, Filter, Tag, XIcon } from 'lucide-react';
 import { useState } from 'react';
 import CategoryFilterMenu from '../ui/CategoryFilterMenu';
 import DateFilterMenu from '../ui/DateFilterMenu';
 import FilterMenu from '../ui/FilterMenu';
 import { useSearchParams } from 'next/navigation';
+import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 
 const filterIcons: any = {
 	dueDate: CalendarDays,
@@ -20,6 +21,7 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 
 	const searchParams = useSearchParams();
+	const updateSearchParams = useUpdateSearchParams();
 	const [filterField, filterValue] = searchParams.get('filter')?.split(':') || [];
 	const Icon = filterIcons[filterField] ?? Filter;
 
@@ -31,6 +33,13 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 					<Button ariaLabel="Change Filter" className="flex items-center gap-1 hover:bg-slate-300 active:bg-slate-400">
 						<Icon size={12} />
 						<p>{filterField === 'categories' ? 'Category' : filterValue}</p>
+					</Button>
+					<Button
+						ariaLabel="Remove Sort"
+						onClick={() => updateSearchParams('filter', null)}
+						className="hover:bg-slate-300 active:bg-slate-400"
+					>
+						<XIcon size={12} />
 					</Button>
 				</div>
 			) : (
