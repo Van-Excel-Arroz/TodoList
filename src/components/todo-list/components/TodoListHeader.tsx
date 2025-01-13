@@ -38,7 +38,6 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					<TodoFilter initialCategories={categories} />
 				</div>
 			</div>
-			<TodoControls />
 			<TodoForm todolistId={initialTodolist.id} />
 		</div>
 	);

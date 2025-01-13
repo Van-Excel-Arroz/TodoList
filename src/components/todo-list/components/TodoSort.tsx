@@ -6,6 +6,7 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import { ArrowUpDown, CalendarDays, CalendarPlus, CaseSensitive, Star } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
+import TodoControls from './TodoControls';
 
 const MenuItems = {
 	'Due Date': {
@@ -31,33 +32,36 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 	const [filterField, filterValue] = useSearchParams().get('filter')?.split(':') || [];
 
 	return (
-		<div className="relative">
-			<Button ariaLabel="Filter" onClick={() => setIsSortMenuOpen(prev => !prev)}>
-				<ArrowUpDown size={20} className="text-slate-600" />
-			</Button>
-			<Menu
-				open={isSortMenuOpen}
-				onClose={() => setIsSortMenuOpen(false)}
-				posX="-right-5"
-				posXNotch="before:right-6"
-				width="w-44"
-			>
-				<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
-					<p>Sort by</p>
-				</MenuItem>
-
-				{Object.entries(MenuItems).map(([label, menuItem]) => (
-					<MenuItem
-						href={`/tasks/?id=${todolistId}&sort=${menuItem.param}${
-							filterField ? `&filter=${filterField}:${filterValue}` : ''
-						}`}
-						key={label}
-					>
-						<menuItem.icon className="text-slate-600" size={18} />
-						<p>{label}</p>
+		<div className="flex items-center">
+			<div className="relative">
+				<Button ariaLabel="Filter" onClick={() => setIsSortMenuOpen(prev => !prev)}>
+					<ArrowUpDown size={20} className="text-slate-600" />
+				</Button>
+				<Menu
+					open={isSortMenuOpen}
+					onClose={() => setIsSortMenuOpen(false)}
+					posX="-right-5"
+					posXNotch="before:right-6"
+					width="w-44"
+				>
+					<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
+						<p>Sort by</p>
 					</MenuItem>
-				))}
-			</Menu>
+
+					{Object.entries(MenuItems).map(([label, menuItem]) => (
+						<MenuItem
+							href={`/tasks/?id=${todolistId}&sort=${menuItem.param}${
+								filterField ? `&filter=${filterField}:${filterValue}` : ''
+							}`}
+							key={label}
+						>
+							<menuItem.icon className="text-slate-600" size={18} />
+							<p>{label}</p>
+						</MenuItem>
+					))}
+				</Menu>
+			</div>
+			<TodoControls />
 		</div>
 	);
 }
