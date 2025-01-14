@@ -7,16 +7,15 @@ import { useState } from 'react';
 import CategoryFilterMenu from '../ui/CategoryFilterMenu';
 import DateFilterMenu from '../ui/DateFilterMenu';
 import FilterMenu from '../ui/FilterMenu';
-import { useSearchParams } from 'next/navigation';
 import FilterControl from '../ui/FilterControl';
+import { useQueryParam } from '@/hooks/useQueryParam';
 
 export default function TodoFilter({ initialCategories }: { initialCategories: Category[] }) {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
-
-	const searchParams = useSearchParams();
-	const [filterField] = searchParams.get('filter')?.split(':') || [];
+	const queryParam = useQueryParam();
+	const [filterField] = queryParam('sort');
 
 	return (
 		<div className="relative">
