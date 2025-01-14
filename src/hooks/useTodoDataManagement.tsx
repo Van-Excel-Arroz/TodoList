@@ -1,7 +1,7 @@
 import { Todo } from '@/types';
 import { compareAsc, compareDesc, isThisMonth, isThisWeek, isToday, isTomorrow } from 'date-fns';
-import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
+import useQueryParams from './useQueryParams';
 
 type SortFn = (a: Todo, b: Todo) => number;
 type FilterFn = (todo: Todo) => boolean;
@@ -18,9 +18,9 @@ export function useTodoDataManagement(todos: Todo[]): {
 	incompleteTodos: Todo[];
 	completeTodos: Todo[];
 } {
-	const searchParams = useSearchParams();
-	const [sortField, sortOrder] = searchParams.get('sort')?.split(':') || [];
-	const [filterField, filterValue] = searchParams.get('filter')?.split(':') || [];
+	const { getQueryParam } = useQueryParams();
+	const [filterField, filterValue] = getQueryParam('filter');
+	const [sortField, sortOrder] = getQueryParam('sort');
 
 	const getSortFn = useMemo((): SortFn => {
 		return (a: any, b: any) => {
