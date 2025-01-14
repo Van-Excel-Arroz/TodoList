@@ -10,7 +10,7 @@ import SortControl from '../ui/SortControl';
 export default function TodoSort({ todolistId }: { todolistId: number }) {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 	const searchParams = useSearchParams();
-	const [sortField]: string[] = searchParams.get('sort')?.split(':') ?? [];
+	const [sortField] = searchParams.get('sort')?.split(':') ?? [];
 
 	return (
 		<div className="relative">
