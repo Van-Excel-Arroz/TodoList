@@ -15,7 +15,7 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 	const [isChanged, setIsChanged] = useState(false);
 	const [selectedDueDate, updateSelectedTodoDueDate] = useState<string | undefined>(dueDate);
 
-	const handleOnSubmit = async () => {
+	const handleSave = async () => {
 		if (!selectedDueDate) return;
 		await updateTodoDueDateAction(selectedTodoId, selectedDueDate);
 		updateDueDate(selectedTodoId, selectedDueDate);
@@ -59,7 +59,7 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 				<div className="flex items-center gap-1">
 					{isChanged && (
 						<>
-							<Button ariaLabel="Save Due Date" type="submit" onClick={() => handleOnSubmit()}>
+							<Button ariaLabel="Save Due Date" type="submit" onClick={() => handleSave()}>
 								<Save size={18} />
 							</Button>
 							<Button ariaLabel="Reset Due Date" type="submit" onClick={() => handleUndoDueDate()}>
