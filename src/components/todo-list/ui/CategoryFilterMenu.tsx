@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
+import { useQueryParam } from '@/hooks/useQueryParam';
 import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 import { Category, MenuOpenProps } from '@/types';
 import { CheckIcon } from 'lucide-react';
@@ -12,10 +13,10 @@ interface CategoryFilterMenuProps extends MenuOpenProps {
 }
 
 export default function CategoryFilterMenu({ initialCategories, isOpen, setIsOpen }: CategoryFilterMenuProps) {
-	const updateSearchParams = useUpdateSearchParams();
 	const [categories, setCategories] = useState<Category[]>(initialCategories);
-	const searchParams = useSearchParams();
-	const [filterField] = searchParams.get('filter')?.split(':') || [];
+	const updateSearchParams = useUpdateSearchParams();
+	const queryParam = useQueryParam();
+	const [filterField] = queryParam('filter');
 
 	const applyCategoriesFilter = () => {
 		let url = '';
