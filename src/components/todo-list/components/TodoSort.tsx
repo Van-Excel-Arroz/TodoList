@@ -4,13 +4,13 @@ import { Button } from '@/components/ui-shared/Button';
 import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
 import SortMenu from '../ui/SortMenu';
-import { useSearchParams } from 'next/navigation';
 import SortControl from '../ui/SortControl';
+import { useQueryParam } from '@/hooks/useQueryParam';
 
 export default function TodoSort({ todolistId }: { todolistId: number }) {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
-	const searchParams = useSearchParams();
-	const [sortField] = searchParams.get('sort')?.split(':') ?? [];
+	const queryParam = useQueryParam();
+	const [sortField] = queryParam('sort');
 
 	return (
 		<div className="relative">
