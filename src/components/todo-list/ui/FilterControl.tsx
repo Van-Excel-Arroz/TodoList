@@ -1,9 +1,7 @@
 import { CalendarDays, Filter, Tag, XIcon } from 'lucide-react';
-
 import { Button } from '@/components/ui-shared/Button';
-import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 import { Dispatch, SetStateAction } from 'react';
-import { useQueryParam } from '@/hooks/useQueryParam';
+import useQueryParams from '@/hooks/useQueryParams';
 
 const filterIcons: any = {
 	dueDate: CalendarDays,
@@ -16,9 +14,8 @@ interface FilterControlProps {
 }
 
 export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilterOpen }: FilterControlProps) {
-	const updateSearchParams = useUpdateSearchParams();
-	const queryParam = useQueryParam();
-	const [filterField, filterValue] = queryParam('filter');
+	const { getQueryParam, updateSearchParams } = useQueryParams();
+	const [filterField, filterValue] = getQueryParam('filter');
 	const Icon = filterIcons[filterField] ?? Filter;
 
 	const handleMenuToggle = () => {
