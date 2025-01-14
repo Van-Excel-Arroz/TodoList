@@ -3,7 +3,6 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import { useQueryParam } from '@/hooks/useQueryParam';
 import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 import { CalendarDays, CalendarPlus, CaseSensitive, Star } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
 
 interface SortMenuProps {
 	isSortMenuOpen: boolean;
@@ -13,7 +12,7 @@ interface SortMenuProps {
 
 const MenuItems = {
 	'Due Date': {
-		param: 'dueDate%3Aasc',
+		param: 'dueDate:asc',
 		icon: CalendarDays,
 	},
 	'Creation Date': {
@@ -33,7 +32,6 @@ const MenuItems = {
 export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen, todolistId }: SortMenuProps) {
 	const updateSearchParams = useUpdateSearchParams();
 	const queryParam = useQueryParam();
-	const [filterField, filterValue] = queryParam('filter');
 	const [sortField] = queryParam('sort');
 
 	return (
