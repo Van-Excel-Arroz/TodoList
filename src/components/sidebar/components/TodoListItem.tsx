@@ -22,7 +22,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
 	const { deleteTodolist } = useTodoListsStore();
 
-	const handleTodoListClick = () => {
+	const handleClick = () => {
 		const mediaQuery = window.matchMedia('(max-width: 1024px)');
 		if (mediaQuery.matches) {
 			toggleTodoListsSidebar();
@@ -30,11 +30,11 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 		setSelectedTodoId(0);
 	};
 
-	const handleEditClick = (val: boolean) => {
+	const handleEdit = (val: boolean) => {
 		setIsEditing(val);
 	};
 
-	const onSubmit = async () => {
+	const handleOnSubmit = async () => {
 		await deleteTodolistAction(todolist.id);
 		deleteTodolist(todolist.id);
 		if (currentId === todolist.id.toString()) {
@@ -45,7 +45,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 
 	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
 		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-			handleEditClick(false);
+			handleEdit(false);
 		}
 	};
 
@@ -58,11 +58,11 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 			tabIndex={-1}
 		>
 			{isEditing ? (
-				<EditTodoListForm todolist={todolist} handleEditClick={handleEditClick} />
+				<EditTodoListForm todolist={todolist} handleEditClick={handleEdit} />
 			) : (
 				<Link
 					href={`/tasks/?id=${todolist.id}`}
-					onClick={handleTodoListClick}
+					onClick={handleClick}
 					className={`text-sm lg:text-base flex-1 text-ellipsis py-1 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
 						isSelectedPath ? 'font-bold' : 'font-normal'
 					}`}
@@ -73,10 +73,10 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 
 			{!isEditing && (
 				<div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 absolute right-5">
-					<Button onClick={() => handleEditClick(true)} ariaLabel="Edit Todolist Title">
+					<Button onClick={() => handleEdit(true)} ariaLabel="Edit Todolist Title">
 						<Pencil size={15} />
 					</Button>
-					<Button type="submit" ariaLabel="Delete Todolist" onClick={onSubmit}>
+					<Button type="submit" ariaLabel="Delete Todolist" onClick={handleOnSubmit}>
 						<Trash2 size={15} />
 					</Button>
 				</div>
