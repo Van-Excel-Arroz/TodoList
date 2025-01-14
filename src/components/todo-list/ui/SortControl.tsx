@@ -11,6 +11,7 @@ import {
 	XIcon,
 } from 'lucide-react';
 import { Dispatch, SetStateAction } from 'react';
+import { useQueryParam } from '@/hooks/useQueryParam';
 
 const sortIcons: any = {
 	dueDate: { asc: CalendarArrowUpIcon, desc: CalendarArrowDownIcon },
@@ -28,8 +29,8 @@ const sortLabels: any = {
 
 export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: Dispatch<SetStateAction<boolean>> }) {
 	const updateSearchParams = useUpdateSearchParams();
-	const searchParams = useSearchParams();
-	const [sortField, sortValue]: string[] = searchParams.get('sort')?.split(':') ?? [];
+	const queryParam = useQueryParam();
+	const [sortField, sortValue] = queryParam('sort');
 	const SortIcon = sortIcons[sortField] ?? ArrowDownWideNarrowIcon;
 
 	return (
