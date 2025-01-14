@@ -5,12 +5,12 @@ import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
 import SortMenu from '../ui/SortMenu';
 import SortControl from '../ui/SortControl';
-import { useQueryParam } from '@/hooks/useQueryParam';
+import useQueryParams from '@/hooks/useQueryParams';
 
 export default function TodoSort({ todolistId }: { todolistId: number }) {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
-	const queryParam = useQueryParam();
-	const [sortField] = queryParam('sort');
+	const { getQueryParam } = useQueryParams();
+	const [sortField] = getQueryParam('sort');
 
 	return (
 		<div className="relative">
