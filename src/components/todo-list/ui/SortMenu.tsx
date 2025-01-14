@@ -1,6 +1,7 @@
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { useQueryParam } from '@/hooks/useQueryParam';
+import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 import { CalendarDays, CalendarPlus, CaseSensitive, Star } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 
@@ -16,20 +17,21 @@ const MenuItems = {
 		icon: CalendarDays,
 	},
 	'Creation Date': {
-		param: 'creationDate%3Aasc',
+		param: 'creationDate:asc',
 		icon: CalendarPlus,
 	},
 	Importance: {
-		param: 'importance%3Aasc',
+		param: 'importance:asc',
 		icon: Star,
 	},
 	Alphabetical: {
-		param: 'alphabetical%3Aasc',
+		param: 'alphabetical:asc',
 		icon: CaseSensitive,
 	},
 };
 
 export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen, todolistId }: SortMenuProps) {
+	const updateSearchParams = useUpdateSearchParams();
 	const queryParam = useQueryParam();
 	const [filterField, filterValue] = queryParam('filter');
 	const [sortField] = queryParam('sort');
@@ -47,12 +49,7 @@ export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen, todolistId
 			</MenuItem>
 
 			{Object.entries(MenuItems).map(([label, menuItem]) => (
-				<MenuItem
-					href={`/tasks/?id=${todolistId}&sort=${menuItem.param}${
-						filterField ? `&filter=${filterField}:${filterValue}` : ''
-					}`}
-					key={label}
-				>
+				<MenuItem onClick={() => updateSearchParams('sort', menuItem.param)} key={label}>
 					<menuItem.icon className="text-slate-600" size={18} />
 					<p>{label}</p>
 				</MenuItem>

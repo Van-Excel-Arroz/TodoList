@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui-shared/Button';
 import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
-import { useSearchParams } from 'next/navigation';
 import {
 	ArrowDownAZIcon,
 	ArrowUpZAIcon,
@@ -31,7 +30,7 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 	const updateSearchParams = useUpdateSearchParams();
 	const queryParam = useQueryParam();
 	const [sortField, sortValue] = queryParam('sort');
-	const SortIcon = sortIcons[sortField] ?? ArrowDownWideNarrowIcon;
+	const SortIcon = sortIcons[sortField] ?? { asc: ArrowUpWideNarrowIcon, desc: ArrowDownWideNarrowIcon };
 
 	return (
 		<div className="flex items-center gap-1 p-1 bg-slate-200 text-slate-700 rounded-lg border border-slate-300 hover:border-slate-400">
