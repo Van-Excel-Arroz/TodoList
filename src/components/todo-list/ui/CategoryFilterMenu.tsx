@@ -5,7 +5,6 @@ import { useQueryParam } from '@/hooks/useQueryParam';
 import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 import { Category, MenuOpenProps } from '@/types';
 import { CheckIcon } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 interface CategoryFilterMenuProps extends MenuOpenProps {
