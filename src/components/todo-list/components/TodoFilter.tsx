@@ -15,7 +15,7 @@ export default function TodoFilter({ initialCategories }: { initialCategories: C
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
 	const queryParam = useQueryParam();
-	const [filterField] = queryParam('sort');
+	const [filterField] = queryParam('filter');
 
 	return (
 		<div className="relative">
