@@ -4,6 +4,7 @@ import { Button } from '@/components/ui-shared/Button';
 import { useSearchParams } from 'next/navigation';
 import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 import { Dispatch, SetStateAction } from 'react';
+import { useQueryParam } from '@/hooks/useQueryParam';
 
 const filterIcons: any = {
 	dueDate: CalendarDays,
@@ -16,9 +17,9 @@ interface FilterControlProps {
 }
 
 export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilterOpen }: FilterControlProps) {
-	const searchParams = useSearchParams();
 	const updateSearchParams = useUpdateSearchParams();
-	const [filterField, filterValue] = searchParams.get('filter')?.split(':') || [];
+	const queryParam = useQueryParam();
+	const [filterField, filterValue] = queryParam('filter');
 	const Icon = filterIcons[filterField] ?? Filter;
 
 	const handleMenuToggle = () => {
