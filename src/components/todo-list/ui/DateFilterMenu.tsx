@@ -1,16 +1,14 @@
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
-import { useQueryParam } from '@/hooks/useQueryParam';
-import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
+import useQueryParams from '@/hooks/useQueryParams';
 import { MenuOpenProps } from '@/types';
 import { CheckIcon } from 'lucide-react';
 
 const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Date'];
 
 export default function DateFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
-	const updateSearchParams = useUpdateSearchParams();
-	const queryParam = useQueryParam();
-	const [filterField, filterValue] = queryParam('filter');
+	const { getQueryParam, updateSearchParams } = useQueryParams();
+	const [filterField, filterValue] = getQueryParam('filter');
 
 	return (
 		<Menu
