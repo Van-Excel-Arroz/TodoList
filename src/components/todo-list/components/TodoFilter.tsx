@@ -8,14 +8,14 @@ import CategoryFilterMenu from '../ui/CategoryFilterMenu';
 import DateFilterMenu from '../ui/DateFilterMenu';
 import FilterMenu from '../ui/FilterMenu';
 import FilterControl from '../ui/FilterControl';
-import { useQueryParam } from '@/hooks/useQueryParam';
+import useQueryParams from '@/hooks/useQueryParams';
 
 export default function TodoFilter({ initialCategories }: { initialCategories: Category[] }) {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
-	const queryParam = useQueryParam();
-	const [filterField] = queryParam('filter');
+	const { getQueryParam } = useQueryParams();
+	const [filterField] = getQueryParam('filter');
 
 	return (
 		<div className="relative">
