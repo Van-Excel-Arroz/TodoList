@@ -14,7 +14,7 @@ export default function TodoDetailsHeader() {
 		setSelectedTodoId(0);
 	};
 
-	const handleDeleteClick = async () => {
+	const handleDelete = async () => {
 		await deleteTodoAction(selectedTodoId);
 		deleteTodo(selectedTodoId);
 		setSelectedTodoId(0);
@@ -25,7 +25,7 @@ export default function TodoDetailsHeader() {
 				<ArrowBigRightDashIcon size={22} />
 			</Button>
 			<p className="flex-1 text-xl font-medium text-center px-6">Task Details</p>
-			<Button onClick={handleDeleteClick} ariaLabel="Delete Todo">
+			<Button onClick={handleDelete} ariaLabel="Delete Todo">
 				<Trash2 size={18} />
 			</Button>
 		</div>
