@@ -1,7 +1,6 @@
 import { CalendarDays, Filter, Tag, XIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui-shared/Button';
-import { useSearchParams } from 'next/navigation';
 import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
 import { Dispatch, SetStateAction } from 'react';
 import { useQueryParam } from '@/hooks/useQueryParam';
