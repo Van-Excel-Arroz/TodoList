@@ -22,7 +22,7 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 		deleteCategory(selectedTodoId, categoryId);
 	};
 
-	const onSubmit = async (data: CategoryFormInputs) => {
+	const handleOnSubmit = async (data: CategoryFormInputs) => {
 		const categoryId = await addTodoCategoryAction(data.category_title, data.hex_color, todolistId, selectedTodoId);
 
 		if (!categoryId) return;
@@ -50,7 +50,7 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 				))}
 			</div>
 			<div className="flex justify-between items-center w-full text-slate-600">
-				<CategoryForm onSubmit={onSubmit} />
+				<CategoryForm onSubmit={handleOnSubmit} />
 			</div>
 		</div>
 	);
