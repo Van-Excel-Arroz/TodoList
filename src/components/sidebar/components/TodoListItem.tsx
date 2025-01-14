@@ -15,8 +15,8 @@ import EditTodoListForm from '../ui/EditTodoListForm';
 function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const isSelectedPath = searchParams.get('id') === todolist.id.toString();
 	const currentId = searchParams.get('id');
+	const isSelectedPath = currentId === todolist.id.toString();
 	const [isEditing, setIsEditing] = useState(false);
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
