@@ -1,7 +1,6 @@
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
-import { useQueryParam } from '@/hooks/useQueryParam';
-import useUpdateSearchParams from '@/hooks/useUpdateSearchParams';
+import useQueryParams from '@/hooks/useQueryParams';
 import { CalendarDays, CalendarPlus, CaseSensitive, Star } from 'lucide-react';
 
 interface SortMenuProps {
@@ -30,9 +29,8 @@ const MenuItems = {
 };
 
 export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen, todolistId }: SortMenuProps) {
-	const updateSearchParams = useUpdateSearchParams();
-	const queryParam = useQueryParam();
-	const [sortField] = queryParam('sort');
+	const { getQueryParam, updateSearchParams } = useQueryParams();
+	const [sortField] = getQueryParam('sort');
 
 	return (
 		<Menu
