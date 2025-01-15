@@ -6,3 +6,14 @@ interface CategoriesContextState {
 	setCategories: (categories: Category[]) => void;
 	addCategory: (newCategory: Category) => void;
 }
+
+const useCategoriesStore = create<CategoriesContextState>()((set: any) => ({
+	categories: [],
+	setCategories: (categories: Category[]) => set({ categories: categories }),
+	addCategory: (newCategory: Category) =>
+		set((state: CategoriesContextState) => ({
+			categories: [...state.categories, newCategory],
+		})),
+}));
+
+export default useCategoriesStore;
