@@ -1,17 +1,16 @@
 import { Button } from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
+import useCategoriesStore from '@/context/CategoriesContext';
 import useQueryParams from '@/hooks/useQueryParams';
 import { Category, MenuOpenProps } from '@/types';
 import { CheckIcon } from 'lucide-react';
 import { useState } from 'react';
 
-interface CategoryFilterMenuProps extends MenuOpenProps {
-	initialCategories: Category[];
-}
+interface CategoryFilterMenuProps extends MenuOpenProps {}
 
-export default function CategoryFilterMenu({ initialCategories, isOpen, setIsOpen }: CategoryFilterMenuProps) {
-	const [categories, setCategories] = useState<Category[]>(initialCategories);
+export default function CategoryFilterMenu({ isOpen, setIsOpen }: CategoryFilterMenuProps) {
+	const { categories } = useCategoriesStore();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField] = getQueryParam('filter');
 

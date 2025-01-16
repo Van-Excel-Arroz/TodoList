@@ -31,11 +31,7 @@ export default function TodoFilter() {
 				setIsCategoryFilterOpen={setIsCategoryFilterOpen}
 				setIsDateFilterOpen={setIsDateFilterOpen}
 			/>
-			<CategoryFilterMenu
-				initialCategories={initialCategories}
-				isOpen={isCategoryFilterOpen}
-				setIsOpen={setIsCategoryFilterOpen}
-			/>
+			<CategoryFilterMenu isOpen={isCategoryFilterOpen} setIsOpen={setIsCategoryFilterOpen} />
 			<DateFilterMenu isOpen={isDateFilterOpen} setIsOpen={setIsDateFilterOpen} />
 		</div>
 	);
