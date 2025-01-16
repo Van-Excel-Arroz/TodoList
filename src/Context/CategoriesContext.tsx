@@ -5,6 +5,7 @@ interface CategoriesContextState {
 	categories: Category[];
 	setCategories: (categories: Category[]) => void;
 	addCategory: (newCategory: Category) => void;
+	toggleIsSelected: (categoryId: number) => void;
 }
 
 const useCategoriesStore = create<CategoriesContextState>()((set: any) => ({
