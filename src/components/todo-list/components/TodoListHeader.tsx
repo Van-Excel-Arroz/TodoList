@@ -1,6 +1,6 @@
 'use client';
 
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { Category, TodoList } from '@/types';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
@@ -23,6 +23,10 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	const { setCategories } = useCategoriesStore();
 	const todolistFromStore = getTodoListById(initialTodolist.id);
 	const currentTodolist = todolistFromStore || initialTodolist;
+
+	useEffect(() => {
+		setCategories(categories)
+	}, [categories])
 
 	return (
 		<div className="sticky top-0 bg-slate-100 z-50 px-6 pb-5">
