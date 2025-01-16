@@ -14,6 +14,10 @@ const useCategoriesStore = create<CategoriesContextState>()((set: any) => ({
 		set((state: CategoriesContextState) => ({
 			categories: [...state.categories, newCategory],
 		})),
+	toggleIsSelected: (categoryId: number) =>
+		set((state: CategoriesContextState) => ({
+			categories: state.categories.map(cat => (cat.id === categoryId ? !cat.is_selected : cat)),
+		})),
 }));
 
 export default useCategoriesStore;
