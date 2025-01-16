@@ -9,7 +9,7 @@ import { CheckIcon } from 'lucide-react';
 interface CategoryFilterMenuProps extends MenuOpenProps {}
 
 export default function CategoryFilterMenu({ isOpen, setIsOpen }: CategoryFilterMenuProps) {
-	const { categories } = useCategoriesStore();
+	const { categories, toggleIsSelected } = useCategoriesStore();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField] = getQueryParam('filter');
 
@@ -21,10 +21,6 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: CategoryFilter
 			}
 		});
 		updateSearchParams('filter', `categories:${url}`);
-	};
-
-	const updateSelect = (id: number) => {
-		setCategories(categories.map(cat => (cat.id === id ? { ...cat, is_selected: !cat.is_selected } : cat)));
 	};
 
 	return (
@@ -50,7 +46,7 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: CategoryFilter
 					<MenuItem
 						key={category.id}
 						className="flex items-center justify-between"
-						onClick={() => updateSelect(category.id)}
+						onClick={() => toggleIsSelected(category.id)}
 					>
 						<div className="flex items-center gap-2">
 							<p style={{ color: category.hex_color }}>●</p>
