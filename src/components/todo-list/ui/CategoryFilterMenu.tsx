@@ -3,9 +3,8 @@ import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import useCategoriesStore from '@/context/CategoriesContext';
 import useQueryParams from '@/hooks/useQueryParams';
-import { Category, MenuOpenProps } from '@/types';
+import { MenuOpenProps } from '@/types';
 import { CheckIcon } from 'lucide-react';
-import { useState } from 'react';
 
 interface CategoryFilterMenuProps extends MenuOpenProps {}
 
