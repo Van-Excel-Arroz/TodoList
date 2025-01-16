@@ -25,8 +25,8 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	const currentTodolist = todolistFromStore || initialTodolist;
 
 	useEffect(() => {
-		setCategories(categories)
-	}, [categories])
+		setCategories(categories);
+	}, [categories]);
 
 	return (
 		<div className="sticky top-0 bg-slate-100 z-50 px-6 pb-5">
@@ -40,7 +40,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 						<Search />
 					</Button>
 					<TodoSort todolistId={initialTodolist.id} />
-					<TodoFilter initialCategories={categories} />
+					<TodoFilter />
 				</div>
 			</div>
 			<TodoForm todolistId={initialTodolist.id} />

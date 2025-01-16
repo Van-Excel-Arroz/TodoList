@@ -1,7 +1,6 @@
 'use client';
 
 import { Button } from '@/components/ui-shared/Button';
-import { Category } from '@/types';
 import { Filter } from 'lucide-react';
 import { useState } from 'react';
 import CategoryFilterMenu from '../ui/CategoryFilterMenu';
@@ -10,7 +9,7 @@ import FilterMenu from '../ui/FilterMenu';
 import FilterControl from '../ui/FilterControl';
 import useQueryParams from '@/hooks/useQueryParams';
 
-export default function TodoFilter({ initialCategories }: { initialCategories: Category[] }) {
+export default function TodoFilter() {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isCategoryFilterOpen, setIsCategoryFilterOpen] = useState(false);
 	const [isDateFilterOpen, setIsDateFilterOpen] = useState(false);
