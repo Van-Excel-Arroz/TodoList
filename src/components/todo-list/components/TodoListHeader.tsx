@@ -10,6 +10,7 @@ import TodoSort from './TodoSort';
 import { Search } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
+import useCategoriesStore from '@/context/CategoriesContext';
 
 interface TodoListHeaderProps {
 	initialTodolist: TodoList;
@@ -19,6 +20,7 @@ interface TodoListHeaderProps {
 function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 	const { getTodoListById } = useTodoListsStore();
+	const { setCategories } = useCategoriesStore();
 	const todolistFromStore = getTodoListById(initialTodolist.id);
 	const currentTodolist = todolistFromStore || initialTodolist;
 
