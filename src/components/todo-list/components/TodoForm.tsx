@@ -11,6 +11,7 @@ import { Todo } from '@/types';
 import TodoInput from '../ui/TodoInput';
 import DueDate from '../../ui-shared/DueDate';
 import DueTime from '@/components/ui-shared/DueTime';
+import useCategoriesStore from '@/context/CategoriesContext';
 
 interface TodoFormData {
 	todo?: string;
@@ -25,6 +26,7 @@ interface TodoFormProps {
 function TodoForm({ todolistId }: TodoFormProps) {
 	const { register, handleSubmit, reset } = useForm();
 	const { addTodo } = useTodosStore();
+	const { addCategory } = useCategoriesStore();
 	const [dueDate, setDueDate] = useState<string | undefined>(undefined);
 
 	const createTimestamp = (date: string | undefined, time: string | undefined): string | null => {
@@ -61,6 +63,9 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			};
 
 			addTodo(newTodo);
+			validCategories.map(cat => {
+				addCategory(cat);
+			});
 		}
 		setDueDate(undefined);
 		reset();
