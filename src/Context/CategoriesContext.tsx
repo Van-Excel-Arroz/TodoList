@@ -16,8 +16,9 @@ const useCategoriesStore = create<CategoriesContextState>()((set: any) => ({
 			const existingCategory = state.categories.find(cat => cat.category_title === newCategory.category_title);
 
 			if (!existingCategory) {
-				return [...state.categories, newCategory];
+				return { categories: [...state.categories, newCategory] };
 			}
+			return { categories: state.categories };
 		}),
 	toggleIsSelected: (categoryId: number) =>
 		set((state: CategoriesContextState) => ({
