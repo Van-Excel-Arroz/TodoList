@@ -14,13 +14,11 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: CategoryFilter
 	const [filterField] = getQueryParam('filter');
 
 	const applyCategoriesFilter = () => {
-		let url = '';
-		categories.map(cat => {
-			if (cat.is_selected) {
-				url = url + `${cat.category_title},`;
-			}
-		});
-		updateSearchParams('filter', `categories:${url}`);
+		const selectedCategoryTitles = categories
+			.filter(cat => cat.is_selected)
+			.map(cat => cat.category_title)
+			.join(',');
+		updateSearchParams('filter', `categories:${selectedCategoryTitles}`);
 	};
 
 	return (
