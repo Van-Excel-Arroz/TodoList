@@ -12,11 +12,13 @@ import DueDate from '../ui/DueDate';
 import DeleteTodoButton from '../ui/DeleteTodoButton';
 import { GripVertical, Star } from 'lucide-react';
 import Importance from '@/components/ui-shared/Importance';
+import useQueryParams from '@/hooks/useQueryParams';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
 	const { deleteTodo, toggleTodoCompletion, toggleTodoImportance } = useTodosStore();
 	const isSelected = selectedTodoId === todo.id;
+	const { updateSearchParams, getQueryParam } = useQueryParams();
 
 	const handleTodoClick = () => {
 		if (isSelected) {
@@ -38,6 +40,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 
 	const handleCategoryClick = async (categoryTitle: string) => {
 		// await updateIsSelectedCategoryColorsAction(true, categoryTitle, todo.todo_list_id);
+		updateSearchParams('filter', `categories:${categoryTitle}`);
 	};
 
 	const handleDeleteClick = async () => {
