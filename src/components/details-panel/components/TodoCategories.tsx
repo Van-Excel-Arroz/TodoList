@@ -7,6 +7,7 @@ import useTodosStore from '@/context/TodosContext';
 import CategoryForm from '../ui/CategoryForm';
 import CategoryTags from '../ui/CategoryTags';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
+import useCategoriesStore from '@/context/CategoriesContext';
 
 interface CategoryFormInputs {
 	category_title: string;
@@ -16,6 +17,7 @@ interface CategoryFormInputs {
 export default function TodoCategories({ categories, todolistId }: { categories: Category[]; todolistId: number }) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { addCategory, deleteCategory } = useTodosStore();
+	const { addCategory: addCategoryFilter } = useCategoriesStore();
 
 	const handleRemoveCategory = async (categoryId: number) => {
 		await deleteTodoCategoryAction(categoryId);
@@ -34,7 +36,7 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 			is_selected: false,
 			todo_list_id: todolistId,
 		};
-
+		addCategoryFilter(newCategory);
 		addCategory(selectedTodoId, newCategory);
 	};
 
