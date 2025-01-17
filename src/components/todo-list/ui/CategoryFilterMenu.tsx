@@ -6,6 +6,7 @@ import useQueryParams from '@/hooks/useQueryParams';
 import { updateIsSelectedCategoryColors } from '@/lib/category';
 import { MenuOpenProps } from '@/types';
 import { CheckIcon } from 'lucide-react';
+import { useEffect } from 'react';
 
 interface CategoryFilterMenuProps extends MenuOpenProps {}
 
@@ -13,6 +14,18 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: CategoryFilter
 	const { categories, toggleIsSelected } = useCategoriesStore();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField] = getQueryParam('filter');
+
+	useEffect(() => {
+		const selectedCategories = categories.filter(cat => cat.is_selected);
+		if (selectedCategories.length > 0) {
+			const selectedCategoryTitles = selectedCategories.map(cat => cat.category_title).join(',');
+			updateSearchParams('filter', `categories:${selectedCategoryTitles}`);
+		} else {
+			if (filterField === 'categories') {
+				updateSearchParams('filter', null);
+			}
+		}
+	});
 
 	const applyCategoriesFilter = async () => {
 		const selectedCategoryTitles = categories
