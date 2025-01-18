@@ -14,6 +14,7 @@ interface TodosContextState {
 	updateDueDate: (todoId: number, newDueDate: string) => void;
 	updateDescription: (todoId: number, newDescription: string | null) => void;
 	updateCategoriesColor: (categoryTitle: string, newColor: string) => void;
+	updateCompletedAt: (todoId: number, date: string | null) => void;
 	deleteDueDate: (todoId: number) => void;
 	getTodoById: (todoId: number) => Todo;
 }
@@ -71,6 +72,10 @@ const useTodosStore = create<TodosContextState>()((set: any, get: any) => ({
 					todo.categories?.map(cat => (cat.category_title === categoryTitle ? { ...cat, hex_color: newColor } : cat)) ||
 					[],
 			})),
+		})),
+	updateCompletedAt: (todoId: number, date: string | null) =>
+		set((state: TodosContextState) => ({
+			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, completed_at: date } : todo)),
 		})),
 	deleteDueDate: (todoId: number) =>
 		set((state: TodosContextState) => ({
