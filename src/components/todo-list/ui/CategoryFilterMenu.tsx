@@ -25,7 +25,8 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: CategoryFilter
 				await updateIsSelectedCategoryColors(cat.is_selected, cat.category_title, cat.todo_list_id);
 			})
 		);
-		updateSearchParams('filter', `categories:${selectedCategoryTitles}`);
+
+		if (selectedCategoryTitles) updateSearchParams('filter', `categories:${selectedCategoryTitles}`);
 	};
 	return (
 		<Menu
