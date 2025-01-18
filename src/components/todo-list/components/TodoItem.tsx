@@ -2,15 +2,13 @@
 
 import { memo } from 'react';
 import { Todo } from '@/types';
-import { updateIsSelectedCategoryColorsAction } from '@/actions/category-action';
 import { deleteTodoAction, updateTodoCompletionAction, updateTodoImportanceAction } from '@/actions/todo-action';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 import CheckBox from '@/components/ui-shared/CheckBox';
 import CategoryTags from '../ui/CategoryTags';
 import DueDate from '../ui/DueDate';
-import DeleteTodoButton from '../ui/DeleteTodoButton';
-import { GripVertical, Star } from 'lucide-react';
+import { GripVertical } from 'lucide-react';
 import Importance from '@/components/ui-shared/Importance';
 import useQueryParams from '@/hooks/useQueryParams';
 
@@ -84,8 +82,6 @@ function TodoItem({ todo }: { todo: Todo }) {
 						)}
 					</div>
 				</div>
-
-				{/* <DeleteTodoButton handleDeleteClick={handleDeleteClick} /> */}
 				<Importance isImportant={todo.is_important} handleOnClick={handleImportanceChange} />
 			</div>
 		</div>
