@@ -55,21 +55,6 @@ export async function getTodosWithCategories(todolistId: number): Promise<Todo[]
 	}
 }
 
-export async function getTodo(todoId: number): Promise<Todo | null> {
-	try {
-		const result = await query('SELECT * FROM todos WHERE id = $1', [todoId]);
-		const todo = result.rows[0];
-		const categories = await getTodoWithCategories(todo.id);
-		return {
-			...todo,
-			categories,
-		};
-	} catch (error) {
-		console.error('Error fetching todo in the database', error);
-		return null;
-	}
-}
-
 export async function getTodos(todolistId: number): Promise<Todo[]> {
 	try {
 		const result = await query('SELECT * FROM todos WHERE todo_list_id = $1', [todolistId]);
