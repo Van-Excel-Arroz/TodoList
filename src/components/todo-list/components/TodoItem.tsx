@@ -14,7 +14,7 @@ import useQueryParams from '@/hooks/useQueryParams';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
-	const { deleteTodo, toggleTodoCompletion, toggleTodoImportance } = useTodosStore();
+	const { toggleTodoCompletion, toggleTodoImportance } = useTodosStore();
 	const isSelected = selectedTodoId === todo.id;
 	const { updateSearchParams } = useQueryParams();
 
@@ -38,14 +38,6 @@ function TodoItem({ todo }: { todo: Todo }) {
 
 	const handleCategoryClick = (categoryTitle: string) => {
 		updateSearchParams('filter', `categories:${categoryTitle}`);
-	};
-
-	const handleDeleteClick = async () => {
-		await deleteTodoAction(todo.id);
-		deleteTodo(todo.id);
-		if (isSelected) {
-			setSelectedTodoId(0);
-		}
 	};
 	return (
 		<div
