@@ -58,6 +58,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				creation_date: new Date().toISOString(),
 				todo_list_id: todolistId,
 				categories: validCategories,
+				completed_at: null,
 				is_completed: false,
 				is_important: false,
 			};
