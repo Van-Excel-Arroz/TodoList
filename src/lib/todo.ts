@@ -16,7 +16,7 @@ export async function storeTodo(text: string, dueDatetime: string | null, todoli
 	}
 }
 
-export async function getTodoWithCategories(todoId: number): Promise<Category[]> {
+export async function getCategoriesFromTodo(todoId: number): Promise<Category[]> {
 	try {
 		const result = await query(
 			`
@@ -40,7 +40,7 @@ export async function getTodosWithCategories(todolistId: number): Promise<Todo[]
 
 		const todosWithCategories: Todo[] = await Promise.all(
 			todos.map(async todo => {
-				const categories = await getTodoWithCategories(todo.id);
+				const categories = await getCategoriesFromTodo(todo.id);
 				return {
 					...todo,
 					categories,
