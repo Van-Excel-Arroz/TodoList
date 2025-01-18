@@ -18,7 +18,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
 	const { deleteTodo, toggleTodoCompletion, toggleTodoImportance } = useTodosStore();
 	const isSelected = selectedTodoId === todo.id;
-	const { updateSearchParams, getQueryParam } = useQueryParams();
+	const { updateSearchParams } = useQueryParams();
 
 	const handleTodoClick = () => {
 		if (isSelected) {
@@ -38,8 +38,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 		toggleTodoImportance(todo.id);
 	};
 
-	const handleCategoryClick = async (categoryTitle: string) => {
-		// await updateIsSelectedCategoryColorsAction(true, categoryTitle, todo.todo_list_id);
+	const handleCategoryClick = (categoryTitle: string) => {
 		updateSearchParams('filter', `categories:${categoryTitle}`);
 	};
 
