@@ -51,8 +51,8 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 				transition={{ duration: 0.25 }}
 			>
 				<ul>
-					{todos.map(todo => (
-						<motion.li key={todo.id} layout variants={itemVariants} initial="initial" animate="animate">
+					{todos.map((todo, index) => (
+						<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
 							<TodoItem todo={todo} />
 						</motion.li>
 					))}
