@@ -65,9 +65,12 @@ const useTodosStore = create<TodosContextState>()((set: any, get: any) => ({
 		})),
 	updateCategoriesColor: (categoryTitle: string, newColor: string) =>
 		set((state: TodosContextState) => ({
-			todos: state.todos.map(todo =>
-				todo.categories?.map(cat => (cat.category_title === categoryTitle ? { ...cat, hex_color: newColor } : cat))
-			),
+			todos: state.todos.map(todo => ({
+				...todo,
+				categories:
+					todo.categories?.map(cat => (cat.category_title === categoryTitle ? { ...cat, hex_color: newColor } : cat)) ||
+					[],
+			})),
 		})),
 	deleteDueDate: (todoId: number) =>
 		set((state: TodosContextState) => ({
