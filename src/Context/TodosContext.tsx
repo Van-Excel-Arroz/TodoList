@@ -13,6 +13,7 @@ interface TodosContextState {
 	updateTodoTitle: (todoId: number, newTitle: string) => void;
 	updateDueDate: (todoId: number, newDueDate: string) => void;
 	updateDescription: (todoId: number, newDescription: string | null) => void;
+	updateCategoriesColor: (categoryTitle: string, newColor: string) => void;
 	deleteDueDate: (todoId: number) => void;
 	getTodoById: (todoId: number) => Todo;
 }
