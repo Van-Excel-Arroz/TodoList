@@ -29,6 +29,12 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const handleCheckboxChange = async () => {
 		await updateTodoCompletionAction(todo.id, !todo.is_completed);
 		toggleTodoCompletion(todo.id);
+
+		if (!todo.is_completed) {
+			// add completed_at
+		} else {
+			// set completed_at to null
+		}
 	};
 
 	const handleImportanceChange = async () => {
