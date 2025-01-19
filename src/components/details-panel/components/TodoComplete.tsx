@@ -2,6 +2,7 @@ import { updateTodoCompletionAction } from '@/actions/todo-action';
 import CheckBox from '@/components/ui-shared/CheckBox';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
+import { format } from 'date-fns';
 
 interface TodoCompleteProps {
 	isCompleted: boolean;
@@ -23,9 +24,12 @@ export default function TodoComplete({ isCompleted, completedAt }: TodoCompleteP
 	};
 
 	return (
-		<div className="flex items-center gap-2">
-			<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
-			<p>{isCompleted ? 'Completed' : 'Mark as completed'}</p>
+		<div className="flex justify-between items-center">
+			<div className="flex items-center gap-2">
+				<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
+				<p>{isCompleted ? 'Completed' : 'Mark as completed'}</p>
+			</div>
+			{completedAt && <p>{format(new Date(completedAt), 'MM/dd/yy')}</p>}
 		</div>
 	);
 }
