@@ -148,10 +148,11 @@ export async function updateTodoDescription(todoId: number, description: string 
 
 export async function updateTodoCompletedAt(todoId: number, completedAt: string | null) {
 	try {
-		await query('UPDATE todos SET completed_at = $1 WHERE id = $2', [completedAt, todoId])
-		return true
+		await query('UPDATE todos SET completed_at = $1 WHERE id = $2', [completedAt, todoId]);
+		console.log(`from db ${completedAt} , ${todoId}`);
+		return true;
 	} catch (error) {
-		console.error('Error updating todo completedAt in the database', error)
-		return false
+		console.error('Error updating todo completedAt in the database', error);
+		return false;
 	}
 }

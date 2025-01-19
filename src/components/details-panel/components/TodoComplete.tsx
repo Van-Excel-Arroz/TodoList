@@ -17,8 +17,9 @@ export default function TodoComplete({ isCompleted, completedAt }: TodoCompleteP
 		await updateTodoCompletionAction(selectedTodoId, !isCompleted);
 		toggleTodoCompletion(selectedTodoId);
 		if (!isCompleted) {
-			updateCompletedAt(selectedTodoId, new Date().toISOString());
-			await updateTodoCompletedAtAction(selectedTodoId, completedAt);
+			const now = new Date().toISOString();
+			updateCompletedAt(selectedTodoId, now);
+			await updateTodoCompletedAtAction(selectedTodoId, now);
 		} else {
 			updateCompletedAt(selectedTodoId, null);
 			await updateTodoCompletedAtAction(selectedTodoId, null);
