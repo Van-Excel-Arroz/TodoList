@@ -1,4 +1,4 @@
-import { updateTodoCompletionAction } from '@/actions/todo-action';
+import { updateTodoCompletedAtAction, updateTodoCompletionAction } from '@/actions/todo-action';
 import CheckBox from '@/components/ui-shared/CheckBox';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
@@ -12,15 +12,16 @@ interface TodoCompleteProps {
 export default function TodoComplete({ isCompleted, completedAt }: TodoCompleteProps) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoCompletion, updateCompletedAt } = useTodosStore();
-	console.log(completedAt);
 
 	const handleCheckboxChange = async () => {
 		await updateTodoCompletionAction(selectedTodoId, !isCompleted);
 		toggleTodoCompletion(selectedTodoId);
 		if (!isCompleted) {
 			updateCompletedAt(selectedTodoId, new Date().toISOString());
+			updateTodoCompletedAtAction(selectedTodoId, completedAt);
 		} else {
 			updateCompletedAt(selectedTodoId, null);
+			updateTodoCompletedAtAction(selectedTodoId, null);
 		}
 	};
 
