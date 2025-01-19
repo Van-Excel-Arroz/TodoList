@@ -5,6 +5,7 @@ import {
 	deleteTodo,
 	deleteTodoDueDate,
 	storeTodo,
+	updateTodoCompletedAt,
 	updateTodoCompletion,
 	updateTodoDescription,
 	updateTodoDueDate,
@@ -81,4 +82,9 @@ export async function deleteTodoDueDateAction(todoId: number) {
 export async function updateTodoDescriptionAction(todoId: number, description: string | null) {
 	const result = await updateTodoDescription(todoId, description);
 	if (!result) console.error('Failed to update todo description');
+}
+
+export async function updateTodoCompletedAtAction(todoId: number, completedAt: string | null) {
+	const result = await updateTodoCompletedAt(todoId, completedAt);
+	if (!result) console.error('Failed to update todo completedAt');
 }
