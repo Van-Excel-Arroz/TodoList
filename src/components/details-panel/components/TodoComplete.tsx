@@ -12,6 +12,7 @@ interface TodoCompleteProps {
 export default function TodoComplete({ isCompleted, completedAt }: TodoCompleteProps) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoCompletion, updateCompletedAt } = useTodosStore();
+	console.log(completedAt);
 
 	const handleCheckboxChange = async () => {
 		await updateTodoCompletionAction(selectedTodoId, !isCompleted);
@@ -29,7 +30,7 @@ export default function TodoComplete({ isCompleted, completedAt }: TodoCompleteP
 				<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
 				<p>{isCompleted ? 'Completed' : 'Mark as completed'}</p>
 			</div>
-			{completedAt && <p>{format(new Date(completedAt), 'MM/dd/yy')}</p>}
+			{completedAt && <p className="text-sm text-slate-600">{format(new Date(completedAt), 'MM/dd/yy')}</p>}
 		</div>
 	);
 }
