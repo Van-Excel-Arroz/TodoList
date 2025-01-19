@@ -18,10 +18,10 @@ export default function TodoComplete({ isCompleted, completedAt }: TodoCompleteP
 		toggleTodoCompletion(selectedTodoId);
 		if (!isCompleted) {
 			updateCompletedAt(selectedTodoId, new Date().toISOString());
-			updateTodoCompletedAtAction(selectedTodoId, completedAt);
+			await updateTodoCompletedAtAction(selectedTodoId, completedAt);
 		} else {
 			updateCompletedAt(selectedTodoId, null);
-			updateTodoCompletedAtAction(selectedTodoId, null);
+			await updateTodoCompletedAtAction(selectedTodoId, null);
 		}
 	};
 
