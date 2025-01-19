@@ -3,7 +3,12 @@ import CheckBox from '@/components/ui-shared/CheckBox';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 
-export default function TodoComplete({ isCompleted }: { isCompleted: boolean }) {
+interface TodoCompleteProps {
+	isCompleted: boolean;
+	completedAt: string;
+}
+
+export default function TodoComplete({ isCompleted, completedAt }: TodoCompleteProps) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoCompletion, updateCompletedAt } = useTodosStore();
 

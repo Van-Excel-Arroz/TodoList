@@ -34,7 +34,7 @@ export default function TodoDetailsPanel() {
 				<div className="flex flex-col justify-between px-6 h-full">
 					<div className="flex flex-col gap-4">
 						<TodoDetailsHeader />
-						<TodoComplete isCompleted={todo?.is_completed ?? false} />
+						<TodoComplete isCompleted={todo?.is_completed ?? false} completedAt={todo?.completed_at ?? ''} />
 						<TodoImportance isImportant={todo?.is_important ?? false} />
 						<TodoTitle title={todo?.task_text ?? ''} />
 						<TodoDueDate dueDate={todo?.due_datetime ?? ''} />
