@@ -10,7 +10,6 @@ export default function TodoListMain({ initialTodos }: { initialTodos: Todo[] })
 
 	useEffect(() => {
 		setTodos(initialTodos);
-		console.log(initialTodos);
 	}, [initialTodos, setTodos]);
 
 	return (
