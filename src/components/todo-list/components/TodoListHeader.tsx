@@ -26,7 +26,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 
 	useEffect(() => {
 		setCategories(categories);
-	}, [categories]);
+	}, [categories, setCategories]);
 
 	return (
 		<div className="sticky top-0 bg-slate-100 z-50 px-6 pb-5">
