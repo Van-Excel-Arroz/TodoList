@@ -1,6 +1,6 @@
 import { CalendarDays, Filter, Tag, XIcon } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import useQueryParams from '@/hooks/useQueryParams';
 
 const filterIcons: any = {
@@ -18,6 +18,13 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 	const [filterField, filterValue] = getQueryParam('filter');
 	const [todolistId] = getQueryParam('id');
 	const Icon = filterIcons[filterField] ?? Filter;
+	const [selectedCategories, setSelectedCategories] = useState(0);
+
+	useEffect(() => {
+		if (filterField === 'categories') {
+			setSelectedCategories(filterValue.split(',').length);
+		}
+	}, [todolistId]);
 
 	const handleMenuToggle = () => {
 		if (filterField === 'dueDate') setIsDateFilterOpen(prev => !prev);
@@ -34,7 +41,9 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 			>
 				<Icon size={12} />
 				<p>{filterField === 'categories' ? 'Category' : filterValue}</p>
-				{filterField === 'categories' && <p className="bg-slate-500 text-slate-300 rounded-full px-1">0</p>}
+				{filterField === 'categories' && (
+					<p className="bg-slate-500 text-slate-300 rounded-full px-2">{selectedCategories}</p>
+				)}
 			</Button>
 			<Button
 				ariaLabel="Remove Sort"
