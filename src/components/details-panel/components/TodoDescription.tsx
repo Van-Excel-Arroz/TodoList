@@ -4,7 +4,7 @@ import { updateTodoDescriptionAction } from '@/actions/todo-action';
 import { Button } from '@/components/ui-shared/Button';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
-import { Save } from 'lucide-react';
+import { Save, Undo } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -51,9 +51,14 @@ export default function TodoDescription({ description }: { description: string }
 				<div className="flex items-center justify-between w-full">
 					<p className="pb-2">Description</p>
 					{isEditing && (
-						<Button type="submit" ariaLabel="Save New Todo Description">
-							<Save size={18} />
-						</Button>
+						<div className="flex items-center gap-2">
+							<Button type="submit" ariaLabel="Save New Todo Title">
+								<Save size={18} />
+							</Button>
+							<Button ariaLabel="Undo Description" type="submit" onClick={() => reset()}>
+								<Undo size={18} />
+							</Button>
+						</div>
 					)}
 				</div>
 				<textarea
