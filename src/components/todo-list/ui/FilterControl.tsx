@@ -42,7 +42,7 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 				<Icon size={12} />
 				<p>{filterField === 'categories' ? 'Category' : filterValue}</p>
 				{filterField === 'categories' && (
-					<p className="bg-slate-500 text-slate-300 rounded-full px-2">{selectedCategories}</p>
+					<p className="bg-slate-500 text-slate-200 rounded-full px-2">{selectedCategories}</p>
 				)}
 			</Button>
 			<Button
