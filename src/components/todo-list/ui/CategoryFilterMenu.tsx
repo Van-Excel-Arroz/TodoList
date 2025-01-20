@@ -3,7 +3,6 @@ import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import useCategoriesStore from '@/context/CategoriesContext';
 import useQueryParams from '@/hooks/useQueryParams';
-import { updateIsSelectedCategoryColors } from '@/lib/category';
 import { MenuOpenProps } from '@/types';
 import { CheckIcon } from 'lucide-react';
 
@@ -19,12 +18,6 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: CategoryFilter
 			.filter(cat => cat.is_selected)
 			.map(cat => cat.category_title)
 			.join(',');
-
-		await Promise.all(
-			categories.map(async cat => {
-				await updateIsSelectedCategoryColors(cat.is_selected, cat.category_title, cat.todo_list_id);
-			})
-		);
 
 		if (selectedCategoryTitles) updateSearchParams('filter', `categories:${selectedCategoryTitles}`);
 	};
