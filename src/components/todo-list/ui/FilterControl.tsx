@@ -24,7 +24,7 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 		if (filterField === 'categories') {
 			setSelectedCategories(filterValue.split(',').length);
 		}
-	}, [todolistId, filterField, filterValue]);
+	}, [filterField, filterValue]);
 
 	const handleMenuToggle = () => {
 		if (filterField === 'dueDate') setIsDateFilterOpen(prev => !prev);
