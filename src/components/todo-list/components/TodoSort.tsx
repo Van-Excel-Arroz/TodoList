@@ -23,7 +23,7 @@ export default function TodoSort({ todolistId }: { todolistId: number }) {
 					</Button>
 				</div>
 			)}
-			<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} todolistId={todolistId} />
+			<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} />
 		</div>
 	);
 }
