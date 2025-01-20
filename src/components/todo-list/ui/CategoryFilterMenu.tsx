@@ -12,6 +12,7 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: CategoryFilter
 	const { categories, toggleIsSelected } = useCategoriesStore();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField] = getQueryParam('filter');
+	const [todolistId] = getQueryParam('id');
 
 	const applyCategoriesFilter = async () => {
 		const selectedCategoryTitles = categories
@@ -19,7 +20,8 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: CategoryFilter
 			.map(cat => cat.category_title)
 			.join(',');
 
-		if (selectedCategoryTitles) updateSearchParams('filter', `categories:${selectedCategoryTitles}`);
+		if (selectedCategoryTitles)
+			updateSearchParams('filter', `categories:${selectedCategoryTitles}`, Number(todolistId));
 	};
 	return (
 		<Menu

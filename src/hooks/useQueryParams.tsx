@@ -8,10 +8,11 @@ export default function useQueryParams() {
 		const value = searchParams.get(field);
 		return value?.split(':') || [];
 	};
-	const updateSearchParams = (field: string, value: string | null) => {
+	const updateSearchParams = (field: string, value: string | null, todolistId: number) => {
 		const params = new URLSearchParams(searchParams.toString());
 		value ? params.set(`${field}`, value) : params.delete(`${field}`);
 		router.push(`/tasks/?${params.toString()}`);
+		localStorage.setItem(`todolistId-${todolistId}`, `/tasks/?${params.toString()}`);
 	};
 
 	return {

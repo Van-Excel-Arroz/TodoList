@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { deleteTodolistAction } from '@/actions/todolist-action';
@@ -21,6 +21,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
 	const { deleteTodolist } = useTodoListsStore();
+	const urlWithSearchParams = localStorage.getItem(`todolistId-${todolist.id}`);
 
 	const handleClick = () => {
 		const mediaQuery = window.matchMedia('(max-width: 1024px)');
@@ -61,7 +62,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 				<EditTodoListForm todolist={todolist} handleEditClick={handleEdit} />
 			) : (
 				<Link
-					href={`/tasks/?id=${todolist.id}`}
+					href={urlWithSearchParams || `/tasks/?id=${todolist.id}`}
 					onClick={handleClick}
 					className={`text-sm lg:text-base flex-1 text-ellipsis py-1 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
 						isSelectedPath ? 'font-bold' : 'font-normal'
