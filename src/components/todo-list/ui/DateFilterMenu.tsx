@@ -9,6 +9,7 @@ const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Dat
 export default function DateFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField, filterValue] = getQueryParam('filter');
+	const [todolistId] = getQueryParam('id');
 
 	return (
 		<Menu
@@ -25,7 +26,7 @@ export default function DateFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 				<MenuItem
 					key={label}
 					className="flex items-center justify-between w-full"
-					onClick={() => updateSearchParams('filter', `dueDate:${label}`)}
+					onClick={() => updateSearchParams('filter', `dueDate:${label}`, Number(todolistId))}
 				>
 					<p className="text-base text-left w-full">{label}</p>
 					<div className="h-3 w-3">
