@@ -4,8 +4,8 @@ export default function useQueryParams() {
 	const searchParams = useSearchParams();
 	const router = useRouter();
 
-	const getQueryParam = (paramName: string) => {
-		const value = searchParams.get(paramName);
+	const getQueryParam = (field: string) => {
+		const value = searchParams.get(field);
 		return value?.split(':') || [];
 	};
 	const updateSearchParams = (field: string, value: string | null) => {
