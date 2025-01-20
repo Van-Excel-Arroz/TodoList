@@ -6,9 +6,7 @@ import useQueryParams from '@/hooks/useQueryParams';
 import { MenuOpenProps } from '@/types';
 import { CheckIcon } from 'lucide-react';
 
-interface CategoryFilterMenuProps extends MenuOpenProps {}
-
-export default function CategoryFilterMenu({ isOpen, setIsOpen }: CategoryFilterMenuProps) {
+export default function CategoryFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 	const { categories, toggleIsSelected } = useCategoriesStore();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField] = getQueryParam('filter');
