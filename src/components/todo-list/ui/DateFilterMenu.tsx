@@ -26,7 +26,7 @@ export default function DateFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 				<MenuItem
 					key={label}
 					className="flex items-center justify-between w-full"
-					onClick={() => updateSearchParams('filter', `dueDate:${label}`, Number(todolistId))}
+					onClick={() => updateSearchParams('filter', `dueDate:${label}`, todolistId)}
 				>
 					<p className="text-base text-left w-full">{label}</p>
 					<div className="h-3 w-3">

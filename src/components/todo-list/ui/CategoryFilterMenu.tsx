@@ -20,8 +20,7 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: CategoryFilter
 			.map(cat => cat.category_title)
 			.join(',');
 
-		if (selectedCategoryTitles)
-			updateSearchParams('filter', `categories:${selectedCategoryTitles}`, Number(todolistId));
+		if (selectedCategoryTitles) updateSearchParams('filter', `categories:${selectedCategoryTitles}`, todolistId);
 	};
 	return (
 		<Menu

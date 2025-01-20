@@ -28,6 +28,7 @@ const sortLabels: any = {
 export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: Dispatch<SetStateAction<boolean>> }) {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [sortField, sortValue] = getQueryParam('sort');
+	const [todolistId] = getQueryParam('id');
 	const SortIcon = sortIcons[sortField] ?? { asc: ArrowUpWideNarrowIcon, desc: ArrowDownWideNarrowIcon };
 
 	return (
@@ -35,7 +36,9 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 			<p className="text-xs pl-1">Sort by: </p>
 			<Button
 				ariaLabel="Reverse Sort Order"
-				onClick={() => updateSearchParams('sort', sortValue === 'asc' ? `${sortField}:desc` : `${sortField}:asc`)}
+				onClick={() =>
+					updateSearchParams('sort', sortValue === 'asc' ? `${sortField}:desc` : `${sortField}:asc`, todolistId)
+				}
 				className="hover:bg-slate-300 active:bg-slate-400"
 			>
 				{sortValue === 'asc' ? <SortIcon.asc size={14} /> : <SortIcon.desc size={14} />}
@@ -49,7 +52,7 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 			</Button>
 			<Button
 				ariaLabel="Remove Sort"
-				onClick={() => updateSearchParams('sort', null)}
+				onClick={() => updateSearchParams('sort', null, todolistId)}
 				className="hover:bg-slate-300 active:bg-slate-400"
 			>
 				<XIcon size={12} />

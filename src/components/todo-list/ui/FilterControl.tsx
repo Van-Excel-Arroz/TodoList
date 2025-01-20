@@ -16,6 +16,7 @@ interface FilterControlProps {
 export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilterOpen }: FilterControlProps) {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField, filterValue] = getQueryParam('filter');
+	const [todolistId] = getQueryParam('id');
 	const Icon = filterIcons[filterField] ?? Filter;
 
 	const handleMenuToggle = () => {
@@ -36,7 +37,7 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 			</Button>
 			<Button
 				ariaLabel="Remove Sort"
-				onClick={() => updateSearchParams('filter', null)}
+				onClick={() => updateSearchParams('filter', null, todolistId)}
 				className="hover:bg-slate-300 active:bg-slate-400"
 			>
 				<XIcon size={12} />

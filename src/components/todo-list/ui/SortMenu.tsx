@@ -6,7 +6,6 @@ import { CalendarDays, CalendarPlus, CaseSensitive, Star } from 'lucide-react';
 interface SortMenuProps {
 	isSortMenuOpen: boolean;
 	setIsSortMenuOpen: (val: boolean) => void;
-	todolistId: number;
 }
 
 const MenuItems = {
@@ -28,9 +27,10 @@ const MenuItems = {
 	},
 };
 
-export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen, todolistId }: SortMenuProps) {
+export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen }: SortMenuProps) {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [sortField] = getQueryParam('sort');
+	const [todolistId] = getQueryParam('id');
 
 	return (
 		<Menu
@@ -45,7 +45,7 @@ export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen, todolistId
 			</MenuItem>
 
 			{Object.entries(MenuItems).map(([label, menuItem]) => (
-				<MenuItem onClick={() => updateSearchParams('sort', menuItem.param)} key={label}>
+				<MenuItem onClick={() => updateSearchParams('sort', menuItem.param, todolistId)} key={label}>
 					<menuItem.icon className="text-slate-600" size={18} />
 					<p>{label}</p>
 				</MenuItem>

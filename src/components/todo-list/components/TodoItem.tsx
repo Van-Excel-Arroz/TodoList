@@ -20,7 +20,8 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoCompletion, toggleTodoImportance, updateCompletedAt } = useTodosStore();
 	const isSelected = selectedTodoId === todo.id;
-	const { updateSearchParams } = useQueryParams();
+	const { updateSearchParams, getQueryParam } = useQueryParams();
+	const [todolistId] = getQueryParam('id');
 
 	const handleTodoClick = () => {
 		if (isSelected) {
@@ -50,7 +51,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	};
 
 	const handleCategoryClick = (categoryTitle: string) => {
-		updateSearchParams('filter', `categories:${categoryTitle}`, todo.todo_list_id);
+		updateSearchParams('filter', `categories:${categoryTitle}`, todolistId);
 	};
 	return (
 		<div
