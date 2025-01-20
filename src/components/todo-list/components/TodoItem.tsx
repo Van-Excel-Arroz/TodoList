@@ -50,7 +50,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	};
 
 	const handleCategoryClick = (categoryTitle: string) => {
-		updateSearchParams('filter', `categories:${categoryTitle}`);
+		updateSearchParams('filter', `categories:${categoryTitle}`, todo.todo_list_id);
 	};
 	return (
 		<div
