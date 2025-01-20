@@ -2,7 +2,11 @@
 
 import { memo } from 'react';
 import { Todo } from '@/types';
-import { updateTodoCompletionAction, updateTodoImportanceAction } from '@/actions/todo-action';
+import {
+	updateTodoCompletedAtAction,
+	updateTodoCompletionAction,
+	updateTodoImportanceAction,
+} from '@/actions/todo-action';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 import CheckBox from '@/components/ui-shared/CheckBox';
@@ -14,7 +18,7 @@ import useQueryParams from '@/hooks/useQueryParams';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
-	const { toggleTodoCompletion, toggleTodoImportance } = useTodosStore();
+	const { toggleTodoCompletion, toggleTodoImportance, updateCompletedAt } = useTodosStore();
 	const isSelected = selectedTodoId === todo.id;
 	const { updateSearchParams } = useQueryParams();
 
@@ -31,9 +35,12 @@ function TodoItem({ todo }: { todo: Todo }) {
 		toggleTodoCompletion(todo.id);
 
 		if (!todo.is_completed) {
-			// add completed_at
+			const now = new Date().toISOString();
+			updateCompletedAt(selectedTodoId, now);
+			await updateTodoCompletedAtAction(selectedTodoId, now);
 		} else {
-			// set completed_at to null
+			updateCompletedAt(selectedTodoId, null);
+			await updateTodoCompletedAtAction(selectedTodoId, null);
 		}
 	};
 
