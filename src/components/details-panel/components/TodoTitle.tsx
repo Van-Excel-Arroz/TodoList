@@ -4,7 +4,8 @@ import { updateTodoTitleAction } from '@/actions/todo-action';
 import { Button } from '@/components/ui-shared/Button';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
-import { Save } from 'lucide-react';
+import { div } from 'framer-motion/client';
+import { Save, Undo } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -49,9 +50,14 @@ export default function TodoTitle({ title }: { title: string }) {
 				<div className="flex items-center justify-between w-full">
 					<p className="pb-2">Title</p>
 					{isEditing && (
-						<Button type="submit" ariaLabel="Save New Todo Title">
-							<Save size={18} />
-						</Button>
+						<div className="flex items-center gap-2">
+							<Button type="submit" ariaLabel="Save New Todo Title">
+								<Save size={18} />
+							</Button>
+							<Button ariaLabel="Undo Due Date" type="submit" onClick={() => reset()}>
+								<Undo size={18} />
+							</Button>
+						</div>
 					)}
 				</div>
 				<textarea
