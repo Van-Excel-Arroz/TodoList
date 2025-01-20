@@ -34,6 +34,7 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 			>
 				<Icon size={12} />
 				<p>{filterField === 'categories' ? 'Category' : filterValue}</p>
+				{filterField === 'categories' && <p className="bg-slate-500 text-slate-300 rounded-full px-1">0</p>}
 			</Button>
 			<Button
 				ariaLabel="Remove Sort"
