@@ -12,7 +12,7 @@ export default function useQueryParams() {
 		const params = new URLSearchParams(searchParams.toString());
 		value ? params.set(`${field}`, value) : params.delete(`${field}`);
 		router.push(`/tasks/?${params.toString()}`);
-		localStorage.setItem(`todolistId-${todolistId}`, `/tasks/?${params.toString()}`);
+		localStorage.setItem(`searchParams-${todolistId}`, `/tasks/?${params.toString()}`);
 	};
 
 	return {

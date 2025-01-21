@@ -21,7 +21,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
 	const { deleteTodolist } = useTodoListsStore();
-	const urlWithSearchParams = localStorage.getItem(`todolistId-${todolist.id}`);
+	const urlWithSearchParams = localStorage.getItem(`searchParams-${todolist.id}`);
 
 	const handleClick = () => {
 		const mediaQuery = window.matchMedia('(max-width: 1024px)');
