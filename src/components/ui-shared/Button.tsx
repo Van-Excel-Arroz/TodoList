@@ -5,12 +5,27 @@ interface ButtonProps {
 	ariaLabel: string;
 	disabled?: boolean;
 	className?: string;
+	darkMode?: boolean;
 }
 
-export function Button({ children, onClick, type, ariaLabel, disabled, className = '' }: ButtonProps) {
+export function Button({
+	children,
+	onClick,
+	type,
+	ariaLabel,
+	disabled,
+	className = '',
+	darkMode = false,
+}: ButtonProps) {
+	const style = `${
+		darkMode
+			? 'bg-slate-700 text-white hover:bg-slate-500 active:bg-slate-400'
+			: 'hover:bg-slate-200 active:bg-slate-300 text-slate-600'
+	}`;
+
 	return (
 		<button
-			className={`${className} relative hover:bg-slate-200 active:bg-slate-300 rounded-md p-1 text-slate-600 cursor-pointer`}
+			className={`${className} ${style} rounded-md p-1 relative cursor-pointer`}
 			onClick={() => onClick && onClick()}
 			type={type ? type : 'button'}
 			aria-label={ariaLabel}
