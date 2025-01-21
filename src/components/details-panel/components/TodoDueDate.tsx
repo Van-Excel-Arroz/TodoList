@@ -75,10 +75,10 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 				</div>
 			</div>
 			<div className="flex items-center gap-2 w-full">
-				<div className="w-1/2 flex justify-center rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-400">
+				<div className="w-1/2 flex justify-center rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-500">
 					<DueDate dueDate={selectedDueDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
 				</div>
-				<div className="w-1/2 flex justify-center rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-400">
+				<div className="w-1/2 flex justify-center rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-500">
 					<DueTime
 						dueDate={selectedDueDate}
 						setDueDate={updateSelectedTodoDueDate}
