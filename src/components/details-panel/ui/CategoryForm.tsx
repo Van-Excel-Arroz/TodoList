@@ -43,7 +43,7 @@ export default function CategoryForm({ onSubmit }: CategoryFormProps) {
 			<input
 				type="text"
 				autoFocus
-				className="border rounded-md w-full p-2 text-sm focus:outline-none border-slate-300 focus:border-slate-400 hover:border-slate-400"
+				className="border rounded-md w-full p-2 text-sm focus:outline-none border-slate-300 focus:border-slate-500 hover:border-slate-500"
 				placeholder="Category Title"
 				autoComplete="off"
 				{...register('category_title', { maxLength: 20 })}
