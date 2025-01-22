@@ -84,8 +84,8 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				</Button>
 			</div>
 			<div className="flex items-center gap-1 pt-3 pb-2 text-slate-600">
-				<DueDate dueDate={dueDate} setDueDate={setDueDate} />
-				<DueTime dueDate={dueDate} setDueDate={setDueDate} />
+				<DueDate dueDate={dueDate} setDueDate={setDueDate} defaultEmptyText={true} />
+				<DueTime dueDate={dueDate} setDueDate={setDueDate} defaultEmptyText={true} />
 				<Button ariaLabel="Repeat">
 					<Repeat size={18} />
 				</Button>
