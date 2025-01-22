@@ -83,7 +83,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 					<p>+ Add Task</p>
 				</Button>
 			</div>
-			<div className="flex items-center gap-1 pt-2 pb-1 text-slate-600">
+			<div className="flex items-center gap-1 pt-3 pb-2 text-slate-600">
 				<DueDate dueDate={dueDate} setDueDate={setDueDate} />
 				<DueTime dueDate={dueDate} setDueDate={setDueDate} />
 				<Button ariaLabel="Repeat">
