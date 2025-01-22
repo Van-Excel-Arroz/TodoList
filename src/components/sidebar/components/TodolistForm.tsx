@@ -27,7 +27,12 @@ export default function TodolistForm() {
 			<form onSubmit={handleSubmit(onSubmit)} className="mt-2 mb-4 flex flex-col">
 				<div className="flex items-center gap-2">
 					<TodoListTitleInput register={register} />
-					<Button type="submit" ariaLabel="Submit new list">
+					<Button
+						type="submit"
+						ariaLabel="Submit new list"
+						darkMode={true}
+						className="h-10 w-12 flex items-center justify-center"
+					>
 						<Plus size={20} />
 					</Button>
 				</div>
