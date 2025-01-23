@@ -48,7 +48,7 @@ export default function CategoryForm({ onSubmit }: CategoryFormProps) {
 				autoComplete="off"
 				{...register('category_title', { maxLength: 20 })}
 			/>
-			<Button ariaLabel="Add Category" type="submit">
+			<Button ariaLabel="Add Category" type="submit" darkMode={true}>
 				<Plus size={20} />
 			</Button>
 		</form>
