@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Todo } from '@/types';
 import TodoSection from './TodoSection';
 import { useTodoDataManagement } from '@/hooks/useTodoDataManagement';
@@ -8,12 +8,26 @@ export default function TodoListView({ todos }: { todos: Todo[] }) {
 
 	return (
 		<div>
-			<motion.div>
-				<TodoSection title="Todos" todos={incompleteTodos} />
-			</motion.div>
-			<motion.div layout transition={{ duration: 0.15 }}>
-				<TodoSection title="Completed Todos" todos={completeTodos} />
-			</motion.div>
+			<AnimatePresence>
+				<motion.div
+					layout
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					transition={{ duration: 0.15 }}
+				>
+					<TodoSection title="Todos" todos={incompleteTodos} />
+				</motion.div>
+				<motion.div
+					layout
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					transition={{ duration: 0.15 }}
+				>
+					<TodoSection title="Completed Todos" todos={completeTodos} />
+				</motion.div>
+			</AnimatePresence>
 		</div>
 	);
 }
