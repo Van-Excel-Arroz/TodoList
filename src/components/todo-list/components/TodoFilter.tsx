@@ -18,8 +18,8 @@ export default function TodoFilter() {
 
 	return (
 		<div className="relative">
-			<div className="flex items-center">
-				<p className="text-sm text-slate-700 pr-2">Filter by:</p>
+			<div className="flex items-center pt-1">
+				<p className="text-sm text-slate-700 pr-2 border-b-2 border-white py-1">Filter by:</p>
 
 				{filterField ? (
 					<FilterControl setIsCategoryFilterOpen={setIsCategoryFilterOpen} setIsDateFilterOpen={setIsDateFilterOpen} />
