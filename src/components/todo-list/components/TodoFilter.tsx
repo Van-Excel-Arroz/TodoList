@@ -18,21 +18,25 @@ export default function TodoFilter() {
 
 	return (
 		<div className="relative">
-			{filterField ? (
-				<FilterControl setIsCategoryFilterOpen={setIsCategoryFilterOpen} setIsDateFilterOpen={setIsDateFilterOpen} />
-			) : (
-				<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
-					<Filter size={20} className="text-slate-600" />
-				</Button>
-			)}
-			<FilterMenu
-				isOpen={isFilterMenuOpen}
-				setIsOpen={setIsFilterMenuOpen}
-				setIsCategoryFilterOpen={setIsCategoryFilterOpen}
-				setIsDateFilterOpen={setIsDateFilterOpen}
-			/>
-			<CategoryFilterMenu isOpen={isCategoryFilterOpen} setIsOpen={setIsCategoryFilterOpen} />
-			<DateFilterMenu isOpen={isDateFilterOpen} setIsOpen={setIsDateFilterOpen} />
+			<div className="flex items-center">
+				<p className="text-sm text-slate-700 pr-2">Filter by:</p>
+
+				{filterField ? (
+					<FilterControl setIsCategoryFilterOpen={setIsCategoryFilterOpen} setIsDateFilterOpen={setIsDateFilterOpen} />
+				) : (
+					<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
+						<Filter size={20} className="text-slate-600" />
+					</Button>
+				)}
+				<FilterMenu
+					isOpen={isFilterMenuOpen}
+					setIsOpen={setIsFilterMenuOpen}
+					setIsCategoryFilterOpen={setIsCategoryFilterOpen}
+					setIsDateFilterOpen={setIsDateFilterOpen}
+				/>
+				<CategoryFilterMenu isOpen={isCategoryFilterOpen} setIsOpen={setIsCategoryFilterOpen} />
+				<DateFilterMenu isOpen={isDateFilterOpen} setIsOpen={setIsDateFilterOpen} />
+			</div>
 		</div>
 	);
 }

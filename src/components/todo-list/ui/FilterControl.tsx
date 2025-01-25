@@ -33,7 +33,6 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 
 	return (
 		<div className="flex items-center">
-			<p className="text-sm text-slate-700 pr-2">Filter by:</p>
 			<Button
 				ariaLabel="Change Filter"
 				onClick={handleMenuToggle}
