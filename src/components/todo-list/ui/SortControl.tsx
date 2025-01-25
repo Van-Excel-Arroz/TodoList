@@ -33,7 +33,6 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 
 	return (
 		<div className="flex items-center">
-			<p className="text-sm text-slate-700 pr-2">Sort by: </p>
 			<Button
 				ariaLabel="Reverse Sort Order"
 				onClick={() =>

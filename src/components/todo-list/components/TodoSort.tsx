@@ -14,16 +14,20 @@ export default function TodoSort() {
 
 	return (
 		<div className="relative">
-			{sortField ? (
-				<SortControl setIsSortMenuOpen={setIsSortMenuOpen} />
-			) : (
-				<div className="relative">
-					<Button ariaLabel="Filter" onClick={() => setIsSortMenuOpen(prev => !prev)}>
-						<ArrowUpDown size={20} className="text-slate-600" />
-					</Button>
-				</div>
-			)}
-			<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} />
+			<div className="flex items-center">
+				<p className="text-sm text-slate-700 pr-2">Sort by: </p>
+
+				{sortField ? (
+					<SortControl setIsSortMenuOpen={setIsSortMenuOpen} />
+				) : (
+					<div className="flex items-center">
+						<Button ariaLabel="Filter" onClick={() => setIsSortMenuOpen(prev => !prev)}>
+							<ArrowUpDown size={20} className="text-slate-600" />
+						</Button>
+					</div>
+				)}
+				<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} />
+			</div>
 		</div>
 	);
 }
