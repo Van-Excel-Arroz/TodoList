@@ -14,15 +14,15 @@ export default function TodoSort() {
 
 	return (
 		<div className="relative">
-			<div className="flex items-center ">
-				<p className="text-sm text-slate-700 pr-2 border-b-2 border-white py-2">Sort by: </p>
+			<div className="flex items-center pt-1">
+				<p className="text-sm text-slate-700 pr-2 border-b-2 border-white py-1">Sort by: </p>
 
 				{sortField ? (
 					<SortControl setIsSortMenuOpen={setIsSortMenuOpen} />
 				) : (
 					<Button
 						ariaLabel="Filter"
-						className=' className="flex items-center border-b-2 border-white py-1'
+						className=' className="flex items-center border-b-2 border-white'
 						onClick={() => setIsSortMenuOpen(prev => !prev)}
 					>
 						<ArrowUpDown size={18} className="text-slate-600" />
