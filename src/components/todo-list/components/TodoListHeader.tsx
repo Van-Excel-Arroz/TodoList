@@ -30,7 +30,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 
 	return (
 		<div className="sticky top-0 z-50 px-6 bg-white border-b border-slate-300">
-			<div className="flex justify-between items-center py-2">
+			<div className="flex justify-between items-center pt-2">
 				<div className="flex items-center gap-2">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					<p className="text-lg font-bold">{currentTodolist.title}</p>
