@@ -38,7 +38,7 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: MenuOpenProps)
 					<p>Apply</p>
 				</Button>
 			</MenuItem>
-			<div className="max-h-[70vh] overflow-hidden overflow-y-auto">
+			<div className="max-h-[60vh] overflow-hidden overflow-y-auto">
 				{categories.map(category => (
 					<MenuItem
 						key={category.id}
