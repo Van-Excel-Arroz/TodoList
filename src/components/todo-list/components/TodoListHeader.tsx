@@ -42,7 +42,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					<Button ariaLabel="Search">
 						<Search size={20} />
 					</Button>
-					<p className="text-sm text-slate-600">Search Tasks...</p>
+					<p className="text-md text-slate-600">Search Tasks...</p>
 				</div>
 				<div className="flex items-center gap-4">
 					<TodoSort />
