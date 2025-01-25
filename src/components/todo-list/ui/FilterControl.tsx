@@ -32,17 +32,17 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 	};
 
 	return (
-		<div className="flex items-center text-xs gap-1 p-1 bg-slate-200 text-slate-700 rounded-lg border border-slate-300 hover:border-slate-400">
-			<p className=" pl-1">Filter by:</p>
+		<div className="flex items-center">
+			<p className="text-sm text-slate-700 pr-2">Filter by:</p>
 			<Button
 				ariaLabel="Change Filter"
 				onClick={handleMenuToggle}
 				className="flex items-center gap-1 hover:bg-slate-300 active:bg-slate-400"
 			>
 				<Icon size={12} />
-				<p>{filterField === 'categories' ? 'Category' : filterValue}</p>
+				<p className="text-xs">{filterField === 'categories' ? 'Category' : filterValue}</p>
 				{filterField === 'categories' && (
-					<p className="bg-slate-500 text-slate-200 rounded-full px-2">{selectedCategories}</p>
+					<p className="bg-slate-500 text-slate-200 text-xs rounded-full px-2">{selectedCategories}</p>
 				)}
 			</Button>
 			<Button
