@@ -37,12 +37,17 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 				</div>
 			</div>
 			<TodoForm todolistId={initialTodolist.id} />
-			<div className="flex items-center gap-2 py-3">
-				<Button ariaLabel="Search">
-					<Search />
-				</Button>
-				<TodoSort todolistId={initialTodolist.id} />
-				<TodoFilter />
+			<div className="flex items-center justify-between gap-2 py-3">
+				<div className="flex items-center gap-2 rounded-lg w-52">
+					<Button ariaLabel="Search">
+						<Search size={16} />
+					</Button>
+					<p className="text-sm">Search Tasks...</p>
+				</div>
+				<div className="flex items-center gap-2">
+					<TodoSort todolistId={initialTodolist.id} />
+					<TodoFilter />
+				</div>
 			</div>
 		</div>
 	);
