@@ -73,23 +73,20 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	};
 
 	return (
-		<form
-			onSubmit={handleSubmit(onSubmit)}
-			className="bg-white flex flex-col items-start rounded-lg outline outline-2 outline-slate-300 px-4 pt-4"
-		>
+		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="w-full flex items-center justify-between gap-4">
 				<TodoInput register={register} />
 				<Button type="submit" ariaLabel="Add new Todo" darkMode={true} className="w-32 h-11">
 					<p>+ Add Task</p>
 				</Button>
 			</div>
-			<div className="flex items-center gap-1 pt-3 pb-2 text-slate-600">
+			{/* <div className="flex items-center gap-1 pt-3 pb-2 text-slate-600">
 				<DueDate dueDate={dueDate} setDueDate={setDueDate} defaultEmptyText={true} />
 				<DueTime dueDate={dueDate} setDueDate={setDueDate} defaultEmptyText={true} />
 				<Button ariaLabel="Repeat">
 					<Repeat size={18} />
 				</Button>
-			</div>
+			</div> */}
 		</form>
 	);
 }
