@@ -40,7 +40,7 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 				}
 				className="hover:bg-slate-300 active:bg-slate-400"
 			>
-				{sortValue === 'asc' ? <SortIcon.asc size={14} /> : <SortIcon.desc size={14} />}
+				{sortValue === 'asc' ? <SortIcon.asc size={16} /> : <SortIcon.desc size={16} />}
 			</Button>
 			<Button
 				ariaLabel="Change Filter"
@@ -54,7 +54,7 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 				onClick={() => updateSearchParams('sort', null, todolistId)}
 				className="hover:bg-slate-300 active:bg-slate-400"
 			>
-				<XIcon size={12} />
+				<XIcon size={16} />
 			</Button>
 		</div>
 	);

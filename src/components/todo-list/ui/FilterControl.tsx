@@ -38,7 +38,7 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 				onClick={handleMenuToggle}
 				className="flex items-center gap-1 hover:bg-slate-300 active:bg-slate-400"
 			>
-				<Icon size={12} />
+				<Icon size={16} />
 				<p className="text-sm">{filterField === 'categories' ? 'Category' : filterValue}</p>
 				{filterField === 'categories' && (
 					<p className="bg-slate-500 text-slate-200 text-xs rounded-full px-2">{selectedCategories}</p>
@@ -49,7 +49,7 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 				onClick={() => updateSearchParams('filter', null, todolistId)}
 				className="hover:bg-slate-300 active:bg-slate-400"
 			>
-				<XIcon size={12} />
+				<XIcon size={16} />
 			</Button>
 		</div>
 	);
