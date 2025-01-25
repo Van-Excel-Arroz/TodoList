@@ -29,21 +29,21 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	}, [categories, setCategories]);
 
 	return (
-		<div className="sticky top-0 z-50 px-6 pb-5 bg-white border-b border-slate-300">
+		<div className="sticky top-0 z-50 px-6 bg-white border-b border-slate-300">
 			<div className="flex justify-between items-center py-2">
 				<div className="flex items-center gap-2">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					<p className="text-lg font-bold">{currentTodolist.title}</p>
 				</div>
-				<div className="flex items-center gap-2">
-					<Button ariaLabel="Search">
-						<Search />
-					</Button>
-					<TodoSort todolistId={initialTodolist.id} />
-					<TodoFilter />
-				</div>
 			</div>
 			<TodoForm todolistId={initialTodolist.id} />
+			<div className="flex items-center gap-2 py-3">
+				<Button ariaLabel="Search">
+					<Search />
+				</Button>
+				<TodoSort todolistId={initialTodolist.id} />
+				<TodoFilter />
+			</div>
 		</div>
 	);
 }
