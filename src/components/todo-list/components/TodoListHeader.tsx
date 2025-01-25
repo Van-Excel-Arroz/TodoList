@@ -45,7 +45,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					<p className="text-sm text-slate-600">Search Tasks...</p>
 				</div>
 				<div className="flex items-center gap-2">
-					<TodoSort todolistId={initialTodolist.id} />
+					<TodoSort />
 					<TodoFilter />
 				</div>
 			</div>

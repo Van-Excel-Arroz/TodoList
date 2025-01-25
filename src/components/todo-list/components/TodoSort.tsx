@@ -7,7 +7,7 @@ import SortMenu from '../ui/SortMenu';
 import SortControl from '../ui/SortControl';
 import useQueryParams from '@/hooks/useQueryParams';
 
-export default function TodoSort({ todolistId }: { todolistId: number }) {
+export default function TodoSort() {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 	const { getQueryParam } = useQueryParams();
 	const [sortField] = getQueryParam('sort');
