@@ -32,7 +32,7 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 	const SortIcon = sortIcons[sortField] ?? { asc: ArrowUpWideNarrowIcon, desc: ArrowDownWideNarrowIcon };
 
 	return (
-		<div className="flex items-center border-b-8">
+		<div className="flex items-center border-b-2 border-slate-300 py-1">
 			<Button
 				ariaLabel="Reverse Sort Order"
 				onClick={() =>
