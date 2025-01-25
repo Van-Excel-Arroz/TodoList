@@ -4,7 +4,7 @@ import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
-import { Repeat, SendHorizonal } from 'lucide-react';
+import { Repeat } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
