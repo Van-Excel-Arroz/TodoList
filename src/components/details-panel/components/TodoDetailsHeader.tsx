@@ -22,7 +22,7 @@ export default function TodoDetailsHeader() {
 	return (
 		<div className="flex items-center justify-between py-6 border-b border-slate-300 sticky top-0 bg-[#F3F3F4] lg:bg-white">
 			<Button onClick={handleCloseRightSidebar} ariaLabel="Close Todo Menu">
-				<ArrowBigRightDashIcon size={22} />
+				<ArrowBigRightDashIcon size={30} />
 			</Button>
 			<p className="flex-1 text-xl font-medium text-center px-6">Task Details</p>
 			<Button onClick={handleDelete} ariaLabel="Delete Todo">
