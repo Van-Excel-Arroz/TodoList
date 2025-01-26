@@ -8,7 +8,7 @@ export default function TodoListsSidebarToggle() {
 	const { toggleTodoListsSidebar, isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 	return (
 		<Button onClick={toggleTodoListsSidebar} ariaLabel="Todolist Menu">
-			{isTodoListsSidebarOpen ? <ArrowBigLeftDashIcon size={30} /> : <Menu size={22} />}
+			{isTodoListsSidebarOpen ? <ArrowBigLeftDashIcon size={30} /> : <Menu size={20} />}
 		</Button>
 	);
 }
