@@ -18,7 +18,7 @@ export default function TodoFilter() {
 
 	return (
 		<div className="relative">
-			<div className="flex items-center pt-1">
+			<div className="flex items-center">
 				<p className="text-md text-slate-700 pr-2">Filter by:</p>
 
 				{filterField ? (
