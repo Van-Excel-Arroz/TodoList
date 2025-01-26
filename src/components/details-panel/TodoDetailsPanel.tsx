@@ -27,7 +27,7 @@ export default function TodoDetailsPanel() {
 				}}
 			/>
 			<div
-				className={`overflow-y-scroll fixed lg:relative right-0 top-0 bg-white border-l border-slate-300  h-screen transition-[width] duration-200 ease-in-out overflow-hidden z-50 backdrop-blur-sm bg-opacity-80 ${
+				className={`overflow-y-scroll fixed lg:relative right-0 top-0 bg-white border-l border-slate-300  h-screen transition-[width] duration-200 ease-in-out overflow-hidden z-50 ${
 					selectedTodoId ? 'w-96' : 'w-0'
 				}`}
 			>

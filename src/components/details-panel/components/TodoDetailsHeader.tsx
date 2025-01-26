@@ -20,7 +20,7 @@ export default function TodoDetailsHeader() {
 		setSelectedTodoId(0);
 	};
 	return (
-		<div className="flex items-center justify-between py-6 border-b border-slate-300 sticky top-0 bg-[#F3F3F4] lg:bg-white">
+		<div className="flex items-center justify-between py-6 border-b border-slate-300 sticky top-0 bg-white">
 			<Button onClick={handleCloseRightSidebar} ariaLabel="Close Todo Menu">
 				<ArrowBigRightDashIcon size={30} />
 			</Button>
