@@ -13,7 +13,7 @@ export default function TodoListMain({ initialTodos }: { initialTodos: Todo[] })
 	}, [initialTodos, setTodos]);
 
 	return (
-		<div className="w-[98%]  h-[calc(100vh-150px)] mx-auto mt-3 overflow-y-scroll">
+		<div className="w-[98%] h-[calc(100vh-150px)] mx-auto mt-3 overflow-y-scroll">
 			{todos.length > 0 ? (
 				<>
 					<TodoListView todos={todos} />
