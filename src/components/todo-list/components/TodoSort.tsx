@@ -14,8 +14,8 @@ export default function TodoSort() {
 
 	return (
 		<div className="relative">
-			<div className="flex items-center pt-1">
-				<p className="text-md text-slate-700 pr-2 border-b-2 border-white py-1">Sort by: </p>
+			<div className="flex items-center">
+				<p className="text-md text-slate-700 pr-2 border-b-2 border-white ">Sort by: </p>
 
 				{sortField ? (
 					<SortControl setIsSortMenuOpen={setIsSortMenuOpen} />
