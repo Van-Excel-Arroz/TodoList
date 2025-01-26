@@ -44,7 +44,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					</Button>
 					<p className="text-md text-slate-600">Search Tasks...</p>
 				</div>
-				<div className="flex items-center gap-4">
+				<div className="flex items-center gap-4 pt-2">
 					<TodoSort />
 					<TodoFilter />
 				</div>
