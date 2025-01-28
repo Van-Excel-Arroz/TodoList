@@ -74,9 +74,9 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className="w-full flex items-center justify-between gap-4">
+			<div className="w-full flex items-center gap-4">
 				<TodoInput register={register} />
-				<div className="flex items-center gap-1 pt-3 pb-2 text-slate-600">
+				<div className="flex items-center gap-1 text-slate-600">
 					<DueDate dueDate={dueDate} setDueDate={setDueDate} />
 					<DueTime dueDate={dueDate} setDueDate={setDueDate} />
 					<Button ariaLabel="Repeat">
