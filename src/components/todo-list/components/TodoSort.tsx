@@ -15,7 +15,7 @@ export default function TodoSort() {
 	return (
 		<div className="relative">
 			<div className="flex items-center">
-				<p className="text-md text-slate-700 pr-2">Sort by: </p>
+				<p className="text-md text-slate-700 pr-2 pb-1">Sort by: </p>
 
 				{sortField ? (
 					<SortControl setIsSortMenuOpen={setIsSortMenuOpen} />
