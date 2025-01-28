@@ -20,7 +20,7 @@ export default function TodoSort() {
 				{sortField ? (
 					<SortControl setIsSortMenuOpen={setIsSortMenuOpen} />
 				) : (
-					<Button ariaLabel="Filter" onClick={() => setIsSortMenuOpen(prev => !prev)}>
+					<Button ariaLabel="Filter" onClick={() => setIsSortMenuOpen(prev => !prev)} className="mb-1">
 						<ArrowUpDown size={18} className="text-slate-600" />
 					</Button>
 				)}
