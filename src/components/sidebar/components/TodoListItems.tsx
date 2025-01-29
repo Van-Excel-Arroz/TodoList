@@ -34,7 +34,7 @@ export default function TodolistItems({ initialTodoLists }: { initialTodoLists: 
 	const isEmpty = todolists.length === 0;
 
 	return (
-		<div className="h-[calc(100%-90px)] flex flex-col w-full overflow-y-auto overflow-hidden">
+		<div className="flex flex-col w-full overflow-y-auto overflow-hidden">
 			{isEmpty ? (
 				<div className="text-center mt-4">
 					<p className="text-xl font-semibold mb-2">No Tasks Available</p>
@@ -42,7 +42,7 @@ export default function TodolistItems({ initialTodoLists }: { initialTodoLists: 
 				</div>
 			) : (
 				<>
-					<div className="flex items-center gap-2 mb-2 w-10/12 mx-auto">
+					<div className="flex items-center gap-2 mb-2 w-full mx-auto">
 						<List size={30} className="text-slate-600" />
 						<p>Lists</p> <hr className="border border-slate-200 w-full" />
 					</div>
