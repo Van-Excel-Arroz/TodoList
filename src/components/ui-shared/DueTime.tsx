@@ -35,7 +35,7 @@ export default function DueTime({ dueDate, setDueDate, defaultEmptyText = false,
 					/>
 				</div>
 				{(defaultEmptyText || dueDate || isTimePickerOpen) && (
-					<div className="relative">
+					<div className="relative w-20">
 						<Button ariaLabel="Due Date" onClick={() => setIsTimePickerOpen(prev => !prev)}>
 							<p>{dueDate ? format(new Date(dueDate), 'hh:mm a') : 'HH:MM a'}</p>
 						</Button>
