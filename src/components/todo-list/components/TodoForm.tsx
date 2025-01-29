@@ -74,7 +74,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className="w-full flex items-center gap-4">
+			<div className="w-full flex items-center gap-4 py-2">
 				<TodoInput register={register} />
 				<div className="flex items-center gap-1 text-slate-600">
 					<DueDate dueDate={dueDate} setDueDate={setDueDate} />
