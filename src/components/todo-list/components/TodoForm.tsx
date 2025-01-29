@@ -83,8 +83,8 @@ function TodoForm({ todolistId }: TodoFormProps) {
 						<Repeat size={18} />
 					</Button>
 				</div>
-				<Button type="submit" ariaLabel="Add new Todo" darkMode={true} className="w-32 h-11">
-					<p>+ Add Task</p>
+				<Button type="submit" ariaLabel="Add new Todo" darkMode={true}>
+					<p className="w-28 h-9 flex items-center justify-center">+ Add Task</p>
 				</Button>
 			</div>
 		</form>
