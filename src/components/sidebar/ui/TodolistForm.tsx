@@ -39,13 +39,13 @@ export default function TodolistForm({ handleIsAddingList }: { handleIsAddingLis
 						type="text"
 						placeholder="New list"
 						autoFocus
-						className="py-1 px-2 w-full border-b border-slate-300 hover:border-slate-500 focus:border-slate-500 focus:outline-none"
+						className=" px-2 w-full border-b border-slate-300 hover:border-slate-500 focus:border-slate-500 focus:outline-none"
 					/>
 					<Button
 						type="submit"
 						ariaLabel="Submit new list"
 						darkMode={true}
-						className="flex items-center justify-center"
+						className=" flex items-center justify-center"
 					>
 						<Plus size={20} />
 					</Button>
