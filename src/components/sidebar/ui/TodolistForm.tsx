@@ -22,16 +22,23 @@ export default function TodolistForm({ handleIsAddingList }: { handleIsAddingLis
 		handleIsAddingList(false);
 	}
 
+	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+			handleIsAddingList(false);
+		}
+	};
+
 	return (
 		<>
 			<form onSubmit={handleSubmit(onSubmit)} className="mt-2 mb-4 flex flex-col">
-				<div className="flex items-center gap-2">
+				<div className="flex items-center gap-2" onBlur={handleInputBlur} tabIndex={-1}>
 					<input
 						{...register('title', {
 							required: true,
 						})}
 						type="text"
 						placeholder="New list"
+						autoFocus
 						className="py-1 px-2 w-full border-b border-slate-300 hover:border-slate-500 focus:border-slate-500 focus:outline-none"
 					/>
 					<Button
