@@ -10,7 +10,7 @@ export default function NewTodolistButton() {
 	return (
 		<>
 			{isAddingList ? (
-				<TodolistForm />
+				<TodolistForm handleIsAddingList={setIsAddingList} />
 			) : (
 				<Button
 					ariaLabel="add new list"

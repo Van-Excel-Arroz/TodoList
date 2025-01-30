@@ -6,7 +6,7 @@ import useTodoListsStore from '@/context/TodoListsContext';
 import { Button } from '@/components/ui-shared/Button';
 import { Plus } from 'lucide-react';
 
-export default function TodolistForm() {
+export default function TodolistForm({ handleIsAddingList }: { handleIsAddingList: (val: boolean) => void }) {
 	const { register, handleSubmit, reset } = useForm();
 
 	const { addTodolist } = useTodoListsStore();
@@ -19,6 +19,7 @@ export default function TodolistForm() {
 
 		addTodolist({ id: todolistId, title: data.title });
 		reset();
+		handleIsAddingList(false);
 	}
 
 	return (
