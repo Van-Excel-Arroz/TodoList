@@ -4,7 +4,7 @@ import { deleteTodoAction } from '@/actions/todo-action';
 import { Button } from '@/components/ui-shared/Button';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
-import { ArrowBigRightDashIcon, Trash2 } from 'lucide-react';
+import { PanelRightClose, Trash2 } from 'lucide-react';
 
 export default function TodoDetailsHeader() {
 	const { setSelectedTodoId, selectedTodoId } = useSelectedTodoIdStore();
@@ -22,7 +22,7 @@ export default function TodoDetailsHeader() {
 	return (
 		<div className="flex items-center justify-between py-6 border-b border-slate-300 sticky top-0 bg-white">
 			<Button onClick={handleCloseRightSidebar} ariaLabel="Close Todo Menu">
-				<ArrowBigRightDashIcon size={30} />
+				<PanelRightClose size={25} />
 			</Button>
 			<p className="flex-1 text-xl font-medium text-center px-6">Task Details</p>
 			<Button onClick={handleDelete} ariaLabel="Delete Todo">

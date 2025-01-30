@@ -2,13 +2,13 @@
 
 import { Button } from '@/components/ui-shared/Button';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
-import { ArrowBigLeftDashIcon, Menu } from 'lucide-react';
+import { Menu, PanelLeftClose } from 'lucide-react';
 
 export default function TodoListsSidebarToggle() {
 	const { toggleTodoListsSidebar, isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 	return (
 		<Button onClick={toggleTodoListsSidebar} ariaLabel="Todolist Menu">
-			{isTodoListsSidebarOpen ? <ArrowBigLeftDashIcon size={30} /> : <Menu size={20} />}
+			{isTodoListsSidebarOpen ? <PanelLeftClose size={25} /> : <Menu size={20} />}
 		</Button>
 	);
 }
