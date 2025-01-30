@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { createTodolist } from '@/actions/todolist-action';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { Button } from '@/components/ui-shared/Button';
-import { SendHorizontal } from 'lucide-react';
+import { SendHorizontal, X } from 'lucide-react';
 
 export default function TodolistForm({ handleIsAddingList }: { handleIsAddingList: (val: boolean) => void }) {
 	const { register, handleSubmit, reset } = useForm();
@@ -30,8 +30,8 @@ export default function TodolistForm({ handleIsAddingList }: { handleIsAddingLis
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)} className="mt-2 mb-4 flex flex-col">
-				<div className="flex items-center gap-2" onBlur={handleInputBlur} tabIndex={-1}>
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<div className="flex items-center gap-1" onBlur={handleInputBlur} tabIndex={-1}>
 					<input
 						{...register('title', {
 							required: true,
@@ -39,15 +39,13 @@ export default function TodolistForm({ handleIsAddingList }: { handleIsAddingLis
 						type="text"
 						placeholder="New list"
 						autoFocus
-						className=" px-2 w-full border-b border-slate-300 hover:border-slate-500 focus:border-slate-500 focus:outline-none"
+						className="px-2 py-1 mr-2 w-full border-b border-slate-300 hover:border-slate-500 focus:border-slate-500 focus:outline-none"
 					/>
-					<Button
-						type="submit"
-						ariaLabel="Submit new list"
-						darkMode={true}
-						className=" flex items-center justify-center"
-					>
+					<Button type="submit" ariaLabel="Submit new list">
 						<SendHorizontal size={20} />
+					</Button>
+					<Button ariaLabel="Cancel adding new list" onClick={() => handleIsAddingList(false)}>
+						<X size={20} />
 					</Button>
 				</div>
 			</form>
