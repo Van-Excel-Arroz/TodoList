@@ -26,12 +26,19 @@ export default function TodolistForm() {
 		<>
 			<form onSubmit={handleSubmit(onSubmit)} className="mt-2 mb-4 flex flex-col">
 				<div className="flex items-center gap-2">
-					<TodoListTitleInput register={register} />
+					<input
+						{...register('title', {
+							required: true,
+						})}
+						type="text"
+						placeholder="New list"
+						className="py-1 px-2 w-full border-b border-slate-300 hover:border-slate-500 focus:border-slate-500 focus:outline-none"
+					/>
 					<Button
 						type="submit"
 						ariaLabel="Submit new list"
 						darkMode={true}
-						className="h-10 w-12 flex items-center justify-center"
+						className="flex items-center justify-center"
 					>
 						<Plus size={20} />
 					</Button>
