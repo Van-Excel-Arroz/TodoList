@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { createTodolist } from '@/actions/todolist-action';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { Button } from '@/components/ui-shared/Button';
-import { Plus } from 'lucide-react';
+import { SendHorizontal } from 'lucide-react';
 
 export default function TodolistForm({ handleIsAddingList }: { handleIsAddingList: (val: boolean) => void }) {
 	const { register, handleSubmit, reset } = useForm();
@@ -47,7 +47,7 @@ export default function TodolistForm({ handleIsAddingList }: { handleIsAddingLis
 						darkMode={true}
 						className=" flex items-center justify-center"
 					>
-						<Plus size={20} />
+						<SendHorizontal size={20} />
 					</Button>
 				</div>
 			</form>
