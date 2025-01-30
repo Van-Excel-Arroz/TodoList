@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { createTodolist } from '@/actions/todolist-action';
 import useTodoListsStore from '@/context/TodoListsContext';
-import TodoListTitleInput from '../ui/TodoListTitleInput';
+import TodoListTitleInput from './TodoListTitleInput';
 import { Button } from '@/components/ui-shared/Button';
 import { Plus } from 'lucide-react';
 

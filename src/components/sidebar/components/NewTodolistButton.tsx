@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui-shared/Button';
 import { useState } from 'react';
-import TodolistForm from './TodolistForm';
+import TodolistForm from '../ui/TodolistForm';
 
 export default function NewTodolistButton() {
 	const [isAddingList, setIsAddingList] = useState(false);
