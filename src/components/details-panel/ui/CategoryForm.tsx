@@ -37,7 +37,7 @@ export default function CategoryForm({ onSubmit, handleIsAddingCategory }: Categ
 	};
 
 	return (
-		<form onSubmit={handleSubmit(handleFormSubmit)}>
+		<form onSubmit={handleSubmit(handleFormSubmit)} className="w-full">
 			<div className="flex items-center gap-2 justify-between w-full" onBlur={handleInputBlur} tabIndex={-1}>
 				{isClient && (
 					<input
