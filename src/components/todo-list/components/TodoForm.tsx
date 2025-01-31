@@ -83,7 +83,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				<div className="flex items-center gap-1 text-slate-600">
 					<div className="relative">
 						<Button ariaLabel="Select Due Date" onClick={() => setIsDueDateMenuOpen(true)}>
-							<Calendar />
+							<Calendar size={20} />
 						</Button>
 						<Menu
 							open={isDueDateMenuOpen}
