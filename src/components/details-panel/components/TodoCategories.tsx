@@ -56,14 +56,19 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 					<CategoryTags key={category.id} category={category} onRemove={handleRemoveCategory} />
 				))}
 				{!isAddingCategory && (
-					<Button darkMode={true} ariaLabel="Add Category" className="flex item-center justify-center gap-1">
+					<Button
+						darkMode={true}
+						ariaLabel="Add Category"
+						onClick={() => setIsAddingCategory(true)}
+						className="flex item-center justify-center gap-1"
+					>
 						<Plus size={13} />
 						<Tag size={20} />
 					</Button>
 				)}
 			</div>
 			<div className="flex justify-between items-center w-full text-slate-600">
-				{isAddingCategory && <CategoryForm onSubmit={handleOnSubmit} />}
+				{isAddingCategory && <CategoryForm onSubmit={handleOnSubmit} handleIsAddingCategory={setIsAddingCategory} />}
 			</div>
 		</div>
 	);
