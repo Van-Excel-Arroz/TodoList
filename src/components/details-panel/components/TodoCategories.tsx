@@ -9,6 +9,7 @@ import CategoryTags from '../ui/CategoryTags';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useCategoriesStore from '@/context/CategoriesContext';
 import { Button } from '@/components/ui-shared/Button';
+import { useState } from 'react';
 
 interface CategoryFormInputs {
 	category_title: string;
@@ -19,6 +20,7 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { addCategory, deleteCategory, updateCategoriesColor } = useTodosStore();
 	const { addCategory: addCategoryFilter } = useCategoriesStore();
+	const [isAddingCategory, setIsAddingCategory] = useState(false);
 
 	const handleRemoveCategory = async (categoryId: number) => {
 		await deleteTodoCategoryAction(categoryId);
@@ -53,13 +55,15 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 				{categories.map(category => (
 					<CategoryTags key={category.id} category={category} onRemove={handleRemoveCategory} />
 				))}
-				<Button darkMode={true} ariaLabel="Add Category" className="flex item-center justify-center gap-1">
-					<Plus size={13} />
-					<Tag size={20} />
-				</Button>
+				{!isAddingCategory && (
+					<Button darkMode={true} ariaLabel="Add Category" className="flex item-center justify-center gap-1">
+						<Plus size={13} />
+						<Tag size={20} />
+					</Button>
+				)}
 			</div>
 			<div className="flex justify-between items-center w-full text-slate-600">
-				<CategoryForm onSubmit={handleOnSubmit} />
+				{isAddingCategory && <CategoryForm onSubmit={handleOnSubmit} />}
 			</div>
 		</div>
 	);
