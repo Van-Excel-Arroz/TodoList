@@ -90,7 +90,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 							onClose={() => setIsDueDateMenuOpen(false)}
 							posX="-right-5"
 							posXNotch="before:right-7"
-							width="w-64"
+							width="w-44"
 						>
 							<MenuItem className="border-b border-gray-200 font-bold flex flex-col items-center" clickable={false}>
 								<p>Select Due Date</p>
