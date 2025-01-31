@@ -37,11 +37,11 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					<p className="text-lg font-bold">{currentTodolist.title}</p>
 				</div>
 			</div>
-			<div className="flex items-center gap-2">
+			{/* <div className="flex items-center gap-2">
 				{PREDEFINED_COLORS.map(color => (
 					<div key={color} className="w-10 h-10" style={{ backgroundColor: color }}></div>
 				))}
-			</div>
+			</div> */}
 			<TodoForm todolistId={initialTodolist.id} />
 			<div className="flex items-center justify-between gap-2">
 				<div className="flex items-center gap-2 w-60 pt-2">
