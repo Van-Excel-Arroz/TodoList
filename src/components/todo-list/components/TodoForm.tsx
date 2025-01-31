@@ -4,7 +4,7 @@ import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
-import { Repeat } from 'lucide-react';
+import { Calendar, Repeat } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
@@ -12,6 +12,8 @@ import TodoInput from '../ui/TodoInput';
 import DueDate from '../../ui-shared/DueDate';
 import DueTime from '@/components/ui-shared/DueTime';
 import useCategoriesStore from '@/context/CategoriesContext';
+import Menu from '@/components/ui-shared/Menu';
+import MenuItem from '@/components/ui-shared/MenuItem';
 
 interface TodoFormData {
 	todo?: string;
@@ -72,11 +74,30 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		reset();
 	};
 
+	const [isDueDateMenuOpen, setIsDueDateMenuOpen] = useState(false);
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="w-full flex items-center gap-4 py-2">
 				<TodoInput register={register} />
 				<div className="flex items-center gap-1 text-slate-600">
+					<div className="relative">
+						<Button ariaLabel="Select Due Date" onClick={() => setIsDueDateMenuOpen(true)}>
+							<Calendar />
+						</Button>
+						<Menu
+							open={isDueDateMenuOpen}
+							onClose={() => setIsDueDateMenuOpen(false)}
+							posX="-left-5"
+							posXNotch="before:left-6"
+							width="w-44"
+						>
+							<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
+								<p>Select Due Date</p>
+							</MenuItem>
+							<p>Custom</p>
+						</Menu>
+					</div>
 					<DueDate dueDate={dueDate} setDueDate={setDueDate} />
 					<DueTime dueDate={dueDate} setDueDate={setDueDate} />
 					<Button ariaLabel="Repeat">
