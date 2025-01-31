@@ -1,6 +1,6 @@
 'use client';
 
-import { Tag, Tags } from 'lucide-react';
+import { Plus, Tag, Tags } from 'lucide-react';
 import { Category } from '@/types';
 import { addTodoCategoryAction, deleteTodoCategoryAction } from '@/actions/category-action';
 import useTodosStore from '@/context/TodosContext';
@@ -8,6 +8,7 @@ import CategoryForm from '../ui/CategoryForm';
 import CategoryTags from '../ui/CategoryTags';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useCategoriesStore from '@/context/CategoriesContext';
+import { Button } from '@/components/ui-shared/Button';
 
 interface CategoryFormInputs {
 	category_title: string;
@@ -52,6 +53,10 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 				{categories.map(category => (
 					<CategoryTags key={category.id} category={category} onRemove={handleRemoveCategory} />
 				))}
+				<Button darkMode={true} ariaLabel="Add Category" className="flex item-center justify-center gap-1">
+					<Plus size={13} />
+					<Tag size={20} />
+				</Button>
 			</div>
 			<div className="flex justify-between items-center w-full text-slate-600">
 				<CategoryForm onSubmit={handleOnSubmit} />
