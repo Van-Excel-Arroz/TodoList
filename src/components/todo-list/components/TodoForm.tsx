@@ -88,18 +88,21 @@ function TodoForm({ todolistId }: TodoFormProps) {
 						<Menu
 							open={isDueDateMenuOpen}
 							onClose={() => setIsDueDateMenuOpen(false)}
-							posX="-left-5"
-							posXNotch="before:left-6"
-							width="w-44"
+							posX="-right-5"
+							posXNotch="before:right-7"
+							width="w-64"
 						>
-							<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
+							<MenuItem className="border-b border-gray-200 font-bold flex flex-col items-center" clickable={false}>
 								<p>Select Due Date</p>
 							</MenuItem>
-							<p>Custom</p>
+							<MenuItem clickable={false}>
+								<DueDate dueDate={dueDate} setDueDate={setDueDate} defaultEmptyText={true} />
+							</MenuItem>
+							<MenuItem clickable={false}>
+								<DueTime dueDate={dueDate} setDueDate={setDueDate} defaultEmptyText={true} />
+							</MenuItem>
 						</Menu>
 					</div>
-					<DueDate dueDate={dueDate} setDueDate={setDueDate} />
-					<DueTime dueDate={dueDate} setDueDate={setDueDate} />
 					<Button ariaLabel="Repeat">
 						<Repeat size={18} />
 					</Button>
