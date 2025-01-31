@@ -111,7 +111,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 					type="submit"
 					ariaLabel="Add new Todo"
 					darkMode={true}
-					className="w-32 h-9 flex items-center justify-center"
+					className="w-32 h-9 text-sm lg:text-md flex items-center justify-center"
 				>
 					+ Add Task
 				</Button>
