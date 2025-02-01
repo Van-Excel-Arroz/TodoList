@@ -4,7 +4,7 @@ import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
-import { Calendar, Repeat } from 'lucide-react';
+import { Calendar, CalendarCheck, Repeat } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
@@ -83,7 +83,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				<div className="flex items-center gap-1 text-slate-600">
 					<div className="relative">
 						<Button ariaLabel="Select Due Date" onClick={() => setIsDueDateMenuOpen(true)}>
-							<Calendar size={20} />
+							{dueDate ? <CalendarCheck size={20} /> : <Calendar size={20} />}
 						</Button>
 						<Menu
 							open={isDueDateMenuOpen}
