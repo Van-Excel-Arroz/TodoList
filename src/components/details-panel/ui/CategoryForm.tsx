@@ -61,7 +61,7 @@ export default function CategoryForm({ onSubmit, handleIsAddingCategory }: Categ
 						<SendHorizontal size={20} />
 					</Button>
 					<Button ariaLabel="Cancel Adding Category">
-						<X />
+						<X size={20} />
 					</Button>
 				</div>
 			</div>
