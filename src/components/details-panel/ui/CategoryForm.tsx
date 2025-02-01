@@ -2,7 +2,7 @@
 'use client';
 
 import { Button } from '@/components/ui-shared/Button';
-import { Plus } from 'lucide-react';
+import { Plus, SendHorizontal, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 
@@ -51,19 +51,19 @@ export default function CategoryForm({ onSubmit, handleIsAddingCategory }: Categ
 				<input
 					type="text"
 					autoFocus
-					className="border rounded-md w-full p-2 text-sm focus:outline-none border-slate-300 focus:border-slate-500 hover:border-slate-500"
+					className="border-b w-full p-2 text-sm focus:outline-none border-slate-300 focus:border-slate-500 hover:border-slate-500"
 					placeholder="Category Title"
 					autoComplete="off"
 					{...register('category_title', { maxLength: 20 })}
 				/>
-				<Button
-					ariaLabel="Add Category"
-					type="submit"
-					darkMode={true}
-					className="w-12 h-9 flex items-center justify-center"
-				>
-					<Plus size={20} />
-				</Button>
+				<div className="flex items-center gap-1">
+					<Button ariaLabel="Add Category" type="submit">
+						<SendHorizontal size={20} />
+					</Button>
+					<Button ariaLabel="Cancel Adding Category">
+						<X />
+					</Button>
+				</div>
 			</div>
 		</form>
 	);
