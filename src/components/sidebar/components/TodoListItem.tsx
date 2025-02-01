@@ -75,7 +75,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 			)}
 
 			{!isEditing && (
-				<div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 absolute right-5">
+				<div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 absolute right-3">
 					<Button onClick={() => handleEdit(true)} ariaLabel="Edit Todolist Title">
 						<Pencil size={15} />
 					</Button>
