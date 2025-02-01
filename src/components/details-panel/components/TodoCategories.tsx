@@ -60,7 +60,7 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 						darkMode={true}
 						ariaLabel="Add Category"
 						onClick={() => setIsAddingCategory(true)}
-						className="flex item-center justify-center gap-1"
+						className="flex items-center gap-1"
 					>
 						<Plus size={13} />
 						<Tag size={20} />
