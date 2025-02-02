@@ -8,7 +8,7 @@ export default function page() {
 					Organize{' '}
 					<span
 						style={{
-							background: 'linear-gradient(90deg, #ff7e5f, #feb47b, #ff7e5f, #feb47b)',
+							background: 'linear-gradient(90deg, #D16BA5, #86A8E7, #feb47b)',
 							backgroundSize: '200% 200%',
 							WebkitBackgroundClip: 'text',
 							backgroundClip: 'text',
