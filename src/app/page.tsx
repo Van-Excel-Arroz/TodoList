@@ -3,13 +3,17 @@ import Link from 'next/link';
 export default function page() {
 	return (
 		<>
-			<div className="container mx-auto w-5/6 h-screen flex flex-col justify-center items-center">
-				<p className="text-7xl md:text-9xl mb-5 align-top">Welcome</p>
+			<div className="container mx-auto w-5/6 h-screen flex flex-col gap-10 justify-center items-center">
+				<p className="w-4/6 text-center text-7xl md:text-8xl font-bold mb-5 align-top">Organize Smarter, Not Harder</p>
+				<p className="w-5/6 text-center text-3xl text-slate-600">
+					Effortlessly organize tasks, add categories with a simple #tag, and customize your workflow to fit your life.
+					Stay productive, your way.
+				</p>
 				<Link
 					href={'/tasks/'}
 					className="block bg-black text-white text-center text-xl md:text-3xl px-7 py-4 mt-5 rounded-2xl"
 				>
-					Create Your Tasks!
+					Get Started for Free
 				</Link>
 			</div>
 		</>
