@@ -26,7 +26,7 @@ export default function page() {
 				</p>
 				<Link
 					href={'/tasks/'}
-					className="block bg-black text-white text-center text-xl md:text-3xl px-7 py-4 mt-5 rounded-2xl transition-all duration-300 hover:scale-105 hover:bg-opacity-80 active:bg-opacity-60"
+					className="block bg-black text-white text-center text-xl md:text-3xl px-10 py-4 mt-5 rounded-2xl transition-all duration-300 hover:scale-105 hover:bg-opacity-80 active:bg-opacity-60"
 				>
 					Get Started for Free
 				</Link>
