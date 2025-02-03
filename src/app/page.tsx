@@ -4,7 +4,7 @@ export default function page() {
 	return (
 		<>
 			<div className="container mx-auto w-5/6 h-screen flex flex-col gap-10 justify-center items-center">
-				<p className="w-4/6 text-center text-7xl md:text-8xl font-bold mb-5 align-top">
+				<p className="w-4/6 text-center text-5xl lg:text-6xl xl:text-8xl font-bold mb-5 align-top">
 					Organize{' '}
 					<span
 						style={{
@@ -20,13 +20,13 @@ export default function page() {
 					</span>
 					, Not Harder
 				</p>
-				<p className="w-5/6 text-center sm:text-base md:text-xl lg:text-3xl text-slate-600">
+				<p className="w-5/6 text-center sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600">
 					Effortlessly organize tasks, add categories with a simple #tag, and customize your workflow to fit your life.
 					Stay productive, your way.
 				</p>
 				<Link
 					href={'/tasks/'}
-					className="block bg-black text-white text-center text-lg lg:text-3xl px-10 py-4 mt-5 rounded-2xl transition-all duration-300 hover:scale-105 hover:bg-opacity-80 active:bg-opacity-60"
+					className="block bg-black text-white text-center text-base md:text-lg lg:text-xl xl:text-3xl px-10 py-4 mt-5 rounded-2xl transition-all duration-300 hover:scale-105 hover:bg-opacity-80 active:bg-opacity-60"
 				>
 					Get Started for Free
 				</Link>
