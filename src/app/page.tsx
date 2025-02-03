@@ -20,7 +20,7 @@ export default function page() {
 					</span>
 					, Not Harder
 				</p>
-				<p className="w-5/6 text-center md:text-xl lg:text-3xl text-slate-600">
+				<p className="w-5/6 text-center sm:text-base md:text-xl lg:text-3xl text-slate-600">
 					Effortlessly organize tasks, add categories with a simple #tag, and customize your workflow to fit your life.
 					Stay productive, your way.
 				</p>
