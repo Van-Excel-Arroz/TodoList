@@ -25,7 +25,7 @@ export function Button({
 
 	return (
 		<button
-			className={`${className} ${style} rounded-md p-1 relative cursor-pointer`}
+			className={`${className} ${style} rounded-md p-1 relative cursor-pointer transition-all duration-400`}
 			onClick={() => onClick && onClick()}
 			type={type ? type : 'button'}
 			aria-label={ariaLabel}
