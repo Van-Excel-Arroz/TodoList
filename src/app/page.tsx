@@ -20,13 +20,13 @@ export default function page() {
 					</span>
 					, Not Harder
 				</p>
-				<p className="w-5/6 text-center text-3xl text-slate-600">
+				<p className="w-5/6 text-center md:text-xl lg:text-3xl text-slate-600">
 					Effortlessly organize tasks, add categories with a simple #tag, and customize your workflow to fit your life.
 					Stay productive, your way.
 				</p>
 				<Link
 					href={'/tasks/'}
-					className="block bg-black text-white text-center text-xl md:text-3xl px-10 py-4 mt-5 rounded-2xl transition-all duration-300 hover:scale-105 hover:bg-opacity-80 active:bg-opacity-60"
+					className="block bg-black text-white text-center text-lg lg:text-3xl px-10 py-4 mt-5 rounded-2xl transition-all duration-300 hover:scale-105 hover:bg-opacity-80 active:bg-opacity-60"
 				>
 					Get Started for Free
 				</Link>
