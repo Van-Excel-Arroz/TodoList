@@ -36,7 +36,7 @@ export default function EditTodoListForm({ todolist, handleEditClick }: EditTodo
 				autoFocus
 				defaultValue={todolist.title}
 			/>
-			<div className="flex items-center gap-2">
+			<div className="flex items-center gap-2 mr-3">
 				<Button type="submit" ariaLabel="Save New Todolist Title">
 					<Check size={15} />
 				</Button>
