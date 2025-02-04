@@ -27,7 +27,7 @@ export default function TodoComplete({ isCompleted, completedAt }: TodoCompleteP
 	};
 
 	return (
-		<div className="flex justify-between items-center">
+		<div className="flex justify-between items-center gap-2 border border-slate-300 p-2 rounded-md">
 			<div className="flex items-center gap-2">
 				<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
 				<p>{isCompleted ? 'Completed' : 'Mark as completed'}</p>
