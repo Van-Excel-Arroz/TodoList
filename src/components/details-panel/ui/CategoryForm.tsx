@@ -42,7 +42,7 @@ export default function CategoryForm({ onSubmit, handleIsAddingCategory }: Categ
 				{isClient && (
 					<input
 						type="color"
-						className="w-10 h-7 cursor-pointer rounded-full"
+						className="w-10 h-6 cursor-pointer rounded-full"
 						defaultValue="#000000"
 						{...register('hex_color')}
 						aria-label="Color Picker"
@@ -51,7 +51,7 @@ export default function CategoryForm({ onSubmit, handleIsAddingCategory }: Categ
 				<input
 					type="text"
 					autoFocus
-					className="border-b w-full p-2 text-sm focus:outline-none border-slate-300 focus:border-slate-500 hover:border-slate-500"
+					className="border-b w-full px-2 py-1 text-sm focus:outline-none border-slate-300 focus:border-slate-500 hover:border-slate-500"
 					placeholder="Category Title"
 					autoComplete="off"
 					{...register('category_title', { maxLength: 20 })}
