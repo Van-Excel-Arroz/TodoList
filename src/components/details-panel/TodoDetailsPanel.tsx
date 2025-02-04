@@ -34,7 +34,7 @@ export default function TodoDetailsPanel() {
 				<div className="flex flex-col justify-between px-6 h-full">
 					<div className="flex flex-col gap-4">
 						<TodoDetailsHeader />
-						<div className="flex items-center justify-between">
+						<div className="flex items-center justify-between gap-4">
 							<TodoComplete isCompleted={todo?.is_completed ?? false} completedAt={todo?.completed_at ?? ''} />
 							<TodoImportance isImportant={todo?.is_important ?? false} />
 						</div>
