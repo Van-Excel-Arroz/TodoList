@@ -26,7 +26,7 @@ export default function TodoDetailsHeader() {
 			</Button>
 			<p className="flex-1 text-xl font-medium text-center px-6">Task Details</p>
 			<Button onClick={handleDelete} ariaLabel="Delete Todo" className="text-red-900">
-				<Trash2 size={18} />
+				<Trash2 size={20} />
 			</Button>
 		</div>
 	);
