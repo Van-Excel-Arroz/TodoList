@@ -4,7 +4,7 @@ import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category';
-import { Calendar, CalendarCheck, Repeat } from 'lucide-react';
+import { Calendar, CalendarCheck, Repeat, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/types';
@@ -100,6 +100,10 @@ function TodoForm({ todolistId }: TodoFormProps) {
 							</MenuItem>
 							<MenuItem clickable={false}>
 								<DueTime dueDate={dueDate} setDueDate={setDueDate} defaultEmptyText={true} />
+							</MenuItem>
+							<MenuItem className="border-t border-slate-300" onClick={() => setDueDate(undefined)}>
+								<Trash2 size={16} />
+								<p>Clear</p>
 							</MenuItem>
 						</Menu>
 					</div>
