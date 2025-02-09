@@ -11,7 +11,6 @@ import { Ellipsis, Search } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useCategoriesStore from '@/context/CategoriesContext';
-import { PREDEFINED_COLORS } from '@/utils/constants';
 
 interface TodoListHeaderProps {
 	initialTodolist: TodoList;
@@ -40,11 +39,6 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					</Button>
 				</div>
 			</div>
-			{/* <div className="flex items-center gap-2">
-				{PREDEFINED_COLORS.map(color => (
-					<div key={color} className="w-10 h-10" style={{ backgroundColor: color }}></div>
-				))}
-			</div> */}
 			<TodoForm todolistId={initialTodolist.id} />
 			<div className="flex items-center justify-between gap-2">
 				<div className="flex items-center gap-2 w-60 pt-2">
