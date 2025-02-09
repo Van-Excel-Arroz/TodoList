@@ -7,7 +7,7 @@ import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import TodoSort from './TodoSort';
-import { Search } from 'lucide-react';
+import { Ellipsis, Search } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useCategoriesStore from '@/context/CategoriesContext';
@@ -35,6 +35,9 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 				<div className="flex items-center gap-2">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					<p className="text-lg font-bold">{currentTodolist.title}</p>
+					<Button ariaLabel="More">
+						<Ellipsis />
+					</Button>
 				</div>
 			</div>
 			{/* <div className="flex items-center gap-2">
