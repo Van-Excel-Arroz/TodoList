@@ -35,7 +35,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 				<div className="flex items-center gap-2">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					<p className="text-lg font-bold">{currentTodolist.title}</p>
-					<Button ariaLabel="More">
+					<Button ariaLabel="More" onClick={() => setIsMenuOpen(prev => !prev)}>
 						<Ellipsis />
 					</Button>
 				</div>
