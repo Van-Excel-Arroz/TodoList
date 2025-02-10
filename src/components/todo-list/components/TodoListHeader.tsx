@@ -11,6 +11,7 @@ import { Ellipsis, Search } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useCategoriesStore from '@/context/CategoriesContext';
+import Menu from '@/components/ui-shared/Menu';
 
 interface TodoListHeaderProps {
 	initialTodolist: TodoList;
@@ -32,12 +33,19 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	return (
 		<div className="z-50 px-6 bg-white border-b border-slate-300 ">
 			<div className="flex justify-between items-center py-2">
-				<div className="flex items-center gap-2">
+				<div className="flex items-center gap-2 relative">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					<p className="text-lg font-bold">{currentTodolist.title}</p>
 					<Button ariaLabel="More" onClick={() => setIsMenuOpen(prev => !prev)}>
 						<Ellipsis />
 					</Button>
+					<Menu
+						open={isMenuOpen}
+						onClose={() => setIsMenuOpen(false)}
+						posX={'-right-5'}
+						posXNotch="before:right-6"
+						width="w-44"
+					></Menu>
 				</div>
 			</div>
 			<TodoForm todolistId={initialTodolist.id} />
