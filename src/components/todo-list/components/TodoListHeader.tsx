@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Category, TodoList } from '@/types';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
@@ -23,6 +23,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	const { setCategories } = useCategoriesStore();
 	const todolistFromStore = getTodoListById(initialTodolist.id);
 	const currentTodolist = todolistFromStore || initialTodolist;
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	useEffect(() => {
 		setCategories(categories);
