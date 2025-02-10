@@ -7,7 +7,7 @@ import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import TodoSort from './TodoSort';
-import { Ellipsis, Search } from 'lucide-react';
+import { Edit, Edit2, Edit3, Ellipsis, Search } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useCategoriesStore from '@/context/CategoriesContext';
@@ -49,6 +49,9 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					>
 						<MenuItem clickable={false} className="font-bold">
 							Menu
+						</MenuItem>
+						<MenuItem>
+							<Edit size={20} className="text-slate-600" /> Edit
 						</MenuItem>
 					</Menu>
 				</div>
