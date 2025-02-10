@@ -7,7 +7,7 @@ import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import TodoSort from './TodoSort';
-import { Edit, Edit2, Edit3, Ellipsis, Search, Trash2 } from 'lucide-react';
+import { Edit, Edit2, Edit3, Ellipsis, Search, Settings, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useCategoriesStore from '@/context/CategoriesContext';
@@ -58,6 +58,9 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 						</MenuItem>
 					</Menu>
 				</div>
+				<Button ariaLabel="Settings">
+					<Settings />
+				</Button>
 			</div>
 			<TodoForm todolistId={initialTodolist.id} />
 			<div className="flex items-center justify-between gap-2">
