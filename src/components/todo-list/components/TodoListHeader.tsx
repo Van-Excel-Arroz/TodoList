@@ -7,11 +7,12 @@ import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import TodoSort from './TodoSort';
-import { Ellipsis, Search } from 'lucide-react';
+import { Edit, Ellipsis, Search } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useCategoriesStore from '@/context/CategoriesContext';
 import Menu from '@/components/ui-shared/Menu';
+import MenuItem from '@/components/ui-shared/MenuItem';
 
 interface TodoListHeaderProps {
 	initialTodolist: TodoList;
@@ -45,7 +46,11 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 						posX={'-right-5'}
 						posXNotch="before:right-6"
 						width="w-44"
-					></Menu>
+					>
+						<MenuItem clickable={false} className="font-bold">
+							Menu
+						</MenuItem>
+					</Menu>
 				</div>
 			</div>
 			<TodoForm todolistId={initialTodolist.id} />
