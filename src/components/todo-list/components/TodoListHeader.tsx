@@ -34,7 +34,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 				<div className="flex items-center gap-2 relative">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					<Button ariaLabel="Edit Todolist Title">
-						<p className="text-lg font-bold">{currentTodolist.title}</p>
+						<p className="text-lg font-bold text-black">{currentTodolist.title}</p>
 					</Button>
 				</div>
 				<Button ariaLabel="Settings">
