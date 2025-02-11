@@ -7,12 +7,10 @@ import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import TodoSort from './TodoSort';
-import { Edit, Edit2, Edit3, Ellipsis, Search, Settings, Trash2 } from 'lucide-react';
+import { Search, Settings } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useCategoriesStore from '@/context/CategoriesContext';
-import Menu from '@/components/ui-shared/Menu';
-import MenuItem from '@/components/ui-shared/MenuItem';
 
 interface TodoListHeaderProps {
 	initialTodolist: TodoList;
@@ -25,7 +23,6 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	const { setCategories } = useCategoriesStore();
 	const todolistFromStore = getTodoListById(initialTodolist.id);
 	const currentTodolist = todolistFromStore || initialTodolist;
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	useEffect(() => {
 		setCategories(categories);
@@ -37,26 +34,6 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 				<div className="flex items-center gap-2 relative">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					<p className="text-lg font-bold">{currentTodolist.title}</p>
-					<Button ariaLabel="More" onClick={() => setIsMenuOpen(prev => !prev)}>
-						<Ellipsis />
-					</Button>
-					<Menu
-						open={isMenuOpen}
-						onClose={() => setIsMenuOpen(false)}
-						posX={'-right-5'}
-						posXNotch="before:right-6"
-						width="w-44"
-					>
-						<MenuItem clickable={false} className="font-bold border-b">
-							Menu
-						</MenuItem>
-						<MenuItem>
-							<Edit size={20} className="text-slate-600" /> Edit
-						</MenuItem>
-						<MenuItem>
-							<Trash2 size={20} className="text-slate-600" /> Delete
-						</MenuItem>
-					</Menu>
 				</div>
 				<Button ariaLabel="Settings">
 					<Settings />
