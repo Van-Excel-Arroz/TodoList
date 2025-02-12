@@ -24,7 +24,7 @@ export default function CategoryTags({ categories, handleCategoryClick }: Catego
 						handleCategoryClick(category.category_title);
 					}}
 				>
-					<p className="pb-0.5 text-xs">⦿</p>
+					<p className="text-xs">⦿</p>
 					<p>{category.category_title}</p>
 				</span>
 			))}
