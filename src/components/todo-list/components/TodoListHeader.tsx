@@ -34,9 +34,15 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 			<div className="flex justify-between items-center py-2">
 				<div className="flex items-center gap-2 relative">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
-					<Button ariaLabel="Edit Todolist Title">
-						<p className="text-lg font-bold text-black">{currentTodolist.title}</p>
-					</Button>
+					{isEditing ? (
+						<Button ariaLabel="Edit Todolist Title">
+							<p className="text-lg font-bold text-black">{currentTodolist.title}</p>
+						</Button>
+					) : (
+						<div>
+							<input type="text" />
+						</div>
+					)}
 				</div>
 				<Button ariaLabel="Settings">
 					<Settings />
