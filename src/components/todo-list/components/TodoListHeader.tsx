@@ -29,13 +29,19 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 		setCategories(categories);
 	}, [categories, setCategories]);
 
+	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+			setIsEditing(false);
+		}
+	};
+
 	return (
 		<div className="z-50 px-6 bg-white border-b border-slate-300 ">
 			<div className="flex justify-between items-center py-2">
 				<div className="flex items-center gap-2 relative">
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					{isEditing ? (
-						<div>
+						<div onBlur={handleInputBlur} tabIndex={-1}>
 							<input type="text" defaultValue={currentTodolist.title} />
 						</div>
 					) : (
