@@ -23,6 +23,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	const { setCategories } = useCategoriesStore();
 	const todolistFromStore = getTodoListById(initialTodolist.id);
 	const currentTodolist = todolistFromStore || initialTodolist;
+	const [isEditing, setIsEditing] = useState(false);
 
 	useEffect(() => {
 		setCategories(categories);
