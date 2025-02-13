@@ -61,6 +61,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 							<form onSubmit={handleSubmit(onSubmit)}>
 								<input
 									type="text"
+									{...register('title')}
 									defaultValue={currentTodolist.title}
 									autoFocus
 									className="p-1 focus:outline outline-slate-600 rounded-md focus text-lg"
