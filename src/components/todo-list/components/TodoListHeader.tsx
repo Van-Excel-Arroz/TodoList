@@ -11,6 +11,8 @@ import { Search, Settings } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useCategoriesStore from '@/context/CategoriesContext';
+import { useForm } from 'react-hook-form';
+import { updateTodolistAction } from '@/actions/todolist-action';
 
 interface TodoListHeaderProps {
 	initialTodolist: TodoList;
@@ -24,10 +26,24 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	const todolistFromStore = getTodoListById(initialTodolist.id);
 	const currentTodolist = todolistFromStore || initialTodolist;
 	const [isEditing, setIsEditing] = useState(false);
+	const { updateTodolistTitle } = useTodoListsStore();
+	const { register, handleSubmit, reset } = useForm<{
+		title: string;
+	}>();
 
 	useEffect(() => {
 		setCategories(categories);
 	}, [categories, setCategories]);
+
+	const onSubmit = async (data: { title: string }) => {
+		if (!data.title?.trim()) return;
+		if (currentTodolist.title !== data.title) {
+			await updateTodolistAction(currentTodolist.id, data.title);
+			updateTodolistTitle(currentTodolist.id, data.title);
+		}
+		setIsEditing(false);
+		reset();
+	};
 
 	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
 		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
