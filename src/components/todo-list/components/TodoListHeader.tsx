@@ -58,12 +58,14 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 					{isEditing ? (
 						<div onBlur={handleInputBlur} tabIndex={-1}>
-							<input
-								type="text"
-								defaultValue={currentTodolist.title}
-								autoFocus
-								className="p-1 focus:outline outline-slate-600 rounded-md focus text-lg"
-							/>
+							<form onSubmit={handleSubmit(onSubmit)}>
+								<input
+									type="text"
+									defaultValue={currentTodolist.title}
+									autoFocus
+									className="p-1 focus:outline outline-slate-600 rounded-md focus text-lg"
+								/>
+							</form>
 						</div>
 					) : (
 						<Button ariaLabel="Edit Todolist Title" onClick={() => setIsEditing(true)}>
