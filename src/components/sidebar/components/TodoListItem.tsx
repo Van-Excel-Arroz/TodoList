@@ -1,18 +1,16 @@
 'use client';
 
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { TodoList } from '@/types';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
-import EditTodoListForm from '../ui/EditTodoListForm';
 
 function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const searchParams = useSearchParams();
 	const currentId = searchParams.get('id');
 	const isSelectedPath = currentId === todolist.id.toString();
-	const [isEditing, setIsEditing] = useState(false);
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
 	const urlWithSearchParams = localStorage.getItem(`searchParams-${todolist.id}`);
@@ -25,16 +23,6 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 		setSelectedTodoId(0);
 	};
 
-	const handleEdit = (val: boolean) => {
-		setIsEditing(val);
-	};
-
-	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-		if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-			handleEdit(false);
-		}
-	};
-
 	return (
 		<div
 			className={`flex items-center group relative mx-auto pl-2 py-1 transition-all duration-200  ${
@@ -42,22 +30,16 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 					? 'border-l-4  border-slate-500 bg-slate-200'
 					: 'border-l-4  border-slate-200 hover:bg-slate-100 hover:border-slate-300 active:bg-slate-200'
 			}`}
-			onBlur={handleInputBlur}
-			tabIndex={-1}
 		>
-			{isEditing ? (
-				<EditTodoListForm todolist={todolist} handleEditClick={handleEdit} />
-			) : (
-				<Link
-					href={urlWithSearchParams || `/tasks/?id=${todolist.id}`}
-					onClick={handleClick}
-					className={`text-sm lg:text-base flex-1 text-ellipsis py-1 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
-						isSelectedPath ? 'font-bold' : 'font-normal'
-					}`}
-				>
-					{todolist.title}
-				</Link>
-			)}
+			<Link
+				href={urlWithSearchParams || `/tasks/?id=${todolist.id}`}
+				onClick={handleClick}
+				className={`text-sm lg:text-base flex-1 text-ellipsis py-1 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
+					isSelectedPath ? 'font-bold' : 'font-normal'
+				}`}
+			>
+				{todolist.title}
+			</Link>
 		</div>
 	);
 }
