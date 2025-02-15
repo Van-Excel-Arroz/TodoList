@@ -5,6 +5,8 @@ import TodoListItem from './TodoListItem';
 import { useEffect } from 'react';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Button } from '@/components/ui-shared/Button';
+import { ChevronDown } from 'lucide-react';
 
 const itemVariants = {
 	initial: {
@@ -42,6 +44,9 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 			) : (
 				<>
 					<div className="flex items-center gap-2 mb-2 w-full mx-auto">
+						<Button ariaLabel="Toggle Show List Container">
+							<ChevronDown />
+						</Button>
 						<p>Lists</p> <hr className="border border-slate-200 w-full" />
 					</div>
 					<ul className="flex flex-col gap-2">
