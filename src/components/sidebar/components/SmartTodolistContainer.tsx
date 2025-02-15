@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui-shared/Button';
-import { Calendar, ChevronDown, Star } from 'lucide-react';
+import { Calendar, ChevronDown, Clock3, Star } from 'lucide-react';
 
 export default function SmartTodolistContainer() {
 	return (
@@ -15,6 +15,14 @@ export default function SmartTodolistContainer() {
 			<div className="flex items-center gap-2 py-1 px-2">
 				<Star className="text-slate-600" size={20} />
 				<p>Priority</p>
+			</div>
+			<div className="flex items-center gap-2 py-1 px-2">
+				<Calendar className="text-slate-600" size={20} />
+				<p>Today</p>
+			</div>
+			<div className="flex items-center gap-2 py-1 px-2">
+				<Clock3 className="text-slate-600" size={20} />
+				<p>Upcoming</p>
 			</div>
 		</div>
 	);
