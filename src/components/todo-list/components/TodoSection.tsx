@@ -4,7 +4,7 @@ import { Todo } from '@/types';
 import TodoItem from './TodoItem';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, memo } from 'react';
 import { motion } from 'framer-motion';
 
 interface TodoSectionProps {
@@ -24,7 +24,7 @@ const itemVariants = {
 	},
 };
 
-export default function TodoSection({ title, todos }: TodoSectionProps) {
+function TodoSection({ title, todos }: TodoSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
 	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
 
@@ -61,3 +61,5 @@ export default function TodoSection({ title, todos }: TodoSectionProps) {
 		</div>
 	);
 }
+
+export default memo(TodoSection);
