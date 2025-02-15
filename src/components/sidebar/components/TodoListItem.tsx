@@ -35,12 +35,16 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 			<Link
 				href={urlWithSearchParams || `/tasks/?id=${todolist.id}`}
 				onClick={handleClick}
-				className={`flex items-center gap-2 text-sm lg:text-base flex-1 text-ellipsis py-1 px-2 text-nowrap overflow-hidden ${
-					isSelectedPath ? 'font-bold' : 'font-normal'
-				}`}
+				className="flex items-center py-1 px-2 gap-2"
 			>
 				<List size={20} className="text-slate-600" />
-				{todolist.title}
+				<p
+					className={`flex items-center text-sm lg:text-base flex-1 text-ellipsis overflow-hidden ${
+						isSelectedPath ? 'font-bold' : 'font-normal'
+					}`}
+				>
+					{todolist.title}
+				</p>
 			</Link>
 		</div>
 	);
