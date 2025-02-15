@@ -37,7 +37,7 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 			<Link
 				href={urlWithSearchParams || `/tasks/?id=${todolist.id}`}
 				onClick={handleClick}
-				className={`text-sm lg:text-base flex-1 text-ellipsis py-1 text-nowrap overflow-hidden group-hover:max-w-[calc(100%-60px)] ${
+				className={`text-sm lg:text-base flex-1 text-ellipsis py-1 text-nowrap overflow-hidden ${
 					isSelectedPath ? 'font-bold' : 'font-normal'
 				}`}
 			>
