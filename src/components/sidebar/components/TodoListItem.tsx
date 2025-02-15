@@ -26,21 +26,20 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 
 	return (
 		<div
-			className={`flex items-center gap-2 relative mx-auto pl-2 py-1 transition-all rounded-md duration-200  ${
+			className={`flex items-center gap-2 relative mx-auto py-1 transition-all rounded-md duration-200  ${
 				isSelectedPath
 					? 'border-slate-500 bg-slate-200'
 					: 'border-slate-200 hover:bg-slate-100 hover:border-slate-300 active:bg-slate-200'
 			}`}
 		>
-			<List size={20} className="text-slate-600" />
-
 			<Link
 				href={urlWithSearchParams || `/tasks/?id=${todolist.id}`}
 				onClick={handleClick}
-				className={`text-sm lg:text-base flex-1 text-ellipsis py-1 text-nowrap overflow-hidden ${
+				className={`flex items-center gap-2 text-sm lg:text-base flex-1 text-ellipsis py-1 px-2 text-nowrap overflow-hidden ${
 					isSelectedPath ? 'font-bold' : 'font-normal'
 				}`}
 			>
+				<List size={20} className="text-slate-600" />
 				{todolist.title}
 			</Link>
 		</div>

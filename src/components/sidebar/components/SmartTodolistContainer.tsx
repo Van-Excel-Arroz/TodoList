@@ -13,8 +13,8 @@ export default function SmartTodolistContainer() {
 					</Button>
 					<p className="mr-2">Smart Lists</p> <hr className="border border-slate-200 w-full" />
 				</div>
-				<div className="py-1">
-					<Star size={20} />
+				<div className="py-1 px-2">
+					<Star className="text-slate-600" size={20} />
 				</div>
 			</div>
 		</>
