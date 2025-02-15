@@ -11,7 +11,7 @@ export default async function TodoListsSidebar() {
 	return (
 		<>
 			<TodoListsSidebarWrapper>
-				<div className="flex flex-col gap-4 px-6">
+				<div className="flex flex-col gap-4 px-6 w-full">
 					<TodoListsHeader />
 					<SmartTodolistContainer />
 					<TodolistContainer initialTodoLists={todolists} />

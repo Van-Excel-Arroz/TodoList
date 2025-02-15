@@ -43,28 +43,30 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 				</div>
 			) : (
 				<>
-					<div className="flex items-center gap-1 mb-2 w-full mx-auto">
-						<Button ariaLabel="Toggle Show List Container">
-							<ChevronDown size={20} />
-						</Button>
-						<p className="mr-2">Lists</p> <hr className="border border-slate-200 w-full" />
+					<div className="flex flex-col items-center gap-1 w-full mx-auto">
+						<div className="flex items-center w-full mx-auto">
+							<Button ariaLabel="Toggle Show List Container">
+								<ChevronDown size={20} />
+							</Button>
+							<p className="mr-2">Lists</p> <hr className="border border-slate-200 w-full" />
+						</div>
+						<ul className="flex flex-col gap-2 w-full">
+							<AnimatePresence>
+								{todolists.map(todolist => (
+									<motion.li
+										key={todolist.id}
+										layout
+										variants={itemVariants}
+										initial="initial"
+										animate="animate"
+										exit="exit"
+									>
+										<TodoListItem todolist={todolist} />
+									</motion.li>
+								))}
+							</AnimatePresence>
+						</ul>
 					</div>
-					<ul className="flex flex-col gap-2">
-						<AnimatePresence>
-							{todolists.map(todolist => (
-								<motion.li
-									key={todolist.id}
-									layout
-									variants={itemVariants}
-									initial="initial"
-									animate="animate"
-									exit="exit"
-								>
-									<TodoListItem todolist={todolist} />
-								</motion.li>
-							))}
-						</AnimatePresence>
-					</ul>
 				</>
 			)}
 		</div>
