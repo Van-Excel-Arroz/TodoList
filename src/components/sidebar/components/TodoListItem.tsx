@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { TodoList } from '@/types';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
+import { List } from 'lucide-react';
 
 function TodoListItem({ todolist }: { todolist: TodoList }) {
 	const searchParams = useSearchParams();
@@ -25,12 +26,14 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 
 	return (
 		<div
-			className={`flex items-center relative mx-auto pl-2 py-1 transition-all rounded-md duration-200  ${
+			className={`flex items-center gap-2 relative mx-auto pl-2 py-1 transition-all rounded-md duration-200  ${
 				isSelectedPath
 					? 'border-slate-500 bg-slate-200'
 					: 'border-slate-200 hover:bg-slate-100 hover:border-slate-300 active:bg-slate-200'
 			}`}
 		>
+			<List size={20} className="text-slate-600" />
+
 			<Link
 				href={urlWithSearchParams || `/tasks/?id=${todolist.id}`}
 				onClick={handleClick}

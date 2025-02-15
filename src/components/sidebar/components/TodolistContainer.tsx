@@ -2,9 +2,8 @@
 
 import { TodoList } from '@/types';
 import TodoListItem from './TodoListItem';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useTodoListsStore from '@/context/TodoListsContext';
-import { List } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const itemVariants = {
