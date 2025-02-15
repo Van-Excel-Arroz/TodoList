@@ -1,18 +1,23 @@
 import { formatDistanceToNow, isPast } from 'date-fns';
-import { Clock3 } from 'lucide-react';
+import { Clock3, ClockAlert } from 'lucide-react';
 
 interface DueDateProps {
 	dueDatetime: string;
 	textSize?: string;
 }
 
-export default function DueDate({ dueDatetime, textSize = 'xs' }: DueDateProps) {
-	const textStyle = `text-${textSize} ${dueDatetime && isPast(dueDatetime) ? 'text-red-700' : 'text-slate-800'}`;
+export default function DueDate({ dueDatetime }: DueDateProps) {
+	const isDueDatePast: boolean = isPast(dueDatetime);
+	const textStyle = `text-xs ${dueDatetime && isDueDatePast ? 'text-red-700' : 'text-slate-800'}`;
 
 	return (
 		<div className="flex items-center gap-1">
-			<Clock3 size={12} className="text-slate-800" />
-			<p className={textStyle}>{!isPast(dueDatetime) ? `${formatDistanceToNow(dueDatetime)} Left` : `Past due`}</p>
+			{isDueDatePast ? (
+				<ClockAlert size={14} className="text-slate-800" />
+			) : (
+				<Clock3 size={14} className="text-slate-800" />
+			)}
+			<p className={textStyle}>{!isDueDatePast ? `${formatDistanceToNow(dueDatetime)} Left` : `Past due`}</p>
 		</div>
 	);
 }
