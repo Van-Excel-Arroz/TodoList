@@ -48,7 +48,7 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 							<Button ariaLabel="Toggle Show List Container">
 								<ChevronDown size={20} />
 							</Button>
-							<p className="mr-2">Lists</p> <hr className="border border-slate-200 w-full" />
+							<p className="mr-2 text-slate-600">Lists</p> <hr className="border border-slate-200 w-full" />
 						</div>
 						<ul className="flex flex-col gap-2 w-full">
 							<AnimatePresence>

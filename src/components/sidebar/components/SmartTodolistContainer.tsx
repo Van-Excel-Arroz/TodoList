@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui-shared/Button';
-import { ChevronDown, Star } from 'lucide-react';
+import { Calendar, ChevronDown, Star } from 'lucide-react';
 
 export default function SmartTodolistContainer() {
 	return (
@@ -10,7 +10,7 @@ export default function SmartTodolistContainer() {
 				<Button ariaLabel="Toggle Show List Container">
 					<ChevronDown size={20} />
 				</Button>
-				<p className="mr-2">Smart Lists</p> <hr className="border border-slate-200 w-full" />
+				<p className="mr-2 text-slate-600">Smart Lists</p> <hr className="border border-slate-200 w-full" />
 			</div>
 			<div className="flex items-center gap-2 py-1 px-2">
 				<Star className="text-slate-600" size={20} />
