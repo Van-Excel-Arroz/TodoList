@@ -2,7 +2,7 @@
 
 import { TodoList } from '@/types';
 import TodoListItem from './TodoListItem';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { List } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -43,10 +43,9 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 			) : (
 				<>
 					<div className="flex items-center gap-2 mb-2 w-full mx-auto">
-						<List size={30} className="text-slate-600" />
 						<p>Lists</p> <hr className="border border-slate-200 w-full" />
 					</div>
-					<ul className="flex flex-col gap-1">
+					<ul className="flex flex-col gap-2">
 						<AnimatePresence>
 							{todolists.map(todolist => (
 								<motion.li
