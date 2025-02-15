@@ -38,7 +38,9 @@ function TodoListItem({ todolist }: { todolist: TodoList }) {
 				className="flex items-center py-1 px-2 gap-2"
 			>
 				<List size={20} className="text-slate-600" />
-				<p className={` ${isSelectedPath ? 'font-bold' : 'font-normal'}`}>{todolist.title}</p>
+				<p className={`${isSelectedPath ? 'font-bold' : 'font-normal'} text-ellipsis overflow-hidden w-[200px]`}>
+					{todolist.title}
+				</p>
 			</Link>
 		</div>
 	);
