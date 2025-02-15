@@ -46,7 +46,7 @@ export default function TodolistItems({ initialTodoLists }: { initialTodoLists: 
 						<List size={30} className="text-slate-600" />
 						<p>Lists</p> <hr className="border border-slate-200 w-full" />
 					</div>
-					<ul>
+					<ul className="flex flex-col gap-1">
 						<AnimatePresence>
 							{todolists.map(todolist => (
 								<motion.li
