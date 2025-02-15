@@ -81,7 +81,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 						{todo.task_text}
 					</p>
 					<div className="flex items-center gap-1 flex-wrap">
-						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} textSize="xs" />}
+						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
 						{todo.due_datetime && todo.categories!.length > 0 && <p>•</p>}
 						{(todo.categories?.length ?? 0) > 0 && (
 							<>
