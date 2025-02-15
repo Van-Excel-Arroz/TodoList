@@ -24,7 +24,7 @@ const itemVariants = {
 	},
 };
 
-export default function TodolistItems({ initialTodoLists }: { initialTodoLists: TodoList[] }) {
+export default function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] }) {
 	const { todolists, setTodolists } = useTodoListsStore();
 	useEffect(() => {
 		if (todolists.length === 0) {

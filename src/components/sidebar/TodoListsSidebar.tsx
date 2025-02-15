@@ -2,7 +2,7 @@ import { TodoList } from '@/types';
 import { getTodolists } from '@/lib/todolist';
 import TodoListsSidebarWrapper from './components/TodoListsSidebarWrapper';
 import TodoListsHeader from './components/TodoListsHeader';
-import TodolistItems from './components/TodoListItems';
+import TodolistContainer from './components/TodolistContainer';
 import NewTodolistButton from './components/NewTodolistButton';
 
 export default async function TodoListsSidebar() {
@@ -12,7 +12,7 @@ export default async function TodoListsSidebar() {
 			<TodoListsSidebarWrapper>
 				<div className="flex flex-col gap-4 px-6">
 					<TodoListsHeader />
-					<TodolistItems initialTodoLists={todolists} />
+					<TodolistContainer initialTodoLists={todolists} />
 					<NewTodolistButton />
 				</div>
 			</TodoListsSidebarWrapper>
