@@ -35,7 +35,7 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 	const isEmpty = todolists.length === 0;
 
 	return (
-		<div className="flex flex-col w-full overflow-y-auto overflow-hidden">
+		<div className="flex flex-col overflow-y-auto overflow-hidden">
 			{isEmpty ? (
 				<div className="text-center mt-4">
 					<p className="text-xl font-semibold mb-2">No Tasks Available</p>
@@ -43,7 +43,7 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 				</div>
 			) : (
 				<>
-					<div className="flex flex-col items-center gap-1 w-full mx-auto">
+					<div className="flex flex-col items-start gap-1 w-full mx-auto">
 						<div className="flex items-center w-full mx-auto">
 							<Button ariaLabel="Toggle Show List Container">
 								<ChevronDown size={20} />
