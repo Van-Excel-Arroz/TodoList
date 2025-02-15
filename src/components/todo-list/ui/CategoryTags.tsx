@@ -9,7 +9,7 @@ interface CategoryTagsProps {
 export default function CategoryTags({ categories, handleCategoryClick }: CategoryTagsProps) {
 	return (
 		<>
-			<Tag size={12} className="text-slate-800" />
+			<Tag size={14} className="text-slate-800" />
 			{categories?.map(category => (
 				<span
 					key={category.id}
