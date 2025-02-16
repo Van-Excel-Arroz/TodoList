@@ -62,22 +62,30 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 							</Button>
 							<p className="mr-3 ml-1 text-slate-600">Lists</p> <hr className="border border-slate-200 w-full" />
 						</div>
-						<ul className="flex flex-col gap-2 w-full">
-							<AnimatePresence>
-								{todolists.map(todolist => (
-									<motion.li
-										key={todolist.id}
-										layout
-										variants={itemVariants}
-										initial="initial"
-										animate="animate"
-										exit="exit"
-									>
-										<TodoListItem todolist={todolist} />
-									</motion.li>
-								))}
-							</AnimatePresence>
-						</ul>
+
+						<motion.div
+							className="overflow-hidden"
+							initial={{ height: isOpen && !isTodolistsEmpty ? 'auto' : 0 }}
+							animate={{ height: isOpen && !isTodolistsEmpty ? 'auto' : 0 }}
+							transition={{ duration: 0.25 }}
+						>
+							<ul className="flex flex-col gap-2 w-full">
+								<AnimatePresence>
+									{todolists.map(todolist => (
+										<motion.li
+											key={todolist.id}
+											layout
+											variants={itemVariants}
+											initial="initial"
+											animate="animate"
+											exit="exit"
+										>
+											<TodoListItem todolist={todolist} />
+										</motion.li>
+									))}
+								</AnimatePresence>
+							</ul>
+						</motion.div>
 					</div>
 				</>
 			)}
