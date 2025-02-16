@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { AnimatePresence, motion } from 'framer-motion';
 import ExpandableSection from '../ui/ExpandableSection';
+import ListLinkItem from '../ui/ListLinkItem';
 
 const itemVariants = {
 	initial: {
@@ -55,7 +56,9 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 										animate="animate"
 										exit="exit"
 									>
-										<TodoListItem todolist={todolist} />
+										<ListLinkItem queryParam="id" value={todolist.id.toString()}>
+											{todolist.title}
+										</ListLinkItem>
 									</motion.li>
 								))}
 							</AnimatePresence>
