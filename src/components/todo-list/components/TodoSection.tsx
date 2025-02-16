@@ -5,7 +5,7 @@ import TodoItem from './TodoItem';
 import { useMemo, memo } from 'react';
 import { motion } from 'framer-motion';
 import { itemVariants } from '@/utils/framer-motion';
-import ExpandableSection from '@/components/sidebar/ui/ExpandableSection';
+import ExpandableSection from '@/components/ui-shared/ExpandableSection';
 
 interface TodoSectionProps {
 	title: string;

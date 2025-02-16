@@ -4,7 +4,7 @@ import { TodoList } from '@/types';
 import { useEffect } from 'react';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { AnimatePresence, motion } from 'framer-motion';
-import ExpandableSection from '../ui/ExpandableSection';
+import ExpandableSection from '../../ui-shared/ExpandableSection';
 import ListLinkItem from '../ui/ListLinkItem';
 import { List } from 'lucide-react';
 import TodoListEmptyText from '../ui/TodoListEmptyText';

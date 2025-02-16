@@ -1,7 +1,7 @@
 'use client';
 
 import { Calendar, Clock3, Star, Tags } from 'lucide-react';
-import ExpandableSection from '../ui/ExpandableSection';
+import ExpandableSection from '../../ui-shared/ExpandableSection';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import ListLinkItem from '../ui/ListLinkItem';
