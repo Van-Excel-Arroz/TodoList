@@ -2,7 +2,7 @@
 
 import { TodoList } from '@/types';
 import TodoListItem from './TodoListItem';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { AnimatePresence, motion } from 'framer-motion';
 import ExpandableSection from '../ui/ExpandableSection';
@@ -26,7 +26,6 @@ const itemVariants = {
 
 export default function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] }) {
 	const { todolists, setTodolists } = useTodoListsStore();
-	const [isOpen, setIsOpen] = useState<boolean>(true);
 
 	useEffect(() => {
 		if (todolists.length === 0) {
@@ -44,7 +43,7 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 				</div>
 			) : (
 				<>
-					<ExpandableSection isOpen={isOpen} setIsOpen={setIsOpen} isEmpty={isTodolistsEmpty}>
+					<ExpandableSection isEmpty={isTodolistsEmpty}>
 						<ul className="flex flex-col gap-2 w-full">
 							<AnimatePresence>
 								{todolists.map(todolist => (

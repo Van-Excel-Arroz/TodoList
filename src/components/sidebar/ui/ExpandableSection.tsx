@@ -1,16 +1,16 @@
 import { Button } from '@/components/ui-shared/Button';
 import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface ExpandableSectionProps {
 	children: React.ReactNode;
-	isOpen: boolean;
-	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	isEmpty: boolean;
 }
 
-export default function ExpandableSection({ children, isOpen, setIsOpen, isEmpty }: ExpandableSectionProps) {
+export default function ExpandableSection({ children, isEmpty }: ExpandableSectionProps) {
+	const [isOpen, setIsOpen] = useState<boolean>(true);
+
 	return (
 		<div className="flex flex-col items-start gap-1 w-full mx-auto">
 			<div className="flex items-center w-full mx-auto">
