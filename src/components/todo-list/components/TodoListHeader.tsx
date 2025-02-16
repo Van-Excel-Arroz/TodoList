@@ -70,7 +70,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 						</div>
 					) : (
 						<Button ariaLabel="Edit Todolist Title" onClick={() => setIsEditing(true)}>
-							<p className="text-lg font-bold text-black cursor-text">{currentTodolist.title}</p>
+							<p className="text-xl font-bold text-black cursor-text">{currentTodolist.title}</p>
 						</Button>
 					)}
 				</div>
