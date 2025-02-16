@@ -44,7 +44,7 @@ export default function ListLinkItem({ children, queryParam, value, Icon }: List
 				className="flex items-center py-1 px-2 gap-2"
 			>
 				<Icon size={20} className="text-slate-600" />
-				<div className={`${isSelectedPath ? 'font-bold' : 'font-normal'} text-ellipsis overflow-hidden w-[200px]`}>
+				<div className={`${isSelectedPath ? 'font-bold' : 'font-normal'} text-ellipsis overflow-hidden w-[195px]`}>
 					{children}
 				</div>
 			</Link>
