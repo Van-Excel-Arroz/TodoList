@@ -1,0 +1,47 @@
+import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
+import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+
+interface ListLinkItemProps {
+	children: React.ReactNode;
+	queryParam: string;
+	value: string;
+}
+
+export default function ListLinkItem({ children, queryParam, value }: ListLinkItemProps) {
+	const searchParams = useSearchParams();
+	const currentQueryParamValue = searchParams.get(queryParam);
+	const isSelectedPath = currentQueryParamValue === value;
+	const { setSelectedTodoId } = useSelectedTodoIdStore();
+	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
+	const urlWithSearchParams = localStorage.getItem(`searchParams-${value}`);
+
+	const handleClick = () => {
+		const mediaQuery = window.matchMedia('(max-width: 1024px)');
+		if (mediaQuery.matches) {
+			toggleTodoListsSidebar();
+		}
+		setSelectedTodoId(0);
+	};
+
+	return (
+		<div
+			className={`flex items-center gap-2 relative mx-auto py-1 transition-all rounded-md duration-200  ${
+				isSelectedPath
+					? 'border-slate-500 bg-slate-200'
+					: 'border-slate-200 hover:bg-slate-100 hover:border-slate-300 active:bg-slate-200'
+			}`}
+		>
+			<Link
+				href={urlWithSearchParams || `/tasks/?id=${value}`}
+				onClick={handleClick}
+				className="flex items-center py-1 px-2 gap-2"
+			>
+				<p className={`${isSelectedPath ? 'font-bold' : 'font-normal'} text-ellipsis overflow-hidden w-[200px]`}>
+					{children}
+				</p>
+			</Link>
+		</div>
+	);
+}
