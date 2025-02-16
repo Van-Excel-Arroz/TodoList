@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import ExpandableSection from '../ui/ExpandableSection';
 import ListLinkItem from '../ui/ListLinkItem';
 import { List } from 'lucide-react';
+import TodoListEmptyText from '../ui/TodoListEmptyText';
 
 const itemVariants = {
 	initial: {
@@ -38,10 +39,7 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 	return (
 		<div className="flex flex-col overflow-y-auto overflow-hidden">
 			{isTodolistsEmpty ? (
-				<div className="text-center mt-4">
-					<p className="text-xl font-semibold mb-2">No Tasks Available</p>
-					<p className="text-gray-600">Start by adding a new todolist!</p>
-				</div>
+				<TodoListEmptyText />
 			) : (
 				<>
 					<ExpandableSection isEmpty={isTodolistsEmpty} title="Lists">
