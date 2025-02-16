@@ -1,3 +1,5 @@
+'use client';
+
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import { LucideProps } from 'lucide-react';
@@ -37,7 +39,7 @@ export default function ListLinkItem({ children, queryParam, value, Icon }: List
 			}`}
 		>
 			<Link
-				href={urlWithSearchParams || `/tasks/?id=${value}`}
+				href={urlWithSearchParams || `/tasks/?${queryParam}=${value}`}
 				onClick={handleClick}
 				className="flex items-center py-1 px-2 gap-2"
 			>

@@ -37,7 +37,7 @@ export default function SmartTodolistContainer() {
 				<AnimatePresence>
 					{SmartLists.map((smartList, index) => (
 						<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
-							<ListLinkItem queryParam="id" value={smartList.text.toLowerCase()} Icon={smartList.icon}>
+							<ListLinkItem queryParam="smart-list" value={smartList.text.toLowerCase()} Icon={smartList.icon}>
 								{smartList.text}
 							</ListLinkItem>
 						</motion.li>
