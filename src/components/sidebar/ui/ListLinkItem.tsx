@@ -5,7 +5,7 @@ import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import { LucideProps } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { ForwardRefExoticComponent, RefAttributes } from 'react';
+import { ForwardRefExoticComponent, RefAttributes, useEffect, useState } from 'react';
 
 interface ListLinkItemProps {
 	children: React.ReactNode;
@@ -20,7 +20,13 @@ export default function ListLinkItem({ children, queryParam, value, Icon }: List
 	const isSelectedPath = currentQueryParamValue === value;
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
-	const urlWithSearchParams = localStorage.getItem(`searchParams-${value}`);
+
+	const [urlWithSearchParams, setUrlWithSearchParams] = useState<string | null>(null);
+
+	useEffect(() => {
+		const storedUrl = localStorage.getItem(`searchParams-${value}`);
+		setUrlWithSearchParams(storedUrl);
+	}, [value]);
 
 	const handleClick = () => {
 		const mediaQuery = window.matchMedia('(max-width: 1024px)');
