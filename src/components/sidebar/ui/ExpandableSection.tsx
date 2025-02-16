@@ -20,7 +20,7 @@ export default function ExpandableSection({ children, isEmpty, title }: Expandab
 						<ChevronDown size={20} />
 					</div>
 				</Button>
-				<p className="mr-3 ml-1 text-slate-600">{title}</p> <hr className="border border-slate-200 w-full" />
+				<p className="mr-3 ml-1 text-slate-600">{title}</p>
 			</div>
 
 			<motion.div
