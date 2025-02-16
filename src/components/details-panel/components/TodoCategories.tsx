@@ -1,7 +1,7 @@
 'use client';
 
 import { Plus, Tag, Tags } from 'lucide-react';
-import { Category } from '@/types';
+import { Category } from '@/utils/types';
 import { addTodoCategoryAction, deleteTodoCategoryAction } from '@/actions/category-action';
 import useTodosStore from '@/context/TodosContext';
 import CategoryForm from '../ui/CategoryForm';

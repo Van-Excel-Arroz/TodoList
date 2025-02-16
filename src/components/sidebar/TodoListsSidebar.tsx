@@ -1,4 +1,4 @@
-import { TodoList } from '@/types';
+import { TodoList } from '@/utils/types';
 import { getTodolists } from '@/lib/todolist';
 import TodoListsSidebarWrapper from './components/TodoListsSidebarWrapper';
 import TodoListsHeader from './components/TodoListsHeader';

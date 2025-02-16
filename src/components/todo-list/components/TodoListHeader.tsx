@@ -1,7 +1,7 @@
 'use client';
 
 import { memo, useEffect, useState } from 'react';
-import { Category, TodoList } from '@/types';
+import { Category, TodoList } from '@/utils/types';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import TodoListsSidebarToggle from '../../sidebar/ui/TodoListsSidebarToggle';
 import TodoForm from './TodoForm';

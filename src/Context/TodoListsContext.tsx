@@ -1,4 +1,4 @@
-import { TodoList } from '@/types';
+import { TodoList } from '@/utils/types';
 import { create } from 'zustand';
 
 interface TodoListContextState {

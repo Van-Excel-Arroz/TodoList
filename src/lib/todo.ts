@@ -1,4 +1,4 @@
-import { Category, Todo } from '@/types';
+import { Category, Todo } from '@/utils/types';
 import { query } from './db';
 
 export async function storeTodo(text: string, dueDatetime: string | null, todolistId: number) {

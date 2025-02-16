@@ -7,7 +7,7 @@ import { extractCategory, extractTitle } from '@/utils/category';
 import { Calendar, CalendarCheck, Repeat, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import useTodosStore from '@/context/TodosContext';
-import { Todo } from '@/types';
+import { Todo } from '@/utils/types';
 import TodoInput from '../ui/TodoInput';
 import DueDate from '../../ui-shared/DueDate';
 import DueTime from '@/components/ui-shared/DueTime';

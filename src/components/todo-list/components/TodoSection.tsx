@@ -1,6 +1,6 @@
 'use client';
 
-import { Todo } from '@/types';
+import { Todo } from '@/utils/types';
 import TodoItem from './TodoItem';
 import { useMemo, memo } from 'react';
 import { motion } from 'framer-motion';

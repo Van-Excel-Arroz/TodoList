@@ -1,6 +1,6 @@
 'use client';
 
-import { TodoList } from '@/types';
+import { TodoList } from '@/utils/types';
 import { useEffect } from 'react';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { AnimatePresence, motion } from 'framer-motion';

@@ -1,6 +1,6 @@
 'use client';
 
-import { Todo } from '@/types';
+import { Todo } from '@/utils/types';
 import TodoListView from './TodoListView';
 import useTodosStore from '@/context/TodosContext';
 import { useEffect } from 'react';

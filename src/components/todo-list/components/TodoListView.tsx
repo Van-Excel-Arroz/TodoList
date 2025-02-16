@@ -1,4 +1,4 @@
-import { Todo } from '@/types';
+import { Todo } from '@/utils/types';
 import TodoSection from './TodoSection';
 import { useTodoDataManagement } from '@/hooks/useTodoDataManagement';
 

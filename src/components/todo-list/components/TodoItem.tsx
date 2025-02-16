@@ -1,7 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import { Todo } from '@/types';
+import { Todo } from '@/utils/types';
 import {
 	updateTodoCompletedAtAction,
 	updateTodoCompletionAction,

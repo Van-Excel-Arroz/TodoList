@@ -1,4 +1,4 @@
-import { Category, Todo } from '@/types';
+import { Category, Todo } from '@/utils/types';
 import { create } from 'zustand';
 
 interface TodosContextState {

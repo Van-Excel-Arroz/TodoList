@@ -1,4 +1,4 @@
-import { Category } from '@/types';
+import { Category } from '@/utils/types';
 import { X } from 'lucide-react';
 
 interface CategoryTagProps {

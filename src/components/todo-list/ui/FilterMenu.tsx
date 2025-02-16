@@ -1,6 +1,6 @@
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
-import { MenuOpenProps } from '@/types';
+import { MenuOpenProps } from '@/utils/types';
 import { CalendarDays, Tag } from 'lucide-react';
 
 interface FilterMenuProps extends MenuOpenProps {

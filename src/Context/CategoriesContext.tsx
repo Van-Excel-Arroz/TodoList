@@ -1,4 +1,4 @@
-import { Category } from '@/types';
+import { Category } from '@/utils/types';
 import { create } from 'zustand';
 
 interface CategoriesContextState {

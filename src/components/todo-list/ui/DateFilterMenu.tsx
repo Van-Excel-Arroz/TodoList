@@ -1,7 +1,7 @@
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import useQueryParams from '@/hooks/useQueryParams';
-import { MenuOpenProps } from '@/types';
+import { MenuOpenProps } from '@/utils/types';
 import { CheckIcon } from 'lucide-react';
 
 const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Date'];

@@ -1,4 +1,4 @@
-import { Todo } from '@/types';
+import { Todo } from '@/utils/types';
 import { compareAsc, compareDesc, isThisMonth, isThisWeek, isToday, isTomorrow } from 'date-fns';
 import { useMemo } from 'react';
 import useQueryParams from './useQueryParams';

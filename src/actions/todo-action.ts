@@ -12,7 +12,7 @@ import {
 	updateTodoImportance,
 	updateTodoTitle,
 } from '@/lib/todo';
-import { Category } from '@/types';
+import { Category } from '@/utils/types';
 
 export async function createTodoAction(
 	taskText: string,
