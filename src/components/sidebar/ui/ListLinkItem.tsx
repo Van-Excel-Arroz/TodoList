@@ -1,13 +1,15 @@
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
+import { LucideProps } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { ForwardRefExoticComponent, RefAttributes } from 'react';
 
 interface ListLinkItemProps {
 	children: React.ReactNode;
 	queryParam: string;
 	value: string;
-	Icon: any;
+	Icon: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>;
 }
 
 export default function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) {
