@@ -2,7 +2,7 @@
 
 import { TodoList } from '@/types';
 import TodoListItem from './TodoListItem';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from '@/components/ui-shared/Button';
@@ -27,6 +27,8 @@ const itemVariants = {
 
 export default function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] }) {
 	const { todolists, setTodolists } = useTodoListsStore();
+	const [isOpen, setIsOpen] = useState<boolean>(true);
+
 	useEffect(() => {
 		if (todolists.length === 0) {
 			setTodolists(initialTodoLists);
@@ -45,8 +47,12 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 				<>
 					<div className="flex flex-col items-start gap-1 w-full mx-auto">
 						<div className="flex items-center w-full mx-auto">
-							<Button ariaLabel="Toggle Show List Container">
-								<ChevronDown size={20} />
+							<Button ariaLabel="Toggle Todo Section" onClick={() => setIsOpen(prev => !prev)} disabled={isEmpty}>
+								<div
+									className={`transition-transform duration-200 ease-in-out ${isOpen && !isEmpty ? 'rotate-180' : ''}`}
+								>
+									<ChevronDown size={20} />
+								</div>
 							</Button>
 							<p className="mr-2 text-slate-600">Lists</p> <hr className="border border-slate-200 w-full" />
 						</div>
