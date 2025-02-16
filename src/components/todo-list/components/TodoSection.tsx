@@ -18,7 +18,7 @@ function TodoSection({ title, todos }: TodoSectionProps) {
 	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
 
 	return (
-		<div className="overflow-hidden">
+		<>
 			<div className="flex items-center py-2 px-6 gap-2">
 				<Button ariaLabel="Toggle Todo Section" onClick={() => setIsOpen(prev => !prev)} disabled={isTodosEmpty}>
 					<div
@@ -47,7 +47,7 @@ function TodoSection({ title, todos }: TodoSectionProps) {
 					))}
 				</ul>
 			</motion.div>
-		</div>
+		</>
 	);
 }
 
