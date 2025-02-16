@@ -5,8 +5,7 @@ import TodoListItem from './TodoListItem';
 import { useEffect, useState } from 'react';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Button } from '@/components/ui-shared/Button';
-import { ChevronDown } from 'lucide-react';
+import ExpandableSection from '../ui/ExpandableSection';
 
 const itemVariants = {
 	initial: {
@@ -45,48 +44,24 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 				</div>
 			) : (
 				<>
-					<div className="flex flex-col items-start gap-1 w-full mx-auto">
-						<div className="flex items-center w-full mx-auto">
-							<Button
-								ariaLabel="Toggle Todo Section"
-								onClick={() => setIsOpen(prev => !prev)}
-								disabled={isTodolistsEmpty}
-							>
-								<div
-									className={`transition-transform duration-200 ease-in-out ${
-										isOpen && !isTodolistsEmpty ? 'rotate-180' : ''
-									}`}
-								>
-									<ChevronDown size={20} />
-								</div>
-							</Button>
-							<p className="mr-3 ml-1 text-slate-600">Lists</p> <hr className="border border-slate-200 w-full" />
-						</div>
-
-						<motion.div
-							className="overflow-hidden"
-							initial={{ height: isOpen && !isTodolistsEmpty ? 'auto' : 0 }}
-							animate={{ height: isOpen && !isTodolistsEmpty ? 'auto' : 0 }}
-							transition={{ duration: 0.25 }}
-						>
-							<ul className="flex flex-col gap-2 w-full">
-								<AnimatePresence>
-									{todolists.map(todolist => (
-										<motion.li
-											key={todolist.id}
-											layout
-											variants={itemVariants}
-											initial="initial"
-											animate="animate"
-											exit="exit"
-										>
-											<TodoListItem todolist={todolist} />
-										</motion.li>
-									))}
-								</AnimatePresence>
-							</ul>
-						</motion.div>
-					</div>
+					<ExpandableSection isOpen={isOpen} setIsOpen={setIsOpen} isEmpty={isTodolistsEmpty}>
+						<ul className="flex flex-col gap-2 w-full">
+							<AnimatePresence>
+								{todolists.map(todolist => (
+									<motion.li
+										key={todolist.id}
+										layout
+										variants={itemVariants}
+										initial="initial"
+										animate="animate"
+										exit="exit"
+									>
+										<TodoListItem todolist={todolist} />
+									</motion.li>
+								))}
+							</AnimatePresence>
+						</ul>
+					</ExpandableSection>
 				</>
 			)}
 		</div>
