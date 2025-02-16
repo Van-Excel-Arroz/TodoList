@@ -8,23 +8,7 @@ import ExpandableSection from '../ui/ExpandableSection';
 import ListLinkItem from '../ui/ListLinkItem';
 import { List } from 'lucide-react';
 import TodoListEmptyText from '../ui/TodoListEmptyText';
-
-const itemVariants = {
-	initial: {
-		opacity: 0,
-		x: -20,
-		transition: { duration: 0.3, type: 'spring' },
-	},
-	exit: {
-		opacity: 0,
-		x: -20,
-		transition: { duration: 0.2 },
-	},
-	animate: {
-		opacity: 1,
-		x: 0,
-	},
-};
+import { itemVariants } from '@/utils/framer-motion';
 
 export default function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] }) {
 	const { todolists, setTodolists } = useTodoListsStore();
@@ -45,15 +29,8 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 					<ExpandableSection isEmpty={isTodolistsEmpty} title="Lists">
 						<ul className="flex flex-col gap-2 w-full">
 							<AnimatePresence>
-								{todolists.map(todolist => (
-									<motion.li
-										key={todolist.id}
-										layout
-										variants={itemVariants}
-										initial="initial"
-										animate="animate"
-										exit="exit"
-									>
+								{todolists.map((todolist, index) => (
+									<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
 										<ListLinkItem queryParam="id" value={todolist.id.toString()} Icon={List}>
 											{todolist.title}
 										</ListLinkItem>
