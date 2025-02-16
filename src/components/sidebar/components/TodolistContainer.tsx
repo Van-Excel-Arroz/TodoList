@@ -34,11 +34,11 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 			setTodolists(initialTodoLists);
 		}
 	}, [initialTodoLists, setTodolists, todolists]);
-	const isEmpty = todolists.length === 0;
+	const isTodolistsEmpty = todolists.length === 0;
 
 	return (
 		<div className="flex flex-col overflow-y-auto overflow-hidden">
-			{isEmpty ? (
+			{isTodolistsEmpty ? (
 				<div className="text-center mt-4">
 					<p className="text-xl font-semibold mb-2">No Tasks Available</p>
 					<p className="text-gray-600">Start by adding a new todolist!</p>
@@ -47,9 +47,15 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 				<>
 					<div className="flex flex-col items-start gap-1 w-full mx-auto">
 						<div className="flex items-center w-full mx-auto">
-							<Button ariaLabel="Toggle Todo Section" onClick={() => setIsOpen(prev => !prev)} disabled={isEmpty}>
+							<Button
+								ariaLabel="Toggle Todo Section"
+								onClick={() => setIsOpen(prev => !prev)}
+								disabled={isTodolistsEmpty}
+							>
 								<div
-									className={`transition-transform duration-200 ease-in-out ${isOpen && !isEmpty ? 'rotate-180' : ''}`}
+									className={`transition-transform duration-200 ease-in-out ${
+										isOpen && !isTodolistsEmpty ? 'rotate-180' : ''
+									}`}
 								>
 									<ChevronDown size={20} />
 								</div>
