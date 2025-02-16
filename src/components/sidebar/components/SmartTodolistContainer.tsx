@@ -5,6 +5,7 @@ import ExpandableSection from '../ui/ExpandableSection';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import ListLinkItem from '../ui/ListLinkItem';
+import { itemVariants } from '@/utils/framer-motion';
 
 const SmartLists = [
 	{ icon: Star, text: 'Priority' },
@@ -12,23 +13,6 @@ const SmartLists = [
 	{ icon: Clock3, text: 'Upcoming' },
 	{ icon: Tags, text: 'Tagged' },
 ];
-
-const itemVariants = {
-	initial: {
-		opacity: 0,
-		x: -20,
-		transition: { duration: 0.3, type: 'spring' },
-	},
-	exit: {
-		opacity: 0,
-		x: -20,
-		transition: { duration: 0.2 },
-	},
-	animate: {
-		opacity: 1,
-		x: 0,
-	},
-};
 
 export default function SmartTodolistContainer() {
 	return (
