@@ -12,8 +12,8 @@ export default async function TasksPage({ searchParams }: PageProps) {
 	const { id = '', 'smart-list': smartList = '' } = await searchParams;
 	const todolistId = id ? Number(id) : null;
 
-	if (smartList === 'priority') {
-		return <h1>Hello World</h1>;
+	if (smartList in ['priority', 'today', 'upcoming', 'tagged']) {
+		return <h1>{smartList.toUpperCase()}</h1>;
 	}
 
 	if (todolistId === null || isNaN(todolistId)) {
