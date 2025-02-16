@@ -6,9 +6,10 @@ import React, { useState } from 'react';
 interface ExpandableSectionProps {
 	children: React.ReactNode;
 	isEmpty: boolean;
+	title: string;
 }
 
-export default function ExpandableSection({ children, isEmpty }: ExpandableSectionProps) {
+export default function ExpandableSection({ children, isEmpty, title }: ExpandableSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
 
 	return (
@@ -19,7 +20,7 @@ export default function ExpandableSection({ children, isEmpty }: ExpandableSecti
 						<ChevronDown size={20} />
 					</div>
 				</Button>
-				<p className="mr-3 ml-1 text-slate-600">Lists</p> <hr className="border border-slate-200 w-full" />
+				<p className="mr-3 ml-1 text-slate-600">{title}</p> <hr className="border border-slate-200 w-full" />
 			</div>
 
 			<motion.div

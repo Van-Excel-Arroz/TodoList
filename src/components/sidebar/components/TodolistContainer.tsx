@@ -44,7 +44,7 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 				</div>
 			) : (
 				<>
-					<ExpandableSection isEmpty={isTodolistsEmpty}>
+					<ExpandableSection isEmpty={isTodolistsEmpty} title="Lists">
 						<ul className="flex flex-col gap-2 w-full">
 							<AnimatePresence>
 								{todolists.map(todolist => (
