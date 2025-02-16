@@ -6,7 +6,7 @@ export default function TodoListView({ todos }: { todos: Todo[] }) {
 	const { incompleteTodos, completeTodos } = useTodoDataManagement(todos);
 
 	return (
-		<div>
+		<div className="mx-4">
 			<TodoSection title="Todos" todos={incompleteTodos} />
 			<TodoSection title="Completed Todos" todos={completeTodos} />
 		</div>
