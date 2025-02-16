@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Todo } from '@/types';
 import TodoSection from './TodoSection';
 import { useTodoDataManagement } from '@/hooks/useTodoDataManagement';
@@ -8,12 +7,8 @@ export default function TodoListView({ todos }: { todos: Todo[] }) {
 
 	return (
 		<div>
-			<motion.div layout transition={{ duration: 0.15 }}>
-				<TodoSection title="Todos" todos={incompleteTodos} />
-			</motion.div>
-			<motion.div layout transition={{ duration: 0.15 }}>
-				<TodoSection title="Completed Todos" todos={completeTodos} />
-			</motion.div>
+			<TodoSection title="Todos" todos={incompleteTodos} />
+			<TodoSection title="Completed Todos" todos={completeTodos} />
 		</div>
 	);
 }
