@@ -12,7 +12,7 @@ export default async function TasksPage({ searchParams }: PageProps) {
 	const { id = '', 'smart-list': smartList = '' } = await searchParams;
 	const todolistId = id ? Number(id) : null;
 
-	if (smartList in ['priority', 'today', 'upcoming', 'tagged']) {
+	if (['priority', 'today', 'upcoming', 'tagged'].includes(smartList)) {
 		return <h1>{smartList.toUpperCase()}</h1>;
 	}
 
