@@ -6,6 +6,7 @@ import useTodoListsStore from '@/context/TodoListsContext';
 import { AnimatePresence, motion } from 'framer-motion';
 import ExpandableSection from '../ui/ExpandableSection';
 import ListLinkItem from '../ui/ListLinkItem';
+import { List } from 'lucide-react';
 
 const itemVariants = {
 	initial: {
@@ -55,7 +56,7 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 										animate="animate"
 										exit="exit"
 									>
-										<ListLinkItem queryParam="id" value={todolist.id.toString()}>
+										<ListLinkItem queryParam="id" value={todolist.id.toString()} Icon={List}>
 											{todolist.title}
 										</ListLinkItem>
 									</motion.li>

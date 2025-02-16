@@ -7,9 +7,10 @@ interface ListLinkItemProps {
 	children: React.ReactNode;
 	queryParam: string;
 	value: string;
+	Icon: any;
 }
 
-export default function ListLinkItem({ children, queryParam, value }: ListLinkItemProps) {
+export default function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) {
 	const searchParams = useSearchParams();
 	const currentQueryParamValue = searchParams.get(queryParam);
 	const isSelectedPath = currentQueryParamValue === value;
@@ -38,9 +39,10 @@ export default function ListLinkItem({ children, queryParam, value }: ListLinkIt
 				onClick={handleClick}
 				className="flex items-center py-1 px-2 gap-2"
 			>
-				<p className={`${isSelectedPath ? 'font-bold' : 'font-normal'} text-ellipsis overflow-hidden w-[200px]`}>
+				<Icon size={20} className="text-slate-600" />
+				<div className={`${isSelectedPath ? 'font-bold' : 'font-normal'} text-ellipsis overflow-hidden w-[200px]`}>
 					{children}
-				</p>
+				</div>
 			</Link>
 		</div>
 	);
