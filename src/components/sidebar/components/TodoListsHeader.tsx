@@ -18,7 +18,7 @@ export default function TodoListsHeader() {
 				<Button ariaLabel="Home">
 					<Home />
 				</Button>
-				<p>TodoApp</p>
+				<p className="text-lg">TodoApp</p>
 			</Link>
 			{!isHome && <TodoListsSidebarToggle />}
 		</div>
