@@ -14,7 +14,7 @@ export default function ExpandableSection({ children, isEmpty, title }: Expandab
 
 	return (
 		<div className="flex flex-col items-start gap-1">
-			<div className="flex items-center w-full">
+			<div className="flex items-center w-full mx-1 mb-2">
 				<Button ariaLabel="Toggle Expand Section" onClick={() => setIsOpen(prev => !prev)} disabled={isEmpty}>
 					<div className={`transition-transform duration-200 ease-in-out ${isOpen && !isEmpty ? 'rotate-180' : ''}`}>
 						<ChevronDown size={20} />
