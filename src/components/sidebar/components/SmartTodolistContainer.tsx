@@ -3,6 +3,13 @@
 import { Button } from '@/components/ui-shared/Button';
 import { Calendar, ChevronDown, Clock3, Star, Tags } from 'lucide-react';
 
+const SmartLists = [
+	{ icon: Star, text: 'Priority' },
+	{ icon: Calendar, text: 'Today' },
+	{ icon: Clock3, text: 'Upcoming' },
+	{ icon: Tags, text: 'Tagged' },
+];
+
 export default function SmartTodolistContainer() {
 	return (
 		<div className="flex flex-col items-start gap-1">
