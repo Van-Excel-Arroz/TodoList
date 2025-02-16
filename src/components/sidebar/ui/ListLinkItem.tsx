@@ -41,7 +41,7 @@ export default function ListLinkItem({ children, queryParam, value, Icon }: List
 			className={`flex items-center relative mx-auto transition-all rounded-md duration-200  ${
 				isSelectedPath
 					? 'border-slate-500 bg-slate-200'
-					: 'border-slate-200 hover:bg-slate-100 hover:border-slate-300 active:bg-slate-200'
+					: 'border-slate-200 hover:bg-slate-200 hover:border-slate-300 active:bg-slate-300'
 			}`}
 		>
 			<Link
