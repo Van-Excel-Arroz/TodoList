@@ -6,23 +6,12 @@ import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui-shared/Button';
 import { useState, useMemo, memo } from 'react';
 import { motion } from 'framer-motion';
+import { itemVariants } from '@/utils/framer-motion';
 
 interface TodoSectionProps {
 	title: string;
 	todos: Todo[];
 }
-
-const itemVariants = {
-	initial: {
-		opacity: 0,
-		x: -20,
-		transition: { duration: 0.3, type: 'spring' },
-	},
-	animate: {
-		opacity: 1,
-		x: 0,
-	},
-};
 
 function TodoSection({ title, todos }: TodoSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
