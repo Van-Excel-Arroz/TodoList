@@ -1,3 +1,4 @@
+import PriorityPage from '@/components/priority/PriorityPage';
 import TodoListPage from '@/components/todo-list/TodoListPage';
 import NoTodoListSelected from '@/components/ui-shared/NoTodoListSelected';
 
@@ -12,8 +13,9 @@ export default async function TasksPage({ searchParams }: PageProps) {
 	const { id = '', 'smart-list': smartList = '' } = await searchParams;
 	const todolistId = id ? Number(id) : null;
 
-	if (['priority', 'today', 'upcoming', 'tagged'].includes(smartList)) {
-		return <h1>{smartList.toUpperCase()}</h1>;
+	switch (smartList) {
+		case 'priority':
+			return <PriorityPage />;
 	}
 
 	if (todolistId === null || isNaN(todolistId)) {
