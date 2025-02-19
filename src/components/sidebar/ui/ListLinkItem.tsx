@@ -2,6 +2,7 @@
 
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
+import useQueryParams from '@/hooks/useQueryParams';
 import { LucideProps } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -11,22 +12,24 @@ interface ListLinkItemProps {
 	children: React.ReactNode;
 	queryParam: string;
 	value: string;
+	todolistId?: string;
 	Icon: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>;
 }
 
-export default function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) {
+export default function ListLinkItem({ children, queryParam, value, todolistId = '0', Icon }: ListLinkItemProps) {
 	const searchParams = useSearchParams();
 	const currentQueryParamValue = searchParams.get(queryParam);
 	const isSelectedPath = currentQueryParamValue === value;
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
+	const { updateSearchParams, getStoredParams } = useQueryParams();
 
 	const [urlWithSearchParams, setUrlWithSearchParams] = useState<string | null>(null);
 
 	useEffect(() => {
-		const storedUrl = localStorage.getItem(`searchParams-${value}`);
-		setUrlWithSearchParams(storedUrl);
-	}, [value]);
+		const storedUrl = getStoredParams(todolistId);
+		setUrlWithSearchParams(storedUrl || `/tasks/?${queryParam}=${value}`);
+	}, [todolistId, queryParam, value]);
 
 	const handleClick = () => {
 		const mediaQuery = window.matchMedia('(max-width: 1024px)');
@@ -34,6 +37,7 @@ export default function ListLinkItem({ children, queryParam, value, Icon }: List
 			toggleTodoListsSidebar();
 		}
 		setSelectedTodoId(0);
+		updateSearchParams(queryParam, value, todolistId);
 	};
 
 	return (
