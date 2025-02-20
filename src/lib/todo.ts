@@ -1,5 +1,6 @@
 import { Category, Todo } from '@/utils/types';
 import { query } from './db';
+import { getTodolists } from './todolist';
 
 export async function storeTodo(text: string, dueDatetime: string | null, todolistId: number) {
 	try {
@@ -62,6 +63,34 @@ export async function getTodos(todolistId: number): Promise<Todo[]> {
 		return todos;
 	} catch (error) {
 		console.error('Error fetching todos in the database');
+		return [];
+	}
+}
+
+export async function getImportantTodos() {
+	try {
+		const todolists = await getTodolists(1);
+
+		if (!todolists) {
+			return [];
+		}
+
+		const importantTodos = [];
+
+		for (const todolist of todolists) {
+			try {
+				const result = await query('SELECT * FROM todos WHERE todo_list_id = $1 AND is_important = TRUE', [
+					todolist.id,
+				]);
+				importantTodos.push(...result.rows.map(todo => ({ ...todo, todolist_title: todolist.title })));
+			} catch (error) {
+				console.error(`Error fetching important todos for todolist ${todolist.id}:`, error);
+			}
+		}
+
+		return importantTodos;
+	} catch (error) {
+		console.error('Error fetching all important todos in the database.');
 		return [];
 	}
 }
