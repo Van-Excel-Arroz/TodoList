@@ -3,14 +3,12 @@
 import ExpandableSection from '@/components/ui-shared/ExpandableSection';
 import { TodoListWithImportantTodos } from '@/utils/types';
 
-export default function PriorityContainer({ important_todos }: TodoListWithImportantTodos[]) {
+export default function PriorityContainer({ todoList }: TodoListWithImportantTodos) {
 	return (
 		<>
-			{important_todos.map(important_todo => (
-				<ExpandableSection isEmpty={false} title={important_todo.title}>
-					<p></p>
-				</ExpandableSection>
-			))}
+			<ExpandableSection isEmpty={false} title={todoList.title}>
+				<p></p>
+			</ExpandableSection>
 		</>
 	);
 }
