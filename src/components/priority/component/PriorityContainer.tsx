@@ -1,13 +1,9 @@
 'use client';
 
 import ExpandableSection from '@/components/ui-shared/ExpandableSection';
-import { Todo, TodoList } from '@/utils/types';
+import { TodoListWithImportantTodos } from '@/utils/types';
 
-interface PriorityContainerProps {
-	important_todos: Todo[];
-}
-
-export default function PriorityContainer({ important_todos }: PriorityContainerProps) {
+export default function PriorityContainer({ important_todos }: TodoListWithImportantTodos[]) {
 	return (
 		<>
 			{important_todos.map(important_todo => (

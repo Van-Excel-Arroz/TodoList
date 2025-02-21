@@ -1,7 +1,7 @@
 import { getImportantTodos } from '@/lib/todo';
 
 export default async function PriorityPage() {
-	const important_todos = await getImportantTodos();
+	const importantTodos = await getImportantTodos();
 
 	return (
 		<div className="w-[98%] mx-auto">
