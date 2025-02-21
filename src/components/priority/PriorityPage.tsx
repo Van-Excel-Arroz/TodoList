@@ -11,7 +11,9 @@ export default async function PriorityPage() {
 				<div key={important_todo.id} className="font-bold">
 					<p>{important_todo.title}</p>
 					{important_todo.importantTodos.map((todo: Todo) => (
-						<p className="pl-5">{todo.task_text}</p>
+						<p className="pl-5" key={todo.id}>
+							{todo.task_text}
+						</p>
 					))}
 				</div>
 			))}
