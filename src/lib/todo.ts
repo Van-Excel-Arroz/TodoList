@@ -79,13 +79,11 @@ export async function getImportantTodos(): Promise<TodoListWithImportantTodos[]>
 
 		for (const todolist of todolists) {
 			try {
-				const result = await query('SELECT * FROM todos WHERE todo_list_id = $1 AND is_important = TRUE', [
-					todolist.id,
-				]);
-				if (result.rows.length > 0 && result.rows) {
+				const result = await getTodosWithCategories(todolist.id);
+				if (result.length > 0 && result) {
 					importantTodos.push({
 						...todolist,
-						importantTodos: result.rows || [],
+						importantTodos: result || [],
 					});
 				}
 			} catch (error) {

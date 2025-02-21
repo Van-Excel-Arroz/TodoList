@@ -82,7 +82,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 					</p>
 					<div className="flex items-center gap-1 flex-wrap">
 						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
-						{todo.due_datetime && todo.categories && todo.categories.length > 0 && <p>•</p>}
+						{todo.due_datetime && todo.categories!.length > 0 && <p>•</p>}
 						{(todo.categories?.length ?? 0) > 0 && (
 							<>
 								<CategoryTags categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
