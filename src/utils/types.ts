@@ -29,3 +29,7 @@ export interface MenuOpenProps {
 	isOpen: boolean;
 	setIsOpen: (val: boolean) => void;
 }
+
+export interface TodoListWithImportantTodos extends TodoList {
+	importantTodos: Todo[];
+}

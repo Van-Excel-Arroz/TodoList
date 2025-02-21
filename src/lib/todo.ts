@@ -1,4 +1,4 @@
-import { Category, Todo } from '@/utils/types';
+import { Category, Todo, TodoList } from '@/utils/types';
 import { query } from './db';
 import { getTodolists } from './todolist';
 
@@ -67,7 +67,7 @@ export async function getTodos(todolistId: number): Promise<Todo[]> {
 	}
 }
 
-export async function getImportantTodos() {
+export async function getImportantTodos(): Promise<> {
 	try {
 		const todolists = await getTodolists(1);
 
