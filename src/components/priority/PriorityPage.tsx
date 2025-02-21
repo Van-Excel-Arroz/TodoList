@@ -9,7 +9,7 @@ export default async function PriorityPage() {
 		<div className="w-[98%] mx-auto">
 			<p className="text-lg font-bold">Priority Page</p>
 			{importantTodosWithTodoList.map((todoList: TodoListWithImportantTodos) => (
-				<PriorityContainer {...todoList} />
+				<PriorityContainer todoList={todoList} />
 			))}
 		</div>
 	);
