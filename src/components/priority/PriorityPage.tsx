@@ -1,5 +1,5 @@
 import { getImportantTodos } from '@/lib/todo';
-import PriorityContainer from './component/PriorityContainer';
+import PrioritySection from './component/PrioritySection';
 import { TodoListWithImportantTodos } from '@/utils/types';
 
 export default async function PriorityPage() {
@@ -9,7 +9,7 @@ export default async function PriorityPage() {
 		<div className="w-[98%] mx-auto">
 			<p className="text-lg font-bold">Priority Page</p>
 			{importantTodosWithTodoList.map((todoList: TodoListWithImportantTodos) => (
-				<PriorityContainer todoList={todoList} />
+				<PrioritySection todoList={todoList} />
 			))}
 		</div>
 	);
