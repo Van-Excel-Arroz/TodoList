@@ -1,5 +1,6 @@
 import { getImportantTodos } from '@/lib/todo';
 import PriorityContainer from './component/PriorityContainer';
+import { TodoListWithImportantTodos } from '@/utils/types';
 
 export default async function PriorityPage() {
 	const importantTodosWithTodoList = await getImportantTodos();
@@ -7,7 +8,9 @@ export default async function PriorityPage() {
 	return (
 		<div className="w-[98%] mx-auto">
 			<p className="text-lg font-bold">Priority Page</p>
-			<PriorityContainer importantTodosWithTodoList={importantTodosWithTodoList} />
+			{importantTodosWithTodoList.map((todoList: TodoListWithImportantTodos) => (
+				<PriorityContainer {...todoList} />
+			))}
 		</div>
 	);
 }
