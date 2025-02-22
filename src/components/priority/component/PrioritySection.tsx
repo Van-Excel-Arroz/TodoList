@@ -1,6 +1,6 @@
 'use client';
 
-import TodoItem from '@/components/todo-list/components/TodoItem';
+import TodoItem from '@/components/ui-shared/TodoItem';
 import ExpandableSection from '@/components/ui-shared/ExpandableSection';
 import { TodoListWithImportantTodos } from '@/utils/types';
 

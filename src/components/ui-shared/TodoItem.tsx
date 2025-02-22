@@ -10,8 +10,8 @@ import {
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 import CheckBox from '@/components/ui-shared/CheckBox';
-import CategoryTags from '../ui/CategoryTags';
-import DueDate from '../ui/DueDate';
+import CategoryTags from '../todo-list/ui/CategoryTags';
+import DueDate from '../todo-list/ui/DueDate';
 import { GripVertical } from 'lucide-react';
 import Importance from '@/components/ui-shared/Importance';
 import useQueryParams from '@/hooks/useQueryParams';
