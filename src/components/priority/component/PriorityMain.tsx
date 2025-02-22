@@ -11,7 +11,7 @@ interface PriorityMainProps {
 }
 
 export default function PriorityMain({ importantTodosWithTodoList }: PriorityMainProps) {
-	const { setTodos } = useTodosStore();
+	const { todos, setTodos } = useTodosStore();
 	const [todoLists, setTodoLists] = useState<TodoListWithImportantTodos[]>(importantTodosWithTodoList);
 
 	useEffect(() => {
@@ -25,9 +25,9 @@ export default function PriorityMain({ importantTodosWithTodoList }: PriorityMai
 		<>
 			{importantTodosWithTodoList.map((todoList: TodoListWithImportantTodos) => (
 				<ExpandableSection isEmpty={false} title={todoList.title} key={todoList.id}>
-					{todoList.importantTodos.map((todo, index) => (
-						<TodoItem todo={todo} key={index} />
-					))}
+					{todos.map((todo, index) =>
+						todo.todo_list_id === todoList.id ? <TodoItem todo={todo} key={index} /> : null
+					)}
 				</ExpandableSection>
 			))}
 		</>
