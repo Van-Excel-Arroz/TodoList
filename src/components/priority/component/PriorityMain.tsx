@@ -3,7 +3,7 @@
 import TodoItem from '@/components/ui-shared/TodoItem';
 import ExpandableSection from '@/components/ui-shared/ExpandableSection';
 import { Todo, TodoListWithImportantTodos } from '@/utils/types';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useTodosStore from '@/context/TodosContext';
 
 interface PriorityMainProps {
@@ -12,7 +12,6 @@ interface PriorityMainProps {
 
 export default function PriorityMain({ importantTodosWithTodoList }: PriorityMainProps) {
 	const { todos, setTodos } = useTodosStore();
-	const [todoLists, setTodoLists] = useState<TodoListWithImportantTodos[]>(importantTodosWithTodoList);
 
 	useEffect(() => {
 		const todos: Todo[] = [];
