@@ -5,15 +5,19 @@ import ExpandableSection from '@/components/ui-shared/ExpandableSection';
 import { TodoListWithImportantTodos } from '@/utils/types';
 
 interface PrioritySectionProps {
-	todoList: TodoListWithImportantTodos;
+	importantTodosWithTodoList: TodoListWithImportantTodos[];
 }
 
-export default function PrioritySection({ todoList }: PrioritySectionProps) {
+export default function PrioritySection({ importantTodosWithTodoList }: PrioritySectionProps) {
 	return (
-		<ExpandableSection isEmpty={false} title={todoList.title}>
-			{todoList.importantTodos.map((todo, index) => (
-				<TodoItem todo={todo} key={index} />
+		<>
+			{importantTodosWithTodoList.map((todoList: TodoListWithImportantTodos) => (
+				<ExpandableSection isEmpty={false} title={todoList.title}>
+					{todoList.importantTodos.map((todo, index) => (
+						<TodoItem todo={todo} key={index} />
+					))}
+				</ExpandableSection>
 			))}
-		</ExpandableSection>
+		</>
 	);
 }

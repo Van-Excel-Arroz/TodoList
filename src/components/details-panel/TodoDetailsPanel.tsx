@@ -15,6 +15,7 @@ export default function TodoDetailsPanel() {
 	const { setSelectedTodoId, selectedTodoId } = useSelectedTodoIdStore();
 	const { getTodoById } = useTodosStore();
 	const todo = getTodoById(selectedTodoId);
+	console.log(todo);
 
 	return (
 		<>
