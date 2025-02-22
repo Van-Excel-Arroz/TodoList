@@ -5,6 +5,8 @@ import ExpandableSection from '@/components/ui-shared/ExpandableSection';
 import { Todo, TodoListWithImportantTodos } from '@/utils/types';
 import { useEffect } from 'react';
 import useTodosStore from '@/context/TodosContext';
+import { motion } from 'framer-motion';
+import { itemVariants } from '@/utils/framer-motion';
 
 interface PriorityMainProps {
 	importantTodosWithTodoList: TodoListWithImportantTodos[];
@@ -22,11 +24,15 @@ export default function PriorityMain({ importantTodosWithTodoList }: PriorityMai
 
 	return (
 		<>
-			{importantTodosWithTodoList.map((todoList: TodoListWithImportantTodos) => (
+			{importantTodosWithTodoList.map((todoList, index) => (
 				<ExpandableSection isEmpty={false} title={todoList.title} key={todoList.id}>
-					{todos.map((todo, index) =>
-						todo.todo_list_id === todoList.id ? <TodoItem todo={todo} key={index} /> : null
-					)}
+					<ul>
+						<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
+							{todos.map((todo, index) =>
+								todo.todo_list_id === todoList.id ? <TodoItem todo={todo} key={index} /> : null
+							)}
+						</motion.li>
+					</ul>
 				</ExpandableSection>
 			))}
 		</>
