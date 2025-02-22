@@ -4,11 +4,11 @@ import TodoItem from '@/components/ui-shared/TodoItem';
 import ExpandableSection from '@/components/ui-shared/ExpandableSection';
 import { TodoListWithImportantTodos } from '@/utils/types';
 
-interface PrioritySectionProps {
+interface PriorityMainProps {
 	importantTodosWithTodoList: TodoListWithImportantTodos[];
 }
 
-export default function PrioritySection({ importantTodosWithTodoList }: PrioritySectionProps) {
+export default function PriorityMain({ importantTodosWithTodoList }: PriorityMainProps) {
 	return (
 		<>
 			{importantTodosWithTodoList.map((todoList: TodoListWithImportantTodos) => (

@@ -1,6 +1,5 @@
 import { getImportantTodos } from '@/lib/todo';
-import PrioritySection from './component/PrioritySection';
-import { TodoListWithImportantTodos } from '@/utils/types';
+import PriorityMain from './component/PriorityMain';
 
 export default async function PriorityPage() {
 	const importantTodosWithTodoList = await getImportantTodos();
@@ -8,7 +7,7 @@ export default async function PriorityPage() {
 	return (
 		<div className="w-[98%] mx-auto">
 			<p className="text-lg font-bold">Priority Page</p>
-			<PrioritySection importantTodosWithTodoList={importantTodosWithTodoList} />
+			<PriorityMain importantTodosWithTodoList={importantTodosWithTodoList} />
 		</div>
 	);
 }
