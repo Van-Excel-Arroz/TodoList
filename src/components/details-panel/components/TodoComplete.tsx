@@ -30,7 +30,7 @@ export default function TodoComplete({ isCompleted, completedAt }: TodoCompleteP
 		<div className="flex justify-between items-center border border-slate-300 p-2 rounded-md w-1/2">
 			<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
 			<div className="text-center w-full">
-				<p>{isCompleted ? 'Completed' : 'Mark as completed'} </p>
+				<p>{isCompleted ? 'Completed' : 'Complete'} </p>
 				{completedAt && <p className="text-sm text-slate-600 pb-1">{format(new Date(completedAt), 'MM/dd/yy')}</p>}
 			</div>
 		</div>
