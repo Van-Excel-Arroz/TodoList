@@ -23,7 +23,7 @@ export default function PriorityMain({ importantTodosWithTodoList }: PriorityMai
 	return (
 		<>
 			{importantTodosWithTodoList.map((todoList: TodoListWithImportantTodos) => (
-				<ExpandableSection isEmpty={false} title={todoList.title}>
+				<ExpandableSection isEmpty={false} title={todoList.title} key={todoList.id}>
 					{todoList.importantTodos.map((todo, index) => (
 						<TodoItem todo={todo} key={index} />
 					))}
