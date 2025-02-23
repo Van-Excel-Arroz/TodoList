@@ -6,7 +6,7 @@ export default async function PriorityPage() {
 
 	return (
 		<div className="w-[98%] mx-auto">
-			<p className="text-lg font-bold">Priority Page</p>
+			<p className="text-lg font-bold p-2">Priority Page</p>
 			<PriorityMain importantTodosWithTodoList={importantTodosWithTodoList} />
 		</div>
 	);
