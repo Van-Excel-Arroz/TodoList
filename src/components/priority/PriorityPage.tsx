@@ -1,12 +1,13 @@
 import { getImportantTodos } from '@/lib/todo';
 import PriorityMain from './component/PriorityMain';
+import PriorityHeader from './component/PriorityHeader';
 
 export default async function PriorityPage() {
 	const importantTodosWithTodoList = await getImportantTodos();
 
 	return (
 		<div className="w-[98%] mx-auto">
-			<p className="text-lg font-bold p-2">Priority Page</p>
+			<PriorityHeader />
 			<PriorityMain importantTodosWithTodoList={importantTodosWithTodoList} />
 		</div>
 	);
