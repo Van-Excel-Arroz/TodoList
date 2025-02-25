@@ -23,18 +23,20 @@ export default function PriorityMain({ importantTodosWithTodoList }: PriorityMai
 	}, [importantTodosWithTodoList, setTodos]);
 
 	return (
-		<div className="w-[95%] h-[calc(100vh-100px)] mx-auto mt-3 overflow-y-scroll overflow-x-hidden">
-			{importantTodosWithTodoList.map((todoList, index) => (
-				<ExpandableSection isEmpty={false} title={todoList.title} key={todoList.id}>
-					<ul>
-						<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
-							{todos.map((todo, index) =>
-								todo.todo_list_id === todoList.id ? <TodoItem todo={todo} key={index} /> : null
-							)}
-						</motion.li>
-					</ul>
-				</ExpandableSection>
-			))}
+		<div className="w-[98%] h-[calc(100vh-100px)] mx-auto mt-3 overflow-y-scroll overflow-x-hidden">
+			<div className='px-5'>
+				{importantTodosWithTodoList.map((todoList, index) => (
+					<ExpandableSection isEmpty={false} title={todoList.title} key={todoList.id}>
+						<ul>
+							<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
+								{todos.map((todo, index) =>
+									todo.todo_list_id === todoList.id ? <TodoItem todo={todo} key={index} /> : null
+								)}
+							</motion.li>
+						</ul>
+					</ExpandableSection>
+				))}
+			</div>
 		</div>
 	);
 }
