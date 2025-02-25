@@ -13,7 +13,7 @@ export default function PriorityHeader() {
 
 	return (
 		<div className="z-50 px-6 bg-white border-b border-slate-300">
-			<div className='flex items-center gap-2'>
+			<div className='flex items-center gap-2 px-1'>
 				{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 				<p className="text-xl font-bold pt-2">Priority Page</p>
 			</div>
