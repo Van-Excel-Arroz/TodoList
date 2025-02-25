@@ -7,7 +7,7 @@ import { Search } from 'lucide-react';
 
 export default function PriorityHeader() {
 	return (
-		<div>
+		<div className="z-50 px-6 bg-white border-b border-slate-300">
 			<p className="text-lg font-bold p-2">Priority Page</p>
 			<div className="flex items-center justify-between gap-2">
 				<div className="flex items-center gap-2 w-60 pt-2">
