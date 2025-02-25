@@ -6,7 +6,7 @@ export default async function PriorityPage() {
 	const importantTodosWithTodoList = await getImportantTodos();
 
 	return (
-		<div className="w-[98%] mx-auto">
+		<div>
 			<PriorityHeader />
 			<PriorityMain importantTodosWithTodoList={importantTodosWithTodoList} />
 		</div>
