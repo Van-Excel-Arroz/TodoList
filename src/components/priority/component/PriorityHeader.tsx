@@ -13,8 +13,10 @@ export default function PriorityHeader() {
 
 	return (
 		<div className="z-50 px-6 bg-white border-b border-slate-300">
-			{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
-			<p className="text-lg font-bold p-2">Priority Page</p>
+			<div className='flex items-center gap-2'>
+				{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
+				<p className="text-lg font-bold p-1">Priority Page</p>
+			</div>
 			<div className="flex items-center justify-between gap-2">
 				<div className="flex items-center gap-2 w-60 pt-2">
 					<Button ariaLabel="Search">
