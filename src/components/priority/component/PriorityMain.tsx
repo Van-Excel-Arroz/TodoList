@@ -23,7 +23,7 @@ export default function PriorityMain({ importantTodosWithTodoList }: PriorityMai
 	}, [importantTodosWithTodoList, setTodos]);
 
 	return (
-		<div className="w-[98%] h-[calc(100vh-100px)] mx-auto mt-3 overflow-y-scroll overflow-x-hidden">
+		<div className="w-[95%] h-[calc(100vh-100px)] mx-auto mt-3 overflow-y-scroll overflow-x-hidden">
 			{importantTodosWithTodoList.map((todoList, index) => (
 				<ExpandableSection isEmpty={false} title={todoList.title} key={todoList.id}>
 					<ul>
