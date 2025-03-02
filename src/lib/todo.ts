@@ -1,4 +1,4 @@
-import { Category, Todo, TodoListWithImportantTodos } from '@/utils/types';
+import { Category, Todo, TodoListWithFilteredTodos } from '@/utils/types';
 import { query } from './db';
 import { getTodolists } from './todolist';
 import { isToday, parseISO } from 'date-fns';
@@ -68,7 +68,7 @@ export async function getTodos(todolistId: number): Promise<Todo[]> {
 	}
 }
 
-export async function getImportantTodos(): Promise<TodoListWithImportantTodos[]> {
+export async function getImportantTodos(): Promise<TodoListWithFilteredTodos[]> {
 	try {
 		const todolists = await getTodolists(1);
 
@@ -100,7 +100,7 @@ export async function getImportantTodos(): Promise<TodoListWithImportantTodos[]>
 	}
 }
 
-export async function getDueTodayTodos(): Promise<TodoListWithImportantTodos[]> {
+export async function getDueTodayTodos(): Promise<TodoListWithFilteredTodos[]> {
 	try {
 		const todolists = await getTodolists(1);
 
