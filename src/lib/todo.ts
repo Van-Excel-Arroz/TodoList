@@ -82,11 +82,14 @@ export async function getImportantTodos(): Promise<TodoListWithFilteredTodos[]> 
 			try {
 				const result = await getTodosWithCategories(todolist.id);
 				const filteredImportantTodos = result.filter(todo => !todo.is_completed && todo.is_important);
-				if (result.length > 0 && result) {
-					importantTodos.push({
-						...todolist,
-						filteredTodos: filteredImportantTodos || [],
-					});
+
+				if (filteredImportantTodos.length > 0) {
+					if (result.length > 0 && result) {
+						importantTodos.push({
+							...todolist,
+							filteredTodos: filteredImportantTodos || [],
+						});
+					}
 				}
 			} catch (error) {
 				console.error(`Error fetching important todos for todolist ${todolist.id}:`, error);
@@ -118,11 +121,14 @@ export async function getDueTodayTodos(): Promise<TodoListWithFilteredTodos[]> {
 
 					return isToday(todo.due_datetime);
 				});
-				if (result.length > 0 && result) {
-					dueTodayTodos.push({
-						...todolist,
-						filteredTodos: filteredDueTodayTodos || [],
-					});
+
+				if (filteredDueTodayTodos.length > 0) {
+					if (result.length > 0 && result) {
+						dueTodayTodos.push({
+							...todolist,
+							filteredTodos: filteredDueTodayTodos || [],
+						});
+					}
 				}
 			} catch (error) {
 				console.error(`Error fetching today's todo for todolist ${todolist.id}:`, error);
