@@ -80,11 +80,11 @@ export async function getImportantTodos(): Promise<TodoListWithImportantTodos[]>
 		for (const todolist of todolists) {
 			try {
 				const result = await getTodosWithCategories(todolist.id);
-				const filteredImportTodos = result.filter(todo => !todo.is_completed && todo.is_important);
+				const filteredImportantTodos = result.filter(todo => !todo.is_completed && todo.is_important);
 				if (result.length > 0 && result) {
 					importantTodos.push({
 						...todolist,
-						importantTodos: filteredImportTodos || [],
+						importantTodos: filteredImportantTodos || [],
 					});
 				}
 			} catch (error) {
