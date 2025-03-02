@@ -85,7 +85,7 @@ export async function getImportantTodos(): Promise<TodoListWithFilteredTodos[]> 
 				if (result.length > 0 && result) {
 					importantTodos.push({
 						...todolist,
-						importantTodos: filteredImportantTodos || [],
+						filteredTodos: filteredImportantTodos || [],
 					});
 				}
 			} catch (error) {
@@ -121,7 +121,7 @@ export async function getDueTodayTodos(): Promise<TodoListWithFilteredTodos[]> {
 				if (result.length > 0 && result) {
 					dueTodayTodos.push({
 						...todolist,
-						dueTodayTodos: filteredDueTodayTodos || [],
+						filteredTodos: filteredDueTodayTodos || [],
 					});
 				}
 			} catch (error) {
