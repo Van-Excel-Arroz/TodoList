@@ -8,11 +8,12 @@ import useTodosStore from '@/context/TodosContext';
 import { motion } from 'framer-motion';
 import { itemVariants } from '@/utils/framer-motion';
 
-interface TodoListSectionsProps {
+interface FilteredTodosPage {
 	importantTodosWithTodoList: TodoListWithFilteredTodos[];
+  title: string
 }
 
-export default function TodoListSections({ importantTodosWithTodoList }: TodoListSectionsProps) {
+export default function FilteredTodosPage({ importantTodosWithTodoList, title }: FilteredTodosPage) {
 	const { todos, setTodos } = useTodosStore();
 
 	useEffect(() => {
