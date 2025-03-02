@@ -116,7 +116,7 @@ export async function getDueTodayTodos(): Promise<TodoListWithFilteredTodos[]> {
 				const filteredDueTodayTodos = result.filter(todo => {
 					if (!todo.due_datetime || todo.is_completed) return false;
 
-					return isToday(parseISO(todo.due_datetime))
+					return isToday(todo.due_datetime);
 				});
 				if (result.length > 0 && result) {
 					dueTodayTodos.push({
@@ -135,7 +135,6 @@ export async function getDueTodayTodos(): Promise<TodoListWithFilteredTodos[]> {
 		return [];
 	}
 }
-
 
 export async function updateTodoCompletion(todoId: number, isCompleted: boolean): Promise<boolean> {
 	try {

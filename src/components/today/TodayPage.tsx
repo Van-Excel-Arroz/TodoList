@@ -1,5 +1,14 @@
-
+import { getDueTodayTodos } from '@/lib/todo';
+import FilteredTodosPage from '../ui-shared/FilteredTodosPage';
+import FilteredTodosHeader from '../ui-shared/FilteredTodosHeader';
 
 export default async function TodayPage() {
-  return <h1>Today Page</h1>
+	const dueTodayTodosWithTodoList = await getDueTodayTodos();
+
+	return (
+		<>
+			<FilteredTodosHeader title="Today" />
+			<FilteredTodosPage filteredTodosWithTodoList={dueTodayTodosWithTodoList} />
+		</>
+	);
 }
