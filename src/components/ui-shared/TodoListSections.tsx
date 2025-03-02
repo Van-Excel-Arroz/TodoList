@@ -12,7 +12,7 @@ interface PriorityMainProps {
 	importantTodosWithTodoList: TodoListWithImportantTodos[];
 }
 
-export default function PriorityMain({ importantTodosWithTodoList }: PriorityMainProps) {
+export default function TodoListSections({ importantTodosWithTodoList }: PriorityMainProps) {
 	const { todos, setTodos } = useTodosStore();
 
 	useEffect(() => {

@@ -1,5 +1,4 @@
 import { getImportantTodos } from '@/lib/todo';
-import PriorityMain from './component/PriorityMain';
 import PriorityHeader from './component/PriorityHeader';
 
 export default async function PriorityPage() {
@@ -8,7 +7,6 @@ export default async function PriorityPage() {
 	return (
 		<div>
 			<PriorityHeader />
-			<PriorityMain importantTodosWithTodoList={importantTodosWithTodoList} />
 		</div>
 	);
 }
