@@ -1,6 +1,7 @@
-import { Category, Todo, TodoList, TodoListWithImportantTodos } from '@/utils/types';
+import { Category, Todo, TodoListWithImportantTodos } from '@/utils/types';
 import { query } from './db';
 import { getTodolists } from './todolist';
+import { isToday, parseISO } from 'date-fns';
 
 export async function storeTodo(text: string, dueDatetime: string | null, todolistId: number) {
 	try {
@@ -98,6 +99,43 @@ export async function getImportantTodos(): Promise<TodoListWithImportantTodos[]>
 		return [];
 	}
 }
+
+export async function getDueTodayTodos(): Promise<TodoListWithImportantTodos[]> {
+	try {
+		const todolists = await getTodolists(1);
+
+		if (!todolists) {
+			return [];
+		}
+
+		const dueTodayTodos = [];
+
+		for (const todolist of todolists) {
+			try {
+				const result = await getTodosWithCategories(todolist.id);
+				const filteredDueTodayTodos = result.filter(todo => {
+					if (!todo.due_datetime || todo.is_completed) return false;
+
+					return isToday(parseISO(todo.due_datetime))
+				});
+				if (result.length > 0 && result) {
+					dueTodayTodos.push({
+						...todolist,
+						dueTodayTodos: filteredDueTodayTodos || [],
+					});
+				}
+			} catch (error) {
+				console.error(`Error fetching today's todo for todolist ${todolist.id}:`, error);
+			}
+		}
+
+		return dueTodayTodos;
+	} catch (error) {
+		console.error("Error fetching all today's todo in the database.");
+		return [];
+	}
+}
+
 
 export async function updateTodoCompletion(todoId: number, isCompleted: boolean): Promise<boolean> {
 	try {
