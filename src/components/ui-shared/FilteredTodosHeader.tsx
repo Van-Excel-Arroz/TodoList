@@ -7,7 +7,7 @@ import { Button } from '@/components/ui-shared/Button';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import { Search } from 'lucide-react';
 
-export default function PriorityHeader() {
+export default function FilteredTodosHeader({ title }: { title: string }) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 
 
@@ -15,7 +15,7 @@ export default function PriorityHeader() {
 		<div className="z-50 px-6 bg-white border-b border-slate-300">
 			<div className='flex items-center gap-2 px-1 pt-2'>
 				{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
-				<p className="text-xl font-bold">Priority</p>
+				<p className="text-xl font-bold">{title}</p>
 			</div>
 			<div className="flex items-center justify-between gap-2">
 				<div className="flex items-center gap-2 w-60 pt-2">
