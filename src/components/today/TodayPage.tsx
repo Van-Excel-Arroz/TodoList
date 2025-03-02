@@ -8,7 +8,12 @@ export default async function TodayPage() {
 	return (
 		<>
 			<FilteredTodosHeader title="Today" />
-			<FilteredTodosPage filteredTodosWithTodoList={dueTodayTodosWithTodoList} />
+
+			{dueTodayTodosWithTodoList.length > 0 ? (
+				<FilteredTodosPage filteredTodosWithTodoList={dueTodayTodosWithTodoList} />
+			) : (
+				<h1>It looks like you have no todos due today.</h1>
+			)}
 		</>
 	);
 }
