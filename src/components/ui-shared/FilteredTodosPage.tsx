@@ -10,10 +10,9 @@ import { itemVariants } from '@/utils/framer-motion';
 
 interface FilteredTodosPage {
 	importantTodosWithTodoList: TodoListWithFilteredTodos[];
-  title: string
 }
 
-export default function FilteredTodosPage({ importantTodosWithTodoList, title }: FilteredTodosPage) {
+export default function FilteredTodosPage({ importantTodosWithTodoList }: FilteredTodosPage) {
 	const { todos, setTodos } = useTodosStore();
 
 	useEffect(() => {
