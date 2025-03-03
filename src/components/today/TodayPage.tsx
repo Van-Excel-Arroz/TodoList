@@ -12,7 +12,7 @@ export default async function TodayPage() {
 			{dueTodayTodosWithTodoList.length > 0 ? (
 				<FilteredTodosPage filteredTodosWithTodoList={dueTodayTodosWithTodoList} />
 			) : (
-				<h1>It looks like you have no todos due today.</h1>
+				<h1 className="text-center pt-10 text-lg text-slate-700">It looks like you have no todos due today.</h1>
 			)}
 		</>
 	);
