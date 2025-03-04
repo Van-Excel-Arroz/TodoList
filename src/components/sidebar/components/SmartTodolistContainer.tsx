@@ -9,7 +9,6 @@ import { itemVariants } from '@/utils/framer-motion';
 
 const SmartLists = [
 	{ icon: Star, text: 'Priority' },
-	{ icon: Calendar, text: 'Today' },
 	{ icon: Clock3, text: 'Upcoming' },
 	{ icon: Tags, text: 'Tagged' },
 ];
