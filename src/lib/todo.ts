@@ -1,7 +1,7 @@
 import { Category, Todo, TodoListWithFilteredTodos } from '@/utils/types';
 import { query } from './db';
 import { getTodolists } from './todolist';
-import { isToday, parseISO } from 'date-fns';
+import { isPast, isToday, parseISO } from 'date-fns';
 
 export async function storeTodo(text: string, dueDatetime: string | null, todolistId: number) {
 	try {
@@ -119,7 +119,7 @@ export async function getDueTodayTodos(): Promise<TodoListWithFilteredTodos[]> {
 				const filteredDueTodayTodos = result.filter(todo => {
 					if (!todo.due_datetime || todo.is_completed) return false;
 
-					return isToday(todo.due_datetime);
+					return !isPast(todo.due_datetime);
 				});
 
 				if (filteredDueTodayTodos.length > 0) {
