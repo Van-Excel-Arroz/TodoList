@@ -1,5 +1,5 @@
 import PriorityPage from '@/components/priority/PriorityPage';
-import TodayPage from '@/components/today/TodayPage';
+import UpcomingTodayPage from '@/components/today/UpcomingPage';
 import TodoListPage from '@/components/todo-list/TodoListPage';
 import NoTodoListSelected from '@/components/ui-shared/NoTodoListSelected';
 
@@ -10,7 +10,6 @@ interface PageProps {
 	}>;
 }
 
-
 export default async function TasksPage({ searchParams }: PageProps) {
 	const { id = '', 'smart-list': smartList = '' } = await searchParams;
 	const todolistId = id ? Number(id) : null;
@@ -18,8 +17,8 @@ export default async function TasksPage({ searchParams }: PageProps) {
 	switch (smartList) {
 		case 'priority':
 			return <PriorityPage />;
-		case 'today':
-			return <TodayPage/>
+		case 'upcoming':
+			return <UpcomingTodayPage />;
 	}
 
 	if (todolistId === null || isNaN(todolistId)) {
