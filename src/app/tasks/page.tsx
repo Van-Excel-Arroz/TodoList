@@ -1,4 +1,5 @@
 import PriorityPage from '@/components/smart-list/PriorityPage';
+import TaggedPage from '@/components/smart-list/TaggedPage';
 import UpcomingTodayPage from '@/components/smart-list/UpcomingPage';
 import TodoListPage from '@/components/todo-list/TodoListPage';
 import NoTodoListSelected from '@/components/ui-shared/NoTodoListSelected';
@@ -19,6 +20,8 @@ export default async function TasksPage({ searchParams }: PageProps) {
 			return <PriorityPage />;
 		case 'upcoming':
 			return <UpcomingTodayPage />;
+		case 'tagged':
+			return <TaggedPage />;
 	}
 
 	if (todolistId === null || isNaN(todolistId)) {
