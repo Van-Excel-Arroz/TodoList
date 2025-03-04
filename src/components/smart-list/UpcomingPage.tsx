@@ -1,9 +1,9 @@
-import { getDueTodayTodos } from '@/lib/todo';
+import { getTodosWithDueDate } from '@/lib/todo';
 import FilteredTodosPage from '../ui-shared/FilteredTodosPage';
 import FilteredTodosHeader from '../ui-shared/FilteredTodosHeader';
 
 export default async function UpcomingTodayPage() {
-	const todosWithDue = await getDueTodayTodos();
+	const todosWithDue = await getTodosWithDueDate();
 
 	return (
 		<>

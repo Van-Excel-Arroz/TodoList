@@ -103,7 +103,7 @@ export async function getImportantTodos(): Promise<TodoListWithFilteredTodos[]> 
 	}
 }
 
-export async function getDueTodayTodos(): Promise<TodoListWithFilteredTodos[]> {
+export async function getTodosWithDueDate(): Promise<TodoListWithFilteredTodos[]> {
 	try {
 		const todolists = await getTodolists(1);
 
