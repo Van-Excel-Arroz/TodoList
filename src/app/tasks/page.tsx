@@ -1,5 +1,5 @@
 import PriorityPage from '@/components/priority/PriorityPage';
-import UpcomingTodayPage from '@/components/today/UpcomingPage';
+import UpcomingTodayPage from '@/components/upcoming/UpcomingPage';
 import TodoListPage from '@/components/todo-list/TodoListPage';
 import NoTodoListSelected from '@/components/ui-shared/NoTodoListSelected';
 
