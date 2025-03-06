@@ -1,7 +1,9 @@
+'use client';
+
 import { Button } from '@/components/ui-shared/Button';
 import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 
 interface ExpandableSectionProps {
 	children: React.ReactNode;
@@ -9,7 +11,7 @@ interface ExpandableSectionProps {
 	title: string;
 }
 
-export default function ExpandableSection({ children, isEmpty, title }: ExpandableSectionProps) {
+function ExpandableSection({ children, isEmpty, title }: ExpandableSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
 
 	return (
@@ -34,3 +36,5 @@ export default function ExpandableSection({ children, isEmpty, title }: Expandab
 		</div>
 	);
 }
+
+export default memo(ExpandableSection);
