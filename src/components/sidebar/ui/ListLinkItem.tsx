@@ -20,11 +20,11 @@ function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) 
 	const isSelectedPath = currentQueryParamValue === value;
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
-
 	const [urlWithSearchParams, setUrlWithSearchParams] = useState<string | null>(null);
 
 	useEffect(() => {
 		const storedUrl = localStorage.getItem(`searchParams-${value}`);
+		console.log('hello');
 		setUrlWithSearchParams(storedUrl);
 	}, [value]);
 
@@ -35,8 +35,6 @@ function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) 
 		}
 		setSelectedTodoId(0);
 	};
-
-	console.log(urlWithSearchParams, `/tasks/?${queryParam}=${value}`);
 
 	return (
 		<div
