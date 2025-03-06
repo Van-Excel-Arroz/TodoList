@@ -5,7 +5,7 @@ import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import { LucideProps } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { ForwardRefExoticComponent, RefAttributes, useEffect, useState } from 'react';
+import { ForwardRefExoticComponent, memo, RefAttributes, useEffect, useState } from 'react';
 
 interface ListLinkItemProps {
 	children: React.ReactNode;
@@ -14,7 +14,7 @@ interface ListLinkItemProps {
 	Icon: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>;
 }
 
-export default function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) {
+function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) {
 	const searchParams = useSearchParams();
 	const currentQueryParamValue = searchParams.get(queryParam);
 	const isSelectedPath = currentQueryParamValue === value;
@@ -35,6 +35,8 @@ export default function ListLinkItem({ children, queryParam, value, Icon }: List
 		}
 		setSelectedTodoId(0);
 	};
+
+	console.log(urlWithSearchParams, `/tasks/?${queryParam}=${value}`);
 
 	return (
 		<div
@@ -57,3 +59,5 @@ export default function ListLinkItem({ children, queryParam, value, Icon }: List
 		</div>
 	);
 }
+
+export default memo(ListLinkItem);

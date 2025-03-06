@@ -13,6 +13,7 @@ export default function useQueryParams() {
 		value ? params.set(`${field}`, value) : params.delete(`${field}`);
 		router.push(`/tasks/?${params.toString()}`);
 		localStorage.setItem(`searchParams-${todolistId}`, `/tasks/?${params.toString()}`);
+		console.log(localStorage);
 	};
 
 	return {
