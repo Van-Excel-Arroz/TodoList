@@ -16,17 +16,15 @@ function TodoSection({ title, todos }: TodoSectionProps) {
 	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
 
 	return (
-		<>
-			<ExpandableSection isEmpty={isTodosEmpty} title={title}>
-				<ul>
-					{todos.map((todo, index) => (
-						<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
-							<TodoItem todo={todo} />
-						</motion.li>
-					))}
-				</ul>
-			</ExpandableSection>
-		</>
+		<ExpandableSection isEmpty={isTodosEmpty} title={title}>
+			<ul>
+				{todos.map((todo, index) => (
+					<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
+						<TodoItem todo={todo} />
+					</motion.li>
+				))}
+			</ul>
+		</ExpandableSection>
 	);
 }
 
