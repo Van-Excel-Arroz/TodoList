@@ -24,9 +24,8 @@ function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) 
 
 	useEffect(() => {
 		const storedUrl = localStorage.getItem(`searchParams-${value}`);
-		console.log('hello');
 		setUrlWithSearchParams(storedUrl);
-	}, [value]);
+	}, [value, searchParams]);
 
 	const handleClick = () => {
 		const mediaQuery = window.matchMedia('(max-width: 1024px)');
