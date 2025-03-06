@@ -29,6 +29,7 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [sortField, sortValue] = getQueryParam('sort');
 	const [todolistId] = getQueryParam('id');
+	const [smart_list] = getQueryParam('smart-list');
 	const SortIcon = sortIcons[sortField] ?? { asc: ArrowUpWideNarrowIcon, desc: ArrowDownWideNarrowIcon };
 
 	return (
@@ -36,7 +37,11 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 			<Button
 				ariaLabel="Reverse Sort Order"
 				onClick={() =>
-					updateSearchParams('sort', sortValue === 'asc' ? `${sortField}:desc` : `${sortField}:asc`, todolistId)
+					updateSearchParams(
+						'sort',
+						sortValue === 'asc' ? `${sortField}:desc` : `${sortField}:asc`,
+						todolistId || smart_list
+					)
 				}
 				className="hover:bg-slate-300 active:bg-slate-400"
 			>
@@ -51,7 +56,7 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 			</Button>
 			<Button
 				ariaLabel="Remove Sort"
-				onClick={() => updateSearchParams('sort', null, todolistId)}
+				onClick={() => updateSearchParams('sort', null, todolistId || smart_list)}
 				className="hover:bg-slate-300 active:bg-slate-400"
 			>
 				<XIcon size={16} />
