@@ -31,6 +31,7 @@ export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen }: SortMenu
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [sortField] = getQueryParam('sort');
 	const [todolistId] = getQueryParam('id');
+	const [smart_list] = getQueryParam('smart-list');
 
 	return (
 		<Menu
@@ -45,7 +46,7 @@ export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen }: SortMenu
 			</MenuItem>
 
 			{Object.entries(MenuItems).map(([label, menuItem]) => (
-				<MenuItem onClick={() => updateSearchParams('sort', menuItem.param, todolistId)} key={label}>
+				<MenuItem onClick={() => updateSearchParams('sort', menuItem.param, todolistId || smart_list)} key={label}>
 					<menuItem.icon className="text-slate-600" size={18} />
 					<p>{label}</p>
 				</MenuItem>
