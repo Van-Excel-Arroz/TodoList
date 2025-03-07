@@ -11,26 +11,14 @@ export default function FilteredTodosHeader({ title }: { title: string }) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 
 	return (
-		<div className="z-50 px-6 bg-white border-b border-slate-300">
+		<div className="z-50 px-6 bg-white border-b border-slate-300 flex items-center justify-between">
 			<div className="flex items-center gap-2 px-1 pt-3">
 				{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 				<p className="text-xl font-bold">{title}</p>
 			</div>
-			<div className="flex items-center justify-between gap-2">
-				<div className="flex items-center gap-2 w-60 pt-2">
-					<Button ariaLabel="Search">
-						<Search size={20} />
-					</Button>
-					<input
-						type="text"
-						className="px-2 py-1 text-md border-b-2 focus:outline-none focus:border-slate-500 hover:border-slate-400 border-slate-300"
-						placeholder="Search tasks..."
-					/>
-				</div>
-				<div className="flex items-center gap-4 pt-2">
-					<TodoSort />
-					<TodoFilter />
-				</div>
+			<div className="flex items-center gap-4 pt-2">
+				<TodoSort />
+				<TodoFilter />
 			</div>
 		</div>
 	);
