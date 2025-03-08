@@ -2,8 +2,8 @@ import { getTodosByCategories } from '@/lib/todo';
 import FilteredTodosHeader from '../ui-shared/FilteredTodosHeader';
 import FilteredTodosPage from '../ui-shared/FilteredTodosPage';
 
-export default function TaggedPage() {
-	const todosByCategories = getTodosByCategories();
+export default async function TaggedPage() {
+	const todosByCategories = await getTodosByCategories();
 
 	return (
 		<>

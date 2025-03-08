@@ -142,7 +142,7 @@ export async function getTodosWithDueDate(): Promise<TodoListWithFilteredTodos[]
 	}
 }
 
-export async function getTodosByCategories() {
+export async function getTodosByCategories(): Promise<TodoListWithFilteredTodos[]> {
 	try {
 		const result = await query(`
 			SELECT 
@@ -176,12 +176,13 @@ export async function getTodosByCategories() {
 					cc.category_title;
 			`);
 
-		const todosByCategories = result.rows.filter(
-			category => category.filteredTodos && category.filteredTodos.length > 0
-		);
+		const todosByCategories = result.rows.filter(category => category.filteredTodos.length > 0);
+
+		console.log(todosByCategories);
 		return todosByCategories;
 	} catch (error) {
 		console.error(`Error fetching all todos by categories:`, error);
+		return [];
 	}
 }
 
