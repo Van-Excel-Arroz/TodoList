@@ -176,7 +176,9 @@ export async function getTodosByCategories(): Promise<TodoListWithFilteredTodos[
 					cc.category_title;
 			`);
 
-		const todosByCategories = result.rows.filter(category => category.filteredTodos.length > 0);
+		const todosByCategories = result.rows.filter(
+			category => category.filteredTodos && category.filteredTodos.length > 0
+		);
 
 		console.log(todosByCategories);
 		return todosByCategories;
