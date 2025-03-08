@@ -176,7 +176,9 @@ export async function getTodosByCategories() {
 					cc.category_title;
 			`);
 
-		const todosByCategories = result.rows;
+		const todosByCategories = result.rows.filter(
+			category => category.filteredTodos && category.filteredTodos.length > 0
+		);
 		return todosByCategories;
 	} catch (error) {
 		console.error(`Error fetching all todos by categories:`, error);
