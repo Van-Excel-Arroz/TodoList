@@ -19,7 +19,9 @@ export default function FilteredTodosPage({ filteredTodosWithTodoList }: Filtere
 
 	useEffect(() => {
 		const todos: Todo[] = [];
-		filteredTodosWithTodoList.map(todoList => todoList.filteredTodos.map(todo => todos.push(todo)));
+		filteredTodosWithTodoList.map(
+			todoList => todoList.filteredTodos && todoList.filteredTodos.map(todo => todos.push(todo))
+		);
 
 		setTodos(todos);
 	}, [filteredTodosWithTodoList, setTodos]);
