@@ -15,8 +15,7 @@ interface FilteredTodosPage {
 
 function FilteredTodosPage({ filteredTodos }: FilteredTodosPage) {
 	const { todos, setTodos } = useTodosStore();
-	const { incompleteTodos } = useTodoDataManagement(todos);
-	console.log(todos);
+	const { incompleteTodos: sortedTodos } = useTodoDataManagement(todos);
 
 	useEffect(() => {
 		const todos: Todo[] = [];
@@ -31,7 +30,7 @@ function FilteredTodosPage({ filteredTodos }: FilteredTodosPage) {
 					<ExpandableSection isEmpty={false} title={todoList.title} key={todoList.id}>
 						<ul>
 							<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
-								{incompleteTodos.map((todo, index) => (
+								{sortedTodos.map((todo, index) => (
 									<TodoItem todo={todo} key={index} />
 								))}
 							</motion.li>
