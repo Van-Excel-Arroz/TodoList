@@ -8,7 +8,7 @@ export default async function TaggedPage() {
 	return (
 		<>
 			<FilteredTodosHeader title="Tagged" />
-			<FilteredTodosPage filteredTodosWithTodoList={todosByCategories} />
+			<FilteredTodosPage filteredTodos={todosByCategories} />
 		</>
 	);
 }

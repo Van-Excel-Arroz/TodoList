@@ -10,25 +10,24 @@ import { itemVariants } from '@/utils/framer-motion';
 import { useTodoDataManagement } from '@/hooks/useTodoDataManagement';
 
 interface FilteredTodosPage {
-	filteredTodosWithTodoList: TodoListWithFilteredTodos[];
+	filteredTodos: TodoListWithFilteredTodos[];
 }
 
-function FilteredTodosPage({ filteredTodosWithTodoList }: FilteredTodosPage) {
+function FilteredTodosPage({ filteredTodos }: FilteredTodosPage) {
 	const { todos, setTodos } = useTodosStore();
 	const { incompleteTodos } = useTodoDataManagement(todos);
+	console.log(todos);
 
 	useEffect(() => {
 		const todos: Todo[] = [];
-		filteredTodosWithTodoList.map(
-			todoList => todoList.filteredTodos && todoList.filteredTodos.map(todo => todos.push(todo))
-		);
+		filteredTodos.map(todoList => todoList.filteredTodos && todoList.filteredTodos.map(todo => todos.push(todo)));
 		setTodos(todos);
-	}, [filteredTodosWithTodoList, setTodos]);
+	}, [filteredTodos, setTodos]);
 
 	return (
 		<div className="w-[98%] h-[calc(100vh-100px)] mx-auto mt-3 overflow-y-scroll overflow-x-hidden">
 			<div className="px-5">
-				{filteredTodosWithTodoList.map((todoList, index) => (
+				{filteredTodos.map((todoList, index) => (
 					<ExpandableSection isEmpty={false} title={todoList.title} key={todoList.id}>
 						<ul>
 							<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
