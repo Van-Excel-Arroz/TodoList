@@ -3,7 +3,7 @@
 import TodoItem from '@/components/ui-shared/TodoItem';
 import ExpandableSection from '@/components/ui-shared/ExpandableSection';
 import { Todo, TodoListWithFilteredTodos } from '@/utils/types';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import useTodosStore from '@/context/TodosContext';
 import { motion } from 'framer-motion';
 import { itemVariants } from '@/utils/framer-motion';
@@ -13,7 +13,7 @@ interface FilteredTodosPage {
 	filteredTodosWithTodoList: TodoListWithFilteredTodos[];
 }
 
-export default function FilteredTodosPage({ filteredTodosWithTodoList }: FilteredTodosPage) {
+function FilteredTodosPage({ filteredTodosWithTodoList }: FilteredTodosPage) {
 	const { todos, setTodos } = useTodosStore();
 	const { incompleteTodos } = useTodoDataManagement(todos);
 
@@ -22,7 +22,6 @@ export default function FilteredTodosPage({ filteredTodosWithTodoList }: Filtere
 		filteredTodosWithTodoList.map(
 			todoList => todoList.filteredTodos && todoList.filteredTodos.map(todo => todos.push(todo))
 		);
-
 		setTodos(todos);
 	}, [filteredTodosWithTodoList, setTodos]);
 
@@ -44,3 +43,5 @@ export default function FilteredTodosPage({ filteredTodosWithTodoList }: Filtere
 		</div>
 	);
 }
+
+export default memo(FilteredTodosPage);
