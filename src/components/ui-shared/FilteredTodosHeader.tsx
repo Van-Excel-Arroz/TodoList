@@ -3,9 +3,7 @@
 import TodoListsSidebarToggle from '@/components/sidebar/ui/TodoListsSidebarToggle';
 import TodoFilter from '@/components/todo-list/components/TodoFilter';
 import TodoSort from '@/components/todo-list/components/TodoSort';
-import { Button } from '@/components/ui-shared/Button';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
-import { Search } from 'lucide-react';
 
 export default function FilteredTodosHeader({ title }: { title: string }) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
