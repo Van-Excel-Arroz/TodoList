@@ -33,9 +33,9 @@ export default function FilteredTodosPage({ filteredTodosWithTodoList }: Filtere
 					<ExpandableSection isEmpty={false} title={todoList.title} key={todoList.id}>
 						<ul>
 							<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
-								{incompleteTodos.map((todo, index) =>
-									todo.todo_list_id === todoList.id ? <TodoItem todo={todo} key={index} /> : null
-								)}
+								{incompleteTodos.map((todo, index) => (
+									<TodoItem todo={todo} key={index} />
+								))}
 							</motion.li>
 						</ul>
 					</ExpandableSection>
