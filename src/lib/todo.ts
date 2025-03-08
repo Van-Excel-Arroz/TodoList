@@ -178,7 +178,6 @@ export async function getTodosByCategories(): Promise<TodoListWithFilteredTodos[
 
 		const todosByCategories = result.rows;
 
-		console.log(todosByCategories);
 		return todosByCategories;
 	} catch (error) {
 		console.error(`Error fetching all todos by categories:`, error);
