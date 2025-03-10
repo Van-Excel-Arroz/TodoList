@@ -159,7 +159,7 @@ export async function getTodosByCategories(): Promise<TodoListWithFilteredTodos[
 								'is_completed', t.is_completed,
 								'order_index', t.order_index
 						)
-				) FILTER (WHERE t.is_completed = FALSE) AS filteredTodos
+				) FILTER (WHERE t.is_completed = FALSE) AS "filteredTodos"
 			FROM 
 					category_colors cc
 			JOIN 
