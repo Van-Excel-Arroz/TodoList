@@ -19,7 +19,14 @@ function FilteredTodosPage({ filteredTodos }: FilteredTodosPage) {
 
 	useEffect(() => {
 		const todos: Todo[] = [];
-		filteredTodos.map(todoList => todoList.filteredTodos && todoList.filteredTodos.map(todo => todos.push(todo)));
+		filteredTodos.forEach(todoList => {
+			if (todoList.filteredTodos) {
+				todoList.filteredTodos.forEach(todo => {
+					todos.push(todo);
+				});
+			}
+		});
+
 		setTodos(todos);
 	}, [filteredTodos, setTodos]);
 
