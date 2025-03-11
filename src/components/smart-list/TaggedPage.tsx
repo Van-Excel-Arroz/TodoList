@@ -8,7 +8,11 @@ export default async function TaggedPage() {
 	return (
 		<>
 			<FilteredTodosHeader title="Tagged" />
-			<FilteredTodoListPage filteredTodoList={todosByCategories} title="tagged" />
+			{todosByCategories.length > 0 ? (
+				<FilteredTodoListPage filteredTodoList={todosByCategories} title="tagged" />
+			) : (
+				<h1 className="text-center pt-12 text-lg text-slate-700">It looks like you have no todos with categories.</h1>
+			)}
 		</>
 	);
 }

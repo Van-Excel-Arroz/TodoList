@@ -8,7 +8,6 @@ export default async function UpcomingTodayPage() {
 	return (
 		<>
 			<FilteredTodosHeader title="Upcoming" />
-
 			{todosWithDue.length > 0 ? (
 				<FilteredTodoListPage filteredTodoList={todosWithDue} />
 			) : (
