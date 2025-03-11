@@ -23,7 +23,9 @@ function FilteredTodosPage({ filteredTodos, title }: FilteredTodosPage) {
 		filteredTodos.forEach(todoList => {
 			if (todoList.filtered_todos) {
 				todoList.filtered_todos.forEach(todo => {
-					todos.push(todo);
+					if (!todos.some(t => t.id == todo.id)) {
+						todos.push(todo);
+					}
 				});
 			}
 		});
