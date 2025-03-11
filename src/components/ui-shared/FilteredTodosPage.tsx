@@ -21,8 +21,8 @@ function FilteredTodosPage({ filteredTodos }: FilteredTodosPage) {
 		console.log(filteredTodos);
 		const todos: Todo[] = [];
 		filteredTodos.forEach(todoList => {
-			if (todoList.filteredTodos) {
-				todoList.filteredTodos.forEach(todo => {
+			if (todoList.filtered_todos) {
+				todoList.filtered_todos.forEach(todo => {
 					todos.push(todo);
 				});
 			}
