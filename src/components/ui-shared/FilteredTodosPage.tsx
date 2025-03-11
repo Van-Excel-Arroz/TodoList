@@ -11,9 +11,10 @@ import { useTodoDataManagement } from '@/hooks/useTodoDataManagement';
 
 interface FilteredTodosPage {
 	filteredTodos: TodoListWithFilteredTodos[];
+	title?: string;
 }
 
-function FilteredTodosPage({ filteredTodos }: FilteredTodosPage) {
+function FilteredTodosPage({ filteredTodos, title }: FilteredTodosPage) {
 	const { todos, setTodos } = useTodosStore();
 	const { incompleteTodos: sortedTodos } = useTodoDataManagement(todos);
 
@@ -38,9 +39,13 @@ function FilteredTodosPage({ filteredTodos }: FilteredTodosPage) {
 					<ExpandableSection isEmpty={false} title={todoList.title} key={todoList.id}>
 						<ul>
 							<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
-								{sortedTodos.map((todo, index) => (
-									<TodoItem todo={todo} key={index} />
-								))}
+								{title == 'tagged'
+									? sortedTodos.map((todo, index) =>
+											todo.categories!.some(cat => cat.category_title == todoList.title) ? (
+												<TodoItem todo={todo} key={index} />
+											) : null
+									  )
+									: null}
 							</motion.li>
 						</ul>
 					</ExpandableSection>
