@@ -19,7 +19,6 @@ function FilteredTodosPage({ filteredTodos, title }: FilteredTodosPage) {
 	const { incompleteTodos: sortedTodos } = useTodoDataManagement(todos);
 
 	useEffect(() => {
-		console.log(filteredTodos);
 		const todos: Todo[] = [];
 		filteredTodos.forEach(todoList => {
 			if (todoList.filtered_todos) {
@@ -28,7 +27,6 @@ function FilteredTodosPage({ filteredTodos, title }: FilteredTodosPage) {
 				});
 			}
 		});
-
 		setTodos(todos);
 	}, [filteredTodos, setTodos]);
 
