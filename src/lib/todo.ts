@@ -146,35 +146,49 @@ export async function getTodosByCategories(): Promise<TodoListWithFilteredTodos[
 	try {
 		const result = await query(`
 			SELECT 
-				cc.category_title AS title,
-				cc.id,
-				json_agg(
-						json_build_object(
-								'id', t.id,
-								'task_text', t.task_text,
-								'description', t.description,
-								'is_important', t.is_important,
-								'due_datetime', t.due_datetime,
-								'creation_date', t.creation_date,
-								'is_completed', t.is_completed,
-								'order_index', t.order_index
-						)
-				) FILTER (WHERE t.is_completed = FALSE) AS "filteredTodos"
-			FROM 
-					category_colors cc
-			JOIN 
-					categories c ON cc.id = c.category_color_id
-			JOIN 
-					todos t ON c.todo_id = t.id
-			JOIN
-					todo_lists tl ON t.todo_list_id = tl.id
-			WHERE
-					tl.user_id = 1
-			GROUP BY 
-					cc.category_title, cc.id
-			ORDER BY 
-					cc.category_title;
-			`);
+			cc.category_title AS title,
+			cc.id,
+			json_agg(
+					json_build_object(
+							'id', t.id,
+							'task_text', t.task_text,
+							'description', t.description,
+							'is_important', t.is_important,
+							'due_datetime', t.due_datetime,
+							'creation_date', t.creation_date,
+							'is_completed', t.is_completed,
+							'order_index', t.order_index,
+							'categories', (
+									SELECT json_agg(
+											json_build_object(
+													'id', cat.id,
+													'category_title', cat_col.category_title,
+													'hex_color', cat_col.hex_color,
+													'is_selected', cat_col.is_selected,
+													'todo_list_id', cat_col.todo_list_id
+											)
+									)
+									FROM categories cat
+									JOIN category_colors cat_col ON cat.category_color_id = cat_col.id
+									WHERE cat.todo_id = t.id
+							)
+					)
+						) FILTER (WHERE t.is_completed = FALSE) AS filteredTodos
+				FROM 
+						category_colors cc
+				JOIN 
+						categories c ON cc.id = c.category_color_id
+				JOIN 
+						todos t ON c.todo_id = t.id
+				JOIN
+						todo_lists tl ON t.todo_list_id = tl.id
+				WHERE
+						tl.user_id = 1
+				GROUP BY 
+						cc.category_title, cc.id
+				ORDER BY 
+				cc.category_title;	
+				`);
 
 		const todosByCategories = result.rows;
 
