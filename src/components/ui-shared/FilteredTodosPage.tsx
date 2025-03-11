@@ -45,7 +45,9 @@ function FilteredTodosPage({ filteredTodos, title }: FilteredTodosPage) {
 												<TodoItem todo={todo} key={index} />
 											) : null
 									  )
-									: null}
+									: sortedTodos.map((todo, index) =>
+											todoList.id == todo.todo_list_id ? <TodoItem todo={todo} key={index} /> : null
+									  )}
 							</motion.li>
 						</ul>
 					</ExpandableSection>
