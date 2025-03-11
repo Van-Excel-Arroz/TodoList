@@ -1,5 +1,5 @@
 import { getImportantTodos } from '@/lib/todo';
-import FilteredTodosPage from '../ui-shared/FilteredTodosPage';
+import FilteredTodosPage from '../ui-shared/FilteredTodoListPage';
 import FilteredTodosHeader from '../ui-shared/FilteredTodosHeader';
 
 export default async function PriorityPage() {
