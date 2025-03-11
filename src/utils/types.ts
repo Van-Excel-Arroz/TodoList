@@ -31,5 +31,5 @@ export interface MenuOpenProps {
 }
 
 export interface TodoListWithFilteredTodos extends TodoList {
-	filteredTodos: Todo[];
+	filtered_todos: Todo[];
 }

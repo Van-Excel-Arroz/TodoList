@@ -18,6 +18,7 @@ function FilteredTodosPage({ filteredTodos }: FilteredTodosPage) {
 	const { incompleteTodos: sortedTodos } = useTodoDataManagement(todos);
 
 	useEffect(() => {
+		console.log(filteredTodos);
 		const todos: Todo[] = [];
 		filteredTodos.forEach(todoList => {
 			if (todoList.filteredTodos) {
