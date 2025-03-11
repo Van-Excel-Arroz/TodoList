@@ -186,6 +186,8 @@ export async function getTodosByCategories(): Promise<TodoListWithFilteredTodos[
 						tl.user_id = 1
 				GROUP BY 
 						cc.category_title, cc.id
+				HAVING 
+    				COUNT(CASE WHEN t.is_completed = FALSE THEN 1 END) > 0
 				ORDER BY 
 				cc.category_title;	
 				`);
