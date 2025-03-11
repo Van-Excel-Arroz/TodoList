@@ -10,11 +10,11 @@ import { itemVariants } from '@/utils/framer-motion';
 import { useTodoDataManagement } from '@/hooks/useTodoDataManagement';
 
 interface FilteredTodoListPage {
-	filteredTodos: TodoListWithFilteredTodos[];
+	filteredTodoList: TodoListWithFilteredTodos[];
 	title?: string;
 }
 
-function FilteredTodoListPage({ filteredTodos: filteredTodoList, title }: FilteredTodoListPage) {
+function FilteredTodoListPage({ filteredTodoList, title }: FilteredTodoListPage) {
 	const { todos, setTodos } = useTodosStore();
 	const { incompleteTodos: sortedTodos } = useTodoDataManagement(todos);
 
