@@ -30,7 +30,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 		<div className="z-50 px-6 bg-white border-b border-slate-300 ">
 			<div className="flex justify-between items-center py-2">
 				<TodoListTitle currentTodoList={currentTodolist} />
-				<div className="flex items-center">
+				<div className="flex items-center gap-2">
 					<Button ariaLabel="Grid Layout">
 						<Grid2X2 />
 					</Button>
