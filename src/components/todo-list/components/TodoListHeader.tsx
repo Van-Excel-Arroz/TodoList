@@ -6,7 +6,7 @@ import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import TodoSort from './TodoSort';
 import { Grid2X2, ListTodo } from 'lucide-react';
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useCategoriesStore from '@/context/CategoriesContext';
 import TodoListTitle from '../ui/TodoListTitle';

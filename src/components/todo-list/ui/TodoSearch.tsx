@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import { Search } from 'lucide-react';
 
 export default function TodoSearch() {

@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { createTodolist } from '@/actions/todolist-action';
 import useTodoListsStore from '@/context/TodoListsContext';
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import { SendHorizontal, X } from 'lucide-react';
 
 export default function TodolistForm({ handleIsAddingList }: { handleIsAddingList: (val: boolean) => void }) {

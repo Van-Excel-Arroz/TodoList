@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import React, { memo, useState } from 'react';

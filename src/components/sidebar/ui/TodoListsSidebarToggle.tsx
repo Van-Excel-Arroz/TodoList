@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import { Menu, PanelLeftClose } from 'lucide-react';
 

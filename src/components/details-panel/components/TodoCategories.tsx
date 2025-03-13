@@ -8,7 +8,7 @@ import CategoryForm from '../ui/CategoryForm';
 import CategoryTags from '../ui/CategoryTags';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useCategoriesStore from '@/context/CategoriesContext';
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import { useState } from 'react';
 
 interface CategoryFormInputs {

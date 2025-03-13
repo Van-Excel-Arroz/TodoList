@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 interface ButtonProps {
 	children: React.ReactNode;
 	onClick?: () => void;
@@ -8,15 +10,7 @@ interface ButtonProps {
 	darkMode?: boolean;
 }
 
-export function Button({
-	children,
-	onClick,
-	type,
-	ariaLabel,
-	disabled,
-	className = '',
-	darkMode = false,
-}: ButtonProps) {
+function Button({ children, onClick, type, ariaLabel, disabled, className = '', darkMode = false }: ButtonProps) {
 	const style = `${
 		darkMode
 			? 'bg-slate-700 text-white hover:bg-slate-500 active:bg-slate-400'
@@ -35,3 +29,5 @@ export function Button({
 		</button>
 	);
 }
+
+export default memo(Button);

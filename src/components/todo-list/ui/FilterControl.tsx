@@ -1,5 +1,5 @@
 import { CalendarDays, Filter, Tag, XIcon } from 'lucide-react';
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import useQueryParams from '@/hooks/useQueryParams';
 

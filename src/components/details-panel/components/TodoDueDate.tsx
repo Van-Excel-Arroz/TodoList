@@ -1,7 +1,7 @@
 'use client';
 
 import { deleteTodoDueDateAction, updateTodoDueDateAction } from '@/actions/todo-action';
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import DueDate from '@/components/ui-shared/DueDate';
 import DueTime from '@/components/ui-shared/DueTime';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';

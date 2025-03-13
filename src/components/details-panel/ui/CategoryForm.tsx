@@ -1,8 +1,8 @@
 // CategoryForm.tsx
 'use client';
 
-import { Button } from '@/components/ui-shared/Button';
-import { Plus, SendHorizontal, X } from 'lucide-react';
+import Button from '@/components/ui-shared/Button';
+import { SendHorizontal, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import { useState } from 'react';
 import TodolistForm from '../ui/TodolistForm';
 

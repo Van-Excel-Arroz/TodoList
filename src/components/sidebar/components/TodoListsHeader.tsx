@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import TodoListsSidebarToggle from '../ui/TodoListsSidebarToggle';
 import { Home } from 'lucide-react';
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import Link from 'next/link';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 

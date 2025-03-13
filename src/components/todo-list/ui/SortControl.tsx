@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import useQueryParams from '@/hooks/useQueryParams';
 import {
 	ArrowDownAZIcon,

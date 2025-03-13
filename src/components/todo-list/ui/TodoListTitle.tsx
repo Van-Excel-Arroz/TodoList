@@ -2,7 +2,7 @@
 
 import { updateTodolistAction } from '@/actions/todolist-action';
 import TodoListsSidebarToggle from '@/components/sidebar/ui/TodoListsSidebarToggle';
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import { TodoList } from '@/utils/types';

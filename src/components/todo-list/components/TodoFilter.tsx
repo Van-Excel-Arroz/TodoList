@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import { Filter } from 'lucide-react';
 import { useState } from 'react';
 import CategoryFilterMenu from '../ui/CategoryFilterMenu';

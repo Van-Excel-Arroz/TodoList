@@ -1,10 +1,9 @@
 'use client';
 
 import { updateTodoTitleAction } from '@/actions/todo-action';
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
-import { div } from 'framer-motion/client';
 import { Save, Undo } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';

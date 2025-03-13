@@ -1,7 +1,7 @@
 'use client';
 
 import { updateTodoDescriptionAction } from '@/actions/todo-action';
-import { Button } from '@/components/ui-shared/Button';
+import Button from '@/components/ui-shared/Button';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 import { Save, Undo } from 'lucide-react';
