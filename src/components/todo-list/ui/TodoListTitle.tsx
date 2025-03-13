@@ -6,6 +6,7 @@ import { Button } from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import { TodoList } from '@/utils/types';
+import { Ellipsis, Settings } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -57,6 +58,9 @@ export default function TodoListTitle({ currentTodoList }: TodoListTiltleProps) 
 					<p className="text-xl font-bold text-black cursor-text">{currentTodoList.title}</p>
 				</Button>
 			)}
+			<Button ariaLabel="Settings">
+				<Ellipsis />
+			</Button>
 		</div>
 	);
 }
