@@ -29,9 +29,10 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 
 	return (
 		<div className="z-50 px-6 bg-white border-b border-slate-300 ">
-			<div className="flex items-center py-2">
-				<TodoListTitle currentTodoList={currentTodolist} />
-				<div className="flex items-center pl-3 gap-1">
+			<div className="flex justify-between items-center py-2">
+				<div className="flex items-center gap-1">
+					<TodoListTitle currentTodoList={currentTodolist} />
+
 					<Button ariaLabel="Grid Layout">
 						<Grid2X2 />
 					</Button>
@@ -39,15 +40,15 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 						<ListTodo />
 					</Button>
 				</div>
-			</div>
-			<TodoForm todolistId={initialTodolist.id} />
-			<div className="flex items-center justify-between gap-2">
-				<TodoSearch />
-				<div className="flex items-center gap-4 pt-2">
-					<TodoSort />
-					<TodoFilter />
+				<div className="flex items-center justify-between gap-2">
+					<TodoSearch />
+					<div className="flex items-center gap-4 pt-2">
+						<TodoSort />
+						<TodoFilter />
+					</div>
 				</div>
 			</div>
+			<TodoForm todolistId={initialTodolist.id} />
 		</div>
 	);
 }
