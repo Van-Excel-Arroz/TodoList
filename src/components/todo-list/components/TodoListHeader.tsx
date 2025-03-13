@@ -29,9 +29,9 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 
 	return (
 		<div className="z-50 px-6 bg-white border-b border-slate-300 ">
-			<div className="flex justify-between items-center py-2">
+			<div className="flex items-center py-2">
 				<TodoListTitle currentTodoList={currentTodolist} />
-				<div className="flex items-center gap-2">
+				<div className="flex items-center pl-3 gap-1">
 					<Button ariaLabel="Grid Layout">
 						<Grid2X2 />
 					</Button>
