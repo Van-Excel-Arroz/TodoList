@@ -10,6 +10,7 @@ import { Button } from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useCategoriesStore from '@/context/CategoriesContext';
 import TodoListTitle from '../ui/TodoListTitle';
+import TodoSearch from '../ui/TodoSearch';
 
 interface TodoListHeaderProps {
 	initialTodolist: TodoList;
@@ -44,16 +45,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 			</div>
 			<TodoForm todolistId={initialTodolist.id} />
 			<div className="flex items-center justify-between gap-2">
-				<div className="flex items-center gap-2 w-60 pt-2">
-					<Button ariaLabel="Search">
-						<Search size={20} />
-					</Button>
-					<input
-						type="text"
-						className="px-2 py-1 text-md border-b-2 focus:outline-none focus:border-slate-500 hover:border-slate-400 border-slate-300"
-						placeholder="Search tasks..."
-					/>
-				</div>
+				<TodoSearch />
 				<div className="flex items-center gap-4 pt-2">
 					<TodoSort />
 					<TodoFilter />
