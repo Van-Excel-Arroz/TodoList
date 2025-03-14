@@ -8,9 +8,19 @@ interface ButtonProps {
 	disabled?: boolean;
 	className?: string;
 	darkMode?: boolean;
+	isActive?: boolean;
 }
 
-function Button({ children, onClick, type, ariaLabel, disabled, className = '', darkMode = false }: ButtonProps) {
+function Button({
+	children,
+	onClick,
+	type,
+	ariaLabel,
+	disabled,
+	className = '',
+	darkMode = false,
+	isActive = false,
+}: ButtonProps) {
 	const style = `${
 		darkMode
 			? 'bg-slate-700 text-white hover:bg-slate-500 active:bg-slate-400'
