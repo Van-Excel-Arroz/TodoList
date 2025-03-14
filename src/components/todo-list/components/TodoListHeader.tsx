@@ -35,7 +35,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					<Button ariaLabel="Grid Layout">
 						<Grid2X2 />
 					</Button>
-					<Button ariaLabel="List Layout">
+					<Button ariaLabel="List Layout" isActive={true}>
 						<ListTodo />
 					</Button>
 				</div>
