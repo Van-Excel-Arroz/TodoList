@@ -21,10 +21,12 @@ function Button({
 	darkMode = false,
 	isActive = false,
 }: ButtonProps) {
+	const bgStyle = `${isActive ? 'bg-slate-300' : 'bg-white'}`;
+
 	const style = `${
 		darkMode
 			? 'bg-slate-700 text-white hover:bg-slate-500 active:bg-slate-400'
-			: 'hover:bg-slate-200 active:bg-slate-300 text-slate-600'
+			: `hover:bg-slate-200 active:bg-slate-300 text-slate-600 ${bgStyle}`
 	}`;
 
 	return (
