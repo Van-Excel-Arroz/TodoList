@@ -25,7 +25,7 @@ function ExpandableSection({ children, isEmpty, title, itemCount = 0 }: Expandab
 				</Button>
 				<div className="flex items-center gap-2">
 					<p className="font-bold">{title}</p>
-					<p className="text-sm text-slate-600">({itemCount})</p>
+					{itemCount > 0 ? <p className="text-sm text-slate-600">({itemCount})</p> : null}
 				</div>
 			</div>
 
