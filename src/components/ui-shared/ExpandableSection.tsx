@@ -9,9 +9,10 @@ interface ExpandableSectionProps {
 	children: React.ReactNode;
 	isEmpty: boolean;
 	title: string;
+	itemIndicator?: boolean;
 }
 
-function ExpandableSection({ children, isEmpty, title }: ExpandableSectionProps) {
+function ExpandableSection({ children, isEmpty, title, itemIndicator = false }: ExpandableSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
 
 	return (
