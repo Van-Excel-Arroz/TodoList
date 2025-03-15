@@ -29,10 +29,9 @@ export default function DateFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 					onClick={() => updateSearchParams('filter', `dueDate:${label}`, todolistId)}
 				>
 					<p className="text-base text-left w-full">{label}</p>
-					<div className="h-3 w-3">
+					<div className="h-3 w-3 mr-2">
 						<CheckIcon size={14} className={`${label === filterValue ? 'block' : 'hidden'}`} />
 					</div>
-					<p>{label === filterValue}</p>
 				</MenuItem>
 			))}
 		</Menu>

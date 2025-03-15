@@ -6,9 +6,11 @@ import TodoSort from '@/components/todo-list/components/TodoSort';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import Button from './Button';
 import { Grid2X2, ListTodo } from 'lucide-react';
+import useQueryParams from '@/hooks/useQueryParams';
 
 export default function FilteredTodosHeader({ title }: { title: string }) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
+	const { getQueryParam, updateSearchParams } = useQueryParams();
 
 	return (
 		<div className="z-50 px-6 bg-white border-b border-slate-300 flex items-center justify-between py-2">
