@@ -1,14 +1,11 @@
-'use client';
-
 import { Square, SquareCheckBig } from 'lucide-react';
-import { memo } from 'react';
 
 interface CheckBoxProps {
 	isChecked: boolean;
 	handleOnClick: () => void;
 }
 
-function CheckBox({ isChecked, handleOnClick }: CheckBoxProps) {
+export default function CheckBox({ isChecked, handleOnClick }: CheckBoxProps) {
 	return (
 		<button
 			className="flex items-center text-slate-600 active:text-slate-400 hover:text-slate-800"
@@ -29,5 +26,3 @@ function CheckBox({ isChecked, handleOnClick }: CheckBoxProps) {
 		</button>
 	);
 }
-
-export default memo(CheckBox);
