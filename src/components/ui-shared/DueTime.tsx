@@ -1,5 +1,5 @@
 import { format, setHours, setMinutes, startOfToday } from 'date-fns';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import Button from './Button';
 import { Clock3, Trash2 } from 'lucide-react';
 import DateTime from 'react-datetime';
@@ -14,7 +14,7 @@ interface DueDateInputProps {
 	right?: boolean;
 }
 
-export default function DueTime({ dueDate, setDueDate, defaultEmptyText = false, right = false }: DueDateInputProps) {
+function DueTime({ dueDate, setDueDate, defaultEmptyText = false, right = false }: DueDateInputProps) {
 	const [isTimeMenuOpen, setIsTimeMenuOpen] = useState(false);
 	const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
@@ -52,6 +52,8 @@ export default function DueTime({ dueDate, setDueDate, defaultEmptyText = false,
 		</div>
 	);
 }
+
+export default memo(DueTime);
 
 interface TimeMenuProps {
 	isTimeMenuOpen: boolean;
