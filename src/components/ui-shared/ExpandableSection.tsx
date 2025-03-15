@@ -9,11 +9,11 @@ interface ExpandableSectionProps {
 	children: React.ReactNode;
 	isEmpty: boolean;
 	title: string;
+	itemCount?: number;
 }
 
-function ExpandableSection({ children, isEmpty, title }: ExpandableSectionProps) {
+function ExpandableSection({ children, isEmpty, title, itemCount }: ExpandableSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
-	const childCount = Children.count(children);
 
 	return (
 		<div className="flex flex-col items-start gap-1">
@@ -25,7 +25,7 @@ function ExpandableSection({ children, isEmpty, title }: ExpandableSectionProps)
 				</Button>
 				<div className="flex items-center gap-2">
 					<p className="font-bold">{title}</p>
-					<p className="text-sm text-slate-600">({childCount})</p>
+					<p className="text-sm text-slate-600">({itemCount})</p>
 				</div>
 			</div>
 
