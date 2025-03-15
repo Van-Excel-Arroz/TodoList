@@ -3,7 +3,7 @@
 import Button from '@/components/ui-shared/Button';
 import { add, format, setHours, setMinutes, setSeconds, startOfDay, startOfToday } from 'date-fns';
 import { Calendar, Trash2 } from 'lucide-react';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import DateTime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import Menu from './Menu';
@@ -16,7 +16,7 @@ interface DueDateInputProps {
 	defaultEmptyText?: boolean;
 }
 
-export default function DueDate({ dueDate, setDueDate, defaultEmptyText = false }: DueDateInputProps) {
+function DueDate({ dueDate, setDueDate, defaultEmptyText = false }: DueDateInputProps) {
 	const [isDateMenuOpen, setIsDateMenuOpen] = useState(false);
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
@@ -51,6 +51,8 @@ export default function DueDate({ dueDate, setDueDate, defaultEmptyText = false 
 		</div>
 	);
 }
+
+export default memo(DueDate);
 
 interface DateMenuProps {
 	isDateMenuOpen: boolean;
