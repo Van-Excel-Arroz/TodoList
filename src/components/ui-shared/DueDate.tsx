@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@/components/ui-shared/Button';
 import { add, format, setHours, setMinutes, setSeconds, startOfDay, startOfToday } from 'date-fns';
 import { Calendar, Trash2 } from 'lucide-react';
