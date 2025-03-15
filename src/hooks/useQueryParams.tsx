@@ -6,7 +6,6 @@ export default function useQueryParams() {
 
 	const getQueryParam = (field: string) => {
 		const value = searchParams.get(field);
-		console.log(value);
 		return value?.split(':') || [];
 	};
 	const updateSearchParams = (field: string, value: string | null, key: string) => {
