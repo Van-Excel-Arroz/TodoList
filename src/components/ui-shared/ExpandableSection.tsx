@@ -22,7 +22,10 @@ function ExpandableSection({ children, isEmpty, title }: ExpandableSectionProps)
 						<ChevronDown size={20} />
 					</div>
 				</Button>
-				<p className="mr-3 ml-1 font-bold">{title}</p>
+				<div className="flex items-center gap-2">
+					<p className="font-bold">{title}</p>
+					<p className="text-sm text-slate-600">(1)</p>
+				</div>
 			</div>
 
 			<motion.div
