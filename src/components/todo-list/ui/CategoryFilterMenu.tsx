@@ -12,7 +12,7 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: MenuOpenProps)
 	const [filterField] = getQueryParam('filter');
 	const [todolistId] = getQueryParam('id');
 
-	const applyCategoriesFilter = async () => {
+	const applyCategoriesFilter = () => {
 		const selectedCategoryTitles = categories
 			.filter(cat => cat.is_selected)
 			.map(cat => cat.category_title)
