@@ -22,7 +22,7 @@ export default function FilteredTodosHeader({ title }: { title: string }) {
 					<Button ariaLabel="Grid Layout" onClick={() => updateSearchParams('view', 'grid', smartList)}>
 						<Grid2X2 />
 					</Button>
-					<Button ariaLabel="List Layout" isActive={true}>
+					<Button ariaLabel="List Layout" isActive={true} onClick={() => updateSearchParams('view', 'list', smartList)}>
 						<ListTodo />
 					</Button>
 				</div>
