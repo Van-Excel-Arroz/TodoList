@@ -36,7 +36,12 @@ function FilteredTodoListPage({ filteredTodoList, title }: FilteredTodoListPage)
 		<div className="w-[98%] h-[calc(100vh-100px)] mx-auto mt-3 overflow-y-scroll overflow-x-hidden">
 			<div className="px-5">
 				{filteredTodoList.map((todoList, index) => (
-					<ExpandableSection isEmpty={false} title={todoList.title} key={todoList.id}>
+					<ExpandableSection
+						isEmpty={false}
+						title={todoList.title}
+						key={todoList.id}
+						itemCount={todoList.filtered_todos.length}
+					>
 						<ul>
 							<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
 								{title == 'tagged'

@@ -12,7 +12,7 @@ interface ExpandableSectionProps {
 	itemCount?: number;
 }
 
-function ExpandableSection({ children, isEmpty, title, itemCount }: ExpandableSectionProps) {
+function ExpandableSection({ children, isEmpty, title, itemCount = 0 }: ExpandableSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
 
 	return (
