@@ -3,17 +3,17 @@
 import Button from '@/components/ui-shared/Button';
 import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
-import React, { memo, useState } from 'react';
+import React, { Children, memo, useState } from 'react';
 
 interface ExpandableSectionProps {
 	children: React.ReactNode;
 	isEmpty: boolean;
 	title: string;
-	itemIndicator?: boolean;
 }
 
-function ExpandableSection({ children, isEmpty, title, itemIndicator = false }: ExpandableSectionProps) {
+function ExpandableSection({ children, isEmpty, title }: ExpandableSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
+	const childCount = Children.count(children);
 
 	return (
 		<div className="flex flex-col items-start gap-1">
@@ -25,7 +25,7 @@ function ExpandableSection({ children, isEmpty, title, itemIndicator = false }: 
 				</Button>
 				<div className="flex items-center gap-2">
 					<p className="font-bold">{title}</p>
-					<p className="text-sm text-slate-600">(1)</p>
+					<p className="text-sm text-slate-600">({childCount})</p>
 				</div>
 			</div>
 
