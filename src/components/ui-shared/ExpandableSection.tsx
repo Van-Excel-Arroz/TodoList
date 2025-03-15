@@ -3,7 +3,7 @@
 import Button from '@/components/ui-shared/Button';
 import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
-import React, { Children, memo, useState } from 'react';
+import React, { memo, useState } from 'react';
 
 interface ExpandableSectionProps {
 	children: React.ReactNode;
