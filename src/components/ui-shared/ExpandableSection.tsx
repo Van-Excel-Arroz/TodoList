@@ -17,7 +17,11 @@ function ExpandableSection({ children, isEmpty, title, itemCount = 0, view = 'li
 	const [isOpen, setIsOpen] = useState<boolean>(true);
 
 	return (
-		<div className={`${view === 'grid' ? 'border-4' : ''} flex flex-col items-start gap-1 mb-4 `}>
+		<div
+			className={`${
+				view === 'grid' ? 'border border-slate-300 p-2 rounded-md' : ''
+			} flex flex-col items-start gap-1 mb-4 `}
+		>
 			<div className="flex items-center w-full mx-1">
 				<Button ariaLabel="Toggle Expand Section" onClick={() => setIsOpen(prev => !prev)} disabled={isEmpty}>
 					<div className={`transition-transform duration-200 ease-in-out ${isOpen && !isEmpty ? 'rotate-180' : ''}`}>
