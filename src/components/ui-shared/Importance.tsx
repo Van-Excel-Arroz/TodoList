@@ -3,9 +3,10 @@ import { Star } from 'lucide-react';
 interface ImportanceProps {
 	isImportant: boolean;
 	handleOnClick: () => void;
+	size?: number;
 }
 
-export default function Importance({ isImportant, handleOnClick }: ImportanceProps) {
+export default function Importance({ isImportant, handleOnClick, size = 24 }: ImportanceProps) {
 	return (
 		<button
 			className="flex items-center"
@@ -17,6 +18,7 @@ export default function Importance({ isImportant, handleOnClick }: ImportancePro
 		>
 			<Star
 				strokeWidth={2}
+				size={size}
 				className="hover:opacity-80 active:opacity-60 text-slate-600"
 				fill={`${isImportant ? '#475569' : 'white'}`}
 			/>

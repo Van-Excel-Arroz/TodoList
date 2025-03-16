@@ -83,7 +83,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 								)}
 							</div>
 							<div className="col-span-1 flex justify-center">
-								<Importance isImportant={todo.is_important} handleOnClick={handleImportanceChange} />
+								<Importance isImportant={todo.is_important} handleOnClick={handleImportanceChange} size={20} />
 							</div>
 						</div>
 					</div>
