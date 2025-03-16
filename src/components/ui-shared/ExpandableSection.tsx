@@ -4,6 +4,7 @@ import Button from '@/components/ui-shared/Button';
 import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import React, { memo, useState } from 'react';
+import useQueryParams from '@/hooks/useQueryParams';
 
 interface ExpandableSectionProps {
 	children: React.ReactNode;
@@ -14,6 +15,8 @@ interface ExpandableSectionProps {
 
 function ExpandableSection({ children, isEmpty, title, itemCount = 0 }: ExpandableSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
+	const { getQueryParam, updateSearchParams } = useQueryParams();
+	const [view] = getQueryParam('view');
 
 	return (
 		<div className="flex flex-col items-start gap-1 mb-4">
