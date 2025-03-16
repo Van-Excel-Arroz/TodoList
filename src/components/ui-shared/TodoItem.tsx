@@ -64,7 +64,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 							strokeWidth={1}
 							size={20}
 						/>
-						<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
+						<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} size={20} />
 					</div>
 					<p>{todo.task_text}</p>
 				</div>
