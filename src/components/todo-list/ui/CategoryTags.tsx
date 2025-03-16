@@ -1,5 +1,6 @@
 import { Category } from '@/utils/types';
 import { Tag } from 'lucide-react';
+import { memo } from 'react';
 
 interface CategoryTagsProps {
 	categories: Category[];
@@ -7,7 +8,7 @@ interface CategoryTagsProps {
 	showIcon?: boolean;
 }
 
-export default function CategoryTags({ categories, handleCategoryClick, showIcon = true }: CategoryTagsProps) {
+function CategoryTags({ categories, handleCategoryClick, showIcon = true }: CategoryTagsProps) {
 	return (
 		<>
 			{showIcon ? <Tag size={14} className="text-slate-800" /> : null}
@@ -32,3 +33,5 @@ export default function CategoryTags({ categories, handleCategoryClick, showIcon
 		</>
 	);
 }
+
+export default memo(CategoryTags);
