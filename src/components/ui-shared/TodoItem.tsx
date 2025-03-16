@@ -57,7 +57,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	return (
 		<>
 			{view === 'grid' ? (
-				<div key={todo.id} className="border-b-2 py-2">
+				<div key={todo.id} className="border-b-2 pb-2">
 					<p>{todo.task_text}</p>
 				</div>
 			) : (
