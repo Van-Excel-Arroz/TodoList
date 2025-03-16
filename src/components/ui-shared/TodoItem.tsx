@@ -57,7 +57,15 @@ function TodoItem({ todo }: { todo: Todo }) {
 	return (
 		<>
 			{view === 'grid' ? (
-				<div key={todo.id} className="border-b-2 pb-2">
+				<div key={todo.id} className="flex items-center gap-2 border-b-2 pb-2">
+					<div className="w-15 h-5 flex items-center">
+						<GripVertical
+							className="cursor-all-scroll mr-3 text-slate-500 hover:text-slate-800"
+							strokeWidth={1}
+							size={20}
+						/>
+						<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
+					</div>
 					<p>{todo.task_text}</p>
 				</div>
 			) : (
