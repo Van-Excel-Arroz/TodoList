@@ -6,6 +6,7 @@ import { useMemo, memo } from 'react';
 import { motion } from 'framer-motion';
 import { itemVariants } from '@/utils/framer-motion';
 import ExpandableSection from '@/components/ui-shared/ExpandableSection';
+import useQueryParams from '@/hooks/useQueryParams';
 
 interface TodoSectionProps {
 	title: string;
@@ -14,9 +15,11 @@ interface TodoSectionProps {
 
 function TodoSection({ title, todos }: TodoSectionProps) {
 	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
+	const { getQueryParam } = useQueryParams();
+	const [view] = getQueryParam('view');
 
 	return (
-		<ExpandableSection isEmpty={isTodosEmpty} title={title} itemCount={todos.length}>
+		<ExpandableSection isEmpty={isTodosEmpty} title={title} itemCount={todos.length} view={view}>
 			<ul>
 				{todos.map((todo, index) => (
 					<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
