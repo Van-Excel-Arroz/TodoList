@@ -57,7 +57,15 @@ function TodoItem({ todo }: { todo: Todo }) {
 	return (
 		<>
 			{view === 'grid' ? (
-				<div key={todo.id} className="flex flex-col gap-2 py-2 px-2">
+				<div
+					key={todo.id}
+					className={`flex flex-col border cursor-pointer relative py-1 mb-2 px-3 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
+						isSelected
+							? ' border-slate-500 hover:border-slate-400 active:border-slate-300'
+							: ' hover:border-slate-400 active:border-slate-500'
+					}`}
+					onClick={handleTodoClick}
+				>
 					<div className="flex items-center gap-2">
 						<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} size={20} />
 						<div className="grid grid-cols-12 gap-2 w-full">
