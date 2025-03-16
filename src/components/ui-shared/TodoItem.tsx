@@ -57,7 +57,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	return (
 		<>
 			{view === 'grid' ? (
-				<div key={todo.id} className="grid grid-cols-12 gap-2 py-2 px-2 items-center">
+				<div key={todo.id} className="grid grid-cols-12 gap-2 py-2 px-2">
 					<div className="col-span-1 flex justify-start">
 						<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} size={20} />
 					</div>
