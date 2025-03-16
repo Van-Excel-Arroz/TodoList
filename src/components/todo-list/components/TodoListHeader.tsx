@@ -5,12 +5,11 @@ import { Category, TodoList } from '@/utils/types';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import TodoSort from './TodoSort';
-import { Grid2X2, ListTodo } from 'lucide-react';
-import Button from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useCategoriesStore from '@/context/CategoriesContext';
 import TodoListTitle from '../ui/TodoListTitle';
 import TodoSearch from '../ui/TodoSearch';
+import LayoutButtons from '@/components/ui-shared/LayoutButtons';
 
 interface TodoListHeaderProps {
 	initialTodolist: TodoList;
@@ -32,12 +31,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 			<div className="flex justify-between items-center py-2">
 				<div className="flex items-center gap-1">
 					<TodoListTitle currentTodoList={currentTodolist} />
-					<Button ariaLabel="Grid Layout">
-						<Grid2X2 />
-					</Button>
-					<Button ariaLabel="List Layout" isActive={true}>
-						<ListTodo />
-					</Button>
+					<LayoutButtons param="id" />
 				</div>
 				<div className="flex items-center justify-between gap-2">
 					<TodoSearch />
