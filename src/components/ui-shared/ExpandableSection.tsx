@@ -37,7 +37,7 @@ function ExpandableSection({ children, isEmpty, title, itemCount = 0, view = 'li
 				<div className="grid grid-cols-12 gap-2 w-full text-sm pl-10 pr-3 text-slate-600 font-bold">
 					<p className="col-span-6">Task</p>
 					<p className="col-span-2 text-center pl-1">Due Date</p>
-					<p className="col-span-3 text-center">Category</p>
+					<p className="col-span-3">Category</p>
 					<p className="col-span-1 text-center">Importance</p>
 				</div>
 			) : null}
