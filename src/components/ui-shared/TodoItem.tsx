@@ -57,24 +57,33 @@ function TodoItem({ todo }: { todo: Todo }) {
 	return (
 		<>
 			{view === 'grid' ? (
-				<div key={todo.id} className="flex items-center gap-2 py-2 px-2">
-					<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} size={20} />
-					<div className="grid grid-cols-12 gap-2 w-full">
-						<p className="col-span-6 flex justify-start items-center">{todo.task_text}</p>
-						<div className="col-span-2 flex items-center justify-center">
-							{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
-						</div>
-						<div className="col-span-3 flex items-center gap-2 flex-wrap">
-							{(todo.categories?.length ?? 0) > 0 && (
-								<CategoryTags
-									showIcon={false}
-									categories={todo.categories!}
-									handleCategoryClick={handleCategoryClick}
-								/>
-							)}
-						</div>
-						<div className="col-span-1 flex justify-end">
-							<Importance isImportant={todo.is_important} handleOnClick={handleImportanceChange} />
+				<div key={todo.id} className="flex flex-col gap-2 py-2 px-2">
+					<div className="grid grid-cols-12 gap-2 w-full text-sm">
+						<p className="col-span-6 pl-6">Task</p>
+						<p className="col-span-2">Due Date</p>
+						<p className="col-span-3">Category</p>
+						<p className="col-span-1">Importance</p>
+					</div>
+
+					<div className="flex items-center gap-2">
+						<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} size={20} />
+						<div className="grid grid-cols-12 gap-2 w-full">
+							<p className="col-span-6 flex justify-start items-center">{todo.task_text}</p>
+							<div className="col-span-2 flex items-center justify-center">
+								{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
+							</div>
+							<div className="col-span-3 flex items-center gap-2 flex-wrap">
+								{(todo.categories?.length ?? 0) > 0 && (
+									<CategoryTags
+										showIcon={false}
+										categories={todo.categories!}
+										handleCategoryClick={handleCategoryClick}
+									/>
+								)}
+							</div>
+							<div className="col-span-1 flex justify-end">
+								<Importance isImportant={todo.is_important} handleOnClick={handleImportanceChange} />
+							</div>
 						</div>
 					</div>
 				</div>
