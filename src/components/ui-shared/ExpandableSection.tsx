@@ -34,11 +34,11 @@ function ExpandableSection({ children, isEmpty, title, itemCount = 0, view = 'li
 				</div>
 			</div>
 			{view === 'grid' ? (
-				<div className="grid grid-cols-12 gap-2 w-full text-sm pl-9 pr-2 text-slate-600">
+				<div className="grid grid-cols-12 gap-2 w-full text-sm pl-10 pr-3 text-slate-600">
 					<p className="col-span-6">Task</p>
 					<p className="col-span-2 text-center">Due Date</p>
 					<p className="col-span-3 text-center">Category</p>
-					<p className="col-span-1">Importance</p>
+					<p className="col-span-1 text-center">Importance</p>
 				</div>
 			) : null}
 			<motion.div
