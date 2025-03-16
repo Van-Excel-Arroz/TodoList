@@ -33,7 +33,14 @@ function ExpandableSection({ children, isEmpty, title, itemCount = 0, view = 'li
 					{itemCount > 0 ? <p className="text-sm text-slate-600">({itemCount})</p> : null}
 				</div>
 			</div>
-
+			{view === 'grid' ? (
+				<div className="grid grid-cols-12 gap-2 w-full text-sm">
+					<p className="col-span-6 pl-8">Task</p>
+					<p className="col-span-2 text-center">Due Date</p>
+					<p className="col-span-3 text-center">Category</p>
+					<p className="col-span-1">Importance</p>
+				</div>
+			) : null}
 			<motion.div
 				className="overflow-hidden w-full"
 				initial={{ height: isOpen && !isEmpty ? 'auto' : 0 }}
