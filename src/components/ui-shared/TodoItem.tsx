@@ -61,7 +61,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 					<div className="w-15 h-5 flex items-center">
 						<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} size={20} />
 					</div>
-					<p className="col-span-3">{todo.task_text}</p>
+					<p className="col-span-4">{todo.task_text}</p>
 					<div> {todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}</div>
 					<div className="flex items-center gap-2">
 						{(todo.categories?.length ?? 0) > 0 && (
