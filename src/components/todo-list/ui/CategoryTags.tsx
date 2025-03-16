@@ -4,12 +4,13 @@ import { Tag } from 'lucide-react';
 interface CategoryTagsProps {
 	categories: Category[];
 	handleCategoryClick: (categoryTitle: string) => void;
+	showIcon?: boolean;
 }
 
-export default function CategoryTags({ categories, handleCategoryClick }: CategoryTagsProps) {
+export default function CategoryTags({ categories, handleCategoryClick, showIcon = true }: CategoryTagsProps) {
 	return (
 		<>
-			<Tag size={14} className="text-slate-800" />
+			{showIcon ? <Tag size={14} className="text-slate-800" /> : null}
 			{categories?.map(category => (
 				<span
 					key={category.id}
