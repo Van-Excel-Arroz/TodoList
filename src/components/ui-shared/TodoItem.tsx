@@ -64,7 +64,11 @@ function TodoItem({ todo }: { todo: Todo }) {
 						<div className="col-span-1">{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}</div>
 						<div className="col-span-3 flex items-center gap-2 flex-wrap">
 							{(todo.categories?.length ?? 0) > 0 && (
-								<CategoryTags categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
+								<CategoryTags
+									showIcon={false}
+									categories={todo.categories!}
+									handleCategoryClick={handleCategoryClick}
+								/>
 							)}
 						</div>
 						<div className="col-span-1 flex justify-end">
