@@ -60,8 +60,8 @@ function TodoItem({ todo }: { todo: Todo }) {
 				<div key={todo.id} className="flex items-center gap-2 py-2 px-2">
 					<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} size={20} />
 					<div className="grid grid-cols-12 gap-2 w-full">
-						<p className="col-span-7 flex justify-start items-center">{todo.task_text}</p>
-						<div className="col-span-1 flex items-center">
+						<p className="col-span-6 flex justify-start items-center">{todo.task_text}</p>
+						<div className="col-span-2 flex items-center justify-center">
 							{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
 						</div>
 						<div className="col-span-3 flex items-center gap-2 flex-wrap">
