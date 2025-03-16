@@ -34,7 +34,7 @@ function ExpandableSection({ children, isEmpty, title, itemCount = 0, view = 'li
 				</div>
 			</div>
 			{view === 'grid' ? (
-				<div className="grid grid-cols-12 gap-2 w-full text-sm">
+				<div className="grid grid-cols-12 gap-2 w-full text-sm mx-4">
 					<p className="col-span-6 pl-8">Task</p>
 					<p className="col-span-2 text-center">Due Date</p>
 					<p className="col-span-3 text-center">Category</p>
