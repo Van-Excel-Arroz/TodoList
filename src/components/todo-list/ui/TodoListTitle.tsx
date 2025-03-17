@@ -58,7 +58,7 @@ export default function TodoListTitle({ currentTodoList }: TodoListTiltleProps) 
 					<p className="text-xl font-bold text-black cursor-text">{currentTodoList.title}</p>
 				</Button>
 			)}
-			<TodoListMenu setToEditing={() => setIsEditing(true)} />
+			<TodoListMenu todolistId={currentTodoList.id} setToEditing={() => setIsEditing(true)} />
 		</div>
 	);
 }

@@ -1,11 +1,21 @@
+import { deleteTodolistAction } from '@/actions/todolist-action';
 import Button from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { Ellipsis, SquarePen, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
-export default function TodoListMenu({ setToEditing }: { setToEditing: () => void }) {
+interface TodoListMenu {
+	setToEditing: () => void;
+	todolistId: number;
+}
+
+export default function TodoListMenu({ setToEditing, todolistId }: TodoListMenu) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	const handleTodoListDelete = async () => {
+		await deleteTodolistAction(todolistId);
+	};
 
 	return (
 		<div className="relative">
