@@ -15,7 +15,7 @@ const SmartLists = [
 
 export default function SmartTodolistContainer() {
 	return (
-		<ExpandableSection isEmpty={false} title="Smart Lists">
+		<ExpandableSection isEmpty={false} title="Smart Lists" className="mt-2">
 			<ul className="flex flex-col gap-2 w-full">
 				<AnimatePresence>
 					{SmartLists.map((smartList, index) => (
