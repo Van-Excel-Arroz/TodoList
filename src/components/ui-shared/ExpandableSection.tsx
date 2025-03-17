@@ -11,16 +11,24 @@ interface ExpandableSectionProps {
 	title: string;
 	itemCount?: number;
 	view?: string;
+	className?: string;
 }
 
-function ExpandableSection({ children, isEmpty, title, itemCount = 0, view = 'list' }: ExpandableSectionProps) {
+function ExpandableSection({
+	children,
+	isEmpty,
+	title,
+	itemCount = 0,
+	view = 'list',
+	className,
+}: ExpandableSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
 
 	return (
 		<div
 			className={`${
 				view === 'grid' ? 'border border-slate-300 p-2 rounded-md' : ''
-			} flex flex-col items-start gap-1 mb-4 `}
+			} ${className} flex flex-col items-start gap-1 mb-4 `}
 		>
 			<div className="flex items-center w-full mx-1 gap-1">
 				<Button ariaLabel="Toggle Expand Section" onClick={() => setIsOpen(prev => !prev)} disabled={isEmpty}>
