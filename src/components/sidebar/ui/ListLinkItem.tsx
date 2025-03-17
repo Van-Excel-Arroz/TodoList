@@ -44,7 +44,7 @@ function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) 
 			}`}
 		>
 			<Link
-				href={urlWithSearchParams || `/tasks/?${queryParam}=${value}`}
+				href={urlWithSearchParams || `/tasks/?${queryParam}=${value}&view=list`}
 				onClick={handleClick}
 				className="flex items-center py-1 px-2 gap-2"
 			>
