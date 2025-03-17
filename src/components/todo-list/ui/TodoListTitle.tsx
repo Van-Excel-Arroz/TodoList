@@ -3,14 +3,12 @@
 import { updateTodolistAction } from '@/actions/todolist-action';
 import TodoListsSidebarToggle from '@/components/sidebar/ui/TodoListsSidebarToggle';
 import Button from '@/components/ui-shared/Button';
-import Menu from '@/components/ui-shared/Menu';
-import MenuItem from '@/components/ui-shared/MenuItem';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import { TodoList } from '@/utils/types';
-import { Ellipsis, Settings, SquarePen, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import TodoListMenu from './TodoListMenu';
 
 interface TodoListTiltleProps {
 	currentTodoList: TodoList;
@@ -23,7 +21,6 @@ export default function TodoListTitle({ currentTodoList }: TodoListTiltleProps) 
 	const { register, handleSubmit, reset } = useForm<{
 		title: string;
 	}>();
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const onSubmit = async (data: { title: string }) => {
 		if (!data.title?.trim()) return;
@@ -61,19 +58,7 @@ export default function TodoListTitle({ currentTodoList }: TodoListTiltleProps) 
 					<p className="text-xl font-bold text-black cursor-text">{currentTodoList.title}</p>
 				</Button>
 			)}
-			<Button ariaLabel="Settings" onClick={() => setIsMenuOpen(prev => !prev)}>
-				<Ellipsis />
-			</Button>
-			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-44" posX="left-20">
-				<MenuItem>
-					<SquarePen size={18} className="text-slate-600" />
-					<p>Rename</p>
-				</MenuItem>
-				<MenuItem>
-					<Trash2 size={18} className="text-red-600" />
-					<p>Delete</p>
-				</MenuItem>
-			</Menu>
+			<TodoListMenu />
 		</div>
 	);
 }
