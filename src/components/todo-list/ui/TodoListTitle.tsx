@@ -64,7 +64,7 @@ export default function TodoListTitle({ currentTodoList }: TodoListTiltleProps) 
 			<Button ariaLabel="Settings" onClick={() => setIsMenuOpen(prev => !prev)}>
 				<Ellipsis />
 			</Button>
-			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-44">
+			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-44" posX="left-20">
 				<MenuItem>Delete</MenuItem>
 			</Menu>
 		</div>
