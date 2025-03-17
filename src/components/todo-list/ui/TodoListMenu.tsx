@@ -1,9 +1,12 @@
+'use client';
+
 import { deleteTodolistAction } from '@/actions/todolist-action';
 import Button from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
+import useTodoListsStore from '@/context/TodoListsContext';
 import { Ellipsis, SquarePen, Trash2 } from 'lucide-react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 interface TodoListMenu {
@@ -13,10 +16,12 @@ interface TodoListMenu {
 
 export default function TodoListMenu({ setToEditing, todolistId }: TodoListMenu) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const router = useRouter();
+	const { deleteTodolist } = useTodoListsStore();
 
 	const handleTodoListDelete = async () => {
-		const router = useRouter();
 		await deleteTodolistAction(todolistId);
+		deleteTodolist(todolistId);
 		router.push('/tasks');
 	};
 
