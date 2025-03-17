@@ -8,7 +8,7 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import { TodoList } from '@/utils/types';
-import { Ellipsis, Settings } from 'lucide-react';
+import { Ellipsis, Settings, SquarePen, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -65,7 +65,14 @@ export default function TodoListTitle({ currentTodoList }: TodoListTiltleProps) 
 				<Ellipsis />
 			</Button>
 			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-44" posX="left-20">
-				<MenuItem>Delete</MenuItem>
+				<MenuItem>
+					<SquarePen size={18} className="text-slate-600" />
+					<p>Rename</p>
+				</MenuItem>
+				<MenuItem>
+					<Trash2 size={18} className="text-red-600" />
+					<p>Delete</p>
+				</MenuItem>
 			</Menu>
 		</div>
 	);
