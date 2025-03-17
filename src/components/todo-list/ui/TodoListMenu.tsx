@@ -4,7 +4,7 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import { Ellipsis, SquarePen, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
-export default function TodoListMenu({ setToEditing: setToEditing }: { setToEditing: () => void }) {
+export default function TodoListMenu({ setToEditing }: { setToEditing: () => void }) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	return (
