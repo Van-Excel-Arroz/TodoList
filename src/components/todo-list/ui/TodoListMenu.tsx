@@ -3,6 +3,7 @@ import Button from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { Ellipsis, SquarePen, Trash2 } from 'lucide-react';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 interface TodoListMenu {
@@ -14,7 +15,9 @@ export default function TodoListMenu({ setToEditing, todolistId }: TodoListMenu)
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const handleTodoListDelete = async () => {
+		const router = useRouter();
 		await deleteTodolistAction(todolistId);
+		router.push('/tasks');
 	};
 
 	return (
@@ -32,7 +35,7 @@ export default function TodoListMenu({ setToEditing, todolistId }: TodoListMenu)
 					<SquarePen size={18} className="text-slate-600" />
 					<p>Rename</p>
 				</MenuItem>
-				<MenuItem>
+				<MenuItem onClick={() => handleTodoListDelete()}>
 					<Trash2 size={18} className="text-red-600" />
 					<p>Delete</p>
 				</MenuItem>
