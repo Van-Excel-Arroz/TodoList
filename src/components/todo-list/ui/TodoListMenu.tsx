@@ -4,16 +4,21 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import { Ellipsis, SquarePen, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
-export default function TodoListMenu() {
+export default function TodoListMenu({ setToEditing: setToEditing }: { setToEditing: () => void }) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	return (
-		<>
+		<div className="relative">
 			<Button ariaLabel="Settings" onClick={() => setIsMenuOpen(prev => !prev)}>
 				<Ellipsis />
 			</Button>
-			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-44" posX="left-20">
-				<MenuItem>
+			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-44" posX="left-0">
+				<MenuItem
+					onClick={() => {
+						setToEditing();
+						setIsMenuOpen(false);
+					}}
+				>
 					<SquarePen size={18} className="text-slate-600" />
 					<p>Rename</p>
 				</MenuItem>
@@ -22,6 +27,6 @@ export default function TodoListMenu() {
 					<p>Delete</p>
 				</MenuItem>
 			</Menu>
-		</>
+		</div>
 	);
 }
