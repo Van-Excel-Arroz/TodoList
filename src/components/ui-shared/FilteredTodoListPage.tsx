@@ -36,7 +36,7 @@ function FilteredTodoListPage({ filteredTodoList, title }: FilteredTodoListPage)
 	}, [filteredTodoList, setTodos]);
 
 	return (
-		<div className="w-[98%] h-[calc(100vh-100px)] mx-auto mt-3 overflow-y-scroll overflow-x-hidden">
+		<div className="w-[98%] h-[calc(100vh-70px)] mx-auto mt-3 overflow-y-scroll overflow-x-hidden">
 			<div className="px-5">
 				{filteredTodoList.map((todoList, index) => (
 					<ExpandableSection
