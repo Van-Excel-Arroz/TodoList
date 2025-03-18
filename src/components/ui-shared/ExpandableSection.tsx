@@ -53,7 +53,7 @@ function ExpandableSection({
 						<p className="col-span-6">Task</p>
 						<p className="col-span-2 text-center">Due Date</p>
 						<p className="col-span-3">Category</p>
-						<p className="col-span-1">Importance</p>
+						<p className="col-span-1 pl-2">Importance</p>
 					</div>
 				) : null}
 				{children}
