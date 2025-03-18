@@ -59,7 +59,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 			{view === 'grid' ? (
 				<div
 					key={todo.id}
-					className={`flex flex-col border cursor-pointer relative py-1 mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
+					className={`flex flex-col bg-white border cursor-pointer relative py-1 mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
 						isSelected
 							? ' border-slate-500 hover:border-slate-400 active:border-slate-300'
 							: ' hover:border-slate-400 active:border-slate-500'
