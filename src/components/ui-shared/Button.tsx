@@ -22,7 +22,7 @@ function Button({
 	isActive = false,
 }: ButtonProps) {
 	const bgStyle = `${
-		isActive ? 'hover:bg-slate-200 text-slate-800 bg-slate-200' : 'bg-white hover:bg-slate-200 active:bg-slate-300'
+		isActive ? 'hover:bg-slate-200 text-slate-800 bg-slate-200' : 'hover:bg-slate-200 active:bg-slate-300'
 	}`;
 
 	const style = `${
