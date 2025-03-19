@@ -7,12 +7,12 @@ import { useForm } from 'react-hook-form';
 export default function TodoSearch() {
 	const { register, watch } = useForm();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
-
 	const [id] = getQueryParam('id');
+	const searchValue = watch('search');
 
 	useEffect(() => {
-		// updateSearchParams('search', watch('search'), id);
-	}, [updateSearchParams, watch('search'), id]);
+		// updateSearchParams('search', searchValue, id);
+	}, [updateSearchParams, searchValue, id]);
 
 	return (
 		<form className="flex items-center gap-2 w-60 pt-2">
