@@ -13,13 +13,14 @@ export default function TodoSearch() {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="flex items-center gap-2 w-60 pt-2 bg-slate-200 rounded-md">
+		<form onSubmit={handleSubmit(onSubmit)} className="flex items-center gap-2 px-2 py-1 w-60 bg-slate-200 rounded-md">
 			<Button ariaLabel="Search">
 				<Search size={20} />
 			</Button>
 			<input
 				{...register('search')}
 				type="text"
+				autoComplete="off"
 				className="px-2 py-1 text-md focus:outline-none bg-transparent"
 				placeholder="Search tasks..."
 			/>
