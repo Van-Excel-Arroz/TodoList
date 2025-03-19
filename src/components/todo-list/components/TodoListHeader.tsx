@@ -33,12 +33,10 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					<TodoListTitle currentTodoList={currentTodolist} />
 					<LayoutButtons param="id" />
 				</div>
-				<div className="flex items-center justify-between gap-2">
+				<div className="flex items-center gap-4">
 					<TodoSearch />
-					<div className="flex items-center gap-4 pl-4">
-						<TodoSort />
-						<TodoFilter />
-					</div>
+					<TodoSort />
+					<TodoFilter />
 				</div>
 			</div>
 			<TodoForm todolistId={initialTodolist.id} />
