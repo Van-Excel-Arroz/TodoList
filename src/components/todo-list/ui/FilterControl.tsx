@@ -32,7 +32,7 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 	};
 
 	return (
-		<div className="flex items-center border-b-2 border-slate-300 pb-1  gap-1 hover:border-slate-400">
+		<div className="flex items-center gap-1 border border-slate-200 rounded-md bg-slate-100 px-2 py-1">
 			<Button
 				ariaLabel="Change Filter"
 				onClick={handleMenuToggle}
