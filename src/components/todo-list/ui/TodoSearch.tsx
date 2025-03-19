@@ -1,7 +1,10 @@
 import Button from '@/components/ui-shared/Button';
 import { Search } from 'lucide-react';
+import { useForm } from 'react-hook-form';
 
 export default function TodoSearch() {
+	const { register, handleSubmit, reset } = useForm();
+
 	return (
 		<div className="flex items-center gap-2 w-60 pt-2">
 			<Button ariaLabel="Search">
