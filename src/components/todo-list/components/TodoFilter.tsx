@@ -25,7 +25,7 @@ export default function TodoFilter() {
 					<FilterControl setIsCategoryFilterOpen={setIsCategoryFilterOpen} setIsDateFilterOpen={setIsDateFilterOpen} />
 				) : (
 					<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)} className="mb-1">
-						<Filter size={18} className="text-slate-600" />
+						<Filter size={18} className="text-slate-800" />
 					</Button>
 				)}
 				<FilterMenu
