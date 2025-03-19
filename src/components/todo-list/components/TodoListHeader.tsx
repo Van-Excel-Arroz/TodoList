@@ -35,7 +35,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 				</div>
 				<div className="flex items-center justify-between gap-2">
 					<TodoSearch />
-					<div className="flex items-center gap-4 pt-2 pl-4">
+					<div className="flex items-center gap-4 pl-4">
 						<TodoSort />
 						<TodoFilter />
 					</div>
