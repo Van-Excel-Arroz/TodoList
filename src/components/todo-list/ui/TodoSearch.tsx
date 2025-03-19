@@ -1,21 +1,19 @@
 import Button from '@/components/ui-shared/Button';
 import useQueryParams from '@/hooks/useQueryParams';
 import { Search } from 'lucide-react';
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function TodoSearch() {
-	const { register, watch } = useForm();
+	const { register, handleSubmit } = useForm();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [id] = getQueryParam('id');
-	const searchValue = watch('search');
 
-	useEffect(() => {
-		// updateSearchParams('search', searchValue, id);
-	}, [updateSearchParams, searchValue, id]);
+	const onSubmit = data => {
+		updateSearchParams('search', data.search, id);
+	};
 
 	return (
-		<form className="flex items-center gap-2 w-60 pt-2">
+		<form onSubmit={handleSubmit(onSubmit)} className="flex items-center gap-2 w-60 pt-2">
 			<Button ariaLabel="Search">
 				<Search size={20} />
 			</Button>
