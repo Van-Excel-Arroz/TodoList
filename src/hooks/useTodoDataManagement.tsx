@@ -56,11 +56,11 @@ export function useTodoDataManagement(todos: Todo[]): {
 	}, [sortField, sortOrder]);
 
 	const getFilterFn = useMemo((): FilterFn => {
-		if (!filterField || !filterValue) return () => true;
-
-		if (searchValue !== null) {
+		if (searchValue) {
 			return todo => Array.from(todo.task_text).some(char => char === searchValue);
 		}
+
+		if (!filterField || !filterValue) return () => true;
 
 		if (filterField === 'categories') {
 			const selectedCategories = new Set(filterValue?.split(',') ?? []);
