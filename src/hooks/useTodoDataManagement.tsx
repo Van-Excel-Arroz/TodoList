@@ -21,6 +21,7 @@ export function useTodoDataManagement(todos: Todo[]): {
 	const { getQueryParam } = useQueryParams();
 	const [filterField, filterValue] = getQueryParam('filter');
 	const [sortField, sortOrder] = getQueryParam('sort');
+	const [searchValue] = getQueryParam('search');
 
 	const getSortFn = useMemo((): SortFn => {
 		return (a: any, b: any) => {
@@ -56,6 +57,10 @@ export function useTodoDataManagement(todos: Todo[]): {
 
 	const getFilterFn = useMemo((): FilterFn => {
 		if (!filterField || !filterValue) return () => true;
+
+		if (searchValue !== null) {
+			return todo => Array.from(todo.task_text).some(char => char === searchValue);
+		}
 
 		if (filterField === 'categories') {
 			const selectedCategories = new Set(filterValue?.split(',') ?? []);
