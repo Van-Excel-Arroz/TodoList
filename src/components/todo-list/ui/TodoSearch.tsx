@@ -13,6 +13,10 @@ export default function TodoSearch() {
 		updateSearchParams('search', data.search, id);
 	};
 
+	const clearSearch = () => {
+		updateSearchParams('search', null, id);
+	};
+
 	return (
 		<>
 			<form
@@ -30,7 +34,7 @@ export default function TodoSearch() {
 					placeholder={search || 'Search tasks...'}
 					defaultValue={search}
 				/>
-				<Button ariaLabel="Clear Search">
+				<Button ariaLabel="Clear Search" onClick={() => clearSearch()}>
 					<X size={20} />
 				</Button>
 			</form>
