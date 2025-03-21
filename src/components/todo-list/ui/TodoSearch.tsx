@@ -34,7 +34,12 @@ export default function TodoSearch() {
 					placeholder={search || 'Search tasks...'}
 					defaultValue={search}
 				/>
-				<Button ariaLabel="Clear Search" onClick={() => clearSearch()}>
+				<Button
+					ariaLabel="Clear Search"
+					onClick={() => clearSearch()}
+					// className={search ? 'text-slate-600' : 'text-slate-400'}
+					disabled={search ? false : true}
+				>
 					<X size={20} />
 				</Button>
 			</form>
