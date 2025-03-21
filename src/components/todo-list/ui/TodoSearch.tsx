@@ -27,6 +27,7 @@ export default function TodoSearch() {
 				autoComplete="off"
 				className="px-2 py-1 text-md focus:outline-none bg-transparent"
 				placeholder={search || 'Search tasks...'}
+				defaultValue={search}
 			/>
 		</form>
 	);
