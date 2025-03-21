@@ -57,9 +57,12 @@ export function useTodoDataManagement(todos: Todo[]): {
 
 	const getFilterFn = useMemo((): FilterFn => {
 		if (searchValue) {
-			return todo => Array.from(todo.task_text).some(char => char === searchValue);
+			return todo => {
+				const taskTextLower = todo.task_text.toLowerCase();
+				const searchLower = searchValue.toLowerCase();
+				return taskTextLower.includes(searchLower);
+			};
 		}
-
 		if (!filterField || !filterValue) return () => true;
 
 		if (filterField === 'categories') {
