@@ -58,6 +58,7 @@ export function useTodoDataManagement(todos: Todo[]): {
 	const getFilterFn = useMemo((): FilterFn => {
 		if (searchValue) {
 			return todo => {
+				console.log('search');
 				const taskTextLower = todo.task_text.toLowerCase();
 				const searchLower = searchValue.toLowerCase();
 				return taskTextLower.includes(searchLower);
@@ -76,7 +77,7 @@ export function useTodoDataManagement(todos: Todo[]): {
 		}
 
 		return () => true;
-	}, [filterField, filterValue]);
+	}, [filterField, filterValue, searchValue]);
 
 	return useMemo(() => {
 		const filterFn = getFilterFn;
