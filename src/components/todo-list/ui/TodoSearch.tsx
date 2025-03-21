@@ -7,6 +7,7 @@ export default function TodoSearch() {
 	const { register, handleSubmit } = useForm();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [id] = getQueryParam('id');
+	const [search] = getQueryParam('search');
 
 	const onSubmit = (data: any) => {
 		updateSearchParams('search', data.search, id);
@@ -25,7 +26,7 @@ export default function TodoSearch() {
 				type="text"
 				autoComplete="off"
 				className="px-2 py-1 text-md focus:outline-none bg-transparent"
-				placeholder="Search tasks..."
+				placeholder={search || 'Search tasks...'}
 			/>
 		</form>
 	);
