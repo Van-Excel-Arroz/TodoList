@@ -1,7 +1,7 @@
 'use client';
 
 import { TodoList } from '@/utils/types';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import useTodoListsStore from '@/context/TodoListsContext';
 import { AnimatePresence, motion } from 'framer-motion';
 import ExpandableSection from '../../ui-shared/ExpandableSection';
@@ -10,7 +10,7 @@ import { List } from 'lucide-react';
 import TodoListEmptyText from '../ui/TodoListEmptyText';
 import { itemVariants } from '@/utils/framer-motion';
 
-export default function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] }) {
+function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] }) {
 	const { todolists, setTodolists } = useTodoListsStore();
 
 	useEffect(() => {
@@ -44,3 +44,5 @@ export default function TodolistContainer({ initialTodoLists }: { initialTodoLis
 		</div>
 	);
 }
+
+export default memo(TodolistContainer);
