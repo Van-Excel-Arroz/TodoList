@@ -15,13 +15,13 @@ export default function TodoSort() {
 	return (
 		<div className="relative">
 			<div className="flex items-center py-1 pl-4 pr-2 border border-slate-300 rounded-md">
-				<p className="text-sm text-slate-700 pr-2">Sort by: </p>
+				<p className="text-sm text-slate-600 pr-2">Sort by: </p>
 
 				{sortField ? (
 					<SortControl setIsSortMenuOpen={setIsSortMenuOpen} />
 				) : (
 					<Button ariaLabel="Filter" onClick={() => setIsSortMenuOpen(prev => !prev)}>
-						<ArrowUpDown size={18} className="text-slate-800" />
+						<ArrowUpDown size={18} className="text-slate-600" />
 					</Button>
 				)}
 				<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} />

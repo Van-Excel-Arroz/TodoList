@@ -19,13 +19,13 @@ export default function TodoFilter() {
 	return (
 		<div className="relative">
 			<div className="flex items-center py-1 pl-4 pr-2 border border-slate-300 rounded-md">
-				<p className="text-sm text-slate-700 pr-2">Filter by:</p>
+				<p className="text-sm text-slate-600 pr-2">Filter by:</p>
 
 				{filterField ? (
 					<FilterControl setIsCategoryFilterOpen={setIsCategoryFilterOpen} setIsDateFilterOpen={setIsDateFilterOpen} />
 				) : (
 					<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
-						<Filter size={18} className="text-slate-800" />
+						<Filter size={18} className="text-slate-600" />
 					</Button>
 				)}
 				<FilterMenu
