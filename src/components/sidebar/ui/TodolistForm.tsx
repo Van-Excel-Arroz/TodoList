@@ -30,7 +30,7 @@ export default function TodolistForm({ handleIsAddingList }: { handleIsAddingLis
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)} className="w-[80%]">
 				<div className="flex items-center gap-1" onBlur={handleInputBlur} tabIndex={-1}>
 					<input
 						{...register('title', {
