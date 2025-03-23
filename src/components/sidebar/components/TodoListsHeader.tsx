@@ -13,7 +13,7 @@ export default function TodoListsHeader() {
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
 
 	return (
-		<div className="flex items-center justify-between py-4 border-b border-slate-300">
+		<div className="flex items-center px-6 justify-between py-4 border-b border-slate-300">
 			<Link href={'/'} className="flex items-center gap-2" onClick={() => setSelectedTodoId(0)}>
 				<Button ariaLabel="Home">
 					<Home />

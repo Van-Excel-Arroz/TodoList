@@ -21,7 +21,7 @@ function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] 
 	const isTodolistsEmpty = todolists.length === 0;
 
 	return (
-		<div className="flex flex-col overflow-y-auto overflow-hidden">
+		<div className="flex flex-col overflow-y-auto overflow-hidden px-6">
 			{isTodolistsEmpty ? (
 				<TodoListEmptyText />
 			) : (
