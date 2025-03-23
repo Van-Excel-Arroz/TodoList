@@ -4,7 +4,6 @@ import { updateTodolistAction } from '@/actions/todolist-action';
 import TodoListsSidebarToggle from '@/components/sidebar/ui/TodoListsSidebarToggle';
 import Button from '@/components/ui-shared/Button';
 import useTodoListsStore from '@/context/TodoListsContext';
-import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import { TodoList } from '@/utils/types';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -15,7 +14,6 @@ interface TodoListTiltleProps {
 }
 
 export default function TodoListTitle({ currentTodoList }: TodoListTiltleProps) {
-	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
 	const { updateTodolistTitle } = useTodoListsStore();
 	const [isEditing, setIsEditing] = useState(false);
 	const { register, handleSubmit, reset } = useForm<{
@@ -40,7 +38,7 @@ export default function TodoListTitle({ currentTodoList }: TodoListTiltleProps) 
 
 	return (
 		<div className="flex items-center gap-2 relative">
-			{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
+			<TodoListsSidebarToggle />
 			{isEditing ? (
 				<div onBlur={handleInputBlur} tabIndex={-1}>
 					<form onSubmit={handleSubmit(onSubmit)}>
