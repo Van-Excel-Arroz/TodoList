@@ -27,8 +27,8 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	}, [categories, setCategories]);
 
 	return (
-		<div className="z-50 px-6 bg-white border-b border-slate-300 pb-2">
-			<div className="flex justify-between items-center py-2">
+		<div className="z-50 px-6 bg-white border-b border-slate-300">
+			<div className="flex justify-between items-center py-3">
 				<div className="flex items-center gap-1">
 					<TodoListTitle currentTodoList={currentTodolist} />
 					<LayoutButtons param="id" />
@@ -39,7 +39,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					<TodoFilter />
 				</div>
 			</div>
-			<TodoForm todolistId={initialTodolist.id} />
+			{/* <TodoForm todolistId={initialTodolist.id} /> */}
 		</div>
 	);
 }

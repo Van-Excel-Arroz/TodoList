@@ -12,7 +12,7 @@ export default function TodoListsHeader() {
 		<div className="flex items-center px-6 justify-between py-4 border-b border-slate-300">
 			<Link href={'/'} className="flex items-center gap-2" onClick={() => setSelectedTodoId(0)}>
 				<Button ariaLabel="Home">
-					<Home />
+					<Home size={22} />
 				</Button>
 				<p className="text-lg">TodoApp</p>
 			</Link>
