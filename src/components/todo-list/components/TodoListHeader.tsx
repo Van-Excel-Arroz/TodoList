@@ -2,7 +2,6 @@
 
 import { memo, useEffect } from 'react';
 import { Category, TodoList } from '@/utils/types';
-import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 import TodoSort from './TodoSort';
 import useTodoListsStore from '@/context/TodoListsContext';
@@ -39,7 +38,6 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					<TodoFilter />
 				</div>
 			</div>
-			{/* <TodoForm todolistId={initialTodolist.id} /> */}
 		</div>
 	);
 }
