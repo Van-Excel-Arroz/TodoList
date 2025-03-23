@@ -16,7 +16,7 @@ export default function NewTodolistButton() {
 					ariaLabel="add new list"
 					darkMode={true}
 					onClick={() => setIsAddingList(prev => !prev)}
-					className="w-[80%] h-9 mx-auto px-6"
+					className="w-[80%] h-9 mx-auto"
 				>
 					New List
 				</Button>

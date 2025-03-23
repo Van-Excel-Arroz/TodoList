@@ -12,7 +12,7 @@ const SmartLists = [
 
 export default function SmartTodolistContainer() {
 	return (
-		<ExpandableSection isEmpty={false} title="Smart Lists" className="mt-2 px-6">
+		<ExpandableSection isEmpty={false} title="Smart Lists" className="mt-2 px-5">
 			<ul className="flex flex-col gap-2 w-full">
 				{SmartLists.map((smartList, index) => (
 					<li key={index}>
