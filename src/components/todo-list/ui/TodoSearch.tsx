@@ -10,7 +10,9 @@ export default function TodoSearch() {
 	const [search] = getQueryParam('search');
 
 	const onSubmit = (data: any) => {
-		updateSearchParams('search', data.search, id);
+		if (data.search !== '') {
+			updateSearchParams('search', data.search, id);
+		}
 	};
 
 	const clearSearch = () => {
