@@ -15,8 +15,8 @@ export default async function TodoListsNav() {
 					<TodoListsHeader />
 					<SmartTodolistContainer />
 					<TodolistContainer initialTodoLists={todolists} />
-					<NewTodolistButton />
 				</div>
+				<NewTodolistButton />
 			</TodoListsSidebarWrapper>
 		</>
 	);
