@@ -66,9 +66,15 @@ function TodoItem({ todo }: { todo: Todo }) {
 					}`}
 					onClick={handleTodoClick}
 				>
-					<div className="flex items-center col-span-6">
-						<GripVertical className="cursor-all-scroll text-slate-500 hover:text-slate-800" strokeWidth={1} size={20} />
-						<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} size={24} />
+					<div className="flex items-center gap-2 col-span-6">
+						<div className="flex items-center gap-2">
+							<GripVertical
+								className="cursor-all-scroll text-slate-500 hover:text-slate-800"
+								strokeWidth={1}
+								size={20}
+							/>
+							<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
+						</div>
 						<p>{todo.task_text}</p>
 					</div>
 					<div className="col-span-2 flex items-center justify-center">
