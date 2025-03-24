@@ -31,6 +31,9 @@ export default function TodoListMenu({ setToEditing, todolistId }: TodoListMenu)
 				<Ellipsis />
 			</Button>
 			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-44" posX="left-0">
+				<MenuItem clickable={false} className="font-bold border-b">
+					<p>TodoList Option</p>
+				</MenuItem>
 				<MenuItem
 					onClick={() => {
 						setToEditing();
