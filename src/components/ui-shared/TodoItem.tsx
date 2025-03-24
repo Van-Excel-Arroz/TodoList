@@ -75,7 +75,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 							/>
 							<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 						</div>
-						<p>{todo.task_text}</p>
+						<p className={`w-[90%] ${todo.is_completed && 'line-through text-slate-600'}`}>{todo.task_text}</p>
 					</div>
 					<div className="col-span-2 flex items-center justify-center">
 						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
