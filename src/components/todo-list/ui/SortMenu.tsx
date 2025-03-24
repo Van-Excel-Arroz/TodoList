@@ -37,7 +37,7 @@ export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen }: SortMenu
 		<Menu
 			open={isSortMenuOpen}
 			onClose={() => setIsSortMenuOpen(false)}
-			posX={`${sortField ? 'right-8' : '-right-5'}`}
+			posX={`${sortField ? 'right-8' : '-right-3'}`}
 			posXNotch="before:right-6"
 			width="w-44"
 		>

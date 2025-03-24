@@ -15,7 +15,7 @@ export default function FilterMenu({
 	setIsDateFilterOpen,
 }: FilterMenuProps) {
 	return (
-		<Menu open={isOpen} onClose={() => setIsOpen(false)} posX="-right-5" posXNotch="before:right-6" width="w-44">
+		<Menu open={isOpen} onClose={() => setIsOpen(false)} posX="-right-3" posXNotch="before:right-6" width="w-44">
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Filter by</p>
 			</MenuItem>
