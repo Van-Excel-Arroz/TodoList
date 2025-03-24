@@ -25,7 +25,7 @@ function Button({
 		isActive ? 'hover:bg-slate-200 text-slate-800 bg-slate-200' : 'hover:bg-slate-200 active:bg-slate-300'
 	}`;
 
-	const disabledStyle = `${disabled && 'opacity-70'}`;
+	const disabledStyle = `${disabled && 'opacity-50'}`;
 
 	const style = `${
 		darkMode

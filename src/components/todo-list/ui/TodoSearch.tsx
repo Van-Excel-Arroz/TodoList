@@ -26,7 +26,7 @@ export default function TodoSearch() {
 				className="flex items-center gap-2 px-2 py-1 border border-slate-300 rounded-md"
 			>
 				<Button ariaLabel="Search" type="submit">
-					<Search size={20} />
+					<Search size={20} className="text-slate-600" />
 				</Button>
 				<input
 					{...register('search')}
