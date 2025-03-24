@@ -31,7 +31,7 @@ export default function TodoDetailsPanel() {
 					selectedTodoId ? 'w-96' : 'w-0'
 				}`}
 			>
-				<div className="flex flex-col justify-between px-6 h-full">
+				<div className="flex flex-col justify-between h-full">
 					<div className="flex flex-col gap-4">
 						<TodoDetailsHeader />
 						<div className="flex items-center justify-between gap-4">
