@@ -12,6 +12,7 @@ interface ExpandableSectionProps {
 	itemCount?: number;
 	view?: string;
 	className?: string;
+	titleClass?: string;
 }
 
 function ExpandableSection({
@@ -21,6 +22,7 @@ function ExpandableSection({
 	itemCount = 0,
 	view = 'list',
 	className,
+	titleClass,
 }: ExpandableSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
 
@@ -37,7 +39,7 @@ function ExpandableSection({
 					</div>
 				</Button>
 				<div className="flex items-center gap-2">
-					<p className="font-bold text-slate-600">{title}</p>
+					<p className={`${titleClass}`}>{title}</p>
 					{itemCount > 0 ? <p className="text-sm text-slate-600">({itemCount})</p> : null}
 				</div>
 			</div>
