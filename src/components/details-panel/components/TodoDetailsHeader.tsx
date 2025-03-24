@@ -20,7 +20,7 @@ export default function TodoDetailsHeader() {
 		setSelectedTodoId(0);
 	};
 	return (
-		<div className="flex items-center justify-between	py-4 px-6 border-b border-slate-300 sticky top-0 bg-white">
+		<div className="flex items-center justify-between	pt-4 pb-[20px] px-6 border-b border-slate-300 sticky top-0 bg-white">
 			<p className="flex-1 text-lg font-bold text-slate-700 text-left">Task Details</p>
 			<Button onClick={handleDelete} ariaLabel="Delete Todo">
 				<Trash2 size={20} className="text-red-600" />
