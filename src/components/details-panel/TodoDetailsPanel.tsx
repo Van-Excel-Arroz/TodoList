@@ -34,15 +34,17 @@ export default function TodoDetailsPanel() {
 				<div className="flex flex-col justify-between h-full">
 					<div className="flex flex-col gap-4">
 						<TodoDetailsHeader />
-						<div className="flex items-center justify-between gap-4">
-							<TodoComplete isCompleted={todo?.is_completed ?? false} completedAt={todo?.completed_at ?? ''} />
-							<TodoImportance isImportant={todo?.is_important ?? false} />
-						</div>
+						<div className="px-6 flex flex-col gap-4">
+							<div className="flex items-center justify-between gap-4">
+								<TodoComplete isCompleted={todo?.is_completed ?? false} completedAt={todo?.completed_at ?? ''} />
+								<TodoImportance isImportant={todo?.is_important ?? false} />
+							</div>
 
-						<TodoTitle title={todo?.task_text ?? ''} />
-						<TodoDueDate dueDate={todo?.due_datetime ?? ''} />
-						<TodoCategories categories={todo?.categories ?? []} todolistId={todo?.todo_list_id ?? 0} />
-						<TodoDescription description={todo?.description ?? ''} />
+							<TodoTitle title={todo?.task_text ?? ''} />
+							<TodoDueDate dueDate={todo?.due_datetime ?? ''} />
+							<TodoCategories categories={todo?.categories ?? []} todolistId={todo?.todo_list_id ?? 0} />
+							<TodoDescription description={todo?.description ?? ''} />
+						</div>
 					</div>
 					<TodoDetailsFooter creationDate={todo?.creation_date ?? ''} />
 				</div>
