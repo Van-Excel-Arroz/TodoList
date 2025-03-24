@@ -30,14 +30,12 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 	return (
 		<div className="z-50 px-6 bg-white border-b border-slate-300">
 			<div className="flex justify-between items-center py-3">
-				<div className="flex items-center gap-1">
-					<TodoListTitle currentTodoList={currentTodolist} />
-					<LayoutButtons param="id" />
-				</div>
+				<TodoListTitle currentTodoList={currentTodolist} />
 				<div className="flex items-center gap-4">
 					<TodoSearch />
 					<TodoSort />
 					<TodoFilter />
+					<LayoutButtons param="id" />
 					<Button ariaLabel="TodoList Setting">
 						<Settings size={22} />
 					</Button>
