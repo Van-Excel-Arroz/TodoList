@@ -19,7 +19,13 @@ function TodoSection({ title, todos }: TodoSectionProps) {
 	const [view] = getQueryParam('view');
 
 	return (
-		<ExpandableSection isEmpty={isTodosEmpty} title={title} itemCount={todos.length} view={view}>
+		<ExpandableSection
+			isEmpty={isTodosEmpty}
+			title={title}
+			titleClass="font-bold text-lg"
+			itemCount={todos.length}
+			view={view}
+		>
 			<ul>
 				{todos.map((todo, index) => (
 					<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
