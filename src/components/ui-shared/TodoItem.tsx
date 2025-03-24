@@ -111,7 +111,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 
 						<div className="flex flex-col ml-5 w-full ">
 							<p
-								className={`w-[90%] text-ellipsis overflow-hidden ${todo.is_completed && 'line-through text-slate-700'}
+								className={`w-[90%] text-ellipsis overflow-hidden ${todo.is_completed && 'line-through text-slate-600'}
 			}`}
 							>
 								{todo.task_text}
