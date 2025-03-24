@@ -25,7 +25,7 @@ export default function TodoDetailsHeader() {
 			<Button onClick={handleDelete} ariaLabel="Delete Todo">
 				<Trash2 size={20} className="text-red-600" />
 			</Button>
-			<Button onClick={handleCloseRightSidebar} ariaLabel="Close Todo Menu" className="pl-4">
+			<Button onClick={handleCloseRightSidebar} ariaLabel="Close Todo Menu" className="ml-2">
 				<PanelRight size={22} />
 			</Button>
 		</div>
