@@ -13,7 +13,7 @@ export default function LayoutButtons({ param }: { param: string }) {
 	};
 
 	return (
-		<div className="flex items-center gap-1">
+		<div className="flex items-center gap-1 outline outline-1 outline-slate-300 rounded-md p-1">
 			<Button
 				ariaLabel="Grid Layout"
 				isActive={isLayoutSelected('grid')}

@@ -35,7 +35,7 @@ function Button({
 
 	return (
 		<button
-			className={`${className} ${style} ${disabledStyle} rounded-md p-1 relative cursor-pointer transition-all duration-400`}
+			className={`${className} ${style} ${disabledStyle} rounded-lg p-1 relative cursor-pointer transition-all duration-400`}
 			onClick={() => onClick && onClick()}
 			type={type ? type : 'button'}
 			aria-label={ariaLabel}
