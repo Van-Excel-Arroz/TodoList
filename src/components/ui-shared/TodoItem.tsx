@@ -59,34 +59,28 @@ function TodoItem({ todo }: { todo: Todo }) {
 			{view === 'grid' ? (
 				<div
 					key={todo.id}
-					className={`flex flex-col bg-white border cursor-pointer relative py-1 mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
+					className={`grid grid-cols-12 gap-2 w-full bg-white border cursor-pointer relative py-1 mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
 						isSelected
 							? ' border-slate-500 hover:border-slate-400 active:border-slate-300'
 							: ' hover:border-slate-400 active:border-slate-500'
 					}`}
 					onClick={handleTodoClick}
 				>
-					<div className="flex items-center gap-2">
+					<div className="flex items-center col-span-6">
 						<GripVertical className="cursor-all-scroll text-slate-500 hover:text-slate-800" strokeWidth={1} size={20} />
 						<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} size={24} />
-						<div className="grid grid-cols-12 gap-2 w-full">
-							<p className="col-span-6 flex justify-start items-center py-1">{todo.task_text}</p>
-							<div className="col-span-2 flex items-center justify-center">
-								{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
-							</div>
-							<div className="col-span-3 flex items-center gap-2 flex-wrap">
-								{(todo.categories?.length ?? 0) > 0 && (
-									<CategoryTags
-										showIcon={false}
-										categories={todo.categories!}
-										handleCategoryClick={handleCategoryClick}
-									/>
-								)}
-							</div>
-							<div className="col-span-1 flex justify-center">
-								<Importance isImportant={todo.is_important} handleOnClick={handleImportanceChange} size={22} />
-							</div>
-						</div>
+						<p>{todo.task_text}</p>
+					</div>
+					<div className="col-span-2 flex items-center justify-center">
+						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
+					</div>
+					<div className="col-span-3 flex items-center gap-2 flex-wrap">
+						{(todo.categories?.length ?? 0) > 0 && (
+							<CategoryTags showIcon={false} categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
+						)}
+					</div>
+					<div className="col-span-1 flex justify-center">
+						<Importance isImportant={todo.is_important} handleOnClick={handleImportanceChange} size={22} />
 					</div>
 				</div>
 			) : (
