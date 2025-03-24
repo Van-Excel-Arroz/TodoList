@@ -19,14 +19,14 @@ export default function LayoutButtons({ param }: { param: string }) {
 				isActive={isLayoutSelected('grid')}
 				onClick={() => updateSearchParams('view', 'grid', smartList)}
 			>
-				<Grid2X2 />
+				<Grid2X2 size={22} />
 			</Button>
 			<Button
 				ariaLabel="List Layout"
 				isActive={isLayoutSelected('list')}
 				onClick={() => updateSearchParams('view', 'list', smartList)}
 			>
-				<ListTodo />
+				<ListTodo size={22} />
 			</Button>
 		</div>
 	);
