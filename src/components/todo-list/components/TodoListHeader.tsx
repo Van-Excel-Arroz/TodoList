@@ -9,6 +9,8 @@ import useCategoriesStore from '@/context/CategoriesContext';
 import TodoListTitle from '../ui/TodoListTitle';
 import TodoSearch from '../ui/TodoSearch';
 import LayoutButtons from '@/components/ui-shared/LayoutButtons';
+import { Settings } from 'lucide-react';
+import Button from '@/components/ui-shared/Button';
 
 interface TodoListHeaderProps {
 	initialTodolist: TodoList;
@@ -36,6 +38,9 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					<TodoSearch />
 					<TodoSort />
 					<TodoFilter />
+					<Button ariaLabel="TodoList Setting">
+						<Settings size={22} />
+					</Button>
 				</div>
 			</div>
 		</div>
