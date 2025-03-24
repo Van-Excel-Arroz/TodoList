@@ -29,7 +29,7 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 
 	return (
 		<div className="z-50 px-6 bg-white border-b border-slate-300">
-			<div className="flex justify-between items-center py-3">
+			<div className="flex justify-between items-center py-4">
 				<TodoListTitle currentTodoList={currentTodolist} />
 				<div className="flex items-center gap-4">
 					<div className="lg:flex items-center gap-4 hidden">

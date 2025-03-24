@@ -23,21 +23,21 @@ export default function TodoSearch() {
 		<>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="flex items-center gap-2 px-2 py-1 border border-slate-300 rounded-md"
+				className="flex items-center gap-2 px-2 py-1 outline outline-1 outline-slate-300 rounded-md"
 			>
 				<Button ariaLabel="Search" type="submit">
-					<Search size={20} className="text-slate-600" />
+					<Search size={18} className="text-slate-600" />
 				</Button>
 				<input
 					{...register('search')}
 					type="text"
 					autoComplete="off"
-					className="px-2 py-1 text-sm focus:outline-none bg-transparent"
+					className="px-2 text-sm focus:outline-none bg-transparent"
 					placeholder={search || 'Search tasks...'}
 					defaultValue={search}
 				/>
 				<Button ariaLabel="Clear Search" onClick={() => clearSearch()} disabled={search ? false : true}>
-					<X size={20} />
+					<X size={18} />
 				</Button>
 			</form>
 		</>

@@ -14,7 +14,7 @@ export default function TodoSort() {
 
 	return (
 		<div className="relative">
-			<div className="flex items-center py-1 pl-4 pr-2 border border-slate-300 rounded-md">
+			<div className="flex items-center py-1 pl-4 pr-2 outline outline-1 outline-slate-300 rounded-md">
 				<p className="text-sm text-slate-600 pr-2">Sort by: </p>
 
 				{sortField ? (

@@ -28,7 +28,7 @@ export default function TodoListMenu({ setToEditing, todolistId }: TodoListMenu)
 	return (
 		<div className="relative">
 			<Button ariaLabel="Settings" onClick={() => setIsMenuOpen(prev => !prev)}>
-				<Ellipsis />
+				<Ellipsis size={22} />
 			</Button>
 			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-44" posX="left-0">
 				<MenuItem clickable={false} className="font-bold border-b justify-center">
