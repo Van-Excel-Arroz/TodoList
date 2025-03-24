@@ -30,7 +30,7 @@ function ExpandableSection({
 		<div
 			className={`${
 				view === 'grid' ? 'border border-slate-300 p-2 rounded-md' : ''
-			} ${className} flex flex-col items-start gap-1 mb-4 `}
+			} ${className} flex flex-col items-start gap-1 `}
 		>
 			<div className="flex items-center w-full mx-1 gap-1">
 				<Button ariaLabel="Toggle Expand Section" onClick={() => setIsOpen(prev => !prev)} disabled={isEmpty}>

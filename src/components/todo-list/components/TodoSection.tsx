@@ -23,6 +23,7 @@ function TodoSection({ title, todos }: TodoSectionProps) {
 			isEmpty={isTodosEmpty}
 			title={title}
 			titleClass="font-bold text-lg"
+			className="mb-4"
 			itemCount={todos.length}
 			view={view}
 		>
