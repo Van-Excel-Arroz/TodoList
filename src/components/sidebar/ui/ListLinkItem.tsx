@@ -49,7 +49,7 @@ function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) 
 				className="flex items-center py-1 px-2 gap-2"
 			>
 				<Icon size={20} className="text-slate-600" />
-				<div className={`${isSelectedPath ? 'font-bold' : 'font-normal'} text-ellipsis overflow-hidden w-[195px]`}>
+				<div className={`${isSelectedPath ? 'text-black' : 'text-slate-700'} text-ellipsis overflow-hidden w-[195px]`}>
 					{children}
 				</div>
 			</Link>

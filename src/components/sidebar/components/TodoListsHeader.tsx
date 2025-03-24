@@ -14,7 +14,7 @@ export default function TodoListsHeader() {
 				<Button ariaLabel="Home">
 					<Home size={22} />
 				</Button>
-				<p className="text-lg">TodoApp</p>
+				<p className="text-lg text-slate-800">TodoApp</p>
 			</Link>
 		</div>
 	);
