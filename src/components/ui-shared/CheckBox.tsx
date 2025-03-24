@@ -1,4 +1,4 @@
-import { Square, SquareCheckBig } from 'lucide-react';
+import { Square, SquareCheck, SquareCheckBig } from 'lucide-react';
 
 interface CheckBoxProps {
 	isChecked: boolean;
@@ -17,11 +17,11 @@ export default function CheckBox({ isChecked, handleOnClick, size = 24 }: CheckB
 			aria-label={isChecked ? 'Mark as incomplete' : 'Mark as complete'}
 		>
 			{isChecked ? (
-				<SquareCheckBig size={size} />
+				<SquareCheck size={size} />
 			) : (
 				<div className="flex items-center group">
 					<Square className="group-hover:hidden" size={size} />
-					<SquareCheckBig className="hidden group-hover:block" size={size} />
+					<SquareCheck className="hidden group-hover:block" size={size} />
 				</div>
 			)}
 		</button>
