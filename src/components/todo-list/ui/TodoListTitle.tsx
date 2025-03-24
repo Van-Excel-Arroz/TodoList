@@ -53,7 +53,7 @@ export default function TodoListTitle({ currentTodoList }: TodoListTiltleProps) 
 				</div>
 			) : (
 				<Button ariaLabel="Edit Todolist Title" onClick={() => setIsEditing(true)}>
-					<p className="text-xl font-bold text-black cursor-text">{currentTodoList.title}</p>
+					<p className="text-lg font-bold text-gray-700 cursor-text">{currentTodoList.title}</p>
 				</Button>
 			)}
 			<TodoListMenu todolistId={currentTodoList.id} setToEditing={() => setIsEditing(true)} />
