@@ -45,6 +45,7 @@ function FilteredTodoListPage({ filteredTodoList, title }: FilteredTodoListPage)
 						key={todoList.id}
 						itemCount={todoList.filtered_todos.length}
 						view={view}
+						className="mb-4"
 					>
 						<ul>
 							<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
