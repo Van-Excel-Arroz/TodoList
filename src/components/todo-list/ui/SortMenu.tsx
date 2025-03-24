@@ -41,7 +41,7 @@ export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen }: SortMenu
 			posXNotch="before:right-6"
 			width="w-44"
 		>
-			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
+			<MenuItem className="border-b font-bold justify-center" clickable={false}>
 				<p>Sort by</p>
 			</MenuItem>
 

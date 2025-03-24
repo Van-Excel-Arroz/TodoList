@@ -24,11 +24,11 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: MenuOpenProps)
 		<Menu
 			open={isOpen}
 			onClose={() => setIsOpen(false)}
-			posX={`${filterField ? 'right-6' : '-right-5'}`}
+			posX={`${filterField ? 'right-6' : '-right-3'}`}
 			posXNotch="before:right-6"
 			width="w-fit"
 		>
-			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
+			<MenuItem className="border-b font-bold justify-center" clickable={false}>
 				<p>Filter by Category</p>
 				<Button
 					ariaLabel="Apply Filter"

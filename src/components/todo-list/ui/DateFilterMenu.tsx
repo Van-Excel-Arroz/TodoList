@@ -15,11 +15,11 @@ export default function DateFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 		<Menu
 			open={isOpen}
 			onClose={() => setIsOpen(false)}
-			posX={`${filterField ? 'right-6' : '-right-5'}`}
+			posX={`${filterField ? 'right-6' : '-right-3'}`}
 			posXNotch="before:right-6"
 			width="w-44"
 		>
-			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
+			<MenuItem className="border-b font-bold justify-center" clickable={false}>
 				<p>Filter by Date</p>
 			</MenuItem>
 			{DateFilters.map(label => (
