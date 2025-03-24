@@ -19,8 +19,8 @@ export default function Importance({ isImportant, handleOnClick, size = 24 }: Im
 			<Star
 				strokeWidth={2}
 				size={size}
-				className="hover:opacity-80 active:opacity-60 text-slate-600"
-				fill={`${isImportant ? '#475569' : 'white'}`}
+				className={`hover:opacity-80 active:opacity-60 ${isImportant ? 'text-yellow-400' : 'text-slate-600'}`}
+				fill={`${isImportant ? 'yellow' : 'white'}`}
 			/>
 		</button>
 	);
