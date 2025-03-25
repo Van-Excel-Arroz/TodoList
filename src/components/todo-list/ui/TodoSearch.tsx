@@ -20,26 +20,24 @@ export default function TodoSearch() {
 	};
 
 	return (
-		<>
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className="flex items-center gap-2 px-2 py-1 outline outline-1 outline-slate-300 rounded-md"
-			>
-				<Button ariaLabel="Search" type="submit">
-					<Search size={18} className="text-slate-600" />
-				</Button>
-				<input
-					{...register('search')}
-					type="text"
-					autoComplete="off"
-					className="px-2 text-sm focus:outline-none bg-transparent"
-					placeholder={search || 'Search tasks...'}
-					defaultValue={search}
-				/>
-				<Button ariaLabel="Clear Search" onClick={() => clearSearch()} disabled={search ? false : true}>
-					<X size={18} />
-				</Button>
-			</form>
-		</>
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			className="flex items-center gap-2 px-2 py-1 outline outline-1 outline-slate-300 rounded-md focus-within:outline-2 focus-within:outline-blue-500"
+		>
+			<Button ariaLabel="Search" type="submit">
+				<Search size={18} className="text-slate-600" />
+			</Button>
+			<input
+				{...register('search')}
+				type="text"
+				autoComplete="off"
+				className="px-2 text-sm focus:outline-none bg-transparent"
+				placeholder={search || 'Search tasks...'}
+				defaultValue={search}
+			/>
+			<Button ariaLabel="Clear Search" onClick={() => clearSearch()} disabled={search ? false : true}>
+				<X size={18} />
+			</Button>
+		</form>
 	);
 }
