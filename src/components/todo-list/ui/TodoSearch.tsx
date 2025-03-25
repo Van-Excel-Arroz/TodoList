@@ -22,7 +22,7 @@ export default function TodoSearch() {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex items-center gap-2 px-2 py-1 outline outline-1 outline-slate-300 rounded-md focus-within:outline-2 focus-within:outline-blue-500"
+			className="flex items-center gap-2 px-2 py-1 outline outline-1 outline-slate-300 rounded-md hover:outline-slate-400 focus-within:!outline-1  focus-within:!outline-slate-600"
 		>
 			<Button ariaLabel="Search" type="submit">
 				<Search size={18} className="text-slate-600" />
