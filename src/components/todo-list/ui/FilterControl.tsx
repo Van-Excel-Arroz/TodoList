@@ -39,7 +39,7 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 				className="flex items-center gap-1 hover:bg-slate-300 active:bg-slate-400"
 			>
 				<Icon size={16} />
-				<p className="text-sm">{filterField === 'categories' ? 'Category' : filterValue}</p>
+				<p className="text-[12px]">{filterField === 'categories' ? 'Category' : filterValue}</p>
 				{filterField === 'categories' && (
 					<p className="bg-slate-500 text-slate-200 text-xs rounded-full px-2">{selectedCategories}</p>
 				)}

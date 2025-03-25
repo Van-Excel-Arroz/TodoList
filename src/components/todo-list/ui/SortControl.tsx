@@ -50,7 +50,7 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 			<Button
 				ariaLabel="Change Filter"
 				onClick={() => setIsSortMenuOpen(prev => !prev)}
-				className="text-sm hover:bg-slate-300 active:bg-slate-400"
+				className="text-[12px] hover:bg-slate-300 active:bg-slate-400"
 			>
 				<p>{sortLabels[sortField]?.() ?? sortField}</p>
 			</Button>
