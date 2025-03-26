@@ -11,6 +11,8 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
 			<aside className="absolute lg:sticky top-0 left-0 z-30">
 				<TodoListsNav />
 			</aside>
+
+			<div id="modal-root" />
 			<main className="w-full z-10">{children}</main>
 			<aside className="absolute lg:sticky top-0 right-0 z-40">
 				<TodoDetailsPanel />

@@ -1,5 +1,7 @@
 import Button from '@/components/ui-shared/Button';
 import { X } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -7,9 +9,15 @@ interface TodoListSettingsModalProps {
 }
 
 export default function TodoListSettingsModal({ isOpen, onClose }: TodoListSettingsModalProps) {
+	const portalRootRef = useRef<HTMLElement | null>(null);
+
+	useEffect(() => {
+		portalRootRef.current = document.getElementById('modal-root');
+	});
+
 	if (!isOpen) return null;
 
-	return (
+	return ReactDOM.createPortal(
 		<div
 			className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4"
 			role="dialog"
@@ -27,6 +35,7 @@ export default function TodoListSettingsModal({ isOpen, onClose }: TodoListSetti
 					<Button ariaLabel="Save Settings">Save Settings</Button>
 				</div>
 			</div>
-		</div>
+		</div>,
+		portalRootRef.current
 	);
 }
