@@ -20,7 +20,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 
 	useEffect(() => {
 		portalRootRef.current = document.getElementById('modal-root');
-	});
+	}, []);
 
 	if (!isOpen || !portalRootRef.current) return null;
 
