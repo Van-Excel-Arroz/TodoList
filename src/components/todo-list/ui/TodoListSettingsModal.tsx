@@ -15,7 +15,7 @@ export default function TodoListSettingsModal({ isOpen, onClose }: TodoListSetti
 		portalRootRef.current = document.getElementById('modal-root');
 	});
 
-	if (!isOpen) return null;
+	if (!isOpen || !portalRootRef.current) return null;
 
 	return ReactDOM.createPortal(
 		<div
