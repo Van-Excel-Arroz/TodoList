@@ -47,7 +47,6 @@ function TodoListHeader({ initialTodolist, categories }: TodoListHeaderProps) {
 					</div>
 				</div>
 			</div>
-
 			<TodoListSettingsModal isOpen={isSettingModalOpen} onClose={() => setIsSettingModalOpen(false)} />
 		</>
 	);
