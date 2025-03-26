@@ -10,10 +10,15 @@ import TodoComplete from './components/TodoComplete';
 import TodoImportance from './components/TodoImportance';
 import useTodosStore from '@/context/TodosContext';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
+import Selection from '../ui-shared/Selection';
+import { useState } from 'react';
+
+const sections = ['Details', 'Activity'];
 
 export default function TodoDetailsPanel() {
 	const { setSelectedTodoId, selectedTodoId } = useSelectedTodoIdStore();
 	const { getTodoById } = useTodosStore();
+	const [section, setSection] = useState(sections[0].toLowerCase());
 	const todo = getTodoById(selectedTodoId);
 
 	return (
@@ -35,6 +40,7 @@ export default function TodoDetailsPanel() {
 					<div className="flex flex-col gap-4">
 						<TodoDetailsHeader />
 						<div className="px-6 flex flex-col gap-4">
+							<Selection options={sections} selectedOption={section} setSelectedOption={setSection} />
 							<div className="flex items-center justify-between gap-4">
 								<TodoComplete isCompleted={todo?.is_completed ?? false} completedAt={todo?.completed_at ?? ''} />
 								<TodoImportance isImportant={todo?.is_important ?? false} />
