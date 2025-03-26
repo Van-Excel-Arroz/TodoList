@@ -22,8 +22,9 @@ export default function TodoListSettingsModal({ isOpen, onClose }: TodoListSetti
 			className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4"
 			role="dialog"
 			aria-modal="true"
+			onClick={onClose}
 		>
-			<div className="relative w-full max-w-xl bg-white rounded-lg shadow-xl p-6">
+			<div className="relative w-full max-w-xl bg-white rounded-lg shadow-xl p-6" onClick={e => e.stopPropagation()}>
 				<h2 className="text-xl font-semibold mb-4">TodoList Settings</h2>
 				<Button className="absolute top-5 right-4" onClick={onClose} ariaLabel="Close Modal">
 					<X />
