@@ -14,7 +14,13 @@ export default function BehaviorSection() {
 				{sortField ? <p>sortField</p> : <p className="text-slate-600">Select to sort</p>}
 				<ChevronDown size={20} className="text-slate-600" />
 			</div>
-			<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} width="w-full" />
+			<SortMenu
+				isSortMenuOpen={isSortMenuOpen}
+				setIsSortMenuOpen={setIsSortMenuOpen}
+				width="w-full"
+				top={12}
+				header={false}
+			/>
 		</div>
 	);
 }
