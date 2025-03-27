@@ -51,7 +51,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 				</Button>
 				<p className="text-sm text-slate-600">Customize the appearance and behavior of "{todolistTitle}" list.</p>
 				<Selection options={settings} selectedOption={settingSection} setSelectedOption={setSettingSection} />
-				<SectionComponent />
+				{SectionComponent ? <SectionComponent /> : <p className="text-center text-slate-600">Section not found</p>}
 				<div className="mt-6 flex justify-end space-x-2">
 					<Button ariaLabel="Close Settings" onClick={onClose}>
 						Cancel
