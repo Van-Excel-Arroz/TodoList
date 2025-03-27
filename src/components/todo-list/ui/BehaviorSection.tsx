@@ -3,6 +3,13 @@ import SortMenu from './SortMenu';
 import useQueryParams from '@/hooks/useQueryParams';
 import { ChevronDown } from 'lucide-react';
 
+const sortLabels: any = {
+	dueDate: 'Due Date',
+	creationDate: 'Creation Date',
+	importance: 'Importance',
+	alphabetical: 'Alphabetical',
+};
+
 export default function BehaviorSection() {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 	const { getQueryParam } = useQueryParams();
@@ -11,7 +18,7 @@ export default function BehaviorSection() {
 	return (
 		<div className="border rounded-md px-4 py-2 relative" onClick={() => setIsSortMenuOpen(prev => !prev)}>
 			<div className="flex items-center justify-between cursor-pointer">
-				{sortField ? <p>sortField</p> : <p className="text-slate-600">Select to sort</p>}
+				{sortField ? <p>{sortLabels[sortField]}</p> : <p className="text-slate-600">Select to sort</p>}
 				<ChevronDown size={20} className="text-slate-600" />
 			</div>
 			<SortMenu
