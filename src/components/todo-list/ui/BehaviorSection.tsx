@@ -1,3 +1,21 @@
+import Menu from '@/components/ui-shared/Menu';
+import { useState } from 'react';
+import SortMenu from './SortMenu';
+import useQueryParams from '@/hooks/useQueryParams';
+import { ChevronDown } from 'lucide-react';
+
 export default function BehaviorSection() {
-	return <h1>Hello World</h1>;
+	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
+	const { getQueryParam } = useQueryParams();
+	const [sortField] = getQueryParam('sort');
+
+	return (
+		<div className="border rounded-md px-4 py-2" onClick={() => setIsSortMenuOpen(prev => !prev)}>
+			<div className="flex items-center justify-between cursor-pointer">
+				{sortField ? <p>sortField</p> : <p className="text-slate-600">Select to sort</p>}
+				<ChevronDown size={20} className="text-slate-600" />
+			</div>
+			<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} width="w-full" />
+		</div>
+	);
 }

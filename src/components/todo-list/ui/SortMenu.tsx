@@ -6,6 +6,7 @@ import { CalendarDays, CalendarPlus, CaseSensitive, Star } from 'lucide-react';
 interface SortMenuProps {
 	isSortMenuOpen: boolean;
 	setIsSortMenuOpen: (val: boolean) => void;
+	width?: string;
 }
 
 const MenuItems = {
@@ -27,7 +28,7 @@ const MenuItems = {
 	},
 };
 
-export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen }: SortMenuProps) {
+export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen, width = 'w-44' }: SortMenuProps) {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [sortField] = getQueryParam('sort');
 	const [todolistId] = getQueryParam('id');
@@ -39,7 +40,7 @@ export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen }: SortMenu
 			onClose={() => setIsSortMenuOpen(false)}
 			posX={`${sortField ? 'right-8' : '-right-3'}`}
 			posXNotch="before:right-6"
-			width="w-44"
+			width={width}
 		>
 			<MenuItem className="border-b font-bold justify-center" clickable={false}>
 				<p>Sort by</p>
