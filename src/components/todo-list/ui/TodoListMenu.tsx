@@ -30,7 +30,7 @@ export default function TodoListMenu({ setToEditing, todolistId }: TodoListMenu)
 			<Button ariaLabel="Settings" onClick={() => setIsMenuOpen(prev => !prev)}>
 				<Ellipsis size={22} />
 			</Button>
-			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-44" posX="left-0">
+			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-44">
 				<MenuItem clickable={false} className="font-bold border-b justify-center">
 					<p>TodoList Option</p>
 				</MenuItem>
