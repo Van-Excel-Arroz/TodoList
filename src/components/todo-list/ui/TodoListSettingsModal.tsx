@@ -31,8 +31,11 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 			aria-modal="true"
 			onClick={onClose}
 		>
-			<div className="relative w-full max-w-2xl bg-white rounded-lg shadow-xl p-6" onClick={e => e.stopPropagation()}>
-				<h2 className="text-xl font-semibold mb-4">TodoList Settings</h2>
+			<div
+				className="relative w-full max-w-2xl bg-white rounded-lg shadow-xl p-6 space-y-2"
+				onClick={e => e.stopPropagation()}
+			>
+				<h2 className="text-xl font-semibold">TodoList Settings</h2>
 				<p className="text-sm text-slate-600">Customize the appearance and behavior of "{todolistTitle}" list.</p>
 				<Selection options={settings} selectedOption={settingSection} setSelectedOption={setSettingSection} />
 				<Button className="absolute top-5 right-4" onClick={onClose} ariaLabel="Close Modal">
