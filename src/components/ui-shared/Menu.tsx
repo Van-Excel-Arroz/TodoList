@@ -5,12 +5,11 @@ interface MenuProps {
 	onClose: () => void;
 	children: React.ReactNode;
 	posX?: string;
-	posXNotch?: string;
 	width: string;
 	className?: string;
 }
 
-export default function Menu({ open, onClose, children, posX, posXNotch, width, className }: MenuProps) {
+export default function Menu({ open, onClose, children, posX, width, className }: MenuProps) {
 	const ref = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -30,14 +29,8 @@ export default function Menu({ open, onClose, children, posX, posXNotch, width, 
 		<div
 			ref={ref}
 			className={`absolute top-10 z-20 bg-white text-center text-black text-sm rounded-lg flex flex-col border border-gray-300 shadow-lg
-									${
-										posXNotch
-											? "before:-top-2 before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-gray-300 before:rotate-45"
-											: ''
-									}
                   ${width}
 									${posX}
-									${posXNotch}
 									${open ? 'block' : 'hidden'}
 									${className}
 									`}
