@@ -7,7 +7,6 @@ interface SortMenuProps {
 	isSortMenuOpen: boolean;
 	setIsSortMenuOpen: (val: boolean) => void;
 	width?: string;
-	posX?: string;
 }
 
 const MenuItems = {
@@ -35,7 +34,7 @@ export default function SortMenu({ isSortMenuOpen, setIsSortMenuOpen, width = 'w
 	const [smart_list] = getQueryParam('smart-list');
 
 	return (
-		<Menu open={isSortMenuOpen} onClose={() => setIsSortMenuOpen(false)} posX={`-right-3`} width={width}>
+		<Menu open={isSortMenuOpen} onClose={() => setIsSortMenuOpen(false)} width={width}>
 			<MenuItem className="border-b font-bold justify-center" clickable={false}>
 				<p>Sort by</p>
 			</MenuItem>
