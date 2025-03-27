@@ -5,6 +5,7 @@ import Selection from '@/components/ui-shared/Selection';
 import { X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
+import BehaviorSection from './BehaviorSection';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -12,11 +13,20 @@ interface TodoListSettingsModalProps {
 	todolistTitle: string;
 }
 
+type SectionComponents = {
+	[key: string]: React.ComponentType<any>;
+};
+
+const sectionComponentMap: SectionComponents = {
+	behavior: BehaviorSection,
+};
+
 const settings = ['Behavior', 'Appearance', 'Categories'];
 
 export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }: TodoListSettingsModalProps) {
 	const portalRootRef = useRef<HTMLElement | null>(null);
 	const [settingSection, setSettingSection] = useState(settings[0].toLowerCase());
+	const SectionComponent = sectionComponentMap[settingSection];
 
 	useEffect(() => {
 		portalRootRef.current = document.getElementById('modal-root');
@@ -36,11 +46,12 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 				onClick={e => e.stopPropagation()}
 			>
 				<h2 className="text-xl font-semibold">TodoList Settings</h2>
-				<p className="text-sm text-slate-600">Customize the appearance and behavior of "{todolistTitle}" list.</p>
-				<Selection options={settings} selectedOption={settingSection} setSelectedOption={setSettingSection} />
 				<Button className="absolute top-5 right-4" onClick={onClose} ariaLabel="Close Modal">
 					<X />
 				</Button>
+				<p className="text-sm text-slate-600">Customize the appearance and behavior of "{todolistTitle}" list.</p>
+				<Selection options={settings} selectedOption={settingSection} setSelectedOption={setSettingSection} />
+				<SectionComponent />
 				<div className="mt-6 flex justify-end space-x-2">
 					<Button ariaLabel="Close Settings" onClick={onClose}>
 						Cancel
