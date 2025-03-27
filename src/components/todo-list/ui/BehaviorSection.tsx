@@ -16,18 +16,21 @@ export default function BehaviorSection() {
 	const [sortField] = getQueryParam('sort');
 
 	return (
-		<div className="border rounded-md px-4 py-2 relative" onClick={() => setIsSortMenuOpen(prev => !prev)}>
-			<div className="flex items-center justify-between cursor-pointer">
-				{sortField ? <p>{sortLabels[sortField]}</p> : <p className="text-slate-600">Select to sort</p>}
-				<ChevronDown size={20} className="text-slate-600" />
+		<div className="space-y-1">
+			<p className="pl-2">Sort tasks by:</p>
+			<div className="border rounded-md px-4 py-2 relative" onClick={() => setIsSortMenuOpen(prev => !prev)}>
+				<div className="flex items-center justify-between cursor-pointer">
+					{sortField ? <p>{sortLabels[sortField]}</p> : <p className="text-slate-600">Select to sort</p>}
+					<ChevronDown size={20} className="text-slate-600" />
+				</div>
+				<SortMenu
+					isSortMenuOpen={isSortMenuOpen}
+					setIsSortMenuOpen={setIsSortMenuOpen}
+					width="w-full"
+					top={12}
+					header={false}
+				/>
 			</div>
-			<SortMenu
-				isSortMenuOpen={isSortMenuOpen}
-				setIsSortMenuOpen={setIsSortMenuOpen}
-				width="w-full"
-				top={12}
-				header={false}
-			/>
 		</div>
 	);
 }

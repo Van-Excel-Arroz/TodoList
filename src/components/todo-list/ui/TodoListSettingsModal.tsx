@@ -46,14 +46,16 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 			onClick={onClose}
 		>
 			<div
-				className="relative w-full max-w-2xl bg-white rounded-lg shadow-xl p-6 space-y-2"
+				className="relative w-full max-w-2xl bg-white rounded-lg shadow-xl p-6 space-y-4"
 				onClick={e => e.stopPropagation()}
 			>
-				<h2 className="text-xl font-semibold">TodoList Settings</h2>
 				<Button className="absolute top-5 right-4" onClick={onClose} ariaLabel="Close Modal">
 					<X />
 				</Button>
-				<p className="text-sm text-slate-600">Customize the appearance and behavior of "{todolistTitle}" list.</p>
+				<div className="space-y-1">
+					<h2 className="text-xl font-semibold">TodoList Settings</h2>
+					<p className="text-sm text-slate-600">Customize the appearance and behavior of "{todolistTitle}" list.</p>
+				</div>
 				<Selection options={settings} selectedOption={settingSection} setSelectedOption={setSettingSection} />
 				{SectionComponent ? <SectionComponent /> : <p className="text-center text-slate-600">Section not found</p>}
 				<div className="mt-6 flex justify-end space-x-2">
