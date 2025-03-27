@@ -6,9 +6,10 @@ interface MenuProps {
 	children: React.ReactNode;
 	width: string;
 	className?: string;
+	top?: string | number;
 }
 
-export default function Menu({ open, onClose, children, width, className }: MenuProps) {
+export default function Menu({ open, onClose, children, width, className, top = 10 }: MenuProps) {
 	const ref = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -27,7 +28,8 @@ export default function Menu({ open, onClose, children, width, className }: Menu
 	return (
 		<div
 			ref={ref}
-			className={`absolute top-10 z-20 bg-white text-center text-black text-sm rounded-lg flex flex-col border border-gray-300 shadow-lg left-1/2 -translate-x-1/2
+			className={`absolute z-20 bg-white text-center text-black text-sm rounded-lg flex flex-col border border-gray-300 shadow-lg left-1/2 -translate-x-1/2
+									top-${top}
                   ${width}
 									${open ? 'block' : 'hidden'}
 									${className}

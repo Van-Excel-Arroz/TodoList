@@ -1,4 +1,3 @@
-import Menu from '@/components/ui-shared/Menu';
 import { useState } from 'react';
 import SortMenu from './SortMenu';
 import useQueryParams from '@/hooks/useQueryParams';
