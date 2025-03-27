@@ -6,6 +6,8 @@ import { X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import BehaviorSection from './BehaviorSection';
+import AppearanceSection from './AppearanceSection';
+import CategoriesSection from './CategoriesSection';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -19,6 +21,8 @@ type SectionComponents = {
 
 const sectionComponentMap: SectionComponents = {
 	behavior: BehaviorSection,
+	appearance: AppearanceSection,
+	categories: CategoriesSection,
 };
 
 const settings = ['Behavior', 'Appearance', 'Categories'];
