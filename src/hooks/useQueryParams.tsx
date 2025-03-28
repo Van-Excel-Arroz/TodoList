@@ -17,9 +17,17 @@ export default function useQueryParams() {
 		(field: string, value: string | null, key: string) => {
 			const params = new URLSearchParams(searchParams.toString());
 			value ? params.set(`${field}`, value) : params.delete(`${field}`);
-			router.push(`/tasks/?${params.toString()}`);
-			localStorage.setItem(`searchParams-${key}`, `/tasks/?${params.toString()}`);
-			console.log(localStorage);
+			const newQueryString = params.toString();
+			const targetPath = `/tasks/?${newQueryString}`;
+
+			router.push(targetPath);
+
+			if (key !== undefined && key !== null) {
+				localStorage.setItem(`searchParams-${key}`, `/tasks/?${params.toString()}`);
+				console.log(localStorage);
+			} else {
+				console.warn('Attempted to store search params with undefined/null key.');
+			}
 		},
 		[searchParams, router]
 	);
