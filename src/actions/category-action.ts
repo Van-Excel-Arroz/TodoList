@@ -1,7 +1,6 @@
 'use server';
 
 import { createCategoryColor, deleteCategory, storeCategory, updateIsSelectedCategoryColors } from '@/lib/category';
-import { revalidatePath } from 'next/cache';
 
 export async function addTodoCategoryAction(
 	categoryTitle: string,
@@ -24,17 +23,4 @@ export async function deleteTodoCategoryAction(categoryId: number) {
 	const result = await deleteCategory(categoryId);
 
 	if (!result) console.error('Failed to delete category from todo');
-}
-
-export async function updateIsSelectedCategoryColorsAction(
-	isSelected: boolean,
-	categoryTitle: string,
-	todolistId: number
-) {
-	const result = await updateIsSelectedCategoryColors(isSelected, categoryTitle, todolistId);
-	if (result) {
-		revalidatePath(`/tasks/${todolistId}`);
-	} else {
-		console.error('Failed to update is_selected in category_colors');
-	}
 }
