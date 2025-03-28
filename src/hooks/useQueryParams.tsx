@@ -23,7 +23,7 @@ export default function useQueryParams() {
 			router.push(targetPath);
 
 			if (key !== undefined && key !== null) {
-				localStorage.setItem(`searchParams-${key}`, `/tasks/?${params.toString()}`);
+				localStorage.setItem(`searchParams-${key}`, newQueryString);
 				console.log(localStorage);
 			} else {
 				console.warn('Attempted to store search params with undefined/null key.');
