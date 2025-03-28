@@ -20,11 +20,11 @@ function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) 
 	const isSelectedPath = currentQueryParamValue === value;
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
-	const [urlWithSearchParams, setUrlWithSearchParams] = useState<string | null>(null);
+	const [queryString, setQueryString] = useState<string | null>(null);
 
 	useEffect(() => {
-		const storedUrl = localStorage.getItem(`searchParams-${value}`);
-		setUrlWithSearchParams(storedUrl);
+		const storedQueryString = localStorage.getItem(`searchParams-${value}`);
+		setQueryString(storedQueryString);
 	}, [value, searchParams]);
 
 	const handleClick = () => {
@@ -35,6 +35,9 @@ function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) 
 		setSelectedTodoId(0);
 	};
 
+	const defaultQueryString = `${queryParam}=${value}&view=list`;
+	const href = `/tasks/?${queryString ?? defaultQueryString}`;
+
 	return (
 		<div
 			className={`flex items-center relative mx-auto rounded-md transition-all duration-100  ${
@@ -43,11 +46,7 @@ function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) 
 					: 'border-slate-200 hover:bg-slate-200 hover:border-slate-300 active:bg-slate-300'
 			}`}
 		>
-			<Link
-				href={urlWithSearchParams || `/tasks/?${queryParam}=${value}&view=list`}
-				onClick={handleClick}
-				className="flex items-center py-1 px-2 gap-2"
-			>
+			<Link href={href} onClick={handleClick} className="flex items-center py-1 px-2 gap-2">
 				<Icon size={20} className="text-slate-600" />
 				<div className={`${isSelectedPath ? 'text-black' : 'text-slate-700'} text-ellipsis overflow-hidden w-[195px]`}>
 					{children}
