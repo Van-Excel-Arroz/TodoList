@@ -27,7 +27,7 @@ export default function BehaviorSection() {
 					isSortMenuOpen={isSortMenuOpen}
 					setIsSortMenuOpen={setIsSortMenuOpen}
 					width="w-full"
-					top={12}
+					top="top-12"
 					header={false}
 				/>
 			</div>

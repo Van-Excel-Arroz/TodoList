@@ -7,7 +7,7 @@ interface SortMenuProps {
 	isSortMenuOpen: boolean;
 	setIsSortMenuOpen: (val: boolean) => void;
 	width?: string;
-	top?: string | number;
+	top?: string;
 	header?: boolean;
 }
 
