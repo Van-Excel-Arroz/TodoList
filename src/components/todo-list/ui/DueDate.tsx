@@ -3,7 +3,6 @@ import { Clock3, ClockAlert } from 'lucide-react';
 
 interface DueDateProps {
 	dueDatetime: string;
-	textSize?: string;
 }
 
 export default function DueDate({ dueDatetime }: DueDateProps) {

@@ -1,5 +1,5 @@
 import { Category } from '@/utils/types';
-import { Dot, Tag } from 'lucide-react';
+import { Tag } from 'lucide-react';
 import { memo } from 'react';
 
 interface CategoryTagsProps {
