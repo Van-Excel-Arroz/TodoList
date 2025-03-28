@@ -1,5 +1,5 @@
 import { Category } from '@/utils/types';
-import { Tag } from 'lucide-react';
+import { Dot, Tag } from 'lucide-react';
 import { memo } from 'react';
 
 interface CategoryTagsProps {
@@ -26,7 +26,6 @@ function CategoryTags({ categories, handleCategoryClick, showIcon = true }: Cate
 						handleCategoryClick(category.category_title);
 					}}
 				>
-					<p className="text-xs">⦿</p>
 					<p>{category.category_title}</p>
 				</span>
 			))}
