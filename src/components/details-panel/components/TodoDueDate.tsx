@@ -2,7 +2,7 @@
 
 import { deleteTodoDueDateAction, updateTodoDueDateAction } from '@/actions/todo-action';
 import Button from '@/components/ui-shared/Button';
-import DueDate from '@/components/ui-shared/DueDate';
+import DueDateInput from '@/components/ui-shared/DueDateInput';
 import DueTime from '@/components/ui-shared/DueTime';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
@@ -76,7 +76,7 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 			</div>
 			<div className="flex items-center gap-2 w-full">
 				<div className="w-1/2 flex justify-center rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-500">
-					<DueDate dueDate={selectedDueDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
+					<DueDateInput dueDate={selectedDueDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
 				</div>
 				<div className="w-1/2 flex justify-center rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-500">
 					<DueTime

@@ -33,7 +33,7 @@ export default function TodoDetailsPanel() {
 			/>
 			<div
 				className={`overflow-y-scroll fixed lg:relative right-0 top-0 bg-white border-l border-slate-300  h-screen transition-[width] duration-200 ease-in-out overflow-hidden z-50 ${
-					selectedTodoId ? 'w-96' : 'w-0'
+					selectedTodoId ? 'w-[23rem]' : 'w-0'
 				}`}
 			>
 				<div className="flex flex-col justify-between h-full">

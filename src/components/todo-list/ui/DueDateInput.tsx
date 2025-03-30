@@ -4,7 +4,7 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import { Calendar, CalendarCheck, Trash2 } from 'lucide-react';
 import { Dispatch, SetStateAction, useState } from 'react';
 import DueTime from '@/components/ui-shared/DueTime';
-import DueDate from '@/components/ui-shared/DueDate';
+import DueDateInput from '@/components/ui-shared/DueDateInput';
 
 interface DueDateInputProps {
 	dueDate: string | undefined;
@@ -31,7 +31,7 @@ export default function DueDateInput({ dueDate, setDueDate }: DueDateInputProps)
 						<p>Select Due Date</p>
 					</MenuItem>
 					<MenuItem clickable={false}>
-						<DueDate dueDate={dueDate} setDueDate={setDueDate} defaultEmptyText={true} />
+						<DueDateInput dueDate={dueDate} setDueDate={setDueDate} defaultEmptyText={true} />
 					</MenuItem>
 					<MenuItem clickable={false}>
 						<DueTime dueDate={dueDate} setDueDate={setDueDate} defaultEmptyText={true} />

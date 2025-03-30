@@ -28,7 +28,7 @@ export default function Menu({ open, onClose, children, width, className, top = 
 	return (
 		<div
 			ref={ref}
-			className={`absolute z-20 bg-white text-center text-black text-sm rounded-lg flex flex-col border border-gray-300 shadow-lg left-1/2 -translate-x-1/2
+			className={`absolute bg-white text-center text-black text-sm rounded-lg flex flex-col border border-gray-300 shadow-lg left-1/2 -translate-x-1/2
 									${top}
                   ${width}
 									${open ? 'block' : 'hidden'}
