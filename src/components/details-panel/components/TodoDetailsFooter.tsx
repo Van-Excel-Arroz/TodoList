@@ -4,10 +4,8 @@ export default function TodoDetailsFooter({ creationDate }: { creationDate: stri
 	if (!creationDate) return null;
 
 	return (
-		<div className="fixed bottom-0 py-5 border-t border-slate-300 w-full flex items-center justify-between bg-white">
-			<div className="flex items-center justify-between text-xs text-slate-600 w-full px-6">
-				<p>Created: {format(creationDate, 'MMM dd, yyyy')} </p>
-			</div>
+		<div className="py-5 px-6 border-t border-slate-300">
+			<p className="text-xs text-slate-600">Created: {format(creationDate, 'MMM dd, yyyy')} </p>
 		</div>
 	);
 }

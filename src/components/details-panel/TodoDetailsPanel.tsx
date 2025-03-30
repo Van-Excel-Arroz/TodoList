@@ -33,12 +33,12 @@ export default function TodoDetailsPanel() {
 				}}
 			/>
 			<div
-				className={`fixed lg:relative right-0 top-0 bg-white border-l border-slate-300  h-screen transition-[width] duration-200 ease-in-out z-50 ${
+				className={`flex flex-col fixed lg:relative right-0 top-0 bg-white border-l border-slate-300  h-screen transition-[width] duration-200 ease-in-out z-50 ${
 					isOpen ? 'w-[23rem]' : 'w-0'
 				}`}
 			>
 				<TodoDetailsHeader />
-				<div className="px-6 flex flex-col space-y-4 pt-4 overflow-y-scroll">
+				<div className="flex-1 px-6 space-y-4 pt-4 overflow-y-auto">
 					<Selection options={sections} selectedOption={section} setSelectedOption={setSection} />
 					<div className="flex items-center justify-between gap-4">
 						<TodoComplete isCompleted={todo?.is_completed ?? false} completedAt={todo?.completed_at ?? ''} />
