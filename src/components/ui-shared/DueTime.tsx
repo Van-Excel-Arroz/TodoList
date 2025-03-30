@@ -107,13 +107,7 @@ function TimeMenu({
 	};
 
 	return (
-		<Menu
-			open={isTimeMenuOpen}
-			onClose={() => setIsTimeMenuOpen(false)}
-			posX={`${right ? '-right-5' : '-left-5'}`}
-			posXNotch={`${right ? 'before:right-6' : 'before:left-6'}`}
-			width="w-44"
-		>
+		<Menu open={isTimeMenuOpen} onClose={() => setIsTimeMenuOpen(false)} width="w-44">
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Select Due Time</p>
 			</MenuItem>
@@ -155,13 +149,7 @@ function TimePicker({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate
 	};
 
 	return (
-		<Menu
-			open={isTimePickerOpen}
-			onClose={() => setIsTimePickerOpen(false)}
-			posX={`${right ? '-right-5' : '-left-5'}`}
-			posXNotch={`${right ? 'before:right-14' : 'before:left-10'}`}
-			width="w-fit"
-		>
+		<Menu open={isTimePickerOpen} onClose={() => setIsTimePickerOpen(false)} width="w-fit">
 			<div className="relative">
 				<DateTime
 					value={dueDate ? new Date(dueDate) : undefined}
