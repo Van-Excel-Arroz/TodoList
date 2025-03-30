@@ -4,6 +4,7 @@ import { Todo } from '@/utils/types';
 import TodoListView from './TodoListView';
 import useTodosStore from '@/context/TodosContext';
 import { useEffect } from 'react';
+import NoTodos from './NoTodos';
 
 export default function TodoListMain({ initialTodos }: { initialTodos: Todo[] }) {
 	const { todos, setTodos } = useTodosStore();
@@ -24,12 +25,3 @@ export default function TodoListMain({ initialTodos }: { initialTodos: Todo[] })
 		</div>
 	);
 }
-
-const NoTodos = () => {
-	return (
-		<div className="flex flex-col items-center justify-center text-gray-600 mt-10">
-			<p className="text-lg">No todos found</p>
-			<p className="text-sm">Create a new todo to get started</p>
-		</div>
-	);
-};
