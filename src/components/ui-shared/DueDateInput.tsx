@@ -3,7 +3,7 @@
 import Button from '@/components/ui-shared/Button';
 import { add, format, setHours, setMinutes, setSeconds, startOfToday } from 'date-fns';
 import { Calendar, Trash2 } from 'lucide-react';
-import { memo, useRef, useState } from 'react';
+import { memo, useState } from 'react';
 import DateTime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import Menu from './Menu';
@@ -20,14 +20,11 @@ function DueDateInput({ dueDate, setDueDate, defaultEmptyText = false }: DueDate
 	const [isDateMenuOpen, setIsDateMenuOpen] = useState(false);
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
-	const dateMenuTriggerRef = useRef<HTMLButtonElement>(null);
-	const datePickerTriggerRef = useRef<HTMLButtonElement>(null);
-
 	return (
 		<div className={`flex ${defaultEmptyText && 'py-2'}`}>
 			<div className="flex items-center h-4">
 				<div className="relative">
-					<Button ariaLabel="Add Due Date" ref={dateMenuTriggerRef} onClick={() => setIsDateMenuOpen(prev => !prev)}>
+					<Button ariaLabel="Add Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
 						<Calendar size={20} />
 					</Button>
 					<DateMenu
@@ -35,13 +32,11 @@ function DueDateInput({ dueDate, setDueDate, defaultEmptyText = false }: DueDate
 						setDueDate={setDueDate}
 						setIsDateMenuOpen={setIsDateMenuOpen}
 						setIsDatePickerOpen={setIsDatePickerOpen}
-						usePortal={true}
-						triggerRef={dateMenuTriggerRef}
 					/>
 				</div>
 				{(defaultEmptyText || dueDate || isDatePickerOpen) && (
 					<div className="relative">
-						<Button ariaLabel="Due Date" ref={datePickerTriggerRef} onClick={() => setIsDatePickerOpen(prev => !prev)}>
+						<Button ariaLabel="Due Date" onClick={() => setIsDatePickerOpen(prev => !prev)}>
 							<p>{dueDate ? format(new Date(dueDate), 'MM/dd/yy') : 'MM/DD/YY'}</p>
 						</Button>
 						<DatePicker
@@ -49,8 +44,6 @@ function DueDateInput({ dueDate, setDueDate, defaultEmptyText = false }: DueDate
 							setIsDatePickerOpen={setIsDatePickerOpen}
 							dueDate={dueDate}
 							setDueDate={setDueDate}
-							usePortal={true}
-							triggerRef={datePickerTriggerRef}
 						/>
 					</div>
 				)}
@@ -66,8 +59,6 @@ interface DateMenuProps {
 	setDueDate: (newDueDate: string | undefined) => void;
 	setIsDatePickerOpen: (vaL: boolean) => void;
 	setIsDateMenuOpen: (val: boolean) => void;
-	usePortal?: boolean;
-	triggerRef?: React.RefObject<HTMLElement>;
 }
 
 const dateLabels = {
@@ -76,14 +67,7 @@ const dateLabels = {
 	'next week': `Next ${format(add(new Date(), { days: 7 }), 'EEEE')}`,
 };
 
-function DateMenu({
-	isDateMenuOpen,
-	setDueDate,
-	setIsDatePickerOpen,
-	setIsDateMenuOpen,
-	usePortal,
-	triggerRef,
-}: DateMenuProps) {
+function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMenuOpen }: DateMenuProps) {
 	const handleSetDate = (date: string) => {
 		let baseDate = startOfToday();
 
@@ -103,13 +87,7 @@ function DateMenu({
 	};
 
 	return (
-		<Menu
-			open={isDateMenuOpen}
-			onClose={() => setIsDateMenuOpen(false)}
-			posX="-left-5"
-			posXNotch="before:left-6"
-			width="w-44"
-		>
+		<Menu open={isDateMenuOpen} onClose={() => setIsDateMenuOpen(false)} width="w-44">
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Select Due Date</p>
 			</MenuItem>
@@ -141,18 +119,9 @@ interface DatePickerProps {
 	setIsDatePickerOpen: (val: boolean) => void;
 	dueDate: string | undefined;
 	setDueDate: (newDueDate: string | undefined) => void;
-	usePortal: boolean;
-	triggerRef: React.RefObject<HTMLElement>;
 }
 
-function DatePicker({
-	isDatePickerOpen,
-	setIsDatePickerOpen,
-	dueDate,
-	setDueDate,
-	usePortal,
-	triggerRef,
-}: DatePickerProps) {
+function DatePicker({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate }: DatePickerProps) {
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (value && moment.isMoment(value)) {
 			setDueDate(value.toDate().toISOString());
@@ -160,13 +129,7 @@ function DatePicker({
 	};
 
 	return (
-		<Menu
-			open={isDatePickerOpen}
-			onClose={() => setIsDatePickerOpen(false)}
-			posX="-left-10"
-			posXNotch="before:left-20"
-			width="w-fit"
-		>
+		<Menu open={isDatePickerOpen} onClose={() => setIsDatePickerOpen(false)} width="w-fit">
 			<div className="relative">
 				<DateTime
 					value={dueDate ? new Date(dueDate) : undefined}

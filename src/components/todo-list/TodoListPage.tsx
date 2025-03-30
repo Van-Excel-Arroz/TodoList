@@ -15,7 +15,6 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 	}
 
 	const todos = await getTodosWithCategories(todolistId);
-
 	return (
 		<Suspense fallback={<LoadingAnimation />}>
 			<TodoListHeader initialTodolist={todolist} categories={categories} />
