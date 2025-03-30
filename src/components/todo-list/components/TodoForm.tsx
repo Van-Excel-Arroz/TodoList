@@ -3,7 +3,7 @@
 import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
-import { extractCategory, extractTitle } from '@/utils/category';
+import { extractCategory, extractTitle } from '@/utils/category-helper';
 import Button from '@/components/ui-shared/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/utils/types';
