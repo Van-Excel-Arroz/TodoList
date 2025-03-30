@@ -27,7 +27,7 @@ function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] 
 			) : (
 				<>
 					<ExpandableSection isEmpty={isTodolistsEmpty} title="Lists" className="m-0">
-						<ul className="space-y-2 w-full">
+						<ul className="space-y-2">
 							<AnimatePresence>
 								{todolists.map((todolist, index) => (
 									<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
