@@ -106,9 +106,9 @@ function DateMenu({
 		<Menu
 			open={isDateMenuOpen}
 			onClose={() => setIsDateMenuOpen(false)}
+			posX="-left-5"
+			posXNotch="before:left-6"
 			width="w-44"
-			usePortal={usePortal}
-			triggerRef={triggerRef}
 		>
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Select Due Date</p>
@@ -163,9 +163,9 @@ function DatePicker({
 		<Menu
 			open={isDatePickerOpen}
 			onClose={() => setIsDatePickerOpen(false)}
+			posX="-left-10"
+			posXNotch="before:left-20"
 			width="w-fit"
-			usePortal={usePortal}
-			triggerRef={triggerRef}
 		>
 			<div className="relative">
 				<DateTime
