@@ -11,11 +11,9 @@ export default async function TodoListsSidebar() {
 	return (
 		<>
 			<TodoListsSidebarWrapper>
-				<div className="flex flex-col w-full">
-					<TodoListsHeader />
-					<SmartTodolistContainer />
-					<TodolistContainer initialTodoLists={todolists} />
-				</div>
+				<TodoListsHeader />
+				<SmartTodolistContainer />
+				<TodolistContainer initialTodoLists={todolists} />
 				<NewTodolistButton />
 			</TodoListsSidebarWrapper>
 		</>
