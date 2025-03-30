@@ -5,7 +5,6 @@ import { add, format, setHours, setMinutes, setSeconds, startOfToday } from 'dat
 import { Calendar, Trash2 } from 'lucide-react';
 import { memo, useState } from 'react';
 import DateTime from 'react-datetime';
-import 'react-datetime/css/react-datetime.css';
 import Menu from './Menu';
 import MenuItem from './MenuItem';
 import moment from 'moment';

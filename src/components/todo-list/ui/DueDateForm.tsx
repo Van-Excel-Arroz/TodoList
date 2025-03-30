@@ -11,7 +11,7 @@ interface DueDateInputProps {
 	setDueDate: Dispatch<SetStateAction<string | undefined>>;
 }
 
-export default function DueDateInput({ dueDate, setDueDate }: DueDateInputProps) {
+export default function DueDateForm({ dueDate, setDueDate }: DueDateInputProps) {
 	const [isDueDateMenuOpen, setIsDueDateMenuOpen] = useState(false);
 
 	return (
@@ -20,13 +20,7 @@ export default function DueDateInput({ dueDate, setDueDate }: DueDateInputProps)
 				<Button ariaLabel="Select Due Date" onClick={() => setIsDueDateMenuOpen(true)}>
 					{dueDate ? <CalendarCheck size={20} /> : <Calendar size={20} />}
 				</Button>
-				<Menu
-					open={isDueDateMenuOpen}
-					onClose={() => setIsDueDateMenuOpen(false)}
-					posX="-right-5"
-					posXNotch="before:right-7"
-					width="w-44"
-				>
+				<Menu open={isDueDateMenuOpen} onClose={() => setIsDueDateMenuOpen(false)} width="w-44">
 					<MenuItem className="border-b border-gray-200 font-bold flex flex-col items-center" clickable={false}>
 						<p>Select Due Date</p>
 					</MenuItem>
