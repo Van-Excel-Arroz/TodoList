@@ -21,13 +21,13 @@ function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] 
 	const isTodolistsEmpty = todolists.length === 0;
 
 	return (
-		<div className="flex flex-col overflow-y-auto px-5 py-3">
+		<div className="overflow-y-auto px-5 py-3">
 			{isTodolistsEmpty ? (
 				<TodoListEmptyText />
 			) : (
 				<>
 					<ExpandableSection isEmpty={isTodolistsEmpty} title="Lists" className="m-0">
-						<ul className="flex flex-col gap-2 w-full">
+						<ul className="space-y-2 w-full">
 							<AnimatePresence>
 								{todolists.map((todolist, index) => (
 									<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
