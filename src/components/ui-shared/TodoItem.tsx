@@ -10,7 +10,7 @@ import {
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 import CheckBox from '@/components/ui-shared/CheckBox';
-import CategoryTags from '../todo-list/ui/CategoryTags';
+import CategoryTagList from '../todo-list/ui/CategoryTagList';
 import DueDate from '../todo-list/ui/DueDate';
 import { GripVertical } from 'lucide-react';
 import Importance from '@/components/ui-shared/Importance';
@@ -82,7 +82,11 @@ function TodoItem({ todo }: { todo: Todo }) {
 					</div>
 					<div className="col-span-3 flex items-center gap-2 flex-wrap">
 						{(todo.categories?.length ?? 0) > 0 && (
-							<CategoryTags showIcon={false} categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
+							<CategoryTagList
+								showIcon={false}
+								categories={todo.categories!}
+								handleCategoryClick={handleCategoryClick}
+							/>
 						)}
 					</div>
 					<div className="col-span-2 flex justify-center">
@@ -121,7 +125,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 								{todo.due_datetime && todo.categories!.length > 0 && <p>•</p>}
 								{(todo.categories?.length ?? 0) > 0 && (
 									<>
-										<CategoryTags categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
+										<CategoryTagList categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
 									</>
 								)}
 							</div>
