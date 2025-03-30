@@ -66,7 +66,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 					}`}
 					onClick={handleTodoClick}
 				>
-					<div className="flex items-center gap-2 col-span-6">
+					<div className="flex items-center gap-2 col-span-5">
 						<div className="flex items-center gap-2">
 							<GripVertical
 								className="cursor-all-scroll text-slate-500 hover:text-slate-800"
@@ -85,7 +85,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 							<CategoryTags showIcon={false} categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
 						)}
 					</div>
-					<div className="col-span-1 flex justify-center">
+					<div className="col-span-2 flex justify-center">
 						<Importance isImportant={todo.is_important} handleOnClick={handleImportanceChange} size={22} />
 					</div>
 				</div>

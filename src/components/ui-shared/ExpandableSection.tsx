@@ -51,11 +51,11 @@ function ExpandableSection({
 				transition={{ duration: 0.25 }}
 			>
 				{view === 'grid' ? (
-					<div className="grid grid-cols-12 gap-2 w-full text-sm py-2 px-3 text-slate-600 font-bold">
-						<p className="col-span-6">Task</p>
+					<div className="grid grid-cols-12 w-full text-sm py-2 text-slate-600 font-bold">
+						<p className="col-span-5 pl-2">Task</p>
 						<p className="col-span-2 text-center">Due Date</p>
 						<p className="col-span-3">Category</p>
-						<p className="col-span-1 pl-2 text-center">Importance</p>
+						<p className="col-span-2 text-center">Importance</p>
 					</div>
 				) : null}
 				{children}
