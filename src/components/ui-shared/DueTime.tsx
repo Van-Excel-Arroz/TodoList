@@ -11,10 +11,9 @@ interface DueDateInputProps {
 	dueDate: string | undefined;
 	setDueDate: (newDueDate: string | undefined) => void;
 	defaultEmptyText?: boolean;
-	right?: boolean;
 }
 
-function DueTime({ dueDate, setDueDate, defaultEmptyText = false, right = false }: DueDateInputProps) {
+function DueTime({ dueDate, setDueDate, defaultEmptyText = false }: DueDateInputProps) {
 	const [isTimeMenuOpen, setIsTimeMenuOpen] = useState(false);
 	const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
@@ -31,7 +30,6 @@ function DueTime({ dueDate, setDueDate, defaultEmptyText = false, right = false 
 						setIsTimePickerOpen={setIsTimePickerOpen}
 						dueDate={dueDate}
 						setDueDate={setDueDate}
-						right={right}
 					/>
 				</div>
 				{(defaultEmptyText || dueDate || isTimePickerOpen) && (
@@ -44,7 +42,6 @@ function DueTime({ dueDate, setDueDate, defaultEmptyText = false, right = false 
 							setIsTimePickerOpen={setIsTimePickerOpen}
 							dueDate={dueDate}
 							setDueDate={setDueDate}
-							right={right}
 						/>
 					</div>
 				)}
@@ -61,7 +58,6 @@ interface TimeMenuProps {
 	setIsTimePickerOpen: (val: boolean) => void;
 	dueDate: string | undefined;
 	setDueDate: (newDueDate: string | undefined) => void;
-	right?: boolean;
 }
 
 const timeLabels = {
@@ -72,14 +68,7 @@ const timeLabels = {
 	night: 'Night (09:00 p.m)',
 };
 
-function TimeMenu({
-	isTimeMenuOpen,
-	setIsTimeMenuOpen,
-	setIsTimePickerOpen,
-	dueDate,
-	setDueDate,
-	right = false,
-}: TimeMenuProps) {
+function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, setIsTimePickerOpen, dueDate, setDueDate }: TimeMenuProps) {
 	const handleSetTime = (time: string): void => {
 		let baseDate = dueDate ? new Date(dueDate) : startOfToday();
 
@@ -138,10 +127,9 @@ interface TimePickerProps {
 	setIsTimePickerOpen: (val: boolean) => void;
 	dueDate: string | undefined;
 	setDueDate: (newDueDate: string | undefined) => void;
-	right?: boolean;
 }
 
-function TimePicker({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate, right = false }: TimePickerProps) {
+function TimePicker({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate }: TimePickerProps) {
 	const handleDateTimeChange = (value: string | moment.Moment) => {
 		if (value && moment.isMoment(value)) {
 			setDueDate(value.toDate().toISOString());
