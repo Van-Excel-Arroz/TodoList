@@ -13,7 +13,7 @@ interface DueDateInputProps {
 	defaultEmptyText?: boolean;
 }
 
-function DueTime({ dueDate, setDueDate, defaultEmptyText = false }: DueDateInputProps) {
+function DueTimeInput({ dueDate, setDueDate, defaultEmptyText = false }: DueDateInputProps) {
 	const [isTimeMenuOpen, setIsTimeMenuOpen] = useState(false);
 	const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
@@ -50,7 +50,7 @@ function DueTime({ dueDate, setDueDate, defaultEmptyText = false }: DueDateInput
 	);
 }
 
-export default memo(DueTime);
+export default memo(DueTimeInput);
 
 interface TimeMenuProps {
 	isTimeMenuOpen: boolean;

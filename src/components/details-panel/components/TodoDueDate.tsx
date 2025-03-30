@@ -3,7 +3,7 @@
 import { deleteTodoDueDateAction, updateTodoDueDateAction } from '@/actions/todo-action';
 import Button from '@/components/ui-shared/Button';
 import DueDateInput from '@/components/ui-shared/DueDateInput';
-import DueTime from '@/components/ui-shared/DueTime';
+import DueTimeInput from '@/components/ui-shared/DueTimeInput';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 import { CalendarDays, Save, Undo } from 'lucide-react';
@@ -79,12 +79,7 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 					<DueDateInput dueDate={selectedDueDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
 				</div>
 				<div className="w-1/2 flex justify-center rounded-md px-1 py-2 border bg-white border-slate-300 hover:border-slate-500">
-					<DueTime
-						dueDate={selectedDueDate}
-						setDueDate={updateSelectedTodoDueDate}
-						defaultEmptyText={true}
-						right={true}
-					/>
+					<DueTimeInput dueDate={selectedDueDate} setDueDate={updateSelectedTodoDueDate} defaultEmptyText={true} />
 				</div>
 			</div>
 		</div>
