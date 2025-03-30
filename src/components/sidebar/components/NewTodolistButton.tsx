@@ -8,7 +8,7 @@ export default function NewTodolistButton() {
 	const [isAddingList, setIsAddingList] = useState(false);
 
 	return (
-		<div className="fixed w-full flex justify-center py-6 border-t border-slate-300">
+		<div className="w-full flex justify-center py-6 border-t border-slate-300">
 			{isAddingList ? (
 				<TodolistForm handleIsAddingList={setIsAddingList} />
 			) : (
