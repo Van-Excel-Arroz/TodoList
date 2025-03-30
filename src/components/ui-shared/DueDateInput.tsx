@@ -8,6 +8,7 @@ import DateTime from 'react-datetime';
 import Menu from './Menu';
 import MenuItem from './MenuItem';
 import moment from 'moment';
+import 'react-datetime/css/react-datetime.css';
 
 interface DueDateInputProps {
 	dueDate: string | undefined;
