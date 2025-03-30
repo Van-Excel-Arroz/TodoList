@@ -1,5 +1,5 @@
 import TodoDetailsPanel from '@/components/details-panel/TodoDetailsPanel';
-import TodoListsNav from '@/components/sidebar/TodoListNav';
+import TodoListsSidebar from '@/components/sidebar/TodoListSidebar';
 
 interface LayoutProps {
 	children: React.ReactNode;
@@ -9,7 +9,7 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
 	return (
 		<div className="flex flex-1 overflow-hidden">
 			<aside className="absolute lg:sticky top-0 left-0 z-30">
-				<TodoListsNav />
+				<TodoListsSidebar />
 			</aside>
 
 			<div id="modal-root" />
