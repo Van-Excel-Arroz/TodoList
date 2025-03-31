@@ -103,6 +103,7 @@ export async function getImportantTodos(userId: number) {
 								'creation_date', t.creation_date,
 								'is_completed', t.is_completed,
 								'order_index', t.order_index,
+								'todo_list_id', t.todo_list_id,
 								'categories', (
 										SELECT json_agg(
 												json_build_object(
