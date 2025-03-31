@@ -14,7 +14,7 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 		redirect('/tasks/');
 	}
 
-	const todos = await getTodosWithCategories(todolistId);
+	const todos = await getTodosWithCategories(todolistId, 1);
 	return (
 		<Suspense fallback={<LoadingAnimation />}>
 			<TodoListHeader initialTodolist={todolist} categories={categories} />

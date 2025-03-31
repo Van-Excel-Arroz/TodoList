@@ -1,7 +1,7 @@
 import { Category, Todo, TodoListWithFilteredTodos } from '@/utils/types';
 import { query } from './db';
 import { getTodolists } from './todolist';
-import { isPast, isToday, parseISO } from 'date-fns';
+import { isPast } from 'date-fns';
 
 export async function storeTodo(text: string, dueDatetime: string | null, todolistId: number) {
 	try {
@@ -36,20 +36,38 @@ export async function getCategoriesFromTodo(todoId: number): Promise<Category[]>
 	}
 }
 
-export async function getTodosWithCategories(todolistId: number): Promise<Todo[]> {
+export async function getTodosWithCategories(todolistId: number, userId: number): Promise<Todo[]> {
 	try {
-		const todos = await getTodos(todolistId);
-
-		const todosWithCategories: Todo[] = await Promise.all(
-			todos.map(async todo => {
-				const categories = await getCategoriesFromTodo(todo.id);
-				return {
-					...todo,
-					categories,
-				};
-			})
+		const result = await query(
+			`
+			SELECT
+				t.id,
+				t.task_text,
+				t.description,
+				t.is_important,
+				t.due_datetime,
+				t.creation_date,
+				t.is_completed,
+				t.order_index,
+				json_agg(
+						json_build_object(
+								'id', c.id,
+								'category_title', cc.category_title,
+								'hex_color', cc.hex_color,
+								'is_selected', cc.is_selected,
+								'todo_list_id', cc.todo_list_id
+						)
+				) FILTER (WHERE c.id IS NOT NULL) as categories
+				FROM todos t
+				LEfT JOIN categories c ON c.todo_id = t.id
+				LEfT JOIN todo_lists tl ON tl.id = t.todo_list_id
+				LEfT JOIN category_colors cc ON cc.id = c.category_color_id
+				WHERE tl.id = $1 AND tl.user_id = $2
+				GROUP BY t.id
+		`,
+			[todolistId, userId]
 		);
-
+		const todosWithCategories = result.rows;
 		return todosWithCategories;
 	} catch (error) {
 		console.error('Error fetching todo with categories in the database', error);
@@ -80,7 +98,7 @@ export async function getImportantTodos(): Promise<TodoListWithFilteredTodos[]> 
 
 		for (const todolist of todolists) {
 			try {
-				const result = await getTodosWithCategories(todolist.id);
+				const result = await getTodosWithCategories(todolist.id, 1);
 				const filteredImportantTodos = result.filter(todo => !todo.is_completed && todo.is_important);
 
 				if (filteredImportantTodos.length > 0) {
@@ -115,7 +133,7 @@ export async function getTodosWithDueDate(): Promise<TodoListWithFilteredTodos[]
 
 		for (const todolist of todolists) {
 			try {
-				const result = await getTodosWithCategories(todolist.id);
+				const result = await getTodosWithCategories(todolist.id, 1);
 				const filteredDueTodayTodos = result.filter(todo => {
 					if (!todo.due_datetime || todo.is_completed) return false;
 
