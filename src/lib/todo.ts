@@ -86,34 +86,53 @@ export async function getTodos(todolistId: number): Promise<Todo[]> {
 	}
 }
 
-export async function getImportantTodos(): Promise<TodoListWithFilteredTodos[]> {
+export async function getImportantTodos(userId: number) {
 	try {
-		const todolists = await getTodolists(1);
-
-		if (!todolists) {
-			return [];
-		}
-
-		const importantTodos = [];
-
-		for (const todolist of todolists) {
-			try {
-				const result = await getTodosWithCategories(todolist.id, 1);
-				const filteredImportantTodos = result.filter(todo => !todo.is_completed && todo.is_important);
-
-				if (filteredImportantTodos.length > 0) {
-					if (result.length > 0 && result) {
-						importantTodos.push({
-							...todolist,
-							filtered_todos: filteredImportantTodos || [],
-						});
-					}
-				}
-			} catch (error) {
-				console.error(`Error fetching important todos for todolist ${todolist.id}:`, error);
-			}
-		}
-
+		const result = await query(
+			`
+			SELECT 
+				tl.title,
+				tl.id,
+				json_agg(
+						json_build_object(
+								'id', t.id,
+								'task_text', t.task_text,
+								'description', t.description,
+								'is_important', t.is_important,
+								'due_datetime', t.due_datetime,
+								'creation_date', t.creation_date,
+								'is_completed', t.is_completed,
+								'order_index', t.order_index,
+								'categories', (
+										SELECT json_agg(
+												json_build_object(
+														'id', c.id,
+														'category_title', cc.category_title,
+														'hex_color', cc.hex_color,
+														'is_selected', cc.is_selected,
+														'todo_list_id', cc.todo_list_id
+												)
+										)
+										FROM categories c
+										JOIN category_colors cc ON c.category_color_id = cc.id
+										WHERE c.todo_id = t.id
+								)
+						)
+				) FILTER (WHERE t.is_completed = FALSE and t.is_important = TRUE) AS filtered_todos 
+			FROM 
+					todo_lists as tl
+			JOIN 
+					todos t ON tl.id = t.todo_list_id
+			WHERE
+					tl.user_id = $1
+			GROUP BY 
+					tl.title, tl.id
+			ORDER BY 
+					tl.id;
+`,
+			[userId]
+		);
+		const importantTodos = result.rows;
 		return importantTodos;
 	} catch (error) {
 		console.error('Error fetching all important todos in the database.');
