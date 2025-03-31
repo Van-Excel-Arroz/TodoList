@@ -21,13 +21,7 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: MenuOpenProps)
 		if (selectedCategoryTitles) updateSearchParams('filter', `categories:${selectedCategoryTitles}`, todolistId);
 	};
 	return (
-		<Menu
-			open={isOpen}
-			onClose={() => setIsOpen(false)}
-			posX={`${filterField ? 'right-6' : '-right-3'}`}
-			posXNotch="before:right-6"
-			width="w-fit"
-		>
+		<Menu open={isOpen} onClose={() => setIsOpen(false)} width="w-fit">
 			<MenuItem className="border-b font-bold justify-center" clickable={false}>
 				<p>Filter by Category</p>
 				<Button

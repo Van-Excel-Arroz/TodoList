@@ -12,13 +12,7 @@ export default function DateFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 	const [todolistId] = getQueryParam('id');
 
 	return (
-		<Menu
-			open={isOpen}
-			onClose={() => setIsOpen(false)}
-			posX={`${filterField ? 'right-6' : '-right-3'}`}
-			posXNotch="before:right-6"
-			width="w-44"
-		>
+		<Menu open={isOpen} onClose={() => setIsOpen(false)} width="w-44">
 			<MenuItem className="border-b font-bold justify-center" clickable={false}>
 				<p>Filter by Date</p>
 			</MenuItem>
