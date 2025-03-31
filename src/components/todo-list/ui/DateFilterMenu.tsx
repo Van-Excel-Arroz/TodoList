@@ -10,6 +10,7 @@ export default function DateFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField, filterValue] = getQueryParam('filter');
 	const [todolistId] = getQueryParam('id');
+	const [smart_list] = getQueryParam('smart-list');
 
 	return (
 		<Menu open={isOpen} onClose={() => setIsOpen(false)} width="w-44">
@@ -20,7 +21,7 @@ export default function DateFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 				<MenuItem
 					key={label}
 					className="flex items-center justify-between w-full"
-					onClick={() => updateSearchParams('filter', `dueDate:${label}`, todolistId)}
+					onClick={() => updateSearchParams('filter', `dueDate:${label}`, todolistId || smart_list)}
 				>
 					<p className="text-base text-left w-full">{label}</p>
 					<div className="h-3 w-3 mr-2">

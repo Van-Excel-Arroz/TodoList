@@ -9,8 +9,8 @@ import { CheckIcon } from 'lucide-react';
 export default function CategoryFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 	const { categories, toggleIsSelected } = useCategoriesStore();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
-	const [filterField] = getQueryParam('filter');
 	const [todolistId] = getQueryParam('id');
+	const [smart_list] = getQueryParam('smart-list');
 
 	const applyCategoriesFilter = () => {
 		const selectedCategoryTitles = categories
@@ -18,7 +18,8 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: MenuOpenProps)
 			.map(cat => cat.category_title)
 			.join(',');
 
-		if (selectedCategoryTitles) updateSearchParams('filter', `categories:${selectedCategoryTitles}`, todolistId);
+		if (selectedCategoryTitles)
+			updateSearchParams('filter', `categories:${selectedCategoryTitles}`, todolistId || smart_list);
 	};
 	return (
 		<Menu open={isOpen} onClose={() => setIsOpen(false)} width="w-fit">
