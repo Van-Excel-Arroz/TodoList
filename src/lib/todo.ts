@@ -73,17 +73,6 @@ export async function getTodosWithCategories(todolistId: number, userId: number)
 	}
 }
 
-export async function getTodos(todolistId: number): Promise<Todo[]> {
-	try {
-		const result = await query('SELECT * FROM todos WHERE todo_list_id = $1', [todolistId]);
-		const todos = result.rows;
-		return todos;
-	} catch (error) {
-		console.error('Error fetching todos in the database');
-		return [];
-	}
-}
-
 export async function getFilteredTodos(
 	userId: number,
 	filterBy: 'Due Date' | 'Importance'
