@@ -31,7 +31,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		if (!text) {
 			return null;
 		}
-		const parts = text.split(' ');
+		const parts = text.trim().split(' ');
 		const lastPart = parts[parts.length - 1];
 		if (lastPart.startsWith('#') && lastPart.length > 1) {
 			return lastPart.slice(1);
@@ -45,6 +45,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (event.key === 'Tab' && category !== null) {
+			event.preventDefault();
 			setCategories(categories => [...categories, category]);
 			const newValue = todoValue.replace(`#${category}`, '');
 			setValue('todo', newValue);
@@ -60,19 +61,20 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	};
 
 	const onSubmit = async (data: TodoFormData) => {
-		if (!data.todo?.trim()) return;
+		const todoText = data.todo?.trim();
+		if (!todoText) return;
 
 		const customDate: string | null = createTimestamp(data.date, data.time);
 		const finalDate = customDate ?? (dueDate ? dueDate : null);
 
-		const result = await createTodoAction(data.todo, finalDate, todolistId, categories);
+		const result = await createTodoAction(todoText, finalDate, todolistId, categories);
 
 		if (result) {
 			const { todoId, validCategories } = result;
 			const newTodo: Todo = {
 				id: todoId,
 				order_index: 0,
-				task_text: data.todo,
+				task_text: todoText,
 				description: null,
 				due_datetime: finalDate,
 				creation_date: new Date().toISOString(),
