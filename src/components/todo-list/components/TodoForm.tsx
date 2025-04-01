@@ -44,7 +44,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	const category = extractLastPartCategory(todoValue);
 
 	const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		if (['Tab', 'Enter'].includes(event.key) && category !== null) {
+		if (['Tab'].includes(event.key) && category !== null) {
 			console.log('TAB PRESSED!');
 		}
 	};
@@ -107,7 +107,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 					className="w-full focus:outline-none"
 					onKeyDown={handleInputKeyDown}
 				/>
-				{category && <p className="p-1 text-xs text-slate-600 bg-slate-200 rounded-md">Tab</p>}
+				{category && <p className="py-1 px-2 text-md text-slate-600 bg-slate-200 rounded-md">Tab</p>}
 				<DueDateForm dueDate={dueDate} setDueDate={setDueDate} />
 				<Button
 					type="submit"
