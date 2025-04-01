@@ -25,15 +25,9 @@ export function useTodoDataManagement(todos: Todo[]): {
 
 	const getSortFn = useMemo((): SortFn => {
 		return (a: any, b: any) => {
-			if (sortField === null || sortField === 'importance') {
+			if (sortField === undefined || sortField === 'importance') {
 				if (a.is_important !== b.is_important) {
-					return sortField === 'importance' && sortOrder === 'asc'
-						? a.is_important
-							? 1
-							: -1
-						: a.is_important
-						? -1
-						: 1;
+					return sortOrder === 'asc' ? (a.is_important ? 1 : -1) : a.is_important ? -1 : 1;
 				}
 			}
 
