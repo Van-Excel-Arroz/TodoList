@@ -3,7 +3,6 @@
 import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
-import { extractTitle } from '@/utils/category-helper';
 import Button from '@/components/ui-shared/Button';
 import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/utils/types';
@@ -63,18 +62,17 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	const onSubmit = async (data: TodoFormData) => {
 		if (!data.todo?.trim()) return;
 
-		const todoTask: string = extractTitle(data.todo);
 		const customDate: string | null = createTimestamp(data.date, data.time);
 		const finalDate = customDate ?? (dueDate ? dueDate : null);
 
-		const result = await createTodoAction(todoTask, finalDate, todolistId, categories);
+		const result = await createTodoAction(data.todo, finalDate, todolistId, categories);
 
 		if (result) {
 			const { todoId, validCategories } = result;
 			const newTodo: Todo = {
 				id: todoId,
 				order_index: 0,
-				task_text: todoTask,
+				task_text: data.todo,
 				description: null,
 				due_datetime: finalDate,
 				creation_date: new Date().toISOString(),

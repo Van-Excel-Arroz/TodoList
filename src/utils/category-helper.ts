@@ -12,9 +12,3 @@ export function extractCategory(title: string): string[] {
 	const removedDuplicates = Array.from(new Set(categories)); // remove duplicates using Set
 	return removedDuplicates; // ['work', 'urgent', 'school']
 }
-
-export function extractTitle(title: string): string {
-	const parts = title.split(' ');
-	const filtered = parts.filter(part => !part.startsWith('#'));
-	return filtered.join(' ').trim();
-}
