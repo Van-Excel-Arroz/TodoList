@@ -43,6 +43,12 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	const todoValue = watch('todo');
 	const category = extractLastPartCategory(todoValue);
 
+	const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (['Tab', 'Enter'].includes(event.key) && category !== null) {
+			console.log('TAB PRESSED!');
+		}
+	};
+
 	const createTimestamp = (date: string | undefined, time: string | undefined): string | null => {
 		const now = new Date().toISOString().split('T')[0];
 		if (!date && !time) return null;
@@ -99,6 +105,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 					autoComplete="off"
 					autoFocus
 					className="w-full focus:outline-none"
+					onKeyDown={handleInputKeyDown}
 				/>
 				{category && <p className="p-1 text-xs text-slate-600 bg-slate-200 rounded-md">Tab</p>}
 				<DueDateForm dueDate={dueDate} setDueDate={setDueDate} />
