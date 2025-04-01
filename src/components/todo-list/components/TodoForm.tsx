@@ -26,6 +26,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	const { addTodo } = useTodosStore();
 	const { addCategory } = useCategoriesStore();
 	const [dueDate, setDueDate] = useState<string | undefined>(undefined);
+	const [categories, setCategories] = useState<string[]>([]);
 
 	const extractLastPartCategory = (text: string | undefined): string | null => {
 		if (!text) {
@@ -42,11 +43,10 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	const todoValue = watch('todo');
 	const category = extractLastPartCategory(todoValue);
-	const categories: string[] = [];
 
 	const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (event.key === 'Tab' && category !== null) {
-			categories.push(category);
+			setCategories(categories => [...categories, category]);
 			const newValue = todoValue.replace(`#${category}`, '');
 			setValue('todo', newValue);
 		}
