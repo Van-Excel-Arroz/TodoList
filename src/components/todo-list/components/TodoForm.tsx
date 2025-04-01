@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import { extractCategory, extractTitle } from '@/utils/category-helper';
@@ -22,10 +22,27 @@ interface TodoFormProps {
 }
 
 function TodoForm({ todolistId }: TodoFormProps) {
-	const { register, handleSubmit, reset } = useForm();
+	const { register, handleSubmit, reset, watch } = useForm();
 	const { addTodo } = useTodosStore();
 	const { addCategory } = useCategoriesStore();
 	const [dueDate, setDueDate] = useState<string | undefined>(undefined);
+
+	const todoValue = watch('todo');
+
+	const calculateCategories = (text: string | undefined): string | null => {
+		if (!text) {
+			return null;
+		}
+		const parts = text.split(' ');
+		const lastPart = parts[parts.length - 1];
+		if (lastPart.startsWith('#') && lastPart.length > 1) {
+			return lastPart;
+		} else {
+			return null;
+		}
+	};
+
+	const categories = calculateCategories(todoValue);
 
 	const createTimestamp = (date: string | undefined, time: string | undefined): string | null => {
 		const now = new Date().toISOString().split('T')[0];
@@ -73,7 +90,18 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="my-4">
 			<div className="w-full flex items-center gap-4 px-6 py-2 shadow-md hover:shadow-xl hover:border-slate-600 border border-slate-300 rounded-md bg-white">
-				<TodoInput register={register} />
+				<input
+					{...register('todo', {
+						required: true,
+						maxLength: { value: 100, message: 'Exceeded maximum length of 100' },
+					})}
+					type="text"
+					placeholder="Add a task... #Category"
+					autoComplete="off"
+					autoFocus
+					className="w-full focus:outline-none"
+				/>
+				{categories && <p className="p-1 text-xs text-slate-600 bg-slate-200 rounded-md">Tab</p>}
 				<DueDateForm dueDate={dueDate} setDueDate={setDueDate} />
 				<Button
 					type="submit"
