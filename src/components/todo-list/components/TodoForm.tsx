@@ -9,7 +9,6 @@ import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/utils/types';
 import TodoInput from '../ui/TodoInput';
 import useCategoriesStore from '@/context/CategoriesContext';
-import { Repeat } from 'lucide-react';
 import DueDateForm from '../ui/DueDateForm';
 
 interface TodoFormData {
@@ -76,9 +75,6 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			<div className="w-full flex items-center gap-4 px-6 py-2 shadow-md hover:shadow-xl hover:border-slate-600 border border-slate-300 rounded-md bg-white">
 				<TodoInput register={register} />
 				<DueDateForm dueDate={dueDate} setDueDate={setDueDate} />
-				<Button ariaLabel="Repeat">
-					<Repeat size={18} />
-				</Button>
 				<Button
 					type="submit"
 					ariaLabel="Add new Todo"
