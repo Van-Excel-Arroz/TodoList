@@ -14,11 +14,11 @@ export default function FilteredTodosHeader({ title }: { title: string }) {
 			<div className="flex items-center gap-2 px-1">
 				{!isTodoListsSidebarOpen ? <TodoListsSidebarToggle /> : null}
 				<p className="text-xl font-bold">{title}</p>
-				<LayoutButtons param="smart-list" />
 			</div>
 			<div className="flex items-center gap-4">
 				<TodoSort />
 				<TodoFilter />
+				<LayoutButtons param="smart-list" />
 			</div>
 		</div>
 	);
