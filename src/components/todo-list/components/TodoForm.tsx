@@ -27,9 +27,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	const { addCategory } = useCategoriesStore();
 	const [dueDate, setDueDate] = useState<string | undefined>(undefined);
 
-	const todoValue = watch('todo');
-
-	const calculateCategories = (text: string | undefined): string | null => {
+	const extractLastPartCategory = (text: string | undefined): string | null => {
 		if (!text) {
 			return null;
 		}
@@ -42,7 +40,8 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		}
 	};
 
-	const categories = calculateCategories(todoValue);
+	const todoValue = watch('todo');
+	const category = extractLastPartCategory(todoValue);
 
 	const createTimestamp = (date: string | undefined, time: string | undefined): string | null => {
 		const now = new Date().toISOString().split('T')[0];
@@ -101,7 +100,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 					autoFocus
 					className="w-full focus:outline-none"
 				/>
-				{categories && <p className="p-1 text-xs text-slate-600 bg-slate-200 rounded-md">Tab</p>}
+				{category && <p className="p-1 text-xs text-slate-600 bg-slate-200 rounded-md">Tab</p>}
 				<DueDateForm dueDate={dueDate} setDueDate={setDueDate} />
 				<Button
 					type="submit"
