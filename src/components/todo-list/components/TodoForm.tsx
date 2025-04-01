@@ -9,6 +9,7 @@ import useTodosStore from '@/context/TodosContext';
 import { Todo } from '@/utils/types';
 import useCategoriesStore from '@/context/CategoriesContext';
 import DueDateForm from '../ui/DueDateForm';
+import { X } from 'lucide-react';
 
 interface TodoFormData {
 	todo?: string;
@@ -96,7 +97,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	return (
 		<div className="py-2 mb-4">
-			<form onSubmit={handleSubmit(onSubmit)} className="mb-2">
+			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className="w-full flex items-center gap-4 px-6 py-2 shadow-md hover:shadow-xl hover:border-slate-600 border border-slate-300 rounded-md bg-white">
 					<input
 						{...register('todo', {
@@ -122,10 +123,15 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				</div>
 			</form>
 			{categories.length > 0 ? (
-				<div className="flex items-center gap-4 px-6">
-					{categories.map((cat, idx) => (
-						<p key={idx}>{cat}</p>
-					))}
+				<div className="flex items-center justify-between px-6 py-1 bg-slate-100 text-xs border-b border-x rounded-b-md">
+					<div className="flex items-center gap-4">
+						{categories.map((cat, idx) => (
+							<p key={idx}>{cat}</p>
+						))}
+					</div>
+					<Button ariaLabel="Remove Categories" onClick={() => setCategories([])}>
+						<X size={18} />
+					</Button>
 				</div>
 			) : null}
 		</div>
