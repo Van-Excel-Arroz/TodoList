@@ -22,7 +22,7 @@ interface TodoFormProps {
 }
 
 function TodoForm({ todolistId }: TodoFormProps) {
-	const { register, handleSubmit, reset, watch } = useForm();
+	const { register, handleSubmit, reset, watch, setValue } = useForm();
 	const { addTodo } = useTodosStore();
 	const { addCategory } = useCategoriesStore();
 	const [dueDate, setDueDate] = useState<string | undefined>(undefined);
@@ -34,7 +34,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		const parts = text.split(' ');
 		const lastPart = parts[parts.length - 1];
 		if (lastPart.startsWith('#') && lastPart.length > 1) {
-			return lastPart;
+			return lastPart.slice(1);
 		} else {
 			return null;
 		}
@@ -42,10 +42,13 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	const todoValue = watch('todo');
 	const category = extractLastPartCategory(todoValue);
+	const categories: string[] = [];
 
 	const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		if (['Tab'].includes(event.key) && category !== null) {
-			console.log('TAB PRESSED!');
+		if (event.key === 'Tab' && category !== null) {
+			categories.push(category);
+			const newValue = todoValue.replace(`#${category}`, '');
+			setValue('todo', newValue);
 		}
 	};
 
