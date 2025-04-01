@@ -96,31 +96,40 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="my-4">
-			<div className="w-full flex items-center gap-4 px-6 py-2 shadow-md hover:shadow-xl hover:border-slate-600 border border-slate-300 rounded-md bg-white">
-				<input
-					{...register('todo', {
-						required: true,
-						maxLength: { value: 100, message: 'Exceeded maximum length of 100' },
-					})}
-					type="text"
-					placeholder="Add a task... #Category"
-					autoComplete="off"
-					autoFocus
-					className="w-full focus:outline-none"
-					onKeyDown={handleInputKeyDown}
-				/>
-				{category && <p className="py-1 px-2 text-md text-slate-600 bg-slate-200 rounded-md">Tab</p>}
-				<DueDateForm dueDate={dueDate} setDueDate={setDueDate} />
-				<Button
-					type="submit"
-					ariaLabel="Add new Todo"
-					className="text-md text-slate-400s font-bold text-nowrap flex items-center justify-center"
-				>
-					+ Add Task
-				</Button>
-			</div>
-		</form>
+		<div className="py-2 mb-4">
+			<form onSubmit={handleSubmit(onSubmit)} className="mb-2">
+				<div className="w-full flex items-center gap-4 px-6 py-2 shadow-md hover:shadow-xl hover:border-slate-600 border border-slate-300 rounded-md bg-white">
+					<input
+						{...register('todo', {
+							required: true,
+							maxLength: { value: 100, message: 'Exceeded maximum length of 100' },
+						})}
+						type="text"
+						placeholder="Add a task... #Category"
+						autoComplete="off"
+						autoFocus
+						className="w-full focus:outline-none"
+						onKeyDown={handleInputKeyDown}
+					/>
+					{category && <p className="py-1 px-2 text-md text-slate-600 bg-slate-200 rounded-md">Tab</p>}
+					<DueDateForm dueDate={dueDate} setDueDate={setDueDate} />
+					<Button
+						type="submit"
+						ariaLabel="Add new Todo"
+						className="text-md text-slate-400s font-bold text-nowrap flex items-center justify-center"
+					>
+						+ Add Task
+					</Button>
+				</div>
+			</form>
+			{categories.length > 0 ? (
+				<div className="flex items-center gap-4 px-6">
+					{categories.map((cat, idx) => (
+						<p key={idx}>{cat}</p>
+					))}
+				</div>
+			) : null}
+		</div>
 	);
 }
 
