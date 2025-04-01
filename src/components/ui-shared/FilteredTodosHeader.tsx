@@ -5,6 +5,8 @@ import TodoFilter from '@/components/todo-list/components/TodoFilter';
 import TodoSort from '@/components/todo-list/components/TodoSort';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 import LayoutButtons from './LayoutButtons';
+import Button from './Button';
+import { Settings } from 'lucide-react';
 
 export default function FilteredTodosHeader({ title }: { title: string }) {
 	const { isTodoListsSidebarOpen } = useTodoListsSidebarStore();
@@ -19,6 +21,9 @@ export default function FilteredTodosHeader({ title }: { title: string }) {
 				<TodoSort />
 				<TodoFilter />
 				<LayoutButtons param="smart-list" />
+				<Button ariaLabel="Smart List Setting">
+					<Settings size={22} />
+				</Button>
 			</div>
 		</div>
 	);
