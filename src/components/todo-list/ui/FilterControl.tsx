@@ -17,6 +17,8 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField, filterValue] = getQueryParam('filter');
 	const [todolistId] = getQueryParam('id');
+	const [smart_list] = getQueryParam('smart-list');
+
 	const Icon = filterIcons[filterField] ?? Filter;
 	const [selectedCategories, setSelectedCategories] = useState(0);
 
@@ -46,7 +48,7 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 			</Button>
 			<Button
 				ariaLabel="Remove Sort"
-				onClick={() => updateSearchParams('filter', null, todolistId)}
+				onClick={() => updateSearchParams('filter', null, todolistId || smart_list)}
 				className="hover:bg-slate-300 active:bg-slate-400"
 			>
 				<XIcon size={16} />
