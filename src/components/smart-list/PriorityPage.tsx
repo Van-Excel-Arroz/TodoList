@@ -1,9 +1,9 @@
-import { getImportantTodos } from '@/lib/todo';
+import { getFilteredTodos } from '@/lib/todo';
 import FilteredTodosHeader from '../ui-shared/FilteredTodosHeader';
 import FilteredTodoListPage from '../ui-shared/FilteredTodoListPage';
 
 export default async function PriorityPage() {
-	const importantTodosWithTodoList = await getImportantTodos(1);
+	const importantTodosWithTodoList = await getFilteredTodos(1, 'Importance');
 
 	return (
 		<>

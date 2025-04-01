@@ -1,7 +1,5 @@
 import { Category, Todo, TodoListWithFilteredTodos } from '@/utils/types';
 import { query } from './db';
-import { getTodolists } from './todolist';
-import { isPast } from 'date-fns';
 
 export async function storeTodo(text: string, dueDatetime: string | null, todolistId: number) {
 	try {
@@ -86,7 +84,15 @@ export async function getTodos(todolistId: number): Promise<Todo[]> {
 	}
 }
 
-export async function getImportantTodos(userId: number) {
+export async function getFilteredTodos(
+	userId: number,
+	filterBy: 'Due Date' | 'Importance'
+): Promise<TodoListWithFilteredTodos[]> {
+	const filterQuery = {
+		'Due Date': 't.due_datetime IS NOT NULL',
+		Importance: 't.is_important = TRUE',
+	};
+
 	try {
 		const result = await query(
 			`
@@ -119,7 +125,7 @@ export async function getImportantTodos(userId: number) {
 										WHERE c.todo_id = t.id
 								)
 						)
-				) FILTER (WHERE t.is_completed = FALSE and t.is_important = TRUE) AS filtered_todos 
+				) FILTER (WHERE t.is_completed = FALSE and ${filterQuery[filterBy]}) AS filtered_todos 
 			FROM 
 					todo_lists as tl
 			JOIN 
@@ -137,45 +143,6 @@ export async function getImportantTodos(userId: number) {
 		return importantTodos;
 	} catch (error) {
 		console.error('Error fetching all important todos in the database.');
-		return [];
-	}
-}
-
-export async function getTodosWithDueDate(): Promise<TodoListWithFilteredTodos[]> {
-	try {
-		const todolists = await getTodolists(1);
-
-		if (!todolists) {
-			return [];
-		}
-
-		const dueTodayTodos = [];
-
-		for (const todolist of todolists) {
-			try {
-				const result = await getTodosWithCategories(todolist.id, 1);
-				const filteredDueTodayTodos = result.filter(todo => {
-					if (!todo.due_datetime || todo.is_completed) return false;
-
-					return !isPast(todo.due_datetime);
-				});
-
-				if (filteredDueTodayTodos.length > 0) {
-					if (result.length > 0 && result) {
-						dueTodayTodos.push({
-							...todolist,
-							filtered_todos: filteredDueTodayTodos || [],
-						});
-					}
-				}
-			} catch (error) {
-				console.error(`Error fetching today's todo for todolist ${todolist.id}:`, error);
-			}
-		}
-
-		return dueTodayTodos;
-	} catch (error) {
-		console.error("Error fetching all today's todo in the database.");
 		return [];
 	}
 }
