@@ -64,11 +64,10 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		if (!data.todo?.trim()) return;
 
 		const todoTask: string = extractTitle(data.todo);
-		const categoryTitles: string[] = extractCategory(data.todo);
 		const customDate: string | null = createTimestamp(data.date, data.time);
 		const finalDate = customDate ?? (dueDate ? dueDate : null);
 
-		const result = await createTodoAction(todoTask, finalDate, todolistId, categoryTitles);
+		const result = await createTodoAction(todoTask, finalDate, todolistId, categories);
 
 		if (result) {
 			const { todoId, validCategories } = result;
@@ -92,6 +91,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 			});
 		}
 		setDueDate(undefined);
+		setCategories([]);
 		reset();
 	};
 
