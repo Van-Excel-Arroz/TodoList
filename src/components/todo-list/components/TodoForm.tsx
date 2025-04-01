@@ -23,7 +23,8 @@ interface TodoFormProps {
 function TodoForm({ todolistId }: TodoFormProps) {
 	const { register, handleSubmit, reset, watch, setValue } = useForm();
 	const { addTodo } = useTodosStore();
-	const { addCategory } = useCategoriesStore();
+	const { addCategory, getLatestCategoryId } = useCategoriesStore();
+	console.log(getLatestCategoryId());
 	const [dueDate, setDueDate] = useState<string | undefined>(undefined);
 	const [categories, setCategories] = useState<string[]>([]);
 
