@@ -142,7 +142,7 @@ export async function getFilteredTodos(
 		const importantTodos = result.rows;
 		return importantTodos;
 	} catch (error) {
-		console.error('Error fetching all important todos in the database.');
+		console.error(`Error fetching all filtered todos by ${filterQuery[filterBy]} in the database.`);
 		return [];
 	}
 }
