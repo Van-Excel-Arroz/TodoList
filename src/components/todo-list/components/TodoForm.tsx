@@ -44,12 +44,18 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	const todoValue = watch('todo');
 	const category = extractLastPartCategory(todoValue);
 
-	const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		if (event.key === 'Tab' && category !== null) {
-			event.preventDefault();
+	const addCategoryTag = () => {
+		if (category !== null) {
 			setCategories(categories => [...categories, category]);
 			const newValue = todoValue.replace(`#${category}`, '');
 			setValue('todo', newValue);
+		}
+	};
+
+	const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === 'Tab') {
+			event.preventDefault();
+			addCategoryTag();
 		}
 	};
 
@@ -112,7 +118,11 @@ function TodoForm({ todolistId }: TodoFormProps) {
 						className="w-full focus:outline-none"
 						onKeyDown={handleInputKeyDown}
 					/>
-					{category && <p className="py-1 px-2 text-md text-slate-600 bg-slate-200 rounded-md">Tab</p>}
+					{category && (
+						<Button ariaLabel="Add Category" darkMode={true} onClick={() => addCategoryTag()}>
+							<p className="text-sm">Tab</p>
+						</Button>
+					)}
 					<DueDateForm dueDate={dueDate} setDueDate={setDueDate} />
 					<Button
 						type="submit"
