@@ -51,10 +51,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	const addCategoryTag = () => {
 		if (category !== null) {
-			console.log(getLatestCategoryId());
-			console.log(PREDEFINED_COLORS.length);
-			const newColor = PREDEFINED_COLORS[(getLatestCategoryId() ?? 0) % 10];
-			console.log(newColor);
+			const newColor = PREDEFINED_COLORS[(getLatestCategoryId() ?? 0) % (10 + categories.length)];
 			const newTag = {
 				tagName: category,
 				color: newColor,
