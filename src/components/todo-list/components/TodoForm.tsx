@@ -87,8 +87,7 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 
 		const customDate: string | null = createTimestamp(data.date, data.time);
 		const finalDate = customDate ?? (dueDate ? dueDate : null);
-		const categoriesTagList = categories.map(cat => cat.tagName);
-		const newTodo = await createTodoAction(todoText, finalDate, todolistId, categoriesTagList);
+		const newTodo = await createTodoAction(todoText, finalDate, todolistId, categories);
 
 		if (newTodo) {
 			addTodo(newTodo);

@@ -13,17 +13,17 @@ import {
 	updateTodoImportance,
 	updateTodoTitle,
 } from '@/lib/todo';
+import { CategoryTag } from '@/utils/types';
 
 export async function createTodoAction(
 	taskText: string,
 	dueDatetime: string | null,
 	todolistId: number,
-	categories: string[]
+	categories: CategoryTag[]
 ) {
 	const todoId: number = await storeTodo(taskText, dueDatetime, todolistId);
 	const categoryColorsId = await storeCategoriesColors(categories, todolistId);
-	const validCategoryIds = categoryColorsId.filter((id): id is number => id !== undefined);
-	await storeCategories(todoId, validCategoryIds);
+	await storeCategories(todoId, categoryColorsId);
 	const newTodo = getTodoWithCategories(1, todolistId, todoId);
 
 	if (todoId) {

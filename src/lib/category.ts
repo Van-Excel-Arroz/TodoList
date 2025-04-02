@@ -1,8 +1,7 @@
 'use server';
 
-import { Category } from '@/utils/types';
+import { Category, CategoryTag } from '@/utils/types';
 import { query } from './db';
-import { PREDEFINED_COLORS } from '@/utils/constants';
 
 export async function getCategoryColor(category: string, todolistId: number): Promise<Category | null> {
 	try {
@@ -17,93 +16,37 @@ export async function getCategoryColor(category: string, todolistId: number): Pr
 	}
 }
 
-export async function createCategoryColor(
-	category: string,
-	color: string,
-	todolistId: number
-): Promise<number | undefined> {
+export async function createCategoryColor(category: string, color: string, todolistId: number): Promise<number | null> {
 	try {
-		const existingCategoryTitle = await query(
-			'SELECT * FROM category_colors WHERE category_title = $1 AND todo_list_id = $2',
-			[category, todolistId]
+		const result = await query(
+			'INSERT INTO category_colors (category_title, hex_color, is_selected, todo_list_id) VALUES ($1, $2, FALSE, $3) RETURNING id',
+			[category, color, todolistId]
 		);
-		if (existingCategoryTitle.rows.length > 0) {
-			await query('UPDATE category_colors SET hex_color = $1 WHERE category_title = $2 AND id = $3 ', [
-				color,
-				category,
-				existingCategoryTitle.rows[0].id,
-			]);
-			return existingCategoryTitle.rows[0].id;
-		} else {
-			const result = await query(
-				'INSERT INTO category_colors (category_title, hex_color, is_selected, todo_list_id) VALUES ($1, $2, FALSE, $3) RETURNING id',
-				[category, color, todolistId]
-			);
-			return result.rows[0].id;
-		}
+		const newCategoryId = result.rows[0];
+		return newCategoryId;
 	} catch (error) {
 		console.error('Error inserting category and colors in the database', error);
-		return;
-	}
-}
-
-async function getNextColor(): Promise<string | null> {
-	try {
-		// First, try to find an unused color
-		const result = await query(
-			`
-			SELECT color.hex_color
-			FROM (
-				SELECT unnest($1::text[]) as hex_color
-			) AS color
-			WHERE NOT EXISTS (
-				SELECT 1 FROM category_colors cc 
-				WHERE cc.hex_color = color.hex_color
-			)
-			LIMIT 1
-		`,
-			[PREDEFINED_COLORS]
-		);
-
-		// If we found an unused color, use it
-		if (result.rows.length > 0) {
-			return result.rows[0].hex_color;
-		}
-
-		// If all colors are used, find the least recently used color
-		const leastUsedResult = await query(`
-			SELECT cc.hex_color, COUNT(*) as usage_count
-			FROM category_colors cc
-			GROUP BY cc.hex_color
-			ORDER BY usage_count ASC, cc.hex_color
-			LIMIT 1
-		`);
-
-		return leastUsedResult.rows[0].hex_color;
-	} catch (error) {
-		console.error('Error checking and getting the next color in the database');
 		return null;
 	}
 }
 
-export async function storeCategoriesColors(categories: string[], todolistId: number) {
+export async function storeCategoriesColors(categories: CategoryTag[], todolistId: number): Promise<number[]> {
 	try {
-		const categoryIds = [];
+		const categoryColorIds = [];
 
 		for (const category of categories) {
-			const existingCategory = await getCategoryColor(category, todolistId);
+			const existingCategory = await getCategoryColor(category.tagName, todolistId);
 			if (existingCategory) {
-				categoryIds.push(existingCategory.id);
+				categoryColorIds.push(existingCategory.id);
 				continue;
 			}
-
-			const color = await getNextColor();
-			if (!color) continue;
-			const newCategoryId = await createCategoryColor(category, color, todolistId);
-			categoryIds.push(newCategoryId);
+			const newCategoryId = await createCategoryColor(category.tagName, category.color, todolistId);
+			categoryColorIds.push(newCategoryId);
 		}
 
-		return categoryIds;
+		const validCategoryColorIds = categoryColorIds.filter((id): id is number => id !== undefined);
+
+		return validCategoryColorIds;
 	} catch (error) {
 		console.error('Error storing categories and colors in the database', error);
 		return [];
