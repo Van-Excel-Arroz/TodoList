@@ -62,7 +62,7 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 			};
 			setCategories(categories => [...categories, newTag]);
 			const newValue = todoValue.replace(`#${category}`, '');
-			setValue('todo', newValue);
+			setValue('todo', newValue, { shouldDirty: true });
 		}
 	};
 
