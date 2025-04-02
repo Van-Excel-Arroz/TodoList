@@ -1,16 +1,22 @@
 'use client';
 
-import { Plus, Tags } from 'lucide-react';
+import { CheckIcon, Plus, Tags } from 'lucide-react';
 import { Category } from '@/utils/types';
 import { deleteTodoCategoryAction } from '@/actions/category-action';
 import useTodosStore from '@/context/TodosContext';
 import CategoryTags from '../ui/CategoryTags';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import Button from '@/components/ui-shared/Button';
+import Menu from '@/components/ui-shared/Menu';
+import MenuItem from '@/components/ui-shared/MenuItem';
+import { useState } from 'react';
+import useCategoriesStore from '@/context/CategoriesContext';
 
 export default function TodoCategories({ categories, todolistId }: { categories: Category[]; todolistId: number }) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { deleteCategory } = useTodosStore();
+	const { categories: categoriesFromStore } = useCategoriesStore();
+	const [isMenuOpen, setIsMeuOpen] = useState(false);
 
 	const handleRemoveCategory = async (categoryId: number) => {
 		await deleteTodoCategoryAction(categoryId);
@@ -18,7 +24,7 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 	};
 
 	return (
-		<div className="flex flex-col gap-2">
+		<div className="flex flex-col gap-2 relative">
 			<div className="flex items-center gap-2">
 				<Tags size={20} className="text-slate-600" />
 				<p>Categories</p>
@@ -27,11 +33,35 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 				{categories.map(category => (
 					<CategoryTags key={category.id} category={category} onRemove={handleRemoveCategory} />
 				))}
-				<Button darkMode={true} ariaLabel="Add Category" className="flex items-center gap-1">
+				<Button
+					darkMode={true}
+					ariaLabel="Add Category"
+					className="flex items-center gap-1"
+					onClick={() => setIsMeuOpen(prev => !prev)}
+				>
 					<Plus size={13} />
 					<p className="text-sm">Add Category</p>
 				</Button>
 			</div>
+			<Menu open={isMenuOpen} onClose={() => setIsMeuOpen(false)} width="w-fit">
+				<MenuItem className="border-b font-bold justify-center" clickable={false}>
+					<p>Available Categories</p>
+				</MenuItem>
+				<div className="max-h-[60vh] overflow-hidden overflow-y-auto">
+					{categoriesFromStore.map(category => (
+						<MenuItem key={category.id} className="flex items-center justify-between">
+							<div className="flex items-center gap-2">
+								<p style={{ color: category.hex_color }}>●</p>
+								<p className="text-base">{category.category_title}</p>
+							</div>
+
+							<Button ariaLabel="Unselect category" className="hover:bg-slate-300 w-5 h-5">
+								<CheckIcon size={16} strokeWidth={2} className={`${category.is_selected ? 'block' : 'hidden'} `} />
+							</Button>
+						</MenuItem>
+					))}
+				</div>
+			</Menu>
 		</div>
 	);
 }
