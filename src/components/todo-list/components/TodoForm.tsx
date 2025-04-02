@@ -29,7 +29,7 @@ interface CategoryTag {
 function TodoForm({ todolistId }: TodoFormProps) {
 	const { register, handleSubmit, reset, watch, setValue } = useForm();
 	const { addTodo } = useTodosStore();
-	const { addCategory, getLatestCategoryId } = useCategoriesStore();
+	const { addCategory, categories: categoriesFromStore } = useCategoriesStore();
 	const [dueDate, setDueDate] = useState<string | undefined>(undefined);
 	const [categories, setCategories] = useState<CategoryTag[]>([]);
 
@@ -51,7 +51,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	const addCategoryTag = () => {
 		if (category !== null) {
-			const newColor = PREDEFINED_COLORS[(getLatestCategoryId() ?? 0) % (10 + categories.length)];
+			const newColor = PREDEFINED_COLORS[categoriesFromStore.length % (10 + categories.length)];
 			const newTag = {
 				tagName: category,
 				color: newColor,
@@ -112,7 +112,6 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		setCategories([]);
 		reset();
 	};
-	console.log(categories);
 
 	return (
 		<div className="py-2 mb-4">

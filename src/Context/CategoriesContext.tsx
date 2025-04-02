@@ -6,7 +6,6 @@ interface CategoriesContextState {
 	setCategories: (categories: Category[]) => void;
 	addCategory: (newCategory: Category) => void;
 	toggleIsSelected: (categoryId: number) => void;
-	getLatestCategoryId: () => number | undefined;
 }
 
 const useCategoriesStore = create<CategoriesContextState>()((set: any, get: any) => ({
@@ -27,14 +26,6 @@ const useCategoriesStore = create<CategoriesContextState>()((set: any, get: any)
 				cat.id === categoryId ? { ...cat, is_selected: !cat.is_selected } : cat
 			),
 		})),
-	getLatestCategoryId: (): number | undefined => {
-		let currentCategories = get().categories;
-		if (currentCategories.length === 0) {
-			return undefined;
-		}
-		const ids = currentCategories.map((cat: Category) => cat.id);
-		return Math.max(...ids);
-	},
 }));
 
 export default useCategoriesStore;
