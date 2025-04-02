@@ -63,7 +63,7 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 						className="flex items-center gap-1"
 					>
 						<Plus size={13} />
-						<Tag size={20} />
+						<p className="text-sm">Add Category</p>
 					</Button>
 				)}
 			</div>
