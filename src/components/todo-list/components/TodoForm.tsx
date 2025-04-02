@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import Button from '@/components/ui-shared/Button';
@@ -26,7 +26,7 @@ interface CategoryTag {
 	color: string;
 }
 
-function TodoForm({ todolistId }: TodoFormProps) {
+export default function TodoForm({ todolistId }: TodoFormProps) {
 	const { register, handleSubmit, reset, watch, setValue } = useForm();
 	const { addTodo } = useTodosStore();
 	const { addCategory, categories: categoriesFromStore, getCategoryColor } = useCategoriesStore();
@@ -178,5 +178,3 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		</div>
 	);
 }
-
-export default memo(TodoForm);
