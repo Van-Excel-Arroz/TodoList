@@ -156,7 +156,7 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 			{categories.length > 0 ? (
 				<div className="flex items-center justify-between px-6 py-1 bg-slate-100 text-xs border-b border-x rounded-b-md">
 					<div className="flex items-center gap-4">
-						{categories.map((cat, idx) => (
+						{categories.map(cat => (
 							<p
 								style={{
 									color: cat.color,
@@ -164,7 +164,7 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 									padding: '2px',
 								}}
 								className="text-xs rounded-md"
-								key={idx}
+								key={cat.tagName}
 							>
 								{cat.tagName}
 							</p>
