@@ -1,7 +1,7 @@
 import { Category, Todo, TodoListWithFilteredTodos } from '@/utils/types';
 import { query } from './db';
 
-export async function storeTodo(text: string, dueDatetime: string | null, todolistId: number) {
+export async function storeTodo(text: string, dueDatetime: string | null, todolistId: number): Promise<number | null> {
 	try {
 		const dueDatetimeValue = typeof dueDatetime === 'string' ? dueDatetime.trim() : null;
 
@@ -12,7 +12,7 @@ export async function storeTodo(text: string, dueDatetime: string | null, todoli
 		return result?.rows[0].id;
 	} catch (error) {
 		console.error('Error inserting todo in the database');
-		return;
+		return null;
 	}
 }
 

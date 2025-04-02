@@ -21,12 +21,11 @@ export async function createTodoAction(
 	todolistId: number,
 	categories: CategoryTag[]
 ) {
-	const todoId: number = await storeTodo(taskText, dueDatetime, todolistId);
-	const categoryColorsId = await storeCategoriesColors(categories, todolistId);
-	await storeCategories(todoId, categoryColorsId);
-	const newTodo = getTodoWithCategories(1, todolistId, todoId);
-
+	const todoId = await storeTodo(taskText, dueDatetime, todolistId);
 	if (todoId) {
+		const categoryColorsId = await storeCategoriesColors(categories, todolistId);
+		await storeCategories(todoId, categoryColorsId);
+		const newTodo = getTodoWithCategories(1, todolistId, todoId);
 		return newTodo;
 	} else {
 		console.error('Failed to create the todo');
