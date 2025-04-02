@@ -147,7 +147,7 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 					<Button
 						type="submit"
 						ariaLabel="Add new Todo"
-						className="text-md text-slate-400s font-bold text-nowrap flex items-center justify-center"
+						className="text-md font-bold text-nowrap flex items-center justify-center"
 					>
 						+ Add Task
 					</Button>
