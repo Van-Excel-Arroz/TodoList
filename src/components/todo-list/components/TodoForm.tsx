@@ -51,6 +51,9 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	const addCategoryTag = () => {
 		if (category !== null) {
+			if (categories.some(cat => cat.tagName === category)) {
+				return;
+			}
 			let newColor = '';
 			const existingColor = getCategoryColor(category);
 			if (existingColor) {
@@ -62,7 +65,6 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				tagName: category,
 				color: newColor,
 			};
-			console.log(newTag);
 			setCategories(categories => [...categories, newTag]);
 			const newValue = todoValue.replace(`#${category}`, '');
 			setValue('todo', newValue);
