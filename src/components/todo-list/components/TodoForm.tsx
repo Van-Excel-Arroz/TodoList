@@ -9,6 +9,7 @@ import { Todo } from '@/utils/types';
 import useCategoriesStore from '@/context/CategoriesContext';
 import DueDateForm from '../ui/DueDateForm';
 import { X } from 'lucide-react';
+import { PREDEFINED_COLORS } from '@/utils/constants';
 
 interface TodoFormData {
 	todo?: string;
@@ -20,13 +21,18 @@ interface TodoFormProps {
 	todolistId: number;
 }
 
+interface CategoryTag {
+	tagName: string;
+	color: string;
+}
+
 function TodoForm({ todolistId }: TodoFormProps) {
 	const { register, handleSubmit, reset, watch, setValue } = useForm();
 	const { addTodo } = useTodosStore();
 	const { addCategory, getLatestCategoryId } = useCategoriesStore();
 	console.log(getLatestCategoryId());
 	const [dueDate, setDueDate] = useState<string | undefined>(undefined);
-	const [categories, setCategories] = useState<string[]>([]);
+	const [categories, setCategories] = useState<CategoryTag[]>([]);
 
 	const extractLastPartCategory = (text: string | undefined): string | null => {
 		if (!text) {
@@ -46,7 +52,15 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	const addCategoryTag = () => {
 		if (category !== null) {
-			setCategories(categories => [...categories, category]);
+			const latestId = getLatestCategoryId;
+			const idForColorIndex: any = latestId ?? 0;
+			const colorIndex = idForColorIndex % PREDEFINED_COLORS.length;
+			const newColor = PREDEFINED_COLORS[colorIndex];
+			const newTag = {
+				tagName: category,
+				color: newColor,
+			};
+			setCategories(categories => [...categories, newTag]);
 			const newValue = todoValue.replace(`#${category}`, '');
 			setValue('todo', newValue);
 		}
@@ -73,8 +87,9 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 		const customDate: string | null = createTimestamp(data.date, data.time);
 		const finalDate = customDate ?? (dueDate ? dueDate : null);
+		const categoriesTagList = categories.map(cat => cat.tagName);
 
-		const result = await createTodoAction(todoText, finalDate, todolistId, categories);
+		const result = await createTodoAction(todoText, finalDate, todolistId, categoriesTagList);
 
 		if (result) {
 			const { todoId, validCategories } = result;
@@ -137,7 +152,9 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				<div className="flex items-center justify-between px-6 py-1 bg-slate-100 text-xs border-b border-x rounded-b-md">
 					<div className="flex items-center gap-4">
 						{categories.map((cat, idx) => (
-							<p key={idx}>{cat}</p>
+							<p style={{ backgroundColor: cat.color }} className="p-1" key={idx}>
+								{cat.tagName}
+							</p>
 						))}
 					</div>
 					<Button ariaLabel="Remove Categories" onClick={() => setCategories([])}>
