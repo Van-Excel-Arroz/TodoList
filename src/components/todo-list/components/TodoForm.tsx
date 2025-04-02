@@ -9,6 +9,7 @@ import useCategoriesStore from '@/context/CategoriesContext';
 import DueDateForm from '../ui/DueDateForm';
 import { X } from 'lucide-react';
 import { PREDEFINED_COLORS } from '@/utils/constants';
+import { CategoryTag } from '@/utils/types';
 
 interface TodoFormData {
 	todo?: string;
@@ -18,11 +19,6 @@ interface TodoFormData {
 
 interface TodoFormProps {
 	todolistId: number;
-}
-
-interface CategoryTag {
-	tagName: string;
-	color: string;
 }
 
 export default function TodoForm({ todolistId }: TodoFormProps) {

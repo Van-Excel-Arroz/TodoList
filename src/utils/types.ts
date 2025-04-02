@@ -20,6 +20,11 @@ export interface Category {
 	todo_list_id: number;
 }
 
+export interface CategoryTag {
+	tagName: string;
+	color: string;
+}
+
 export interface TodoList {
 	id: number;
 	title: string;
