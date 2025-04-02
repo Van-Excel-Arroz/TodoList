@@ -34,6 +34,46 @@ export async function getCategoriesFromTodo(todoId: number): Promise<Category[]>
 	}
 }
 
+export async function getTodoWithCategories(userId: number, todolistId: number, todoId: number): Promise<Todo | null> {
+	try {
+		const result = await query(
+			`
+			SELECT
+				t.id,
+				t.task_text,
+				t.description,
+				t.is_important,
+				t.due_datetime,
+				t.creation_date,
+				t.is_completed,
+				t.order_index,
+				json_agg(
+						json_build_object(
+								'id', c.id,
+								'category_title', cc.category_title,
+								'hex_color', cc.hex_color,
+								'is_selected', cc.is_selected,
+								'todo_list_id', cc.todo_list_id
+						)
+				) FILTER (WHERE c.id IS NOT NULL) as categories
+				FROM todos t
+				LEFT JOIN categories c ON c.todo_id = t.id
+				LEFT JOIN todo_lists tl ON tl.id = t.todo_list_id
+				LEFT JOIN category_colors cc ON cc.id = c.category_color_id
+				WHERE tl.user_id = $1 AND t.todo_list_id = $2 AND t.id = $3
+				GROUP BY t.id
+		`,
+			[userId, todolistId, todoId]
+		);
+
+		const todo = result.rows[0];
+		return todo;
+	} catch (error) {
+		console.error(`Error fetching todo (id: ${todoId}) with categories in the database`, error);
+		return null;
+	}
+}
+
 export async function getTodosWithCategories(todolistId: number, userId: number): Promise<Todo[]> {
 	try {
 		const result = await query(
@@ -57,9 +97,9 @@ export async function getTodosWithCategories(todolistId: number, userId: number)
 						)
 				) FILTER (WHERE c.id IS NOT NULL) as categories
 				FROM todos t
-				LEfT JOIN categories c ON c.todo_id = t.id
-				LEfT JOIN todo_lists tl ON tl.id = t.todo_list_id
-				LEfT JOIN category_colors cc ON cc.id = c.category_color_id
+				LEFT JOIN categories c ON c.todo_id = t.id
+				LEFT JOIN todo_lists tl ON tl.id = t.todo_list_id
+				LEFT JOIN category_colors cc ON cc.id = c.category_color_id
 				WHERE tl.id = $1 AND tl.user_id = $2
 				GROUP BY t.id
 		`,
@@ -68,7 +108,7 @@ export async function getTodosWithCategories(todolistId: number, userId: number)
 		const todosWithCategories = result.rows;
 		return todosWithCategories;
 	} catch (error) {
-		console.error('Error fetching todo with categories in the database', error);
+		console.error('Error fetching todos with categories in the database', error);
 		return [];
 	}
 }
