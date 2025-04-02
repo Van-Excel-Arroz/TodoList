@@ -47,20 +47,24 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 				<MenuItem className="border-b font-bold justify-center" clickable={false}>
 					<p>Available Categories</p>
 				</MenuItem>
-				<div className="max-h-[60vh] overflow-hidden overflow-y-auto">
+				<div className="max-h-[30vh] overflow-hidden overflow-y-auto">
 					{categoriesFromStore.map(category => (
 						<MenuItem key={category.id} className="flex items-center justify-between">
 							<div className="flex items-center gap-2">
 								<p style={{ color: category.hex_color }}>●</p>
 								<p className="text-base">{category.category_title}</p>
 							</div>
-
-							<Button ariaLabel="Unselect category" className="hover:bg-slate-300 w-5 h-5">
-								<CheckIcon size={16} strokeWidth={2} className={`${category.is_selected ? 'block' : 'hidden'} `} />
-							</Button>
 						</MenuItem>
 					))}
 				</div>
+				<MenuItem className="border-t font-bold flex justify-between gap-2" clickable={false}>
+					<Button ariaLabel="Cancel Adding Categories">
+						<p>Cancel</p>
+					</Button>
+					<Button ariaLabel="Add Selected Categories" darkMode={true}>
+						<p className="px-1">Add</p>
+					</Button>
+				</MenuItem>
 			</Menu>
 		</div>
 	);
