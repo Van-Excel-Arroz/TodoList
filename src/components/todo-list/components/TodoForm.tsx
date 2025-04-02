@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { createTodoAction } from '@/actions/todo-action';
 import Button from '@/components/ui-shared/Button';
 import useTodosStore from '@/context/TodosContext';
-import { Todo } from '@/utils/types';
 import useCategoriesStore from '@/context/CategoriesContext';
 import DueDateForm from '../ui/DueDateForm';
 import { X } from 'lucide-react';
@@ -93,29 +92,15 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 		const customDate: string | null = createTimestamp(data.date, data.time);
 		const finalDate = customDate ?? (dueDate ? dueDate : null);
 		const categoriesTagList = categories.map(cat => cat.tagName);
+		const newTodo = await createTodoAction(todoText, finalDate, todolistId, categoriesTagList);
 
-		const result = await createTodoAction(todoText, finalDate, todolistId, categoriesTagList);
-
-		if (result) {
-			const { todoId, validCategories } = result;
-			const newTodo: Todo = {
-				id: todoId,
-				order_index: 0,
-				task_text: todoText,
-				description: null,
-				due_datetime: finalDate,
-				creation_date: new Date().toISOString(),
-				todo_list_id: todolistId,
-				categories: validCategories,
-				completed_at: null,
-				is_completed: false,
-				is_important: false,
-			};
-
+		if (newTodo) {
 			addTodo(newTodo);
-			validCategories.map(cat => {
-				addCategory(cat);
-			});
+			if (newTodo.categories !== null) {
+				newTodo.categories.map(cat => {
+					addCategory(cat);
+				});
+			}
 		}
 		setDueDate(undefined);
 		setCategories([]);
