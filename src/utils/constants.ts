@@ -9,5 +9,4 @@ export const PREDEFINED_COLORS = [
 	'#00008B', // Dark Blue (replaced Dodger Blue)
 	'#C71585', // Medium Violet Red (unchanged)
 	'#8B4513', // Saddle Brown (unchanged)
-	'#2F4F4F', // Darker Slate Gray (replaced Slate Gray)
 ] as const;

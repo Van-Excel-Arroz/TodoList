@@ -15,7 +15,7 @@ function CategoryTagList({ categories, handleCategoryClick, showIcon = true }: C
 			{categories?.map(category => (
 				<span
 					key={category.id}
-					className="text-xs rounded-md flex items-center gap-1 hover:outline hover:outline-1"
+					className="text-xs rounded-md hover:outline hover:outline-1"
 					style={{
 						color: category.hex_color,
 						backgroundColor: `${category.hex_color}20`,

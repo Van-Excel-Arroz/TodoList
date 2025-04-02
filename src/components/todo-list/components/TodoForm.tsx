@@ -30,7 +30,6 @@ function TodoForm({ todolistId }: TodoFormProps) {
 	const { register, handleSubmit, reset, watch, setValue } = useForm();
 	const { addTodo } = useTodosStore();
 	const { addCategory, getLatestCategoryId } = useCategoriesStore();
-	console.log(getLatestCategoryId());
 	const [dueDate, setDueDate] = useState<string | undefined>(undefined);
 	const [categories, setCategories] = useState<CategoryTag[]>([]);
 
@@ -52,10 +51,10 @@ function TodoForm({ todolistId }: TodoFormProps) {
 
 	const addCategoryTag = () => {
 		if (category !== null) {
-			const latestId = getLatestCategoryId;
-			const idForColorIndex: any = latestId ?? 0;
-			const colorIndex = idForColorIndex % PREDEFINED_COLORS.length;
-			const newColor = PREDEFINED_COLORS[colorIndex];
+			console.log(getLatestCategoryId());
+			console.log(PREDEFINED_COLORS.length);
+			const newColor = PREDEFINED_COLORS[(getLatestCategoryId() ?? 0) % 10];
+			console.log(newColor);
 			const newTag = {
 				tagName: category,
 				color: newColor,
@@ -116,6 +115,7 @@ function TodoForm({ todolistId }: TodoFormProps) {
 		setCategories([]);
 		reset();
 	};
+	console.log(categories);
 
 	return (
 		<div className="py-2 mb-4">
@@ -152,7 +152,15 @@ function TodoForm({ todolistId }: TodoFormProps) {
 				<div className="flex items-center justify-between px-6 py-1 bg-slate-100 text-xs border-b border-x rounded-b-md">
 					<div className="flex items-center gap-4">
 						{categories.map((cat, idx) => (
-							<p style={{ backgroundColor: cat.color }} className="p-1" key={idx}>
+							<p
+								style={{
+									color: cat.color,
+									backgroundColor: `${cat.color}20`,
+									padding: '2px',
+								}}
+								className="text-xs rounded-md"
+								key={idx}
+							>
 								{cat.tagName}
 							</p>
 						))}
