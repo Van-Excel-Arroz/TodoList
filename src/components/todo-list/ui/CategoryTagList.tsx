@@ -15,11 +15,10 @@ function CategoryTagList({ categories, handleCategoryClick, showIcon = true }: C
 			{categories?.map(category => (
 				<span
 					key={category.id}
-					className="text-xs rounded-md hover:outline hover:outline-1"
+					className="text-xs rounded-full px-2 hover:outline hover:outline-1 border"
 					style={{
 						color: category.hex_color,
-						backgroundColor: `${category.hex_color}20`,
-						padding: '2px',
+						borderColor: `${category.hex_color}60`,
 					}}
 					onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 						event.stopPropagation();
