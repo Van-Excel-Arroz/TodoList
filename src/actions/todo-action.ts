@@ -23,8 +23,8 @@ export async function createTodoAction(
 ) {
 	const todoId = await storeTodo(taskText, dueDatetime, todolistId);
 	if (todoId) {
-		const categoryColorsId = await storeCategoriesColors(categories, todolistId);
-		await storeCategories(todoId, categoryColorsId);
+		const categoryColorIds = await storeCategoriesColors(categories, todolistId);
+		await storeCategories(todoId, categoryColorIds);
 		const newTodo = getTodoWithCategories(1, todolistId, todoId);
 		return newTodo;
 	} else {
