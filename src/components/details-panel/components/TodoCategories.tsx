@@ -16,7 +16,7 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { deleteCategory, addCategory } = useTodosStore();
 	const { categories: categoriesFromStore } = useCategoriesStore();
-	const [isMenuOpen, setIsMeuOpen] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
 	const existingCategories = categories.map(cat => cat.category_title);
 	const filteredCategories = categoriesFromStore.filter(cat => !existingCategories.includes(cat.category_title));
@@ -42,7 +42,7 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 	};
 
 	const handleCancelAddingCategory = () => {
-		setIsMeuOpen(false);
+		setIsMenuOpen(false);
 		setSelectedCategories([]);
 	};
 
@@ -65,7 +65,7 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 					darkMode={true}
 					ariaLabel="Add Category"
 					className="flex items-center gap-1"
-					onClick={() => setIsMeuOpen(prev => !prev)}
+					onClick={() => setIsMenuOpen(prev => !prev)}
 				>
 					<Plus size={13} />
 					<p className="text-sm">Add Category</p>
