@@ -54,11 +54,11 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 					<p className="text-sm">Add Category</p>
 				</Button>
 			</div>
-			<Menu open={isMenuOpen} onClose={() => setIsMeuOpen(false)} width="w-fit" top="-top-24">
+			<Menu open={isMenuOpen} onClose={() => setIsMeuOpen(false)} width="w-fit" className="-translate-y-1/2">
 				<MenuItem className="border-b font-bold justify-center" clickable={false}>
 					<p>Available Categories</p>
 				</MenuItem>
-				<div className="max-h-[20vh] overflow-hidden overflow-y-auto">
+				<div className="max-h-[40vh] overflow-hidden overflow-y-auto">
 					{categoriesFromStore.map(category => (
 						<MenuItem
 							key={category.id}
