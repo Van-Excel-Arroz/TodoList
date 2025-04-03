@@ -31,7 +31,7 @@ export async function getTodoWithCategories(userId: number, todolistId: number, 
 				t.order_index,
 				json_agg(
 						json_build_object(
-								'id', c.id,
+								'id', cc.id,
 								'category_title', cc.category_title,
 								'hex_color', cc.hex_color,
 								'is_selected', cc.is_selected,
@@ -71,7 +71,7 @@ export async function getTodosWithCategories(todolistId: number, userId: number)
 				t.order_index,
 				json_agg(
 						json_build_object(
-								'id', c.id,
+								'id', cc.id,
 								'category_title', cc.category_title,
 								'hex_color', cc.hex_color,
 								'is_selected', cc.is_selected,
@@ -124,7 +124,7 @@ export async function getFilteredTodos(
 								'categories', (
 										SELECT json_agg(
 												json_build_object(
-														'id', c.id,
+														'id', cc.id,
 														'category_title', cc.category_title,
 														'hex_color', cc.hex_color,
 														'is_selected', cc.is_selected,
@@ -177,7 +177,7 @@ export async function getTodosByCategories(): Promise<TodoListWithFilteredTodos[
 							'categories', (
 									SELECT json_agg(
 											json_build_object(
-													'id', cat.id,
+													'id', cat_col.id,
 													'category_title', cat_col.category_title,
 													'hex_color', cat_col.hex_color,
 													'is_selected', cat_col.is_selected,

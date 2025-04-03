@@ -18,8 +18,8 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 	const { categories: categoriesFromStore } = useCategoriesStore();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
-	const existingCategories = categories.map(cat => cat.category_title);
-	const filteredCategories = categoriesFromStore.filter(cat => !existingCategories.includes(cat.category_title));
+	const existingCategories = categories.map(cat => cat.id);
+	const filteredCategories = categoriesFromStore.filter(cat => !existingCategories.includes(cat.id));
 
 	const handleAddCategoryIds = async () => {
 		if (selectedCategories.length === 0) return;
