@@ -1,4 +1,4 @@
-import { Category, Todo, TodoListWithFilteredTodos } from '@/utils/types';
+import { Todo, TodoListWithFilteredTodos } from '@/utils/types';
 import { query } from './db';
 
 export async function storeTodo(text: string, dueDatetime: string | null, todolistId: number): Promise<number | null> {
@@ -13,24 +13,6 @@ export async function storeTodo(text: string, dueDatetime: string | null, todoli
 	} catch (error) {
 		console.error('Error inserting todo in the database');
 		return null;
-	}
-}
-
-export async function getCategoriesFromTodo(todoId: number): Promise<Category[]> {
-	try {
-		const result = await query(
-			`
-			SELECT c.id, cc.category_title, cc.hex_color, cc.is_selected
-			FROM categories c
-			JOIN category_colors cc ON  c.category_color_id = cc.id
-			WHERE c.todo_id = $1
-			`,
-			[todoId]
-		);
-		return result.rows;
-	} catch (error) {
-		console.error('Error fetching todo with categories in the database', error);
-		return [];
 	}
 }
 
