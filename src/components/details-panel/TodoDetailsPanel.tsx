@@ -34,7 +34,7 @@ export default function TodoDetailsPanel() {
 			/>
 			<div
 				className={`flex flex-col fixed lg:relative right-0 top-0 bg-white border-l border-slate-300  h-screen transition-[width] duration-200 ease-in-out z-50 ${
-					isOpen ? 'w-[23rem]' : 'w-0'
+					isOpen ? 'w-[23rem]' : 'w-0 left-10'
 				}`}
 			>
 				<TodoDetailsHeader />
