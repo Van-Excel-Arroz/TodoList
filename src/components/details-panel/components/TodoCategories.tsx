@@ -18,6 +18,8 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 	const { categories: categoriesFromStore } = useCategoriesStore();
 	const [isMenuOpen, setIsMeuOpen] = useState(false);
 	const [selectedCategoriesIds, setSelectedCategoriesIds] = useState<number[]>([]);
+	const existingCategories = categories.map(cat => cat.category_title);
+	const filteredCategories = categoriesFromStore.filter(cat => !existingCategories.includes(cat.category_title));
 
 	const handleCategoryClick = (categoryId: number) => {
 		const isSelected = selectedCategoriesIds.find(id => id === categoryId);
@@ -64,7 +66,7 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 					<p>Available Categories</p>
 				</MenuItem>
 				<div className="max-h-[40vh] overflow-hidden overflow-y-auto">
-					{categoriesFromStore.map(category => (
+					{filteredCategories.map(category => (
 						<MenuItem
 							key={category.id}
 							className="flex items-center justify-between"
