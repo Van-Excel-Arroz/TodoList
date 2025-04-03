@@ -14,6 +14,7 @@ export default function CategoryTag({ category, onRemove }: CategoryTagProps) {
 			style={{
 				color: category.hex_color,
 				borderColor: `${category.hex_color}60`,
+				backgroundColor: `${category.hex_color}10`,
 			}}
 		>
 			<p>{category.category_title}</p>

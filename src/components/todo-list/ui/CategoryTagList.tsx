@@ -19,6 +19,7 @@ function CategoryTagList({ categories, handleCategoryClick, showIcon = true }: C
 					style={{
 						color: category.hex_color,
 						borderColor: `${category.hex_color}60`,
+						backgroundColor: `${category.hex_color}10`,
 					}}
 					onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 						event.stopPropagation();
