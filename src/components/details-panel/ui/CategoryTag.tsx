@@ -10,7 +10,7 @@ export default function CategoryTag({ category, onRemove }: CategoryTagProps) {
 	return (
 		<span
 			key={category.id}
-			className="rounded-full flex items-center gap-1 px-2 py-1 text-sm border"
+			className="rounded-full text-xs flex items-center gap-1 px-2 py-1 border"
 			style={{
 				color: category.hex_color,
 				borderColor: `${category.hex_color}60`,
