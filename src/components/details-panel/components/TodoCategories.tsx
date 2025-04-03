@@ -76,19 +76,23 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 					<p>Available Categories</p>
 				</MenuItem>
 				<div className="max-h-[40vh] overflow-hidden overflow-y-auto">
-					{filteredCategories.map(category => (
-						<MenuItem
-							key={category.id}
-							className="flex items-center justify-between"
-							onClick={() => handleCategoryClick(category)}
-						>
-							<div className="flex items-center gap-2">
-								<p style={{ color: category.hex_color }}>●</p>
-								<p className="text-md">{category.category_title}</p>
-							</div>
-							{selectedCategories.includes(category) ? <Check size={18} className="text-slate-600" /> : null}
-						</MenuItem>
-					))}
+					{filteredCategories.length > 0 ? (
+						filteredCategories.map(category => (
+							<MenuItem
+								key={category.id}
+								className="flex items-center justify-between"
+								onClick={() => handleCategoryClick(category)}
+							>
+								<div className="flex items-center gap-2">
+									<p style={{ color: category.hex_color }}>●</p>
+									<p className="text-md">{category.category_title}</p>
+								</div>
+								{selectedCategories.includes(category) ? <Check size={18} className="text-slate-600" /> : null}
+							</MenuItem>
+						))
+					) : (
+						<p className="py-6 px-3 text-slate-600">No more categories to add.</p>
+					)}
 				</div>
 				<MenuItem className="border-t font-bold flex justify-between gap-2" clickable={false}>
 					<Button ariaLabel="Cancel Adding Categories" onClick={handleCancelAddingCategory}>
