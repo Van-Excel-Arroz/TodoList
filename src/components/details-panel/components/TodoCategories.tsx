@@ -17,28 +17,30 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 	const { deleteCategory } = useTodosStore();
 	const { categories: categoriesFromStore } = useCategoriesStore();
 	const [isMenuOpen, setIsMeuOpen] = useState(false);
-	const [selectedCategoriesIds, setSelectedCategoriesIds] = useState<number[]>([]);
+	const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
 	const existingCategories = categories.map(cat => cat.category_title);
 	const filteredCategories = categoriesFromStore.filter(cat => !existingCategories.includes(cat.category_title));
 
 	const handleAddCategoryIds = async () => {
-		await addTodoCategoriesAction(selectedCategoriesIds, selectedTodoId);
+		const categoriesIds = selectedCategories.map(cat => cat.id);
+		await addTodoCategoriesAction(categoriesIds, selectedTodoId);
+
 		handleCancelAddingCategory();
 	};
 
-	const handleCategoryClick = (categoryId: number) => {
-		const isSelected = selectedCategoriesIds.find(id => id === categoryId);
+	const handleCategoryClick = (category: Category) => {
+		const isSelected = selectedCategories.find(cat => cat.id === category.id);
 
 		if (isSelected) {
-			setSelectedCategoriesIds(ids => ids.filter(id => id !== categoryId));
+			setSelectedCategories(cats => cats.filter(cat => cat.id !== category.id));
 		} else {
-			setSelectedCategoriesIds(ids => [...ids, categoryId]);
+			setSelectedCategories(cats => [...cats, category]);
 		}
 	};
 
 	const handleCancelAddingCategory = () => {
 		setIsMeuOpen(false);
-		setSelectedCategoriesIds([]);
+		setSelectedCategories([]);
 	};
 
 	const handleRemoveCategory = async (categoryId: number) => {
@@ -75,13 +77,13 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 						<MenuItem
 							key={category.id}
 							className="flex items-center justify-between"
-							onClick={() => handleCategoryClick(category.id)}
+							onClick={() => handleCategoryClick(category)}
 						>
 							<div className="flex items-center gap-2">
 								<p style={{ color: category.hex_color }}>●</p>
 								<p className="text-md">{category.category_title}</p>
 							</div>
-							{selectedCategoriesIds.includes(category.id) ? <Check size={18} className="text-slate-600" /> : null}
+							{selectedCategories.includes(category) ? <Check size={18} className="text-slate-600" /> : null}
 						</MenuItem>
 					))}
 				</div>
