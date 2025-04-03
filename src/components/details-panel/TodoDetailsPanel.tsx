@@ -47,7 +47,7 @@ export default function TodoDetailsPanel() {
 
 					<TodoTitle title={todo?.task_text ?? ''} />
 					<TodoDueDate dueDate={todo?.due_datetime ?? ''} />
-					<TodoCategories categories={todo?.categories ?? []} todoId={todo?.id ?? 0} />
+					<TodoCategories categories={todo?.categories ?? []} />
 					<TodoDescription description={todo?.description ?? ''} />
 				</div>
 				<TodoDetailsFooter creationDate={todo?.creation_date ?? ''} />

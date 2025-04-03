@@ -12,7 +12,7 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import { useState } from 'react';
 import useCategoriesStore from '@/context/CategoriesContext';
 
-export default function TodoCategories({ categories, todoId }: { categories: Category[]; todoId: number }) {
+export default function TodoCategories({ categories }: { categories: Category[] }) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { deleteCategory } = useTodosStore();
 	const { categories: categoriesFromStore } = useCategoriesStore();
@@ -22,7 +22,7 @@ export default function TodoCategories({ categories, todoId }: { categories: Cat
 	const filteredCategories = categoriesFromStore.filter(cat => !existingCategories.includes(cat.category_title));
 
 	const handleAddCategoryIds = async () => {
-		await addTodoCategoriesAction(selectedCategoriesIds, todoId);
+		await addTodoCategoriesAction(selectedCategoriesIds, selectedTodoId);
 		handleCancelAddingCategory();
 	};
 
