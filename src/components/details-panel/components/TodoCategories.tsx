@@ -4,13 +4,13 @@ import { Check, Plus, Tags } from 'lucide-react';
 import { Category } from '@/utils/types';
 import { addTodoCategoriesAction, deleteTodoCategoryAction } from '@/actions/category-action';
 import useTodosStore from '@/context/TodosContext';
-import CategoryTags from '../ui/CategoryTags';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import Button from '@/components/ui-shared/Button';
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { useState } from 'react';
 import useCategoriesStore from '@/context/CategoriesContext';
+import CategoryTag from '../ui/CategoryTag';
 
 export default function TodoCategories({ categories }: { categories: Category[] }) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
@@ -59,7 +59,7 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 			</div>
 			<div className={`flex flex-wrap items-center gap-2`}>
 				{categories.map(category => (
-					<CategoryTags key={category.id} category={category} onRemove={handleRemoveCategory} />
+					<CategoryTag key={category.id} category={category} onRemove={handleRemoveCategory} />
 				))}
 				<Button
 					darkMode={true}
