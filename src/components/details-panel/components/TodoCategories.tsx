@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, CheckIcon, Plus, Tags } from 'lucide-react';
+import { Check, Plus, Tags } from 'lucide-react';
 import { Category } from '@/utils/types';
 import { deleteTodoCategoryAction } from '@/actions/category-action';
 import useTodosStore from '@/context/TodosContext';
