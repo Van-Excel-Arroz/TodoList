@@ -2,7 +2,7 @@
 
 import { Check, Plus, Tags } from 'lucide-react';
 import { Category } from '@/utils/types';
-import { deleteTodoCategoryAction } from '@/actions/category-action';
+import { addTodoCategoriesAction, deleteTodoCategoryAction } from '@/actions/category-action';
 import useTodosStore from '@/context/TodosContext';
 import CategoryTags from '../ui/CategoryTags';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
@@ -12,7 +12,7 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import { useState } from 'react';
 import useCategoriesStore from '@/context/CategoriesContext';
 
-export default function TodoCategories({ categories, todolistId }: { categories: Category[]; todolistId: number }) {
+export default function TodoCategories({ categories, todoId }: { categories: Category[]; todoId: number }) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { deleteCategory } = useTodosStore();
 	const { categories: categoriesFromStore } = useCategoriesStore();
@@ -20,6 +20,11 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 	const [selectedCategoriesIds, setSelectedCategoriesIds] = useState<number[]>([]);
 	const existingCategories = categories.map(cat => cat.category_title);
 	const filteredCategories = categoriesFromStore.filter(cat => !existingCategories.includes(cat.category_title));
+
+	const handleAddCategoryIds = async () => {
+		await addTodoCategoriesAction(selectedCategoriesIds, todoId);
+		handleCancelAddingCategory();
+	};
 
 	const handleCategoryClick = (categoryId: number) => {
 		const isSelected = selectedCategoriesIds.find(id => id === categoryId);
@@ -84,7 +89,7 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 					<Button ariaLabel="Cancel Adding Categories" onClick={handleCancelAddingCategory}>
 						<p>Cancel</p>
 					</Button>
-					<Button ariaLabel="Add Selected Categories" darkMode={true}>
+					<Button ariaLabel="Add Selected Categories" darkMode={true} onClick={() => handleAddCategoryIds()}>
 						<p className="px-1">Add</p>
 					</Button>
 				</MenuItem>
