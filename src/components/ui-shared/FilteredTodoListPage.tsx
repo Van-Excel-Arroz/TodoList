@@ -41,7 +41,7 @@ function FilteredTodoListPage({ filteredTodoList, title }: FilteredTodoListPage)
 						isEmpty={false}
 						title={todoList.title}
 						key={todoList.id}
-						itemCount={todoList.filtered_todos.length}
+						itemCount={todoList.filtered_todos?.length ?? 0}
 						view={view}
 						className="mb-4"
 					>
