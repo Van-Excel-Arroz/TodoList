@@ -14,7 +14,7 @@ import useCategoriesStore from '@/context/CategoriesContext';
 
 export default function TodoCategories({ categories }: { categories: Category[] }) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
-	const { deleteCategory } = useTodosStore();
+	const { deleteCategory, addCategory } = useTodosStore();
 	const { categories: categoriesFromStore } = useCategoriesStore();
 	const [isMenuOpen, setIsMeuOpen] = useState(false);
 	const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
@@ -22,9 +22,12 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 	const filteredCategories = categoriesFromStore.filter(cat => !existingCategories.includes(cat.category_title));
 
 	const handleAddCategoryIds = async () => {
+		if (selectedCategories.length === 0) return;
 		const categoriesIds = selectedCategories.map(cat => cat.id);
 		await addTodoCategoriesAction(categoriesIds, selectedTodoId);
-
+		selectedCategories.map(cat => {
+			addCategory(selectedTodoId, cat);
+		});
 		handleCancelAddingCategory();
 	};
 
