@@ -29,6 +29,11 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 		}
 	};
 
+	const handleCancelAddingCategory = () => {
+		setIsMeuOpen(false);
+		setSelectedCategoriesIds([]);
+	};
+
 	const handleRemoveCategory = async (categoryId: number) => {
 		await deleteTodoCategoryAction(categoryId);
 		deleteCategory(selectedTodoId, categoryId);
@@ -67,14 +72,14 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 						>
 							<div className="flex items-center gap-2">
 								<p style={{ color: category.hex_color }}>●</p>
-								<p className="text-base">{category.category_title}</p>
+								<p className="text-md">{category.category_title}</p>
 							</div>
 							{selectedCategoriesIds.includes(category.id) ? <Check size={18} className="text-slate-600" /> : null}
 						</MenuItem>
 					))}
 				</div>
 				<MenuItem className="border-t font-bold flex justify-between gap-2" clickable={false}>
-					<Button ariaLabel="Cancel Adding Categories" onClick={() => setIsMeuOpen(false)}>
+					<Button ariaLabel="Cancel Adding Categories" onClick={handleCancelAddingCategory}>
 						<p>Cancel</p>
 					</Button>
 					<Button ariaLabel="Add Selected Categories" darkMode={true}>
