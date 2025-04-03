@@ -37,7 +37,7 @@ export async function getTodoWithCategories(userId: number, todolistId: number, 
 								'is_selected', cc.is_selected,
 								'todo_list_id', cc.todo_list_id
 						)
-				) FILTER (WHERE c.id IS NOT NULL) as categories
+				) as categories
 				FROM todos t
 				LEFT JOIN categories c ON c.todo_id = t.id
 				LEFT JOIN todo_lists tl ON tl.id = t.todo_list_id
@@ -77,7 +77,7 @@ export async function getTodosWithCategories(todolistId: number, userId: number)
 								'is_selected', cc.is_selected,
 								'todo_list_id', cc.todo_list_id
 						)
-				) FILTER (WHERE c.id IS NOT NULL) as categories
+				) as categories
 				FROM todos t
 				LEFT JOIN categories c ON c.todo_id = t.id
 				LEFT JOIN todo_lists tl ON tl.id = t.todo_list_id
@@ -104,6 +104,11 @@ export async function getFilteredTodos(
 		Importance: 't.is_important = TRUE',
 	};
 
+	if (!filterQuery[filterBy]) {
+		throw new Error('Invalid filterBy value');
+	}
+
+	const condition = filterQuery[filterBy];
 	try {
 		const result = await query(
 			`
@@ -136,7 +141,7 @@ export async function getFilteredTodos(
 										WHERE c.todo_id = t.id
 								)
 						)
-				) FILTER (WHERE t.is_completed = FALSE and ${filterQuery[filterBy]}) AS filtered_todos 
+				) FILTER (WHERE t.is_completed = FALSE AND ${condition}) AS filtered_todos 
 			FROM 
 					todo_lists as tl
 			JOIN 
@@ -145,6 +150,8 @@ export async function getFilteredTodos(
 					tl.user_id = $1
 			GROUP BY 
 					tl.title, tl.id
+			HAVING 
+					count(t.id) FILTER (WHERE t.is_completed = FALSE AND ${condition}) > 0
 			ORDER BY 
 					tl.id;
 `,
