@@ -1,6 +1,6 @@
 'use server';
 
-import { createCategoryColor, deleteCategory, storeCategory, updateIsSelectedCategoryColors } from '@/lib/category';
+import { createCategoryColor, deleteCategory, storeCategory } from '@/lib/category';
 
 export async function addTodoCategoryAction(
 	categoryTitle: string,
@@ -9,9 +9,9 @@ export async function addTodoCategoryAction(
 	todoId: number
 ): Promise<number | undefined> {
 	const categoryColorsId = await createCategoryColor(categoryTitle, hexColor, todolistId);
-	const categoryId = await storeCategory(todoId, categoryColorsId!);
 
-	if (categoryId) {
+	if (categoryColorsId) {
+		const categoryId = await storeCategory(todoId, categoryColorsId);
 		return categoryId;
 	} else {
 		console.error('Failed to add category to todo');
