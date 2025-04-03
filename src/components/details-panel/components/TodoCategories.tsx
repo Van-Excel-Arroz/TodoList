@@ -1,6 +1,6 @@
 'use client';
 
-import { CheckIcon, Plus, Tags } from 'lucide-react';
+import { Check, CheckIcon, Plus, Tags } from 'lucide-react';
 import { Category } from '@/utils/types';
 import { deleteTodoCategoryAction } from '@/actions/category-action';
 import useTodosStore from '@/context/TodosContext';
@@ -17,6 +17,17 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 	const { deleteCategory } = useTodosStore();
 	const { categories: categoriesFromStore } = useCategoriesStore();
 	const [isMenuOpen, setIsMeuOpen] = useState(false);
+	const [selectedCategoriesIds, setSelectedCategoriesIds] = useState<number[]>([]);
+
+	const handleCategoryClick = (categoryId: number) => {
+		const isSelected = selectedCategoriesIds.find(id => id === categoryId);
+
+		if (isSelected) {
+			setSelectedCategoriesIds(ids => ids.filter(id => id !== categoryId));
+		} else {
+			setSelectedCategoriesIds(ids => [...ids, categoryId]);
+		}
+	};
 
 	const handleRemoveCategory = async (categoryId: number) => {
 		await deleteTodoCategoryAction(categoryId);
@@ -47,13 +58,18 @@ export default function TodoCategories({ categories, todolistId }: { categories:
 				<MenuItem className="border-b font-bold justify-center" clickable={false}>
 					<p>Available Categories</p>
 				</MenuItem>
-				<div className="max-h-[40vh] overflow-hidden overflow-y-auto">
+				<div className="max-h-[20vh] overflow-hidden overflow-y-auto">
 					{categoriesFromStore.map(category => (
-						<MenuItem key={category.id} className="flex items-center justify-between">
+						<MenuItem
+							key={category.id}
+							className="flex items-center justify-between"
+							onClick={() => handleCategoryClick(category.id)}
+						>
 							<div className="flex items-center gap-2">
 								<p style={{ color: category.hex_color }}>●</p>
 								<p className="text-base">{category.category_title}</p>
 							</div>
+							{selectedCategoriesIds.includes(category.id) ? <Check size={18} className="text-slate-600" /> : null}
 						</MenuItem>
 					))}
 				</div>
