@@ -101,18 +101,6 @@ export async function updateIsSelectedCategoryColors(
 	}
 }
 
-export async function getSelectedCategories(todolistId: number): Promise<Category[]> {
-	try {
-		const result = await query('SELECT * FROM category_colors WHERE is_selected = TRUE AND todo_list_id = $1', [
-			todolistId,
-		]);
-		return result.rows;
-	} catch (error) {
-		console.error('Error fetching selected categories in the database', error);
-		return [];
-	}
-}
-
 export async function deleteCategory(categoryId: number): Promise<boolean> {
 	try {
 		await query('DELETE FROM categories WHERE id = $1', [categoryId]);
