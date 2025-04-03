@@ -71,7 +71,7 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 					<p className="text-sm">Add Category</p>
 				</Button>
 			</div>
-			<Menu open={isMenuOpen} onClose={() => handleCancelAddingCategory()} width="w-fit" className="-translate-y-1/2">
+			<Menu open={isMenuOpen} onClose={() => handleCancelAddingCategory()} width="w-64" className="-translate-y-1/2">
 				<MenuItem className="border-b font-bold justify-center" clickable={false}>
 					<p>Available Categories</p>
 				</MenuItem>
