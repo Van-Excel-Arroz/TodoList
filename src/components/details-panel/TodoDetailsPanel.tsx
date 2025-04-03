@@ -38,7 +38,7 @@ export default function TodoDetailsPanel() {
 				}`}
 			>
 				<TodoDetailsHeader />
-				<div className="flex-1 px-6 space-y-4 pt-4 overflow-y-auto">
+				<div className="flex-1 px-6 space-y-4 pt-4">
 					<Selection options={sections} selectedOption={section} setSelectedOption={setSection} />
 					<div className="flex items-center justify-between gap-4">
 						<TodoComplete isCompleted={todo?.is_completed ?? false} completedAt={todo?.completed_at ?? ''} />
