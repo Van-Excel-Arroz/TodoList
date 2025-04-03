@@ -4,7 +4,6 @@ import FilteredTodoListPage from '../ui-shared/FilteredTodoListPage';
 
 export default async function PriorityPage() {
 	const importantTodosWithTodoList = await getFilteredTodos(1, 'Importance');
-	console.log(importantTodosWithTodoList);
 
 	return (
 		<>

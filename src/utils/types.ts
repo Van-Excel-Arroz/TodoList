@@ -1,6 +1,5 @@
 export interface Todo {
 	id: number;
-	order_index: number;
 	task_text: string;
 	due_datetime: string | null;
 	description: string | null;
@@ -16,7 +15,6 @@ export interface Category {
 	id: number;
 	category_title: string;
 	hex_color: string;
-	is_selected: boolean;
 	todo_list_id: number;
 }
 

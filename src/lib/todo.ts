@@ -28,13 +28,12 @@ export async function getTodoWithCategories(userId: number, todolistId: number, 
 				t.due_datetime,
 				t.creation_date,
 				t.is_completed,
-				t.order_index,
+				t.todo_list_id,
 				json_agg(
 						json_build_object(
 								'id', cc.id,
 								'category_title', cc.category_title,
 								'hex_color', cc.hex_color,
-								'is_selected', cc.is_selected,
 								'todo_list_id', cc.todo_list_id
 						)
 				) as categories
@@ -68,13 +67,12 @@ export async function getTodosWithCategories(todolistId: number, userId: number)
 				t.due_datetime,
 				t.creation_date,
 				t.is_completed,
-				t.order_index,
+				t.todo_list_id,
 				json_agg(
 						json_build_object(
 								'id', cc.id,
 								'category_title', cc.category_title,
 								'hex_color', cc.hex_color,
-								'is_selected', cc.is_selected,
 								'todo_list_id', cc.todo_list_id
 						)
 				) as categories
@@ -124,7 +122,6 @@ export async function getFilteredTodos(
 								'due_datetime', t.due_datetime,
 								'creation_date', t.creation_date,
 								'is_completed', t.is_completed,
-								'order_index', t.order_index,
 								'todo_list_id', t.todo_list_id,
 								'categories', (
 										SELECT json_agg(
@@ -132,7 +129,6 @@ export async function getFilteredTodos(
 														'id', cc.id,
 														'category_title', cc.category_title,
 														'hex_color', cc.hex_color,
-														'is_selected', cc.is_selected,
 														'todo_list_id', cc.todo_list_id
 												)
 										)
@@ -180,14 +176,13 @@ export async function getTodosByCategories(): Promise<TodoListWithFilteredTodos[
 							'due_datetime', t.due_datetime,
 							'creation_date', t.creation_date,
 							'is_completed', t.is_completed,
-							'order_index', t.order_index,
+							'todo_list_id', t.todo_list_id,
 							'categories', (
 									SELECT json_agg(
 											json_build_object(
 													'id', cat_col.id,
 													'category_title', cat_col.category_title,
 													'hex_color', cat_col.hex_color,
-													'is_selected', cat_col.is_selected,
 													'todo_list_id', cat_col.todo_list_id
 											)
 									)

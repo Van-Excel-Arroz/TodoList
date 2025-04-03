@@ -19,7 +19,7 @@ export async function getCategoryColor(category: string, todolistId: number): Pr
 export async function createCategoryColor(category: string, color: string, todolistId: number): Promise<number | null> {
 	try {
 		const result = await query(
-			'INSERT INTO category_colors (category_title, hex_color, is_selected, todo_list_id) VALUES ($1, $2, FALSE, $3) RETURNING id',
+			'INSERT INTO category_colors (category_title, hex_color, todo_list_id) VALUES ($1, $2, $3) RETURNING id',
 			[category, color, todolistId]
 		);
 		const newCategoryId = result.rows[0];
@@ -73,24 +73,6 @@ export async function storeCategory(todoId: number, categoryColorId: number): Pr
 	} catch (error) {
 		console.error('Error inserting category in the database', error);
 		return;
-	}
-}
-
-export async function updateIsSelectedCategoryColors(
-	isSelected: boolean,
-	categoryTitle: string,
-	todolistId: number
-): Promise<boolean> {
-	try {
-		await query('UPDATE category_colors SET is_selected = $1 WHERE category_title = $2 AND todo_list_id = $3', [
-			isSelected,
-			categoryTitle,
-			todolistId,
-		]);
-		return true;
-	} catch (error) {
-		console.error('Error updating isSelected in category_colors from the database', error);
-		return false;
 	}
 }
 
