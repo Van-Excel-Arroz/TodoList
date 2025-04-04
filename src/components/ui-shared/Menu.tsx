@@ -29,10 +29,14 @@ export default function Menu({ open, onClose, children, width, className, top = 
 	return (
 		<div
 			ref={ref}
-			className={`absolute z-20 bg-white text-center text-black text-sm rounded-lg flex flex-col border border-gray-300 shadow-lg left-1/2 -translate-x-1/2
+			className={`absolute z-20 bg-white text-center text-black text-sm rounded-lg flex flex-col border border-gray-300 shadow-lg left-1/2 -translate-x-1/2 transition-all  ease-out
+                ${
+									open
+										? 'opacity-100 scale-100 translate-y-0 duration-100'
+										: 'opacity-0 scale-95 -translate-y-1 pointer-events-none duration-200'
+								}
 									${top}
                   ${width}
-									${open ? 'block' : 'hidden'}
 									${className}
 									`}
 		>
