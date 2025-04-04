@@ -19,7 +19,8 @@ export default function Menu({ open, onClose, children, width, className, top = 
 			}
 		};
 
-		document.addEventListener('mousedown', handleClickOutside);
+		if (open) document.addEventListener('mousedown', handleClickOutside);
+
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
