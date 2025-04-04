@@ -7,7 +7,7 @@ import Button from '@/components/ui-shared/Button';
 import useTodosStore from '@/context/TodosContext';
 import useCategoriesStore from '@/context/CategoriesContext';
 import DueDateForm from '../ui/DueDateForm';
-import { X } from 'lucide-react';
+import { Tag, X } from 'lucide-react';
 import { PREDEFINED_COLORS } from '@/utils/constants';
 import { CategoryTag } from '@/utils/types';
 
@@ -134,8 +134,9 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 				</div>
 			</form>
 			{categories.length > 0 ? (
-				<div className="flex items-center justify-between px-6 py-1 bg-slate-50 text-xs border-b border-x rounded-b-md">
-					<div className="flex items-center gap-4">
+				<div className="flex items-center justify-between px-6 py-1 text-xs border-b border-x rounded-b-2xl">
+					<div className="flex flex-wrap items-center gap-4">
+						<Tag size={18} className="text-slate-600" />
 						{categories.map(cat => (
 							<p
 								style={{
