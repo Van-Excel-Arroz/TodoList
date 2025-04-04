@@ -75,10 +75,12 @@ function TodoItem({ todo }: { todo: Todo }) {
 							/>
 							<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
 						</div>
-						<p className={`w-[90%] ${todo.is_completed && 'line-through text-slate-600'}`}>{todo.task_text}</p>
+						<p className={`w-[90%] ${todo.is_completed && 'line-through text-slate-600'} lg:text-base text-md`}>
+							{todo.task_text}
+						</p>
 					</div>
 					<div className="col-span-2 flex items-center justify-center">
-						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
+						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} displayIcon={false} />}
 					</div>
 					<div className="col-span-3 flex items-center gap-2 flex-wrap">
 						{(todo.categories?.length ?? 0) > 0 && (
@@ -115,7 +117,9 @@ function TodoItem({ todo }: { todo: Todo }) {
 
 						<div className="flex flex-col ml-5 w-full ">
 							<p
-								className={`w-[90%] text-ellipsis overflow-hidden ${todo.is_completed && 'line-through text-slate-600'}
+								className={`w-[90%] text-ellipsis overflow-hidden lg:text-base text-md ${
+									todo.is_completed && 'line-through text-slate-600'
+								}
 			}`}
 							>
 								{todo.task_text}
