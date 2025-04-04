@@ -17,7 +17,7 @@ export default function Selection({ options, selectedOption, setSelectedOption }
 					} flex-1 py-1 mx-1 cursor-pointer`}
 					onClick={() => setSelectedOption(option.toLowerCase())}
 				>
-					<p className="text-sm">{option}</p>
+					<p className="text-md">{option}</p>
 				</div>
 			))}
 		</div>
