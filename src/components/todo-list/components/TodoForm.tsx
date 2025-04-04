@@ -105,7 +105,7 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 	return (
 		<div className="py-2 mb-4">
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className="w-full flex items-center gap-4 px-6 py-2 shadow-md hover:shadow-xl hover:border-slate-600 border border-slate-300 rounded-md bg-white">
+				<div className="w-full flex items-center gap-4 px-6 py-2 shadow-sm hover:shadow-md hover:border-slate-600 border border-slate-300 rounded-md bg-white">
 					<input
 						{...register('todo', {
 							required: true,
