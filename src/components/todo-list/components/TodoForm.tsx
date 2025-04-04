@@ -134,16 +134,16 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 				</div>
 			</form>
 			{categories.length > 0 ? (
-				<div className="flex items-center justify-between px-6 py-1 bg-slate-100 text-xs border-b border-x rounded-b-md">
+				<div className="flex items-center justify-between px-6 py-1 bg-slate-50 text-xs border-b border-x rounded-b-md">
 					<div className="flex items-center gap-4">
 						{categories.map(cat => (
 							<p
 								style={{
 									color: cat.color,
-									backgroundColor: `${cat.color}20`,
-									padding: '2px',
+									backgroundColor: `${cat.color}10`,
+									borderColor: cat.color,
 								}}
-								className="text-xs rounded-md"
+								className="text-xs rounded-full border px-2 py-[1px]"
 								key={cat.tagName}
 							>
 								{cat.tagName}
