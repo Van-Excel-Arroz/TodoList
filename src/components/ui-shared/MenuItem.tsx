@@ -6,21 +6,29 @@ interface MenuItemProps {
 	onClick?: () => void;
 	clickable?: boolean;
 	href?: string;
+	textSize?: string;
 }
 
-export default function MenuItem({ children, className, onClick, clickable = true, href }: MenuItemProps) {
+export default function MenuItem({
+	children,
+	className,
+	onClick,
+	clickable = true,
+	href,
+	textSize = 'text-base',
+}: MenuItemProps) {
 	return (
 		<>
 			{href ? (
 				<Link
 					href={href}
-					className="flex items-center justify-center gap-2 hover:bg-slate-200 active:bg-slate-300 cursor-pointer p-2"
+					className={`${textSize} flex items-center justify-center gap-2 hover:bg-slate-200 active:bg-slate-300 cursor-pointer p-2`}
 				>
 					{children}
 				</Link>
 			) : (
 				<div
-					className={`${className || ''} ${
+					className={`${className || ''} ${textSize} ${
 						clickable && 'hover:bg-slate-200 active:bg-slate-300 cursor-pointer'
 					} flex items-center gap-2 p-2 relative`}
 					onClick={() => onClick && onClick()}
