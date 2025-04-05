@@ -13,10 +13,7 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: MenuOpenProps)
 	const [smart_list] = getQueryParam('smart-list');
 
 	const applyCategoriesFilter = () => {
-		const selectedCategoryTitles = categories
-			.filter(cat => cat.is_selected)
-			.map(cat => cat.category_title)
-			.join(',');
+		const selectedCategoryTitles = categories.map(cat => cat.category_title).join(',');
 
 		if (selectedCategoryTitles)
 			updateSearchParams('filter', `categories:${selectedCategoryTitles}`, todolistId || smart_list);
@@ -46,7 +43,7 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: MenuOpenProps)
 						</div>
 
 						<Button ariaLabel="Unselect category" className="hover:bg-slate-300 w-5 h-5">
-							<CheckIcon size={16} strokeWidth={2} className={`${category.is_selected ? 'block' : 'hidden'} `} />
+							<CheckIcon size={16} strokeWidth={2} />
 						</Button>
 					</MenuItem>
 				))}
