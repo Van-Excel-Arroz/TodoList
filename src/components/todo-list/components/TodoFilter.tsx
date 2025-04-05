@@ -3,7 +3,6 @@
 import Button from '@/components/ui-shared/Button';
 import { Filter } from 'lucide-react';
 import { useState } from 'react';
-
 import FilterMenu from '../ui/FilterMenu';
 import FilterControl from '../ui/FilterControl';
 import useQueryParams from '@/hooks/useQueryParams';
@@ -26,6 +25,7 @@ export default function TodoFilter() {
 						<Filter size={18} className="text-slate-600" />
 					</Button>
 				)}
+
 				<FilterMenu isOpen={isFilterMenuOpen} setIsOpen={setIsFilterMenuOpen} />
 			</div>
 		</div>
