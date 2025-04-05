@@ -1,6 +1,6 @@
 import { CalendarDays, Filter, Tag, XIcon } from 'lucide-react';
 import Button from '@/components/ui-shared/Button';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useQueryParams from '@/hooks/useQueryParams';
 
 const filterIcons: any = {
@@ -8,12 +8,7 @@ const filterIcons: any = {
 	categories: Tag,
 };
 
-interface FilterControlProps {
-	setIsDateFilterOpen: Dispatch<SetStateAction<boolean>>;
-	setIsCategoryFilterOpen: Dispatch<SetStateAction<boolean>>;
-}
-
-export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilterOpen }: FilterControlProps) {
+export default function FilterControl() {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField, filterValue] = getQueryParam('filter');
 	const [todolistId] = getQueryParam('id');
@@ -28,18 +23,9 @@ export default function FilterControl({ setIsCategoryFilterOpen, setIsDateFilter
 		}
 	}, [filterField, filterValue]);
 
-	const handleMenuToggle = () => {
-		if (filterField === 'dueDate') setIsDateFilterOpen(prev => !prev);
-		if (filterField === 'categories') return setIsCategoryFilterOpen(prev => !prev);
-	};
-
 	return (
 		<div className="flex items-center gap-1">
-			<Button
-				ariaLabel="Change Filter"
-				onClick={handleMenuToggle}
-				className="flex items-center gap-1 hover:bg-slate-300 active:bg-slate-400"
-			>
+			<Button ariaLabel="Change Filter" className="flex items-center gap-1 hover:bg-slate-300 active:bg-slate-400">
 				<Icon size={16} />
 				<p className="text-[12px]">{filterField === 'categories' ? 'Category' : filterValue}</p>
 				{filterField === 'categories' && (
