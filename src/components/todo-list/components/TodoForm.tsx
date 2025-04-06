@@ -44,9 +44,13 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 	const todoValue = watch('todo');
 	const category = extractLastPartCategory(todoValue);
 
+	const categoryTagExists = () => {
+		return categories.some(cat => cat.tagName === category);
+	};
+
 	const addCategoryTag = () => {
 		if (category !== null) {
-			if (categories.some(cat => cat.tagName === category)) {
+			if (categoryTagExists()) {
 				return;
 			}
 			let newColor = '';
@@ -118,7 +122,7 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 						className="w-full focus:outline-none"
 						onKeyDown={handleInputKeyDown}
 					/>
-					{category && (
+					{category && !categoryTagExists() && (
 						<Button ariaLabel="Add Category" darkMode={true} onClick={() => addCategoryTag()}>
 							<p className="text-sm">Tab</p>
 						</Button>
