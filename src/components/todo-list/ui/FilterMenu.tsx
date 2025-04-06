@@ -14,8 +14,7 @@ export default function FilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 				<p>Due Date</p>
 			</MenuItem>
 			<DateFilterMenu />
-			<MenuItem clickable={false} className="border-t">
-				<Tag className="text-slate-600 " size={18} />
+			<MenuItem clickable={false} textSize="text-sm" className="text-slate-600 border-t">
 				<p>Categories</p>
 			</MenuItem>
 		</Menu>
