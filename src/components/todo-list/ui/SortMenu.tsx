@@ -1,7 +1,7 @@
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import useQueryParams from '@/hooks/useQueryParams';
-import { CalendarDays, CalendarPlus, CaseSensitive, Check, Star } from 'lucide-react';
+import { CalendarDays, CalendarPlus, CaseSensitive, Check, Star, Trash2 } from 'lucide-react';
 
 interface SortMenuProps {
 	isSortMenuOpen: boolean;
@@ -65,6 +65,13 @@ export default function SortMenu({
 					</div>
 				</MenuItem>
 			))}
+			<MenuItem
+				className="border-t justify-center"
+				onClick={() => updateSearchParams('sort', null, todolistId || smart_list)}
+			>
+				<Trash2 size={18} className="text-slate-600" />
+				<p>Clear</p>
+			</MenuItem>
 		</Menu>
 	);
 }

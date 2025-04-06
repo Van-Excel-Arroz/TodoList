@@ -1,7 +1,6 @@
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { MenuOpenProps } from '@/utils/types';
-import { Tag } from 'lucide-react';
 import DateFilterMenu from './DateFilterMenu';
 
 export default function FilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
