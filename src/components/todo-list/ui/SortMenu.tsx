@@ -33,7 +33,7 @@ const MenuItems = {
 export default function SortMenu({
 	isSortMenuOpen,
 	setIsSortMenuOpen,
-	width = 'w-44',
+	width = 'w-64',
 	top,
 	header = true,
 }: SortMenuProps) {

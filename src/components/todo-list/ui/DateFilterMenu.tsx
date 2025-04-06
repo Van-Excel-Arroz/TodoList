@@ -15,10 +15,10 @@ export default function DateFilterMenu() {
 			{DateFilters.map(label => (
 				<MenuItem
 					key={label}
-					className="flex items-center justify-between w-full"
+					className="flex items-center justify-between"
 					onClick={() => updateSearchParams('filter', `dueDate:${label}`, todolistId || smart_list)}
 				>
-					<p className="text-md text-left w-full">{label}</p>
+					<p className="text-md text-left">{label}</p>
 					<div className="h-3 w-3 mr-2">
 						<CheckIcon size={14} className={`${label === filterValue ? 'block' : 'hidden'}`} />
 					</div>

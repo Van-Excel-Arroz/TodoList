@@ -1,12 +1,12 @@
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { MenuOpenProps } from '@/utils/types';
-import { CalendarDays, Tag } from 'lucide-react';
+import { Tag } from 'lucide-react';
 import DateFilterMenu from './DateFilterMenu';
 
 export default function FilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 	return (
-		<Menu open={isOpen} onClose={() => setIsOpen(false)} width="w-44">
+		<Menu open={isOpen} onClose={() => setIsOpen(false)} width="w-52">
 			<MenuItem className="border-b font-bold justify-center" clickable={false}>
 				<p>Filter by</p>
 			</MenuItem>
