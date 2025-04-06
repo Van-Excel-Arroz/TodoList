@@ -1,7 +1,7 @@
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import useQueryParams from '@/hooks/useQueryParams';
-import { CalendarDays, CalendarPlus, CaseSensitive, Star } from 'lucide-react';
+import { CalendarDays, CalendarPlus, CaseSensitive, Dot, Star } from 'lucide-react';
 
 interface SortMenuProps {
 	isSortMenuOpen: boolean;
@@ -40,6 +40,7 @@ export default function SortMenu({
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
 	const [smart_list] = getQueryParam('smart-list');
+	const [sortField, sortValue] = getQueryParam('sort');
 
 	return (
 		<Menu open={isSortMenuOpen} onClose={() => setIsSortMenuOpen(false)} width={width} top={top}>
@@ -51,6 +52,7 @@ export default function SortMenu({
 
 			{Object.entries(MenuItems).map(([label, menuItem]) => (
 				<MenuItem onClick={() => updateSearchParams('sort', menuItem.param, todolistId || smart_list)} key={label}>
+					<div className="w-6">{menuItem.param === `${sortField}:${sortValue}` ? <Dot /> : null}</div>
 					<menuItem.icon className="text-slate-600" size={18} />
 					<p>{label}</p>
 				</MenuItem>

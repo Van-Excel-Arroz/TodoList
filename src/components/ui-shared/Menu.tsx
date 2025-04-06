@@ -29,7 +29,7 @@ export default function Menu({ open, onClose, children, width, className, top = 
 	return (
 		<div
 			ref={ref}
-			className={`absolute z-20 bg-white text-center text-black  rounded-lg flex flex-col border border-gray-300 shadow-lg left-1/2 -translate-x-1/2 transition-all  ease-out
+			className={`absolute z-20 bg-white text-center text-black rounded-lg flex flex-col border border-gray-300 shadow-lg left-1/2 -translate-x-1/2 transition-all  ease-out
                 ${
 									open
 										? 'opacity-100 scale-100 translate-y-0 duration-100'

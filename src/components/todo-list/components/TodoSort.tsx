@@ -24,7 +24,7 @@ export default function TodoSort() {
 						<ArrowUpDown size={18} className="text-slate-600" />
 					</Button>
 				)}
-				<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} />
+				<SortMenu isSortMenuOpen={isSortMenuOpen} setIsSortMenuOpen={setIsSortMenuOpen} width="w-52" />
 			</div>
 		</div>
 	);
