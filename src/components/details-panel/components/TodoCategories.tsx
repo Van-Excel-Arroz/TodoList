@@ -46,9 +46,9 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 		setSelectedCategories([]);
 	};
 
-	const handleRemoveCategory = async (categoryId: number) => {
-		await deleteTodoCategoryAction(categoryId);
-		deleteCategory(selectedTodoId, categoryId);
+	const handleRemoveCategory = async (categoryColorId: number, todoId: number) => {
+		await deleteTodoCategoryAction(categoryColorId, todoId);
+		deleteCategory(selectedTodoId, categoryColorId);
 	};
 
 	return (
@@ -59,7 +59,7 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 			</div>
 			<div className={`flex flex-wrap items-center gap-2`}>
 				{categories.map(category => (
-					<CategoryTag key={category.id} category={category} onRemove={handleRemoveCategory} />
+					<CategoryTag key={category.id} category={category} todoId={selectedTodoId} onRemove={handleRemoveCategory} />
 				))}
 				<Button
 					darkMode={true}
