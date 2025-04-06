@@ -76,7 +76,7 @@ export async function storeCategory(todoId: number, categoryColorId: number): Pr
 	}
 }
 
-export async function deleteCategory(categoryColorId: number, todoId: number): Promise<boolean> {
+export async function removeCategoryFromTodo(categoryColorId: number, todoId: number): Promise<boolean> {
 	try {
 		await query('DELETE FROM categories WHERE category_color_id = $1 AND todo_id = $2', [categoryColorId, todoId]);
 		return true;

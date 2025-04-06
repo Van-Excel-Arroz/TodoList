@@ -2,7 +2,7 @@
 
 import { Check, Plus, Tags } from 'lucide-react';
 import { Category } from '@/utils/types';
-import { addTodoCategoriesAction, deleteTodoCategoryAction } from '@/actions/category-action';
+import { addTodoCategoriesAction, removeCategoryFromTodoAction } from '@/actions/category-action';
 import useTodosStore from '@/context/TodosContext';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import Button from '@/components/ui-shared/Button';
@@ -46,8 +46,8 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 		setSelectedCategories([]);
 	};
 
-	const handleRemoveCategory = async (categoryColorId: number, todoId: number) => {
-		await deleteTodoCategoryAction(categoryColorId, todoId);
+	const handleRemoveCategoryFromTodo = async (categoryColorId: number, todoId: number) => {
+		await removeCategoryFromTodoAction(categoryColorId, todoId);
 		deleteCategory(selectedTodoId, categoryColorId);
 	};
 
@@ -59,7 +59,12 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 			</div>
 			<div className={`flex flex-wrap items-center gap-2`}>
 				{categories.map(category => (
-					<CategoryTag key={category.id} category={category} todoId={selectedTodoId} onRemove={handleRemoveCategory} />
+					<CategoryTag
+						key={category.id}
+						category={category}
+						todoId={selectedTodoId}
+						onRemove={handleRemoveCategoryFromTodo}
+					/>
 				))}
 				<Button
 					darkMode={true}
