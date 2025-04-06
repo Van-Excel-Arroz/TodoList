@@ -10,8 +10,7 @@ export default function FilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
 			<MenuItem className="border-b font-bold justify-center" clickable={false}>
 				<p>Filter by</p>
 			</MenuItem>
-			<MenuItem clickable={false}>
-				<CalendarDays className="text-slate-600" size={18} />
+			<MenuItem clickable={false} textSize="text-sm" className="text-slate-600">
 				<p>Due Date</p>
 			</MenuItem>
 			<DateFilterMenu />

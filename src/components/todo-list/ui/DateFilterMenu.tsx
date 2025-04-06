@@ -17,7 +17,6 @@ export default function DateFilterMenu() {
 					key={label}
 					className="flex items-center justify-between w-full"
 					onClick={() => updateSearchParams('filter', `dueDate:${label}`, todolistId || smart_list)}
-					textSize="text-sm"
 				>
 					<p className="text-md text-left w-full">{label}</p>
 					<div className="h-3 w-3 mr-2">
