@@ -5,7 +5,6 @@ interface CategoriesContextState {
 	categories: Category[];
 	setCategories: (categories: Category[]) => void;
 	addCategory: (newCategory: Category) => void;
-	toggleIsSelected: (categoryId: number) => void;
 	getCategoryColor: (category: string) => string;
 }
 
@@ -21,12 +20,6 @@ const useCategoriesStore = create<CategoriesContextState>()((set: any, get: any)
 			}
 			return { categories: state.categories };
 		}),
-	toggleIsSelected: (categoryId: number) =>
-		set((state: CategoriesContextState) => ({
-			categories: state.categories.map(cat =>
-				cat.id === categoryId ? { ...cat, is_selected: !cat.is_selected } : cat
-			),
-		})),
 	getCategoryColor: (category: string) => {
 		const existingCategory = get().categories.find((cat: Category) => cat.category_title === category.trim());
 		if (existingCategory) {
