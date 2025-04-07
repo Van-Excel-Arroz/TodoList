@@ -1,15 +1,8 @@
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import useQueryParams from '@/hooks/useQueryParams';
+import { SortFilterMenuProps } from '@/utils/types';
 import { CalendarDays, CalendarPlus, CaseSensitive, Check, Star, Trash2 } from 'lucide-react';
-
-interface SortMenuProps {
-	isMenuOpen: boolean;
-	setIsMenuOpen: (val: boolean) => void;
-	width?: string;
-	top?: string;
-	header?: boolean;
-}
 
 const MenuItems = {
 	'Due Date': {
@@ -30,14 +23,14 @@ const MenuItems = {
 	},
 };
 
-export default function SortMenu({ isMenuOpen, setIsMenuOpen, width = 'w-52', top, header = true }: SortMenuProps) {
+export default function SortMenu({ isOpen, setIsOpen, width = 'w-52', top, header = true }: SortFilterMenuProps) {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
 	const [smart_list] = getQueryParam('smart-list');
 	const [sortField, sortValue] = getQueryParam('sort');
 
 	return (
-		<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width={width} top={top}>
+		<Menu open={isOpen} onClose={() => setIsOpen(false)} width={width} top={top}>
 			{header ? (
 				<MenuItem className="border-b font-bold justify-center" clickable={false}>
 					<p>Sort by</p>

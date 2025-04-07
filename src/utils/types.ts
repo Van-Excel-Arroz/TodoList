@@ -33,6 +33,12 @@ export interface MenuOpenProps {
 	setIsOpen: (val: boolean) => void;
 }
 
+export interface SortFilterMenuProps extends MenuOpenProps {
+	width?: string;
+	top?: string;
+	header?: boolean;
+}
+
 export interface TodoListWithFilteredTodos extends TodoList {
 	filtered_todos: Todo[];
 }
