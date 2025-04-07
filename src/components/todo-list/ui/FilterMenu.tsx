@@ -1,9 +1,15 @@
 import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
-import { MenuOpenProps, SortFilterMenuProps } from '@/utils/types';
+import { SortFilterMenuProps } from '@/utils/types';
 import DateFilterMenu from './DateFilterMenu';
+import { useState } from 'react';
+import Selection from '@/components/ui-shared/Selection';
 
-export default function FilterMenu({ isOpen, setIsOpen, width = 'w-52', top, header = true }: SortFilterMenuProps) {
+const filterBy = ['Due Date', 'Categories'];
+
+export default function FilterMenu({ isOpen, setIsOpen, width = 'w-60', top, header = true }: SortFilterMenuProps) {
+	const [filter, setFilter] = useState(filterBy[0].toLowerCase());
+
 	return (
 		<Menu open={isOpen} onClose={() => setIsOpen(false)} width={width} top={top}>
 			{header && (
@@ -11,13 +17,10 @@ export default function FilterMenu({ isOpen, setIsOpen, width = 'w-52', top, hea
 					<p>Filter by</p>
 				</MenuItem>
 			)}
-			<MenuItem clickable={false} textSize="text-sm" className="text-slate-600">
-				<p>Due Date</p>
+			<MenuItem clickable={false}>
+				<Selection options={filterBy} selectedOption={filter} setSelectedOption={setFilter} />
 			</MenuItem>
 			<DateFilterMenu />
-			<MenuItem clickable={false} textSize="text-sm" className="text-slate-600 border-t">
-				<p>Categories</p>
-			</MenuItem>
 		</Menu>
 	);
 }
