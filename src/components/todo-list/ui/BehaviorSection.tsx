@@ -13,6 +13,7 @@ const sortLabels: any = {
 
 export default function BehaviorSection() {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
+	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const { getQueryParam } = useQueryParams();
 	const [sortField] = getQueryParam('sort');
 
@@ -32,6 +33,13 @@ export default function BehaviorSection() {
 					{sortField ? <p>{sortLabels[sortField]}</p> : <p className="text-slate-600">Select Filter</p>}
 					<ChevronDown size={20} className="text-slate-600" />
 				</div>
+				<FilterMenu
+					isOpen={isFilterMenuOpen}
+					setIsOpen={setIsFilterMenuOpen}
+					width="w-full"
+					top="top-12"
+					header={false}
+				/>
 			</div>
 		</div>
 	);
