@@ -4,11 +4,12 @@ import { SortFilterMenuProps } from '@/utils/types';
 import DateFilterMenu from './DateFilterMenu';
 import { useState } from 'react';
 import Selection from '@/components/ui-shared/Selection';
+import CategoryFilterMenu from './CategoryFilterMenu';
 
 const filterBy = ['Due Date', 'Categories'];
 
 export default function FilterMenu({ isOpen, setIsOpen, width = 'w-60', top, header = true }: SortFilterMenuProps) {
-	const [filter, setFilter] = useState(filterBy[0].toLowerCase());
+	const [filter, setFilter] = useState(filterBy[0]);
 
 	return (
 		<Menu open={isOpen} onClose={() => setIsOpen(false)} width={width} top={top}>
@@ -20,7 +21,7 @@ export default function FilterMenu({ isOpen, setIsOpen, width = 'w-60', top, hea
 			<MenuItem clickable={false}>
 				<Selection options={filterBy} selectedOption={filter} setSelectedOption={setFilter} />
 			</MenuItem>
-			<DateFilterMenu />
+			{filter === 'Due Date' ? <DateFilterMenu /> : <CategoryFilterMenu />}
 		</Menu>
 	);
 }

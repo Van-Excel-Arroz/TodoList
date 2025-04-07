@@ -3,10 +3,9 @@ import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import useCategoriesStore from '@/context/CategoriesContext';
 import useQueryParams from '@/hooks/useQueryParams';
-import { MenuOpenProps } from '@/utils/types';
 import { CheckIcon } from 'lucide-react';
 
-export default function CategoryFilterMenu({ isOpen, setIsOpen }: MenuOpenProps) {
+export default function CategoryFilterMenu() {
 	const { categories, toggleIsSelected } = useCategoriesStore();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
@@ -19,7 +18,7 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: MenuOpenProps)
 			updateSearchParams('filter', `categories:${selectedCategoryTitles}`, todolistId || smart_list);
 	};
 	return (
-		<Menu open={isOpen} onClose={() => setIsOpen(false)} width="w-fit">
+		<>
 			<MenuItem className="border-b font-bold justify-center" clickable={false}>
 				<p>Filter by Category</p>
 				<Button
@@ -48,6 +47,6 @@ export default function CategoryFilterMenu({ isOpen, setIsOpen }: MenuOpenProps)
 					</MenuItem>
 				))}
 			</div>
-		</Menu>
+		</>
 	);
 }
