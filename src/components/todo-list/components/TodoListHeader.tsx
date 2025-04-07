@@ -11,7 +11,8 @@ import TodoSearch from '../ui/TodoSearch';
 import LayoutButtons from '@/components/ui-shared/LayoutButtons';
 import { Settings } from 'lucide-react';
 import Button from '@/components/ui-shared/Button';
-import TodoListSettingsModal from '../ui/TodoListSettingsModal';
+import dynamic from 'next/dynamic';
+const TodoListSettingsModal = dynamic(() => import('../ui/TodoListSettingsModal'), { ssr: false });
 
 interface TodoListHeaderProps {
 	initialTodolist: TodoList;

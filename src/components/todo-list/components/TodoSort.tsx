@@ -3,9 +3,10 @@
 import Button from '@/components/ui-shared/Button';
 import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
-import SortMenu from '../ui/SortMenu';
 import SortControl from '../ui/SortControl';
 import useQueryParams from '@/hooks/useQueryParams';
+import dynamic from 'next/dynamic';
+const SortMenu = dynamic(() => import('../ui/SortMenu'), { ssr: false });
 
 export default function TodoSort() {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);

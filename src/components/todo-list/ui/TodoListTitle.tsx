@@ -7,7 +7,8 @@ import useTodoListsStore from '@/context/TodoListsContext';
 import { TodoList } from '@/utils/types';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import TodoListMenu from './TodoListMenu';
+import dynamic from 'next/dynamic';
+const TodoListMenu = dynamic(() => import('./TodoListMenu'), { ssr: false });
 
 interface TodoListTiltleProps {
 	currentTodoList: TodoList;

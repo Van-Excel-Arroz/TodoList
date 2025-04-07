@@ -1,10 +1,11 @@
 import Button from '@/components/ui-shared/Button';
-import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import { Calendar, CalendarCheck, Trash2 } from 'lucide-react';
 import { Dispatch, SetStateAction, useState } from 'react';
 import DueTimeInput from '@/components/ui-shared/DueTimeInput';
 import DueDateInput from '@/components/ui-shared/DueDateInput';
+import dynamic from 'next/dynamic';
+const Menu = dynamic(() => import('@/components/ui-shared/Menu'), { ssr: false });
 
 interface DueDateInputProps {
 	dueDate: string | undefined;

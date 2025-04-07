@@ -1,5 +1,6 @@
-import TodoDetailsPanel from '@/components/details-panel/TodoDetailsPanel';
+import dynamic from 'next/dynamic';
 import TodoListsSidebar from '@/components/sidebar/TodoListSidebar';
+const TodoDetailsPanel = dynamic(() => import('@/components/details-panel/TodoDetailsPanel'), { ssr: false });
 
 interface LayoutProps {
 	children: React.ReactNode;
