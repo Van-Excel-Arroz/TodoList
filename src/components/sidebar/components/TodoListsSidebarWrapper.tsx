@@ -8,15 +8,25 @@ export default function TodoListsSidebarWrapper({ children }: { children: React.
 	return (
 		<>
 			<div
-				className={`flex flex-col justify-between fixed inset-0 bg-black/20 transition-opacity duration-300 lg:hidden cursor-pointer ${
+				className={`fixed inset-0 bg-black/20 transition-opacity duration-300 lg:hidden cursor-pointer ${
 					isTodoListsSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
 				}`}
 				onClick={toggleTodoListsSidebar}
+				aria-hidden="true"
 			/>
+
 			<div
-				className={`flex flex-col fixed lg:relative left-0 border-r border-slate-300 top-0 bg-white h-screen transition-all duration-200 ease-in-out text-nowrap overflow-hidden ${
-					isTodoListsSidebarOpen ? 'w-72' : 'hidden'
-				}`}
+				className={`
+                    flex flex-col justify-between
+                    bg-white border-r border-slate-300
+                    h-screen
+                    transition-transform duration-300 ease-in-out lg:transition-none 
+                    fixed lg:sticky top-0 left-0 
+                    lg:w-72 
+                    ${isTodoListsSidebarOpen ? 'w-72 translate-x-0' : 'w-72 -translate-x-full lg:translate-x-0'}
+
+                    text-nowrap overflow-hidden
+                `}
 			>
 				{children}
 			</div>

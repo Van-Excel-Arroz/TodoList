@@ -10,7 +10,6 @@ const FilterMenu = dynamic(() => import('../ui/FilterMenu'), { ssr: false });
 
 export default function TodoFilter() {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
-
 	const { getQueryParam } = useQueryParams();
 	const [filterField] = getQueryParam('filter');
 
