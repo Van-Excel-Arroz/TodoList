@@ -52,7 +52,7 @@ export default function CategoryFilterMenu() {
 					<p className="py-6 px-3 text-slate-600">No available categories.</p>
 				)}
 			</div>
-			<MenuItem className="border-t font-bold gap-2" clickable={false}>
+			<MenuItem className="border-t font-bold gap-2 justify-end" clickable={false}>
 				<Button ariaLabel="Add Selected Categories" darkMode={true} onClick={applyCategoriesFilter}>
 					<p className="px-1">Apply</p>
 				</Button>
