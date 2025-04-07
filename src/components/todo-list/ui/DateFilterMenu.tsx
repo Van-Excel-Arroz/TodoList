@@ -1,6 +1,6 @@
 import MenuItem from '@/components/ui-shared/MenuItem';
 import useQueryParams from '@/hooks/useQueryParams';
-import { CheckIcon } from 'lucide-react';
+import { CalendarDays, CalendarX2, CheckIcon } from 'lucide-react';
 
 const DateFilters = ['Today', 'Tomorrow', 'This Week', 'This Month', 'No Due Date'];
 
@@ -18,7 +18,14 @@ export default function DateFilterMenu() {
 					className="flex items-center justify-between"
 					onClick={() => updateSearchParams('filter', `dueDate:${label}`, todolistId || smart_list)}
 				>
-					<p className="text-md text-left">{label}</p>
+					<div className="flex items-center gap-2">
+						{label === 'No Due Date' ? (
+							<CalendarX2 size={18} className="text-slate-600" />
+						) : (
+							<CalendarDays size={18} className="text-slate-600" />
+						)}
+						<p className="text-md text-left">{label}</p>
+					</div>
 					<div className="h-3 w-3 mr-2">
 						<CheckIcon size={14} className={`${label === filterValue ? 'block' : 'hidden'}`} />
 					</div>
