@@ -20,16 +20,16 @@ type SectionComponents = {
 };
 
 const sectionComponentMap: SectionComponents = {
-	behavior: BehaviorSection,
-	appearance: AppearanceSection,
-	categories: CategoriesSection,
+	Behavior: BehaviorSection,
+	Appearance: AppearanceSection,
+	Categories: CategoriesSection,
 };
 
 const settings = ['Behavior', 'Appearance', 'Categories'];
 
 export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }: TodoListSettingsModalProps) {
 	const portalRootRef = useRef<HTMLElement | null>(null);
-	const [settingSection, setSettingSection] = useState(settings[0].toLowerCase());
+	const [settingSection, setSettingSection] = useState(settings[0]);
 	const SectionComponent = sectionComponentMap[settingSection];
 
 	useEffect(() => {

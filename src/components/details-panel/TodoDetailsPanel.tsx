@@ -18,7 +18,7 @@ const sections = ['Details', 'Activity'];
 export default function TodoDetailsPanel() {
 	const { setSelectedTodoId, selectedTodoId } = useSelectedTodoIdStore();
 	const { getTodoById } = useTodosStore();
-	const [section, setSection] = useState(sections[0].toLowerCase());
+	const [section, setSection] = useState(sections[0]);
 	const isOpen = !!selectedTodoId;
 	const todo = isOpen ? getTodoById(selectedTodoId) : null;
 
