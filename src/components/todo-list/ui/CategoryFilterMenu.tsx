@@ -1,51 +1,63 @@
 import Button from '@/components/ui-shared/Button';
-import Menu from '@/components/ui-shared/Menu';
 import MenuItem from '@/components/ui-shared/MenuItem';
 import useCategoriesStore from '@/context/CategoriesContext';
 import useQueryParams from '@/hooks/useQueryParams';
-import { CheckIcon } from 'lucide-react';
+import { Category } from '@/utils/types';
+import { Check } from 'lucide-react';
+import { useState } from 'react';
 
 export default function CategoryFilterMenu() {
-	const { categories, toggleIsSelected } = useCategoriesStore();
+	const { categories } = useCategoriesStore();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
+	const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
 	const [todolistId] = getQueryParam('id');
 	const [smart_list] = getQueryParam('smart-list');
 
 	const applyCategoriesFilter = () => {
-		const selectedCategoryTitles = categories.map(cat => cat.category_title).join(',');
+		if (selectedCategories.length === 0) return;
+		const selectedCategoryTitles = selectedCategories.map(cat => cat.category_title).join(',');
 
 		if (selectedCategoryTitles)
 			updateSearchParams('filter', `categories:${selectedCategoryTitles}`, todolistId || smart_list);
 	};
+
+	const handleCategoryClick = (category: Category) => {
+		const isSelected = selectedCategories.find(cat => cat.id === category.id);
+
+		if (isSelected) {
+			setSelectedCategories(cats => cats.filter(cat => cat.id !== category.id));
+		} else {
+			setSelectedCategories(cats => [...cats, category]);
+		}
+	};
+
 	return (
 		<>
-			<MenuItem className="border-b font-bold justify-center" clickable={false}>
-				<p>Filter by Category</p>
-				<Button
-					ariaLabel="Apply Filter"
-					className="text-xs border border-slate-300"
-					onClick={() => applyCategoriesFilter()}
-				>
-					<p>Apply</p>
-				</Button>
-			</MenuItem>
 			<div className="max-h-[60vh] overflow-hidden overflow-y-auto">
-				{categories.map(category => (
-					<MenuItem
-						key={category.id}
-						className="flex items-center justify-between"
-						onClick={() => toggleIsSelected(category.id)}
-					>
-						<div className="flex items-center gap-2">
-							<p style={{ color: category.hex_color }}>●</p>
-							<p className="text-base">{category.category_title}</p>
-						</div>
-
-						<Button ariaLabel="Unselect category" className="hover:bg-slate-300 w-5 h-5">
-							<CheckIcon size={16} strokeWidth={2} />
-						</Button>
-					</MenuItem>
-				))}
+				<div className="max-h-[30vh] overflow-hidden overflow-y-auto">
+					{categories.length > 0 ? (
+						categories.map(category => (
+							<MenuItem
+								key={category.id}
+								className="flex items-center justify-between"
+								onClick={() => handleCategoryClick(category)}
+							>
+								<div className="flex items-center gap-2">
+									<p style={{ color: category.hex_color }}>●</p>
+									<p className="text-md">{category.category_title}</p>
+								</div>
+								{selectedCategories.includes(category) ? <Check size={18} className="text-slate-600" /> : null}
+							</MenuItem>
+						))
+					) : (
+						<p className="py-6 px-3 text-slate-600">No more categories to add.</p>
+					)}
+				</div>
+				<MenuItem className="border-t font-bold gap-2" clickable={false}>
+					<Button ariaLabel="Add Selected Categories" darkMode={true} onClick={applyCategoriesFilter}>
+						<p className="px-1">Apply</p>
+					</Button>
+				</MenuItem>
 			</div>
 		</>
 	);
