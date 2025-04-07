@@ -3,7 +3,7 @@ import Link from 'next/link';
 interface MenuItemProps {
 	children: React.ReactNode;
 	className?: string;
-	onClick?: () => void;
+	onClick?: (event?: React.MouseEvent<HTMLDivElement>) => void;
 	clickable?: boolean;
 	href?: string;
 	textSize?: string;
@@ -31,7 +31,7 @@ export default function MenuItem({
 					className={`${className || ''} ${textSize} ${
 						clickable && 'hover:bg-slate-200 active:bg-slate-300 cursor-pointer'
 					} flex items-center gap-2 p-2 relative`}
-					onClick={() => onClick && onClick()}
+					onClick={event => onClick && onClick(event)}
 				>
 					{children}
 				</div>

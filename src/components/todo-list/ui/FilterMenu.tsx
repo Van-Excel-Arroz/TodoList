@@ -18,7 +18,12 @@ export default function FilterMenu({ isOpen, setIsOpen, width = 'w-60', top, hea
 					<p>Filter by</p>
 				</MenuItem>
 			)}
-			<MenuItem clickable={false}>
+			<MenuItem
+				clickable={false}
+				onClick={e => {
+					if (e) e.stopPropagation();
+				}}
+			>
 				<Selection options={filterBy} selectedOption={filter} setSelectedOption={setFilter} />
 			</MenuItem>
 			{filter === 'Due Date' ? <DateFilterMenu /> : <CategoryFilterMenu />}
