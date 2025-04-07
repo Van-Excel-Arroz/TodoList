@@ -1,6 +1,5 @@
-import dynamic from 'next/dynamic';
 import TodoListsSidebar from '@/components/sidebar/TodoListSidebar';
-const TodoDetailsPanel = dynamic(() => import('@/components/details-panel/TodoDetailsPanel'), { ssr: false });
+import DetailsPanelWrapper from '@/components/details-panel/ui/DetailsPanelWrapper';
 
 interface LayoutProps {
 	children: React.ReactNode;
@@ -15,9 +14,7 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
 
 			<div id="modal-root" />
 			<main className="w-full z-10">{children}</main>
-			<aside className="absolute lg:sticky top-0 right-0 z-40">
-				<TodoDetailsPanel />
-			</aside>
+			<DetailsPanelWrapper />
 		</div>
 	);
 }
