@@ -1,5 +1,4 @@
 import { Category } from '@/utils/types';
-import { Tag } from 'lucide-react';
 import { memo } from 'react';
 
 interface CategoryTagListProps {
@@ -8,10 +7,9 @@ interface CategoryTagListProps {
 	showIcon?: boolean;
 }
 
-function CategoryTagList({ categories, handleCategoryClick, showIcon = true }: CategoryTagListProps) {
+function CategoryTagList({ categories, handleCategoryClick }: CategoryTagListProps) {
 	return (
 		<>
-			{showIcon ? <Tag size={14} className="text-slate-800" /> : null}
 			{categories?.map(category => (
 				<span
 					key={category.id}

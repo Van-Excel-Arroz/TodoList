@@ -80,15 +80,11 @@ function TodoItem({ todo }: { todo: Todo }) {
 						</p>
 					</div>
 					<div className="col-span-2 flex items-center justify-center">
-						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} displayIcon={false} />}
+						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
 					</div>
 					<div className="col-span-3 flex items-center gap-2 flex-wrap">
 						{(todo.categories?.length ?? 0) > 0 && (
-							<CategoryTagList
-								showIcon={false}
-								categories={todo.categories!}
-								handleCategoryClick={handleCategoryClick}
-							/>
+							<CategoryTagList categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
 						)}
 					</div>
 					<div className="col-span-2 flex justify-center">
@@ -126,7 +122,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 							</p>
 							<div className="flex items-center gap-1 flex-wrap">
 								{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
-								{todo.due_datetime && todo.categories!.length > 0 && <p>•</p>}
+								{todo.due_datetime && todo.categories!.length > 0 && <p className="text-slate-600">•</p>}
 								{(todo.categories?.length ?? 0) > 0 && (
 									<>
 										<CategoryTagList categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
