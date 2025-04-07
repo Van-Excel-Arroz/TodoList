@@ -54,7 +54,7 @@ export default function CategoryFilterMenu() {
 			</div>
 			<MenuItem className="border-t font-bold gap-2 justify-end" clickable={false}>
 				<Button ariaLabel="Add Selected Categories" darkMode={true} onClick={applyCategoriesFilter}>
-					<p className="px-1">Apply</p>
+					<p className="px-1 text-sm">Apply</p>
 				</Button>
 			</MenuItem>
 		</>

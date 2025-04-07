@@ -101,10 +101,10 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 				</div>
 				<MenuItem className="border-t font-bold flex justify-between gap-2" clickable={false}>
 					<Button ariaLabel="Cancel Adding Categories" onClick={handleCancelAddingCategory}>
-						<p>Cancel</p>
+						<p className="text-sm">Cancel</p>
 					</Button>
 					<Button ariaLabel="Add Selected Categories" darkMode={true} onClick={() => handleAddCategoryIds()}>
-						<p className="px-1">Add</p>
+						<p className="px-1 text-sm">Add</p>
 					</Button>
 				</MenuItem>
 			</Menu>
