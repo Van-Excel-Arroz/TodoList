@@ -17,7 +17,7 @@ export default function TodoListsSidebarWrapper({ children }: { children: React.
 
 			<div
 				className={`
-                    flex flex-col justify-between
+                    flex flex-col
                     bg-white border-r border-slate-300
                     h-screen
                     transition-transform duration-300 ease-in-out lg:transition-none 
