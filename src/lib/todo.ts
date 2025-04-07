@@ -75,7 +75,7 @@ export async function getTodosWithCategories(todolistId: number, userId: number)
 								'hex_color', cc.hex_color,
 								'todo_list_id', cc.todo_list_id
 						)
-				) as categories
+				) FILTER (WHERE cc.id IS NOT NULL) as categories
 				FROM todos t
 				LEFT JOIN categories c ON c.todo_id = t.id
 				LEFT JOIN todo_lists tl ON tl.id = t.todo_list_id
