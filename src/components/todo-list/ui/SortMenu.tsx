@@ -4,8 +4,8 @@ import useQueryParams from '@/hooks/useQueryParams';
 import { CalendarDays, CalendarPlus, CaseSensitive, Check, Star, Trash2 } from 'lucide-react';
 
 interface SortMenuProps {
-	isSortMenuOpen: boolean;
-	setIsSortMenuOpen: (val: boolean) => void;
+	isMenuOpen: boolean;
+	setIsMenuOpen: (val: boolean) => void;
 	width?: string;
 	top?: string;
 	header?: boolean;
@@ -30,20 +30,14 @@ const MenuItems = {
 	},
 };
 
-export default function SortMenu({
-	isSortMenuOpen,
-	setIsSortMenuOpen,
-	width = 'w-52',
-	top,
-	header = true,
-}: SortMenuProps) {
+export default function SortMenu({ isMenuOpen, setIsMenuOpen, width = 'w-52', top, header = true }: SortMenuProps) {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
 	const [smart_list] = getQueryParam('smart-list');
 	const [sortField, sortValue] = getQueryParam('sort');
 
 	return (
-		<Menu open={isSortMenuOpen} onClose={() => setIsSortMenuOpen(false)} width={width} top={top}>
+		<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width={width} top={top}>
 			{header ? (
 				<MenuItem className="border-b font-bold justify-center" clickable={false}>
 					<p>Sort by</p>

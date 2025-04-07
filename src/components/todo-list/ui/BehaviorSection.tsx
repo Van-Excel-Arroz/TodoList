@@ -25,8 +25,8 @@ export default function BehaviorSection() {
 					<ChevronDown size={20} className="text-slate-600" />
 				</div>
 				<SortMenu
-					isSortMenuOpen={isSortMenuOpen}
-					setIsSortMenuOpen={setIsSortMenuOpen}
+					isMenuOpen={isSortMenuOpen}
+					setIsMenuOpen={setIsSortMenuOpen}
 					width="w-full"
 					top="top-12"
 					header={false}
