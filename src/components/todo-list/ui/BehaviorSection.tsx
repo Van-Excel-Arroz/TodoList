@@ -11,11 +11,17 @@ const sortLabels: any = {
 	alphabetical: 'Alphabetical',
 };
 
+const filterLabels: any = {
+	dueDate: 'Due Date',
+	categories: 'Categories',
+};
+
 export default function BehaviorSection() {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const { getQueryParam } = useQueryParams();
 	const [sortField] = getQueryParam('sort');
+	const [filterField] = getQueryParam('filter');
 
 	return (
 		<div className="space-y-1">
@@ -30,7 +36,7 @@ export default function BehaviorSection() {
 			<p className="pl-2">Filter tasks by:</p>
 			<div className="border rounded-md px-4 py-2 relative" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
 				<div className="flex items-center justify-between cursor-pointer text-sm">
-					{sortField ? <p>{sortLabels[sortField]}</p> : <p className="text-slate-600">Select Filter</p>}
+					{filterField ? <p>{filterLabels[filterField]}</p> : <p className="text-slate-600">Select Filter</p>}
 					<ChevronDown size={20} className="text-slate-600" />
 				</div>
 				<FilterMenu
