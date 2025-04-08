@@ -22,31 +22,33 @@ export default function BehaviorSection() {
 	const { getQueryParam } = useQueryParams();
 	const [sortField] = getQueryParam('sort');
 	const [filterField] = getQueryParam('filter');
+	const dropDownStyle = 'flex items-center justify-between cursor-pointer text-sm border rounded-md px-4 py-2 relative';
 
 	return (
-		<div className="space-y-1">
-			<p className="pl-2">Sort tasks by:</p>
-			<div className="border rounded-md px-4 py-2 relative" onClick={() => setIsSortMenuOpen(prev => !prev)}>
-				<div className="flex items-center justify-between cursor-pointer text-sm">
+		<>
+			<div className="space-y-1">
+				<p className="pl-2">Sort tasks by:</p>
+				<div className={dropDownStyle} onClick={() => setIsSortMenuOpen(prev => !prev)}>
 					{sortField ? <p>{sortLabels[sortField]}</p> : <p className="text-slate-600">Select Sort</p>}
 					<ChevronDown size={20} className="text-slate-600" />
+					<SortMenu isOpen={isSortMenuOpen} setIsOpen={setIsSortMenuOpen} width="w-full" top="top-12" header={false} />
 				</div>
-				<SortMenu isOpen={isSortMenuOpen} setIsOpen={setIsSortMenuOpen} width="w-full" top="top-12" header={false} />
 			</div>
-			<p className="pl-2">Filter tasks by:</p>
-			<div className="border rounded-md px-4 py-2 relative" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
-				<div className="flex items-center justify-between cursor-pointer text-sm">
+
+			<div className="space-y-1">
+				<p className="pl-2">Filter tasks by:</p>
+				<div className={dropDownStyle} onClick={() => setIsFilterMenuOpen(prev => !prev)}>
 					{filterField ? <p>{filterLabels[filterField]}</p> : <p className="text-slate-600">Select Filter</p>}
 					<ChevronDown size={20} className="text-slate-600" />
+					<FilterMenu
+						isOpen={isFilterMenuOpen}
+						setIsOpen={setIsFilterMenuOpen}
+						width="w-full"
+						top="top-12"
+						header={false}
+					/>
 				</div>
-				<FilterMenu
-					isOpen={isFilterMenuOpen}
-					setIsOpen={setIsFilterMenuOpen}
-					width="w-full"
-					top="top-12"
-					header={false}
-				/>
 			</div>
-		</div>
+		</>
 	);
 }
