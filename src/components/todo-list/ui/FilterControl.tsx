@@ -8,7 +8,7 @@ const filterIcons: any = {
 	categories: Tag,
 };
 
-export default function FilterControl() {
+export default function FilterControl({ setIsFilterMenuOpen }: { setIsFilterMenuOpen: (val: boolean) => void }) {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField, filterValue] = getQueryParam('filter');
 	const [todolistId] = getQueryParam('id');
@@ -25,7 +25,11 @@ export default function FilterControl() {
 
 	return (
 		<div className="flex items-center gap-1">
-			<Button ariaLabel="Change Filter" className="flex items-center gap-1 hover:bg-slate-300 active:bg-slate-400">
+			<Button
+				ariaLabel="Change Filter"
+				onClick={() => setIsFilterMenuOpen(true)}
+				className="flex items-center gap-1 hover:bg-slate-300 active:bg-slate-400"
+			>
 				<Icon size={16} />
 				<p className="text-[12px]">{filterField === 'categories' ? 'Category' : filterValue}</p>
 				{filterField === 'categories' && (

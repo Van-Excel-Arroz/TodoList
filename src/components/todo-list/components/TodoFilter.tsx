@@ -19,7 +19,7 @@ export default function TodoFilter() {
 				<p className="text-sm text-slate-600 pr-2">Filter by:</p>
 
 				{filterField ? (
-					<FilterControl />
+					<FilterControl setIsFilterMenuOpen={setIsFilterMenuOpen} />
 				) : (
 					<Button ariaLabel="Filter" onClick={() => setIsFilterMenuOpen(prev => !prev)}>
 						<Filter size={18} className="text-slate-600" />
