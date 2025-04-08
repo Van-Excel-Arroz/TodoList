@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import SortMenu from './SortMenu';
 import useQueryParams from '@/hooks/useQueryParams';
-import { ChevronDown } from 'lucide-react';
+import { ArrowBigUp, ChevronDown, Trash2, X } from 'lucide-react';
 import FilterMenu from './FilterMenu';
+import Button from '@/components/ui-shared/Button';
 
 const sortLabels: any = {
 	dueDate: 'Due Date',
@@ -23,28 +24,46 @@ export default function BehaviorSection() {
 	const [sortField] = getQueryParam('sort');
 	const [filterField] = getQueryParam('filter');
 	const dropDownStyle =
-		'flex items-center justify-between cursor-pointer text-sm border rounded-md px-4 py-2 relative mb-4';
+		'flex items-center justify-between gap-2 cursor-pointer text-sm border rounded-md px-4 py-2 relative';
 
 	return (
 		<div className="flex flex-col gap-2">
 			<p className="pl-2">Sort tasks by:</p>
-			<div className={dropDownStyle} onClick={() => setIsSortMenuOpen(prev => !prev)}>
-				{sortField ? <p>{sortLabels[sortField]}</p> : <p className="text-slate-600">Select Sort</p>}
-				<ChevronDown size={20} className="text-slate-600" />
-				<SortMenu isOpen={isSortMenuOpen} setIsOpen={setIsSortMenuOpen} width="w-full" top="top-12" header={false} />
+			<div className="flex items-center gap-2 mb-4">
+				<div className={`${dropDownStyle} w-full`} onClick={() => setIsSortMenuOpen(prev => !prev)}>
+					{sortField ? <p>{sortLabels[sortField]}</p> : <p className="text-slate-600">Select Sort</p>}
+					<ChevronDown size={20} className="text-slate-600" />
+					<SortMenu isOpen={isSortMenuOpen} setIsOpen={setIsSortMenuOpen} width="w-full" top="top-12" header={false} />
+				</div>
+				<div className={dropDownStyle}>
+					<ArrowBigUp size={20} />
+					<p>Asc</p>
+				</div>
+				<Button ariaLabel="Clear Sorting">
+					<X />
+				</Button>
 			</div>
 
 			<p className="pl-2">Filter tasks by:</p>
-			<div className={dropDownStyle} onClick={() => setIsFilterMenuOpen(prev => !prev)}>
-				{filterField ? <p>{filterLabels[filterField]}</p> : <p className="text-slate-600">Select Filter</p>}
-				<ChevronDown size={20} className="text-slate-600" />
-				<FilterMenu
-					isOpen={isFilterMenuOpen}
-					setIsOpen={setIsFilterMenuOpen}
-					width="w-full"
-					top="top-12"
-					header={false}
-				/>
+			<div className="flex items-center gap-2 mb-4">
+				<div className={`${dropDownStyle} w-full`} onClick={() => setIsFilterMenuOpen(prev => !prev)}>
+					{filterField ? <p>{filterLabels[filterField]}</p> : <p className="text-slate-600">Select Filter</p>}
+					<ChevronDown size={20} className="text-slate-600" />
+					<FilterMenu
+						isOpen={isFilterMenuOpen}
+						setIsOpen={setIsFilterMenuOpen}
+						width="w-full"
+						top="top-12"
+						header={false}
+					/>
+				</div>
+				<div className={dropDownStyle}>
+					<ArrowBigUp size={20} />
+					<p>Asc</p>
+				</div>
+				<Button ariaLabel="Clear Sorting">
+					<X />
+				</Button>
 			</div>
 		</div>
 	);
