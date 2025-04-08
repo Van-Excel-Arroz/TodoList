@@ -21,7 +21,8 @@ export default function CategoryFilterMenu() {
 			updateSearchParams('filter', `categories:${selectedCategoryTitles}`, todolistId || smart_list);
 	};
 
-	const handleCategoryClick = (category: Category) => {
+	const handleCategoryClick = (event: React.MouseEvent<HTMLDivElement>, category: Category) => {
+		event.stopPropagation();
 		const isSelected = selectedCategories.find(cat => cat.id === category.id);
 
 		if (isSelected) {
@@ -39,7 +40,9 @@ export default function CategoryFilterMenu() {
 						<MenuItem
 							key={category.id}
 							className="flex items-center justify-between"
-							onClick={() => handleCategoryClick(category)}
+							onClick={e => {
+								if (e) handleCategoryClick(e, category);
+							}}
 						>
 							<div className="flex items-center gap-2">
 								<p style={{ color: category.hex_color }}>●</p>
