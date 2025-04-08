@@ -46,7 +46,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 			onClick={onClose}
 		>
 			<div
-				className="relative w-full max-w-2xl h-[90vh] bg-white rounded-lg shadow-xl p-6"
+				className="relative w-full max-w-2xl h-[90vh] flex flex-col justify-between bg-white rounded-lg shadow-xl p-6"
 				onClick={e => e.stopPropagation()}
 			>
 				<Button className="absolute top-5 right-4" onClick={onClose} ariaLabel="Close Modal">
