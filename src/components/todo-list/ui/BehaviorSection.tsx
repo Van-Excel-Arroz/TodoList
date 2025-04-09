@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SortMenu from './SortMenu';
 import useQueryParams from '@/hooks/useQueryParams';
-import { ArrowBigUp, ChevronDown, Trash2, X } from 'lucide-react';
+import { ArrowBigUp, ChevronDown, X } from 'lucide-react';
 import FilterMenu from './FilterMenu';
 import Button from '@/components/ui-shared/Button';
 
