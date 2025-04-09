@@ -57,10 +57,6 @@ export default function BehaviorSection() {
 						header={false}
 					/>
 				</div>
-				<div className={dropDownStyle}>
-					<ArrowBigUp size={20} />
-					<p>Asc</p>
-				</div>
 				<Button ariaLabel="Clear Sorting">
 					<X />
 				</Button>
