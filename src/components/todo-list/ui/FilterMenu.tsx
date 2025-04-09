@@ -12,7 +12,7 @@ export default function FilterMenu({ isOpen, setIsOpen, width = 'w-60', top, hea
 	const [filter, setFilter] = useState(filterBy[0]);
 
 	return (
-		<Menu open={isOpen} onClose={() => setIsOpen(false)} width={width} top={top}>
+		<Menu open={isOpen} onClose={() => setIsOpen(false)} width={width} verticalPosition={top}>
 			{header && (
 				<MenuItem className="border-b font-bold justify-center" clickable={false}>
 					<p>Filter by</p>

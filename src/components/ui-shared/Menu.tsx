@@ -6,10 +6,10 @@ interface MenuProps {
 	children: React.ReactNode;
 	width: string;
 	className?: string;
-	top?: string;
+	verticalPosition?: string;
 }
 
-export default function Menu({ open, onClose, children, width, className, top = 'top-10' }: MenuProps) {
+export default function Menu({ open, onClose, children, width, className, verticalPosition = 'top-10' }: MenuProps) {
 	const ref = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -35,7 +35,7 @@ export default function Menu({ open, onClose, children, width, className, top = 
 										? 'opacity-100 scale-100 translate-y-0 duration-100'
 										: 'opacity-0 scale-95 -translate-y-1 pointer-events-none duration-200'
 								}
-									${top}
+									${verticalPosition}
                   ${width}
 									${className}
 									`}

@@ -30,7 +30,7 @@ export default function SortMenu({ isOpen, setIsOpen, width = 'w-52', top, heade
 	const [sortField, sortValue] = getQueryParam('sort');
 
 	return (
-		<Menu open={isOpen} onClose={() => setIsOpen(false)} width={width} top={top}>
+		<Menu open={isOpen} onClose={() => setIsOpen(false)} width={width} verticalPosition={top}>
 			{header ? (
 				<MenuItem className="border-b font-bold justify-center" clickable={false}>
 					<p>Sort by</p>
