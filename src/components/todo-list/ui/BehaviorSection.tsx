@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import SortMenu from './SortMenu';
 import useQueryParams from '@/hooks/useQueryParams';
-import { ArrowBigUp, ChevronDown, X } from 'lucide-react';
+import { ArrowBigUp, CalendarDays, CalendarPlus, CaseSensitive, ChevronDown, Star, X } from 'lucide-react';
 import FilterMenu from './FilterMenu';
 import Button from '@/components/ui-shared/Button';
 import DropDown from '@/components/ui-shared/DropDown';
 import MenuItem from '@/components/ui-shared/MenuItem';
+import { text } from 'stream/consumers';
 
 const sortLabels: any = {
 	dueDate: 'Due Date',
@@ -18,6 +19,13 @@ const filterLabels: any = {
 	dueDate: 'Due Date',
 	categories: 'Categories',
 };
+
+const SortItems = [
+	{ icon: CalendarDays, label: 'Due Date' },
+	{ icon: CalendarPlus, label: 'Creation Date' },
+	{ icon: Star, label: 'Importance' },
+	{ icon: CaseSensitive, label: 'Alphabetical' },
+];
 
 export default function BehaviorSection() {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
@@ -65,9 +73,12 @@ export default function BehaviorSection() {
 				</Button>
 			</div>
 			<DropDown selectedItem={selectedSort}>
-				<MenuItem onClick={() => setSelectedSort(['Try'])}>
-					<p>Try</p>
-				</MenuItem>
+				{SortItems.map(item => (
+					<MenuItem onClick={() => setSelectedSort([item.label])}>
+						<item.icon className="text-slate-600" size={18} />
+						<p>{item.label}</p>
+					</MenuItem>
+				))}
 			</DropDown>
 		</div>
 	);
