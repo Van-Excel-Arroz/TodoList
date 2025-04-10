@@ -37,6 +37,7 @@ export interface SortFilterMenuProps extends MenuOpenProps {
 	width?: string;
 	top?: string;
 	header?: boolean;
+	clearBtn?: boolean;
 }
 
 export interface TodoListWithFilteredTodos extends TodoList {

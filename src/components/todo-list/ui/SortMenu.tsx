@@ -23,7 +23,14 @@ const MenuItems = {
 	},
 };
 
-export default function SortMenu({ isOpen, setIsOpen, width = 'w-52', top, header = true }: SortFilterMenuProps) {
+export default function SortMenu({
+	isOpen,
+	setIsOpen,
+	width = 'w-52',
+	top,
+	header = true,
+	clearBtn = false,
+}: SortFilterMenuProps) {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
 	const [smart_list] = getQueryParam('smart-list');
@@ -52,13 +59,15 @@ export default function SortMenu({ isOpen, setIsOpen, width = 'w-52', top, heade
 					</div>
 				</MenuItem>
 			))}
-			<MenuItem
-				className="border-t justify-center"
-				onClick={() => updateSearchParams('sort', null, todolistId || smart_list)}
-			>
-				<Trash2 size={18} className="text-slate-600" />
-				<p>Clear</p>
-			</MenuItem>
+			{clearBtn && (
+				<MenuItem
+					className="border-t justify-center"
+					onClick={() => updateSearchParams('sort', null, todolistId || smart_list)}
+				>
+					<Trash2 size={18} className="text-slate-600" />
+					<p>Clear</p>
+				</MenuItem>
+			)}
 		</Menu>
 	);
 }
