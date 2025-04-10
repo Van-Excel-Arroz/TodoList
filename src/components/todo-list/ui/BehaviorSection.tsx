@@ -1,12 +1,20 @@
 import { useState } from 'react';
 import SortMenu from './SortMenu';
 import useQueryParams from '@/hooks/useQueryParams';
-import { ArrowBigUp, CalendarDays, CalendarPlus, CaseSensitive, ChevronDown, Star, X } from 'lucide-react';
+import {
+	ArrowBigDown,
+	ArrowBigUp,
+	CalendarDays,
+	CalendarPlus,
+	CaseSensitive,
+	ChevronDown,
+	Star,
+	X,
+} from 'lucide-react';
 import FilterMenu from './FilterMenu';
 import Button from '@/components/ui-shared/Button';
 import DropDown from '@/components/ui-shared/DropDown';
 import MenuItem from '@/components/ui-shared/MenuItem';
-import { text } from 'stream/consumers';
 
 const sortLabels: any = {
 	dueDate: 'Due Date',
@@ -36,6 +44,12 @@ export default function BehaviorSection() {
 	const dropDownStyle =
 		'flex items-center justify-between gap-2 cursor-pointer text-sm border rounded-md px-4 py-2 relative';
 	const [selectedSort, setSelectedSort] = useState<string[]>([]);
+	const [sortOrder, setSortOrder] = useState<'Asc' | 'Desc'>('Asc');
+
+	const handleSortOrder = () => {
+		const newOrder = sortOrder === 'Asc' ? 'Desc' : 'Asc';
+		setSortOrder(newOrder);
+	};
 
 	return (
 		<div className="flex flex-col gap-2">
@@ -46,10 +60,7 @@ export default function BehaviorSection() {
 					<ChevronDown size={20} className="text-slate-600" />
 					<SortMenu isOpen={isSortMenuOpen} setIsOpen={setIsSortMenuOpen} width="w-full" top="top-12" header={false} />
 				</div>
-				<div className={dropDownStyle}>
-					<ArrowBigUp size={20} />
-					<p>Asc</p>
-				</div>
+
 				<Button ariaLabel="Clear Sorting">
 					<X />
 				</Button>
@@ -72,14 +83,20 @@ export default function BehaviorSection() {
 					<X />
 				</Button>
 			</div>
-			<DropDown selectedItem={selectedSort}>
-				{SortItems.map(item => (
-					<MenuItem onClick={() => setSelectedSort([item.label])}>
-						<item.icon className="text-slate-600" size={18} />
-						<p>{item.label}</p>
-					</MenuItem>
-				))}
-			</DropDown>
+			<div className="flex flex-row items-center gap-2">
+				<DropDown selectedItem={selectedSort}>
+					{SortItems.map(item => (
+						<MenuItem onClick={() => setSelectedSort([item.label])}>
+							<item.icon className="text-slate-600" size={18} />
+							<p>{item.label}</p>
+						</MenuItem>
+					))}
+				</DropDown>
+				<div className={dropDownStyle} onClick={handleSortOrder}>
+					{sortOrder === 'Asc' ? <ArrowBigUp size={20} /> : <ArrowBigDown size={20} />}
+					<p className="select-none">{sortOrder}</p>
+				</div>
+			</div>
 		</div>
 	);
 }
