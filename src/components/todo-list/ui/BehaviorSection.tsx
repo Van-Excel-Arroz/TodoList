@@ -4,6 +4,8 @@ import useQueryParams from '@/hooks/useQueryParams';
 import { ArrowBigUp, ChevronDown, X } from 'lucide-react';
 import FilterMenu from './FilterMenu';
 import Button from '@/components/ui-shared/Button';
+import DropDown from '@/components/ui-shared/DropDown';
+import MenuItem from '@/components/ui-shared/MenuItem';
 
 const sortLabels: any = {
 	dueDate: 'Due Date',
@@ -25,6 +27,7 @@ export default function BehaviorSection() {
 	const [filterField] = getQueryParam('filter');
 	const dropDownStyle =
 		'flex items-center justify-between gap-2 cursor-pointer text-sm border rounded-md px-4 py-2 relative';
+	const [selectedSort, setSelectedSort] = useState<string[]>([]);
 
 	return (
 		<div className="flex flex-col gap-2">
@@ -61,6 +64,11 @@ export default function BehaviorSection() {
 					<X />
 				</Button>
 			</div>
+			<DropDown selectedItem={selectedSort}>
+				<MenuItem onClick={() => setSelectedSort(['Try'])}>
+					<p>Try</p>
+				</MenuItem>
+			</DropDown>
 		</div>
 	);
 }
