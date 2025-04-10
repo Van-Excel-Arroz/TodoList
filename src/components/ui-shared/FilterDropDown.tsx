@@ -1,17 +1,11 @@
 import Button from '@/components/ui-shared/Button';
 import DropDown from '@/components/ui-shared/DropDown';
 import MenuItem from '@/components/ui-shared/MenuItem';
-import { ArrowBigDown, ArrowBigUp, CalendarDays, CalendarX2, Check, X } from 'lucide-react';
+import { CalendarDays, CalendarX2, Check, X } from 'lucide-react';
 import { useState } from 'react';
 
 export default function FilterDropDown() {
 	const [selectedFilter, setSelectedFilter] = useState<string[]>([]);
-	const [sortOrder, setSortOrder] = useState<'Asc' | 'Desc'>('Asc');
-
-	const handleSortOrder = () => {
-		const newOrder = sortOrder === 'Asc' ? 'Desc' : 'Asc';
-		setSortOrder(newOrder);
-	};
 
 	const DateFilterItems = [
 		{ icon: CalendarDays, label: 'Today' },
@@ -34,10 +28,6 @@ export default function FilterDropDown() {
 					</MenuItem>
 				))}
 			</DropDown>
-			<div className="flex items-center gap-2 border px-3 py-2 rounded-md cursor-pointer" onClick={handleSortOrder}>
-				{sortOrder === 'Asc' ? <ArrowBigUp size={20} /> : <ArrowBigDown size={20} />}
-				<p className="select-none text-sm">{sortOrder}</p>
-			</div>
 			<Button ariaLabel="Clear Sorting" onClick={() => setSelectedFilter([])}>
 				<X />
 			</Button>
