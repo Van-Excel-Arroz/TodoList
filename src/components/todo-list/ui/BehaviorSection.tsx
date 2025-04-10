@@ -6,6 +6,7 @@ import {
 	CalendarDays,
 	CalendarPlus,
 	CaseSensitive,
+	Check,
 	ChevronDown,
 	Star,
 	X,
@@ -47,9 +48,12 @@ export default function BehaviorSection() {
 			<div className="flex flex-row items-center gap-2">
 				<DropDown selectedItem={selectedSort}>
 					{SortItems.map(item => (
-						<MenuItem onClick={() => setSelectedSort([item.label])}>
-							<item.icon className="text-slate-600" size={18} />
-							<p>{item.label}</p>
+						<MenuItem className="justify-between" onClick={() => setSelectedSort([item.label])}>
+							<div className="flex gap-2">
+								<item.icon className="text-slate-600" size={18} />
+								<p>{item.label}</p>
+							</div>
+							{<Check size={18} className={`${item.label == selectedSort[0] ? 'block' : 'hidden'} text-slate-600`} />}
 						</MenuItem>
 					))}
 				</DropDown>
