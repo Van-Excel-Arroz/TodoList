@@ -24,7 +24,7 @@ export default function SortDropDown() {
 		<div className="flex flex-row items-center gap-2 mb-4">
 			<DropDown selectedItem={selectedSort}>
 				{SortItems.map(item => (
-					<MenuItem className="justify-between" onClick={() => setSelectedSort([item.label])}>
+					<MenuItem key={item.label} className="justify-between" onClick={() => setSelectedSort([item.label])}>
 						<div className="flex gap-2">
 							<item.icon className="text-slate-600" size={18} />
 							<p>{item.label}</p>

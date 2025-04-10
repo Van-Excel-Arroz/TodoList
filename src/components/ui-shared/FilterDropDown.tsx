@@ -25,7 +25,7 @@ export default function FilterDropDown() {
 		<div className="flex flex-row items-center gap-2 mb-4">
 			<DropDown selectedItem={selectedFilter}>
 				{DateFilterItems.map(item => (
-					<MenuItem className="justify-between" onClick={() => setSelectedFilter([item.label])}>
+					<MenuItem key={item.label} className="justify-between" onClick={() => setSelectedFilter([item.label])}>
 						<div className="flex gap-2">
 							<item.icon className="text-slate-600" size={18} />
 							<p>{item.label}</p>
