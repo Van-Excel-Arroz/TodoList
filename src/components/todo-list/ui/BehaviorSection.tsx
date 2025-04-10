@@ -61,6 +61,9 @@ export default function BehaviorSection() {
 					{sortOrder === 'Asc' ? <ArrowBigUp size={20} /> : <ArrowBigDown size={20} />}
 					<p className="select-none">{sortOrder}</p>
 				</div>
+				<Button ariaLabel="Clear Sorting" onClick={() => setSelectedSort([])}>
+					<X />
+				</Button>
 			</div>
 
 			<p className="pl-2">Filter tasks by:</p>
