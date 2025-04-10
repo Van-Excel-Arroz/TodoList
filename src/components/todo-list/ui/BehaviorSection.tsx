@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import SortMenu from './SortMenu';
 import useQueryParams from '@/hooks/useQueryParams';
 import {
 	ArrowBigDown,
@@ -16,13 +15,6 @@ import Button from '@/components/ui-shared/Button';
 import DropDown from '@/components/ui-shared/DropDown';
 import MenuItem from '@/components/ui-shared/MenuItem';
 
-const sortLabels: any = {
-	dueDate: 'Due Date',
-	creationDate: 'Creation Date',
-	importance: 'Importance',
-	alphabetical: 'Alphabetical',
-};
-
 const filterLabels: any = {
 	dueDate: 'Due Date',
 	categories: 'Categories',
@@ -36,10 +28,8 @@ const SortItems = [
 ];
 
 export default function BehaviorSection() {
-	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const { getQueryParam } = useQueryParams();
-	const [sortField] = getQueryParam('sort');
 	const [filterField] = getQueryParam('filter');
 	const dropDownStyle =
 		'flex items-center justify-between gap-2 cursor-pointer text-sm border rounded-md px-4 py-2 relative';
@@ -54,16 +44,19 @@ export default function BehaviorSection() {
 	return (
 		<div className="flex flex-col gap-2">
 			<p className="pl-2">Sort tasks by:</p>
-			<div className="flex items-center gap-2 mb-4">
-				<div className={`${dropDownStyle} w-full`} onClick={() => setIsSortMenuOpen(prev => !prev)}>
-					{sortField ? <p>{sortLabels[sortField]}</p> : <p className="text-slate-600">Select Sort</p>}
-					<ChevronDown size={20} className="text-slate-600" />
-					<SortMenu isOpen={isSortMenuOpen} setIsOpen={setIsSortMenuOpen} width="w-full" top="top-12" header={false} />
+			<div className="flex flex-row items-center gap-2">
+				<DropDown selectedItem={selectedSort}>
+					{SortItems.map(item => (
+						<MenuItem onClick={() => setSelectedSort([item.label])}>
+							<item.icon className="text-slate-600" size={18} />
+							<p>{item.label}</p>
+						</MenuItem>
+					))}
+				</DropDown>
+				<div className={dropDownStyle} onClick={handleSortOrder}>
+					{sortOrder === 'Asc' ? <ArrowBigUp size={20} /> : <ArrowBigDown size={20} />}
+					<p className="select-none">{sortOrder}</p>
 				</div>
-
-				<Button ariaLabel="Clear Sorting">
-					<X />
-				</Button>
 			</div>
 
 			<p className="pl-2">Filter tasks by:</p>
@@ -82,20 +75,6 @@ export default function BehaviorSection() {
 				<Button ariaLabel="Clear Sorting">
 					<X />
 				</Button>
-			</div>
-			<div className="flex flex-row items-center gap-2">
-				<DropDown selectedItem={selectedSort}>
-					{SortItems.map(item => (
-						<MenuItem onClick={() => setSelectedSort([item.label])}>
-							<item.icon className="text-slate-600" size={18} />
-							<p>{item.label}</p>
-						</MenuItem>
-					))}
-				</DropDown>
-				<div className={dropDownStyle} onClick={handleSortOrder}>
-					{sortOrder === 'Asc' ? <ArrowBigUp size={20} /> : <ArrowBigDown size={20} />}
-					<p className="select-none">{sortOrder}</p>
-				</div>
 			</div>
 		</div>
 	);
