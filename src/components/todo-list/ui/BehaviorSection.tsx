@@ -2,7 +2,7 @@ import FilterDropDown from '@/components/ui-shared/FilterDropDown';
 import RadioButtonGroup from '@/components/ui-shared/RadioButtonGroup';
 import SortDropDown from '@/components/ui-shared/SortDropDown';
 
-const headerTextStyle = 'text-lg';
+const headerTextStyle = 'text-lg font-semibold text-slate-700';
 const completedTasksOptions = ['Move to "Completed" Section', 'Hide After', 'Hide immediately'];
 
 export default function BehaviorSection() {
