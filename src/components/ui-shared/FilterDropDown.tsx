@@ -4,11 +4,13 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import { CalendarDays, CalendarX2, Check, X } from 'lucide-react';
 import { useState } from 'react';
 import Selection from './Selection';
+import { Category } from '@/utils/types';
 
 const filterBy = ['Due Date', 'Categories'];
 
 export default function FilterDropDown() {
 	const [selectedFilter, setSelectedFilter] = useState<string[]>([]);
+	const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
 	const [filter, setFilter] = useState(filterBy[0]);
 
 	const DateFilterItems = [
@@ -30,6 +32,7 @@ export default function FilterDropDown() {
 				>
 					<Selection options={filterBy} selectedOption={filter} setSelectedOption={setFilter} />
 				</MenuItem>
+
 				{DateFilterItems.map(item => (
 					<MenuItem key={item.label} className="justify-between" onClick={() => setSelectedFilter([item.label])}>
 						<div className="flex gap-2">
