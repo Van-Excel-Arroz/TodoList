@@ -1,16 +1,19 @@
 import FilterDropDown from '@/components/ui-shared/FilterDropDown';
+import RadioButtonGroup from '@/components/ui-shared/RadioButtonGroup';
 import SortDropDown from '@/components/ui-shared/SortDropDown';
 
-export default function BehaviorSection() {
-	const headerTextStyle = 'pl-2 text-lg';
+const headerTextStyle = 'text-lg';
+const completedTasksOptions = ['Move to "Completed" Section', 'Hide After', 'Hide immediately'];
 
+export default function BehaviorSection() {
 	return (
-		<div className="flex flex-col gap-2">
+		<div className="flex flex-col gap-2 px-2 overflow-y-auto">
 			<p className={headerTextStyle}>Sort</p>
 			<SortDropDown />
 			<p className={headerTextStyle}>Filter</p>
 			<FilterDropDown />
 			<p className={headerTextStyle}>Completed Tasks</p>
+			<RadioButtonGroup options={completedTasksOptions} />
 			<p className={headerTextStyle}>New Tasks Position</p>
 			<p className={headerTextStyle}>Due Date Format</p>
 		</div>
