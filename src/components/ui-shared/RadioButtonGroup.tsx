@@ -7,11 +7,12 @@ export default function RadioButtonGroup({ options }: { options: string[] }) {
 	return (
 		<div className="mb-4">
 			{options.map((label, index) => (
-				<div key={index} className="flex items-center gap-2 py-1">
-					<div
-						className="relative inline-block w-5 cursor-pointer hover:text-slate-800 active:text-slate-600"
-						onClick={() => setSelectedOption(index)}
-					>
+				<div
+					key={index}
+					className="flex items-center gap-2 py-1 cursor-pointer hover:text-slate-800 active:text-slate-600"
+					onClick={() => setSelectedOption(index)}
+				>
+					<div className="relative inline-block w-5 ">
 						{index === selectedOption ? <DotInCircle /> : <Circle size={20} />}
 					</div>
 					<p>{label}</p>
