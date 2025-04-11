@@ -1,13 +1,11 @@
 import Button from '@/components/ui-shared/Button';
+import CategorySelectionList from '@/components/ui-shared/CategorySelectionList';
 import MenuItem from '@/components/ui-shared/MenuItem';
-import useCategoriesStore from '@/context/CategoriesContext';
 import useQueryParams from '@/hooks/useQueryParams';
 import { Category } from '@/utils/types';
-import { Check } from 'lucide-react';
 import { useState } from 'react';
 
 export default function CategoryFilterMenu() {
-	const { categories } = useCategoriesStore();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
 	const [todolistId] = getQueryParam('id');
@@ -21,40 +19,9 @@ export default function CategoryFilterMenu() {
 			updateSearchParams('filter', `categories:${selectedCategoryTitles}`, todolistId || smart_list);
 	};
 
-	const handleCategoryClick = (event: React.MouseEvent<HTMLDivElement>, category: Category) => {
-		event.stopPropagation();
-		const isSelected = selectedCategories.find(cat => cat.id === category.id);
-
-		if (isSelected) {
-			setSelectedCategories(cats => cats.filter(cat => cat.id !== category.id));
-		} else {
-			setSelectedCategories(cats => [...cats, category]);
-		}
-	};
-
 	return (
 		<>
-			<div className="max-h-[30vh] overflow-hidden overflow-y-auto">
-				{categories.length > 0 ? (
-					categories.map(category => (
-						<MenuItem
-							key={category.id}
-							className="flex items-center justify-between"
-							onClick={e => {
-								if (e) handleCategoryClick(e, category);
-							}}
-						>
-							<div className="flex items-center gap-2">
-								<p style={{ color: category.hex_color }}>●</p>
-								<p className="text-md">{category.category_title}</p>
-							</div>
-							{selectedCategories.includes(category) ? <Check size={18} className="text-slate-600" /> : null}
-						</MenuItem>
-					))
-				) : (
-					<p className="py-6 px-3 text-slate-600">No available categories.</p>
-				)}
-			</div>
+			<CategorySelectionList selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
 			<MenuItem className="border-t font-bold gap-2 justify-end" clickable={false}>
 				<Button ariaLabel="Add Selected Categories" darkMode={true} onClick={applyCategoriesFilter}>
 					<p className="px-1 text-sm">Apply</p>
