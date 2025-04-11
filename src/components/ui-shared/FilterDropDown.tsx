@@ -63,7 +63,13 @@ export default function FilterDropDown() {
 					</>
 				)}
 			</DropDown>
-			<Button ariaLabel="Clear Sorting" onClick={() => setSelectedFilter([])}>
+			<Button
+				ariaLabel="Clear Sorting"
+				onClick={() => {
+					setSelectedFilter([]);
+					setSelectedCategories([]);
+				}}
+			>
 				<X />
 			</Button>
 		</div>
