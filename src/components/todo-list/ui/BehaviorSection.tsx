@@ -8,6 +8,9 @@ export default function BehaviorSection() {
 			<SortDropDown />
 			<p className="pl-2">Filter tasks by:</p>
 			<FilterDropDown />
+			<p>Completed Tasks</p>
+			<p>New Tasks Position</p>
+			<p>Due Date Format</p>
 		</div>
 	);
 }

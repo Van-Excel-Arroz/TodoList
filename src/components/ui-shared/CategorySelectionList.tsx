@@ -7,11 +7,13 @@ import { Dispatch, SetStateAction } from 'react';
 interface CategorySelectionListProps {
 	selectedCategories: Category[];
 	setSelectedCategories: Dispatch<SetStateAction<Category[]>>;
+	height?: string;
 }
 
 export default function CategorySelectionList({
 	selectedCategories,
 	setSelectedCategories,
+	height = 'max-h-[30vh]',
 }: CategorySelectionListProps) {
 	const { categories } = useCategoriesStore();
 
@@ -27,7 +29,7 @@ export default function CategorySelectionList({
 	};
 
 	return (
-		<div className="max-h-[30vh] overflow-hidden overflow-y-auto">
+		<div className={`${height} overflow-hidden overflow-y-auto`}>
 			{categories.length > 0 ? (
 				categories.map(category => (
 					<MenuItem

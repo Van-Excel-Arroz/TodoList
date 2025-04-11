@@ -54,6 +54,7 @@ export default function FilterDropDown() {
 						<CategorySelectionList
 							selectedCategories={selectedCategories}
 							setSelectedCategories={setSelectedCategories}
+							height="max-h-[20vh]"
 						/>
 						<MenuItem className="border-t font-bold gap-2 justify-end" clickable={false}>
 							<Button ariaLabel="Add Selected Categories" darkMode={true} onClick={applyCategoriesFilter}>
