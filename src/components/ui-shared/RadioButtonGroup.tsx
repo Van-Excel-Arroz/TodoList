@@ -5,7 +5,7 @@ export default function RadioButtonGroup({ options }: { options: string[] }) {
 	const [selectedOption, setSelectedOption] = useState<number>(0);
 
 	return (
-		<div className="mb-2">
+		<div className="mb-4">
 			{options.map((label, index) => (
 				<div key={index} className="flex items-center gap-2 py-1">
 					<div
