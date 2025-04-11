@@ -13,7 +13,7 @@ const dueDateFormatOptions = [
 
 export default function BehaviorSection() {
 	return (
-		<div className="flex flex-col gap-2 px-2 overflow-y-auto h-[55vh]">
+		<div className="flex flex-col gap-2 px-2 overflow-y-auto h-[58vh]">
 			<p className={headerTextStyle}>Sort</p>
 			<SortDropDown />
 			<p className={headerTextStyle}>Filter</p>
