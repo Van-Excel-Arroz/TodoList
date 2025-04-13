@@ -1,3 +1,3 @@
-export default function AppearanceSection() {
-	return <p>List Theme / Accent Color</p>;
+export default function AppearanceSection({ headerTextStyle }: { headerTextStyle: string }) {
+	return <p className={headerTextStyle}>List Theme / Accent Color</p>;
 }
