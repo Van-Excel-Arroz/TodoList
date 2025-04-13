@@ -3,16 +3,35 @@ import {
 	Briefcase,
 	DollarSign,
 	GraduationCap,
+	Grid2X2,
 	Heart,
 	Home,
 	Lightbulb,
 	List,
+	ListTodo,
 	Plane,
 	ShoppingBasket,
+	SquareKanban,
 	Utensils,
 } from 'lucide-react';
 
+const boxStyle =
+	'col-span-1 flex flex-col items-center border rounded-md py-4 cursor-pointer hover:bg-slate-100 hover:border-slate-300 active:bg-slate-200';
 const ICONS = [List, Home, Briefcase, GraduationCap, ShoppingBasket, Utensils, Heart, Plane, Lightbulb, DollarSign];
+const LAYOUTS = [
+	{
+		icon: ListTodo,
+		text: 'List',
+	},
+	{
+		icon: Grid2X2,
+		text: 'Grid',
+	},
+	{
+		icon: SquareKanban,
+		text: 'Kanban',
+	},
+];
 
 export default function AppearanceSection({ headerTextStyle }: { headerTextStyle: string }) {
 	return (
@@ -30,8 +49,17 @@ export default function AppearanceSection({ headerTextStyle }: { headerTextStyle
 			<p className={headerTextStyle}>List Icon</p>
 			<div className="grid grid-cols-5 gap-4">
 				{ICONS.map(ListIcon => (
-					<div className="col-span-1 flex justify-center border rounded-md py-4 cursor-pointer hover:bg-slate-100 hover:border-slate-300 active:bg-slate-200">
+					<div className={boxStyle}>
 						<ListIcon />
+					</div>
+				))}
+			</div>
+			<p className={headerTextStyle}>Layout</p>
+			<div className="grid grid-cols-3 gap-2">
+				{LAYOUTS.map(Layout => (
+					<div className={boxStyle}>
+						<Layout.icon />
+						<p className="text-md">{Layout.text}</p>
 					</div>
 				))}
 			</div>
