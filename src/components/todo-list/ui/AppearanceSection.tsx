@@ -1,4 +1,18 @@
 import { PREDEFINED_THEME_COLORS } from '@/utils/constants';
+import {
+	Briefcase,
+	DollarSign,
+	GraduationCap,
+	Heart,
+	Home,
+	Lightbulb,
+	List,
+	Plane,
+	ShoppingBasket,
+	Utensils,
+} from 'lucide-react';
+
+const ICONS = [List, Home, Briefcase, GraduationCap, ShoppingBasket, Utensils, Heart, Plane, Lightbulb, DollarSign];
 
 export default function AppearanceSection({ headerTextStyle }: { headerTextStyle: string }) {
 	return (
@@ -14,7 +28,13 @@ export default function AppearanceSection({ headerTextStyle }: { headerTextStyle
 				))}
 			</div>
 			<p className={headerTextStyle}>List Icon</p>
-			<div className=""></div>
+			<div className="grid grid-cols-5 gap-4">
+				{ICONS.map(ListIcon => (
+					<div className="col-span-1 flex justify-center border rounded-md py-4 cursor-pointer hover:bg-slate-100 hover:border-slate-300 active:bg-slate-200">
+						<ListIcon />
+					</div>
+				))}
+			</div>
 		</>
 	);
 }
