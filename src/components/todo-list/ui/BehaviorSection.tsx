@@ -12,7 +12,7 @@ const dueDateFormatOptions = [
 
 export default function BehaviorSection({ headerTextStyle }: { headerTextStyle: string }) {
 	return (
-		<div className="flex flex-col gap-2 px-2 overflow-y-auto h-[58vh]">
+		<>
 			<p className={headerTextStyle}>Sort</p>
 			<SortDropDown />
 			<p className={headerTextStyle}>Filter</p>
@@ -23,6 +23,6 @@ export default function BehaviorSection({ headerTextStyle }: { headerTextStyle: 
 			<RadioButtonGroup options={newTasksPositionOptions} />
 			<p className={headerTextStyle}>Due Date Format</p>
 			<RadioButtonGroup options={dueDateFormatOptions} />
-		</div>
+		</>
 	);
 }
