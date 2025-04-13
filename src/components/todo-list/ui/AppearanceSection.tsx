@@ -48,8 +48,8 @@ export default function AppearanceSection({ headerTextStyle }: { headerTextStyle
 			</div>
 			<p className={headerTextStyle}>List Icon</p>
 			<div className="grid grid-cols-5 gap-4 mb-4">
-				{ICONS.map(ListIcon => (
-					<div className={boxStyle}>
+				{ICONS.map((ListIcon, index) => (
+					<div key={index} className={boxStyle}>
 						<ListIcon />
 					</div>
 				))}
@@ -57,7 +57,7 @@ export default function AppearanceSection({ headerTextStyle }: { headerTextStyle
 			<p className={headerTextStyle}>Layout</p>
 			<div className="grid grid-cols-3 gap-2 mb-4">
 				{LAYOUTS.map(Layout => (
-					<div className={boxStyle}>
+					<div key={Layout.text} className={boxStyle}>
 						<Layout.icon />
 						<p className="text-md">{Layout.text}</p>
 					</div>
