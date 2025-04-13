@@ -13,11 +13,11 @@ export default function DropDown({ children, selectedItem }: DropDownProps) {
 
 	return (
 		<div
-			className="flex text-wrap items-center justify-between gap-2 cursor-pointer text-sm border rounded-md px-4 py-2 relative w-full"
+			className="flex-1 min-w-0 flex items-center justify-between gap-2 cursor-pointer text-sm border rounded-md px-4 py-2 relative"
 			onClick={() => setIsMenuOpen(prev => !prev)}
 		>
-			<p className={`${isSelected ? 'text-black' : 'text-slate-600'}`}>
-				{isSelected ? selectedItem.join(',') : 'Select'}
+			<p className={`${isSelected ? 'text-black' : 'text-slate-600'} flex-1 min-w-0 text-wrap`}>
+				{isSelected ? selectedItem.join(', ') : 'Select'}
 			</p>
 			<ChevronDown size={20} className="text-slate-600" />
 			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-full" verticalPosition="top-12">
