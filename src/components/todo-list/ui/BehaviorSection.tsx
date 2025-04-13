@@ -13,10 +13,10 @@ const dueDateFormatOptions = [
 export default function BehaviorSection({ headerTextStyle }: { headerTextStyle: string }) {
 	return (
 		<>
-			<p className={headerTextStyle}>Sort</p>
-			<SortDropDown />
 			<p className={headerTextStyle}>Filter</p>
 			<FilterDropDown />
+			<p className={headerTextStyle}>Sort</p>
+			<SortDropDown />
 			<p className={headerTextStyle}>Completed Tasks</p>
 			<RadioButtonGroup options={completedTasksOptions} />
 			<p className={headerTextStyle}>New Tasks Position</p>
