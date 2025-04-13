@@ -37,7 +37,7 @@ export default function AppearanceSection({ headerTextStyle }: { headerTextStyle
 	return (
 		<>
 			<p className={headerTextStyle}>List Theme / Accent Color</p>
-			<div className="flex items-center gap-2 py-2">
+			<div className="flex items-center gap-2 mb-4">
 				{PREDEFINED_THEME_COLORS.map(color => (
 					<div
 						key={color}
@@ -47,7 +47,7 @@ export default function AppearanceSection({ headerTextStyle }: { headerTextStyle
 				))}
 			</div>
 			<p className={headerTextStyle}>List Icon</p>
-			<div className="grid grid-cols-5 gap-4">
+			<div className="grid grid-cols-5 gap-4 mb-4">
 				{ICONS.map(ListIcon => (
 					<div className={boxStyle}>
 						<ListIcon />
@@ -55,7 +55,7 @@ export default function AppearanceSection({ headerTextStyle }: { headerTextStyle
 				))}
 			</div>
 			<p className={headerTextStyle}>Layout</p>
-			<div className="grid grid-cols-3 gap-2">
+			<div className="grid grid-cols-3 gap-2 mb-4">
 				{LAYOUTS.map(Layout => (
 					<div className={boxStyle}>
 						<Layout.icon />
