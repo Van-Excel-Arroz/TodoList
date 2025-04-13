@@ -1,3 +1,3 @@
 export default function AppearanceSection() {
-	return <p>Appearance Section</p>;
+	return <p>List Theme / Accent Color</p>;
 }
