@@ -128,11 +128,7 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 						</Button>
 					)}
 					<DueDateForm dueDate={dueDate} setDueDate={setDueDate} />
-					<Button
-						type="submit"
-						ariaLabel="Add new Todo"
-						className="text-md font-bold text-nowrap flex items-center justify-center"
-					>
+					<Button type="submit" ariaLabel="Add new Todo" className="text-md font-bold text-nowrap">
 						+ Add Task
 					</Button>
 				</div>
