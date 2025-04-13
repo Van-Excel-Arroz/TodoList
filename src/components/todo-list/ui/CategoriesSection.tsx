@@ -29,7 +29,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 						</div>
 					))
 				) : (
-					<p className="py-6 px-3 text-slate-600">No available categories.</p>
+					<p className="py-6 px-3 text-slate-600 text-center">No available categories.</p>
 				)}
 			</div>
 			<p className={headerTextStyle}>Add New Category</p>
