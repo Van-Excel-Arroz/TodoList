@@ -8,7 +8,7 @@ import useTodosStore from '@/context/TodosContext';
 import useCategoriesStore from '@/context/CategoriesContext';
 import DueDateForm from '../ui/DueDateForm';
 import { Tag, X } from 'lucide-react';
-import { PREDEFINED_COLORS } from '@/utils/constants';
+import { PREDEFINED_CATEGORY_COLORS } from '@/utils/constants';
 import { CategoryTag } from '@/utils/types';
 
 interface TodoFormData {
@@ -58,7 +58,7 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 			if (existingColor) {
 				newColor = existingColor;
 			} else {
-				newColor = PREDEFINED_COLORS[(categoriesFromStore.length + categories.length) % 10];
+				newColor = PREDEFINED_CATEGORY_COLORS[(categoriesFromStore.length + categories.length) % 10];
 			}
 			const newTag = {
 				tagName: category,
