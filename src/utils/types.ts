@@ -47,7 +47,7 @@ export interface TodoListWithFilteredTodos extends TodoList {
 export interface BehaviorSettings {
 	filter: string | null;
 	sortField: string | null;
-	sortOrder: 'Asc' | 'Desc';
+	sortOrder: 'asc' | 'desc';
 	completedTasks: string;
 	newTasksPosition: string;
 	dueDateFormat: string;

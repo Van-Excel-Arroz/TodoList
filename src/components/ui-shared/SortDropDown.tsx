@@ -5,9 +5,9 @@ import { ArrowBigDown, ArrowBigUp, CalendarDays, CalendarPlus, CaseSensitive, Ch
 
 interface SortDropDownProps {
 	selectedField: string | null;
-	selectedOrder: 'Asc' | 'Desc';
+	selectedOrder: 'asc' | 'desc';
 	onFieldSelect: (field: string | null) => void;
-	onOrderChange: (order: 'Asc' | 'Desc') => void;
+	onOrderChange: (order: 'asc' | 'desc') => void;
 }
 
 export default function SortDropDown({
@@ -17,7 +17,7 @@ export default function SortDropDown({
 	onOrderChange,
 }: SortDropDownProps) {
 	const handleSortOrder = () => {
-		const newOrder = selectedOrder === 'Asc' ? 'Desc' : 'Asc';
+		const newOrder = selectedOrder === 'asc' ? 'desc' : 'asc';
 		onOrderChange(newOrder);
 	};
 
@@ -42,7 +42,7 @@ export default function SortDropDown({
 				))}
 			</DropDown>
 			<div className="flex items-center gap-2 border px-3 py-2 rounded-md cursor-pointer" onClick={handleSortOrder}>
-				{selectedOrder === 'Asc' ? <ArrowBigUp size={20} /> : <ArrowBigDown size={20} />}
+				{selectedOrder === 'asc' ? <ArrowBigUp size={20} /> : <ArrowBigDown size={20} />}
 				<p className="select-none text-sm">{selectedOrder}</p>
 			</div>
 			<Button ariaLabel="Clear Sorting" onClick={() => onFieldSelect(null)}>

@@ -9,6 +9,7 @@ import BehaviorSection from './BehaviorSection';
 import AppearanceSection from './AppearanceSection';
 import CategoriesSection from './CategoriesSection';
 import { BehaviorSettings } from '@/utils/types';
+import useQueryParams from '@/hooks/useQueryParams';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -16,19 +17,22 @@ interface TodoListSettingsModalProps {
 	todolistTitle: string;
 }
 
-const initialBehaviorSettings: BehaviorSettings = {
-	filter: null,
-	sortField: null,
-	sortOrder: 'Asc',
-	completedTasks: 'Move to "Completed" Section',
-	newTasksPosition: 'Add to Top',
-	dueDateFormat: 'Relative (2 days left,  yesterday)',
-};
-
 const settings = ['Behavior', 'Appearance', 'Categories'];
 const headerTextStyle = 'text-lg font-semibold text-slate-700';
 
 export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }: TodoListSettingsModalProps) {
+	const { getQueryParam } = useQueryParams();
+	const [filterField, filterValue] = getQueryParam('filter');
+	const [sortField, sortOrder] = getQueryParam('filter');
+	const initialBehaviorSettings: BehaviorSettings = {
+		filter: filterValue,
+		sortField: sortField,
+		sortOrder: sortOrder,
+		completedTasks: 'Move to "Completed" Section',
+		newTasksPosition: 'Add to Top',
+		dueDateFormat: 'Relative (2 days left,  yesterday)',
+	};
+
 	const portalRootRef = useRef<HTMLElement | null>(null);
 	const [settingSection, setSettingSection] = useState(settings[0]);
 	const [behaviorSettings, setBehaviorSettings] = useState<BehaviorSettings>(initialBehaviorSettings);
