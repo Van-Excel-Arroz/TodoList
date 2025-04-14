@@ -1,19 +1,24 @@
 import Button from '@/components/ui-shared/Button';
 import DropDown from '@/components/ui-shared/DropDown';
 import MenuItem from '@/components/ui-shared/MenuItem';
-import { SingleSelectionProps } from '@/utils/types';
 import { ArrowBigDown, ArrowBigUp, CalendarDays, CalendarPlus, CaseSensitive, Check, Star, X } from 'lucide-react';
-import { useState } from 'react';
 
-export default function SortDropDown({ selectedOption, onOptionSelect }: SingleSelectionProps) {
-	const [sortOrder, setSortOrder] = useState<'Asc' | 'Desc'>('Asc');
-	const splitedSort = selectedOption?.split(' ') ?? null;
-	const sortLabel = splitedSort ? splitedSort[splitedSort.length] : null;
+interface SortDropDownProps {
+	selectedField: string | null;
+	selectedOrder: 'Asc' | 'Desc';
+	onFieldSelect: (field: string | null) => void;
+	onOrderChange: (order: 'Asc' | 'Desc') => void;
+}
 
+export default function SortDropDown({
+	selectedField,
+	selectedOrder,
+	onFieldSelect,
+	onOrderChange,
+}: SortDropDownProps) {
 	const handleSortOrder = () => {
-		const newOrder = sortOrder === 'Asc' ? 'Desc' : 'Asc';
-		setSortOrder(newOrder);
-		if (sortLabel) onOptionSelect(`${selectedOption} ${newOrder}`);
+		const newOrder = selectedOrder === 'Asc' ? 'Desc' : 'Asc';
+		onOrderChange(newOrder);
 	};
 
 	const SortItems = [
@@ -25,26 +30,22 @@ export default function SortDropDown({ selectedOption, onOptionSelect }: SingleS
 
 	return (
 		<div className="flex flex-row items-center gap-2 mb-4">
-			<DropDown selectedItem={sortLabel}>
+			<DropDown selectedItem={selectedField}>
 				{SortItems.map(item => (
-					<MenuItem
-						key={item.label}
-						className="justify-between"
-						onClick={() => onOptionSelect(`${item.label} ${sortOrder}`)}
-					>
+					<MenuItem key={item.label} className="justify-between" onClick={() => onFieldSelect(item.label)}>
 						<div className="flex gap-2">
 							<item.icon className="text-slate-600" size={18} />
 							<p>{item.label}</p>
 						</div>
-						{<Check size={18} className={`${item.label === selectedOption ? 'block' : 'hidden'} text-slate-600`} />}
+						{<Check size={18} className={`${item.label === selectedField ? 'block' : 'hidden'} text-slate-600`} />}
 					</MenuItem>
 				))}
 			</DropDown>
 			<div className="flex items-center gap-2 border px-3 py-2 rounded-md cursor-pointer" onClick={handleSortOrder}>
-				{sortOrder === 'Asc' ? <ArrowBigUp size={20} /> : <ArrowBigDown size={20} />}
-				<p className="select-none text-sm">{sortOrder}</p>
+				{selectedOrder === 'Asc' ? <ArrowBigUp size={20} /> : <ArrowBigDown size={20} />}
+				<p className="select-none text-sm">{selectedOrder}</p>
 			</div>
-			<Button ariaLabel="Clear Sorting" onClick={() => onOptionSelect(null)}>
+			<Button ariaLabel="Clear Sorting" onClick={() => onFieldSelect(null)}>
 				<X />
 			</Button>
 		</div>

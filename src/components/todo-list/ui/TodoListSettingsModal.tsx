@@ -18,7 +18,8 @@ interface TodoListSettingsModalProps {
 
 const initialBehaviorSettings: BehaviorSettings = {
 	filter: null,
-	sort: null,
+	sortField: null,
+	sortOrder: 'Asc',
 	completedTasks: 'Move to "Completed" Section',
 	newTasksPosition: 'Add to Top',
 	dueDateFormat: 'Relative (2 days left,  yesterday)',
