@@ -66,7 +66,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 					}`}
 					onClick={handleTodoClick}
 				>
-					<div className="flex items-center gap-2 col-span-5">
+					<div className="flex items-center gap-2 col-span-7">
 						<div className="flex items-center gap-2">
 							<GripVertical
 								className="cursor-all-scroll text-slate-500 hover:text-slate-800"
@@ -79,7 +79,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 							{todo.task_text}
 						</p>
 					</div>
-					<div className="col-span-2 flex items-center justify-center">
+					<div className="col-span-1 flex items-center justify-center">
 						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
 					</div>
 					<div className="col-span-3 flex items-center gap-2 flex-wrap">
@@ -87,7 +87,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 							<CategoryTagList categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
 						)}
 					</div>
-					<div className="col-span-2 flex justify-center">
+					<div className="col-span-1 flex justify-center">
 						<Importance isImportant={todo.is_important} handleOnClick={handleImportanceChange} size={22} />
 					</div>
 				</div>
