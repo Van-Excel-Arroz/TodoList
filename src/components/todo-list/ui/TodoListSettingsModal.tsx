@@ -17,7 +17,7 @@ interface TodoListSettingsModalProps {
 }
 
 const initialBehaviorSettings: BehaviorSettings = {
-	filter: [],
+	filter: null,
 	sort: null,
 	completedTasks: 'Move to "Completed" Section',
 	newTasksPosition: 'Add to Top',

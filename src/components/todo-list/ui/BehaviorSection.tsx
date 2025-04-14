@@ -21,7 +21,10 @@ export default function BehaviorSection({ headerTextStyle, settings, updateSetti
 	return (
 		<>
 			<p className={headerTextStyle}>Filter</p>
-			<FilterDropDown />
+			<FilterDropDown
+				selectedOption={settings.filter}
+				onOptionSelect={newOption => updateSetting('filter', newOption)}
+			/>
 			<p className={headerTextStyle}>Sort</p>
 			<SortDropDown />
 			<p className={headerTextStyle}>Completed Tasks</p>

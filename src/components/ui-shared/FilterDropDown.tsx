@@ -7,10 +7,14 @@ import Selection from './Selection';
 import { Category } from '@/utils/types';
 import CategorySelectionList from './CategorySelectionList';
 
+interface FilterDropdownProps {
+	selectedOption: string | null;
+	onOptionSelect: (option: string | null) => void;
+}
+
 const filterBy = ['Due Date', 'Categories'];
 
-export default function FilterDropDown() {
-	const [selectedFilter, setSelectedFilter] = useState<string[]>([]);
+export default function FilterDropDown({ selectedOption, onOptionSelect }: FilterDropdownProps) {
 	const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
 	const [filter, setFilter] = useState(filterBy[0]);
 
@@ -23,13 +27,13 @@ export default function FilterDropDown() {
 	];
 
 	const applyCategoriesFilter = () => {
-		const selectedCategoryTitles = selectedCategories.map(cat => cat.category_title);
-		setSelectedFilter(selectedCategoryTitles);
+		const selectedCategoryTitles = selectedCategories.join(', ');
+		onOptionSelect(selectedCategoryTitles);
 	};
 
 	return (
 		<div className="flex flex-row items-center gap-2 mb-4">
-			<DropDown selectedItem={selectedFilter}>
+			<DropDown selectedItem={selectedOption}>
 				<MenuItem
 					clickable={false}
 					onClick={e => {
@@ -41,12 +45,12 @@ export default function FilterDropDown() {
 
 				{filter === 'Due Date' ? (
 					DateFilterItems.map(item => (
-						<MenuItem key={item.label} className="justify-between" onClick={() => setSelectedFilter([item.label])}>
+						<MenuItem key={item.label} className="justify-between" onClick={() => onOptionSelect(item.label)}>
 							<div className="flex gap-2">
 								<item.icon className="text-slate-600" size={18} />
 								<p>{item.label}</p>
 							</div>
-							{<Check size={18} className={`${item.label == selectedFilter[0] ? 'block' : 'hidden'} text-slate-600`} />}
+							{<Check size={18} className={`${item.label == selectedOption ? 'block' : 'hidden'} text-slate-600`} />}
 						</MenuItem>
 					))
 				) : (
@@ -66,7 +70,7 @@ export default function FilterDropDown() {
 			<Button
 				ariaLabel="Clear Sorting"
 				onClick={() => {
-					setSelectedFilter([]);
+					onOptionSelect(null);
 					setSelectedCategories([]);
 				}}
 			>
