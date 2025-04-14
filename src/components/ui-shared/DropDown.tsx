@@ -9,6 +9,8 @@ interface DropDownProps {
 
 export default function DropDown({ children, selectedItem }: DropDownProps) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const isMultipleSelected = selectedItem?.split(',').length ?? 0 > 0;
+	const displaySelectedItem = isMultipleSelected ? selectedItem?.split(',').join(', ') : selectedItem;
 
 	return (
 		<div
@@ -16,7 +18,7 @@ export default function DropDown({ children, selectedItem }: DropDownProps) {
 			onClick={() => setIsMenuOpen(prev => !prev)}
 		>
 			<p className={`${selectedItem ? 'text-black' : 'text-slate-600'} flex-1 min-w-0 text-wrap`}>
-				{selectedItem ? selectedItem : 'Select'}
+				{selectedItem ? displaySelectedItem : 'Select'}
 			</p>
 			<ChevronDown size={20} className="text-slate-600" />
 			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-full" verticalPosition="top-12">
