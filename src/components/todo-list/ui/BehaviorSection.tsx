@@ -1,6 +1,13 @@
 import FilterDropDown from '@/components/ui-shared/FilterDropDown';
 import RadioButtonGroup from '@/components/ui-shared/RadioButtonGroup';
 import SortDropDown from '@/components/ui-shared/SortDropDown';
+import { BehaviorSettings } from '@/utils/types';
+
+interface BehaviorSectionProps {
+	headerTextStyle: string;
+	settings: BehaviorSettings;
+	updateSetting: (key: keyof BehaviorSettings, value: any) => void;
+}
 
 const completedTasksOptions = ['Move to "Completed" Section', 'Hide After', 'Hide immediately'];
 const newTasksPositionOptions = ['Add to Top', 'Add to Bottom'];
@@ -10,7 +17,7 @@ const dueDateFormatOptions = [
 	'Long Date (Jan 1, 2025)',
 ];
 
-export default function BehaviorSection({ headerTextStyle }: { headerTextStyle: string }) {
+export default function BehaviorSection({ headerTextStyle, settings, updateSetting }: BehaviorSectionProps) {
 	return (
 		<>
 			<p className={headerTextStyle}>Filter</p>
@@ -18,11 +25,23 @@ export default function BehaviorSection({ headerTextStyle }: { headerTextStyle: 
 			<p className={headerTextStyle}>Sort</p>
 			<SortDropDown />
 			<p className={headerTextStyle}>Completed Tasks</p>
-			<RadioButtonGroup options={completedTasksOptions} />
+			<RadioButtonGroup
+				options={completedTasksOptions}
+				selectedOption={settings.completedTasks}
+				onOptionSelect={newOption => updateSetting('completedTasks', newOption)}
+			/>
 			<p className={headerTextStyle}>New Tasks Position</p>
-			<RadioButtonGroup options={newTasksPositionOptions} />
+			<RadioButtonGroup
+				options={newTasksPositionOptions}
+				selectedOption={settings.newTasksPosition}
+				onOptionSelect={newOption => updateSetting('newTasksPosition', newOption)}
+			/>
 			<p className={headerTextStyle}>Due Date Format</p>
-			<RadioButtonGroup options={dueDateFormatOptions} />
+			<RadioButtonGroup
+				options={dueDateFormatOptions}
+				selectedOption={settings.dueDateFormat}
+				onOptionSelect={newOption => updateSetting('dueDateFormat', newOption)}
+			/>
 		</>
 	);
 }

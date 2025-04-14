@@ -43,3 +43,11 @@ export interface SortFilterMenuProps extends MenuOpenProps {
 export interface TodoListWithFilteredTodos extends TodoList {
 	filtered_todos: Todo[];
 }
+
+export interface BehaviorSettings {
+	filter: string[];
+	sort: string | null;
+	completedTasks: string;
+	newTasksPosition: string;
+	dueDateFormat: string;
+}

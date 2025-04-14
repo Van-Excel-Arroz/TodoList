@@ -1,19 +1,22 @@
 import { Circle } from 'lucide-react';
-import { useState } from 'react';
 
-export default function RadioButtonGroup({ options }: { options: string[] }) {
-	const [selectedIndex, setSelectedIndex] = useState<number>(0);
+interface RadioButtonGroupProps {
+	options: string[];
+	selectedOption: string;
+	onOptionSelect: (option: string) => void;
+}
 
+export default function RadioButtonGroup({ options, selectedOption, onOptionSelect }: RadioButtonGroupProps) {
 	return (
 		<div className="mb-4">
-			{options.map((label, index) => (
+			{options.map(label => (
 				<div
-					key={index}
+					key={label}
 					className="flex items-center gap-2 py-1 cursor-pointer hover:text-slate-800 active:text-slate-600"
-					onClick={() => setSelectedIndex(index)}
+					onClick={() => onOptionSelect(label)}
 				>
 					<div className="relative inline-block w-5 ">
-						{index === selectedIndex ? <DotInCircle /> : <Circle size={20} />}
+						{label === selectedOption ? <DotInCircle /> : <Circle size={20} />}
 					</div>
 					<p>{label}</p>
 				</div>

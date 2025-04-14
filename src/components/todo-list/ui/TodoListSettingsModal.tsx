@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom';
 import BehaviorSection from './BehaviorSection';
 import AppearanceSection from './AppearanceSection';
 import CategoriesSection from './CategoriesSection';
+import { BehaviorSettings } from '@/utils/types';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -15,19 +16,34 @@ interface TodoListSettingsModalProps {
 	todolistTitle: string;
 }
 
+const initialBehaviorSettings: BehaviorSettings = {
+	filter: [],
+	sort: null,
+	completedTasks: 'Move to "Completed" Section',
+	newTasksPosition: 'Add to Top',
+	dueDateFormat: 'Relative (2 days left,  yesterday)',
+};
+
 const settings = ['Behavior', 'Appearance', 'Categories'];
 const headerTextStyle = 'text-lg font-semibold text-slate-700';
 
 export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }: TodoListSettingsModalProps) {
 	const portalRootRef = useRef<HTMLElement | null>(null);
 	const [settingSection, setSettingSection] = useState(settings[0]);
+	const [behaviorSettings, setBehaviorSettings] = useState<BehaviorSettings>(initialBehaviorSettings);
 
 	const renderSection = () => {
 		if (!settingSection) return <p className="text-center text-slate-600">Section not found</p>;
 
 		switch (settingSection) {
 			case 'Behavior':
-				return <BehaviorSection headerTextStyle={headerTextStyle} />;
+				return (
+					<BehaviorSection
+						headerTextStyle={headerTextStyle}
+						settings={behaviorSettings}
+						updateSetting={(key, value) => setBehaviorSettings(prev => ({ ...prev, [key]: value }))}
+					/>
+				);
 			case 'Appearance':
 				return <AppearanceSection headerTextStyle={headerTextStyle} />;
 			case 'Categories':
