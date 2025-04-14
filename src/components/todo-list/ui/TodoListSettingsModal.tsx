@@ -15,23 +15,25 @@ interface TodoListSettingsModalProps {
 	todolistTitle: string;
 }
 
-type SectionComponents = {
-	[key: string]: React.ComponentType<any>;
-};
-
-const sectionComponentMap: SectionComponents = {
-	Behavior: BehaviorSection,
-	Appearance: AppearanceSection,
-	Categories: CategoriesSection,
-};
-
 const settings = ['Behavior', 'Appearance', 'Categories'];
 const headerTextStyle = 'text-lg font-semibold text-slate-700';
 
 export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }: TodoListSettingsModalProps) {
 	const portalRootRef = useRef<HTMLElement | null>(null);
 	const [settingSection, setSettingSection] = useState(settings[0]);
-	const SectionComponent = sectionComponentMap[settingSection];
+
+	const renderSection = () => {
+		if (!settingSection) return <p className="text-center text-slate-600">Section not found</p>;
+
+		switch (settingSection) {
+			case 'Behavior':
+				return <BehaviorSection headerTextStyle={headerTextStyle} />;
+			case 'Appearance':
+				return <AppearanceSection headerTextStyle={headerTextStyle} />;
+			case 'Categories':
+				return <CategoriesSection headerTextStyle={headerTextStyle} />;
+		}
+	};
 
 	useEffect(() => {
 		portalRootRef.current = document.getElementById('modal-root');
@@ -59,13 +61,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 						<p className="text-sm text-slate-600">Customize the appearance and behavior of "{todolistTitle}" list.</p>
 					</div>
 					<Selection options={settings} selectedOption={settingSection} setSelectedOption={setSettingSection} />
-					<div className="flex flex-col gap-2 px-2 overflow-y-auto h-[58vh]">
-						{SectionComponent ? (
-							<SectionComponent headerTextStyle={headerTextStyle} />
-						) : (
-							<p className="text-center text-slate-600">Section not found</p>
-						)}
-					</div>
+					<div className="flex flex-col gap-2 px-2 overflow-y-auto h-[58vh]">{renderSection()}</div>
 				</div>
 				<div className=" flex justify-end space-x-2">
 					<Button ariaLabel="Close Settings" onClick={onClose}>
