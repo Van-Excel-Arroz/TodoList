@@ -22,7 +22,7 @@ export default function FilterDropDown({ selectedOption, onOptionSelect }: Singl
 	];
 
 	const applyCategoriesFilter = () => {
-		const selectedCategoryTitles = selectedCategories.join(', ');
+		const selectedCategoryTitles = selectedCategories.map(cat => cat.category_title).join(',');
 		onOptionSelect(selectedCategoryTitles);
 	};
 

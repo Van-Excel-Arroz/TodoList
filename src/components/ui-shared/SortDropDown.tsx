@@ -7,11 +7,13 @@ import { useState } from 'react';
 
 export default function SortDropDown({ selectedOption, onOptionSelect }: SingleSelectionProps) {
 	const [sortOrder, setSortOrder] = useState<'Asc' | 'Desc'>('Asc');
+	const splitedSort = selectedOption?.split(' ') ?? null;
+	const sortLabel = splitedSort ? splitedSort[splitedSort.length] : null;
 
 	const handleSortOrder = () => {
 		const newOrder = sortOrder === 'Asc' ? 'Desc' : 'Asc';
 		setSortOrder(newOrder);
-		onOptionSelect(`${selectedOption} ${newOrder}`);
+		if (sortLabel) onOptionSelect(`${selectedOption} ${newOrder}`);
 	};
 
 	const SortItems = [
@@ -23,7 +25,7 @@ export default function SortDropDown({ selectedOption, onOptionSelect }: SingleS
 
 	return (
 		<div className="flex flex-row items-center gap-2 mb-4">
-			<DropDown selectedItem={selectedOption?.split(' ')[0] ?? null}>
+			<DropDown selectedItem={sortLabel}>
 				{SortItems.map(item => (
 					<MenuItem
 						key={item.label}

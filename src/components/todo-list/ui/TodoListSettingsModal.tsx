@@ -51,6 +51,10 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 		}
 	};
 
+	const handleSave = () => {
+		console.log(behaviorSettings);
+	};
+
 	useEffect(() => {
 		portalRootRef.current = document.getElementById('modal-root');
 	}, []);
@@ -83,7 +87,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 					<Button ariaLabel="Close Settings" onClick={onClose}>
 						Cancel
 					</Button>
-					<Button ariaLabel="Save Settings" darkMode={true} className="px-2">
+					<Button ariaLabel="Save Settings" darkMode={true} className="px-2" onClick={handleSave}>
 						Save Settings
 					</Button>
 				</div>
