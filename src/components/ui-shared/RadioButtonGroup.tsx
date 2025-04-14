@@ -1,9 +1,8 @@
+import { SingleSelectionProps } from '@/utils/types';
 import { Circle } from 'lucide-react';
 
-interface RadioButtonGroupProps {
+interface RadioButtonGroupProps extends SingleSelectionProps {
 	options: string[];
-	selectedOption: string;
-	onOptionSelect: (option: string) => void;
 }
 
 export default function RadioButtonGroup({ options, selectedOption, onOptionSelect }: RadioButtonGroupProps) {

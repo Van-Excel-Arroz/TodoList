@@ -51,3 +51,8 @@ export interface BehaviorSettings {
 	newTasksPosition: string;
 	dueDateFormat: string;
 }
+
+export interface SingleSelectionProps {
+	selectedOption: string | null;
+	onOptionSelect: (option: string | null) => void;
+}

@@ -4,17 +4,12 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import { CalendarDays, CalendarX2, Check, X } from 'lucide-react';
 import { useState } from 'react';
 import Selection from './Selection';
-import { Category } from '@/utils/types';
+import { Category, SingleSelectionProps } from '@/utils/types';
 import CategorySelectionList from './CategorySelectionList';
-
-interface FilterDropdownProps {
-	selectedOption: string | null;
-	onOptionSelect: (option: string | null) => void;
-}
 
 const filterBy = ['Due Date', 'Categories'];
 
-export default function FilterDropDown({ selectedOption, onOptionSelect }: FilterDropdownProps) {
+export default function FilterDropDown({ selectedOption, onOptionSelect }: SingleSelectionProps) {
 	const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
 	const [filter, setFilter] = useState(filterBy[0]);
 

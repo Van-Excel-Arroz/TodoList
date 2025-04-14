@@ -26,7 +26,7 @@ export default function BehaviorSection({ headerTextStyle, settings, updateSetti
 				onOptionSelect={newOption => updateSetting('filter', newOption)}
 			/>
 			<p className={headerTextStyle}>Sort</p>
-			<SortDropDown />
+			<SortDropDown selectedOption={settings.sort} onOptionSelect={newOption => updateSetting('sort', newOption)} />
 			<p className={headerTextStyle}>Completed Tasks</p>
 			<RadioButtonGroup
 				options={completedTasksOptions}
