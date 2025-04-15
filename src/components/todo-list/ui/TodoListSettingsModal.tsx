@@ -27,7 +27,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	const initialBehaviorSettings: BehaviorSettings = {
 		filter: filterValue,
 		sortField: sortField,
-		sortOrder: sortOrder,
+		sortOrder: sortOrder as 'asc' | 'desc',
 		completedTasks: 'Move to "Completed" Section',
 		newTasksPosition: 'Add to Top',
 		dueDateFormat: 'Relative (2 days left,  yesterday)',
