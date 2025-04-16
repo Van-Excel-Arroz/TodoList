@@ -29,7 +29,7 @@ function Button({
 
 	const style = `${
 		darkMode
-			? 'bg-slate-700 text-white hover:bg-slate-500 active:bg-slate-400'
+			? `bg-slate-700 text-white ${!disabled && 'hover:bg-slate-500 active:bg-slate-400'}`
 			: `text-slate-600 ${!disabled ? bgStyle : 'cursor-auto'}`
 	}`;
 
