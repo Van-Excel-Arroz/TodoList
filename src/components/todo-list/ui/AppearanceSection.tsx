@@ -49,7 +49,7 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 				{PREDEFINED_THEME_COLORS.map(color => (
 					<div
 						key={color}
-						className="h-10 w-10 flex items-center justify-center rounded-full cursor-pointer hover:scale-110 active:scale-100 transition-scale duration-150 ease-out"
+						className="h-10 w-10 flex items-center justify-center rounded-full cursor-pointer hover:scale-110 active:scale-105 transition-scale duration-150 ease-out"
 						style={{ backgroundColor: color }}
 						onClick={() => updateSetting('accent', color)}
 					>
