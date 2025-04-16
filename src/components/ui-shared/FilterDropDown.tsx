@@ -49,7 +49,7 @@ export default function FilterDropDown({ selectedOption, onOptionSelect }: Singl
 								<item.icon className="text-slate-600" size={18} />
 								<p>{item.label}</p>
 							</div>
-							{<Check size={18} className={`${item.label == selectedOption ? 'block' : 'hidden'} text-slate-600`} />}
+							{<Check size={18} className={`${item.label === selectedOption ? 'block' : 'hidden'} text-slate-600`} />}
 						</MenuItem>
 					))
 				) : (
