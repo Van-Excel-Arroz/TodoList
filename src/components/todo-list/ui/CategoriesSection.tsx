@@ -40,7 +40,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 					className="py-2 px-4 border rounded-md border-slate-300 hover:border-slate-600 focus:outline-none w-full"
 					placeholder="Category Name"
 				/>
-				<Button type="submit" ariaLabel="Add new Todo" className="p-2 text-md font-bold text-nowrap">
+				<Button type="submit" ariaLabel="Add New Category" className="p-2 text-md font-bold text-nowrap">
 					+ Add Task
 				</Button>
 			</div>
