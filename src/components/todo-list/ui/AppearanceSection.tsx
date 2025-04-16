@@ -54,7 +54,7 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 							key={color}
 							className={`${
 								isActive && 'ring-2 ring-offset-2'
-							} h-10 w-10 flex items-center justify-center rounded-full cursor-pointer hover:scale-110 active:scale-105 transition-scale duration-75 ease-out`}
+							} h-10 w-10 flex items-center justify-center rounded-full cursor-pointer hover:scale-110 transition-scale duration-75 ease-out`}
 							style={{ backgroundColor: color }}
 							onClick={() => updateSetting('accent', color)}
 						>
