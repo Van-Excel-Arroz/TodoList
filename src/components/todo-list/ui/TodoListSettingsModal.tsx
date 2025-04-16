@@ -23,7 +23,7 @@ const headerTextStyle = 'text-lg font-semibold text-slate-700';
 export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }: TodoListSettingsModalProps) {
 	const { getQueryParam } = useQueryParams();
 	const [filterField, filterValue] = getQueryParam('filter');
-	const [sortField, sortOrder] = getQueryParam('filter');
+	const [sortField, sortOrder] = getQueryParam('sort');
 	const initialBehaviorSettings: BehaviorSettings = {
 		filter: filterValue,
 		sortField: sortField,

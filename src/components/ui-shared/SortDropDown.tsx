@@ -37,7 +37,9 @@ export default function SortDropDown({
 							<item.icon className="text-slate-600" size={18} />
 							<p>{item.label}</p>
 						</div>
-						{<Check size={18} className={`${item.label === selectedField ? 'block' : 'hidden'} text-slate-600`} />}
+						{selectedField && (
+							<Check size={18} className={`${item.label === selectedField ? 'block' : 'hidden'} text-slate-600`} />
+						)}
 					</MenuItem>
 				))}
 			</DropDown>
