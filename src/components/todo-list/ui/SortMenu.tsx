@@ -50,7 +50,9 @@ export default function SortMenu({
 
 			{MenuItems.map(menuItem => (
 				<MenuItem
-					onClick={() => updateSearchParams('sort', menuItem.sortField, todolistId || smart_list)}
+					onClick={() =>
+						updateSearchParams('sort', `${menuItem.sortField}:${menuItem.sortOrder}`, todolistId || smart_list)
+					}
 					key={menuItem.sortField}
 					className="justify-between"
 				>
