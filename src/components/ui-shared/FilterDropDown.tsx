@@ -4,13 +4,17 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import { CalendarDays, CalendarX2, Check, X } from 'lucide-react';
 import { useState } from 'react';
 import Selection from './Selection';
-import { Category, SingleSelectionProps } from '@/utils/types';
+import { SingleSelectionProps } from '@/utils/types';
 import CategorySelectionList from './CategorySelectionList';
+import useQueryParams from '@/hooks/useQueryParams';
 
 const filterBy = ['Due Date', 'Categories'];
 
 export default function FilterDropDown({ selectedOption, onOptionSelect }: SingleSelectionProps) {
-	const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
+	const { getQueryParam } = useQueryParams();
+	const [filterField, fitlerValue] = getQueryParam('filter');
+	const initialCategories = filterField === 'categories' ? fitlerValue.split(',') ?? [] : [];
+	const [selectedCategoryTitles, setSelectedCategoryTitles] = useState<string[]>(initialCategories);
 	const [filter, setFilter] = useState(filterBy[0]);
 
 	const DateFilterItems = [
@@ -22,8 +26,8 @@ export default function FilterDropDown({ selectedOption, onOptionSelect }: Singl
 	];
 
 	const applyCategoriesFilter = () => {
-		const selectedCategoryTitles = selectedCategories.map(cat => cat.category_title).join(',');
-		onOptionSelect(selectedCategoryTitles);
+		const stringTitles = selectedCategoryTitles.join(',');
+		onOptionSelect(stringTitles);
 	};
 
 	return (
@@ -51,8 +55,8 @@ export default function FilterDropDown({ selectedOption, onOptionSelect }: Singl
 				) : (
 					<>
 						<CategorySelectionList
-							selectedCategories={selectedCategories}
-							setSelectedCategories={setSelectedCategories}
+							selectedCategoryTitles={selectedCategoryTitles}
+							setSelectedCategoryTitles={setSelectedCategoryTitles}
 						/>
 						<MenuItem className="border-t font-bold gap-2 justify-end" clickable={false}>
 							<Button ariaLabel="Add Selected Categories" darkMode={true} onClick={applyCategoriesFilter}>
@@ -66,7 +70,7 @@ export default function FilterDropDown({ selectedOption, onOptionSelect }: Singl
 				ariaLabel="Clear Sorting"
 				onClick={() => {
 					onOptionSelect(null);
-					setSelectedCategories([]);
+					setSelectedCategoryTitles([]);
 				}}
 			>
 				<X />
