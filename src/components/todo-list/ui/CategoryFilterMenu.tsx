@@ -13,7 +13,10 @@ export default function CategoryFilterMenu() {
 	const [selectedCategoryTitles, setSelectedCategoryTitles] = useState<string[]>(initialCategories);
 
 	const applyCategoriesFilter = () => {
-		if (selectedCategoryTitles.length === 0) return;
+		if (selectedCategoryTitles.length === 0) {
+			updateSearchParams('filter', null, todolistId || smart_list);
+			return;
+		}
 		const stringTitles = selectedCategoryTitles.join(',');
 
 		if (stringTitles) updateSearchParams('filter', `categories:${stringTitles}`, todolistId || smart_list);
