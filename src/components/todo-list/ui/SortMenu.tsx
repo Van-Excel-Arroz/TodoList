@@ -4,24 +4,28 @@ import useQueryParams from '@/hooks/useQueryParams';
 import { SortFilterMenuProps } from '@/utils/types';
 import { CalendarDays, CalendarPlus, CaseSensitive, Check, Star, Trash2 } from 'lucide-react';
 
-const MenuItems = {
-	'Due Date': {
-		param: 'dueDate:asc',
+const MenuItems = [
+	{
+		sortField: 'Due Date',
+		sortOrder: 'asc',
 		icon: CalendarDays,
 	},
-	'Creation Date': {
-		param: 'creationDate:asc',
+	{
+		sortField: 'Creation Date',
+		sortOrder: 'asc',
 		icon: CalendarPlus,
 	},
-	Importance: {
-		param: 'importance:asc',
+	{
+		sortField: 'Importance',
+		sortOrder: 'asc',
 		icon: Star,
 	},
-	Alphabetical: {
-		param: 'alphabetical:asc',
+	{
+		sortField: 'Alphabetical',
+		sortOrder: 'asc',
 		icon: CaseSensitive,
 	},
-};
+];
 
 export default function SortMenu({
 	isOpen,
@@ -44,21 +48,24 @@ export default function SortMenu({
 				</MenuItem>
 			) : null}
 
-			{Object.entries(MenuItems).map(([label, menuItem]) => (
+			{MenuItems.map(menuItem => (
 				<MenuItem
-					onClick={() => updateSearchParams('sort', menuItem.param, todolistId || smart_list)}
-					key={label}
+					onClick={() => updateSearchParams('sort', menuItem.sortField, todolistId || smart_list)}
+					key={menuItem.sortField}
 					className="justify-between"
 				>
 					<div className="flex items-center gap-2">
 						<menuItem.icon className="text-slate-600" size={18} />
-						<p>{label}</p>
+						<p>{menuItem.sortField}</p>
 					</div>
 					<div className="w-6">
-						{menuItem.param === `${sortField}:${sortValue}` ? <Check size={18} className="text-slate-600" /> : null}
+						{`${menuItem.sortField}:${menuItem.sortOrder}` === `${sortField}:${sortValue}` ? (
+							<Check size={18} className="text-slate-600" />
+						) : null}
 					</div>
 				</MenuItem>
 			))}
+
 			{clearBtn && (
 				<MenuItem
 					className="border-t justify-center"
