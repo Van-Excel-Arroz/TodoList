@@ -1,4 +1,3 @@
-import Button from '@/components/ui-shared/Button';
 import { PREDEFINED_THEME_COLORS } from '@/utils/constants';
 import { AppearanceSettings } from '@/utils/types';
 import {
@@ -70,14 +69,14 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 					const iconName = ListIcon.displayName;
 					const isActive = settings.listIcon === iconName;
 					return (
-						<Button
+						<button
 							key={index}
-							ariaLabel={`Select ${iconName} Icon`}
+							aria-label={`Select ${iconName} Icon`}
 							className={`${boxStyle} ${isActive && activeBoxStyle}`}
 							onClick={() => updateSetting('listIcon', iconName)}
 						>
 							<ListIcon />
-						</Button>
+						</button>
 					);
 				})}
 			</div>
@@ -87,15 +86,15 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 					const isActive = settings.layout === Layout.text;
 					console.log(isActive);
 					return (
-						<Button
+						<button
 							key={Layout.text}
-							ariaLabel={`Select ${Layout.text} Layout`}
+							aria-label={`Select ${Layout.text} Layout`}
 							className={`${boxStyle} ${isActive && activeBoxStyle}`}
 							onClick={() => updateSetting('layout', Layout.text)}
 						>
 							<Layout.icon />
 							<p className="text-md">{Layout.text}</p>
-						</Button>
+						</button>
 					);
 				})}
 			</div>
