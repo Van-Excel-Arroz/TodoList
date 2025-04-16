@@ -15,7 +15,7 @@ const dueDateFormatOptions = ['Relative (2 days left)', 'Short Date (mm/dd/yyyy)
 
 export default function BehaviorSection({ headerTextStyle, settings, updateSetting }: BehaviorSectionProps) {
 	return (
-		<>
+		<div className="overflow-y-auto h-[60vh]">
 			<p className={headerTextStyle}>Filter</p>
 			<FilterDropDown
 				selectedOption={settings.filter}
@@ -46,6 +46,6 @@ export default function BehaviorSection({ headerTextStyle, settings, updateSetti
 				selectedOption={settings.dueDateFormat}
 				onOptionSelect={newOption => updateSetting('dueDateFormat', newOption)}
 			/>
-		</>
+		</div>
 	);
 }
