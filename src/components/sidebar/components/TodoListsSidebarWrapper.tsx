@@ -4,7 +4,7 @@ import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 
 export default function TodoListsSidebarWrapper({ children }: { children: React.ReactNode }) {
 	const { isTodoListsSidebarOpen, toggleTodoListsSidebar } = useTodoListsSidebarStore();
-
+	console.log(isTodoListsSidebarOpen);
 	return (
 		<>
 			<div
@@ -20,10 +20,9 @@ export default function TodoListsSidebarWrapper({ children }: { children: React.
                     flex flex-col
                     bg-white border-r border-slate-300
                     h-screen
-                    transition-transform duration-300 ease-in-out lg:transition-none 
+                    transition-width duration-300 ease-in-out
                     fixed lg:sticky top-0 left-0 
-                    lg:w-72 
-                    ${isTodoListsSidebarOpen ? 'w-72 translate-x-0' : 'w-72 -translate-x-full lg:translate-x-0'}
+                    ${isTodoListsSidebarOpen ? 'w-72' : 'w-0'}
 
                     text-nowrap overflow-hidden
                 `}
