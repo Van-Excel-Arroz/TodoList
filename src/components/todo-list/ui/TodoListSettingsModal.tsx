@@ -10,7 +10,7 @@ import AppearanceSection from './AppearanceSection';
 import CategoriesSection from './CategoriesSection';
 import { AppearanceSettings, BehaviorSettings } from '@/utils/types';
 import useQueryParams from '@/hooks/useQueryParams';
-import _, { isEqual } from 'lodash';
+import _, { isEqual, values } from 'lodash';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -57,7 +57,13 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 					/>
 				);
 			case 'Appearance':
-				return <AppearanceSection headerTextStyle={headerTextStyle} />;
+				return (
+					<AppearanceSection
+						headerTextStyle={headerTextStyle}
+						settings={appearanceSettings}
+						updateSetting={(key, value) => setAppearanceSettings(prev => ({ ...prev, [key]: value }))}
+					/>
+				);
 			case 'Categories':
 				return <CategoriesSection headerTextStyle={headerTextStyle} />;
 		}

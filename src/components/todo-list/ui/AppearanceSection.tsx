@@ -1,4 +1,5 @@
 import { PREDEFINED_THEME_COLORS } from '@/utils/constants';
+import { AppearanceSettings } from '@/utils/types';
 import {
 	Briefcase,
 	DollarSign,
@@ -33,7 +34,13 @@ const LAYOUTS = [
 	},
 ];
 
-export default function AppearanceSection({ headerTextStyle }: { headerTextStyle: string }) {
+interface AppearanceSetionProps {
+	headerTextStyle: string;
+	settings: AppearanceSettings;
+	updateSetting: (key: keyof AppearanceSettings, value: any) => void;
+}
+
+export default function AppearanceSection({ headerTextStyle }: AppearanceSetionProps) {
 	return (
 		<>
 			<p className={headerTextStyle}>Accent Color</p>
