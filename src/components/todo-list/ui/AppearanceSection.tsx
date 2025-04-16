@@ -2,6 +2,7 @@ import { PREDEFINED_THEME_COLORS } from '@/utils/constants';
 import { AppearanceSettings } from '@/utils/types';
 import {
 	Briefcase,
+	Check,
 	DollarSign,
 	GraduationCap,
 	Grid2X2,
@@ -40,7 +41,7 @@ interface AppearanceSetionProps {
 	updateSetting: (key: keyof AppearanceSettings, value: any) => void;
 }
 
-export default function AppearanceSection({ headerTextStyle }: AppearanceSetionProps) {
+export default function AppearanceSection({ headerTextStyle, settings, updateSetting }: AppearanceSetionProps) {
 	return (
 		<>
 			<p className={headerTextStyle}>Accent Color</p>
@@ -48,9 +49,12 @@ export default function AppearanceSection({ headerTextStyle }: AppearanceSetionP
 				{PREDEFINED_THEME_COLORS.map(color => (
 					<div
 						key={color}
-						className="h-10 w-10 rounded-full cursor-pointer hover:scale-110 active:scale-100 transition-scale duration-150 ease-out"
+						className="h-10 w-10 flex items-center justify-center rounded-full cursor-pointer hover:scale-110 active:scale-100 transition-scale duration-150 ease-out"
 						style={{ backgroundColor: color }}
-					/>
+						onClick={() => updateSetting('accent', color)}
+					>
+						{settings.accent === color && <Check color="white" />}
+					</div>
 				))}
 			</div>
 			<p className={headerTextStyle}>List Icon</p>
