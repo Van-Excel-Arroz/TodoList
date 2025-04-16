@@ -1,7 +1,6 @@
-import { MenuOpenProps } from '@/utils/types';
 import Menu from './Menu';
 import { PREDEFINED_CATEGORY_COLORS } from '@/utils/constants';
-import { Children, useState } from 'react';
+import { useState } from 'react';
 import { Check } from 'lucide-react';
 import MenuItem from './MenuItem';
 
