@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 import BehaviorSection from './BehaviorSection';
 import AppearanceSection from './AppearanceSection';
 import CategoriesSection from './CategoriesSection';
-import { BehaviorSettings } from '@/utils/types';
+import { AppearanceSettings, BehaviorSettings } from '@/utils/types';
 import useQueryParams from '@/hooks/useQueryParams';
 import _, { isEqual } from 'lodash';
 
@@ -33,10 +33,16 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 		newTasksPosition: 'Add to Top',
 		dueDateFormat: 'Relative (2 days left,  yesterday)',
 	};
+	const initialAppearanceSettings: AppearanceSettings = {
+		accent: '#6b7280',
+		listIcon: 'List',
+		layout: 'ListTodo',
+	};
 
 	const portalRootRef = useRef<HTMLElement | null>(null);
 	const [settingSection, setSettingSection] = useState(settings[0]);
 	const [behaviorSettings, setBehaviorSettings] = useState<BehaviorSettings>(initialBehaviorSettings);
+	const [appearanceSettings, setAppearanceSettings] = useState<AppearanceSettings>(initialAppearanceSettings);
 
 	const renderSection = () => {
 		if (!settingSection) return <p className="text-center text-slate-600">Section not found</p>;

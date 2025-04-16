@@ -53,6 +53,12 @@ export interface BehaviorSettings {
 	dueDateFormat: string;
 }
 
+export interface AppearanceSettings {
+	accent: string;
+	listIcon: string;
+	layout: string;
+}
+
 export interface SingleSelectionProps {
 	selectedOption: string | null;
 	onOptionSelect: (option: string | null) => void;

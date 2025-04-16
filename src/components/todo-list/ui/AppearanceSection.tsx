@@ -36,7 +36,7 @@ const LAYOUTS = [
 export default function AppearanceSection({ headerTextStyle }: { headerTextStyle: string }) {
 	return (
 		<>
-			<p className={headerTextStyle}>List Theme / Accent Color</p>
+			<p className={headerTextStyle}>Accent Color</p>
 			<div className="flex items-center gap-2 mb-4">
 				{PREDEFINED_THEME_COLORS.map(color => (
 					<div
