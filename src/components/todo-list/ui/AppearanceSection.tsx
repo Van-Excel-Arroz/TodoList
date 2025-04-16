@@ -19,6 +19,7 @@ import {
 
 const boxStyle =
 	'col-span-1 flex flex-col items-center border rounded-md py-4 cursor-pointer hover:bg-slate-100 hover:border-slate-300 active:bg-slate-200';
+const activeBoxStyle = 'border-slate-400 bg-slate-100';
 const ICONS = [List, Home, Briefcase, GraduationCap, ShoppingBasket, Utensils, Heart, Plane, Lightbulb, DollarSign];
 const LAYOUTS = [
 	{
@@ -60,7 +61,11 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 			<p className={headerTextStyle}>List Icon</p>
 			<div className="grid grid-cols-5 gap-4 mb-4">
 				{ICONS.map((ListIcon, index) => (
-					<div key={index} className={boxStyle}>
+					<div
+						key={index}
+						className={`${boxStyle} ${ListIcon.displayName === settings.listIcon && activeBoxStyle}`}
+						onClick={() => updateSetting('listIcon', ListIcon.displayName)}
+					>
 						<ListIcon />
 					</div>
 				))}
