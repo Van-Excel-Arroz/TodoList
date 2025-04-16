@@ -4,7 +4,6 @@ import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
 
 export default function TodoListsSidebarWrapper({ children }: { children: React.ReactNode }) {
 	const { isTodoListsSidebarOpen, toggleTodoListsSidebar } = useTodoListsSidebarStore();
-	console.log(isTodoListsSidebarOpen);
 	return (
 		<>
 			<div
