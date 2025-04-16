@@ -26,9 +26,9 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	const [filterField, filterValue] = getQueryParam('filter');
 	const [sortField, sortOrder] = getQueryParam('sort');
 	const initialBehaviorSettings: BehaviorSettings = {
-		filter: filterValue,
-		sortField: sortField,
-		sortOrder: sortOrder as 'asc' | 'desc',
+		filter: filterValue ?? null,
+		sortField: sortField ?? null,
+		sortOrder: (sortOrder as 'asc' | 'desc') ?? 'asc',
 		completedTasks: 'Move to "Completed" Section',
 		newTasksPosition: 'Add to Top',
 		dueDateFormat: 'Relative (2 days left,  yesterday)',
