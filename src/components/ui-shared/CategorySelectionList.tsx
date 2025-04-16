@@ -1,30 +1,29 @@
 import useCategoriesStore from '@/context/CategoriesContext';
 import MenuItem from './MenuItem';
 import { Check } from 'lucide-react';
-import { Category } from '@/utils/types';
 import { Dispatch, SetStateAction } from 'react';
 
 interface CategorySelectionListProps {
-	selectedCategories: Category[];
-	setSelectedCategories: Dispatch<SetStateAction<Category[]>>;
+	selectedCategoryTitles: string[];
+	setSelectedCategoryTitles: Dispatch<SetStateAction<string[]>>;
 	height?: string;
 }
 
 export default function CategorySelectionList({
-	selectedCategories,
-	setSelectedCategories,
+	selectedCategoryTitles,
+	setSelectedCategoryTitles,
 	height = 'max-h-[30vh]',
 }: CategorySelectionListProps) {
 	const { categories } = useCategoriesStore();
 
-	const handleCategoryClick = (event: React.MouseEvent<HTMLDivElement>, category: Category) => {
+	const handleCategoryClick = (event: React.MouseEvent<HTMLDivElement>, categoryTitle: string) => {
 		event.stopPropagation();
-		const isSelected = selectedCategories.find(cat => cat.id === category.id);
+		const isSelected = selectedCategoryTitles.find(title => title === categoryTitle);
 
 		if (isSelected) {
-			setSelectedCategories(cats => cats.filter(cat => cat.id !== category.id));
+			setSelectedCategoryTitles(titles => titles.filter(title => title !== categoryTitle));
 		} else {
-			setSelectedCategories(cats => [...cats, category]);
+			setSelectedCategoryTitles(titles => [...titles, categoryTitle]);
 		}
 	};
 
@@ -36,14 +35,16 @@ export default function CategorySelectionList({
 						key={category.id}
 						className="flex items-center justify-between"
 						onClick={e => {
-							if (e) handleCategoryClick(e, category);
+							if (e) handleCategoryClick(e, category.category_title);
 						}}
 					>
 						<div className="flex items-center gap-2">
 							<p style={{ color: category.hex_color }}>●</p>
 							<p className="text-md">{category.category_title}</p>
 						</div>
-						{selectedCategories.includes(category) ? <Check size={18} className="text-slate-600" /> : null}
+						{selectedCategoryTitles.includes(category.category_title) ? (
+							<Check size={18} className="text-slate-600" />
+						) : null}
 					</MenuItem>
 				))
 			) : (
