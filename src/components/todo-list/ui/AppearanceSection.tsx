@@ -1,3 +1,4 @@
+import Button from '@/components/ui-shared/Button';
 import { PREDEFINED_THEME_COLORS } from '@/utils/constants';
 import { AppearanceSettings } from '@/utils/types';
 import {
@@ -46,29 +47,39 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 	return (
 		<>
 			<p className={headerTextStyle}>Accent Color</p>
-			<div className="flex items-center gap-2 mb-4">
-				{PREDEFINED_THEME_COLORS.map(color => (
-					<div
-						key={color}
-						className="h-10 w-10 flex items-center justify-center rounded-full cursor-pointer hover:scale-110 active:scale-105 transition-scale duration-150 ease-out"
-						style={{ backgroundColor: color }}
-						onClick={() => updateSetting('accent', color)}
-					>
-						{settings.accent === color && <Check color="white" />}
-					</div>
-				))}
+			<div className="flex items-center gap-4 mb-4">
+				{PREDEFINED_THEME_COLORS.map(color => {
+					const isActive = settings.accent === color;
+					return (
+						<div
+							key={color}
+							className={`${
+								isActive && 'ring-2 ring-offset-2'
+							} h-10 w-10 flex items-center justify-center rounded-full cursor-pointer hover:scale-110 active:scale-105 transition-scale duration-150 ease-out`}
+							style={{ backgroundColor: color }}
+							onClick={() => updateSetting('accent', color)}
+						>
+							{isActive && <Check color="white" strokeWidth={4} />}
+						</div>
+					);
+				})}
 			</div>
 			<p className={headerTextStyle}>List Icon</p>
 			<div className="grid grid-cols-5 gap-4 mb-4">
-				{ICONS.map((ListIcon, index) => (
-					<div
-						key={index}
-						className={`${boxStyle} ${ListIcon.displayName === settings.listIcon && activeBoxStyle}`}
-						onClick={() => updateSetting('listIcon', ListIcon.displayName)}
-					>
-						<ListIcon />
-					</div>
-				))}
+				{ICONS.map((ListIcon, index) => {
+					const iconName = ListIcon.displayName;
+					const isActive = settings.listIcon === iconName;
+					return (
+						<Button
+							key={index}
+							ariaLabel={`Select ${iconName} Icon`}
+							className={`${boxStyle} ${isActive && activeBoxStyle}`}
+							onClick={() => updateSetting('listIcon', iconName)}
+						>
+							<ListIcon />
+						</Button>
+					);
+				})}
 			</div>
 			<p className={headerTextStyle}>Layout</p>
 			<div className="grid grid-cols-3 gap-2 mb-4">
