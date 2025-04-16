@@ -56,9 +56,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 		}
 	};
 
-	const handleSave = () => {
-		console.log(behaviorSettings);
-	};
+	const handleSave = () => {};
 
 	useEffect(() => {
 		portalRootRef.current = document.getElementById('modal-root');
