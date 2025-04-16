@@ -11,6 +11,7 @@ export default function RadioButtonGroup({ options, selectedOption, onOptionSele
 			{options.map(label => (
 				<div
 					key={label}
+					aria-label={`Select ${label} Option`}
 					className="flex items-center gap-2 py-1 cursor-pointer hover:text-slate-800 active:text-slate-600"
 					onClick={() => onOptionSelect(label)}
 				>
