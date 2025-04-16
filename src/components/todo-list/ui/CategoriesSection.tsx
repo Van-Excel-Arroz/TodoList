@@ -34,7 +34,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 			</div>
 			<p className={headerTextStyle}>Add New Category</p>
 			<div className="flex items-center gap-2">
-				<div className="w-14 h-10 bg-black rounded-lg cursor-pointer" />
+				<button aria-label="Select Color for Category" className="w-14 h-10 bg-black rounded-lg cursor-pointer" />
 				<input
 					type="text"
 					className="py-2 px-4 border rounded-md border-slate-300 hover:border-slate-600 focus:outline-none w-full"
