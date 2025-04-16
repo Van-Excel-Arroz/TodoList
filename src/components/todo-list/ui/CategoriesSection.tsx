@@ -21,7 +21,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 							</div>
 							<div className="flex items-center gap-2">
 								<ColorSelectionMenu initialColor="#000000">
-									<Palette size={20} />
+									<Palette size={20} className="text-slate-600" />
 								</ColorSelectionMenu>
 								<Button ariaLabel="Delete Category">
 									<Trash2 size={20} className="text-red-600" />
