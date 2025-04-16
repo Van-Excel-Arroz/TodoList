@@ -10,7 +10,7 @@ import AppearanceSection from './AppearanceSection';
 import CategoriesSection from './CategoriesSection';
 import { AppearanceSettings, BehaviorSettings } from '@/utils/types';
 import useQueryParams from '@/hooks/useQueryParams';
-import _, { isEqual, values } from 'lodash';
+import _, { isEqual } from 'lodash';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
