@@ -83,12 +83,21 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 			</div>
 			<p className={headerTextStyle}>Layout</p>
 			<div className="grid grid-cols-3 gap-2 mb-4">
-				{LAYOUTS.map(Layout => (
-					<div key={Layout.text} className={boxStyle}>
-						<Layout.icon />
-						<p className="text-md">{Layout.text}</p>
-					</div>
-				))}
+				{LAYOUTS.map(Layout => {
+					const isActive = settings.layout === Layout.text;
+					console.log(isActive);
+					return (
+						<Button
+							key={Layout.text}
+							ariaLabel={`Select ${Layout.text} Layout`}
+							className={`${boxStyle} ${isActive && activeBoxStyle}`}
+							onClick={() => updateSetting('layout', Layout.text)}
+						>
+							<Layout.icon />
+							<p className="text-md">{Layout.text}</p>
+						</Button>
+					);
+				})}
 			</div>
 		</>
 	);

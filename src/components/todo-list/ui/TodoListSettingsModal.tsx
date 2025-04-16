@@ -36,7 +36,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	const initialAppearanceSettings: AppearanceSettings = {
 		accent: '#6b7280',
 		listIcon: 'List',
-		layout: 'ListTodo',
+		layout: 'List',
 	};
 
 	const portalRootRef = useRef<HTMLElement | null>(null);
