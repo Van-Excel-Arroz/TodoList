@@ -97,7 +97,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 						<p className="text-sm text-slate-600">Customize the appearance and behavior of "{todolistTitle}" list.</p>
 					</div>
 					<Selection options={settings} selectedOption={settingSection} setSelectedOption={setSettingSection} />
-					<div className="flex flex-col gap-2 px-2 overflow-y-auto h-[58vh]">{renderSection()}</div>
+					<div className="flex flex-col gap-2 px-2 ">{renderSection()}</div>
 				</div>
 				<div className=" flex justify-end space-x-2">
 					<Button ariaLabel="Close Settings" onClick={onClose}>

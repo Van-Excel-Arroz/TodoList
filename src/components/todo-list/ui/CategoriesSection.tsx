@@ -1,9 +1,12 @@
 import Button from '@/components/ui-shared/Button';
+import ColorSelectionMenu from '@/components/ui-shared/ColorSelectionMenu';
 import useCategoriesStore from '@/context/CategoriesContext';
 import { Palette, Trash2 } from 'lucide-react';
+import { useState } from 'react';
 
 export default function CategoriesSection({ headerTextStyle }: { headerTextStyle: string }) {
 	const { categories } = useCategoriesStore();
+	const [isColorMenuOpen, setIsColorMenuOpen] = useState(false);
 
 	return (
 		<>
@@ -34,7 +37,14 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 			</div>
 			<p className={headerTextStyle}>Add New Category</p>
 			<div className="flex items-center gap-2">
-				<button aria-label="Select Color for Category" className="w-14 h-10 bg-black rounded-lg cursor-pointer" />
+				<button
+					aria-label="Select Color for Category"
+					className="w-14 h-10 bg-black rounded-lg cursor-pointer relative"
+					onClick={() => setIsColorMenuOpen(prev => !prev)}
+				>
+					<ColorSelectionMenu isOpen={isColorMenuOpen} setIsOpen={val => setIsColorMenuOpen(val)} />
+				</button>
+
 				<input
 					type="text"
 					className="py-2 px-4 border rounded-md border-slate-300 hover:border-slate-600 focus:outline-none w-full"
