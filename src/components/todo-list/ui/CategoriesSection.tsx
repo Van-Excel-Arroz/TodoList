@@ -42,7 +42,11 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 					className="w-14 h-10 bg-black rounded-lg cursor-pointer relative"
 					onClick={() => setIsColorMenuOpen(prev => !prev)}
 				>
-					<ColorSelectionMenu isOpen={isColorMenuOpen} setIsOpen={val => setIsColorMenuOpen(val)} />
+					<ColorSelectionMenu
+						isOpen={isColorMenuOpen}
+						setIsOpen={val => setIsColorMenuOpen(val)}
+						initialColor="#000000"
+					/>
 				</button>
 
 				<input
