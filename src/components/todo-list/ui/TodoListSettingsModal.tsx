@@ -10,6 +10,7 @@ import AppearanceSection from './AppearanceSection';
 import CategoriesSection from './CategoriesSection';
 import { BehaviorSettings } from '@/utils/types';
 import useQueryParams from '@/hooks/useQueryParams';
+import { isEqual } from 'lodash';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -90,7 +91,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 					<Button ariaLabel="Close Settings" onClick={onClose}>
 						Cancel
 					</Button>
-					<Button ariaLabel="Save Settings" darkMode={true} className="px-2" onClick={handleSave}>
+					<Button ariaLabel="Save Settings" darkMode={true} className="px-2" onClick={handleSave} disabled={true}>
 						Save Settings
 					</Button>
 				</div>
