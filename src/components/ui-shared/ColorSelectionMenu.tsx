@@ -25,7 +25,7 @@ export default function ColorSelectionMenu({ initialColor, children }: ColorSele
 								key={color}
 								className={`${
 									isSelected && 'ring-2 ring-offset-2'
-								} col-span-1 h-7 w-7 flex items-center justify-center rounded-full cursor-pointer hover:scale-110 transition-scale duration-75 ease-out`}
+								} col-span-1 h-7 w-7 flex items-center justify-center rounded-full cursor-pointer hover:scale-105 transition-scale duration-75 ease-out`}
 								style={{ backgroundColor: color }}
 								onClick={() => setSelectedColor(color)}
 							>
