@@ -28,7 +28,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	const [sortField, sortOrder] = getQueryParam('sort');
 	const [todolistId] = getQueryParam('id');
 
-	const initialBehaviorSettings: BehaviorSettings = {
+	const defaultBehaviorSettings: BehaviorSettings = {
 		filter: filterField ? filterValue : null,
 		sortField: sortField ?? null,
 		sortOrder: (sortOrder as 'asc' | 'desc') ?? 'asc',
@@ -36,7 +36,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 		newTasksPosition: 'Add to Top',
 		dueDateFormat: 'Relative (2 days left,  yesterday)',
 	};
-	const initialAppearanceSettings: AppearanceSettings = {
+	const defaultAppearanceSettings: AppearanceSettings = {
 		accent: '#6b7280',
 		listIcon: 'List',
 		layout: 'List',
@@ -44,8 +44,8 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 
 	const portalRootRef = useRef<HTMLElement | null>(null);
 	const [settingSection, setSettingSection] = useState(settings[0]);
-	const [behaviorSettings, setBehaviorSettings] = useState<BehaviorSettings>(initialBehaviorSettings);
-	const [appearanceSettings, setAppearanceSettings] = useState<AppearanceSettings>(initialAppearanceSettings);
+	const [behaviorSettings, setBehaviorSettings] = useState<BehaviorSettings>(defaultBehaviorSettings);
+	const [appearanceSettings, setAppearanceSettings] = useState<AppearanceSettings>(defaultAppearanceSettings);
 
 	useEffect(() => {
 		const settingsFromStorage = localStorage.getItem(`todolistSettings-${todolistId}`);
@@ -68,7 +68,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 		}
 	}, [todolistId]);
 
-	const initialSettings = merge(initialBehaviorSettings, initialAppearanceSettings);
+	const initialSettings = merge(defaultBehaviorSettings, defaultAppearanceSettings);
 	const updatedSettings = merge(behaviorSettings, appearanceSettings);
 
 	const renderSection = () => {
