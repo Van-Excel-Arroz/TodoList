@@ -9,7 +9,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 	return (
 		<>
 			<p className={headerTextStyle}>Category Management</p>
-			<div className="h-[40vh] overflow-hidden overflow-y-auto">
+			<div className="h-[50vh] overflow-hidden overflow-y-auto bg-slate-100 border px-5 rounded-md">
 				{categories.length > 0 ? (
 					categories.map(category => (
 						<div key={category.id} className="flex items-center justify-between px-2 py-1">
