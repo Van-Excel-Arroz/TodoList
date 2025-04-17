@@ -11,7 +11,6 @@ import CategoriesSection from './CategoriesSection';
 import { AppearanceSettings, BehaviorSettings, SettingsToSave } from '@/utils/types';
 import useQueryParams from '@/hooks/useQueryParams';
 import _, { isEqual, merge } from 'lodash';
-import { parse } from 'path';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -45,30 +44,38 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	const portalRootRef = useRef<HTMLElement | null>(null);
 	const [settingSection, setSettingSection] = useState(settings[0]);
 	const [behaviorSettings, setBehaviorSettings] = useState<BehaviorSettings>(defaultBehaviorSettings);
+	const [behaviorSettingsSnapshot, setBehaviorSettingsSnapshot] = useState<BehaviorSettings>(defaultBehaviorSettings);
 	const [appearanceSettings, setAppearanceSettings] = useState<AppearanceSettings>(defaultAppearanceSettings);
+	const [appearanceSettingsSnapshot, setAppearanceSettingsSnapshot] =
+		useState<AppearanceSettings>(defaultAppearanceSettings);
 
 	useEffect(() => {
 		const settingsFromStorage = localStorage.getItem(`todolistSettings-${todolistId}`);
 		if (settingsFromStorage) {
 			const parseSettings: SettingsToSave = JSON.parse(settingsFromStorage);
 			console.log(parseSettings);
-			setBehaviorSettings({
+			const newBehaviorSettings = {
 				filter: filterField ? filterValue : null,
 				sortField: sortField ?? null,
 				sortOrder: (sortOrder as 'asc' | 'desc') ?? 'asc',
 				completedTasks: parseSettings.completedTasks,
 				newTasksPosition: parseSettings.newTasksPosition,
 				dueDateFormat: parseSettings.dueDateFormat,
-			});
-			setAppearanceSettings({
+			};
+
+			const newAppearanceSettings = {
 				accent: parseSettings.accent,
 				listIcon: parseSettings.listIcon,
 				layout: parseSettings.layout,
-			});
+			};
+			setBehaviorSettings(newBehaviorSettings);
+			setAppearanceSettings(newAppearanceSettings);
+			setBehaviorSettingsSnapshot(newBehaviorSettings);
+			setAppearanceSettingsSnapshot(newAppearanceSettings);
 		}
 	}, [todolistId]);
 
-	const initialSettings = merge(defaultBehaviorSettings, defaultAppearanceSettings);
+	const initialSettings = merge(behaviorSettingsSnapshot, appearanceSettingsSnapshot);
 	const updatedSettings = merge(behaviorSettings, appearanceSettings);
 
 	const renderSection = () => {
