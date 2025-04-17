@@ -28,7 +28,8 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	const [todolistId] = getQueryParam('id');
 
 	const defaultBehaviorSettings: BehaviorSettings = {
-		filter: filterField ? filterValue : null,
+		filterField: filterField ?? null,
+		filterValue: filterValue ?? null,
 		sortField: sortField ?? null,
 		sortOrder: (sortOrder as 'asc' | 'desc') ?? 'asc',
 		completedTasks: 'Move to "Completed" Section',
@@ -54,7 +55,8 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 		if (settingsFromStorage) {
 			const parseSettings: SettingsToSave = JSON.parse(settingsFromStorage);
 			const newBehaviorSettings = {
-				filter: filterField ? filterValue : null,
+				filterField: filterField ?? null,
+				filterValue: filterValue ?? null,
 				sortField: sortField ?? null,
 				sortOrder: (sortOrder as 'asc' | 'desc') ?? 'asc',
 				completedTasks: parseSettings.completedTasks,

@@ -4,16 +4,24 @@ import MenuItem from '@/components/ui-shared/MenuItem';
 import { CalendarDays, CalendarX2, Check, X } from 'lucide-react';
 import { useState } from 'react';
 import Selection from './Selection';
-import { SingleSelectionProps } from '@/utils/types';
 import CategorySelectionList from './CategorySelectionList';
-import useQueryParams from '@/hooks/useQueryParams';
 
 const filterBy = ['Due Date', 'Categories'];
 
-export default function FilterDropDown({ selectedOption, onOptionSelect }: SingleSelectionProps) {
-	const { getQueryParam } = useQueryParams();
-	const [filterField, fitlerValue] = getQueryParam('filter');
-	const initialCategories = filterField === 'categories' ? fitlerValue.split(',') ?? [] : [];
+interface FilterDropDownProps {
+	selectedField: string | null;
+	selectedValue: string | null;
+	onFieldChange: (field: string | null) => void;
+	onValueSelect: (value: string | null) => void;
+}
+
+export default function FilterDropDown({
+	selectedField,
+	selectedValue,
+	onFieldChange,
+	onValueSelect,
+}: FilterDropDownProps) {
+	const initialCategories = selectedField === 'categories' ? selectedValue?.split(',') ?? [] : [];
 	const [selectedCategoryTitles, setSelectedCategoryTitles] = useState<string[]>(initialCategories);
 	const [filter, setFilter] = useState(filterBy[0]);
 
@@ -27,12 +35,24 @@ export default function FilterDropDown({ selectedOption, onOptionSelect }: Singl
 
 	const applyCategoriesFilter = () => {
 		const stringTitles = selectedCategoryTitles.join(',');
-		onOptionSelect(stringTitles);
+		onFieldChange('Categories');
+		onValueSelect(stringTitles);
+	};
+
+	const applyDueDateFilter = (val: string) => {
+		onFieldChange('Due Date');
+		onValueSelect(val);
+	};
+
+	const handleFilterRemoval = () => {
+		onFieldChange(null);
+		onValueSelect(null);
+		setSelectedCategoryTitles([]);
 	};
 
 	return (
 		<div className="flex flex-row items-center gap-2 mb-4">
-			<DropDown selectedItem={selectedOption}>
+			<DropDown selectedItem={selectedValue}>
 				<MenuItem
 					clickable={false}
 					onClick={e => {
@@ -44,12 +64,12 @@ export default function FilterDropDown({ selectedOption, onOptionSelect }: Singl
 
 				{filter === 'Due Date' ? (
 					DateFilterItems.map(item => (
-						<MenuItem key={item.label} className="justify-between" onClick={() => onOptionSelect(item.label)}>
+						<MenuItem key={item.label} className="justify-between" onClick={() => applyDueDateFilter(item.label)}>
 							<div className="flex gap-2">
 								<item.icon className="text-slate-600" size={18} />
 								<p>{item.label}</p>
 							</div>
-							{<Check size={18} className={`${item.label === selectedOption ? 'block' : 'hidden'} text-slate-600`} />}
+							{<Check size={18} className={`${item.label === selectedValue ? 'block' : 'hidden'} text-slate-600`} />}
 						</MenuItem>
 					))
 				) : (
@@ -66,13 +86,7 @@ export default function FilterDropDown({ selectedOption, onOptionSelect }: Singl
 					</>
 				)}
 			</DropDown>
-			<Button
-				ariaLabel="Clear Sorting"
-				onClick={() => {
-					onOptionSelect(null);
-					setSelectedCategoryTitles([]);
-				}}
-			>
+			<Button ariaLabel="Clear Sorting" onClick={handleFilterRemoval}>
 				<X />
 			</Button>
 		</div>
