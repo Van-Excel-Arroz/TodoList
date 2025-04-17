@@ -16,7 +16,9 @@ export default function ColorSelectionMenu({ initialColor, children, verticalPos
 
 	return (
 		<div className="relative">
-			<button onClick={() => setIsColorMenuOpen(prev => !prev)}>{children}</button>
+			<button className="flex items-center" onClick={() => setIsColorMenuOpen(prev => !prev)}>
+				{children}
+			</button>
 			<Menu
 				width="w-60"
 				verticalPosition={verticalPosition}
