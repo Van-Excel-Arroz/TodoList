@@ -38,7 +38,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 				<ColorSelectionMenu initialColor="#000000" verticalPosition="top-12">
 					<div
 						aria-label="Select Color for Category"
-						className="w-14 h-10 bg-black rounded-lg cursor-pointer relative"
+						className="w-10 h-10 bg-black rounded-lg cursor-pointer relative hover:scale-105 transition-scale duration-75"
 					/>
 				</ColorSelectionMenu>
 
