@@ -11,6 +11,7 @@ import CategoriesSection from './CategoriesSection';
 import { AppearanceSettings, BehaviorSettings, SettingsToSave } from '@/utils/types';
 import useQueryParams from '@/hooks/useQueryParams';
 import _, { isEqual, merge } from 'lodash';
+import { parse } from 'path';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -26,10 +27,9 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	const [filterField, filterValue] = getQueryParam('filter');
 	const [sortField, sortOrder] = getQueryParam('sort');
 	const [todolistId] = getQueryParam('id');
-	const [initialLoadSettings, setInitialLoadSettings] = useState<SettingsToSave>();
 
 	const initialBehaviorSettings: BehaviorSettings = {
-		filter: filterValue ?? null,
+		filter: filterField ? filterValue : null,
 		sortField: sortField ?? null,
 		sortOrder: (sortOrder as 'asc' | 'desc') ?? 'asc',
 		completedTasks: 'Move to "Completed" Section',
@@ -46,6 +46,27 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	const [settingSection, setSettingSection] = useState(settings[0]);
 	const [behaviorSettings, setBehaviorSettings] = useState<BehaviorSettings>(initialBehaviorSettings);
 	const [appearanceSettings, setAppearanceSettings] = useState<AppearanceSettings>(initialAppearanceSettings);
+
+	useEffect(() => {
+		const settingsFromStorage = localStorage.getItem(`todolistSettings-${todolistId}`);
+		if (settingsFromStorage) {
+			const parseSettings: SettingsToSave = JSON.parse(settingsFromStorage);
+			console.log(parseSettings);
+			setBehaviorSettings({
+				filter: filterField ? filterValue : null,
+				sortField: sortField ?? null,
+				sortOrder: (sortOrder as 'asc' | 'desc') ?? 'asc',
+				completedTasks: parseSettings.completedTasks,
+				newTasksPosition: parseSettings.newTasksPosition,
+				dueDateFormat: parseSettings.dueDateFormat,
+			});
+			setAppearanceSettings({
+				accent: parseSettings.accent,
+				listIcon: parseSettings.listIcon,
+				layout: parseSettings.layout,
+			});
+		}
+	}, [todolistId]);
 
 	const initialSettings = merge(initialBehaviorSettings, initialAppearanceSettings);
 	const updatedSettings = merge(behaviorSettings, appearanceSettings);
