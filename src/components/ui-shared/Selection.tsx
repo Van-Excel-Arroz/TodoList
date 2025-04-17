@@ -8,7 +8,7 @@ interface SelectionProps {
 
 export default function Selection({ options, selectedOption, setSelectedOption }: SelectionProps) {
 	return (
-		<div className={`w-full flex text-center bg-slate-100 rounded-md p-2`}>
+		<div className={`w-full flex text-center bg-slate-100 rounded-md p-2 border`}>
 			{options.map((option, index) => (
 				<div
 					key={index}
