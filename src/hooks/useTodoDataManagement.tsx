@@ -25,19 +25,19 @@ export function useTodoDataManagement(todos: Todo[]): {
 
 	const getSortFn = useMemo((): SortFn => {
 		return (a: any, b: any) => {
-			if (sortField === undefined || sortField === 'importance') {
+			if (sortField === undefined || sortField === 'Importance') {
 				if (a.is_important !== b.is_important) {
 					return sortOrder === 'asc' ? (a.is_important ? 1 : -1) : a.is_important ? -1 : 1;
 				}
 			}
 
-			if (sortField === 'alphabetical') {
+			if (sortField === 'Alphabetical') {
 				const aText = a.task_text[0].toLowerCase();
 				const bText = b.task_text[0].toLowerCase();
 				return sortOrder === 'asc' ? (bText > aText ? -1 : 1) : aText > bText ? -1 : 1;
 			}
 
-			if (sortField === 'dueDate') {
+			if (sortField === 'Due Date') {
 				if (a.due_datetime && b.due_datetime) {
 					return sortOrder === 'desc'
 						? compareDesc(new Date(a.due_datetime), new Date(b.due_datetime))
@@ -47,7 +47,7 @@ export function useTodoDataManagement(todos: Todo[]): {
 				if (b.due_datetime) return 1;
 			}
 
-			if (sortField === 'creationDate') {
+			if (sortField === 'Creation Date') {
 				return sortOrder === 'asc'
 					? compareAsc(new Date(a.creation_date), new Date(b.creation_date))
 					: compareDesc(new Date(a.creation_date), new Date(b.creation_date));

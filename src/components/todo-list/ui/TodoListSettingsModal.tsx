@@ -113,8 +113,9 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 			listIcon: appearanceSettings.listIcon,
 			layout: appearanceSettings.layout,
 		};
-
 		localStorage.setItem(`todolistSettings-${todolistId}`, JSON.stringify(settingsToSave));
+		updateSearchParams('sort', `${behaviorSettings.sortField}:${behaviorSettings.sortOrder}`, todolistId);
+		updateSearchParams('filter', `${behaviorSettings.filterField}:${behaviorSettings.filterValue}`, todolistId);
 	};
 
 	useEffect(() => {
