@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 import BehaviorSection from './BehaviorSection';
 import AppearanceSection from './AppearanceSection';
 import CategoriesSection from './CategoriesSection';
-import { AppearanceSettings, BehaviorSettings } from '@/utils/types';
+import { AppearanceSettings, BehaviorSettings, SettingsToSave } from '@/utils/types';
 import useQueryParams from '@/hooks/useQueryParams';
 import _, { isEqual, merge } from 'lodash';
 
@@ -26,6 +26,8 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	const [filterField, filterValue] = getQueryParam('filter');
 	const [sortField, sortOrder] = getQueryParam('sort');
 	const [todolistId] = getQueryParam('id');
+	const [initialLoadSettings, setInitialLoadSettings] = useState<SettingsToSave>();
+
 	const initialBehaviorSettings: BehaviorSettings = {
 		filter: filterValue ?? null,
 		sortField: sortField ?? null,
@@ -74,7 +76,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	};
 
 	const handleSave = () => {
-		const settingsToSave = {
+		const settingsToSave: SettingsToSave = {
 			completedTasks: behaviorSettings.completedTasks,
 			newTasksPosition: behaviorSettings.newTasksPosition,
 			dueDateFormat: behaviorSettings.dueDateFormat,

@@ -59,6 +59,12 @@ export interface AppearanceSettings {
 	layout: string;
 }
 
+export interface SettingsToSave extends AppearanceSettings {
+	completedTasks: string;
+	newTasksPosition: string;
+	dueDateFormat: string;
+}
+
 export interface SingleSelectionProps {
 	selectedOption: string | null;
 	onOptionSelect: (option: string | null) => void;
