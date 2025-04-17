@@ -10,7 +10,7 @@ import AppearanceSection from './AppearanceSection';
 import CategoriesSection from './CategoriesSection';
 import { AppearanceSettings, BehaviorSettings } from '@/utils/types';
 import useQueryParams from '@/hooks/useQueryParams';
-import _, { isEqual, merge } from 'lodash';
+import _, { isEqual, merge, update } from 'lodash';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -115,7 +115,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 							darkMode={true}
 							className="px-2"
 							onClick={handleSave}
-							disabled={isEqual(initialBehaviorSettings, behaviorSettings)}
+							disabled={isEqual(initialSettings, updatedSettings)}
 						>
 							Save Settings
 						</Button>
