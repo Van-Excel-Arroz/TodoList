@@ -10,7 +10,7 @@ import AppearanceSection from './AppearanceSection';
 import CategoriesSection from './CategoriesSection';
 import { AppearanceSettings, BehaviorSettings } from '@/utils/types';
 import useQueryParams from '@/hooks/useQueryParams';
-import _, { isEqual } from 'lodash';
+import _, { isEqual, merge } from 'lodash';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -44,6 +44,9 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	const [behaviorSettings, setBehaviorSettings] = useState<BehaviorSettings>(initialBehaviorSettings);
 	const [appearanceSettings, setAppearanceSettings] = useState<AppearanceSettings>(initialAppearanceSettings);
 
+	const initialSettings = merge(initialBehaviorSettings, initialAppearanceSettings);
+	const updatedSettings = merge(behaviorSettings, appearanceSettings);
+
 	const renderSection = () => {
 		if (!settingSection) return <p className="text-center text-slate-600">Section not found</p>;
 
@@ -69,7 +72,10 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 		}
 	};
 
-	const handleSave = () => {};
+	const handleSave = () => {
+		console.log(initialSettings);
+		console.log(updatedSettings);
+	};
 
 	useEffect(() => {
 		portalRootRef.current = document.getElementById('modal-root');
@@ -99,20 +105,22 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 					<Selection options={settings} selectedOption={settingSection} setSelectedOption={setSettingSection} />
 					<div className="flex flex-col gap-2 px-2 ">{renderSection()}</div>
 				</div>
-				<div className=" flex justify-end space-x-2">
-					<Button ariaLabel="Close Settings" onClick={onClose}>
-						Cancel
-					</Button>
-					<Button
-						ariaLabel="Save Settings"
-						darkMode={true}
-						className="px-2"
-						onClick={handleSave}
-						disabled={isEqual(initialBehaviorSettings, behaviorSettings)}
-					>
-						Save Settings
-					</Button>
-				</div>
+				{settingSection !== 'Categories' && (
+					<div className=" flex justify-end space-x-2">
+						<Button ariaLabel="Close Settings" onClick={onClose}>
+							Cancel
+						</Button>
+						<Button
+							ariaLabel="Save Settings"
+							darkMode={true}
+							className="px-2"
+							onClick={handleSave}
+							disabled={isEqual(initialBehaviorSettings, behaviorSettings)}
+						>
+							Save Settings
+						</Button>
+					</div>
+				)}
 			</div>
 		</div>,
 		portalRootRef.current

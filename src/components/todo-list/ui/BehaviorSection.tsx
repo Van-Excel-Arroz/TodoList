@@ -11,7 +11,11 @@ interface BehaviorSectionProps {
 
 const completedTasksOptions = ['Move to "Completed" Section', 'Hide After', 'Hide immediately'];
 const newTasksPositionOptions = ['Add to Top', 'Add to Bottom'];
-const dueDateFormatOptions = ['Relative (2 days left)', 'Short Date (mm/dd/yyyy)', 'Long Date (Jan 1, 2025)'];
+const dueDateFormatOptions = [
+	'Relative (2 days left, yesterday)',
+	'Short Date (mm/dd/yyyy)',
+	'Long Date (Jan 1, 2025)',
+];
 
 export default function BehaviorSection({ headerTextStyle, settings, updateSetting }: BehaviorSectionProps) {
 	return (
