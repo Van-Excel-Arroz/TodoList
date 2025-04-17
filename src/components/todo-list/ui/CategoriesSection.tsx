@@ -20,7 +20,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 								<p>{category.category_title}</p>
 							</div>
 							<div className="flex items-center gap-2">
-								<ColorSelectionMenu initialColor="#000000">
+								<ColorSelectionMenu initialColor={category.hex_color}>
 									<Palette size={20} className="text-slate-600" />
 								</ColorSelectionMenu>
 								<Button ariaLabel="Delete Category">
