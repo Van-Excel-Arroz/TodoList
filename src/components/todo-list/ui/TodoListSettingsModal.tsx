@@ -126,6 +126,8 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 		} else if (sortField !== behaviorSettings.sortField) {
 			updateSearchParams('sort', `${behaviorSettings.sortField}:${behaviorSettings.sortOrder}`, todolistId);
 		}
+
+		onClose();
 	};
 
 	useEffect(() => {
