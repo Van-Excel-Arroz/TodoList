@@ -16,7 +16,7 @@ export default function DateFilterMenu() {
 				<MenuItem
 					key={label}
 					className="flex items-center justify-between"
-					onClick={() => updateSearchParams('filter', `dueDate:${label}`, todolistId || smart_list)}
+					onClick={() => updateSearchParams('filter', `Due Date:${label}`, todolistId || smart_list)}
 				>
 					<div className="flex items-center gap-2">
 						{label === 'No Due Date' ? (

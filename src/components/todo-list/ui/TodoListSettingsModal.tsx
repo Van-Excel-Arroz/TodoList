@@ -22,7 +22,7 @@ const settings = ['Behavior', 'Appearance', 'Categories'];
 const headerTextStyle = 'text-lg font-semibold text-slate-700';
 
 export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }: TodoListSettingsModalProps) {
-	const { getQueryParam } = useQueryParams();
+	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField, filterValue] = getQueryParam('filter');
 	const [sortField, sortOrder] = getQueryParam('sort');
 	const [todolistId] = getQueryParam('id');
@@ -53,7 +53,6 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 		const settingsFromStorage = localStorage.getItem(`todolistSettings-${todolistId}`);
 		if (settingsFromStorage) {
 			const parseSettings: SettingsToSave = JSON.parse(settingsFromStorage);
-			console.log(parseSettings);
 			const newBehaviorSettings = {
 				filter: filterField ? filterValue : null,
 				sortField: sortField ?? null,

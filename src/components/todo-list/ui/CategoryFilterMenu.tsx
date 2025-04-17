@@ -19,7 +19,7 @@ export default function CategoryFilterMenu() {
 		}
 		const stringTitles = selectedCategoryTitles.join(',');
 
-		if (stringTitles) updateSearchParams('filter', `categories:${stringTitles}`, todolistId || smart_list);
+		if (stringTitles) updateSearchParams('filter', `Categories:${stringTitles}`, todolistId || smart_list);
 	};
 
 	return (

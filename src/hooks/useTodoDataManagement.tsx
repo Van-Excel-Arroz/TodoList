@@ -68,12 +68,12 @@ export function useTodoDataManagement(todos: Todo[]): {
 		}
 		if (!filterField || !filterValue) return () => true;
 
-		if (filterField === 'categories') {
+		if (filterField === 'Categories') {
 			const selectedCategories = new Set(filterValue?.split(',') ?? []);
 			return todo => todo.categories?.some(cat => selectedCategories.has(cat.category_title)) ?? false;
 		}
 
-		if (filterField === 'dueDate' && filterValue in DATE_FILTERS) {
+		if (filterField === 'Due Date' && filterValue in DATE_FILTERS) {
 			const filterFn = DATE_FILTERS[filterValue as keyof typeof DATE_FILTERS];
 			return todo => filterFn(todo.due_datetime ?? '');
 		}
