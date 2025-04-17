@@ -10,22 +10,22 @@ import { ForwardRefExoticComponent, memo, RefAttributes, useEffect, useState } f
 interface ListLinkItemProps {
 	children: React.ReactNode;
 	queryParam: string;
-	value: string;
+	itemId: string;
 	Icon: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>;
 }
 
-function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) {
+function ListLinkItem({ children, queryParam, itemId, Icon }: ListLinkItemProps) {
 	const searchParams = useSearchParams();
 	const currentQueryParamValue = searchParams.get(queryParam);
-	const isSelectedPath = currentQueryParamValue === value;
+	const isSelectedPath = currentQueryParamValue === itemId;
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
 	const [queryString, setQueryString] = useState<string | null>(null);
 
 	useEffect(() => {
-		const storedQueryString = localStorage.getItem(`searchParams-${value}`);
+		const storedQueryString = localStorage.getItem(`searchParams-${itemId}`);
 		setQueryString(storedQueryString);
-	}, [value, searchParams]);
+	}, [itemId, searchParams]);
 
 	const handleClick = () => {
 		const mediaQuery = window.matchMedia('(max-width: 1024px)');
@@ -35,7 +35,7 @@ function ListLinkItem({ children, queryParam, value, Icon }: ListLinkItemProps) 
 		setSelectedTodoId(0);
 	};
 
-	const defaultQueryString = `${queryParam}=${value}&view=list`;
+	const defaultQueryString = `${queryParam}=${itemId}&view=list`;
 	const href = `/tasks/?${queryString ?? defaultQueryString}`;
 
 	return (

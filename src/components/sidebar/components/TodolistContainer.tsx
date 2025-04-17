@@ -31,7 +31,7 @@ function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] 
 							<AnimatePresence>
 								{todolists.map((todolist, index) => (
 									<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
-										<ListLinkItem queryParam="id" value={todolist.id.toString()} Icon={List}>
+										<ListLinkItem queryParam="id" itemId={todolist.id.toString()} Icon={List}>
 											{todolist.title}
 										</ListLinkItem>
 									</motion.li>

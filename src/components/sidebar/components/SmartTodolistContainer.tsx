@@ -16,7 +16,7 @@ export default function SmartTodolistContainer() {
 			<ul className="flex flex-col gap-2 w-full">
 				{SmartLists.map((smartList, index) => (
 					<li key={index}>
-						<ListLinkItem queryParam="smart-list" value={smartList.text.toLowerCase()} Icon={smartList.icon}>
+						<ListLinkItem queryParam="smart-list" itemId={smartList.text.toLowerCase()} Icon={smartList.icon}>
 							{smartList.text}
 						</ListLinkItem>
 					</li>
