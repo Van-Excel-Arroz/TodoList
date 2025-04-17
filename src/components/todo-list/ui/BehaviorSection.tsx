@@ -22,8 +22,10 @@ export default function BehaviorSection({ headerTextStyle, settings, updateSetti
 		<div className="overflow-y-auto h-[60vh]">
 			<p className={headerTextStyle}>Filter</p>
 			<FilterDropDown
-				selectedOption={settings.filter}
-				onOptionSelect={newOption => updateSetting('filter', newOption)}
+				selectedField={settings.filterField}
+				selectedValue={settings.filterValue}
+				onFieldChange={newField => updateSetting('filterField', newField)}
+				onValueSelect={newValue => updateSetting('filterValue', newValue)}
 			/>
 			<p className={headerTextStyle}>Sort</p>
 			<SortDropDown
