@@ -7,16 +7,22 @@ import MenuItem from './MenuItem';
 interface ColorSelectionMenu {
 	initialColor: string;
 	children: React.ReactNode;
+	verticalPosition?: string;
 }
 
-export default function ColorSelectionMenu({ initialColor, children }: ColorSelectionMenu) {
+export default function ColorSelectionMenu({ initialColor, children, verticalPosition = 'top-7' }: ColorSelectionMenu) {
 	const [isColorMenuOpen, setIsColorMenuOpen] = useState(false);
 	const [selectedColor, setSelectedColor] = useState(initialColor);
 
 	return (
 		<div className="relative">
 			<button onClick={() => setIsColorMenuOpen(prev => !prev)}>{children}</button>
-			<Menu width="w-60" verticalPosition="top-12" open={isColorMenuOpen} onClose={() => setIsColorMenuOpen(false)}>
+			<Menu
+				width="w-60"
+				verticalPosition={verticalPosition}
+				open={isColorMenuOpen}
+				onClose={() => setIsColorMenuOpen(false)}
+			>
 				<MenuItem clickable={false} className="gap-4 grid grid-cols-5">
 					{PREDEFINED_CATEGORY_COLORS.map(color => {
 						const isSelected = selectedColor === color;

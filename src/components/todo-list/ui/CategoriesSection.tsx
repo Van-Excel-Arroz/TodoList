@@ -35,7 +35,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 			</div>
 			<p className={headerTextStyle}>Add New Category</p>
 			<div className="flex items-center gap-2">
-				<ColorSelectionMenu initialColor="#000000">
+				<ColorSelectionMenu initialColor="#000000" verticalPosition="top-12">
 					<div
 						aria-label="Select Color for Category"
 						className="w-14 h-10 bg-black rounded-lg cursor-pointer relative"
