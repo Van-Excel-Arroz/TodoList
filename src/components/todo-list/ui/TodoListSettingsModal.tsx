@@ -25,6 +25,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	const { getQueryParam } = useQueryParams();
 	const [filterField, filterValue] = getQueryParam('filter');
 	const [sortField, sortOrder] = getQueryParam('sort');
+	const [todolistId] = getQueryParam('id');
 	const initialBehaviorSettings: BehaviorSettings = {
 		filter: filterValue ?? null,
 		sortField: sortField ?? null,
@@ -73,8 +74,16 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 	};
 
 	const handleSave = () => {
-		console.log(initialSettings);
-		console.log(updatedSettings);
+		const settingsToSave = {
+			completedTasks: behaviorSettings.completedTasks,
+			newTasksPosition: behaviorSettings.newTasksPosition,
+			dueDateFormat: behaviorSettings.dueDateFormat,
+			accent: appearanceSettings.accent,
+			listIcon: appearanceSettings.listIcon,
+			layout: appearanceSettings.layout,
+		};
+
+		localStorage.setItem(`todolistSettings-${todolistId}`, JSON.stringify(settingsToSave));
 	};
 
 	useEffect(() => {
