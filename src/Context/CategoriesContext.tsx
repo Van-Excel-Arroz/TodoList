@@ -6,6 +6,7 @@ interface CategoriesContextState {
 	setCategories: (categories: Category[]) => void;
 	addCategory: (newCategory: Category) => void;
 	updateColor: (id: number, newColor: string) => void;
+	deleteCategory: (categoryId: number) => void;
 	getCategoryColor: (category: string) => string;
 }
 
@@ -25,6 +26,8 @@ const useCategoriesStore = create<CategoriesContextState>()((set: any, get: any)
 		set((state: CategoriesContextState) => ({
 			categories: state.categories.map(cat => (cat.id === id ? { ...cat, hex_color: newColor } : cat)),
 		})),
+	deleteCategory: (categoryId: number) =>
+		set((state: CategoriesContextState) => ({ categories: state.categories.filter(cat => cat.id !== categoryId) })),
 	getCategoryColor: (category: string) => {
 		const existingCategory = get().categories.find((cat: Category) => cat.category_title === category.trim());
 		if (existingCategory) {
