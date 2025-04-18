@@ -1,6 +1,6 @@
 'use server';
 
-import { removeCategoryFromTodo, storeCategories, updateCategoryColor } from '@/lib/category';
+import { deleteCategoryColor, removeCategoryFromTodo, storeCategories, updateCategoryColor } from '@/lib/category';
 
 export async function addTodoCategoriesAction(categoryColorsIds: number[], todoId: number) {
 	await storeCategories(todoId, categoryColorsIds);
@@ -16,4 +16,9 @@ export async function updateCategoryColorAction(categoryColorId: number, todolis
 	const result = await updateCategoryColor(categoryColorId, todolistId, newColor);
 
 	if (!result) console.error('Failed to update hex_color from category_color');
+}
+export async function deleteCategoryColorAction(categoryColorId: number, todolistId: number) {
+	const result = await deleteCategoryColor(categoryColorId, todolistId);
+
+	if (!result) console.error('Failed to delete category_color');
 }
