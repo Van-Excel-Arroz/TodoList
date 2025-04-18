@@ -95,3 +95,19 @@ export async function getCategories(todolistId: number): Promise<Category[]> {
 		return [];
 	}
 }
+
+export async function updateCategoryColor(
+	categoryColorId: number,
+	todolistId: number,
+	newColor: string
+): Promise<boolean> {
+	try {
+		await query(
+			`UPDATE category_colors SET hex_color = ${newColor} WHERE todo_list_id = ${todolistId} AND id = ${categoryColorId}`
+		);
+		return true;
+	} catch (error) {
+		console.error('Error updating hex_color in category_colors from the database', error);
+		return false;
+	}
+}
