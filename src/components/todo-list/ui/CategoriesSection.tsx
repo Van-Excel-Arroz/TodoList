@@ -20,6 +20,8 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 		await updateCategoryColorAction(categoryColorId, Number(todolistId), newColor);
 	};
 
+	const onDeleteCategoryColor = async (categoryColorId: number) => {};
+
 	return (
 		<>
 			<p className={headerTextStyle}>Category Management</p>

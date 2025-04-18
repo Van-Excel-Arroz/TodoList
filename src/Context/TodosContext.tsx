@@ -8,6 +8,7 @@ interface TodosContextState {
 	addCategory: (todoId: number, newCategory: Category) => void;
 	deleteTodo: (todoId: number) => void;
 	deleteCategory: (todoId: number, categoryId: number) => void;
+	deleteCategories: (categoryId: number) => void;
 	toggleTodoCompletion: (todoId: number) => void;
 	toggleTodoImportance: (todoId: number) => void;
 	updateTodoTitle: (todoId: number, newTitle: string) => void;
@@ -43,6 +44,10 @@ const useTodosStore = create<TodosContextState>()((set: any, get: any) => ({
 					? { ...todo, categories: todo.categories?.filter(category => category.id !== categoryId) }
 					: todo
 			),
+		})),
+	deleteCategories: (categoryId: number) =>
+		set((state: TodosContextState) => ({
+			todos: state.todos.map(todo => todo.categories?.filter(cat => cat.id !== categoryId)),
 		})),
 	toggleTodoCompletion: (todoId: number) =>
 		set((state: TodosContextState) => ({
