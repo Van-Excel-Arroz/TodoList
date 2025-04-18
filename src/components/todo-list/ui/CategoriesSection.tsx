@@ -9,10 +9,10 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 	return (
 		<>
 			<p className={headerTextStyle}>Category Management</p>
-			<div className="h-[50vh] overflow-hidden overflow-y-auto bg-slate-100 border px-5 rounded-md">
+			<div className="h-[50vh] overflow-hidden overflow-y-auto bg-slate-100 border px-5 py-2 rounded-md">
 				{categories.length > 0 ? (
 					categories.map(category => (
-						<div key={category.id} className="flex items-center justify-between px-2 py-1">
+						<div key={category.id} className="flex items-center justify-between py-1">
 							<div className="flex items-center gap-2">
 								<p className="text-2xl" style={{ color: category.hex_color }}>
 									●
