@@ -1,4 +1,4 @@
-import { updateCategoryColorAction } from '@/actions/category-action';
+import { deleteCategoryColorAction, updateCategoryColorAction } from '@/actions/category-action';
 import Button from '@/components/ui-shared/Button';
 import ColorSelectionMenu from '@/components/ui-shared/ColorSelectionMenu';
 import useCategoriesStore from '@/context/CategoriesContext';
@@ -8,8 +8,8 @@ import { Palette, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
 export default function CategoriesSection({ headerTextStyle }: { headerTextStyle: string }) {
-	const { categories, updateColor } = useCategoriesStore();
-	const { updateCategoriesColor } = useTodosStore();
+	const { categories, updateColor, deleteCategory } = useCategoriesStore();
+	const { updateCategoriesColor, deleteCategories } = useTodosStore();
 	const { getQueryParam } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
 	const [selectedColor, setSelectedColor] = useState('#000000');
@@ -20,7 +20,11 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 		await updateCategoryColorAction(categoryColorId, Number(todolistId), newColor);
 	};
 
-	const onDeleteCategoryColor = async (categoryColorId: number) => {};
+	const onDeleteCategoryColor = async (categoryColorId: number) => {
+		deleteCategory(categoryColorId);
+		deleteCategories(categoryColorId);
+		await deleteCategoryColorAction(categoryColorId, Number(todolistId));
+	};
 
 	return (
 		<>
@@ -42,7 +46,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 								>
 									<Palette size={20} className="text-slate-600" />
 								</ColorSelectionMenu>
-								<Button ariaLabel="Delete Category">
+								<Button ariaLabel="Delete Category" onClick={() => onDeleteCategoryColor(category.id)}>
 									<Trash2 size={20} className="text-red-600" />
 								</Button>
 							</div>
