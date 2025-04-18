@@ -1,12 +1,21 @@
+import { updateCategoryColorAction } from '@/actions/category-action';
 import Button from '@/components/ui-shared/Button';
 import ColorSelectionMenu from '@/components/ui-shared/ColorSelectionMenu';
 import useCategoriesStore from '@/context/CategoriesContext';
+import useQueryParams from '@/hooks/useQueryParams';
 import { Palette, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
 export default function CategoriesSection({ headerTextStyle }: { headerTextStyle: string }) {
 	const { categories, updateColor } = useCategoriesStore();
+	const { getQueryParam } = useQueryParams();
+	const [todolistId] = getQueryParam('id');
 	const [selectedColor, setSelectedColor] = useState('#000000');
+
+	const onSaveNewColor = async (categoryColorId: number, newColor: string) => {
+		updateColor(categoryColorId, newColor);
+		await updateCategoryColorAction(categoryColorId, Number(todolistId), newColor);
+	};
 
 	return (
 		<>
@@ -24,7 +33,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 							<div className="flex items-center gap-2">
 								<ColorSelectionMenu
 									initialColor={category.hex_color}
-									onColorSelect={newColor => updateColor(category.id, newColor)}
+									onColorSelect={newColor => onSaveNewColor(category.id, newColor)}
 								>
 									<Palette size={20} className="text-slate-600" />
 								</ColorSelectionMenu>

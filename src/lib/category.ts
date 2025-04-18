@@ -102,9 +102,11 @@ export async function updateCategoryColor(
 	newColor: string
 ): Promise<boolean> {
 	try {
-		await query(
-			`UPDATE category_colors SET hex_color = ${newColor} WHERE todo_list_id = ${todolistId} AND id = ${categoryColorId}`
-		);
+		await query(`UPDATE category_colors SET hex_color = $1 WHERE todo_list_id = $2 AND id = $3`, [
+			newColor,
+			todolistId,
+			categoryColorId,
+		]);
 		return true;
 	} catch (error) {
 		console.error('Error updating hex_color in category_colors from the database', error);
