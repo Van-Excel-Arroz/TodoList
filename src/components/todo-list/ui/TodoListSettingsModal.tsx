@@ -34,7 +34,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 		sortOrder: (sortOrder as 'asc' | 'desc') ?? 'asc',
 		completedTasks: 'Move to "Completed" Section',
 		newTasksPosition: 'Add to Top',
-		dueDateFormat: 'Relative (2 days left,  yesterday)',
+		dueDateFormat: 'Relative (2 days left, yesterday)',
 	};
 	const defaultAppearanceSettings: AppearanceSettings = {
 		accent: '#6b7280',
