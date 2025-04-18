@@ -47,7 +47,10 @@ const useTodosStore = create<TodosContextState>()((set: any, get: any) => ({
 		})),
 	deleteCategories: (categoryId: number) =>
 		set((state: TodosContextState) => ({
-			todos: state.todos.map(todo => todo.categories?.filter(cat => cat.id !== categoryId)),
+			todos: state.todos.map(todo => ({
+				...todo,
+				categories: todo.categories?.filter(cat => cat.id !== categoryId),
+			})),
 		})),
 	toggleTodoCompletion: (todoId: number) =>
 		set((state: TodosContextState) => ({
