@@ -18,7 +18,7 @@ export default function FilterControl({ setIsFilterMenuOpen }: { setIsFilterMenu
 	const [selectedCategories, setSelectedCategories] = useState(0);
 
 	useEffect(() => {
-		if (filterField === 'categories') {
+		if (filterField === 'Categories') {
 			setSelectedCategories(filterValue.split(',').length);
 		}
 	}, [filterField, filterValue]);
@@ -31,8 +31,8 @@ export default function FilterControl({ setIsFilterMenuOpen }: { setIsFilterMenu
 				className="flex items-center gap-1 hover:bg-slate-300 active:bg-slate-400"
 			>
 				<Icon size={16} />
-				<p className="text-[12px]">{filterField === 'categories' ? 'Category' : filterValue}</p>
-				{filterField === 'categories' && (
+				<p className="text-[12px]">{filterField === 'Categories' ? 'Category' : filterValue}</p>
+				{filterField === 'Categories' && (
 					<p className="bg-slate-500 text-slate-200 text-xs rounded-full px-2">{selectedCategories}</p>
 				)}
 			</Button>
