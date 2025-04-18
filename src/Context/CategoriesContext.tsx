@@ -5,6 +5,7 @@ interface CategoriesContextState {
 	categories: Category[];
 	setCategories: (categories: Category[]) => void;
 	addCategory: (newCategory: Category) => void;
+	updateColor: (id: number, newColor: string) => void;
 	getCategoryColor: (category: string) => string;
 }
 
@@ -20,6 +21,10 @@ const useCategoriesStore = create<CategoriesContextState>()((set: any, get: any)
 			}
 			return { categories: state.categories };
 		}),
+	updateColor: (id: number, newColor: string) =>
+		set((state: CategoriesContextState) => ({
+			categories: state.categories.map(cat => (cat.id === id ? { ...cat, hex_color: newColor } : null)),
+		})),
 	getCategoryColor: (category: string) => {
 		const existingCategory = get().categories.find((cat: Category) => cat.category_title === category.trim());
 		if (existingCategory) {
