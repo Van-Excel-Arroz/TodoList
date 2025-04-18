@@ -113,3 +113,13 @@ export async function updateCategoryColor(
 		return false;
 	}
 }
+
+export async function deleteCategoryColor(categoryColorId: number, todolistId: number): Promise<boolean> {
+	try {
+		await query('DELETE FROM category_colors WHERE id = $1 AND todolistId = $2', [categoryColorId, todolistId]);
+		return true;
+	} catch (error) {
+		console.error('Error deleting category_color from the database', error);
+		return false;
+	}
+}
