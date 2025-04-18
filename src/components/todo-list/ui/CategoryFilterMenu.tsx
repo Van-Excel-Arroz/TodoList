@@ -9,7 +9,7 @@ export default function CategoryFilterMenu() {
 	const [todolistId] = getQueryParam('id');
 	const [smart_list] = getQueryParam('smart-list');
 	const [filterField, fitlerValue] = getQueryParam('filter');
-	const initialCategories = filterField === 'categories' ? fitlerValue.split(',') ?? [] : [];
+	const initialCategories = filterField === 'Categories' ? fitlerValue.split(',') ?? [] : [];
 	const [selectedCategoryTitles, setSelectedCategoryTitles] = useState<string[]>(initialCategories);
 
 	const applyCategoriesFilter = () => {
