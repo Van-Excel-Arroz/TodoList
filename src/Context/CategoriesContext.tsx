@@ -23,7 +23,7 @@ const useCategoriesStore = create<CategoriesContextState>()((set: any, get: any)
 		}),
 	updateColor: (id: number, newColor: string) =>
 		set((state: CategoriesContextState) => ({
-			categories: state.categories.map(cat => (cat.id === id ? { ...cat, hex_color: newColor } : null)),
+			categories: state.categories.map(cat => (cat.id === id ? { ...cat, hex_color: newColor } : cat)),
 		})),
 	getCategoryColor: (category: string) => {
 		const existingCategory = get().categories.find((cat: Category) => cat.category_title === category.trim());

@@ -4,7 +4,7 @@ import useCategoriesStore from '@/context/CategoriesContext';
 import { Palette, Trash2 } from 'lucide-react';
 
 export default function CategoriesSection({ headerTextStyle }: { headerTextStyle: string }) {
-	const { categories } = useCategoriesStore();
+	const { categories, updateColor } = useCategoriesStore();
 
 	return (
 		<>
@@ -20,7 +20,10 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 								<p>{category.category_title}</p>
 							</div>
 							<div className="flex items-center gap-2">
-								<ColorSelectionMenu initialColor={category.hex_color}>
+								<ColorSelectionMenu
+									initialColor={category.hex_color}
+									onColorSelect={newColor => updateColor(category.id, newColor)}
+								>
 									<Palette size={20} className="text-slate-600" />
 								</ColorSelectionMenu>
 								<Button ariaLabel="Delete Category">

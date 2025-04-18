@@ -8,9 +8,15 @@ interface ColorSelectionMenu {
 	initialColor: string;
 	children: React.ReactNode;
 	verticalPosition?: string;
+	onColorSelect: (color: string) => void;
 }
 
-export default function ColorSelectionMenu({ initialColor, children, verticalPosition = 'top-7' }: ColorSelectionMenu) {
+export default function ColorSelectionMenu({
+	initialColor,
+	children,
+	verticalPosition = 'top-7',
+	onColorSelect,
+}: ColorSelectionMenu) {
 	const [isColorMenuOpen, setIsColorMenuOpen] = useState(false);
 	const [selectedColor, setSelectedColor] = useState(initialColor);
 
@@ -35,7 +41,10 @@ export default function ColorSelectionMenu({ initialColor, children, verticalPos
 									isSelected && 'ring-2 ring-offset-2'
 								} col-span-1 h-7 w-7 flex items-center justify-center rounded-full cursor-pointer hover:scale-105 transition-scale duration-75 ease-out`}
 								style={{ backgroundColor: color }}
-								onClick={() => setSelectedColor(color)}
+								onClick={() => {
+									setSelectedColor(color);
+									onColorSelect(color);
+								}}
 							>
 								{isSelected && <Check color="white" size={20} strokeWidth={2} />}
 							</div>
