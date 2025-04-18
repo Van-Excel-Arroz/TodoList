@@ -76,8 +76,8 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 		}
 	}, [todolistId]);
 
-	const initialSettings = merge(behaviorSettingsSnapshot, appearanceSettingsSnapshot);
-	const updatedSettings = merge(behaviorSettings, appearanceSettings);
+	const initialSettings = merge({}, behaviorSettingsSnapshot, appearanceSettingsSnapshot);
+	const updatedSettings = merge({}, behaviorSettings, appearanceSettings);
 
 	const renderSection = () => {
 		if (!settingSection) return <p className="text-center text-slate-600">Section not found</p>;

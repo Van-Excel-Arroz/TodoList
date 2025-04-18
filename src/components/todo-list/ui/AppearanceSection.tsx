@@ -84,7 +84,6 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 			<div className="grid grid-cols-3 gap-2 mb-4">
 				{LAYOUTS.map(Layout => {
 					const isActive = settings.layout === Layout.text;
-					console.log(isActive);
 					return (
 						<button
 							key={Layout.text}
