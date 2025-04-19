@@ -6,10 +6,12 @@ import useTodosStore from '@/context/TodosContext';
 import useQueryParams from '@/hooks/useQueryParams';
 import { Palette, Trash2 } from 'lucide-react';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 export default function CategoriesSection({ headerTextStyle }: { headerTextStyle: string }) {
 	const { categories, updateColor, deleteCategory } = useCategoriesStore();
 	const { updateCategoriesColor, deleteCategories } = useTodosStore();
+	const { register, handleSubmit, reset } = useForm();
 	const { getQueryParam } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
 	const [selectedColor, setSelectedColor] = useState('#000000');
@@ -76,6 +78,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 					type="text"
 					className="py-2 px-4 border rounded-md border-slate-300 hover:border-slate-600 focus:outline-none w-full"
 					placeholder="Category Name"
+					{...(register('category'), { maxLength: 20 })}
 				/>
 				<Button type="submit" ariaLabel="Add New Category" className="p-2 text-md font-bold text-nowrap">
 					+ Add Task
