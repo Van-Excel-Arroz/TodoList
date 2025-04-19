@@ -120,7 +120,6 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 				behaviorSettings.filterValue !== null
 					? `${behaviorSettings.filterField}:${behaviorSettings.filterValue}`
 					: null;
-
 			updateSearchParams('filter', newFilterValue, todolistId);
 		}
 
