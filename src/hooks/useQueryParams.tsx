@@ -14,10 +14,19 @@ export default function useQueryParams() {
 	);
 
 	const updateSearchParams = useCallback(
-		(field: string, value: string | null, key: string, field2?: string, value2?: string | null) => {
+		(
+			field: string,
+			value: string | null,
+			key: string,
+			field2?: string,
+			value2?: string | null,
+			field3?: string,
+			value3?: string
+		) => {
 			const params = new URLSearchParams(searchParams.toString());
-			value ? params.set(`${field}`, value) : params.delete(`${field}`);
+			value3 ? params.set(`${field3}`, value3) : params.delete(`${field3}`);
 			value2 ? params.set(`${field2}`, value2) : params.delete(`${field2}`);
+			value ? params.set(`${field}`, value) : params.delete(`${field}`);
 			const newQueryString = params.toString();
 			const targetPath = `/tasks/?${newQueryString}`;
 

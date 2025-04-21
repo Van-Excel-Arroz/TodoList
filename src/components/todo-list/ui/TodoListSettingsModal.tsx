@@ -10,7 +10,7 @@ import AppearanceSection from './AppearanceSection';
 import CategoriesSection from './CategoriesSection';
 import { AppearanceSettings, BehaviorSettings, SettingsToSave } from '@/utils/types';
 import useQueryParams from '@/hooks/useQueryParams';
-import _, { isEqual, merge } from 'lodash';
+import _, { isEqual, lowerFirst, merge } from 'lodash';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -114,21 +114,27 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 			layout: appearanceSettings.layout,
 		};
 		localStorage.setItem(`todolistSettings-${todolistId}`, JSON.stringify(settingsToSave));
-		const behaviorSettingsChange = behaviorSettings.sortField !== behaviorSettingsSnapshot.sortField;
-		const filterSettingsChange = behaviorSettings.filterValue !== behaviorSettingsSnapshot.filterValue;
+
 		const newFilterValue =
 			behaviorSettings.filterValue !== null ? `${behaviorSettings.filterField}:${behaviorSettings.filterValue}` : null;
 		const newSortValue =
 			behaviorSettings.sortField !== null ? `${behaviorSettings.sortField}:${behaviorSettings.sortOrder}` : null;
+		const newLayoutValue =
+			appearanceSettings.layout !== appearanceSettingsSnapshot.layout
+				? appearanceSettings.layout
+				: appearanceSettingsSnapshot.layout;
 
-		if (behaviorSettingsChange && filterSettingsChange) {
-			updateSearchParams('filter', newFilterValue, todolistId, 'sort', newSortValue);
-		} else if (filterSettingsChange) {
-			updateSearchParams('filter', newFilterValue, todolistId);
-		} else if (behaviorSettingsChange) {
-			updateSearchParams('sort', newSortValue, todolistId);
+		if (newFilterValue || newSortValue || newLayoutValue) {
+			updateSearchParams(
+				'filter',
+				newFilterValue,
+				todolistId,
+				'sort',
+				newSortValue,
+				'view',
+				lowerFirst(newLayoutValue)
+			);
 		}
-
 		onClose();
 	};
 
