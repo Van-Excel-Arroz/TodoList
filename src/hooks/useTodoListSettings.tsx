@@ -86,7 +86,7 @@ export default function useTodoListSettings() {
 		}
 	};
 
-	const isDirty = isEqual(todoListSettings, todoListSettingsSnapShot);
+	const isDirty = !isEqual(todoListSettings, todoListSettingsSnapShot);
 
 	return { todoListSettings, setTodoListSettings, handleSaveSettings, isDirty };
 }
