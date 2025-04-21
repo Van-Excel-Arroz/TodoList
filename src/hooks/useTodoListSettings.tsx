@@ -1,13 +1,15 @@
 import { SettingsToSave, TodoListSettings } from '@/utils/types';
 import { useEffect, useState } from 'react';
 import useQueryParams from './useQueryParams';
-import _, { isEqual, lowerFirst } from 'lodash';
+import _, { isEqual, lowerFirst, upperFirst } from 'lodash';
 
 export default function useTodoListSettings() {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [filterField, filterValue] = getQueryParam('filter');
 	const [sortField, sortOrder] = getQueryParam('sort');
 	const [todolistId] = getQueryParam('id');
+	const [view] = getQueryParam('view');
+	const layoutValue = upperFirst(view);
 
 	const defaultTodoListSettings: TodoListSettings = {
 		behavior: {
@@ -22,7 +24,7 @@ export default function useTodoListSettings() {
 		appearance: {
 			accent: '#6b7280',
 			listIcon: 'List',
-			layout: 'List',
+			layout: layoutValue,
 		},
 	};
 
@@ -46,7 +48,7 @@ export default function useTodoListSettings() {
 				appearance: {
 					accent: parseSettings.accent,
 					listIcon: parseSettings.listIcon,
-					layout: parseSettings.layout,
+					layout: layoutValue,
 				},
 			};
 
@@ -65,7 +67,6 @@ export default function useTodoListSettings() {
 			dueDateFormat: behaviorSettings.dueDateFormat,
 			accent: appearanceSettings.accent,
 			listIcon: appearanceSettings.listIcon,
-			layout: appearanceSettings.layout,
 		};
 		localStorage.setItem(`todolistSettings-${todolistId}`, JSON.stringify(settingsToSave));
 
