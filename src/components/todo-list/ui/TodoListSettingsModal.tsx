@@ -114,18 +114,18 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 			layout: appearanceSettings.layout,
 		};
 		localStorage.setItem(`todolistSettings-${todolistId}`, JSON.stringify(settingsToSave));
-		const behaviorSettingsChnage = behaviorSettings.sortField !== behaviorSettingsSnapshot.sortField;
+		const behaviorSettingsChange = behaviorSettings.sortField !== behaviorSettingsSnapshot.sortField;
 		const filterSettingsChange = behaviorSettings.filterValue !== behaviorSettingsSnapshot.filterValue;
 		const newFilterValue =
 			behaviorSettings.filterValue !== null ? `${behaviorSettings.filterField}:${behaviorSettings.filterValue}` : null;
 		const newSortValue =
 			behaviorSettings.sortField !== null ? `${behaviorSettings.sortField}:${behaviorSettings.sortOrder}` : null;
 
-		if (behaviorSettingsChnage && filterSettingsChange) {
+		if (behaviorSettingsChange && filterSettingsChange) {
 			updateSearchParams('filter', newFilterValue, todolistId, 'sort', newSortValue);
 		} else if (filterSettingsChange) {
 			updateSearchParams('filter', newFilterValue, todolistId);
-		} else if (behaviorSettingsChnage) {
+		} else if (behaviorSettingsChange) {
 			updateSearchParams('sort', newSortValue, todolistId);
 		}
 
