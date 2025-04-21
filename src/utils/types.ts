@@ -60,6 +60,11 @@ export interface AppearanceSettings {
 	layout: string;
 }
 
+export interface TodoListSettings {
+	behavior: BehaviorSettings;
+	appearance: AppearanceSettings;
+}
+
 export interface SettingsToSave extends AppearanceSettings {
 	completedTasks: string;
 	newTasksPosition: string;

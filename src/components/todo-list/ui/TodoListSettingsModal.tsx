@@ -8,9 +8,7 @@ import ReactDOM from 'react-dom';
 import BehaviorSection from './BehaviorSection';
 import AppearanceSection from './AppearanceSection';
 import CategoriesSection from './CategoriesSection';
-import { AppearanceSettings, BehaviorSettings, SettingsToSave } from '@/utils/types';
-import useQueryParams from '@/hooks/useQueryParams';
-import _, { isEqual, lowerFirst, merge } from 'lodash';
+import useTodoListSettings from '@/hooks/useTodoListSettings';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -22,62 +20,9 @@ const settings = ['Behavior', 'Appearance', 'Categories'];
 const headerTextStyle = 'text-lg font-semibold text-slate-700';
 
 export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }: TodoListSettingsModalProps) {
-	const { getQueryParam, updateSearchParams } = useQueryParams();
-	const [filterField, filterValue] = getQueryParam('filter');
-	const [sortField, sortOrder] = getQueryParam('sort');
-	const [todolistId] = getQueryParam('id');
-
-	const defaultBehaviorSettings: BehaviorSettings = {
-		filterField: filterField ?? null,
-		filterValue: filterValue ?? null,
-		sortField: sortField ?? null,
-		sortOrder: (sortOrder as 'asc' | 'desc') ?? 'asc',
-		completedTasks: 'Move to "Completed" Section',
-		newTasksPosition: 'Add to Top',
-		dueDateFormat: 'Relative (2 days left, yesterday)',
-	};
-	const defaultAppearanceSettings: AppearanceSettings = {
-		accent: '#6b7280',
-		listIcon: 'List',
-		layout: 'List',
-	};
-
 	const portalRootRef = useRef<HTMLElement | null>(null);
 	const [settingSection, setSettingSection] = useState(settings[0]);
-	const [behaviorSettings, setBehaviorSettings] = useState<BehaviorSettings>(defaultBehaviorSettings);
-	const [behaviorSettingsSnapshot, setBehaviorSettingsSnapshot] = useState<BehaviorSettings>(defaultBehaviorSettings);
-	const [appearanceSettings, setAppearanceSettings] = useState<AppearanceSettings>(defaultAppearanceSettings);
-	const [appearanceSettingsSnapshot, setAppearanceSettingsSnapshot] =
-		useState<AppearanceSettings>(defaultAppearanceSettings);
-
-	useEffect(() => {
-		const settingsFromStorage = localStorage.getItem(`todolistSettings-${todolistId}`);
-		if (settingsFromStorage) {
-			const parseSettings: SettingsToSave = JSON.parse(settingsFromStorage);
-			const newBehaviorSettings = {
-				filterField: filterField ?? null,
-				filterValue: filterValue ?? null,
-				sortField: sortField ?? null,
-				sortOrder: (sortOrder as 'asc' | 'desc') ?? 'asc',
-				completedTasks: parseSettings.completedTasks,
-				newTasksPosition: parseSettings.newTasksPosition,
-				dueDateFormat: parseSettings.dueDateFormat,
-			};
-
-			const newAppearanceSettings = {
-				accent: parseSettings.accent,
-				listIcon: parseSettings.listIcon,
-				layout: parseSettings.layout,
-			};
-			setBehaviorSettings(newBehaviorSettings);
-			setAppearanceSettings(newAppearanceSettings);
-			setBehaviorSettingsSnapshot(newBehaviorSettings);
-			setAppearanceSettingsSnapshot(newAppearanceSettings);
-		}
-	}, [todolistId]);
-
-	const initialSettings = merge({}, behaviorSettingsSnapshot, appearanceSettingsSnapshot);
-	const updatedSettings = merge({}, behaviorSettings, appearanceSettings);
+	const { todoListSettings, setTodoListSettings, handleSaveSettings, isDirty } = useTodoListSettings();
 
 	const renderSection = () => {
 		if (!settingSection) return <p className="text-center text-slate-600">Section not found</p>;
@@ -87,55 +32,25 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 				return (
 					<BehaviorSection
 						headerTextStyle={headerTextStyle}
-						settings={behaviorSettings}
-						updateSetting={(key, value) => setBehaviorSettings(prev => ({ ...prev, [key]: value }))}
+						settings={todoListSettings.behavior}
+						updateSetting={(key, value) =>
+							setTodoListSettings(prev => ({ ...prev, behavior: { ...prev.behavior, [key]: value } }))
+						}
 					/>
 				);
 			case 'Appearance':
 				return (
 					<AppearanceSection
 						headerTextStyle={headerTextStyle}
-						settings={appearanceSettings}
-						updateSetting={(key, value) => setAppearanceSettings(prev => ({ ...prev, [key]: value }))}
+						settings={todoListSettings.appearance}
+						updateSetting={(key, value) =>
+							setTodoListSettings(prev => ({ ...prev, appearance: { ...prev.appearance, [key]: value } }))
+						}
 					/>
 				);
 			case 'Categories':
 				return <CategoriesSection headerTextStyle={headerTextStyle} />;
 		}
-	};
-
-	const handleSave = () => {
-		const settingsToSave: SettingsToSave = {
-			completedTasks: behaviorSettings.completedTasks,
-			newTasksPosition: behaviorSettings.newTasksPosition,
-			dueDateFormat: behaviorSettings.dueDateFormat,
-			accent: appearanceSettings.accent,
-			listIcon: appearanceSettings.listIcon,
-			layout: appearanceSettings.layout,
-		};
-		localStorage.setItem(`todolistSettings-${todolistId}`, JSON.stringify(settingsToSave));
-
-		const newFilterValue =
-			behaviorSettings.filterValue !== null ? `${behaviorSettings.filterField}:${behaviorSettings.filterValue}` : null;
-		const newSortValue =
-			behaviorSettings.sortField !== null ? `${behaviorSettings.sortField}:${behaviorSettings.sortOrder}` : null;
-		const newLayoutValue =
-			appearanceSettings.layout !== appearanceSettingsSnapshot.layout
-				? appearanceSettings.layout
-				: appearanceSettingsSnapshot.layout;
-
-		if (newFilterValue || newSortValue || newLayoutValue) {
-			updateSearchParams(
-				'filter',
-				newFilterValue,
-				todolistId,
-				'sort',
-				newSortValue,
-				'view',
-				lowerFirst(newLayoutValue)
-			);
-		}
-		onClose();
 	};
 
 	useEffect(() => {
@@ -175,8 +90,8 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 							ariaLabel="Save Settings"
 							darkMode={true}
 							className="px-2"
-							onClick={handleSave}
-							disabled={isEqual(initialSettings, updatedSettings)}
+							onClick={handleSaveSettings}
+							disabled={isDirty}
 						>
 							Save Settings
 						</Button>
