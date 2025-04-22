@@ -1,15 +1,20 @@
-import { deleteCategoryColorAction, updateCategoryColorAction } from '@/actions/category-action';
+import {
+	addCategoryColorAction,
+	deleteCategoryColorAction,
+	updateCategoryColorAction,
+} from '@/actions/category-action';
 import Button from '@/components/ui-shared/Button';
 import ColorSelectionMenu from '@/components/ui-shared/ColorSelectionMenu';
 import useCategoriesStore from '@/context/CategoriesContext';
 import useTodosStore from '@/context/TodosContext';
 import useQueryParams from '@/hooks/useQueryParams';
+import { Category } from '@/utils/types';
 import { Palette, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function CategoriesSection({ headerTextStyle }: { headerTextStyle: string }) {
-	const { categories, updateColor, deleteCategory } = useCategoriesStore();
+	const { categories, addCategory, updateColor, deleteCategory, isCategoryTitleUnique } = useCategoriesStore();
 	const { updateCategoriesColor, deleteCategories } = useTodosStore();
 	const { register, handleSubmit, reset } = useForm();
 	const { getQueryParam } = useQueryParams();
@@ -29,7 +34,21 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 	};
 
 	const onSubmit = async (data: { category?: string }) => {
-		console.log(data.category);
+		const newCategoryTitle = data.category?.trim();
+		const parseTodolistId = Number(todolistId);
+		if (!newCategoryTitle || !isCategoryTitleUnique(newCategoryTitle)) return;
+
+		const newCategoryId = await addCategoryColorAction(newCategoryTitle, selectedColor, parseTodolistId);
+		if (!newCategoryId) return;
+
+		const newCategory: Category = {
+			id: newCategoryId,
+			category_title: newCategoryTitle,
+			hex_color: selectedColor,
+			todo_list_id: parseTodolistId,
+		};
+
+		addCategory(newCategory);
 		reset();
 	};
 
@@ -81,6 +100,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 				<form onSubmit={handleSubmit(onSubmit)} className="w-full flex items-center gap-2">
 					<input
 						type="text"
+						autoComplete="off"
 						className="py-2 px-4 border rounded-md border-slate-300 hover:border-slate-600 focus:outline-none flex-1"
 						placeholder="Category Name"
 						{...register('category', { maxLength: 20 })}

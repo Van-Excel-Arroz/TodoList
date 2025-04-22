@@ -8,6 +8,7 @@ interface CategoriesContextState {
 	updateColor: (id: number, newColor: string) => void;
 	deleteCategory: (categoryId: number) => void;
 	getCategoryColor: (category: string) => string;
+	isCategoryTitleUnique: (title: string) => boolean;
 }
 
 const useCategoriesStore = create<CategoriesContextState>()((set: any, get: any) => ({
@@ -35,6 +36,10 @@ const useCategoriesStore = create<CategoriesContextState>()((set: any, get: any)
 		} else {
 			return null;
 		}
+	},
+	isCategoryTitleUnique: (title: string) => {
+		const categoryTitles = get().categories.map((cat: Category) => cat.category_title);
+		return !categoryTitles.some((catTitle: string) => catTitle === title);
 	},
 }));
 
