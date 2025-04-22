@@ -1,9 +1,25 @@
 'use server';
 
-import { deleteCategoryColor, removeCategoryFromTodo, storeCategories, updateCategoryColor } from '@/lib/category';
+import {
+	createCategoryColor,
+	deleteCategoryColor,
+	removeCategoryFromTodo,
+	storeCategories,
+	updateCategoryColor,
+} from '@/lib/category';
 
 export async function addTodoCategoriesAction(categoryColorsIds: number[], todoId: number) {
 	await storeCategories(todoId, categoryColorsIds);
+}
+
+export async function addCategoryColorAction(title: string, hexColor: string, todolistId: number) {
+	const newCategoryId = createCategoryColor(title, hexColor, todolistId);
+
+	if (newCategoryId) {
+		return newCategoryId;
+	} else {
+		console.error('Failed to insert new category from category colors.');
+	}
 }
 
 export async function removeCategoryFromTodoAction(categoryColorId: number, todoId: number) {
