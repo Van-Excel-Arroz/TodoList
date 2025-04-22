@@ -28,6 +28,11 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 		await deleteCategoryColorAction(categoryColorId, Number(todolistId));
 	};
 
+	const onSubmit = async (data: { category?: string }) => {
+		console.log(data.category);
+		reset();
+	};
+
 	return (
 		<>
 			<p className={headerTextStyle}>Category Management</p>
@@ -73,16 +78,17 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 						}}
 					/>
 				</ColorSelectionMenu>
-
-				<input
-					type="text"
-					className="py-2 px-4 border rounded-md border-slate-300 hover:border-slate-600 focus:outline-none w-full"
-					placeholder="Category Name"
-					{...(register('category'), { maxLength: 20 })}
-				/>
-				<Button type="submit" ariaLabel="Add New Category" className="p-2 text-md font-bold text-nowrap">
-					+ Add Task
-				</Button>
+				<form onSubmit={handleSubmit(onSubmit)} className="w-full flex items-center gap-2">
+					<input
+						type="text"
+						className="py-2 px-4 border rounded-md border-slate-300 hover:border-slate-600 focus:outline-none flex-1"
+						placeholder="Category Name"
+						{...register('category', { maxLength: 20 })}
+					/>
+					<Button type="submit" ariaLabel="Add New Category" className="p-2 text-md font-bold text-nowrap">
+						+ Add Task
+					</Button>
+				</form>
 			</div>
 		</>
 	);
