@@ -91,7 +91,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 							darkMode={true}
 							className="px-2"
 							onClick={handleSaveSettings}
-							disabled={isDirty}
+							disabled={!isDirty}
 						>
 							Save Settings
 						</Button>
