@@ -11,7 +11,7 @@ interface ListLinkItemProps {
 	children: React.ReactNode;
 	queryParam: string;
 	itemId: string;
-	Icon: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>;
+	Icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>;
 }
 
 function ListLinkItem({ children, queryParam, itemId, Icon }: ListLinkItemProps) {
@@ -47,7 +47,7 @@ function ListLinkItem({ children, queryParam, itemId, Icon }: ListLinkItemProps)
 			}`}
 		>
 			<Link href={href} onClick={handleClick} className="flex items-center py-1 px-2 gap-2">
-				<Icon size={20} className="text-slate-600" />
+				{Icon && <Icon size={20} className="text-slate-600" />}
 				<div className={`${isSelectedPath ? 'text-black' : 'text-slate-700'} text-ellipsis overflow-hidden w-[195px]`}>
 					{children}
 				</div>
