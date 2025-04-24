@@ -2,30 +2,43 @@
 
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodoListsSidebarStore from '@/context/TodoListsSidebarContext';
-import { LucideProps } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { ForwardRefExoticComponent, memo, RefAttributes, useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
+import ListIcon, { iconNameType } from './ListIcon';
+import { SettingsToSave } from '@/utils/types';
 
 interface ListLinkItemProps {
 	children: React.ReactNode;
 	queryParam: string;
 	itemId: string;
-	Icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>;
+	iconName: iconNameType;
 }
 
-function ListLinkItem({ children, queryParam, itemId, Icon }: ListLinkItemProps) {
+function ListLinkItem({ children, queryParam, itemId, iconName }: ListLinkItemProps) {
 	const searchParams = useSearchParams();
 	const currentQueryParamValue = searchParams.get(queryParam);
 	const isSelectedPath = currentQueryParamValue === itemId;
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
 	const [queryString, setQueryString] = useState<string | null>(null);
+	const [storedIcon, setStoredIcon] = useState<iconNameType | null>(null);
 
 	useEffect(() => {
 		const storedQueryString = localStorage.getItem(`searchParams-${itemId}`);
 		setQueryString(storedQueryString);
 	}, [itemId, searchParams]);
+
+	useEffect(() => {
+		const settingsFromStorage = localStorage.getItem(`todolistSettings-${itemId}`);
+		if (settingsFromStorage) {
+			const parseSettings: SettingsToSave = JSON.parse(settingsFromStorage);
+			const icon = parseSettings.listIcon as iconNameType;
+			setStoredIcon(icon);
+		} else {
+			setStoredIcon(null);
+		}
+	}, [itemId]);
 
 	const handleClick = () => {
 		const mediaQuery = window.matchMedia('(max-width: 1024px)');
@@ -47,7 +60,7 @@ function ListLinkItem({ children, queryParam, itemId, Icon }: ListLinkItemProps)
 			}`}
 		>
 			<Link href={href} onClick={handleClick} className="flex items-center py-1 px-2 gap-2">
-				{Icon && <Icon size={20} className="text-slate-600" />}
+				<ListIcon iconName={iconName || storedIcon || 'List'} />
 				<div className={`${isSelectedPath ? 'text-black' : 'text-slate-700'} text-ellipsis overflow-hidden w-[195px]`}>
 					{children}
 				</div>

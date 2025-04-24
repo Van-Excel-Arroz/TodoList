@@ -1,13 +1,13 @@
 'use client';
 
-import { Clock3, Star, Tags } from 'lucide-react';
 import ExpandableSection from '../../ui-shared/ExpandableSection';
+import { iconNameType } from '../ui/ListIcon';
 import ListLinkItem from '../ui/ListLinkItem';
 
 const SmartLists = [
-	{ icon: Star, text: 'Priority' },
-	{ icon: Clock3, text: 'Upcoming' },
-	{ icon: Tags, text: 'Tagged' },
+	{ iconName: 'Star', text: 'Priority' },
+	{ iconName: 'Clock3', text: 'Upcoming' },
+	{ iconName: 'Tags', text: 'Tagged' },
 ];
 
 export default function SmartTodolistContainer() {
@@ -16,7 +16,11 @@ export default function SmartTodolistContainer() {
 			<ul className="flex flex-col gap-2 w-full">
 				{SmartLists.map((smartList, index) => (
 					<li key={index}>
-						<ListLinkItem queryParam="smart-list" itemId={smartList.text.toLowerCase()} Icon={smartList.icon}>
+						<ListLinkItem
+							queryParam="smart-list"
+							itemId={smartList.text.toLowerCase()}
+							iconName={smartList.iconName as iconNameType}
+						>
 							{smartList.text}
 						</ListLinkItem>
 					</li>

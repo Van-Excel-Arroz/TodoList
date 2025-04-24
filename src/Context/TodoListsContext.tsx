@@ -1,3 +1,4 @@
+import { iconNameType } from '@/components/sidebar/ui/ListIcon';
 import { TodoList } from '@/utils/types';
 import { create } from 'zustand';
 
@@ -6,7 +7,7 @@ interface TodoListContextState {
 	setTodolists: (todolists: TodoList[]) => void;
 	addTodolist: (newTodolist: TodoList) => void;
 	updateTodolistTitle: (todolistId: number, newTitle: string) => void;
-	updateTodoListIcon: (todolistId: number, newIcon: string) => void;
+	updateTodoListIcon: (todolistId: number, newIcon: iconNameType) => void;
 	deleteTodolist: (todolistId: number) => void;
 	getTodoListById: (todolistId: number) => TodoList;
 }
@@ -24,7 +25,7 @@ const useTodoListsStore = create<TodoListContextState>()((set: any, get: any) =>
 				todolist.id === todolistId ? { ...todolist, title: newTitle } : todolist
 			),
 		})),
-	updateTodoListIcon: (todolistId: number, newIcon: string) =>
+	updateTodoListIcon: (todolistId: number, newIcon: iconNameType) =>
 		set((state: TodoListContextState) => ({
 			todolists: state.todolists.map(todolist =>
 				todolist.id === todolistId ? { ...todolist, listIcon: newIcon } : todolist

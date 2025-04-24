@@ -8,6 +8,7 @@ import ExpandableSection from '../../ui-shared/ExpandableSection';
 import ListLinkItem from '../ui/ListLinkItem';
 import TodoListEmptyText from '../ui/TodoListEmptyText';
 import { itemVariants } from '@/utils/framer-motion';
+import { iconNameType } from '../ui/ListIcon';
 
 function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] }) {
 	const { todolists, setTodolists } = useTodoListsStore();
@@ -17,7 +18,9 @@ function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] 
 			setTodolists(initialTodoLists);
 		}
 	}, [initialTodoLists, setTodolists, todolists]);
+
 	const isTodolistsEmpty = todolists.length === 0;
+	console.log(todolists);
 
 	return (
 		<div className="overflow-y-auto px-5 py-3 flex-1">
@@ -30,7 +33,11 @@ function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] 
 							<AnimatePresence>
 								{todolists.map((todolist, index) => (
 									<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate" exit="exit">
-										<ListLinkItem queryParam="id" itemId={todolist.id.toString()}>
+										<ListLinkItem
+											queryParam="id"
+											itemId={todolist.id.toString()}
+											iconName={todolist.listIcon as iconNameType}
+										>
 											{todolist.title}
 										</ListLinkItem>
 									</motion.li>
