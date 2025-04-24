@@ -26,6 +26,7 @@ export interface CategoryTag {
 export interface TodoList {
 	id: number;
 	title: string;
+	listIcon: string;
 }
 
 export interface MenuOpenProps {
