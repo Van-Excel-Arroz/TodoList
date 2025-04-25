@@ -2,7 +2,6 @@ import { formatDistanceToNow, isPast } from 'date-fns';
 
 interface DueDateProps {
 	dueDatetime: string;
-	displayIcon?: boolean;
 }
 
 export default function DueDate({ dueDatetime }: DueDateProps) {
