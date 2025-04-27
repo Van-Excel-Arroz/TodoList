@@ -20,7 +20,6 @@ function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] 
 	}, [initialTodoLists, setTodolists, todolists]);
 
 	const isTodolistsEmpty = todolists.length === 0;
-	console.log(todolists);
 
 	return (
 		<div className="overflow-y-auto px-5 py-3 flex-1">
