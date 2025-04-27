@@ -55,7 +55,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 	return (
 		<>
 			<p className={headerTextStyle}>Category Management</p>
-			<div className="h-[50vh] overflow-hidden overflow-y-auto bg-slate-100 border px-5 py-2 rounded-md">
+			<div className="flex-1 overflow-hidden overflow-y-auto bg-slate-100 border px-5 py-2 rounded-md">
 				{categories.length > 0 ? (
 					categories.map(category => (
 						<div key={category.id} className="flex items-center justify-between py-1">
@@ -83,7 +83,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 				)}
 			</div>
 			<p className={headerTextStyle}>Add New Category</p>
-			<div className="flex items-center gap-2">
+			<div className="flex items-center gap-2 pt-2">
 				<ColorSelectionMenu
 					initialColor={selectedColor}
 					verticalPosition="top-12"

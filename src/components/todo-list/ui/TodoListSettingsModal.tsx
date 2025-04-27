@@ -73,13 +73,13 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 				<Button className="absolute top-5 right-4" onClick={onClose} ariaLabel="Close Modal">
 					<X />
 				</Button>
-				<div className="space-y-6">
+				<div className="flex flex-col flex-1 space-y-6 overflow-hidden">
 					<div className="space-y-2">
 						<h2 className="text-xl font-semibold">TodoList Settings</h2>
 						<p className="text-sm text-slate-600">Customize the appearance and behavior of "{todolistTitle}" list.</p>
 					</div>
 					<Selection options={settings} selectedOption={settingSection} setSelectedOption={setSettingSection} />
-					<div className="flex flex-col gap-2 px-2 ">{renderSection()}</div>
+					<div className="flex flex-col gap-2 px-2 h-full">{renderSection()}</div>
 				</div>
 				{settingSection !== 'Categories' && (
 					<div className=" flex justify-end gap-2">
