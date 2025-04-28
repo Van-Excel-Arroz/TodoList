@@ -28,7 +28,7 @@ export default function CategoryFilterMenu() {
 				selectedCategoryTitles={selectedCategoryTitles}
 				setSelectedCategoryTitles={setSelectedCategoryTitles}
 			/>
-			<MenuItem className="border-t font-bold gap-2 justify-end" clickable={false}>
+			<MenuItem className="border-t font-bold justify-end" clickable={false}>
 				<Button ariaLabel="Add Selected Categories" darkMode={true} onClick={applyCategoriesFilter}>
 					<p className="px-1 text-sm">Apply</p>
 				</Button>
