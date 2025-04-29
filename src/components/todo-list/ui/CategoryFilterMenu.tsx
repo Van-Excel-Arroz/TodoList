@@ -8,8 +8,8 @@ export default function CategoryFilterMenu() {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
 	const [smart_list] = getQueryParam('smart-list');
-	const [filterField, fitlerValue] = getQueryParam('filter');
-	const initialCategories = filterField === 'Categories' ? fitlerValue.split(',') ?? [] : [];
+	const [filterField, filterValue] = getQueryParam('filter');
+	const initialCategories = filterField === 'Categories' ? filterValue.split(',') ?? [] : [];
 	const [selectedCategoryTitles, setSelectedCategoryTitles] = useState<string[]>(initialCategories);
 
 	const applyCategoriesFilter = () => {
