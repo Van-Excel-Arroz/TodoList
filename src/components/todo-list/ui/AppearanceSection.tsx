@@ -36,13 +36,13 @@ const LAYOUTS = [
 	},
 ];
 
-interface AppearanceSetionProps {
+interface AppearanceSectionProps {
 	headerTextStyle: string;
 	settings: AppearanceSettings;
 	updateSetting: (key: keyof AppearanceSettings, value: any) => void;
 }
 
-export default function AppearanceSection({ headerTextStyle, settings, updateSetting }: AppearanceSetionProps) {
+export default function AppearanceSection({ headerTextStyle, settings, updateSetting }: AppearanceSectionProps) {
 	return (
 		<>
 			<p className={headerTextStyle}>Accent Color</p>
