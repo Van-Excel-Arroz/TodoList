@@ -50,16 +50,18 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 				{PREDEFINED_THEME_COLORS.map(color => {
 					const isActive = settings.accent === color;
 					return (
-						<div
+						<button
 							key={color}
 							className={`${
 								isActive && 'ring-2 ring-offset-2'
 							} h-10 w-10 flex items-center justify-center rounded-full cursor-pointer hover:scale-110 transition-scale duration-75 ease-out`}
 							style={{ backgroundColor: color }}
 							onClick={() => updateSetting('accent', color)}
+							type="button"
+							aria-label={`Selec ${color} Accent`}
 						>
 							{isActive && <Check color="white" strokeWidth={4} />}
-						</div>
+						</button>
 					);
 				})}
 			</div>
@@ -71,6 +73,7 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 					return (
 						<button
 							key={index}
+							type="button"
 							aria-label={`Select ${iconName} Icon`}
 							className={`${boxStyle} ${isActive && activeBoxStyle}`}
 							onClick={() => updateSetting('listIcon', iconName)}
@@ -87,6 +90,7 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 					return (
 						<button
 							key={Layout.text}
+							type="button"
 							aria-label={`Select ${Layout.text} Layout`}
 							className={`${boxStyle} ${isActive && activeBoxStyle}`}
 							onClick={() => updateSetting('layout', Layout.text)}
