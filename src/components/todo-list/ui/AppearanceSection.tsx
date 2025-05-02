@@ -58,7 +58,7 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 							style={{ backgroundColor: color }}
 							onClick={() => updateSetting('accent', color)}
 							type="button"
-							aria-label={`Selec ${color} Accent`}
+							aria-label={`Select ${color} Accent`}
 						>
 							{isActive && <Check color="white" strokeWidth={4} />}
 						</button>
