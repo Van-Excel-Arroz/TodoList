@@ -40,15 +40,19 @@ export default function TodoDetailsPanel() {
 				<TodoDetailsHeader />
 				<div className="flex-1 px-6 space-y-4 pt-4">
 					<Selection options={sections} selectedOption={section} setSelectedOption={setSection} />
-					<div className="flex items-center justify-between gap-4">
-						<TodoComplete isCompleted={todo?.is_completed ?? false} completedAt={todo?.completed_at ?? ''} />
-						<TodoImportance isImportant={todo?.is_important ?? false} />
-					</div>
+					{section === 'Details' && (
+						<>
+							<div className="flex items-center justify-between gap-4">
+								<TodoComplete isCompleted={todo?.is_completed ?? false} completedAt={todo?.completed_at ?? ''} />
+								<TodoImportance isImportant={todo?.is_important ?? false} />
+							</div>
 
-					<TodoTitle title={todo?.task_text ?? ''} />
-					<TodoDueDate dueDate={todo?.due_datetime ?? ''} />
-					<TodoCategories categories={todo?.categories ?? []} />
-					<TodoDescription description={todo?.description ?? ''} />
+							<TodoTitle title={todo?.task_text ?? ''} />
+							<TodoDueDate dueDate={todo?.due_datetime ?? ''} />
+							<TodoCategories categories={todo?.categories ?? []} />
+							<TodoDescription description={todo?.description ?? ''} />
+						</>
+					)}
 				</div>
 				<TodoDetailsFooter creationDate={todo?.creation_date ?? ''} />
 			</div>
