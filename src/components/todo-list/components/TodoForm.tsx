@@ -24,7 +24,7 @@ interface TodoFormProps {
 export default function TodoForm({ todolistId }: TodoFormProps) {
 	const { register, handleSubmit, reset, watch, setValue } = useForm();
 	const { addTodo } = useTodosStore();
-	const { addCategory, categories: categoriesFromStore, getCategoryColor } = useCategoriesStore();
+	const { addCategory, getCategoryColor } = useCategoriesStore();
 	const [dueDate, setDueDate] = useState<string | undefined>(undefined);
 	const [categories, setCategories] = useState<CategoryTag[]>([]);
 
