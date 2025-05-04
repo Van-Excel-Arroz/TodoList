@@ -9,7 +9,7 @@ interface BehaviorSectionProps {
 	updateSetting: (key: keyof BehaviorSettings, value: any) => void;
 }
 
-const completedTasksOptions = ['Move to "Completed" Section', 'Hide After', 'Hide immediately'];
+const completedTasksOptions = ['Move to "Completed" Section', 'Hide immediately'];
 const newTasksPositionOptions = ['Add to Top', 'Add to Bottom'];
 const dueDateFormatOptions = [
 	'Relative (2 days left, yesterday)',
