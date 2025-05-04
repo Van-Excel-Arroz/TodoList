@@ -53,16 +53,10 @@ export default function TodoForm({ todolistId }: TodoFormProps) {
 			if (categoryTagExists()) {
 				return;
 			}
-			let newColor = '';
-			const existingColor = getCategoryColor(category);
-			if (existingColor) {
-				newColor = existingColor;
-			} else {
-				newColor = PREDEFINED_CATEGORY_COLORS[(categoriesFromStore.length + categories.length) % 10];
-			}
+			const hexColor = getCategoryColor(category, categories.length);
 			const newTag = {
 				tagName: category,
-				color: newColor,
+				color: hexColor,
 			};
 			setCategories(categories => [...categories, newTag]);
 			const newValue = todoValue.replace(`#${category}`, '');
