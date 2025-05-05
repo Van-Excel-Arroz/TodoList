@@ -22,7 +22,7 @@ export async function createCategoryColor(category: string, color: string, todol
 			'INSERT INTO category_colors (category_title, hex_color, todo_list_id) VALUES ($1, $2, $3) RETURNING id',
 			[category, color, todolistId]
 		);
-		const newCategoryId = result.rows[0];
+		const newCategoryId = result.rows[0].id;
 		return newCategoryId;
 	} catch (error) {
 		console.error('Error inserting category and colors in the database', error);
