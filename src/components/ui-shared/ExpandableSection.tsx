@@ -26,6 +26,8 @@ function ExpandableSection({
 }: ExpandableSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
 
+	const isEffectivelyOpen = isOpen && !isEmpty;
+
 	return (
 		<div
 			className={`${
@@ -34,7 +36,7 @@ function ExpandableSection({
 		>
 			<div className="flex items-center w-full mx-1 gap-1">
 				<Button ariaLabel="Toggle Expand Section" onClick={() => setIsOpen(prev => !prev)} disabled={isEmpty}>
-					<div className={`transition-transform duration-200 ease-in-out ${isOpen && !isEmpty ? '' : '-rotate-90'}`}>
+					<div className={`transition-transform duration-200 ease-in-out ${isEffectivelyOpen ? '' : '-rotate-90'}`}>
 						<ChevronDown size={20} />
 					</div>
 				</Button>
@@ -46,8 +48,8 @@ function ExpandableSection({
 
 			<motion.div
 				className="overflow-hidden w-full"
-				initial={{ height: isOpen && !isEmpty ? 'auto' : 0 }}
-				animate={{ height: isOpen && !isEmpty ? 'auto' : 0 }}
+				initial={{ height: isEffectivelyOpen ? 'auto' : 0 }}
+				animate={{ height: isEffectivelyOpen ? 'auto' : 0 }}
 				transition={{ duration: 0.25 }}
 			>
 				{children}
