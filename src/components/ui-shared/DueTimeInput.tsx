@@ -70,6 +70,11 @@ const timeLabels = {
 
 function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, setIsTimePickerOpen, dueDate, setDueDate }: TimeMenuProps) {
 	const handleSetTime = (time: string): void => {
+		if (time === 'clear') {
+			setDueDate(undefined);
+			return;
+		}
+
 		let baseDate = dueDate ? new Date(dueDate) : startOfToday();
 
 		switch (time) {
@@ -88,9 +93,6 @@ function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, setIsTimePickerOpen, dueD
 			case 'night':
 				baseDate = setHours(setMinutes(baseDate, 0), 21);
 				break;
-			case 'clear':
-				setDueDate(undefined);
-				return;
 		}
 		setDueDate(baseDate.toISOString());
 	};
