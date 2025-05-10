@@ -69,6 +69,11 @@ const dateLabels = {
 
 function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMenuOpen }: DateMenuProps) {
 	const handleSetDate = (date: string) => {
+		if (date === 'clear') {
+			setDueDate(undefined);
+			return;
+		}
+
 		let baseDate = startOfToday();
 
 		switch (date) {
@@ -78,9 +83,6 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 			case 'next week':
 				baseDate = add(new Date(), { days: 7 });
 				break;
-			case 'clear':
-				setDueDate(undefined);
-				return;
 		}
 		const endOfDay = setSeconds(setMinutes(setHours(baseDate, 23), 59), 59);
 		setDueDate(endOfDay.toISOString());
