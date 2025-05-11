@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Check } from 'lucide-react';
 import MenuItem from './MenuItem';
 
-interface ColorSelectionMenu {
+interface ColorSelectionMenuProps {
 	initialColor: string;
 	children: React.ReactNode;
 	verticalPosition?: string;
@@ -16,7 +16,7 @@ export default function ColorSelectionMenu({
 	children,
 	verticalPosition = 'top-7',
 	onColorSelect,
-}: ColorSelectionMenu) {
+}: ColorSelectionMenuProps) {
 	const [isColorMenuOpen, setIsColorMenuOpen] = useState(false);
 	const [selectedColor, setSelectedColor] = useState(initialColor);
 
