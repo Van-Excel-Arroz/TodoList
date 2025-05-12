@@ -19,7 +19,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 	const { register, handleSubmit, reset } = useForm();
 	const { getQueryParam } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
-	const [selectedColor, setSelectedColor] = useState('#000000');
+	const [selectedColor, setSelectedColor] = useState('#6b7280');
 
 	const onSaveNewColor = async (categoryTitle: string, categoryColorId: number, newColor: string) => {
 		updateColor(categoryColorId, newColor);
