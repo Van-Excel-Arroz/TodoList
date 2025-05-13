@@ -47,6 +47,8 @@ const LAYOUTS = [
 	},
 ] as const;
 
+const focusStyle = 'focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2';
+
 interface AppearanceSectionProps {
 	headerTextStyle: string;
 	settings: AppearanceSettings;
@@ -63,9 +65,7 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 					return (
 						<button
 							key={color}
-							className={`${
-								isActive && 'ring-2 ring-offset-2'
-							} h-10 w-10 flex items-center justify-center rounded-full cursor-pointer hover:scale-110 transition-scale duration-75 ease-out`}
+							className={`${focusStyle} h-10 w-10 flex items-center justify-center rounded-full cursor-pointer hover:scale-110 transition-scale duration-75 ease-out`}
 							style={{ backgroundColor: color }}
 							onClick={() => updateSetting('accent', color)}
 							type="button"
@@ -86,7 +86,7 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 							key={index}
 							type="button"
 							aria-label={`Select ${iconName} Icon`}
-							className={`${boxStyle} ${isActive && activeBoxStyle}`}
+							className={`${boxStyle} ${focusStyle} ${isActive && activeBoxStyle}`}
 							onClick={() => updateSetting('listIcon', iconName)}
 						>
 							<ListIcon />
@@ -103,7 +103,7 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 							key={Layout.text}
 							type="button"
 							aria-label={`Select ${Layout.text} Layout`}
-							className={`${boxStyle} ${isActive && activeBoxStyle}`}
+							className={`${boxStyle} ${focusStyle} ${isActive && activeBoxStyle}`}
 							onClick={() => updateSetting('layout', Layout.text)}
 						>
 							<Layout.icon />
