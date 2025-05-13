@@ -20,7 +20,18 @@ import {
 const boxStyle =
 	'col-span-1 flex flex-col items-center border rounded-md py-4 cursor-pointer hover:bg-slate-200 hover:border-slate-400 active:bg-slate-300';
 const activeBoxStyle = 'border-slate-500 bg-slate-200 ';
-const ICONS = [List, Home, Briefcase, GraduationCap, ShoppingBasket, Utensils, Heart, Plane, Lightbulb, DollarSign];
+const ICONS = [
+	List,
+	Home,
+	Briefcase,
+	GraduationCap,
+	ShoppingBasket,
+	Utensils,
+	Heart,
+	Plane,
+	Lightbulb,
+	DollarSign,
+] as const;
 const LAYOUTS = [
 	{
 		icon: ListTodo,
@@ -34,7 +45,7 @@ const LAYOUTS = [
 		icon: SquareKanban,
 		text: 'Kanban',
 	},
-];
+] as const;
 
 interface AppearanceSectionProps {
 	headerTextStyle: string;
