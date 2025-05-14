@@ -24,7 +24,7 @@ export function useTodoDataManagement(todos: Todo[]): {
 	const [searchValue] = getQueryParam('search');
 
 	const getSortFn = useMemo((): SortFn => {
-		return (a: any, b: any) => {
+		return (a: Todo, b: Todo) => {
 			if (sortField === undefined || sortField === 'Importance') {
 				if (a.is_important !== b.is_important) {
 					return sortOrder === 'asc' ? (a.is_important ? 1 : -1) : a.is_important ? -1 : 1;
