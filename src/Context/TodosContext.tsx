@@ -30,7 +30,7 @@ const useTodosStore = create<TodosContextState>()((set: any, get: any) => ({
 	addCategory: (todoId: number, newCategory: Category) =>
 		set((state: TodosContextState) => ({
 			todos: state.todos.map(todo =>
-				todo.id === todoId ? { ...todo, categories: [...(todo.categories || []), newCategory] } : todo
+				todo.id === todoId ? { ...todo, categories: [...(todo.categories ?? []), newCategory] } : todo
 			),
 		})),
 	deleteTodo: (todoId: number) =>
@@ -77,7 +77,7 @@ const useTodosStore = create<TodosContextState>()((set: any, get: any) => ({
 			todos: state.todos.map(todo => ({
 				...todo,
 				categories:
-					todo.categories?.map(cat => (cat.category_title === categoryTitle ? { ...cat, hex_color: newColor } : cat)) ||
+					todo.categories?.map(cat => (cat.category_title === categoryTitle ? { ...cat, hex_color: newColor } : cat)) ??
 					[],
 			})),
 		})),
