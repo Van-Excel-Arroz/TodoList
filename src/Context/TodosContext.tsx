@@ -22,7 +22,7 @@ interface TodosContextState {
 
 const useTodosStore = create<TodosContextState>()((set: any, get: any) => ({
 	todos: [],
-	setTodos: (todos: Todo[]) => set({ todos: todos }),
+	setTodos: (todos: Todo[]) => set({ todos }),
 	addTodo: (newTodo: Todo) =>
 		set((state: TodosContextState) => ({
 			todos: [...state.todos, newTodo],
