@@ -89,7 +89,7 @@ const useTodosStore = create<TodosContextState>()((set: any, get: any) => ({
 		set((state: TodosContextState) => ({
 			todos: state.todos.map(todo => (todo.id === todoId ? { ...todo, due_datetime: null } : todo)),
 		})),
-	getTodoById: (todoId: number) => {
+	getTodoById: (todoId: number | undefined) => {
 		return get().todos.find((todo: Todo) => todo.id === todoId);
 	},
 }));
