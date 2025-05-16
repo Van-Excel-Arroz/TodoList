@@ -40,8 +40,8 @@ const useCategoriesStore = create<CategoriesContextState>()((set: any, get: any)
 		}
 	},
 	isCategoryTitleUnique: (title: string) => {
-		const categoryTitles = get().categories.map((cat: Category) => cat.category_title);
-		return !categoryTitles.some((catTitle: string) => catTitle === title);
+		const trimmedTitle = title.trim().toLowerCase();
+		return !get().categories.some((cat: Category) => cat.category_title.toLowerCase() === trimmedTitle);
 	},
 }));
 
