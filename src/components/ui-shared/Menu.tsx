@@ -29,6 +29,7 @@ export default function Menu({ open, onClose, children, width, className, vertic
 	return (
 		<div
 			ref={ref}
+			role="menu"
 			className={`absolute z-20 bg-white text-center text-black rounded-lg flex flex-col border border-gray-300 shadow-lg left-1/2 -translate-x-1/2 transition-all  ease-out
                 ${
 									open
