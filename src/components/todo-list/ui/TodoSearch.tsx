@@ -3,13 +3,15 @@ import useQueryParams from '@/hooks/useQueryParams';
 import { Search, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
+type SearchFormData = { search: string };
+
 export default function TodoSearch() {
-	const { register, handleSubmit } = useForm();
+	const { register, handleSubmit } = useForm<SearchFormData>();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [id] = getQueryParam('id');
 	const [search] = getQueryParam('search');
 
-	const onSubmit = (data: any) => {
+	const onSubmit = (data: SearchFormData) => {
 		if (data.search !== '') {
 			updateSearchParams('search', data.search, id);
 		}
