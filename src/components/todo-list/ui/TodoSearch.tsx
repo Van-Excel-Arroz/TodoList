@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 type SearchFormData = { search: string };
 
 export default function TodoSearch() {
-	const { register, handleSubmit } = useForm<SearchFormData>();
+	const { register, handleSubmit, reset } = useForm<SearchFormData>();
 	const { getQueryParam, updateSearchParams } = useQueryParams();
 	const [id] = getQueryParam('id');
 	const [search] = getQueryParam('search');
@@ -15,10 +15,12 @@ export default function TodoSearch() {
 		if (data.search !== '') {
 			updateSearchParams('search', data.search, id);
 		}
+		reset();
 	};
 
 	const clearSearch = () => {
 		updateSearchParams('search', null, id);
+		reset();
 	};
 
 	return (
