@@ -87,7 +87,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 						<Button
 							ariaLabel="Save Settings"
 							darkMode={true}
-							className="px-2"
+							className="px-4"
 							onClick={handleSaveSettings}
 							disabled={!isDirty}
 						>
