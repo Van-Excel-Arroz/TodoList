@@ -6,7 +6,7 @@ import { BehaviorSettings } from '@/utils/types';
 interface BehaviorSectionProps {
 	headerTextStyle: string;
 	settings: BehaviorSettings;
-	updateSetting: (key: keyof BehaviorSettings, value: any) => void;
+	updateSetting: (key: keyof BehaviorSettings, value: string | null | 'asc' | 'desc') => void;
 }
 
 const completedTasksOptions = ['Move to "Completed" Section', 'Hide immediately'];
