@@ -52,10 +52,15 @@ export default function TodoDescription({ description }: { description: string }
 					<p className="pb-2">Description</p>
 					{isEditing && (
 						<div className="flex items-center gap-2">
-							<Button type="submit" ariaLabel="Save New Todo Title">
+							<Button type="submit" ariaLabel="Save Todo Description" onMouseDown={e => e.preventDefault()}>
 								<Save size={18} />
 							</Button>
-							<Button ariaLabel="Undo Description" type="submit" onClick={() => reset()}>
+							<Button
+								ariaLabel="Undo Description"
+								type="button"
+								onClick={() => reset()}
+								onMouseDown={e => e.preventDefault()}
+							>
 								<Undo size={18} />
 							</Button>
 						</div>

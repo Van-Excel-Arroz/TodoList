@@ -3,12 +3,13 @@ import { memo } from 'react';
 interface ButtonProps {
 	children: React.ReactNode;
 	onClick?: () => void;
-	type?: 'submit';
+	type?: 'submit' | 'button';
 	ariaLabel: string;
 	disabled?: boolean;
 	className?: string;
 	darkMode?: boolean;
 	isActive?: boolean;
+	onMouseDown?: (e: React.MouseEvent) => void;
 }
 
 function Button({
@@ -20,6 +21,7 @@ function Button({
 	className = '',
 	darkMode = false,
 	isActive = false,
+	onMouseDown,
 }: ButtonProps) {
 	const bgStyle = `${
 		isActive ? 'hover:bg-slate-200 text-slate-800 bg-slate-200' : 'hover:bg-slate-200 active:bg-slate-300'
@@ -40,6 +42,7 @@ function Button({
 			type={type ? type : 'button'}
 			aria-label={ariaLabel}
 			disabled={disabled}
+			onMouseDown={onMouseDown}
 		>
 			{children}
 		</button>
