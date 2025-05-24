@@ -2,14 +2,13 @@ import { updateTodoCompletedAtAction, updateTodoCompletionAction } from '@/actio
 import CheckBox from '@/components/ui-shared/CheckBox';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
-import { format } from 'date-fns';
 
 interface TodoCompleteProps {
 	isCompleted: boolean;
 	completedAt: string;
 }
 
-export default function TodoComplete({ isCompleted, completedAt }: TodoCompleteProps) {
+export default function TodoComplete({ isCompleted }: TodoCompleteProps) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoCompletion, updateCompletedAt } = useTodosStore();
 
@@ -31,7 +30,6 @@ export default function TodoComplete({ isCompleted, completedAt }: TodoCompleteP
 			<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
 			<div className="text-center w-full">
 				<p>{isCompleted ? 'Completed' : 'Complete'} </p>
-				{/* {completedAt && <p className="text-sm text-slate-600 pb-1">{format(new Date(completedAt), 'MM/dd/yy')}</p>} */}
 			</div>
 		</div>
 	);
