@@ -1,4 +1,4 @@
-import { Square, SquareCheck, SquareCheckBig } from 'lucide-react';
+import { Square, SquareCheck } from 'lucide-react';
 
 interface CheckBoxProps {
 	isChecked: boolean;
