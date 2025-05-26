@@ -23,10 +23,6 @@ export default async function TodoListPage({ todolistId }: { todolistId: number 
 	);
 }
 
-// ------------------------------------------------------------------------------------------------ //
-// COMPONENTS
-// ------------------------------------------------------------------------------------------------ //
-
 const LoadingAnimation = () => (
 	<div className="flex justify-center items-center h-screnn">
 		<h1 className="text-2xl font-bold">Loading.....</h1>
