@@ -20,7 +20,7 @@ export default function DropDown({ children, selectedItem }: DropDownProps) {
 			<p className={`${selectedItem ? 'text-black' : 'text-slate-600'} flex-1 min-w-0 text-wrap`}>
 				{selectedItem ? displaySelectedItem : 'Select'}
 			</p>
-			<ChevronDown size={20} className="text-slate-600" />
+			<ChevronDown size={20} className="text-slate-800" />
 			<Menu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} width="w-full" verticalPosition="top-12">
 				{children}
 			</Menu>
