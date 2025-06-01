@@ -61,7 +61,7 @@ export async function deleteTodolist(todolistId: number) {
 	}
 }
 
-export async function updateTodolist(todolistId: number, title: string) {
+export async function updateTodolist(todolistId: number, title: string): Promise<boolean> {
 	try {
 		await query(
 			`
