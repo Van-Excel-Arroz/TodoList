@@ -31,7 +31,7 @@ export async function getTodolists(user_id: number) {
 	}
 }
 
-export async function getTodolist(todolistId: number, user_id: number) {
+export async function getTodolist(todolistId: number, user_id: number): Promise<{ id: number; title: string } | null> {
 	try {
 		const result = await query(
 			`
@@ -39,10 +39,11 @@ export async function getTodolist(todolistId: number, user_id: number) {
 			`,
 			[todolistId, user_id]
 		);
-		return result.rows[0];
+
+		return result.rows[0] ?? null;
 	} catch (error) {
 		console.error('Error fetching todolist from the database', error);
-		return;
+		return null;
 	}
 }
 
@@ -50,7 +51,7 @@ export async function deleteTodolist(todolistId: number): Promise<boolean> {
 	try {
 		await query(
 			`
-			DELETE FROM todo_lists WHERE id = $1
+			DELETE FROM todo_lists WHERE id = $1 
 			`,
 			[todolistId]
 		);
