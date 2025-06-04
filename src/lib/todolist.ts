@@ -16,7 +16,7 @@ export async function storeTodolist(title: string, user_id: number) {
 	}
 }
 
-export async function getTodolists(user_id: number) {
+export async function getTodolists(user_id: number): Promise<{ id: number; title: string }[] | []> {
 	try {
 		const result = await query(
 			`
@@ -27,7 +27,7 @@ export async function getTodolists(user_id: number) {
 		return result.rows;
 	} catch (error) {
 		console.error('Error fetching todolists from the database');
-		return;
+		return [];
 	}
 }
 
