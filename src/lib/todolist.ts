@@ -1,6 +1,6 @@
 import { query } from './db';
 
-export async function storeTodolist(title: string, user_id: number) {
+export async function storeTodolist(title: string, user_id: number): Promise<number | null> {
 	try {
 		const result = await query(
 			`
