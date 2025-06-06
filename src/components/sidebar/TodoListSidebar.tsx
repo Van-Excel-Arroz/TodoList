@@ -7,7 +7,7 @@ import NewTodolistButton from './components/NewTodolistButton';
 import SmartTodolistContainer from './components/SmartTodolistContainer';
 
 export default async function TodoListsSidebar() {
-	const todolists: TodoList[] = (await getTodolists(1)) ?? [];
+	const todolists: TodoList[] = (await getTodolists(1)) as TodoList[];
 	return (
 		<>
 			<TodoListsSidebarWrapper>
