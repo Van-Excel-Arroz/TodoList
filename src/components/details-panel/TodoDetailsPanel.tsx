@@ -33,8 +33,9 @@ export default function TodoDetailsPanel() {
 				}}
 			/>
 			<div
-				className={`flex flex-col fixed lg:relative right-0 top-0 bg-white border-l border-slate-300  h-screen transition-all duration-300
-					 ease-in-out z-50 ${isOpen ? 'w-96' : 'w-0 translate-x-6'}
+				className={`flex flex-col fixed lg:relative right-0 top-0 bg-white border-l border-slate-300  h-screen z-50 ${
+					isOpen ? 'w-96' : 'w-0 translate-x-6'
+				}
 				}`}
 			>
 				<TodoDetailsHeader />
