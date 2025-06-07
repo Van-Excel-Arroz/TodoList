@@ -49,7 +49,7 @@ function FilteredTodoListPage({ filteredTodoList, title }: FilteredTodoListPage)
 							<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
 								{title == 'tagged'
 									? sortedTodos.map((todo, index) =>
-											todo.categories!.every(cat => cat.category_title == todoList.title) ? (
+											todo.categories?.every(cat => cat.category_title == todoList.title) ? (
 												<TodoItem todo={todo} key={index} />
 											) : null
 									  )
