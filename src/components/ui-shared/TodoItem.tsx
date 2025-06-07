@@ -15,6 +15,7 @@ import DueDate from '../todo-list/ui/DueDate';
 import { GripVertical } from 'lucide-react';
 import Importance from '@/components/ui-shared/Importance';
 import useQueryParams from '@/hooks/useQueryParams';
+import useTodoListsStore from '@/context/TodoListsContext';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
@@ -22,8 +23,11 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const isSelected = selectedTodoId === todo.id;
 	const { updateSearchParams, getQueryParam } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
-
 	const [view] = getQueryParam('view');
+	const { getTodoListById } = useTodoListsStore();
+	const todolist = getTodoListById(Number(todolistId));
+
+	console.log(todolist);
 
 	const handleTodoClick = () => {
 		if (isSelected) {

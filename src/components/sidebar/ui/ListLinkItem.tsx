@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { memo, useEffect, useState } from 'react';
 import ListIcon, { iconNameType } from './ListIcon';
-import { SettingsToSave } from '@/utils/types';
+import useTodoListsStore from '@/context/TodoListsContext';
+import { TodoListSettings } from '@/utils/types';
 
 interface ListLinkItemProps {
 	children: React.ReactNode;
@@ -19,6 +20,7 @@ function ListLinkItem({ children, queryParam, itemId, iconName }: ListLinkItemPr
 	const searchParams = useSearchParams();
 	const currentQueryParamValue = searchParams.get(queryParam);
 	const isSelectedPath = currentQueryParamValue === itemId;
+	const { updateTodoListSettings } = useTodoListsStore();
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoListsSidebar } = useTodoListsSidebarStore();
 	const [queryString, setQueryString] = useState<string | null>(null);
@@ -32,8 +34,9 @@ function ListLinkItem({ children, queryParam, itemId, iconName }: ListLinkItemPr
 	useEffect(() => {
 		const settingsFromStorage = localStorage.getItem(`todolistSettings-${itemId}`);
 		if (settingsFromStorage) {
-			const parseSettings: SettingsToSave = JSON.parse(settingsFromStorage);
-			const icon = parseSettings.listIcon as iconNameType;
+			const parseSettings: TodoListSettings = JSON.parse(settingsFromStorage);
+			const icon = parseSettings?.appearance?.listIcon as iconNameType;
+			updateTodoListSettings(Number(itemId), parseSettings);
 			setStoredIcon(icon);
 		} else {
 			setStoredIcon(null);

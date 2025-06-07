@@ -66,14 +66,6 @@ export interface TodoListSettings {
 	appearance: AppearanceSettings;
 }
 
-export interface SettingsToSave {
-	completedTasks: string;
-	newTasksPosition: string;
-	dueDateFormat: string;
-	accent: string;
-	listIcon: string;
-}
-
 export interface SingleSelectionProps {
 	selectedOption: string | null;
 	onOptionSelect: (option: string | null) => void;

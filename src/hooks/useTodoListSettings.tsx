@@ -1,4 +1,4 @@
-import { SettingsToSave, TodoListSettings } from '@/utils/types';
+import { TodoListSettings } from '@/utils/types';
 import { useEffect, useState } from 'react';
 import useQueryParams from './useQueryParams';
 import _, { isEqual, lowerFirst, upperFirst } from 'lodash';
@@ -36,26 +36,28 @@ export default function useTodoListSettings() {
 	useEffect(() => {
 		const settingsFromStorage = localStorage.getItem(`todolistSettings-${todolistId}`);
 		if (settingsFromStorage) {
-			const parseSettings: SettingsToSave = JSON.parse(settingsFromStorage);
-			const newTodoListSettings: TodoListSettings = {
-				behavior: {
-					filterField: filterField ?? null,
-					filterValue: filterValue ?? null,
-					sortField: sortField ?? null,
-					sortOrder: (sortOrder as 'asc' | 'desc') ?? 'asc',
-					completedTasks: parseSettings.completedTasks,
-					newTasksPosition: parseSettings.newTasksPosition,
-					dueDateFormat: parseSettings.dueDateFormat,
-				},
-				appearance: {
-					accent: parseSettings.accent,
-					listIcon: parseSettings.listIcon,
-					layout: layoutValue,
-				},
-			};
+			const parseSettings: TodoListSettings = JSON.parse(settingsFromStorage);
+			if (parseSettings) {
+				const newTodoListSettings: TodoListSettings = {
+					behavior: {
+						filterField: filterField ?? null,
+						filterValue: filterValue ?? null,
+						sortField: sortField ?? null,
+						sortOrder: (sortOrder as 'asc' | 'desc') ?? 'asc',
+						completedTasks: parseSettings.behavior.completedTasks,
+						newTasksPosition: parseSettings.behavior.newTasksPosition,
+						dueDateFormat: parseSettings.behavior.dueDateFormat,
+					},
+					appearance: {
+						accent: parseSettings.appearance.accent,
+						listIcon: parseSettings.appearance.listIcon,
+						layout: layoutValue,
+					},
+				};
 
-			setTodoListSettings(newTodoListSettings);
-			setTodoListSettingsSnapShot(newTodoListSettings);
+				setTodoListSettings(newTodoListSettings);
+				setTodoListSettingsSnapShot(newTodoListSettings);
+			}
 		}
 	}, [todolistId]);
 
@@ -63,15 +65,10 @@ export default function useTodoListSettings() {
 		const behaviorSettings = todoListSettings.behavior;
 		const appearanceSettings = todoListSettings.appearance;
 
-		const settingsToSave: SettingsToSave = {
-			completedTasks: behaviorSettings.completedTasks,
-			newTasksPosition: behaviorSettings.newTasksPosition,
-			dueDateFormat: behaviorSettings.dueDateFormat,
-			accent: appearanceSettings.accent,
-			listIcon: appearanceSettings.listIcon,
-		};
-		localStorage.setItem(`todolistSettings-${todolistId}`, JSON.stringify(settingsToSave));
-		console.log(settingsToSave);
+		localStorage.setItem(
+			`todolistSettings-${todolistId}`,
+			JSON.stringify({ behavior: behaviorSettings, appearance: appearanceSettings })
+		);
 
 		updateTodoListSettings(Number(todolistId), todoListSettings);
 
