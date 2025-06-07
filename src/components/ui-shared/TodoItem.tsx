@@ -27,8 +27,6 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const { getTodoListById } = useTodoListsStore();
 	const todolist = getTodoListById(Number(todolistId));
 
-	console.log(todolist);
-
 	const handleTodoClick = () => {
 		if (isSelected) {
 			setSelectedTodoId(0);
@@ -60,6 +58,8 @@ function TodoItem({ todo }: { todo: Todo }) {
 		updateSearchParams('filter', `categories:${categoryTitle}`, todolistId);
 	};
 
+	const accentColor = todolist?.settings?.appearance.accent;
+
 	return (
 		<>
 			{view === 'grid' ? (
@@ -70,6 +70,9 @@ function TodoItem({ todo }: { todo: Todo }) {
 							? ' border-slate-500 hover:border-slate-400 active:border-slate-300'
 							: ' hover:border-slate-400 active:border-slate-500'
 					}`}
+					style={{
+						borderColor: isSelected ? `${accentColor}80` : '',
+					}}
 					onClick={handleTodoClick}
 				>
 					<div className="flex items-center gap-2 col-span-7">
