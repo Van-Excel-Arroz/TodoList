@@ -58,21 +58,19 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const handleCategoryClick = (categoryTitle: string) => {
 		updateSearchParams('filter', `categories:${categoryTitle}`, todolistId);
 	};
+
 	const accentColor = todolist?.settings?.appearance?.accent;
+
+	const borderColor = isSelected
+		? ' border-slate-500 hover:border-slate-400 active:border-slate-300'
+		: ' hover:border-slate-400 active:border-slate-500';
 
 	return (
 		<>
 			{view === 'grid' ? (
 				<div
 					key={todo.id}
-					className={`grid grid-cols-12 gap-2 w-full bg-white border cursor-pointer relative py-1 mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 hover:${accentColor} ${
-						isSelected
-							? ' border-slate-500 hover:border-slate-400 active:border-slate-300'
-							: ' hover:border-slate-400 active:border-slate-500'
-					}`}
-					style={{
-						borderColor: `${accentColor}20 `,
-					}}
+					className={`grid grid-cols-12 gap-2 w-full bg-white border cursor-pointer relative py-1 mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${borderColor}`}
 					onClick={handleTodoClick}
 				>
 					<div className="flex items-center gap-2 col-span-7">
