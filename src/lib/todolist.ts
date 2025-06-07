@@ -1,3 +1,4 @@
+import { TodoListSettings } from '@/utils/types';
 import { query } from './db';
 
 export async function storeTodolist(title: string, user_id: number): Promise<number | null> {
@@ -31,7 +32,10 @@ export async function getTodolists(user_id: number): Promise<{ id: number; title
 	}
 }
 
-export async function getTodolist(todolistId: number, user_id: number): Promise<{ id: number; title: string } | null> {
+export async function getTodolist(
+	todolistId: number,
+	user_id: number
+): Promise<{ id: number; title: string; settings: TodoListSettings } | null> {
 	try {
 		const result = await query(
 			`
@@ -40,7 +44,10 @@ export async function getTodolist(todolistId: number, user_id: number): Promise<
 			[todolistId, user_id]
 		);
 
-		return result.rows[0] ?? null;
+		const todolist = result.rows[0];
+		if (!todolist) return null;
+
+		return { ...todolist, settings: null };
 	} catch (error) {
 		console.error('Error fetching todolist from the database', error);
 		return null;

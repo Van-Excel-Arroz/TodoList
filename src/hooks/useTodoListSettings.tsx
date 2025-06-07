@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import useQueryParams from './useQueryParams';
 import _, { isEqual, lowerFirst, upperFirst } from 'lodash';
 import useTodoListsStore from '@/context/TodoListsContext';
-import { iconNameType } from '@/components/sidebar/ui/ListIcon';
 
 export default function useTodoListSettings() {
 	const { getQueryParam, updateSearchParams } = useQueryParams();
@@ -12,7 +11,7 @@ export default function useTodoListSettings() {
 	const [todolistId] = getQueryParam('id');
 	const [view] = getQueryParam('view');
 	const layoutValue = upperFirst(view);
-	const { updateTodoListIcon } = useTodoListsStore();
+	const { updateTodoListSettings } = useTodoListsStore();
 
 	const defaultTodoListSettings: TodoListSettings = {
 		behavior: {
@@ -72,9 +71,9 @@ export default function useTodoListSettings() {
 			listIcon: appearanceSettings.listIcon,
 		};
 		localStorage.setItem(`todolistSettings-${todolistId}`, JSON.stringify(settingsToSave));
+		console.log(settingsToSave);
 
-		const newIcon = appearanceSettings.listIcon as iconNameType;
-		updateTodoListIcon(Number(todolistId), newIcon);
+		updateTodoListSettings(Number(todolistId), todoListSettings);
 
 		const filterField = behaviorSettings.filterField;
 		const filterValue = behaviorSettings.filterValue;

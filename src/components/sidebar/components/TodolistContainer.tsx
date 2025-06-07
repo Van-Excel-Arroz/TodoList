@@ -35,7 +35,7 @@ function TodolistContainer({ initialTodoLists }: { initialTodoLists: TodoList[] 
 										<ListLinkItem
 											queryParam="id"
 											itemId={todolist.id.toString()}
-											iconName={todolist.listIcon as iconNameType}
+											iconName={todolist.settings?.appearance?.listIcon as iconNameType}
 										>
 											{todolist.title}
 										</ListLinkItem>
