@@ -15,7 +15,6 @@ import DueDate from '../todo-list/ui/DueDate';
 import { GripVertical } from 'lucide-react';
 import Importance from '@/components/ui-shared/Importance';
 import useQueryParams from '@/hooks/useQueryParams';
-import useTodoListsStore from '@/context/TodoListsContext';
 
 function TodoItem({ todo }: { todo: Todo }) {
 	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
@@ -23,8 +22,6 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const isSelected = selectedTodoId === todo.id;
 	const { updateSearchParams, getQueryParam } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
-	const { getTodoListById } = useTodoListsStore();
-	const todolist = getTodoListById(Number(todolistId));
 
 	const [view] = getQueryParam('view');
 
@@ -59,18 +56,16 @@ function TodoItem({ todo }: { todo: Todo }) {
 		updateSearchParams('filter', `categories:${categoryTitle}`, todolistId);
 	};
 
-	const accentColor = todolist?.settings?.appearance?.accent;
-
-	const borderColor = isSelected
-		? ' border-slate-500 hover:border-slate-400 active:border-slate-300'
-		: ' hover:border-slate-400 active:border-slate-500';
-
 	return (
 		<>
 			{view === 'grid' ? (
 				<div
 					key={todo.id}
-					className={`grid grid-cols-12 gap-2 w-full bg-white border cursor-pointer relative py-1 mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${borderColor}`}
+					className={`grid grid-cols-12 gap-2 w-full bg-white border cursor-pointer relative py-1 mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
+						isSelected
+							? ' border-slate-500 hover:border-slate-400 active:border-slate-300'
+							: ' hover:border-slate-400 active:border-slate-500'
+					}`}
 					onClick={handleTodoClick}
 				>
 					<div className="flex items-center gap-2 col-span-7">
@@ -101,7 +96,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 			) : (
 				<div
 					key={todo.id}
-					className={`flex flex-col border cursor-pointer relative py-1 mb-2 px-3 bg-white rounded-lg select-none drop-shadow-sm transition-all duration-100 hover:${accentColor} ${
+					className={`flex flex-col border cursor-pointer relative py-1 mb-2 px-3 bg-white rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
 						isSelected
 							? ' border-slate-500 hover:border-slate-400 active:border-slate-300'
 							: ' hover:border-slate-400 active:border-slate-500'
