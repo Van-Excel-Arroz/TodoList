@@ -65,10 +65,8 @@ function TodoItem({ todo }: { todo: Todo }) {
 			{view === 'grid' ? (
 				<div
 					key={todo.id}
-					className={`grid grid-cols-12 gap-2 w-full bg-white border cursor-pointer relative py-1 mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
-						isSelected
-							? ' border-slate-500 hover:border-slate-400 active:border-slate-300'
-							: ' hover:border-slate-400 active:border-slate-500'
+					className={`mx-2 grid grid-cols-12 bg-white ring-offset-1 ring-slate-300 border cursor-pointer relative py-2 mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
+						isSelected ? ` border-slate-500 outline-none ring-2` : ' hover:ring-2 hover:ring-slate-300'
 					}`}
 					style={{
 						borderColor: isSelected ? `${accentColor}80` : '',
@@ -91,7 +89,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 					<div className="col-span-1 flex items-center justify-center">
 						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
 					</div>
-					<div className="col-span-3 flex items-center gap-2 flex-wrap">
+					<div className="col-span-2 flex items-center gap-2 flex-wrap">
 						{(todo.categories?.length ?? 0) > 0 && (
 							<CategoryTagList categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
 						)}

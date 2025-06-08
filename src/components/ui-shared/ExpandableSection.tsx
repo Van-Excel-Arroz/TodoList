@@ -32,7 +32,7 @@ function ExpandableSection({
 		<div
 			className={`${
 				view === 'grid' ? 'border border-slate-300 p-2 rounded-md' : ''
-			} ${className} flex flex-col items-start gap-1`}
+			} ${className} flex flex-col items-start`}
 		>
 			<div className="flex items-center w-full mx-1 gap-1">
 				<Button ariaLabel="Toggle Expand Section" onClick={() => setIsOpen(prev => !prev)} disabled={isEmpty}>
@@ -47,7 +47,7 @@ function ExpandableSection({
 			</div>
 
 			<motion.div
-				className="overflow-hidden w-full"
+				className="overflow-hidden w-full py-2"
 				initial={{ height: isEffectivelyOpen ? 'auto' : 0 }}
 				animate={{ height: isEffectivelyOpen ? 'auto' : 0 }}
 				transition={{ duration: 0.25 }}
