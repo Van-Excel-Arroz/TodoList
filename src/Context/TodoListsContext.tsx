@@ -9,6 +9,14 @@ interface TodoListContextState {
 	updateTodoListSettings: (todolistId: number, settings: TodoListSettings) => void;
 	deleteTodolist: (todolistId: number) => void;
 	getTodoListById: (todolistId: number) => TodoList | undefined;
+	getTodoListSettingValue: <
+		SettingCategory extends keyof TodoListSettings,
+		SettingKey extends keyof TodoListSettings[SettingCategory]
+	>(
+		settingCategory: SettingCategory,
+		settingKey: SettingKey,
+		todolistId: number
+	) => TodoListSettings[SettingCategory][SettingKey] | null;
 }
 
 const useTodoListsStore = create<TodoListContextState>()((set: any, get: any) => ({
@@ -36,6 +44,25 @@ const useTodoListsStore = create<TodoListContextState>()((set: any, get: any) =>
 		})),
 	getTodoListById: (todolistId: number) => {
 		return get().todolists.find((todolist: TodoList) => todolist.id === todolistId);
+	},
+	getTodoListSettingValue: <
+		SettingCategory extends keyof TodoListSettings,
+		SettingKey extends keyof TodoListSettings[SettingCategory]
+	>(
+		settingCategory: SettingCategory,
+		settingKey: SettingKey,
+		todolistId: number
+	) => {
+		const todolist = get().todolists.find((todolist: TodoList) => todolist.id === todolistId);
+		if (todolist && todolist.settings) {
+			const categorySettings = todolist.settings[settingCategory];
+			if (categorySettings && typeof categorySettings === 'object' && settingKey in categorySettings) {
+				return categorySettings[
+					settingKey as keyof typeof categorySettings
+				] as TodoListSettings[SettingCategory][SettingKey];
+			}
+		}
+		return null;
 	},
 }));
 

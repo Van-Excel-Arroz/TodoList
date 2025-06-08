@@ -12,6 +12,7 @@ export default function TodoListView({ todos }: { todos: Todo[] }) {
 	const { getTodoListById } = useTodoListsStore();
 	const todolist = getTodoListById(Number(todolistId));
 	const accentColor = todolist?.settings?.appearance.accent ?? '#6b7280';
+	const dueDateFormat = todolist?.settings?.behavior.dueDateFormat;
 
 	return (
 		<div className="mx-4">
