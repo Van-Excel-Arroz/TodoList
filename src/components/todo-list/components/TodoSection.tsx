@@ -7,21 +7,17 @@ import { motion } from 'framer-motion';
 import { itemVariants } from '@/utils/framer-motion';
 import ExpandableSection from '@/components/ui-shared/ExpandableSection';
 import useQueryParams from '@/hooks/useQueryParams';
-import useTodoListsStore from '@/context/TodoListsContext';
 
 interface TodoSectionProps {
 	title: string;
 	todos: Todo[];
+	accentColor: string;
 }
 
-function TodoSection({ title, todos }: TodoSectionProps) {
+function TodoSection({ title, todos, accentColor }: TodoSectionProps) {
 	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
 	const { getQueryParam } = useQueryParams();
 	const [view] = getQueryParam('view');
-	const [id] = getQueryParam('id');
-	const { getTodoListById } = useTodoListsStore();
-	const todolist = getTodoListById(Number(id));
-	const accentColor = todolist?.settings?.appearance.accent ?? '#6b7280';
 
 	return (
 		<ExpandableSection

@@ -31,10 +31,9 @@ function ExpandableSection({
 
 	return (
 		<div
-			className={`${view === 'grid' && 'border'} ${className} flex flex-col items-start`}
+			className={`${view === 'grid' && 'border rounded-md'} ${className} flex flex-col items-start`}
 			style={{
 				borderColor: view === 'grid' ? `${accentColor}40` : '',
-				borderRadius: 5,
 			}}
 		>
 			<div className="flex items-center w-full mx-1 gap-1">

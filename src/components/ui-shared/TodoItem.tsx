@@ -66,7 +66,7 @@ function TodoItem({ todo, accentColor }: TodoItemProps) {
 				<div
 					key={todo.id}
 					className={`mx-2 grid grid-cols-12 bg-white ring-offset-1 ring-slate-300 border cursor-pointer relative py-[2px] mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
-						isSelected ? ` border-slate-500 outline-none ring-2` : ' hover:ring-2 hover:ring-slate-300'
+						isSelected ? ` border-slate-500` : ' hover:ring-2 hover:ring-slate-300'
 					}`}
 					style={{
 						borderColor: isSelected ? `${accentColor}80` : '',
@@ -89,7 +89,7 @@ function TodoItem({ todo, accentColor }: TodoItemProps) {
 					<div className="col-span-1 flex items-center justify-center">
 						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
 					</div>
-					<div className="col-span-2 flex items-center gap-2 flex-wrap">
+					<div className="col-span-3 flex items-center gap-2 flex-wrap">
 						{(todo.categories?.length ?? 0) > 0 && (
 							<CategoryTagList categories={todo.categories!} handleCategoryClick={handleCategoryClick} />
 						)}
