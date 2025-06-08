@@ -65,7 +65,7 @@ function TodoItem({ todo, accentColor }: TodoItemProps) {
 			{view === 'grid' ? (
 				<div
 					key={todo.id}
-					className={`mx-2 grid grid-cols-12 bg-white ring-offset-1 ring-slate-300 border cursor-pointer relative py-2 mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
+					className={`mx-2 grid grid-cols-12 bg-white ring-offset-1 ring-slate-300 border cursor-pointer relative py-[2px] mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
 						isSelected ? ` border-slate-500 outline-none ring-2` : ' hover:ring-2 hover:ring-slate-300'
 					}`}
 					style={{
