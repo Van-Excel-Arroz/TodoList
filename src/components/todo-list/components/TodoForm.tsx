@@ -101,7 +101,7 @@ export default function TodoForm({ todolistId, accentColor }: TodoFormProps) {
 	};
 
 	return (
-		<div className="py-2 mb-4">
+		<div className="my-5">
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div
 					className="w-full flex items-center gap-4 px-6 py-2 shadow-sm hover:shadow-md hover:ring-2 ring-offset-2 hover:ring-slate-400 focus:ring-slate-400 border rounded-md bg-white"

@@ -6,7 +6,6 @@ import { useMemo, memo } from 'react';
 import { motion } from 'framer-motion';
 import { itemVariants } from '@/utils/framer-motion';
 import ExpandableSection from '@/components/ui-shared/ExpandableSection';
-import useQueryParams from '@/hooks/useQueryParams';
 
 interface TodoSectionProps {
 	title: string;
@@ -16,18 +15,14 @@ interface TodoSectionProps {
 
 function TodoSection({ title, todos, accentColor }: TodoSectionProps) {
 	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
-	const { getQueryParam } = useQueryParams();
-	const [view] = getQueryParam('view');
 
 	return (
 		<ExpandableSection
 			isEmpty={isTodosEmpty}
 			title={title}
 			titleClass="font-bold text-lg"
-			className="mb-4 pt-2"
+			className="mb-4"
 			itemCount={todos.length}
-			view={view}
-			accentColor={accentColor}
 		>
 			<ul>
 				{todos.map((todo, index) => (

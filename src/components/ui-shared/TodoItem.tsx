@@ -101,11 +101,10 @@ function TodoItem({ todo, accentColor }: TodoItemProps) {
 			) : (
 				<div
 					key={todo.id}
-					className={`flex flex-col border cursor-pointer relative py-1 mb-2 px-3 bg-white rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
-						isSelected
-							? ' border-slate-500 hover:border-slate-400 active:border-slate-300'
-							: ' hover:border-slate-400 active:border-slate-500'
-					}`}
+					className={`flex flex-col border cursor-pointer relative py-1 mb-2 px-3 bg-white rounded-lg select-none drop-shadow-sm transition-all duration-100`}
+					style={{
+						borderColor: isSelected ? `${accentColor}80` : '',
+					}}
 					onClick={handleTodoClick}
 				>
 					<div className="flex items-center">
