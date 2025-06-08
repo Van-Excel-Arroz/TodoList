@@ -15,17 +15,19 @@ import DueDate from '../todo-list/ui/DueDate';
 import { GripVertical } from 'lucide-react';
 import Importance from '@/components/ui-shared/Importance';
 import useQueryParams from '@/hooks/useQueryParams';
-import useTodoListsStore from '@/context/TodoListsContext';
 
-function TodoItem({ todo }: { todo: Todo }) {
+interface TodoItemProps {
+	todo: Todo;
+	accentColor: string;
+}
+
+function TodoItem({ todo, accentColor }: TodoItemProps) {
 	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoCompletion, toggleTodoImportance, updateCompletedAt } = useTodosStore();
 	const isSelected = selectedTodoId === todo.id;
 	const { updateSearchParams, getQueryParam } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
 	const [view] = getQueryParam('view');
-	const { getTodoListById } = useTodoListsStore();
-	const todolist = getTodoListById(Number(todolistId));
 
 	const handleTodoClick = () => {
 		if (isSelected) {
@@ -57,8 +59,6 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const handleCategoryClick = (categoryTitle: string) => {
 		updateSearchParams('filter', `categories:${categoryTitle}`, todolistId);
 	};
-
-	const accentColor = todolist?.settings?.appearance.accent;
 
 	return (
 		<>

@@ -13,6 +13,7 @@ interface ExpandableSectionProps {
 	view?: string;
 	className?: string;
 	titleClass?: string;
+	accentColor: string;
 }
 
 function ExpandableSection({
@@ -23,16 +24,18 @@ function ExpandableSection({
 	view = 'list',
 	className,
 	titleClass,
+	accentColor,
 }: ExpandableSectionProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
-
 	const isEffectivelyOpen = isOpen && !isEmpty;
 
 	return (
 		<div
-			className={`${
-				view === 'grid' ? 'border border-slate-300 p-2 rounded-md' : ''
-			} ${className} flex flex-col items-start`}
+			className={`${view === 'grid' && 'border'} ${className} flex flex-col items-start`}
+			style={{
+				borderColor: view === 'grid' ? `${accentColor}40` : '',
+				borderRadius: 5,
+			}}
 		>
 			<div className="flex items-center w-full mx-1 gap-1">
 				<Button ariaLabel="Toggle Expand Section" onClick={() => setIsOpen(prev => !prev)} disabled={isEmpty}>
