@@ -72,7 +72,7 @@ function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
 					}}
 					onClick={handleTodoClick}
 				>
-					<div className="flex items-center gap-2 col-span-7">
+					<div className="flex items-center gap-2 col-span-6">
 						<div className="flex items-center gap-2">
 							<GripVertical
 								className="cursor-all-scroll text-slate-500 hover:text-slate-800"
@@ -85,7 +85,7 @@ function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
 							{todo.task_text}
 						</p>
 					</div>
-					<div className="col-span-1 flex items-center justify-center">
+					<div className="col-span-2 flex items-center justify-center">
 						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} dueDateFormat={dueDateFormat} />}
 					</div>
 					<div className="col-span-3 flex items-center gap-2 flex-wrap">
