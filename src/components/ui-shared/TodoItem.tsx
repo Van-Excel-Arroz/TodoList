@@ -65,9 +65,7 @@ function TodoItem({ todo, accentColor }: TodoItemProps) {
 			{view === 'grid' ? (
 				<div
 					key={todo.id}
-					className={`mx-2 grid grid-cols-12 bg-white ring-offset-1 ring-slate-300 border cursor-pointer relative py-[2px] mb-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 ${
-						isSelected ? ` border-slate-500` : ' hover:ring-2 hover:ring-slate-300'
-					}`}
+					className={`grid grid-cols-12 bg-white ring-offset-1 ring-slate-300 border cursor-pointer relative py-[2px] m-2 px-2 rounded-lg select-none drop-shadow-sm transition-all duration-100 hover:ring-2`}
 					style={{
 						borderColor: isSelected ? `${accentColor}80` : '',
 					}}
@@ -101,7 +99,7 @@ function TodoItem({ todo, accentColor }: TodoItemProps) {
 			) : (
 				<div
 					key={todo.id}
-					className={`flex flex-col border cursor-pointer relative py-1 mb-2 px-3 bg-white rounded-lg select-none drop-shadow-sm transition-all duration-100`}
+					className={`flex flex-col border mx-2 cursor-pointer relative py-1 mb-2 px-3 bg-white rounded-lg select-none drop-shadow-sm transition-all duration-100 ring-slate-300 ring-offset-2 hover:ring-2`}
 					style={{
 						borderColor: isSelected ? `${accentColor}80` : '',
 					}}
