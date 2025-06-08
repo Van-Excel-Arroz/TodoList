@@ -11,9 +11,10 @@ interface TodoSectionProps {
 	title: string;
 	todos: Todo[];
 	accentColor: string;
+	dueDateFormat: string;
 }
 
-function TodoSection({ title, todos, accentColor }: TodoSectionProps) {
+function TodoSection({ title, todos, accentColor, dueDateFormat }: TodoSectionProps) {
 	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
 
 	return (
@@ -27,7 +28,7 @@ function TodoSection({ title, todos, accentColor }: TodoSectionProps) {
 			<ul>
 				{todos.map((todo, index) => (
 					<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
-						<TodoItem todo={todo} accentColor={accentColor} />
+						<TodoItem todo={todo} accentColor={accentColor} dueDateFormat={dueDateFormat} />
 					</motion.li>
 				))}
 			</ul>

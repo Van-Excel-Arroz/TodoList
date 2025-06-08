@@ -19,9 +19,10 @@ import useQueryParams from '@/hooks/useQueryParams';
 interface TodoItemProps {
 	todo: Todo;
 	accentColor: string;
+	dueDateFormat: string;
 }
 
-function TodoItem({ todo, accentColor }: TodoItemProps) {
+function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
 	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoCompletion, toggleTodoImportance, updateCompletedAt } = useTodosStore();
 	const isSelected = selectedTodoId === todo.id;
@@ -85,7 +86,7 @@ function TodoItem({ todo, accentColor }: TodoItemProps) {
 						</p>
 					</div>
 					<div className="col-span-1 flex items-center justify-center">
-						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
+						{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} dueDateFormat={dueDateFormat} />}
 					</div>
 					<div className="col-span-3 flex items-center gap-2 flex-wrap">
 						{(todo.categories?.length ?? 0) > 0 && (
@@ -125,7 +126,7 @@ function TodoItem({ todo, accentColor }: TodoItemProps) {
 								{todo.task_text}
 							</p>
 							<div className="flex items-center gap-1 flex-wrap">
-								{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} />}
+								{todo.due_datetime && <DueDate dueDatetime={todo.due_datetime} dueDateFormat={dueDateFormat} />}
 								{todo.due_datetime && (todo.categories || []).length > 0 && <p className="text-slate-600">•</p>}
 								{(todo.categories?.length ?? 0) > 0 && (
 									<>
