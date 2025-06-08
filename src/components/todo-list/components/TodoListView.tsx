@@ -9,16 +9,14 @@ export default function TodoListView({ todos }: { todos: Todo[] }) {
 	const { incompleteTodos, completeTodos } = useTodoDataManagement(todos);
 	const { getQueryParam } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
-	const { getTodoListById } = useTodoListsStore();
-	const todolist = getTodoListById(Number(todolistId));
-	const accentColor = todolist?.settings?.appearance.accent ?? '#6b7280';
-	const dueDateFormat = todolist?.settings?.behavior.dueDateFormat;
+	const { getTodoListSettingValue } = useTodoListsStore();
+	const accentColor = getTodoListSettingValue('appearance', 'accent', Number(todolistId));
 
 	return (
 		<div className="mx-4">
-			<TodoForm todolistId={Number(todolistId)} accentColor={accentColor} />
-			<TodoSection title="Todos" todos={incompleteTodos} accentColor={accentColor} />
-			<TodoSection title="Completed Todos" todos={completeTodos} accentColor={accentColor} />
+			<TodoForm todolistId={Number(todolistId)} accentColor={accentColor ?? ''} />
+			<TodoSection title="Todos" todos={incompleteTodos} accentColor={accentColor ?? ''} />
+			<TodoSection title="Completed Todos" todos={completeTodos} accentColor={accentColor ?? ''} />
 		</div>
 	);
 }
