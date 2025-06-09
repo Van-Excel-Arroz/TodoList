@@ -16,11 +16,7 @@ export default function TodoListView({ todos }: { todos: Todo[] }) {
 
 	return (
 		<div className="mx-4">
-			<TodoForm
-				todolistId={Number(todolistId)}
-				accentColor={accentColor ?? ''}
-				newTasksPosition={newTasksPosition ?? ''}
-			/>
+			<TodoForm todolistId={Number(todolistId)} newTasksPosition={newTasksPosition ?? ''} />
 			<TodoSection
 				title="Todos"
 				todos={incompleteTodos}
