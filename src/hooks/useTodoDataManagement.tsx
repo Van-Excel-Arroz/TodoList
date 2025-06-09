@@ -2,7 +2,6 @@ import { Todo } from '@/utils/types';
 import { compareAsc, compareDesc, isThisMonth, isThisWeek, isToday, isTomorrow } from 'date-fns';
 import { useMemo } from 'react';
 import useQueryParams from './useQueryParams';
-import useTodoListsStore from '@/context/TodoListsContext';
 
 type SortFn = (a: Todo, b: Todo) => number;
 type FilterFn = (todo: Todo) => boolean;
@@ -26,7 +25,7 @@ export function useTodoDataManagement(todos: Todo[]): {
 
 	const getSortFn = useMemo((): SortFn => {
 		return (a: Todo, b: Todo) => {
-			if (sortField === undefined || sortField === 'Importance') {
+			if (sortField === 'Importance') {
 				if (a.is_important !== b.is_important) {
 					return sortOrder === 'asc' ? (a.is_important ? 1 : -1) : a.is_important ? -1 : 1;
 				}
@@ -54,7 +53,7 @@ export function useTodoDataManagement(todos: Todo[]): {
 					: compareDesc(new Date(a.creation_date), new Date(b.creation_date));
 			}
 
-			return compareDesc(new Date(a.creation_date), new Date(b.creation_date));
+			return 0;
 		};
 	}, [sortField, sortOrder]);
 
