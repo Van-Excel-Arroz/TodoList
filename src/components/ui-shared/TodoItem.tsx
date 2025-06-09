@@ -100,7 +100,7 @@ function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
 			) : (
 				<div
 					key={todo.id}
-					className={`flex flex-col border mx-2 cursor-pointer relative py-1 mb-2 px-3 bg-white rounded-lg select-none drop-shadow-sm transition-all duration-100 ring-slate-300 ring-offset-2 hover:ring-2`}
+					className={`flex flex-col border mx-2 cursor-pointer relative py-1 m-2 px-3 bg-white rounded-lg select-none drop-shadow-sm transition-all duration-100 ring-slate-300 ring-offset-2 hover:ring-2`}
 					style={{
 						borderColor: isSelected ? `${accentColor}80` : '',
 					}}
