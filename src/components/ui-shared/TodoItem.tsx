@@ -78,6 +78,7 @@ function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
 								className="cursor-all-scroll text-slate-500 hover:text-slate-800"
 								strokeWidth={1}
 								size={20}
+								color={accentColor}
 							/>
 							<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} accentColor={accentColor} />
 						</div>
@@ -94,7 +95,12 @@ function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
 						)}
 					</div>
 					<div className="col-span-1 flex justify-center">
-						<Importance isImportant={todo.is_important} handleOnClick={handleImportanceChange} size={22} />
+						<Importance
+							isImportant={todo.is_important}
+							handleOnClick={handleImportanceChange}
+							size={22}
+							accentColor={accentColor}
+						/>
 					</div>
 				</div>
 			) : (
@@ -112,6 +118,7 @@ function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
 								className="cursor-all-scroll mr-3 text-slate-500 hover:text-slate-800"
 								strokeWidth={1}
 								size={20}
+								color={accentColor}
 							/>
 							<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} accentColor={accentColor} />
 						</div>
@@ -135,7 +142,11 @@ function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
 								)}
 							</div>
 						</div>
-						<Importance isImportant={todo.is_important} handleOnClick={handleImportanceChange} />
+						<Importance
+							isImportant={todo.is_important}
+							handleOnClick={handleImportanceChange}
+							accentColor={accentColor}
+						/>
 					</div>
 				</div>
 			)}

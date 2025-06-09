@@ -4,9 +4,10 @@ interface ImportanceProps {
 	isImportant: boolean;
 	handleOnClick: () => void;
 	size?: number;
+	accentColor: string;
 }
 
-export default function Importance({ isImportant, handleOnClick, size = 24 }: ImportanceProps) {
+export default function Importance({ isImportant, handleOnClick, size = 24, accentColor }: ImportanceProps) {
 	return (
 		<button
 			className="flex items-center"
@@ -19,8 +20,9 @@ export default function Importance({ isImportant, handleOnClick, size = 24 }: Im
 			<Star
 				strokeWidth={2}
 				size={size}
-				className={`hover:opacity-80 active:opacity-60 ${isImportant ? 'text-yellow-400' : 'text-slate-600'}`}
-				fill={`${isImportant ? 'yellow' : 'white'}`}
+				className={`hover:opacity-80 active:opacity-60`}
+				color={accentColor}
+				fill={`${isImportant ? `${accentColor}80` : 'white'}`}
 			/>
 		</button>
 	);
