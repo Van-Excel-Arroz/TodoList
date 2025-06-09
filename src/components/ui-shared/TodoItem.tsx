@@ -79,7 +79,7 @@ function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
 								strokeWidth={1}
 								size={20}
 							/>
-							<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
+							<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} accentColor={accentColor} />
 						</div>
 						<p className={`w-[90%] ${todo.is_completed && 'line-through text-slate-600'} lg:text-base text-md`}>
 							{todo.task_text}
@@ -113,7 +113,7 @@ function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
 								strokeWidth={1}
 								size={20}
 							/>
-							<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} />
+							<CheckBox isChecked={todo.is_completed} handleOnClick={handleCheckboxChange} accentColor={accentColor} />
 						</div>
 
 						<div className="flex flex-col ml-5 w-full ">
