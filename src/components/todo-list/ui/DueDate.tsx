@@ -20,13 +20,15 @@ export default function DueDate({ dueDatetime, dueDateFormat }: DueDateProps) {
 			if (isDueDatePast) formattedDateString += ' (Past)';
 			break;
 		case DUE_DATE_FORMAT_SHORT:
-			formattedDateString = format(dueDatetime, 'MM/dd/yyyy');
+			formattedDateString = format(dueDatetime, 'MM/dd/yyyy - hh:mm a');
 			if (isDueDatePast) {
 				formattedDateString += ' (Past)';
 			}
 			break;
 		case DUE_DATE_FORMAT_LONG:
-			formattedDateString = format(dueDatetime, 'MMM d, yyyy');
+			const date = format(dueDatetime, 'MMM d, yyyy');
+			const time = format(dueDatetime, 'hh:mm a');
+			formattedDateString = `${date} at ${time}`;
 			if (isDueDatePast) {
 				formattedDateString += ' (Past)';
 			}
