@@ -18,11 +18,10 @@ interface TodoFormData {
 
 interface TodoFormProps {
 	todolistId: number;
-	accentColor: string;
 	newTasksPosition: string;
 }
 
-export default function TodoForm({ todolistId, accentColor, newTasksPosition }: TodoFormProps) {
+export default function TodoForm({ todolistId, newTasksPosition }: TodoFormProps) {
 	const { register, handleSubmit, reset, watch, setValue } = useForm();
 	const { addTodo } = useTodosStore();
 	const { addCategory, getCategoryColor } = useCategoriesStore();
@@ -104,12 +103,7 @@ export default function TodoForm({ todolistId, accentColor, newTasksPosition }: 
 	return (
 		<div className="my-5">
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<div
-					className="w-full flex items-center gap-4 px-6 py-2 shadow-sm hover:shadow-md hover:ring-2 ring-offset-2 hover:ring-slate-400 focus:ring-slate-400 border rounded-md bg-white transition-all duration-100"
-					style={{
-						borderColor: `${accentColor}60`,
-					}}
-				>
+				<div className="w-full flex items-center gap-4 px-6 py-2 shadow-sm hover:shadow-md hover:ring-2 ring-offset-2 hover:ring-slate-400 focus:ring-slate-400 border rounded-md bg-white transition-all duration-100">
 					<input
 						{...register('todo', {
 							required: true,
