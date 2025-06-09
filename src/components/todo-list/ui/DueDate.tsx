@@ -17,6 +17,7 @@ export default function DueDate({ dueDatetime, dueDateFormat }: DueDateProps) {
 	switch (dueDateFormat) {
 		case DUE_DATE_FORMAT_RELATIVE:
 			formattedDateString = formatDistanceToNow(dueDatetime);
+			if (isDueDatePast) formattedDateString += ' (Past)';
 			break;
 		case DUE_DATE_FORMAT_SHORT:
 			formattedDateString = format(dueDatetime, 'MM/dd/yyyy');
