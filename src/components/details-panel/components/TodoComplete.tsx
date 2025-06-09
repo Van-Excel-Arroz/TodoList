@@ -6,9 +6,10 @@ import useTodosStore from '@/context/TodosContext';
 interface TodoCompleteProps {
 	isCompleted: boolean;
 	completedAt: string;
+	accentColor: string;
 }
 
-export default function TodoComplete({ isCompleted }: TodoCompleteProps) {
+export default function TodoComplete({ isCompleted, accentColor }: TodoCompleteProps) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
 	const { toggleTodoCompletion, updateCompletedAt } = useTodosStore();
 
@@ -27,7 +28,7 @@ export default function TodoComplete({ isCompleted }: TodoCompleteProps) {
 
 	return (
 		<div className="flex justify-between items-center border border-slate-300 p-2 rounded-md w-1/2">
-			<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} />
+			<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} accentColor={accentColor} />
 			<div className="text-center w-full">
 				<p>{isCompleted ? 'Completed' : 'Complete'} </p>
 			</div>

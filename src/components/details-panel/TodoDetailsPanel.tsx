@@ -12,6 +12,8 @@ import useTodosStore from '@/context/TodosContext';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import Selection from '../ui-shared/Selection';
 import { useState } from 'react';
+import useQueryParams from '@/hooks/useQueryParams';
+import useTodoListsStore from '@/context/TodoListsContext';
 
 const sections = ['Details', 'Activity'];
 
@@ -21,6 +23,10 @@ export default function TodoDetailsPanel() {
 	const [section, setSection] = useState(sections[0]);
 	const todo = getTodoById(selectedTodoId);
 	const isOpen = !!todo;
+	const { getQueryParam } = useQueryParams();
+	const { getTodoListSettingValue } = useTodoListsStore();
+	const [id] = getQueryParam('id');
+	const accentColor = getTodoListSettingValue('appearance', 'accent', Number(id));
 
 	return (
 		<>
@@ -44,8 +50,12 @@ export default function TodoDetailsPanel() {
 					{section === 'Details' && (
 						<>
 							<div className="flex items-center justify-between gap-4">
-								<TodoComplete isCompleted={todo?.is_completed ?? false} completedAt={todo?.completed_at ?? ''} />
-								<TodoImportance isImportant={todo?.is_important ?? false} />
+								<TodoComplete
+									isCompleted={todo?.is_completed ?? false}
+									completedAt={todo?.completed_at ?? ''}
+									accentColor={accentColor ?? ''}
+								/>
+								<TodoImportance isImportant={todo?.is_important ?? false} accentColor={accentColor ?? ''} />
 							</div>
 
 							<TodoTitle title={todo?.task_text ?? ''} />
