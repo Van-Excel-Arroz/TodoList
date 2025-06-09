@@ -1,10 +1,12 @@
 import { Category, Todo } from '@/utils/types';
 import { create } from 'zustand';
 
+const TODO_TOP = 'Add to Top';
+
 interface TodosContextState {
 	todos: Todo[];
 	setTodos: (todos: Todo[]) => void;
-	addTodo: (newTodo: Todo) => void;
+	addTodo: (newTodo: Todo, newTasksPosition: string) => void;
 	addCategory: (todoId: number, newCategory: Category) => void;
 	deleteTodo: (todoId: number) => void;
 	deleteCategory: (todoId: number, categoryId: number) => void;
@@ -23,10 +25,17 @@ interface TodosContextState {
 const useTodosStore = create<TodosContextState>()((set: any, get: any) => ({
 	todos: [],
 	setTodos: (todos: Todo[]) => set({ todos }),
-	addTodo: (newTodo: Todo) =>
-		set((state: TodosContextState) => ({
-			todos: [...state.todos, newTodo],
-		})),
+	addTodo: (newTodo: Todo, newTasksPosition: string) => {
+		set((state: TodosContextState) => {
+			let updatedTodos: Todo[];
+			if (newTasksPosition === TODO_TOP) {
+				updatedTodos = [newTodo, ...state.todos];
+			} else {
+				updatedTodos = [...state.todos, newTodo];
+			}
+			return { todos: updatedTodos };
+		});
+	},
 	addCategory: (todoId: number, newCategory: Category) =>
 		set((state: TodosContextState) => ({
 			todos: state.todos.map(todo =>

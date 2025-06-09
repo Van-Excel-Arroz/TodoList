@@ -12,10 +12,15 @@ export default function TodoListView({ todos }: { todos: Todo[] }) {
 	const { getTodoListSettingValue } = useTodoListsStore();
 	const accentColor = getTodoListSettingValue('appearance', 'accent', Number(todolistId));
 	const dueDateFormat = getTodoListSettingValue('behavior', 'dueDateFormat', Number(todolistId));
+	const newTasksPosition = getTodoListSettingValue('behavior', 'newTasksPosition', Number(todolistId));
 
 	return (
 		<div className="mx-4">
-			<TodoForm todolistId={Number(todolistId)} accentColor={accentColor ?? ''} />
+			<TodoForm
+				todolistId={Number(todolistId)}
+				accentColor={accentColor ?? ''}
+				newTasksPosition={newTasksPosition ?? ''}
+			/>
 			<TodoSection
 				title="Todos"
 				todos={incompleteTodos}

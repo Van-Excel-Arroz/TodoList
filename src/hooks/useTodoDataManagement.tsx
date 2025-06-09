@@ -2,6 +2,7 @@ import { Todo } from '@/utils/types';
 import { compareAsc, compareDesc, isThisMonth, isThisWeek, isToday, isTomorrow } from 'date-fns';
 import { useMemo } from 'react';
 import useQueryParams from './useQueryParams';
+import useTodoListsStore from '@/context/TodoListsContext';
 
 type SortFn = (a: Todo, b: Todo) => number;
 type FilterFn = (todo: Todo) => boolean;

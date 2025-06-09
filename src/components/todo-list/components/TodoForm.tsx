@@ -19,9 +19,10 @@ interface TodoFormData {
 interface TodoFormProps {
 	todolistId: number;
 	accentColor: string;
+	newTasksPosition: string;
 }
 
-export default function TodoForm({ todolistId, accentColor }: TodoFormProps) {
+export default function TodoForm({ todolistId, accentColor, newTasksPosition }: TodoFormProps) {
 	const { register, handleSubmit, reset, watch, setValue } = useForm();
 	const { addTodo } = useTodosStore();
 	const { addCategory, getCategoryColor } = useCategoriesStore();
@@ -88,7 +89,7 @@ export default function TodoForm({ todolistId, accentColor }: TodoFormProps) {
 		const newTodo = await createTodoAction(todoText, finalDate, todolistId, categories);
 
 		if (newTodo) {
-			addTodo(newTodo);
+			addTodo(newTodo, newTasksPosition);
 			if (newTodo.categories !== null) {
 				newTodo.categories.map(cat => {
 					addCategory(cat);
