@@ -9,6 +9,8 @@ import useCategoriesStore from '@/context/CategoriesContext';
 import DueDateForm from '../ui/DueDateForm';
 import { Tag, X } from 'lucide-react';
 import { CategoryTag } from '@/utils/types';
+import useTodoListsStore from '@/context/TodoListsContext';
+import useQueryParams from '@/hooks/useQueryParams';
 
 interface TodoFormData {
 	todo?: string;
@@ -16,17 +18,17 @@ interface TodoFormData {
 	time?: string;
 }
 
-interface TodoFormProps {
-	todolistId: number;
-	newTasksPosition: string;
-}
-
-export default function TodoForm({ todolistId, newTasksPosition }: TodoFormProps) {
+export default function TodoForm() {
 	const { register, handleSubmit, reset, watch, setValue } = useForm();
 	const { addTodo } = useTodosStore();
 	const { addCategory, getCategoryColor } = useCategoriesStore();
+	const { getQueryParam } = useQueryParams();
+	const { getTodoListSettingValue } = useTodoListsStore();
+	const [todolistIdString] = getQueryParam('id');
+	const todolistId = Number(todolistIdString);
 	const [dueDate, setDueDate] = useState<string | undefined>(undefined);
 	const [categories, setCategories] = useState<CategoryTag[]>([]);
+	const newTasksPosition = getTodoListSettingValue('behavior', 'newTasksPosition', todolistId) ?? '';
 
 	const extractLastPartCategory = (text: string | undefined): string | null => {
 		if (!text) {

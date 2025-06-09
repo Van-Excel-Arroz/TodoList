@@ -10,11 +10,9 @@ import ExpandableSection from '@/components/ui-shared/ExpandableSection';
 interface TodoSectionProps {
 	title: string;
 	todos: Todo[];
-	accentColor: string;
-	dueDateFormat: string;
 }
 
-function TodoSection({ title, todos, accentColor, dueDateFormat }: TodoSectionProps) {
+function TodoSection({ title, todos }: TodoSectionProps) {
 	const isTodosEmpty = useMemo(() => todos.length === 0, [todos]);
 
 	return (
@@ -28,7 +26,7 @@ function TodoSection({ title, todos, accentColor, dueDateFormat }: TodoSectionPr
 			<ul>
 				{todos.map((todo, index) => (
 					<motion.li key={index} layout variants={itemVariants} initial="initial" animate="animate">
-						<TodoItem todo={todo} accentColor={accentColor} dueDateFormat={dueDateFormat} />
+						<TodoItem todo={todo} />
 					</motion.li>
 				))}
 			</ul>

@@ -3,6 +3,7 @@
 import { memo } from 'react';
 import { Todo } from '@/utils/types';
 import {
+	deleteTodoAction,
 	updateTodoCompletedAtAction,
 	updateTodoCompletionAction,
 	updateTodoImportanceAction,
@@ -15,20 +16,20 @@ import DueDate from '../todo-list/ui/DueDate';
 import { GripVertical } from 'lucide-react';
 import Importance from '@/components/ui-shared/Importance';
 import useQueryParams from '@/hooks/useQueryParams';
+import useTodoListsStore from '@/context/TodoListsContext';
 
-interface TodoItemProps {
-	todo: Todo;
-	accentColor: string;
-	dueDateFormat: string;
-}
+const COMPLETED_TASKS = 'Hide immediately';
 
-function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
+function TodoItem({ todo }: { todo: Todo }) {
 	const { selectedTodoId, setSelectedTodoId } = useSelectedTodoIdStore();
-	const { toggleTodoCompletion, toggleTodoImportance, updateCompletedAt } = useTodosStore();
+	const { toggleTodoCompletion, toggleTodoImportance, updateCompletedAt, deleteTodo } = useTodosStore();
 	const isSelected = selectedTodoId === todo.id;
 	const { updateSearchParams, getQueryParam } = useQueryParams();
-	const [todolistId] = getQueryParam('id');
 	const [view] = getQueryParam('view');
+	const { getTodoListSettingValue } = useTodoListsStore();
+	const accentColor = getTodoListSettingValue('appearance', 'accent', todo.todo_list_id) ?? '';
+	const dueDateFormat = getTodoListSettingValue('behavior', 'dueDateFormat', todo.todo_list_id) ?? '';
+	const completedTasks = getTodoListSettingValue('behavior', 'completedTasks', todo.todo_list_id) ?? '';
 
 	const handleTodoClick = () => {
 		if (isSelected) {
@@ -39,16 +40,21 @@ function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
 	};
 
 	const handleCheckboxChange = async () => {
-		await updateTodoCompletionAction(todo.id, !todo.is_completed);
-		toggleTodoCompletion(todo.id);
-
-		if (!todo.is_completed) {
-			const now = new Date().toISOString();
-			updateCompletedAt(selectedTodoId, now);
-			await updateTodoCompletedAtAction(selectedTodoId, now);
+		if (completedTasks === COMPLETED_TASKS && !todo.is_completed) {
+			await deleteTodoAction(todo.id);
+			deleteTodo(todo.id);
 		} else {
-			updateCompletedAt(selectedTodoId, null);
-			await updateTodoCompletedAtAction(selectedTodoId, null);
+			await updateTodoCompletionAction(todo.id, !todo.is_completed);
+			toggleTodoCompletion(todo.id);
+
+			if (!todo.is_completed) {
+				const now = new Date().toISOString();
+				updateCompletedAt(selectedTodoId, now);
+				await updateTodoCompletedAtAction(selectedTodoId, now);
+			} else {
+				updateCompletedAt(selectedTodoId, null);
+				await updateTodoCompletedAtAction(selectedTodoId, null);
+			}
 		}
 	};
 
@@ -58,7 +64,7 @@ function TodoItem({ todo, accentColor, dueDateFormat }: TodoItemProps) {
 	};
 
 	const handleCategoryClick = (categoryTitle: string) => {
-		updateSearchParams('filter', `categories:${categoryTitle}`, todolistId);
+		updateSearchParams('filter', `categories:${categoryTitle}`, `${todo.todo_list_id}`);
 	};
 
 	return (
