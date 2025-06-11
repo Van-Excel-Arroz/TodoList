@@ -30,7 +30,7 @@ export default function CategoryFilterMenu() {
 			/>
 			<MenuItem className="border-t font-bold justify-end" clickable={false}>
 				<Button ariaLabel="Add Selected Categories" darkMode={true} onClick={applyCategoriesFilter}>
-					<p className="px-1 text-md">Apply</p>
+					<p className="px-1 text-md">Apply Filter</p>
 				</Button>
 			</MenuItem>
 		</>
