@@ -27,7 +27,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 	const { updateSearchParams, getQueryParam } = useQueryParams();
 	const [view] = getQueryParam('view');
 	const { getTodoListSettingValue } = useTodoListsStore();
-	const accentColor = getTodoListSettingValue('appearance', 'accent', todo.todo_list_id) ?? '';
+	const accentColor = getTodoListSettingValue('appearance', 'accent', todo.todo_list_id) ?? '#6b7280';
 	const dueDateFormat = getTodoListSettingValue('behavior', 'dueDateFormat', todo.todo_list_id) ?? '';
 	const completedTasks = getTodoListSettingValue('behavior', 'completedTasks', todo.todo_list_id) ?? '';
 
