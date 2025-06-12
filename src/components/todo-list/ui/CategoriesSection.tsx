@@ -69,6 +69,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 								<ColorSelectionMenu
 									initialColor={category.hex_color}
 									onColorSelect={newColor => onSaveNewColor(category.category_title, category.id, newColor)}
+									horizontalPosition="-left-14"
 								>
 									<Palette size={20} className="text-slate-600" />
 								</ColorSelectionMenu>
@@ -86,7 +87,8 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 			<div className="flex items-center gap-2 pt-2">
 				<ColorSelectionMenu
 					initialColor={selectedColor}
-					verticalPosition="top-12"
+					verticalPosition="-top-28"
+					horizontalPosition="left-[122px]"
 					onColorSelect={newColor => setSelectedColor(newColor)}
 				>
 					<div

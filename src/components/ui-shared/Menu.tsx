@@ -7,9 +7,18 @@ interface MenuProps {
 	width: string;
 	className?: string;
 	verticalPosition?: string;
+	horizontalPosition?: string;
 }
 
-export default function Menu({ open, onClose, children, width, className, verticalPosition = 'top-10' }: MenuProps) {
+export default function Menu({
+	open,
+	onClose,
+	children,
+	width,
+	className,
+	verticalPosition = 'top-10',
+	horizontalPosition = 'left-0',
+}: MenuProps) {
 	const ref = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -37,6 +46,7 @@ export default function Menu({ open, onClose, children, width, className, vertic
 										: 'opacity-0 scale-95 -translate-y-1 pointer-events-none duration-200'
 								}
 									${verticalPosition}
+									${horizontalPosition}
                   ${width}
 									${className}
 									`}
