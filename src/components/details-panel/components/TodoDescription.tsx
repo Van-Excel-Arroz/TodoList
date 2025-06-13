@@ -68,7 +68,7 @@ export default function TodoDescription({ description }: { description: string }
 				</div>
 				<textarea
 					{...register('description')}
-					className="rounded-lg py-2 px-2 w-full border border-slate-300 hover:border-slate-500 focus:border-slate-500 focus:outline-none"
+					className="rounded-lg py-2 px-2 w-full border border-slate-300 focus:outline-none ring-offset-2 ring-slate-400 hover:ring-2 focus-within:ring-2"
 					aria-label="Todo Description Input"
 					placeholder={description || 'No description provided'}
 					onChange={handleInputChange}

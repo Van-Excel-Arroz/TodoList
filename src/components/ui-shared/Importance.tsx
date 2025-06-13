@@ -20,7 +20,7 @@ export default function Importance({ isImportant, handleOnClick, size = 24, acce
 			<Star
 				strokeWidth={2}
 				size={size}
-				className={`hover:opacity-80 active:opacity-60`}
+				className="hover:opacity-80 active:opacity-60"
 				color={accentColor}
 				fill={`${isImportant ? `${accentColor}80` : 'white'}`}
 			/>

@@ -10,7 +10,7 @@ interface CheckBoxProps {
 export default function CheckBox({ isChecked, handleOnClick, size = 24, accentColor }: CheckBoxProps) {
 	return (
 		<button
-			className="flex items-center text-slate-500 active:text-slate-400 hover:text-slate-600"
+			className="flex items-center text-slate-500 hover:opacity-80 active:opacity-60"
 			onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 				event.stopPropagation();
 				handleOnClick();

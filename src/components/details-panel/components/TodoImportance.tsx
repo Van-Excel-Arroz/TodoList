@@ -18,7 +18,7 @@ export default function TodoImportance({ isImportant, accentColor }: TodoImporta
 	};
 
 	return (
-		<div className="flex items-center justify-center gap-2 w-1/2 p-2 border border-slate-300 rounded-md">
+		<div className="flex items-center justify-center gap-2 w-1/2 p-2 border border-slate-300 rounded-md ring-offset-2 ring-slate-400 hover:ring-2">
 			<Importance isImportant={isImportant} handleOnClick={handleImportanceChange} accentColor={accentColor} />
 			<p>Importance</p>
 		</div>

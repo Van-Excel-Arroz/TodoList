@@ -105,7 +105,7 @@ export default function TodoForm() {
 	return (
 		<div className="my-5">
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className="w-full flex items-center gap-4 px-6 py-2 shadow-sm hover:shadow-md hover:ring-2 ring-offset-2 hover:ring-slate-400 focus:ring-slate-400 border border-slate-300 rounded-md bg-white transition-all duration-100">
+				<div className="w-full flex items-center gap-4 px-6 py-2 shadow-sm hover:shadow-md hover:ring-2 focus-within:ring-2 ring-offset-2 ring-slate-400 border border-slate-300 rounded-md bg-white transition-all duration-100">
 					<input
 						{...register('todo', {
 							required: true,

@@ -98,7 +98,7 @@ function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, setIsTimePickerOpen, dueD
 	};
 
 	return (
-		<Menu open={isTimeMenuOpen} onClose={() => setIsTimeMenuOpen(false)} width="w-44">
+		<Menu open={isTimeMenuOpen} onClose={() => setIsTimeMenuOpen(false)} width="w-48">
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Select Due Time</p>
 			</MenuItem>
@@ -116,7 +116,7 @@ function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, setIsTimePickerOpen, dueD
 			>
 				<p>Custom</p>
 			</MenuItem>
-			<MenuItem className="border-t border-slate-300" onClick={() => handleSetTime('clear')}>
+			<MenuItem className="border-t border-slate-300 flex justify-center" onClick={() => handleSetTime('clear')}>
 				<Trash2 size={16} />
 				<p>Clear</p>
 			</MenuItem>

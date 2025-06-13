@@ -15,7 +15,7 @@ export default function TodoFilter() {
 
 	return (
 		<div className="relative">
-			<div className="flex items-center py-1 pl-4 pr-2 outline outline-1 outline-slate-300 rounded-md hover:outline-slate-400 focus-within:!outline-1  focus-within:!outline-slate-600">
+			<div className="flex items-center py-1 pl-4 pr-2 outline outline-1 outline-slate-300 ring-offset-2 ring-slate-400 rounded-md hover:ring-2 focus-within:ring-2">
 				<p className="text-sm text-slate-600 pr-2">Filter by:</p>
 
 				{filterField ? (

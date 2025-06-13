@@ -27,7 +27,7 @@ export default function TodoComplete({ isCompleted, accentColor }: TodoCompleteP
 	};
 
 	return (
-		<div className="flex justify-between items-center border border-slate-300 p-2 rounded-md w-1/2">
+		<div className="flex justify-between items-center border border-slate-300 p-2 rounded-md w-1/2 ring-offset-2 ring-slate-400 hover:ring-2">
 			<CheckBox isChecked={isCompleted} handleOnClick={handleCheckboxChange} accentColor={accentColor} />
 			<div className="text-center w-full">
 				<p>{isCompleted ? 'Completed' : 'Complete'} </p>
