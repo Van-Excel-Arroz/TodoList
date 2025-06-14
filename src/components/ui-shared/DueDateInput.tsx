@@ -22,7 +22,7 @@ function DueDateInput({ dueDate, setDueDate, defaultEmptyText = false }: DueDate
 
 	return (
 		<div className={`flex ${defaultEmptyText && 'py-2'}`}>
-			<div className="flex items-center h-4">
+			<div className="flex items-center h-4 gap-1">
 				<div className="relative">
 					<Button ariaLabel="Add Due Date" onClick={() => setIsDateMenuOpen(prev => !prev)}>
 						<Calendar size={20} />
@@ -89,7 +89,13 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 	};
 
 	return (
-		<Menu open={isDateMenuOpen} onClose={() => setIsDateMenuOpen(false)} width="w-44">
+		<Menu
+			open={isDateMenuOpen}
+			onClose={() => setIsDateMenuOpen(false)}
+			width="w-44"
+			horizontalPosition="top-[50px]"
+			verticalPosition="left-[55px]"
+		>
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Select Due Date</p>
 			</MenuItem>
@@ -131,7 +137,13 @@ function DatePicker({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate
 	};
 
 	return (
-		<Menu open={isDatePickerOpen} onClose={() => setIsDatePickerOpen(false)} width="w-fit">
+		<Menu
+			open={isDatePickerOpen}
+			onClose={() => setIsDatePickerOpen(false)}
+			width="w-fit"
+			horizontalPosition="top-[50px]"
+			verticalPosition="left-[68px]"
+		>
 			<div className="relative">
 				<DateTime
 					value={dueDate ? new Date(dueDate) : undefined}

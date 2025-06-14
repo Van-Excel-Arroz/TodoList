@@ -19,7 +19,7 @@ function DueTimeInput({ dueDate, setDueDate, defaultEmptyText = false }: DueDate
 
 	return (
 		<div className={`flex ${defaultEmptyText && 'py-2'}`}>
-			<div className="flex items-center h-4">
+			<div className="flex items-center h-4 gap-1">
 				<div className="relative">
 					<Button ariaLabel="Edit Time">
 						<Clock3 size={20} onClick={() => setIsTimeMenuOpen(prev => !prev)} />
@@ -98,7 +98,7 @@ function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, setIsTimePickerOpen, dueD
 	};
 
 	return (
-		<Menu open={isTimeMenuOpen} onClose={() => setIsTimeMenuOpen(false)} width="w-48">
+		<Menu open={isTimeMenuOpen} onClose={() => setIsTimeMenuOpen(false)} width="w-48" horizontalPosition="top-[50px]">
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Select Due Time</p>
 			</MenuItem>
@@ -139,7 +139,13 @@ function TimePicker({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate
 	};
 
 	return (
-		<Menu open={isTimePickerOpen} onClose={() => setIsTimePickerOpen(false)} width="w-fit">
+		<Menu
+			open={isTimePickerOpen}
+			onClose={() => setIsTimePickerOpen(false)}
+			width="w-fit"
+			horizontalPosition="top-[50px]"
+			verticalPosition="-left-[20px]"
+		>
 			<div className="relative">
 				<DateTime
 					value={dueDate ? new Date(dueDate) : undefined}

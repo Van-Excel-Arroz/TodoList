@@ -39,13 +39,13 @@ export default function TodoDetailsPanel() {
 				}}
 			/>
 			<div
-				className={`flex flex-col fixed lg:relative right-0 top-0 bg-white border-l border-slate-300  h-screen z-50 ${
+				className={`flex flex-col justify-between fixed lg:relative right-0 top-0 bg-white border-l border-slate-300 h-screen z-50 ${
 					isOpen ? 'w-96' : 'w-0 translate-x-6'
 				}
 				}`}
 			>
 				<TodoDetailsHeader />
-				<div className="flex-1 px-6 space-y-4 pt-4">
+				<div className="flex-1 px-6 space-y-4 pt-4 overflow-y-scroll overflow-hidden">
 					<Selection options={sections} selectedOption={section} setSelectedOption={setSection} />
 					{section === 'Details' && (
 						<>
