@@ -9,6 +9,7 @@ interface ButtonProps {
 	className?: string;
 	darkMode?: boolean;
 	isActive?: boolean;
+	focusStyle?: boolean;
 	onMouseDown?: (e: React.MouseEvent) => void;
 }
 
@@ -21,6 +22,7 @@ function Button({
 	className = '',
 	darkMode = false,
 	isActive = false,
+	focusStyle = true,
 	onMouseDown,
 }: ButtonProps) {
 	const bgStyle = `${
@@ -37,7 +39,9 @@ function Button({
 
 	return (
 		<button
-			className={`${className} ${style} ${disabledStyle} rounded-lg p-1 cursor-pointer transition-all duration-400 focus-within:bg-slate-200`}
+			className={`${className} ${style} ${disabledStyle} rounded-lg p-1 cursor-pointer transition-all duration-400 ${
+				focusStyle && 'focus-within:bg-slate-200'
+			}`}
 			onClick={() => onClick && onClick()}
 			type={type ? type : 'button'}
 			aria-label={ariaLabel}
