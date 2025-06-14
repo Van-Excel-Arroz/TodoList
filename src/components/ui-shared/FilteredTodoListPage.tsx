@@ -9,6 +9,10 @@ import { motion } from 'framer-motion';
 import { itemVariants } from '@/utils/framer-motion';
 import { useTodoDataManagement } from '@/hooks/useTodoDataManagement';
 import useQueryParams from '@/hooks/useQueryParams';
+import TodoSort from '../todo-list/components/TodoSort';
+import TodoFilter from '../todo-list/components/TodoFilter';
+import LayoutButtons from './LayoutButtons';
+import TodoSearch from '../todo-list/ui/TodoSearch';
 
 interface FilteredTodoListPage {
 	filteredTodoList: TodoListWithFilteredTodos[];
@@ -36,6 +40,12 @@ function FilteredTodoListPage({ filteredTodoList, title }: FilteredTodoListPage)
 	return (
 		<div className="w-[98%] h-[calc(100vh-70px)] mx-auto mt-2 overflow-y-scroll overflow-x-hidden">
 			<div className="px-5">
+				<div className="flex items-center gap-4 my-4">
+					<TodoSearch />
+					<TodoSort />
+					<TodoFilter />
+					<LayoutButtons param="smart-list" />
+				</div>
 				{filteredTodoList.map((todoList, index) => (
 					<ExpandableSection
 						isEmpty={false}

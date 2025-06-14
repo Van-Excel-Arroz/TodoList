@@ -2,13 +2,9 @@
 
 import { memo, useEffect, useState } from 'react';
 import { Category, TodoList } from '@/utils/types';
-import TodoFilter from './TodoFilter';
-import TodoSort from './TodoSort';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useCategoriesStore from '@/context/CategoriesContext';
 import TodoListTitle from '../ui/TodoListTitle';
-import TodoSearch from '../ui/TodoSearch';
-import LayoutButtons from '@/components/ui-shared/LayoutButtons';
 import { Settings } from 'lucide-react';
 import Button from '@/components/ui-shared/Button';
 import dynamic from 'next/dynamic';
