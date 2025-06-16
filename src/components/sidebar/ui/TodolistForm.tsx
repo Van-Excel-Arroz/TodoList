@@ -17,7 +17,7 @@ export default function TodolistForm({ handleIsAddingList }: { handleIsAddingLis
 
 		if (!todolistId) return;
 
-		addTodolist({ id: todolistId, title: data.title });
+		addTodolist({ id: todolistId, title: data.title, settings: null });
 		reset();
 		handleIsAddingList(false);
 	}
@@ -44,7 +44,7 @@ export default function TodolistForm({ handleIsAddingList }: { handleIsAddingLis
 					<Button type="submit" ariaLabel="Submit new list">
 						<SendHorizontal size={20} />
 					</Button>
-					<Button ariaLabel="Cancel adding new list" onClick={() => handleIsAddingList(false)}>
+					<Button ariaLabel="Cancel Adding New List" onClick={() => handleIsAddingList(false)}>
 						<X size={20} />
 					</Button>
 				</div>
