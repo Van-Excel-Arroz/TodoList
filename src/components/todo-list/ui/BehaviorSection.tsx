@@ -19,7 +19,7 @@ const dueDateFormatOptions = [
 
 export default function BehaviorSection({ headerTextStyle, settings, updateSetting }: BehaviorSectionProps) {
 	return (
-		<div className="overflow-y-auto h-[60vh]">
+		<div className="overflow-y-auto px-2 h-[60vh]">
 			<p className={headerTextStyle}>Filter</p>
 			<FilterDropDown
 				selectedField={settings.filterField}

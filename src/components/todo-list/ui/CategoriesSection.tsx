@@ -69,7 +69,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 								<ColorSelectionMenu
 									initialColor={category.hex_color}
 									onColorSelect={newColor => onSaveNewColor(category.category_title, category.id, newColor)}
-									horizontalPosition="-left-[88px]"
+									horizontalPosition="-left-[90px]"
 									verticalPosition="-bottom-24"
 								>
 									<Palette size={20} className="text-slate-600" />
