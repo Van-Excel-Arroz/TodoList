@@ -9,6 +9,7 @@ import BehaviorSection from './BehaviorSection';
 import AppearanceSection from './AppearanceSection';
 import CategoriesSection from './CategoriesSection';
 import useTodoListSettings from '@/hooks/useTodoListSettings';
+import CategoryForm from './CategoryForm';
 
 interface TodoListSettingsModalProps {
 	isOpen: boolean;
@@ -79,7 +80,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 					<Selection options={settings} selectedOption={settingSection} setSelectedOption={setSettingSection} />
 					<div className="flex flex-col gap-2 px-2 h-full">{renderSection()}</div>
 				</div>
-				{settingSection !== 'Categories' && (
+				{settingSection !== 'Categories' ? (
 					<div className=" flex justify-end gap-2">
 						<Button ariaLabel="Close Settings" onClick={onClose}>
 							Cancel
@@ -94,6 +95,8 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 							Save Settings
 						</Button>
 					</div>
+				) : (
+					<CategoryForm />
 				)}
 			</div>
 		</div>,
