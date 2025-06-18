@@ -2,6 +2,7 @@
 
 import { deleteTodoAction } from '@/actions/todo-action';
 import Button from '@/components/ui-shared/Button';
+import Typography from '@/components/ui-shared/Typography';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 import { PanelRight, Trash2 } from 'lucide-react';
@@ -21,7 +22,7 @@ export default function TodoDetailsHeader() {
 	};
 	return (
 		<div className="flex items-center justify-between py-[19px] px-6 border-b border-slate-300 sticky top-0 bg-white">
-			<p className="flex-1 text-lg font-bold text-slate-700 text-left">Task Details</p>
+			<Typography className="flex-1">Task Details</Typography>
 			<Button onClick={handleDelete} ariaLabel="Delete Todo">
 				<Trash2 size={20} className="text-red-600" />
 			</Button>

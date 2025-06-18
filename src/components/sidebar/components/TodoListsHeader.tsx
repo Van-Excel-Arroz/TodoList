@@ -4,6 +4,7 @@ import { Home } from 'lucide-react';
 import Button from '@/components/ui-shared/Button';
 import Link from 'next/link';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
+import Typography from '@/components/ui-shared/Typography';
 
 export default function TodoListsHeader() {
 	const { setSelectedTodoId } = useSelectedTodoIdStore();
@@ -14,7 +15,7 @@ export default function TodoListsHeader() {
 				<Button ariaLabel="Home">
 					<Home size={22} />
 				</Button>
-				<p className="text-lg font-bold text-slate-700">TodoApp</p>
+				<Typography>Todo App</Typography>
 			</Link>
 		</div>
 	);
