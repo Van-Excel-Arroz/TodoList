@@ -17,7 +17,7 @@ export default function Menu({
 	width,
 	className,
 	verticalPosition = 'top-10',
-	horizontalPosition = 'left-0',
+	horizontalPosition = 'left-1/2 -translate-x-1/2',
 }: MenuProps) {
 	const ref = useRef<HTMLDivElement>(null);
 
