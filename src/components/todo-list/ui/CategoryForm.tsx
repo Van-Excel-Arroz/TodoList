@@ -1,6 +1,7 @@
 import { addCategoryColorAction } from '@/actions/category-action';
 import Button from '@/components/ui-shared/Button';
 import ColorSelectionMenu from '@/components/ui-shared/ColorSelectionMenu';
+import Typography from '@/components/ui-shared/Typography';
 import useCategoriesStore from '@/context/CategoriesContext';
 import useQueryParams from '@/hooks/useQueryParams';
 import { Category } from '@/utils/types';
@@ -35,7 +36,7 @@ export default function CategoryForm() {
 
 	return (
 		<>
-			<p>Add New Category</p>
+			<Typography className="pt-2">Add New Category</Typography>
 			<div className="flex items-center gap-2 pt-2">
 				<ColorSelectionMenu
 					initialColor={selectedColor}

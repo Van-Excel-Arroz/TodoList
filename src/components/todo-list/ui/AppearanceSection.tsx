@@ -1,3 +1,4 @@
+import Typography from '@/components/ui-shared/Typography';
 import { PREDEFINED_THEME_COLORS } from '@/utils/constants';
 import { AppearanceSettings } from '@/utils/types';
 import {
@@ -50,15 +51,14 @@ const LAYOUTS = [
 const focusStyle = 'focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2';
 
 interface AppearanceSectionProps {
-	headerTextStyle: string;
 	settings: AppearanceSettings;
 	updateSetting: (key: keyof AppearanceSettings, value: any) => void;
 }
 
-export default function AppearanceSection({ headerTextStyle, settings, updateSetting }: AppearanceSectionProps) {
+export default function AppearanceSection({ settings, updateSetting }: AppearanceSectionProps) {
 	return (
-		<>
-			<p className={headerTextStyle}>Accent Color</p>
+		<div className="h-[90%] px-4 overflow-y-scroll">
+			<Typography>Accent Color</Typography>
 			<div className="flex items-center gap-4 mb-4">
 				{PREDEFINED_THEME_COLORS.map(color => {
 					const isActive = settings.accent === color;
@@ -76,7 +76,7 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 					);
 				})}
 			</div>
-			<p className={headerTextStyle}>List Icon</p>
+			<Typography>List Icon</Typography>
 			<div className="grid grid-cols-5 gap-4 mb-4">
 				{ICONS.map((ListIcon, index) => {
 					const iconName = ListIcon.displayName;
@@ -94,7 +94,7 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 					);
 				})}
 			</div>
-			<p className={headerTextStyle}>Layout</p>
+			<Typography>Layout</Typography>
 			<div className="grid grid-cols-3 gap-2 mb-4">
 				{LAYOUTS.map(Layout => {
 					const isActive = settings.layout === Layout.text;
@@ -112,6 +112,6 @@ export default function AppearanceSection({ headerTextStyle, settings, updateSet
 					);
 				})}
 			</div>
-		</>
+		</div>
 	);
 }

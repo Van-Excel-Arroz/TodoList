@@ -1,16 +1,13 @@
-import {
-	addCategoryColorAction,
-	deleteCategoryColorAction,
-	updateCategoryColorAction,
-} from '@/actions/category-action';
+import { deleteCategoryColorAction, updateCategoryColorAction } from '@/actions/category-action';
 import Button from '@/components/ui-shared/Button';
 import ColorSelectionMenu from '@/components/ui-shared/ColorSelectionMenu';
+import Typography from '@/components/ui-shared/Typography';
 import useCategoriesStore from '@/context/CategoriesContext';
 import useTodosStore from '@/context/TodosContext';
 import useQueryParams from '@/hooks/useQueryParams';
 import { Palette, Trash2 } from 'lucide-react';
 
-export default function CategoriesSection({ headerTextStyle }: { headerTextStyle: string }) {
+export default function CategoriesSection() {
 	const { categories, updateColor, deleteCategory } = useCategoriesStore();
 	const { updateCategoriesColor, deleteCategories } = useTodosStore();
 	const { getQueryParam } = useQueryParams();
@@ -30,7 +27,7 @@ export default function CategoriesSection({ headerTextStyle }: { headerTextStyle
 
 	return (
 		<>
-			<p className={headerTextStyle}>Category Management</p>
+			<Typography>Category Management</Typography>
 			<div className="flex-1 overflow-hidden overflow-y-auto bg-slate-100 border px-5 py-2 rounded-md">
 				{categories.length > 0 ? (
 					categories.map(category => (

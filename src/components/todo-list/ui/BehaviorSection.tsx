@@ -1,10 +1,10 @@
 import FilterDropDown from '@/components/ui-shared/FilterDropDown';
 import RadioButtonGroup from '@/components/ui-shared/RadioButtonGroup';
 import SortDropDown from '@/components/ui-shared/SortDropDown';
+import Typography from '@/components/ui-shared/Typography';
 import { BehaviorSettings } from '@/utils/types';
 
 interface BehaviorSectionProps {
-	headerTextStyle: string;
 	settings: BehaviorSettings;
 	updateSetting: (key: keyof BehaviorSettings, value: string | null | 'asc' | 'desc') => void;
 }
@@ -17,36 +17,36 @@ const dueDateFormatOptions = [
 	'Long Date (Jan 1, 2025)',
 ];
 
-export default function BehaviorSection({ headerTextStyle, settings, updateSetting }: BehaviorSectionProps) {
+export default function BehaviorSection({ settings, updateSetting }: BehaviorSectionProps) {
 	return (
 		<div className="overflow-y-auto px-2 h-[60vh]">
-			<p className={headerTextStyle}>Filter</p>
+			<Typography>Filter</Typography>
 			<FilterDropDown
 				selectedField={settings.filterField}
 				selectedValue={settings.filterValue}
 				onFieldChange={newField => updateSetting('filterField', newField)}
 				onValueSelect={newValue => updateSetting('filterValue', newValue)}
 			/>
-			<p className={headerTextStyle}>Sort</p>
+			<Typography>Sort</Typography>
 			<SortDropDown
 				selectedField={settings.sortField}
 				selectedOrder={settings.sortOrder}
 				onFieldSelect={newOption => updateSetting('sortField', newOption)}
 				onOrderChange={newOrder => updateSetting('sortOrder', newOrder)}
 			/>
-			<p className={headerTextStyle}>Completed Tasks</p>
+			<Typography>Completed Tasks</Typography>
 			<RadioButtonGroup
 				options={completedTasksOptions}
 				selectedOption={settings.completedTasks}
 				onOptionSelect={newOption => updateSetting('completedTasks', newOption)}
 			/>
-			<p className={headerTextStyle}>New Tasks Position</p>
+			<Typography>New Tasks Position</Typography>
 			<RadioButtonGroup
 				options={newTasksPositionOptions}
 				selectedOption={settings.newTasksPosition}
 				onOptionSelect={newOption => updateSetting('newTasksPosition', newOption)}
 			/>
-			<p className={headerTextStyle}>Due Date Format</p>
+			<Typography>Due Date Format</Typography>
 			<RadioButtonGroup
 				options={dueDateFormatOptions}
 				selectedOption={settings.dueDateFormat}

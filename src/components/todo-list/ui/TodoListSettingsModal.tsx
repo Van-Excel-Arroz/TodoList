@@ -18,7 +18,6 @@ interface TodoListSettingsModalProps {
 }
 
 const settings = ['Behavior', 'Appearance', 'Categories'];
-const headerTextStyle = 'text-lg font-semibold text-slate-700';
 
 export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }: TodoListSettingsModalProps) {
 	const portalRootRef = useRef<HTMLElement | null>(null);
@@ -30,7 +29,6 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 			case 'Behavior':
 				return (
 					<BehaviorSection
-						headerTextStyle={headerTextStyle}
 						settings={todoListSettings.behavior}
 						updateSetting={(key, value) =>
 							setTodoListSettings(prev => ({ ...prev, behavior: { ...prev.behavior, [key]: value } }))
@@ -40,7 +38,6 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 			case 'Appearance':
 				return (
 					<AppearanceSection
-						headerTextStyle={headerTextStyle}
 						settings={todoListSettings.appearance}
 						updateSetting={(key, value) =>
 							setTodoListSettings(prev => ({ ...prev, appearance: { ...prev.appearance, [key]: value } }))
@@ -48,7 +45,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 					/>
 				);
 			case 'Categories':
-				return <CategoriesSection headerTextStyle={headerTextStyle} />;
+				return <CategoriesSection />;
 		}
 	};
 
