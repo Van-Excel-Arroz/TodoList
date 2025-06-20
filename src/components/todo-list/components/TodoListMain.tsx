@@ -14,7 +14,7 @@ export default function TodoListMain({ initialTodos }: { initialTodos: Todo[] })
 	}, [initialTodos, setTodos]);
 
 	return (
-		<div className="w-[98%] h-[calc(100vh-80px)] mt-2 mx-auto overflow-y-scroll">
+		<div className="w-[98%] h-[calc(100vh-80px)] mt-2 mx-auto overflow-hidden overflow-y-scroll">
 			{todos.length > 0 ? (
 				<>
 					<TodoListView todos={todos} />
