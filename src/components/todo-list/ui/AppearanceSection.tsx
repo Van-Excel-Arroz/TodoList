@@ -59,7 +59,7 @@ export default function AppearanceSection({ settings, updateSetting }: Appearanc
 	return (
 		<div className="h-[90%] px-4 overflow-y-scroll">
 			<Typography>Accent Color</Typography>
-			<div className="flex items-center gap-4 mb-4">
+			<div className="flex items-center gap-4 mb-4 flex-wrap">
 				{PREDEFINED_THEME_COLORS.map(color => {
 					const isActive = settings.accent === color;
 					return (
@@ -77,7 +77,7 @@ export default function AppearanceSection({ settings, updateSetting }: Appearanc
 				})}
 			</div>
 			<Typography>List Icon</Typography>
-			<div className="grid grid-cols-5 gap-4 mb-4">
+			<div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
 				{ICONS.map((ListIcon, index) => {
 					const iconName = ListIcon.displayName;
 					const isActive = settings.listIcon === iconName;

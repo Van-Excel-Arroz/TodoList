@@ -28,7 +28,7 @@ export default function CategoriesSection() {
 	return (
 		<>
 			<Typography>Category Management</Typography>
-			<div className="flex-1 overflow-hidden overflow-y-auto bg-slate-100 border px-5 py-2 rounded-md">
+			<div className="flex-1 overflow-auto bg-slate-100 border px-5 py-2 rounded-md">
 				{categories.length > 0 ? (
 					categories.map(category => (
 						<div key={category.id} className="flex items-center justify-between py-1">
