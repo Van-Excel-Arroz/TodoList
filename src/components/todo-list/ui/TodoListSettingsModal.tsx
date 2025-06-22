@@ -78,7 +78,7 @@ export default function TodoListSettingsModal({ isOpen, onClose, todolistTitle }
 					<div className="flex flex-col gap-2 px-2 h-full">{renderSection()}</div>
 				</div>
 				{settingSection !== 'Categories' ? (
-					<div className=" flex justify-end gap-2">
+					<div className=" flex justify-end gap-2 pt-4">
 						<Button ariaLabel="Close Settings" onClick={onClose}>
 							Cancel
 						</Button>
