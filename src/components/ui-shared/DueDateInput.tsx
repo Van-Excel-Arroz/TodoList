@@ -93,8 +93,8 @@ function DateMenu({ isDateMenuOpen, setDueDate, setIsDatePickerOpen, setIsDateMe
 			open={isDateMenuOpen}
 			onClose={() => setIsDateMenuOpen(false)}
 			width="w-44"
-			horizontalPosition="top-[50px]"
-			verticalPosition="left-[55px]"
+			horizontalPosition="-left-[30px]"
+			verticalPosition="top-[50px]"
 		>
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Select Due Date</p>
