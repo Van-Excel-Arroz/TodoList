@@ -141,8 +141,8 @@ function DatePicker({ isDatePickerOpen, setIsDatePickerOpen, dueDate, setDueDate
 			open={isDatePickerOpen}
 			onClose={() => setIsDatePickerOpen(false)}
 			width="w-fit"
-			horizontalPosition="top-[50px]"
-			verticalPosition="left-[68px]"
+			horizontalPosition="-left-[60px]"
+			verticalPosition="top-[50px]"
 		>
 			<div className="relative">
 				<DateTime
