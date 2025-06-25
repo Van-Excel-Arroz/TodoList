@@ -98,7 +98,13 @@ function TimeMenu({ isTimeMenuOpen, setIsTimeMenuOpen, setIsTimePickerOpen, dueD
 	};
 
 	return (
-		<Menu open={isTimeMenuOpen} onClose={() => setIsTimeMenuOpen(false)} width="w-48" horizontalPosition="top-[50px]">
+		<Menu
+			open={isTimeMenuOpen}
+			onClose={() => setIsTimeMenuOpen(false)}
+			width="w-48"
+			verticalPosition="-left-[60px]"
+			horizontalPosition="top-[50px]"
+		>
 			<MenuItem className="border-b border-gray-200 font-bold" clickable={false}>
 				<p>Select Due Time</p>
 			</MenuItem>
