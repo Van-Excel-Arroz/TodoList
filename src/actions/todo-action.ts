@@ -13,14 +13,14 @@ import {
 	updateTodoImportance,
 	updateTodoTitle,
 } from '@/lib/todo';
-import { CategoryTag } from '@/utils/types';
+import { ActionState, CategoryTag, Todo } from '@/utils/types';
 
 export async function createTodoAction(
 	taskText: string,
 	dueDatetime: string | null,
 	todolistId: number,
 	categories: CategoryTag[]
-) {
+): Promise<ActionState<Todo>> {
 	const todoId = await storeTodo(taskText, dueDatetime, todolistId);
 	if (todoId) {
 		const categoryColorIds = await storeCategoriesColors(categories, todolistId);

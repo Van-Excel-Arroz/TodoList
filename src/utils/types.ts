@@ -70,3 +70,9 @@ export interface SingleSelectionProps {
 	selectedOption: string | null;
 	onOptionSelect: (option: string | null) => void;
 }
+
+export interface ActionState<T> {
+	success: boolean;
+	message: string;
+	data?: T;
+}
