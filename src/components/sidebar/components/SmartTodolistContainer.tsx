@@ -12,8 +12,8 @@ const SmartLists = [
 
 export default function SmartTodolistContainer() {
 	return (
-		<ExpandableSection isEmpty={false} title="Smart List" className="mb-0 py-3 px-5 border-b border-slate-300">
-			<ul className="flex flex-col gap-2 w-full">
+		<ExpandableSection isEmpty={false} title="Smart List" className="pt-2 pb-4 px-5 border-b border-slate-300">
+			<ul className="flex flex-col gap-2 w-full pt-2">
 				{SmartLists.map((smartList, index) => (
 					<li key={index}>
 						<ListLinkItem

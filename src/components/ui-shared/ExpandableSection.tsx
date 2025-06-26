@@ -22,7 +22,12 @@ function ExpandableSection({ children, isEmpty, title, itemCount = 0, className,
 	return (
 		<div className={`${className}`}>
 			<div className="flex items-center w-full mx-1 gap-1">
-				<Button ariaLabel="Toggle Expand Section" onClick={() => setIsOpen(prev => !prev)} disabled={isEmpty}>
+				<Button
+					ariaLabel="Toggle Expand Section"
+					onClick={() => setIsOpen(prev => !prev)}
+					disabled={isEmpty}
+					focusStyle={false}
+				>
 					<div className={`transition-transform duration-200 ease-in-out ${isEffectivelyOpen ? '' : '-rotate-90'}`}>
 						<ChevronDown size={20} />
 					</div>
@@ -34,7 +39,7 @@ function ExpandableSection({ children, isEmpty, title, itemCount = 0, className,
 			</div>
 
 			<motion.div
-				className="overflow-hidden w-full py-2"
+				className="overflow-hidden w-full"
 				initial={{ height: isEffectivelyOpen ? 'auto' : 0 }}
 				animate={{ height: isEffectivelyOpen ? 'auto' : 0 }}
 				transition={{ duration: 0.25 }}
