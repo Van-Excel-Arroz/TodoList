@@ -23,7 +23,6 @@ function FilteredTodoListPage({ filteredTodoList, title }: FilteredTodoListPage)
 	const { todos, setTodos } = useTodosStore();
 	const { incompleteTodos: sortedTodos } = useTodoDataManagement(todos);
 	const { getQueryParam } = useQueryParams();
-	const [view] = getQueryParam('view');
 
 	useEffect(() => {
 		const todos: Todo[] = [];
@@ -52,7 +51,6 @@ function FilteredTodoListPage({ filteredTodoList, title }: FilteredTodoListPage)
 						title={todoList.title}
 						key={todoList.id}
 						itemCount={todoList.filtered_todos?.length ?? 0}
-						view={view}
 						className="mb-4"
 					>
 						<ul>

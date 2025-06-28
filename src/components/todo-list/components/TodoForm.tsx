@@ -11,15 +11,14 @@ import { Tag, X } from 'lucide-react';
 import { CategoryTag } from '@/utils/types';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useQueryParams from '@/hooks/useQueryParams';
+import { toast } from 'react-hot-toast';
 
 interface TodoFormData {
-	todo?: string;
-	date?: string;
-	time?: string;
+	todo: string;
 }
 
 export default function TodoForm() {
-	const { register, handleSubmit, reset, watch, setValue } = useForm();
+	const { register, handleSubmit, reset, watch, setValue } = useForm<TodoFormData>();
 	const { addTodo } = useTodosStore();
 	const { addCategory, getCategoryColor } = useCategoriesStore();
 	const { getQueryParam } = useQueryParams();
@@ -78,19 +77,23 @@ export default function TodoForm() {
 		if (!todoText) return;
 
 		const finalDate = dueDate ?? null;
+		const toastId = toast.loading('Creating todo...');
 		const result = await createTodoAction(todoText, finalDate, todolistId, categories);
 
-		if (result.success) {
-			addTodo(result.data!, newTasksPosition);
-			if (result.data?.categories !== null) {
-				result.data?.categories.map(cat => {
+		if (result.success && result.data) {
+			toast.success(result.message, { id: toastId });
+			addTodo(result.data, newTasksPosition);
+			if (result.data.categories) {
+				result.data.categories.forEach(cat => {
 					addCategory(cat);
 				});
 			}
+			setDueDate(undefined);
+			setCategories([]);
+			reset();
+		} else {
+			toast.error(result.message, { id: toastId });
 		}
-		setDueDate(undefined);
-		setCategories([]);
-		reset();
 	};
 
 	return (

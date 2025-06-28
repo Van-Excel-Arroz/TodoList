@@ -7,7 +7,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps): JSX.Element {
 	return (
-		<div className="flex flex-1 overflow-hidden">
+		<div className="flex flex-1 h-screen">
 			<aside className="absolute lg:sticky top-0 left-0 z-30">
 				<TodoListsSidebar />
 			</aside>

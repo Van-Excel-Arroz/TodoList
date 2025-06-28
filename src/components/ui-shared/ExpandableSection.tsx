@@ -10,7 +10,6 @@ interface ExpandableSectionProps {
 	isEmpty: boolean;
 	title: string;
 	itemCount?: number;
-	view?: string;
 	className?: string;
 	titleClass?: string;
 }
@@ -39,10 +38,10 @@ function ExpandableSection({ children, isEmpty, title, itemCount = 0, className,
 			</div>
 
 			<motion.div
-				className="overflow-hidden w-full"
-				initial={{ height: isEffectivelyOpen ? 'auto' : 0 }}
+				className="w-full overflow-hidden"
+				initial={false}
 				animate={{ height: isEffectivelyOpen ? 'auto' : 0 }}
-				transition={{ duration: 0.25 }}
+				transition={{ duration: 0.3, ease: 'easeInOut' }}
 			>
 				{children}
 			</motion.div>
