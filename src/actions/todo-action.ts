@@ -25,12 +25,20 @@ export async function createTodoAction(
 	if (todoId) {
 		const categoryColorIds = await storeCategoriesColors(categories, todolistId);
 		await storeCategories(todoId, categoryColorIds);
-		const newTodo = getTodoWithCategories(1, todolistId, todoId);
-		return newTodo;
-	} else {
-		console.error('Failed to create the todo');
-		return null;
+		const newTodo = await getTodoWithCategories(1, todolistId, todoId);
+		if (newTodo) {
+			return {
+				success: true,
+				message: 'Todo created successfully',
+				data: newTodo,
+			};
+		}
 	}
+	console.error('Failed to create the todo');
+	return {
+		success: false,
+		message: 'Failed to create the todo',
+	};
 }
 
 export async function updateTodoCompletionAction(todoId: number, isCompleted: boolean) {
