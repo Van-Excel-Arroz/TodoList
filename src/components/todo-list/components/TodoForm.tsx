@@ -73,20 +73,11 @@ export default function TodoForm() {
 		}
 	};
 
-	const createTimestamp = (date: string | undefined, time: string | undefined): string | null => {
-		const now = new Date().toISOString().split('T')[0];
-		if (!date && !time) return null;
-		if (!date && time) date = now;
-		if (!time && date) time = '23:59:59';
-		return `${date} ${time}`.trim() || null;
-	};
-
 	const onSubmit = async (data: TodoFormData) => {
 		const todoText = data.todo?.trim();
 		if (!todoText) return;
 
-		const customDate: string | null = createTimestamp(data.date, data.time);
-		const finalDate = customDate ?? (dueDate ? dueDate : null);
+		const finalDate = dueDate ?? null;
 		const result = await createTodoAction(todoText, finalDate, todolistId, categories);
 
 		if (result.success) {
