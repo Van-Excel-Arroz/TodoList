@@ -22,6 +22,7 @@ export async function createTodoAction(
 	categories: CategoryTag[]
 ): Promise<ActionState<Todo>> {
 	const todoId = await storeTodo(taskText, dueDatetime, todolistId);
+	await new Promise(resolve => setTimeout(resolve, 1500));
 	if (todoId) {
 		const categoryColorIds = await storeCategoriesColors(categories, todolistId);
 		await storeCategories(todoId, categoryColorIds);
@@ -51,9 +52,20 @@ export async function updateTodoImportanceAction(todoId: number, isImportant: bo
 	if (!result) console.error('Failed to update is_important in todo');
 }
 
-export async function deleteTodoAction(todoId: number) {
+export async function deleteTodoAction(todoId: number): Promise<ActionState<void>> {
 	const result = await deleteTodo(todoId);
-	if (!result) console.error('Failed to delete todo');
+	await new Promise(resolve => setTimeout(resolve, 1500));
+	if (result) {
+		return {
+			message: 'Todo deleted successfully',
+			success: true,
+		};
+	}
+	console.error('Failed to delete todo');
+	return {
+		message: 'Failed to delete todo',
+		success: false,
+	};
 }
 
 export async function updateTodoTitleAction(todoId: number, title: string) {

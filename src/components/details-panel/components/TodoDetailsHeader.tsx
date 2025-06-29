@@ -6,6 +6,7 @@ import Typography from '@/components/ui-shared/Typography';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 import { PanelRight, Trash2 } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 
 export default function TodoDetailsHeader() {
 	const { setSelectedTodoId, selectedTodoId } = useSelectedTodoIdStore();
@@ -16,9 +17,15 @@ export default function TodoDetailsHeader() {
 	};
 
 	const handleDelete = async () => {
-		await deleteTodoAction(selectedTodoId);
-		deleteTodo(selectedTodoId);
-		setSelectedTodoId(0);
+		const toastId = toast.loading('Deleting todo...');
+		const result = await deleteTodoAction(selectedTodoId);
+		if (result.success) {
+			toast.success(result.message, { id: toastId });
+			deleteTodo(selectedTodoId);
+			setSelectedTodoId(0);
+		} else {
+			toast.error(result.message, { id: toastId });
+		}
 	};
 	return (
 		<div className="flex items-center justify-between py-[19px] px-6 border-b border-slate-300 sticky top-0 bg-white">
