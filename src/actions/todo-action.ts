@@ -68,7 +68,7 @@ export async function deleteTodoAction(todoId: number): Promise<ActionState<void
 	};
 }
 
-export async function updateTodoTitleAction(todoId: number, title: string) {
+export async function updateTodoTitleAction(todoId: number, title: string): Promise<ActionState<void>> {
 	const result = await updateTodoTitle(todoId, title);
 	await new Promise(resolve => setTimeout(resolve, 1500));
 	if (result) {
