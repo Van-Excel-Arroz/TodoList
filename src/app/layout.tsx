@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}>
 				<Toaster
 					position="bottom-center"
 					toastOptions={{ style: { fontSize: '1rem', padding: '16px', borderRadius: '12px' }, duration: 2000 }}
