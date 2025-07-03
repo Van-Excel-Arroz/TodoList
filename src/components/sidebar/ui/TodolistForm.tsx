@@ -5,21 +5,25 @@ import { createTodolist } from '@/actions/todolist-action';
 import useTodoListsStore from '@/context/TodoListsContext';
 import Button from '@/components/ui-shared/Button';
 import { SendHorizontal, X } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export default function TodolistForm({ handleIsAddingList }: { handleIsAddingList: (val: boolean) => void }) {
 	const { register, handleSubmit, reset } = useForm();
-
 	const { addTodolist } = useTodoListsStore();
 
 	async function onSubmit(data: any) {
 		if (!data.title?.trim()) return;
-		const todolistId = await createTodolist(data.title);
+		const toastId = toast.loading('Creating new list...');
+		const result = await createTodolist(data.title);
 
-		if (!todolistId) return;
-
-		addTodolist({ id: todolistId, title: data.title, settings: null });
-		reset();
+		if (result.success && result.data) {
+			addTodolist({ id: result.data, title: data.title, settings: null });
+			toast.success('List created successfully', { id: toastId });
+		} else {
+			toast.error('Failed to create list', { id: toastId });
+		}
 		handleIsAddingList(false);
+		reset();
 	}
 
 	const handleInputBlur = (e: React.FocusEvent<HTMLDivElement>) => {
