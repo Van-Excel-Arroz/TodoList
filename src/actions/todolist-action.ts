@@ -22,9 +22,21 @@ export async function createTodolist(title: string): Promise<ActionState<number 
 	}
 }
 
-export async function deleteTodolistAction(todolistId: number) {
+export async function deleteTodolistAction(todolistId: number): Promise<ActionState<void>> {
 	const result = await deleteTodolist(todolistId);
-	if (!result) console.error('Failed to delete the todolist');
+	await new Promise(resolve => setTimeout(resolve, 1500));
+	if (result) {
+		return {
+			message: 'Todolist deleted successfully',
+			success: true,
+		};
+	} else {
+		console.error('Failed to delete the todolist');
+		return {
+			message: 'Failed to delete the todolist',
+			success: false,
+		};
+	}
 }
 
 export async function updateTodolistAction(todolistId: number, title: string) {
