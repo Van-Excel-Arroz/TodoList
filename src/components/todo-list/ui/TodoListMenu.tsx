@@ -8,6 +8,7 @@ import useTodoListsStore from '@/context/TodoListsContext';
 import { Ellipsis, SquarePen, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 interface TodoListMenu {
 	setToEditing: () => void;
@@ -20,9 +21,17 @@ export default function TodoListMenu({ setToEditing, todolistId }: TodoListMenu)
 	const { deleteTodolist } = useTodoListsStore();
 
 	const handleTodoListDelete = async () => {
-		await deleteTodolistAction(todolistId);
-		deleteTodolist(todolistId);
-		router.push('/tasks');
+		const toastId = toast.loading('Deleting todo list...');
+		const result = await deleteTodolistAction(todolistId);
+
+		if (result.success) {
+			deleteTodolist(todolistId);
+			router.push('/tasks');
+			toast.success(result.message, { id: toastId });
+		} else {
+			console.error(result.message);
+			toast.error(result.message, { id: toastId });
+		}
 	};
 
 	return (
