@@ -150,7 +150,7 @@ function TimePicker({ isTimePickerOpen, setIsTimePickerOpen, dueDate, setDueDate
 			onClose={() => setIsTimePickerOpen(false)}
 			width="w-fit"
 			horizontalPosition="top-[50px]"
-			verticalPosition="-left-[20px]"
+			verticalPosition="-left-[150px]"
 		>
 			<div className="relative">
 				<DateTime
