@@ -14,8 +14,8 @@ export default function TodoComplete({ isCompleted, accentColor }: TodoCompleteP
 	const { toggleTodoCompletion, updateCompletedAt } = useTodosStore();
 
 	const handleCheckboxChange = async () => {
-		await updateTodoCompletionAction(selectedTodoId, !isCompleted);
 		toggleTodoCompletion(selectedTodoId);
+		await updateTodoCompletionAction(selectedTodoId, !isCompleted);
 		if (!isCompleted) {
 			const now = new Date().toISOString();
 			updateCompletedAt(selectedTodoId, now);

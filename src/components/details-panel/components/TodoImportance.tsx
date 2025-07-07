@@ -13,8 +13,8 @@ export default function TodoImportance({ isImportant, accentColor }: TodoImporta
 	const { toggleTodoImportance } = useTodosStore();
 
 	const handleImportanceChange = async () => {
-		await updateTodoImportanceAction(selectedTodoId, !isImportant);
 		toggleTodoImportance(selectedTodoId);
+		await updateTodoImportanceAction(selectedTodoId, !isImportant);
 	};
 
 	return (
