@@ -6,7 +6,6 @@ import toast from 'react-hot-toast';
 
 interface TodoCompleteProps {
 	isCompleted: boolean;
-	completedAt: string;
 	accentColor: string;
 }
 
@@ -18,15 +17,11 @@ export default function TodoComplete({ isCompleted, accentColor }: TodoCompleteP
 		toggleTodoCompletion(selectedTodoId);
 		const result = await updateTodoCompletionAction(selectedTodoId, !isCompleted);
 
-		if (!isCompleted) {
-			const now = new Date().toISOString();
-			updateCompletedAt(selectedTodoId, now);
-			updateTodoCompletedAtAction(selectedTodoId, now);
+		if (result.success) {
+			const newCompletedAt = !isCompleted ? new Date().toISOString() : null;
+			updateCompletedAt(selectedTodoId, newCompletedAt);
+			updateTodoCompletedAtAction(selectedTodoId, newCompletedAt);
 		} else {
-			updateCompletedAt(selectedTodoId, null);
-			updateTodoCompletedAtAction(selectedTodoId, null);
-		}
-		if (!result.success) {
 			toast.error(result.message);
 			toggleTodoCompletion(selectedTodoId);
 		}
