@@ -42,9 +42,20 @@ export async function createTodoAction(
 	};
 }
 
-export async function updateTodoCompletionAction(todoId: number, isCompleted: boolean) {
+export async function updateTodoCompletionAction(todoId: number, isCompleted: boolean): Promise<ActionState<void>> {
 	const result = await updateTodoCompletion(todoId, isCompleted);
-	if (!result) console.error('Failed to update is_completed in todo');
+	if (result) {
+		return {
+			success: true,
+			message: 'Todo completion updated successfully',
+		};
+	} else {
+		console.error('Failed to update todo completion');
+		return {
+			success: false,
+			message: 'Failed to update todo completion',
+		};
+	}
 }
 
 export async function updateTodoImportanceAction(todoId: number, isImportant: boolean) {

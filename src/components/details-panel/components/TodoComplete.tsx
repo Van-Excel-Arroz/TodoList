@@ -2,6 +2,7 @@ import { updateTodoCompletedAtAction, updateTodoCompletionAction } from '@/actio
 import CheckBox from '@/components/ui-shared/CheckBox';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
+import toast from 'react-hot-toast';
 
 interface TodoCompleteProps {
 	isCompleted: boolean;
@@ -15,14 +16,19 @@ export default function TodoComplete({ isCompleted, accentColor }: TodoCompleteP
 
 	const handleCheckboxChange = async () => {
 		toggleTodoCompletion(selectedTodoId);
-		await updateTodoCompletionAction(selectedTodoId, !isCompleted);
+		const result = await updateTodoCompletionAction(selectedTodoId, !isCompleted);
+
 		if (!isCompleted) {
 			const now = new Date().toISOString();
 			updateCompletedAt(selectedTodoId, now);
-			await updateTodoCompletedAtAction(selectedTodoId, now);
+			updateTodoCompletedAtAction(selectedTodoId, now);
 		} else {
 			updateCompletedAt(selectedTodoId, null);
-			await updateTodoCompletedAtAction(selectedTodoId, null);
+			updateTodoCompletedAtAction(selectedTodoId, null);
+		}
+		if (!result.success) {
+			toast.error(result.message);
+			toggleTodoCompletion(selectedTodoId);
 		}
 	};
 
