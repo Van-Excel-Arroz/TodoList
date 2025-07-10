@@ -2,6 +2,7 @@ import { updateTodoImportanceAction } from '@/actions/todo-action';
 import Importance from '@/components/ui-shared/Importance';
 import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
+import toast from 'react-hot-toast';
 
 interface TodoImportanceProps {
 	isImportant: boolean;
@@ -14,7 +15,12 @@ export default function TodoImportance({ isImportant, accentColor }: TodoImporta
 
 	const handleImportanceChange = async () => {
 		toggleTodoImportance(selectedTodoId);
-		await updateTodoImportanceAction(selectedTodoId, !isImportant);
+		const result = await updateTodoImportanceAction(selectedTodoId, !isImportant);
+
+		if (!result.success) {
+			toggleTodoImportance(selectedTodoId);
+			toast.error(result.message);
+		}
 	};
 
 	return (
