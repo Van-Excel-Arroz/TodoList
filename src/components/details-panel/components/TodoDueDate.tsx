@@ -8,6 +8,7 @@ import useSelectedTodoIdStore from '@/context/SelectedTodoIdContext';
 import useTodosStore from '@/context/TodosContext';
 import { CalendarDays, Save, Undo } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
@@ -17,7 +18,11 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 
 	const handleSave = async () => {
 		if (!selectedDueDate) return;
-		await updateTodoDueDateAction(selectedTodoId, selectedDueDate);
+		const result = await updateTodoDueDateAction(selectedTodoId, selectedDueDate);
+		if (!result.success) {
+			toast.error(result.message);
+			return;
+		}
 		updateDueDate(selectedTodoId, selectedDueDate);
 		setIsChanged(false);
 	};
