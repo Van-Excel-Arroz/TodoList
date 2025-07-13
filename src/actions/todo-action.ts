@@ -122,9 +122,20 @@ export async function updateTodoDueDateAction(todoId: number, dueDate: string): 
 	};
 }
 
-export async function deleteTodoDueDateAction(todoId: number) {
+export async function deleteTodoDueDateAction(todoId: number): Promise<ActionState<void>> {
 	const result = await deleteTodoDueDate(todoId);
-	if (!result) console.error('Failed to delete todo due date');
+	if (result) {
+		return {
+			message: 'Deleted todo due date successfully',
+			success: true,
+		};
+	} else {
+		console.error('Failed to delete todo due date');
+		return {
+			message: 'Failed to delete todo due date',
+			success: false,
+		};
+	}
 }
 
 export async function updateTodoDescriptionAction(todoId: number, description: string | null) {
