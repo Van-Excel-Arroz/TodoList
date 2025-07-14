@@ -28,7 +28,11 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 	};
 
 	const handleDeleteDueDate = async () => {
-		await deleteTodoDueDateAction(selectedTodoId);
+		const result = await deleteTodoDueDateAction(selectedTodoId);
+		if (!result.success) {
+			toast.error(result.message);
+			return;
+		}
 		updateSelectedTodoDueDate(undefined);
 		deleteDueDate(selectedTodoId);
 	};
