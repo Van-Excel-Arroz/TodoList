@@ -140,7 +140,18 @@ export async function deleteTodoDueDateAction(todoId: number): Promise<ActionSta
 
 export async function updateTodoDescriptionAction(todoId: number, description: string | null) {
 	const result = await updateTodoDescription(todoId, description);
-	if (!result) console.error('Failed to update todo description');
+	if (result) {
+		return {
+			message: 'Updated todo description successfully',
+			success: true,
+		};
+	} else {
+		console.error('Failed to update todo description');
+		return {
+			message: 'Failed to update todo description',
+			success: false,
+		};
+	}
 }
 
 export async function updateTodoCompletedAtAction(todoId: number, completedAt: string | null) {
