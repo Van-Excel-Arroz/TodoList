@@ -7,6 +7,7 @@ import useTodosStore from '@/context/TodosContext';
 import { Save, Undo } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 export default function TodoDescription({ description }: { description: string }) {
 	const { selectedTodoId } = useSelectedTodoIdStore();
@@ -25,11 +26,14 @@ export default function TodoDescription({ description }: { description: string }
 
 	const onSubmit = async (data: { description: string }) => {
 		if (!data.description.trim()) {
-			await updateTodoDescriptionAction(selectedTodoId, null);
-			updateDescription(selectedTodoId, null);
-		} else if (description !== data.description) {
-			await updateTodoDescriptionAction(selectedTodoId, data.description);
-			updateDescription(selectedTodoId, data.description);
+			const descriptionData = description !== data.description ? data.description : null;
+			updateDescription(selectedTodoId, descriptionData);
+			const result = await updateTodoDescriptionAction(selectedTodoId, descriptionData);
+			if (!result.success) {
+				toast.error(result.message);
+				setIsEditing(false);
+				return;
+			}
 		}
 		setIsEditing(false);
 	};

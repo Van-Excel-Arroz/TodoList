@@ -18,12 +18,12 @@ export default function TodoDueDate({ dueDate }: { dueDate: string }) {
 
 	const handleSave = async () => {
 		if (!selectedDueDate) return;
+		updateDueDate(selectedTodoId, selectedDueDate);
 		const result = await updateTodoDueDateAction(selectedTodoId, selectedDueDate);
 		if (!result.success) {
 			toast.error(result.message);
 			return;
 		}
-		updateDueDate(selectedTodoId, selectedDueDate);
 		setIsChanged(false);
 	};
 
