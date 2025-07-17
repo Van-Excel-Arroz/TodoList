@@ -156,5 +156,16 @@ export async function updateTodoDescriptionAction(todoId: number, description: s
 
 export async function updateTodoCompletedAtAction(todoId: number, completedAt: string | null) {
 	const result = await updateTodoCompletedAt(todoId, completedAt);
-	if (!result) console.error('Failed to update todo completedAt');
+	if (result) {
+		return {
+			message: 'Updated todo completed at successfully',
+			success: true,
+		};
+	} else {
+		console.error('Failed to update todo completed at');
+		return {
+			message: 'Failed to update todo completed at',
+			success: false,
+		};
+	}
 }
