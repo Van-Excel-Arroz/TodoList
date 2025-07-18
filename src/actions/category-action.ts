@@ -7,6 +7,7 @@ import {
 	storeCategories,
 	updateCategoryColor,
 } from '@/lib/category';
+import { ActionState } from '@/utils/types';
 
 export async function addTodoCategoriesAction(categoryColorsIds: number[], todoId: number) {
 	await storeCategories(todoId, categoryColorsIds);
@@ -22,10 +23,23 @@ export async function addCategoryColorAction(title: string, hexColor: string, to
 	}
 }
 
-export async function removeCategoryFromTodoAction(categoryColorId: number, todoId: number) {
+export async function removeCategoryFromTodoAction(
+	categoryColorId: number,
+	todoId: number
+): Promise<ActionState<void>> {
 	const result = await removeCategoryFromTodo(categoryColorId, todoId);
-
-	if (!result) console.error('Failed to delete category from todo');
+	if (result) {
+		return {
+			message: 'Category removed from todo successfully',
+			success: true,
+		};
+	} else {
+		console.error('Failed to remove category from todo');
+		return {
+			message: 'Failed to remove category from todo',
+			success: false,
+		};
+	}
 }
 
 export async function updateCategoryColorAction(categoryColorId: number, todolistId: number, newColor: string) {
