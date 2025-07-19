@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 
 interface CategoryTagProps {
 	category: Category;
-	onRemove: (categoryColorId: number, todoId: number) => void;
+	onRemove: (categoryColorId: number, todoId: number, category: Category) => void;
 	todoId: number;
 }
 
@@ -22,7 +22,7 @@ export default function CategoryTag({ category, onRemove, todoId }: CategoryTagP
 			<button
 				className="rounded-full hover:outline hover:outline-1 active:bg-white"
 				aria-label="Remove Category"
-				onClick={() => onRemove(category.id, todoId)}
+				onClick={() => onRemove(category.id, todoId, category)}
 				style={{
 					padding: 2,
 				}}

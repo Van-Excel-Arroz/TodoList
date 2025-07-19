@@ -46,9 +46,13 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 		setSelectedCategories([]);
 	};
 
-	const handleRemoveCategoryFromTodo = async (categoryColorId: number, todoId: number) => {
-		await removeCategoryFromTodoAction(categoryColorId, todoId);
+	const handleRemoveCategoryFromTodo = async (categoryColorId: number, todoId: number, cateogry: Category) => {
 		deleteCategory(selectedTodoId, categoryColorId);
+		const result = await removeCategoryFromTodoAction(categoryColorId, todoId);
+		if (!result.success) {
+			addCategory(selectedTodoId, cateogry);
+			return;
+		}
 	};
 
 	return (
