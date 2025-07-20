@@ -6,6 +6,7 @@ import useCategoriesStore from '@/context/CategoriesContext';
 import useTodosStore from '@/context/TodosContext';
 import useQueryParams from '@/hooks/useQueryParams';
 import { Palette, Trash2 } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export default function CategoriesSection() {
 	const { categories, updateColor, deleteCategory } = useCategoriesStore();
@@ -14,9 +15,20 @@ export default function CategoriesSection() {
 	const [todolistId] = getQueryParam('id');
 
 	const onSaveNewColor = async (categoryTitle: string, categoryColorId: number, newColor: string) => {
+		const originalCategory = categories.find(cat => cat.id === categoryColorId);
+		if (!originalCategory) return;
+		const originalColor = originalCategory.hex_color;
+		if (originalColor === newColor) return;
+
 		updateColor(categoryColorId, newColor);
 		updateCategoriesColor(categoryTitle, newColor);
-		await updateCategoryColorAction(categoryColorId, Number(todolistId), newColor);
+
+		const result = await updateCategoryColorAction(categoryColorId, Number(todolistId), newColor);
+		if (!result.success) {
+			updateColor(categoryColorId, originalColor);
+			updateCategoriesColor(categoryTitle, originalColor);
+			toast.error(result.message);
+		}
 	};
 
 	const onDeleteCategoryColor = async (categoryColorId: number) => {
@@ -31,7 +43,7 @@ export default function CategoriesSection() {
 			<div className="flex-1 overflow-auto bg-slate-100 border px-5 py-2 rounded-md">
 				{categories.length > 0 ? (
 					categories.map(category => (
-						<div key={category.id} className="flex items-center justify-between py-1">
+						<div key={category.id} className="flex items	-center justify-between py-1">
 							<div className="flex items-center gap-2">
 								<p className="text-2xl" style={{ color: category.hex_color }}>
 									●

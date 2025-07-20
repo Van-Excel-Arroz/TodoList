@@ -21,7 +21,6 @@ export default function ColorSelectionMenu({
 	onColorSelect,
 }: ColorSelectionMenuProps) {
 	const [isColorMenuOpen, setIsColorMenuOpen] = useState(false);
-	const [selectedColor, setSelectedColor] = useState(initialColor);
 
 	return (
 		<div className="relative">
@@ -41,7 +40,7 @@ export default function ColorSelectionMenu({
 			>
 				<MenuItem clickable={false} className="gap-4 grid grid-cols-5">
 					{PREDEFINED_CATEGORY_COLORS.map(color => {
-						const isSelected = selectedColor === color;
+						const isSelected = initialColor === color;
 						return (
 							<div
 								key={color}
@@ -50,7 +49,6 @@ export default function ColorSelectionMenu({
 								} col-span-1 h-7 w-7 flex items-center justify-center rounded-full cursor-pointer hover:scale-105 transition-scale duration-75 ease-out`}
 								style={{ backgroundColor: color }}
 								onClick={() => {
-									setSelectedColor(color);
 									onColorSelect(color);
 								}}
 							>

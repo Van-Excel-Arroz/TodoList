@@ -42,10 +42,24 @@ export async function removeCategoryFromTodoAction(
 	}
 }
 
-export async function updateCategoryColorAction(categoryColorId: number, todolistId: number, newColor: string) {
+export async function updateCategoryColorAction(
+	categoryColorId: number,
+	todolistId: number,
+	newColor: string
+): Promise<ActionState<void>> {
 	const result = await updateCategoryColor(categoryColorId, todolistId, newColor);
-
-	if (!result) console.error('Failed to update hex_color from category_color');
+	if (result) {
+		return {
+			message: 'Category color updated successfully',
+			success: true,
+		};
+	} else {
+		console.error('Failed to update category color');
+		return {
+			message: 'Failed to update category color',
+			success: false,
+		};
+	}
 }
 export async function deleteCategoryColorAction(categoryColorId: number, todolistId: number) {
 	const result = await deleteCategoryColor(categoryColorId, todolistId);
