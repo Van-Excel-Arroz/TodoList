@@ -63,6 +63,16 @@ export async function updateCategoryColorAction(
 }
 export async function deleteCategoryColorAction(categoryColorId: number, todolistId: number) {
 	const result = await deleteCategoryColor(categoryColorId, todolistId);
-
-	if (!result) console.error('Failed to delete category_color');
+	if (result) {
+		return {
+			message: 'Category color deleted successfully',
+			success: true,
+		};
+	} else {
+		console.error('Failed to delete category color');
+		return {
+			message: 'Failed to delete category color',
+			success: false,
+		};
+	}
 }
