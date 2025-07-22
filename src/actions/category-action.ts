@@ -61,7 +61,10 @@ export async function updateCategoryColorAction(
 		};
 	}
 }
-export async function deleteCategoryColorAction(categoryColorId: number, todolistId: number) {
+export async function deleteCategoryColorAction(
+	categoryColorId: number,
+	todolistId: number
+): Promise<ActionState<void>> {
 	const result = await deleteCategoryColor(categoryColorId, todolistId);
 	if (result) {
 		return {
