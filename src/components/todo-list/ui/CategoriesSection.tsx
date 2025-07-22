@@ -9,8 +9,8 @@ import { Palette, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function CategoriesSection() {
-	const { categories, updateColor, deleteCategory } = useCategoriesStore();
-	const { updateCategoriesColor, deleteCategories } = useTodosStore();
+	const { categories, updateColor, deleteCategory, addCategory } = useCategoriesStore();
+	const { todos, updateCategoriesColor, deleteCategories, addCategory: addCategoryToTodo } = useTodosStore();
 	const { getQueryParam } = useQueryParams();
 	const [todolistId] = getQueryParam('id');
 
@@ -32,9 +32,23 @@ export default function CategoriesSection() {
 	};
 
 	const onDeleteCategoryColor = async (categoryColorId: number) => {
+		const categoryToDelete = categories.find(c => c.id === categoryColorId);
+		if (!categoryToDelete) {
+			toast.error('Cannot find category to delete.');
+			return;
+		}
+		const todosToRollback = todos.filter(todo => todo.categories?.some(cat => cat.id === categoryColorId));
+
 		deleteCategory(categoryColorId);
 		deleteCategories(categoryColorId);
-		await deleteCategoryColorAction(categoryColorId, Number(todolistId));
+
+		const result = await deleteCategoryColorAction(categoryColorId, Number(todolistId));
+
+		if (!result.success) {
+			addCategory(categoryToDelete);
+			todosToRollback.forEach(todo => addCategoryToTodo(todo.id, categoryToDelete));
+			toast.error(result.message || 'Failed to delete category.');
+		}
 	};
 
 	return (
