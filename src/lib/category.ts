@@ -88,7 +88,7 @@ export async function removeCategoryFromTodo(categoryColorId: number, todoId: nu
 
 export async function getCategories(todolistId: number): Promise<Category[]> {
 	try {
-		const result = await query(`SELECT * FROM category_colors WHERE todo_list_id = ${todolistId}`);
+		const result = await query(`SELECT * FROM category_colors WHERE todo_list_id = $1`, [todolistId]);
 		return result.rows;
 	} catch (error) {
 		console.error('Error fetching categories from the database.');
