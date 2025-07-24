@@ -8,6 +8,7 @@ import { TodoList } from '@/utils/types';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import dynamic from 'next/dynamic';
+import toast from 'react-hot-toast';
 const TodoListMenu = dynamic(() => import('./TodoListMenu'), { ssr: false });
 
 interface TodoListTiltleProps {
@@ -22,11 +23,16 @@ export default function TodoListTitle({ currentTodoList }: TodoListTiltleProps) 
 	}>();
 
 	const onSubmit = async (data: { title: string }) => {
-		if (!data.title?.trim()) return;
-		if (currentTodoList.title !== data.title) {
-			await updateTodolistAction(currentTodoList.id, data.title);
-			updateTodolistTitle(currentTodoList.id, data.title);
+		if (currentTodoList.title === data.title || !data.title?.trim()) return;
+
+		updateTodolistTitle(currentTodoList.id, data.title);
+		const result = await updateTodolistAction(currentTodoList.id, data.title);
+		if (!result.success) {
+			updateTodolistTitle(currentTodoList.id, currentTodoList.title);
+			toast.error(result.message);
+			return;
 		}
+
 		setIsEditing(false);
 		reset();
 	};
