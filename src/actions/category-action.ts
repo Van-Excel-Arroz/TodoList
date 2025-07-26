@@ -13,13 +13,24 @@ export async function addTodoCategoriesAction(categoryColorsIds: number[], todoI
 	await storeCategories(todoId, categoryColorsIds);
 }
 
-export async function addCategoryColorAction(title: string, hexColor: string, todolistId: number) {
+export async function addCategoryColorAction(
+	title: string,
+	hexColor: string,
+	todolistId: number
+): Promise<ActionState<void>> {
 	const newCategoryId = createCategoryColor(title, hexColor, todolistId);
 
-	if (newCategoryId) {
-		return newCategoryId;
+	if (newCategoryId !== null) {
+		return {
+			message: 'New category created successfully',
+			success: true,
+		};
 	} else {
-		console.error('Failed to insert new category from category colors.');
+		console.error('Failed to create new category');
+		return {
+			message: 'Failed to create new category',
+			success: false,
+		};
 	}
 }
 
