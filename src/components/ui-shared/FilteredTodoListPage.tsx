@@ -8,7 +8,6 @@ import useTodosStore from '@/context/TodosContext';
 import { motion } from 'framer-motion';
 import { itemVariants } from '@/utils/framer-motion';
 import { useTodoDataManagement } from '@/hooks/useTodoDataManagement';
-import useQueryParams from '@/hooks/useQueryParams';
 import TodoSort from '../todo-list/components/TodoSort';
 import TodoFilter from '../todo-list/components/TodoFilter';
 import LayoutButtons from './LayoutButtons';
@@ -22,7 +21,6 @@ interface FilteredTodoListPage {
 function FilteredTodoListPage({ filteredTodoList, title }: FilteredTodoListPage) {
 	const { todos, setTodos } = useTodosStore();
 	const { incompleteTodos: sortedTodos } = useTodoDataManagement(todos);
-	const { getQueryParam } = useQueryParams();
 
 	useEffect(() => {
 		const todos: Todo[] = [];
