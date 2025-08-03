@@ -7,7 +7,7 @@ export default function RegisterPage() {
 				<p className="text-2xl font-bold text-center">Register</p>
 				<div className="flex flex-col gap-4">
 					<p className="text-sm font-medium">Email</p>
-					<input type="text" placeholder="example@gmail.com" className="border border-gray-300 rounded-md p-2" />
+					<input type="email" placeholder="example@gmail.com" className="border border-gray-300 rounded-md p-2" />
 					<p className="text-sm font-medium">Password</p>
 					<input type="password" placeholder="Password" className="border border-gray-300 rounded-md p-2" />
 					<p className="text-sm font-medium">Confirm Password</p>
