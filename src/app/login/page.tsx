@@ -13,7 +13,7 @@ export default function LoginPage() {
 				</div>
 				<button className="bg-black text-white rounded-md p-2">Login</button>
 				<div className="text-sm text-center flex flex-row items-center justify-center gap-2">
-					<p>Don't have an account?</p>
+					<p>Don&apos;t have an account?</p>
 					<Link className="text-blue-500" href="/register">
 						Register
 					</Link>
