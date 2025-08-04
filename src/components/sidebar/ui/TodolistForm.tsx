@@ -1,7 +1,7 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import { createTodolist } from '@/actions/todolist-action';
+import { createTodolistAction } from '@/actions/todolist-action';
 import useTodoListsStore from '@/context/TodoListsContext';
 import Button from '@/components/ui-shared/Button';
 import { SendHorizontal, X } from 'lucide-react';
@@ -14,7 +14,7 @@ export default function TodolistForm({ handleIsAddingList }: { handleIsAddingLis
 	async function onSubmit(data: any) {
 		if (!data.title?.trim()) return;
 		const toastId = toast.loading('Creating new list...');
-		const result = await createTodolist(data.title);
+		const result = await createTodolistAction(data.title);
 
 		if (result.success && result.data) {
 			addTodolist({ id: result.data, title: data.title, settings: null });
