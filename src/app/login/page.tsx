@@ -31,7 +31,7 @@ export default function LoginPage() {
 
 					<p className="text-sm font-medium">Password</p>
 					<input
-						{...register('password', { required: true, maxLength: 50 })}
+						{...register('password', { required: true, maxLength: 200 })}
 						type="password"
 						placeholder="Password"
 						className="border border-gray-300 rounded-md p-2"
