@@ -37,7 +37,9 @@ export default function LoginPage() {
 						className="border border-gray-300 rounded-md p-2"
 					/>
 
-					<button className="bg-black text-white rounded-md p-2">Login</button>
+					<button type="submit" className="bg-black text-white rounded-md p-2">
+						Login
+					</button>
 				</form>
 				<div className="text-sm text-center flex flex-row items-center justify-center gap-2">
 					<p>Don&apos;t have an account?</p>
