@@ -23,7 +23,7 @@ export default function LoginPage() {
 				<form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
 					<p className="text-sm font-medium">Email</p>
 					<input
-						{...register('email', { required: true, maxLength: 50 })}
+						{...register('email', { required: true, maxLength: 200 })}
 						type="email"
 						placeholder="example@gmail.com"
 						className="border border-gray-300 rounded-md p-2"
