@@ -17,7 +17,7 @@ export default function RegisterPage() {
 		if (!data.username?.trim() || !data.email?.trim() || !data.password?.trim()) return;
 
 		console.log(data);
-		const response = await createUserAction(data.username, data.email, data.password);
+		const response = await createUserAction(data.email, data.username, data.password);
 		console.log(response.data);
 		reset();
 	};
