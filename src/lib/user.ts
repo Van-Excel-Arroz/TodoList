@@ -4,7 +4,7 @@ export async function storeUser(email: string, username: string, password: strin
 	try {
 		const result = await query(
 			`
-			INSER INTO users (email, username, password) VALUES ($1, $2, $3) RETURNING id
+			INSERT INTO users (email, username, password) VALUES ($1, $2, $3) RETURNING id
 			`,
 			[email, username, password]
 		);
