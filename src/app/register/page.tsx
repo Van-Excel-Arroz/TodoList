@@ -15,7 +15,7 @@ export default function RegisterPage() {
 
 	const onSubmit = (data: RegisterFormData) => {
 		console.log(data);
-		reset;
+		reset();
 	};
 
 	return (

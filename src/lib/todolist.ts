@@ -27,7 +27,7 @@ export async function getTodolists(user_id: number): Promise<{ id: number; title
 		);
 		return result.rows;
 	} catch (error) {
-		console.error('Error fetching todolists from the database');
+		console.error('Error fetching todolists from the database', error);
 		return [];
 	}
 }

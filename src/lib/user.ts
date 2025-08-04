@@ -1,8 +1,16 @@
+import { User } from '@/utils/types';
 import { query } from './db';
 
-const user_id = 1;
-
-export async function getUserFullName() {
-	const result = await query(`SELECT first_name || ' ' || last_name AS full_name FROM users WHERE id = $1`, [user_id]);
-	return result.rows[0];
+export async function storeUser({ email, username, password }: User) {
+	try {
+		const result = await query(
+			`
+			INSER INTO users (email, username, password) VALUES ($1, $2, $3) RETURNING id
+			`,
+			[email, username, password]
+		);
+		return result.rows[0].id;
+	} catch (error) {
+		console.log('Error inserting user in the database', error);
+	}
 }
