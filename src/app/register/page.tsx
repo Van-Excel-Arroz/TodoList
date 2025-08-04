@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
 interface RegisterFormData {
+	username: string;
 	email: string;
 	password: string;
 	confirmPassword: string;
@@ -22,6 +23,13 @@ export default function RegisterPage() {
 			<div className="flex flex-col gap-8 w-[300px]">
 				<p className="text-2xl font-bold text-center">Register</p>
 				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+					<p className="text-sm font-medium">Username</p>
+					<input
+						{...register('username', { required: true, maxLength: 200 })}
+						type="text"
+						placeholder="example@gmail.com"
+						className="border border-gray-300 rounded-md p-2"
+					/>
 					<p className="text-sm font-medium">Email</p>
 					<input
 						{...register('email', { required: true, maxLength: 200 })}
@@ -36,13 +44,7 @@ export default function RegisterPage() {
 						placeholder="Password"
 						className="border border-gray-300 rounded-md p-2"
 					/>
-					<p className="text-sm font-medium">Confirm Password</p>
-					<input
-						{...register('confirmPassword', { required: true, maxLength: 200 })}
-						type="password"
-						placeholder="Confirm Password"
-						className="border border-gray-300 rounded-md p-2"
-					/>
+
 					<button type="submit" className="bg-black text-white rounded-md p-2">
 						Register
 					</button>
