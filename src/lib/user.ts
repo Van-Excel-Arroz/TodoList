@@ -1,7 +1,6 @@
-import { User } from '@/utils/types';
 import { query } from './db';
 
-export async function storeUser({ email, username, password }: User) {
+export async function storeUser(email: string, username: string, password: string) {
 	try {
 		const result = await query(
 			`

@@ -1,5 +1,6 @@
 'use client';
 
+import { createUserAction } from '@/actions/user-action';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
@@ -7,14 +8,17 @@ interface RegisterFormData {
 	username: string;
 	email: string;
 	password: string;
-	confirmPassword: string;
 }
 
 export default function RegisterPage() {
 	const { register, handleSubmit, reset } = useForm<RegisterFormData>();
 
-	const onSubmit = (data: RegisterFormData) => {
+	const onSubmit = async (data: RegisterFormData) => {
+		if (!data.username?.trim() || !data.email?.trim() || !data.password?.trim()) return;
+
 		console.log(data);
+		const response = await createUserAction(data.username, data.email, data.password);
+		console.log(response.data);
 		reset();
 	};
 
@@ -27,7 +31,7 @@ export default function RegisterPage() {
 					<input
 						{...register('username', { required: true, maxLength: 200 })}
 						type="text"
-						placeholder="example@gmail.com"
+						placeholder="Username"
 						className="border border-gray-300 rounded-md p-2"
 					/>
 					<p className="text-sm font-medium">Email</p>
