@@ -33,6 +33,7 @@ export default function RegisterPage() {
 						type="text"
 						placeholder="Username"
 						className="border border-gray-300 rounded-md p-2"
+						autoComplete="off"
 					/>
 					<p className="text-sm font-medium">Email</p>
 					<input
@@ -40,6 +41,7 @@ export default function RegisterPage() {
 						type="email"
 						placeholder="example@gmail.com"
 						className="border border-gray-300 rounded-md p-2"
+						autoComplete="off"
 					/>
 					<p className="text-sm font-medium">Password</p>
 					<input
