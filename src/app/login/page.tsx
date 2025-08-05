@@ -1,7 +1,9 @@
 'use client';
 
+import { authenticateUserAction } from '@/actions/user-action';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 interface LoginFormData {
 	email: string;
@@ -11,8 +13,15 @@ interface LoginFormData {
 export default function LoginPage() {
 	const { register, handleSubmit, reset } = useForm<LoginFormData>();
 
-	const onSubmit = (data: LoginFormData) => {
-		console.log(data);
+	const onSubmit = async (data: LoginFormData) => {
+		if (!data.email?.trim() || !data.password?.trim()) return;
+		const result = await authenticateUserAction(data.email, data.password);
+
+		if (result && result.success) {
+			toast.success(result.message);
+		} else {
+			toast.error(result.message);
+		}
 		reset();
 	};
 
@@ -27,6 +36,7 @@ export default function LoginPage() {
 						type="email"
 						placeholder="example@gmail.com"
 						className="border border-gray-300 rounded-md p-2"
+						autoComplete="off"
 					/>
 
 					<p className="text-sm font-medium">Password</p>

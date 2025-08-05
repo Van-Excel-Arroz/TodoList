@@ -19,16 +19,24 @@ export async function storeUser(email: string, username: string, password: strin
 
 export async function authenticateUser(email: string, password: string): Promise<number | null> {
 	try {
-		const hashedPassword = await bcrypt.hash(password, saltRounds);
 		const result = await query(
 			`
-			SELECT id FROM users WHERE email = $1 AND password = $2
+			SELECT id, password FROM users WHERE email = $1
 			`,
-			[email, hashedPassword]
+			[email]
 		);
-		return result.rows[0].id;
+
+		const user = result.rows[0];
+		if (!user) return null;
+
+		const passwordMatch = await bcrypt.compare(password, user.password);
+		if (passwordMatch) {
+			return user.id;
+		} else {
+			return null;
+		}
 	} catch (error) {
-		console.log('Error authenticating user in the database', error);
+		console.error('Error authenticating user in the database', error);
 		return null;
 	}
 }
