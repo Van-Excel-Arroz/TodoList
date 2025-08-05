@@ -3,6 +3,7 @@
 import { createUserAction } from '@/actions/user-action';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 interface RegisterFormData {
 	username: string;
@@ -18,7 +19,13 @@ export default function RegisterPage() {
 
 		console.log(data);
 		const response = await createUserAction(data.email, data.username, data.password);
-		console.log(response.data);
+
+		if (response.data && response.success) {
+			toast.success(response.message);
+		} else {
+			toast.error(response.message);
+		}
+
 		reset();
 	};
 

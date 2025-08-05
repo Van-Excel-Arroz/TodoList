@@ -15,12 +15,12 @@ export default function LoginPage() {
 
 	const onSubmit = async (data: LoginFormData) => {
 		if (!data.email?.trim() || !data.password?.trim()) return;
-		const result = await authenticateUserAction(data.email, data.password);
+		const response = await authenticateUserAction(data.email, data.password);
 
-		if (result && result.success) {
-			toast.success(result.message);
+		if (response.data && response.success) {
+			toast.success(response.message);
 		} else {
-			toast.error(result.message);
+			toast.error(response.message);
 		}
 		reset();
 	};
