@@ -2,6 +2,7 @@
 
 import { authenticateUser, storeUser } from '@/lib/user';
 import { ActionState } from '@/utils/types';
+import { cookies } from 'next/headers';
 
 export async function createUserAction(
 	email: string,
@@ -25,20 +26,34 @@ export async function createUserAction(
 	}
 }
 
-export async function authenticateUserAction(email: string, password: string): Promise<ActionState<number | null>> {
-	const result = await authenticateUser(email, password);
-	if (result) {
+export async function authenticateUserAction(email: string, password: string): Promise<ActionState<void>> {
+	try {
+		const userId = await authenticateUser(email, password);
+		if (userId) {
+			const cookieStore = await cookies();
+
+			cookieStore.set('session_token', userId.toString(), {
+				httpOnly: true,
+				secure: process.env.NODE_ENV === 'production',
+				maxAge: 60 * 60 * 24 * 7, // 1 week,
+				path: '/',
+				sameSite: 'lax',
+			});
+			return {
+				message: 'Logged in successfully',
+				success: true,
+			};
+		} else {
+			return {
+				message: 'Invalid email or password',
+				success: false,
+			};
+		}
+	} catch (error) {
+		console.error('Error authenticating user', error);
 		return {
-			message: 'User authenticated successfully',
-			success: true,
-			data: result,
-		};
-	} else {
-		console.error('Failed to authenticate the user');
-		return {
-			message: 'Failed to authenticate the user',
+			message: 'Error authenticating user',
 			success: false,
-			data: null,
 		};
 	}
 }

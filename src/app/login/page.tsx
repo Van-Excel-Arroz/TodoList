@@ -3,7 +3,6 @@
 import { authenticateUserAction } from '@/actions/user-action';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 
 interface LoginFormData {
 	email: string;
@@ -15,13 +14,8 @@ export default function LoginPage() {
 
 	const onSubmit = async (data: LoginFormData) => {
 		if (!data.email?.trim() || !data.password?.trim()) return;
-		const response = await authenticateUserAction(data.email, data.password);
+		const result = await authenticateUserAction(data.email, data.password);
 
-		if (response.data && response.success) {
-			toast.success(response.message);
-		} else {
-			toast.error(response.message);
-		}
 		reset();
 	};
 
