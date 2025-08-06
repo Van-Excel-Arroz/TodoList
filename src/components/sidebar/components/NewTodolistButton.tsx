@@ -1,16 +1,16 @@
 'use client';
 
 import Button from '@/components/ui-shared/Button';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import TodolistForm from '../ui/TodolistForm';
 
-export default function NewTodolistButton() {
+function NewTodolistButton({ userId }: { userId: number }) {
 	const [isAddingList, setIsAddingList] = useState(false);
 
 	return (
 		<div className="w-full flex justify-center py-6 border-t border-slate-300">
 			{isAddingList ? (
-				<TodolistForm handleIsAddingList={setIsAddingList} />
+				<TodolistForm handleIsAddingList={setIsAddingList} userId={userId} />
 			) : (
 				<Button
 					ariaLabel="add new list"
@@ -24,3 +24,5 @@ export default function NewTodolistButton() {
 		</div>
 	);
 }
+
+export default memo(NewTodolistButton);

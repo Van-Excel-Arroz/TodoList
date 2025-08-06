@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers';
 import { query } from './db';
 import bcrypt from 'bcryptjs';
+import { cache } from 'react';
 const saltRounds = 10;
 
 export async function storeUser(email: string, username: string, password: string) {
@@ -42,7 +43,7 @@ export async function authenticateUser(email: string, password: string): Promise
 	}
 }
 
-export async function getAuthenticatedUserId(): Promise<number | null> {
+export const getAuthenticatedUserId = cache(async (): Promise<number | null> => {
 	try {
 		const cookieStore = await cookies();
 		const sessionToken = cookieStore.get('session_token')?.value;
@@ -71,4 +72,4 @@ export async function getAuthenticatedUserId(): Promise<number | null> {
 		console.error('Error getting authenticated user ID:', error);
 		return null;
 	}
-}
+});

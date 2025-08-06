@@ -6,15 +6,21 @@ import useTodoListsStore from '@/context/TodoListsContext';
 import Button from '@/components/ui-shared/Button';
 import { SendHorizontal, X } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { memo } from 'react';
 
-export default function TodolistForm({ handleIsAddingList }: { handleIsAddingList: (val: boolean) => void }) {
+interface TodoListFormProps {
+	handleIsAddingList: (val: boolean) => void;
+	userId: number;
+}
+
+function TodolistForm({ handleIsAddingList, userId }: TodoListFormProps) {
 	const { register, handleSubmit, reset } = useForm();
 	const { addTodolist } = useTodoListsStore();
 
 	async function onSubmit(data: any) {
 		if (!data.title?.trim()) return;
 		const toastId = toast.loading('Creating new list...');
-		const result = await createTodolistAction(data.title);
+		const result = await createTodolistAction(data.title, userId);
 
 		if (result.success && result.data) {
 			addTodolist({ id: result.data, title: data.title, settings: null });
@@ -56,3 +62,4 @@ export default function TodolistForm({ handleIsAddingList }: { handleIsAddingLis
 		</>
 	);
 }
+export default memo(TodolistForm);

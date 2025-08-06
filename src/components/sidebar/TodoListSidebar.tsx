@@ -6,15 +6,15 @@ import TodolistContainer from './components/TodolistContainer';
 import NewTodolistButton from './components/NewTodolistButton';
 import SmartTodolistContainer from './components/SmartTodolistContainer';
 
-export default async function TodoListsSidebar() {
-	const todolists: TodoList[] = (await getTodolists(1)) as TodoList[];
+export default async function TodoListsSidebar({ userId }: { userId: number }) {
+	const todolists: TodoList[] = (await getTodolists(userId)) as TodoList[];
 	return (
 		<>
 			<TodoListsSidebarWrapper>
 				<TodoListsHeader />
 				<SmartTodolistContainer />
 				<TodolistContainer initialTodoLists={todolists} />
-				<NewTodolistButton />
+				<NewTodolistButton userId={userId} />
 			</TodoListsSidebarWrapper>
 		</>
 	);

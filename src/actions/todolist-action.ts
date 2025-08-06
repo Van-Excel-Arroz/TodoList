@@ -3,8 +3,8 @@
 import { deleteTodolist, storeTodolist, updateTodolist } from '@/lib/todolist';
 import { ActionState } from '@/utils/types';
 
-export async function createTodolistAction(title: string): Promise<ActionState<number | null>> {
-	const todolistId = await storeTodolist(title, 1);
+export async function createTodolistAction(title: string, userId: number): Promise<ActionState<number | null>> {
+	const todolistId = await storeTodolist(title, userId);
 	await new Promise(resolve => setTimeout(resolve, 1500));
 	if (todolistId) {
 		return {
