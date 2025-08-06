@@ -2,7 +2,9 @@
 
 import { authenticateUserAction } from '@/actions/user-action';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 interface LoginFormData {
 	email: string;
@@ -11,11 +13,18 @@ interface LoginFormData {
 
 export default function LoginPage() {
 	const { register, handleSubmit, reset } = useForm<LoginFormData>();
+	const router = useRouter();
 
 	const onSubmit = async (data: LoginFormData) => {
 		if (!data.email?.trim() || !data.password?.trim()) return;
-		const result = await authenticateUserAction(data.email, data.password);
+		const response = await authenticateUserAction(data.email, data.password);
 
+		if (response.success) {
+			router.push('/tasks');
+			toast.success(response.message);
+		} else {
+			toast.error(response.message);
+		}
 		reset();
 	};
 
