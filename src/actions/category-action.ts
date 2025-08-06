@@ -17,19 +17,21 @@ export async function addCategoryColorAction(
 	title: string,
 	hexColor: string,
 	todolistId: number
-): Promise<ActionState<void>> {
-	const newCategoryId = createCategoryColor(title, hexColor, todolistId);
+): Promise<ActionState<number | null>> {
+	const newCategoryId = await createCategoryColor(title, hexColor, todolistId);
 
-	if (newCategoryId !== null) {
+	if (newCategoryId !== null && newCategoryId) {
 		return {
 			message: 'New category created successfully',
 			success: true,
+			data: newCategoryId,
 		};
 	} else {
 		console.error('Failed to create new category');
 		return {
 			message: 'Failed to create new category',
 			success: false,
+			data: null,
 		};
 	}
 }

@@ -7,6 +7,7 @@ import useQueryParams from '@/hooks/useQueryParams';
 import { Category } from '@/utils/types';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 export default function CategoryForm() {
 	const { addCategory, isCategoryTitleUnique } = useCategoriesStore();
@@ -20,11 +21,12 @@ export default function CategoryForm() {
 		const parseTodolistId = Number(todolistId);
 		if (!newCategoryTitle || !isCategoryTitleUnique(newCategoryTitle)) return;
 
-		const newCategoryId = await addCategoryColorAction(newCategoryTitle, selectedColor, parseTodolistId);
-		if (!newCategoryId) return;
+		const result = await addCategoryColorAction(newCategoryTitle, selectedColor, parseTodolistId);
+
+		if (!result.success) return toast.error(result.message);
 
 		const newCategory: Category = {
-			id: newCategoryId,
+			id: result.data!,
 			category_title: newCategoryTitle,
 			hex_color: selectedColor,
 			todo_list_id: parseTodolistId,
@@ -32,6 +34,7 @@ export default function CategoryForm() {
 
 		addCategory(newCategory);
 		reset();
+		toast.success(result.message);
 	};
 
 	return (
