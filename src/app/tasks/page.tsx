@@ -3,6 +3,8 @@ import TaggedPage from '@/components/smart-list/TaggedPage';
 import UpcomingTodayPage from '@/components/smart-list/UpcomingPage';
 import TodoListPage from '@/components/todo-list/TodoListPage';
 import NoTodoListSelected from '@/components/ui-shared/NoTodoListSelected';
+import { getAuthenticatedUserId } from '@/lib/user';
+import { redirect } from 'next/navigation';
 
 interface PageProps {
 	searchParams: Promise<{
@@ -12,6 +14,12 @@ interface PageProps {
 }
 
 export default async function TasksPage({ searchParams }: PageProps) {
+	const userId = await getAuthenticatedUserId();
+
+	if (!userId) {
+		redirect('/login');
+	}
+
 	const { id = '', 'smart-list': smartList = '' } = await searchParams;
 	const todolistId = id ? Number(id) : null;
 
@@ -28,5 +36,5 @@ export default async function TasksPage({ searchParams }: PageProps) {
 		return <NoTodoListSelected />;
 	}
 
-	return <TodoListPage todolistId={todolistId} />;
+	return <TodoListPage todolistId={todolistId} userId={userId} />;
 }

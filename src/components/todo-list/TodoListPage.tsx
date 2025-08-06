@@ -6,15 +6,15 @@ import { redirect } from 'next/navigation';
 import TodoListMain from './components/TodoListMain';
 import { getCategories } from '@/lib/category';
 
-export default async function TodoListPage({ todolistId }: { todolistId: number }) {
-	const todolist = await getTodolist(todolistId, 1);
+export default async function TodoListPage({ todolistId, userId }: { todolistId: number; userId: number }) {
+	const todolist = await getTodolist(todolistId, userId);
 	const categories = await getCategories(todolistId);
 
 	if (!todolist) {
 		redirect('/tasks/');
 	}
 
-	const todos = await getTodosWithCategories(todolistId, 1);
+	const todos = await getTodosWithCategories(todolistId, userId);
 	return (
 		<Suspense fallback={<LoadingAnimation />}>
 			<TodoListHeader initialTodolist={todolist} categories={categories} />
