@@ -58,7 +58,7 @@ export default function TodoTitle({ title }: { title: string }) {
 							<Button type="submit" ariaLabel="Save New Todo Title">
 								<Save size={18} />
 							</Button>
-							<Button ariaLabel="Undo Due Date" type="submit" onClick={() => reset()}>
+							<Button ariaLabel="Undo Due Date" type="button" onClick={() => reset()}>
 								<Undo size={18} />
 							</Button>
 						</div>
