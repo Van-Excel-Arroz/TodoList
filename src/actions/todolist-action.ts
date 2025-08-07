@@ -5,7 +5,6 @@ import { ActionState } from '@/utils/types';
 
 export async function createTodolistAction(title: string, userId: number): Promise<ActionState<number | null>> {
 	const todolistId = await storeTodolist(title, userId);
-	await new Promise(resolve => setTimeout(resolve, 1500));
 	if (todolistId) {
 		return {
 			message: 'Todo list created successfully',
@@ -24,7 +23,6 @@ export async function createTodolistAction(title: string, userId: number): Promi
 
 export async function deleteTodolistAction(todolistId: number): Promise<ActionState<void>> {
 	const result = await deleteTodolist(todolistId);
-	await new Promise(resolve => setTimeout(resolve, 1500));
 	if (result) {
 		return {
 			message: 'Todo list deleted successfully',

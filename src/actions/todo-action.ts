@@ -23,7 +23,6 @@ export async function createTodoAction(
 	categories: CategoryTag[]
 ): Promise<ActionState<Todo>> {
 	const todoId = await storeTodo(taskText, dueDatetime, todolistId);
-	await new Promise(resolve => setTimeout(resolve, 1500));
 	if (todoId) {
 		const categoryColorIds = await storeCategoriesColors(categories, todolistId);
 		await storeCategories(todoId, categoryColorIds);
@@ -77,7 +76,6 @@ export async function updateTodoImportanceAction(todoId: number, isImportant: bo
 
 export async function deleteTodoAction(todoId: number): Promise<ActionState<void>> {
 	const result = await deleteTodo(todoId);
-	await new Promise(resolve => setTimeout(resolve, 1500));
 	if (result) {
 		return {
 			message: 'Todo deleted successfully',
@@ -93,7 +91,6 @@ export async function deleteTodoAction(todoId: number): Promise<ActionState<void
 
 export async function updateTodoTitleAction(todoId: number, title: string): Promise<ActionState<void>> {
 	const result = await updateTodoTitle(todoId, title);
-	await new Promise(resolve => setTimeout(resolve, 1500));
 	if (result) {
 		return {
 			message: 'Updated todo title successfully',
@@ -109,7 +106,6 @@ export async function updateTodoTitleAction(todoId: number, title: string): Prom
 
 export async function updateTodoDueDateAction(todoId: number, dueDate: string): Promise<ActionState<void>> {
 	const result = await updateTodoDueDate(todoId, dueDate);
-	await new Promise(resolve => setTimeout(resolve, 1500));
 	if (result) {
 		return {
 			message: 'Updated todo due date successfully',
