@@ -26,7 +26,7 @@ export default function TodoDetailsPanel() {
 	const { getQueryParam } = useQueryParams();
 	const { getTodoListSettingValue } = useTodoListsStore();
 	const [id] = getQueryParam('id');
-	const accentColor = getTodoListSettingValue('appearance', 'accent', Number(id));
+	const accentColor = getTodoListSettingValue('appearance', 'accent', Number(id)) ?? '#6b7280';
 
 	return (
 		<>
@@ -50,11 +50,7 @@ export default function TodoDetailsPanel() {
 					{section === 'Details' && (
 						<>
 							<div className="flex items-center justify-between gap-4">
-								<TodoComplete
-									isCompleted={todo?.is_completed ?? false}
-									completedAt={todo?.completed_at ?? ''}
-									accentColor={accentColor ?? ''}
-								/>
+								<TodoComplete isCompleted={todo?.is_completed ?? false} accentColor={accentColor ?? ''} />
 								<TodoImportance isImportant={todo?.is_important ?? false} accentColor={accentColor ?? ''} />
 							</div>
 
