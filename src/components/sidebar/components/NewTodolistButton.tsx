@@ -1,11 +1,15 @@
 'use client';
 
 import Button from '@/components/ui-shared/Button';
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import TodolistForm from '../ui/TodolistForm';
+import useUserIdStore from '@/context/userIdContext';
 
 function NewTodolistButton({ userId }: { userId: number }) {
 	const [isAddingList, setIsAddingList] = useState(false);
+	const { setUserId } = useUserIdStore();
+
+	useEffect(() => setUserId(userId), [userId, setUserId]);
 
 	return (
 		<div className="w-full flex justify-center py-6 border-t border-slate-300">

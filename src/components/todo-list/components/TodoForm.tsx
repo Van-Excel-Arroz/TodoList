@@ -12,6 +12,7 @@ import { CategoryTag } from '@/utils/types';
 import useTodoListsStore from '@/context/TodoListsContext';
 import useQueryParams from '@/hooks/useQueryParams';
 import { toast } from 'react-hot-toast';
+import useUserIdStore from '@/context/userIdContext';
 
 interface TodoFormData {
 	todo: string;
@@ -23,6 +24,7 @@ export default function TodoForm() {
 	const { addCategory, getCategoryColor } = useCategoriesStore();
 	const { getQueryParam } = useQueryParams();
 	const { getTodoListSettingValue } = useTodoListsStore();
+	const { userId } = useUserIdStore();
 	const [todolistIdString] = getQueryParam('id');
 	const todolistId = Number(todolistIdString);
 	const [dueDate, setDueDate] = useState<string | undefined>(undefined);
@@ -75,10 +77,11 @@ export default function TodoForm() {
 	const onSubmit = async (data: TodoFormData) => {
 		const todoText = data.todo?.trim();
 		if (!todoText) return;
+		if (!userId) return toast.error('User not found');
 
 		const finalDate = dueDate ?? null;
 		const toastId = toast.loading('Creating todo...');
-		const result = await createTodoAction(todoText, finalDate, todolistId, categories);
+		const result = await createTodoAction(todoText, finalDate, todolistId, userId, categories);
 
 		if (result.success && result.data) {
 			toast.success(result.message, { id: toastId });
