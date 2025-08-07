@@ -54,7 +54,7 @@ export default function TodoTitle({ title }: { title: string }) {
 				<div className="flex items-center justify-between w-full">
 					<p className="pb-2">Title</p>
 					{isEditing && (
-						<div className="flex items-center gap-2">
+						<div className="flex items-center gap-2 pb-1">
 							<Button type="submit" ariaLabel="Save New Todo Title">
 								<Save size={18} />
 							</Button>
