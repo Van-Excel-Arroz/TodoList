@@ -27,7 +27,7 @@ export async function createTodoAction(
 	if (todoId) {
 		const categoryColorIds = await storeCategoriesColors(categories, todolistId);
 		await storeCategories(todoId, categoryColorIds);
-		const newTodo = await getTodoWithCategories(1, todolistId, todoId);
+		const newTodo = await getTodoWithCategories(userId, todolistId, todoId);
 		if (newTodo) {
 			return {
 				success: true,
