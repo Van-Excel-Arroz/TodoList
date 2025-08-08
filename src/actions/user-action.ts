@@ -57,3 +57,8 @@ export async function authenticateUserAction(email: string, password: string): P
 		};
 	}
 }
+
+export async function logoutUserAction() {
+	const cookieStore = await cookies();
+	cookieStore.delete('session_token');
+}

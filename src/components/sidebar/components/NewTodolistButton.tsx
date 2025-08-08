@@ -12,7 +12,7 @@ function NewTodolistButton({ userId }: { userId: number }) {
 	useEffect(() => setUserId(userId), [userId, setUserId]);
 
 	return (
-		<div className="w-full flex justify-center py-6 border-t border-slate-300">
+		<div className="w-full flex justify-center py-6">
 			{isAddingList ? (
 				<TodolistForm handleIsAddingList={setIsAddingList} userId={userId} />
 			) : (
