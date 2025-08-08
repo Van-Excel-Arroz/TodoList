@@ -1,6 +1,7 @@
 'use client';
 
 import { createUserAction } from '@/actions/user-action';
+import Button from '@/components/ui-shared/Button';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -33,7 +34,7 @@ export default function RegisterPage() {
 		<div className="h-[100vh] flex flex-col items-center justify-center">
 			<div className="flex flex-col gap-8 w-[300px]">
 				<p className="text-2xl font-bold text-center">Register</p>
-				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
 					<p className="text-sm font-medium">Username</p>
 					<input
 						{...register('username', { required: true, maxLength: 200 })}
@@ -42,7 +43,7 @@ export default function RegisterPage() {
 						className="border border-gray-300 rounded-md p-2"
 						autoComplete="off"
 					/>
-					<p className="text-sm font-medium">Email</p>
+					<p className="text-sm font-medium pt-4">Email</p>
 					<input
 						{...register('email', { required: true, maxLength: 200 })}
 						type="email"
@@ -50,7 +51,7 @@ export default function RegisterPage() {
 						className="border border-gray-300 rounded-md p-2"
 						autoComplete="off"
 					/>
-					<p className="text-sm font-medium">Password</p>
+					<p className="text-sm font-medium pt-4">Password</p>
 					<input
 						{...register('password', { required: true, maxLength: 200 })}
 						type="password"
@@ -58,9 +59,9 @@ export default function RegisterPage() {
 						className="border border-gray-300 rounded-md p-2"
 					/>
 
-					<button type="submit" className="bg-black text-white rounded-md p-2">
+					<Button type="submit" ariaLabel="Register" darkMode={true} className="py-2 mt-6">
 						Register
-					</button>
+					</Button>
 				</form>
 				<div className="text-sm text-center flex flex-row items-center justify-center gap-2">
 					<p>Already have an account?</p>

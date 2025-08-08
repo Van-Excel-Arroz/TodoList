@@ -1,6 +1,7 @@
 'use client';
 
 import { authenticateUserAction } from '@/actions/user-action';
+import Button from '@/components/ui-shared/Button';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -32,7 +33,7 @@ export default function LoginPage() {
 		<div className="h-[100vh] flex flex-col items-center justify-center">
 			<div className="flex flex-col gap-8 w-[300px]">
 				<p className="text-2xl font-bold text-center">Login</p>
-				<form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+				<form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
 					<p className="text-sm font-medium">Email</p>
 					<input
 						{...register('email', { required: true, maxLength: 200 })}
@@ -42,7 +43,7 @@ export default function LoginPage() {
 						autoComplete="off"
 					/>
 
-					<p className="text-sm font-medium">Password</p>
+					<p className="text-sm font-medium pt-4">Password</p>
 					<input
 						{...register('password', { required: true, maxLength: 200 })}
 						type="password"
@@ -50,9 +51,9 @@ export default function LoginPage() {
 						className="border border-gray-300 rounded-md p-2"
 					/>
 
-					<button type="submit" className="bg-black text-white rounded-md p-2">
+					<Button type="submit" ariaLabel="Login" darkMode={true} className="py-2 mt-6">
 						Login
-					</button>
+					</Button>
 				</form>
 				<div className="text-sm text-center flex flex-row items-center justify-center gap-2">
 					<p>Don&apos;t have an account?</p>
