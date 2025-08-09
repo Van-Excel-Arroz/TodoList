@@ -18,7 +18,14 @@ export default function RegisterPage() {
 	const onSubmit = async (data: RegisterFormData) => {
 		if (!data.username?.trim() || !data.email?.trim() || !data.password?.trim()) return;
 
-		console.log(data);
+		if (data.username.length < 3 || data.username.length > 20)
+			return toast.error('Username must be between 3 and 20 characters');
+
+		if (data.password.length < 8 || data.password.length > 20)
+			return toast.error('Password must be between 8 and 20 characters');
+
+		if (!data.email.includes('@')) return toast.error('Invalid email');
+
 		const response = await createUserAction(data.email, data.username, data.password);
 
 		if (response.data && response.success) {
