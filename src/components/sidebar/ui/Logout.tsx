@@ -11,9 +11,9 @@ export default function Logout() {
 
 	return (
 		<div className="flex border-t border-slate-300 px-5 py-4">
-			<Button ariaLabel="Logout" className="flex items-center gap-4" onClick={handleLogout}>
-				<p>Logout</p>
+			<Button ariaLabel="Logout" className="flex items-center gap-4 p-2" onClick={handleLogout}>
 				<LogOut />
+				<p>Logout</p>
 			</Button>
 		</div>
 	);
