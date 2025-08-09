@@ -66,7 +66,7 @@ export default function RegisterPage() {
 						className="border border-gray-300 rounded-md p-2"
 					/>
 
-					<Button type="submit" ariaLabel="Register" darkMode={true} className="py-2 mt-6">
+					<Button type="submit" ariaLabel="Register" darkMode={true} focusStyle={false} className="py-2 mt-6">
 						Register
 					</Button>
 				</form>

@@ -51,7 +51,7 @@ export default function LoginPage() {
 						className="border border-gray-300 rounded-md p-2"
 					/>
 
-					<Button type="submit" ariaLabel="Login" darkMode={true} className="py-2 mt-6">
+					<Button type="submit" ariaLabel="Login" darkMode={true} focusStyle={false} className="py-2 mt-6">
 						Login
 					</Button>
 				</form>
