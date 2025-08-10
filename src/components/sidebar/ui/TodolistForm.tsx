@@ -49,7 +49,7 @@ function TodolistForm({ handleIsAddingList, userId }: TodoListFormProps) {
 						type="text"
 						placeholder="New list"
 						autoFocus
-						className="px-2 py-2 mr-2 w-full border-b border-slate-300 hover:border-slate-500 focus:border-slate-500 focus:outline-none"
+						className="px-2 py-[7px] mr-2 w-full border-b border-slate-300 hover:border-slate-500 focus:border-slate-500 focus:outline-none"
 					/>
 					<Button type="submit" ariaLabel="Submit new list">
 						<SendHorizontal size={20} />
