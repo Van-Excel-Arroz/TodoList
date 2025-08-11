@@ -75,6 +75,7 @@ export default function TodoCategories({ categories }: { categories: Category[] 
 					ariaLabel="Add Category"
 					className="flex items-center gap-1"
 					onClick={() => setIsMenuOpen(prev => !prev)}
+					focusStyle={false}
 				>
 					<Plus size={13} />
 					<p className="text-sm">Add Category</p>
