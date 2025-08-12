@@ -84,7 +84,7 @@ export default function useTodoListSettings() {
 		const layoutValue = newLayoutValue !== oldLayoutValue ? newLayoutValue : oldLayoutValue;
 
 		if (newFilterValue || newSortValue || newLayoutValue) {
-			updateSearchParams('filter', newFilterValue, todolistId, 'sort', newSortValue, 'view', lowerFirst(layoutValue));
+			updateSearchParams({ filter: newFilterValue, sort: newSortValue, view: lowerFirst(layoutValue) }, todolistId);
 		}
 	};
 

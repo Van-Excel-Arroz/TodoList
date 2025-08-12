@@ -14,26 +14,24 @@ export default function useQueryParams() {
 	);
 
 	const updateSearchParams = useCallback(
-		(
-			field: string,
-			value: string | null,
-			key: string,
-			field2?: string,
-			value2?: string | null,
-			field3?: string,
-			value3?: string
-		) => {
-			const params = new URLSearchParams(searchParams.toString());
-			value3 ? params.set(`${field3}`, value3) : params.delete(`${field3}`);
-			value2 ? params.set(`${field2}`, value2) : params.delete(`${field2}`);
-			value ? params.set(`${field}`, value) : params.delete(`${field}`);
-			const newQueryString = params.toString();
+		(paramsToUpdate: { [paramKey: string]: string | null }, storageKey: string) => {
+			console.log(paramsToUpdate);
+			const searchParamsCopy = new URLSearchParams(searchParams.toString());
+			for (const [paramKey, paramValue] of Object.entries(paramsToUpdate)) {
+				if (paramValue) {
+					searchParamsCopy.set(paramKey, paramValue);
+				} else {
+					searchParamsCopy.delete(paramKey);
+				}
+			}
+
+			const newQueryString = searchParamsCopy.toString();
 			const targetPath = `/tasks/?${newQueryString}`;
 
 			router.push(targetPath);
 
-			if (key !== undefined && key !== null) {
-				localStorage.setItem(`searchParams-${key}`, newQueryString);
+			if (storageKey !== undefined && storageKey !== null) {
+				localStorage.setItem(`searchParams-${storageKey}`, newQueryString);
 				console.log(localStorage);
 			} else {
 				console.warn('Attempted to store search params with undefined/null key.');
