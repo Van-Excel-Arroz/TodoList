@@ -16,7 +16,7 @@ export default function TodoSearch() {
 	};
 
 	const clearSearch = () => {
-		updateSearchParams('search', null, id);
+		updateSearchParams({ search: null }, id);
 		reset();
 	};
 
