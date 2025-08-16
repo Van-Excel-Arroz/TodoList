@@ -51,7 +51,7 @@ export default function SortMenu({
 			{MenuItems.map(menuItem => (
 				<MenuItem
 					onClick={() =>
-						updateSearchParams('sort', `${menuItem.sortField}:${menuItem.sortOrder}`, todolistId || smart_list)
+						updateSearchParams({ sort: `${menuItem.sortField}:${menuItem.sortOrder}` }, todolistId || smart_list)
 					}
 					key={menuItem.sortField}
 					className="justify-between"
@@ -71,7 +71,7 @@ export default function SortMenu({
 			{clearBtn && (
 				<MenuItem
 					className="border-t justify-center"
-					onClick={() => updateSearchParams('sort', null, todolistId || smart_list)}
+					onClick={() => updateSearchParams({ sort: null }, todolistId || smart_list)}
 				>
 					<Trash2 size={18} className="text-slate-600" />
 					<p>Clear</p>
