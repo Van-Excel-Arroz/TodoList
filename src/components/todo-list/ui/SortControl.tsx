@@ -32,17 +32,17 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 	const [smart_list] = getQueryParam('smart-list');
 	const SortIcon = sortIcons[sortField] ?? { asc: ArrowUpWideNarrowIcon, desc: ArrowDownWideNarrowIcon };
 
+	const handleReverseSort = (isSorting: boolean) => {
+		const paramSortValue = sortValue === 'asc' ? `${sortField}:desc` : `${sortField}:asc`;
+		const paramValue = isSorting ? paramSortValue : null;
+		updateSearchParams({ sort: paramValue }, todolistId || smart_list);
+	};
+
 	return (
 		<div className="flex items-center gap-1">
 			<Button
 				ariaLabel="Reverse Sort Order"
-				onClick={() =>
-					updateSearchParams(
-						'sort',
-						sortValue === 'asc' ? `${sortField}:desc` : `${sortField}:asc`,
-						todolistId || smart_list
-					)
-				}
+				onClick={() => handleReverseSort(true)}
 				className="hover:bg-slate-300 active:bg-slate-400"
 			>
 				{sortValue === 'asc' ? <SortIcon.asc size={16} /> : <SortIcon.desc size={16} />}
@@ -56,7 +56,7 @@ export default function SortControl({ setIsSortMenuOpen }: { setIsSortMenuOpen: 
 			</Button>
 			<Button
 				ariaLabel="Remove Sort"
-				onClick={() => updateSearchParams('sort', null, todolistId || smart_list)}
+				onClick={() => handleReverseSort(false)}
 				className="hover:bg-slate-300 active:bg-slate-400"
 			>
 				<XIcon size={16} />
