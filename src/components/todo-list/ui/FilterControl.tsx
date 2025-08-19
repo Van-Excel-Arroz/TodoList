@@ -38,7 +38,7 @@ export default function FilterControl({ setIsFilterMenuOpen }: { setIsFilterMenu
 			</Button>
 			<Button
 				ariaLabel="Remove Sort"
-				onClick={() => updateSearchParams('filter', null, todolistId || smart_list)}
+				onClick={() => updateSearchParams({ filter: null }, todolistId || smart_list)}
 				className="hover:bg-slate-300 active:bg-slate-400"
 			>
 				<XIcon size={16} />
