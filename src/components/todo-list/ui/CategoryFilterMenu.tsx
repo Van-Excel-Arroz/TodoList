@@ -14,12 +14,12 @@ export default function CategoryFilterMenu() {
 
 	const applyCategoriesFilter = () => {
 		if (selectedCategoryTitles.length === 0) {
-			updateSearchParams('filter', null, todolistId || smart_list);
+			updateSearchParams({ filter: null }, todolistId || smart_list);
 			return;
 		}
 		const stringTitles = selectedCategoryTitles.join(',');
 
-		if (stringTitles) updateSearchParams('filter', `Categories:${stringTitles}`, todolistId || smart_list);
+		if (stringTitles) updateSearchParams({ filter: `Categories:${stringTitles}` }, todolistId || smart_list);
 	};
 
 	return (
