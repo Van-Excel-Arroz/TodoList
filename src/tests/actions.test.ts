@@ -1,38 +1,43 @@
-import { updateTodoCompletionAction } from '../actions/todo-action';
-import { updateTodoCompletion } from '../lib/todo';
+jest.mock(`../lib/todo`);
 
-jest.mock('../lib/todo');
+function testServerAction(
+	serverAction: any,
+	databaseFunction: any,
+	testArgs: any,
+	successMessage: string,
+	failureMessage: string
+) {
+	const mockDatabaseFunction = databaseFunction as jest.MockedFunction<typeof databaseFunction>;
 
-const mockUpdateTodoCompletion = updateTodoCompletion as jest.MockedFunction<typeof updateTodoCompletion>;
-
-describe('updateTodoCompletionAction', () => {
-	beforeEach(() => {
-		jest.clearAllMocks();
-	});
-
-	it('should return sucess when database update succeeds', async () => {
-		mockUpdateTodoCompletion.mockResolvedValue(true);
-
-		const result = await updateTodoCompletionAction(1, true);
-
-		expect(result).toEqual({
-			success: true,
-			message: 'Todo completion updated successfully',
+	describe('serverAction', () => {
+		beforeEach(() => {
+			jest.clearAllMocks();
 		});
 
-		expect(mockUpdateTodoCompletion).toHaveBeenCalledWith(1, true);
-	});
+		it('should return sucess when database update succeeds', async () => {
+			mockDatabaseFunction.mockResolvedValue(true);
 
-	it('should return failure when database update fails', async () => {
-		mockUpdateTodoCompletion.mockResolvedValue(false);
+			const result = await serverAction(...testArgs);
 
-		const result = await updateTodoCompletionAction(1, false);
+			expect(result).toEqual({
+				success: true,
+				message: successMessage,
+			});
 
-		expect(result).toEqual({
-			success: false,
-			message: 'Failed to update todo completion',
+			expect(mockDatabaseFunction).toHaveBeenCalledWith(...testArgs);
 		});
 
-		expect(mockUpdateTodoCompletion).toHaveBeenCalledWith(1, false);
+		it('should return failure when database update fails', async () => {
+			mockDatabaseFunction.mockResolvedValue(false);
+
+			const result = await serverAction(...testArgs);
+
+			expect(result).toEqual({
+				success: false,
+				message: failureMessage,
+			});
+
+			expect(mockDatabaseFunction).toHaveBeenCalledWith(...testArgs);
+		});
 	});
-});
+}
