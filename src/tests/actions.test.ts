@@ -1,8 +1,11 @@
+import { updateTodoCompletionAction } from '@/actions/todo-action';
+import { updateTodoCompletion } from '../lib/todo';
+
 jest.mock(`../lib/todo`);
 
 function testServerAction(
-	serverAction: any,
-	databaseFunction: any,
+	serverAction: (...args: any) => any,
+	databaseFunction: (...args: any) => any,
 	testArgs: any,
 	successMessage: string,
 	failureMessage: string
@@ -41,3 +44,11 @@ function testServerAction(
 		});
 	});
 }
+
+testServerAction(
+	updateTodoCompletionAction,
+	updateTodoCompletion,
+	[1, true],
+	'Todo completion updated successfully',
+	'Failed to update todo completion'
+);
