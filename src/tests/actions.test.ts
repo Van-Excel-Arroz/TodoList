@@ -1,5 +1,5 @@
-import { updateTodoCompletionAction, updateTodoImportanceAction } from '@/actions/todo-action';
-import { updateTodoCompletion, updateTodoImportance } from '../lib/todo';
+import { deleteTodoAction, updateTodoCompletionAction, updateTodoImportanceAction } from '@/actions/todo-action';
+import { deleteTodo, updateTodoCompletion, updateTodoImportance } from '../lib/todo';
 import { testServerAction } from './test-server-action';
 
 jest.mock(`../lib/todo`);
@@ -19,3 +19,5 @@ testServerAction(
 	'Todo importance updated successfully',
 	'Failed to update todo importance'
 );
+
+testServerAction(deleteTodoAction, deleteTodo, [1], 'Todo deleted successfully', 'Failed to delete todo');
