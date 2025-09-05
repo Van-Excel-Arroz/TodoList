@@ -1,6 +1,6 @@
-import { deleteTodolistAction } from '@/actions/todolist-action';
+import { deleteTodolistAction, updateTodolistAction } from '@/actions/todolist-action';
 import { testServerAction } from './test-server-action';
-import { deleteTodolist } from '../lib/todolist';
+import { deleteTodolist, updateTodolist } from '../lib/todolist';
 
 jest.mock(`../lib/todolist`);
 
@@ -10,4 +10,12 @@ testServerAction(
 	[1],
 	'Todo list deleted successfully',
 	'Failed to delete the todo list'
+);
+
+testServerAction(
+	updateTodolistAction,
+	updateTodolist,
+	[1, 'New Title'],
+	'Todo list updated successfully',
+	'Failed to update the todo list'
 );
