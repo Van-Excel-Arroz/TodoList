@@ -13,6 +13,7 @@ import {
 	updateTodoImportance,
 	updateTodoTitle,
 } from '@/lib/todo';
+import { createActionResponse } from '@/utils/action-helper';
 import { ActionState, CategoryTag, Todo } from '@/utils/types';
 
 export async function createTodoAction(
@@ -44,18 +45,7 @@ export async function createTodoAction(
 
 export async function updateTodoCompletionAction(todoId: number, isCompleted: boolean): Promise<ActionState<void>> {
 	const result = await updateTodoCompletion(todoId, isCompleted);
-	if (result) {
-		return {
-			success: true,
-			message: 'Todo completion updated successfully',
-		};
-	} else {
-		console.error('Failed to update todo completion');
-		return {
-			success: false,
-			message: 'Failed to update todo completion',
-		};
-	}
+	return createActionResponse(result, 'Todo completion updated successfully', 'Failed to update todo completion');
 }
 
 export async function updateTodoImportanceAction(todoId: number, isImportant: boolean): Promise<ActionState<void>> {
