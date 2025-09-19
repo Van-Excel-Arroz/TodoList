@@ -50,18 +50,7 @@ export async function updateTodoCompletionAction(todoId: number, isCompleted: bo
 
 export async function updateTodoImportanceAction(todoId: number, isImportant: boolean): Promise<ActionState<void>> {
 	const result = await updateTodoImportance(todoId, isImportant);
-	if (result) {
-		return {
-			success: true,
-			message: 'Todo importance updated successfully',
-		};
-	} else {
-		console.error('Failed to update todo importance');
-		return {
-			success: false,
-			message: 'Failed to update todo importance',
-		};
-	}
+	return createActionResponse(result, 'Todo importance updated successfully', 'Failed to update todo importance');
 }
 
 export async function deleteTodoAction(todoId: number): Promise<ActionState<void>> {
