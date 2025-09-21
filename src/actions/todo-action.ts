@@ -60,17 +60,7 @@ export async function deleteTodoAction(todoId: number): Promise<ActionState<void
 
 export async function updateTodoTitleAction(todoId: number, title: string): Promise<ActionState<void>> {
 	const result = await updateTodoTitle(todoId, title);
-	if (result) {
-		return {
-			message: 'Updated todo title successfully',
-			success: true,
-		};
-	}
-	console.error('Failed to update todo title');
-	return {
-		message: 'Failed to update todo title',
-		success: false,
-	};
+	return createActionResponse(result, 'Todo title updated successfully', 'Failed to update todo title');
 }
 
 export async function updateTodoDueDateAction(todoId: number, dueDate: string): Promise<ActionState<void>> {
