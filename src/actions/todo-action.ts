@@ -65,17 +65,7 @@ export async function updateTodoTitleAction(todoId: number, title: string): Prom
 
 export async function updateTodoDueDateAction(todoId: number, dueDate: string): Promise<ActionState<void>> {
 	const result = await updateTodoDueDate(todoId, dueDate);
-	if (result) {
-		return {
-			message: 'Updated todo due date successfully',
-			success: true,
-		};
-	}
-	console.error('Failed to update todo due date');
-	return {
-		message: 'Failed to update todo due date',
-		success: false,
-	};
+	return createActionResponse(result, 'Todo due date updated successfully', 'Failed to update todo due date');
 }
 
 export async function deleteTodoDueDateAction(todoId: number): Promise<ActionState<void>> {
