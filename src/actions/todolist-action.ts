@@ -2,6 +2,7 @@
 
 import { deleteTodolist, storeTodolist, updateTodolist } from '@/lib/todolist';
 import { ActionState } from '@/utils/types';
+import { createActionResponse } from '@/utils/action-helper';
 
 export async function createTodolistAction(title: string, userId: number): Promise<ActionState<number | null>> {
 	const todolistId = await storeTodolist(title, userId);
@@ -23,18 +24,7 @@ export async function createTodolistAction(title: string, userId: number): Promi
 
 export async function deleteTodolistAction(todolistId: number): Promise<ActionState<void>> {
 	const result = await deleteTodolist(todolistId);
-	if (result) {
-		return {
-			message: 'Todo list deleted successfully',
-			success: true,
-		};
-	} else {
-		console.error('Failed to delete the todo list');
-		return {
-			message: 'Failed to delete the todo list',
-			success: false,
-		};
-	}
+	return createActionResponse(result, 'Todo list deleted successfully', 'Failed to delete the todo list');
 }
 
 export async function updateTodolistAction(todolistId: number, title: string) {
