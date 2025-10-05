@@ -51,19 +51,9 @@ export async function updateCategoryColorAction(
 	newColor: string
 ): Promise<ActionState<void>> {
 	const result = await updateCategoryColor(categoryColorId, todolistId, newColor);
-	if (result) {
-		return {
-			message: 'Category color updated successfully',
-			success: true,
-		};
-	} else {
-		console.error('Failed to update category color');
-		return {
-			message: 'Failed to update category color',
-			success: false,
-		};
-	}
+	return createActionResponse(result, 'Category color updated successfully', 'Failed to update category color');
 }
+
 export async function deleteCategoryColorAction(
 	categoryColorId: number,
 	todolistId: number
