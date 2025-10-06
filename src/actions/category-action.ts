@@ -59,16 +59,5 @@ export async function deleteCategoryColorAction(
 	todolistId: number
 ): Promise<ActionState<void>> {
 	const result = await deleteCategoryColor(categoryColorId, todolistId);
-	if (result) {
-		return {
-			message: 'Category color deleted successfully',
-			success: true,
-		};
-	} else {
-		console.error('Failed to delete category color');
-		return {
-			message: 'Failed to delete category color',
-			success: false,
-		};
-	}
+	return createActionResponse(result, 'Category color deleted successfully', 'Failed to delete category color');
 }
