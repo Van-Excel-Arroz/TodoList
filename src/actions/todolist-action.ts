@@ -29,16 +29,5 @@ export async function deleteTodolistAction(todolistId: number): Promise<ActionSt
 
 export async function updateTodolistAction(todolistId: number, title: string) {
 	const result = await updateTodolist(todolistId, title);
-	if (result) {
-		return {
-			message: 'Todo list updated successfully',
-			success: true,
-		};
-	} else {
-		console.error('Failed to update the todo list');
-		return {
-			message: 'Failed to update the todo list',
-			success: false,
-		};
-	}
+	return createActionResponse(result, 'Todo list updated successfully', 'Failed to update the todo list');
 }
