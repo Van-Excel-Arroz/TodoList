@@ -22,7 +22,7 @@ export async function createTodoAction(
 	todolistId: number,
 	userId: number,
 	categories: CategoryTag[]
-): Promise<ActionState<Todo>> {
+): Promise<ActionState<Todo | null>> {
 	const todoId = await storeTodo(taskText, dueDatetime, todolistId);
 	if (todoId) {
 		const categoryColorIds = await storeCategoriesColors(categories, todolistId);
@@ -40,6 +40,7 @@ export async function createTodoAction(
 	return {
 		success: false,
 		message: 'Failed to create the todo',
+		data: null,
 	};
 }
 
